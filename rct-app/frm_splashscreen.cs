@@ -16,5 +16,14 @@ namespace rct_app
         {
             InitializeComponent();
         }
+
+        private void bopen_Click(object sender, EventArgs e)
+        {
+            this.Hide();  
+            frm_login login = new frm_login();
+            login.ShowDialog();
+
+            this.Close();
+        }
     }
 }
