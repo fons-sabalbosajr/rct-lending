@@ -262,14 +262,57 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="frm_home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frm_home.Designer.cs">
+      <DependentUpon>frm_home.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_home_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_login.Designer.cs">
+      <DependentUpon>frm_home_login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_signup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_signup.Designer.cs">
+      <DependentUpon>frm_home_signup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_signup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_signup.Designer.cs">
+      <DependentUpon>frm_signup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_splashscreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_splashscreen.Designer.cs">
+      <DependentUpon>frm_splashscreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingFunction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="z_loadingform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="z_loadingform.Designer.cs">
+      <DependentUpon>z_loadingform.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frm_home.resx">
+      <DependentUpon>frm_home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_home_login.resx">
+      <DependentUpon>frm_home_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_signup.resx">
+      <DependentUpon>frm_signup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_splashscreen.resx">
+      <DependentUpon>frm_splashscreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -278,7 +321,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="z_loadingform.resx">
+      <DependentUpon>z_loadingform.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -292,6 +339,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-commercial-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-bell-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-facebook-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-gmail-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />

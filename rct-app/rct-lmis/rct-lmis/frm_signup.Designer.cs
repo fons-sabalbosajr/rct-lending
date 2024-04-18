@@ -1,7 +1,7 @@
 ﻿
 namespace rct_lmis
 {
-    partial class Form1
+    partial class frm_signup
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,19 @@ namespace rct_lmis
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // frm_signup
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(425, 400);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "frm_signup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "frm_signup";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
