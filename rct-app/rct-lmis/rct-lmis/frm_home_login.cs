@@ -23,7 +23,7 @@ namespace rct_lmis
                ApplicationDeployment.CurrentDeployment.CurrentVersion :
                Assembly.GetExecutingAssembly().GetName().Version;
 
-            lversion.Text = ver.Major + "." + ver.Minor + "." + ver.Build;
+            lversion.Text = "ver." + ver.Major + "." + ver.Minor + "." + ver.Build;
 
             ///auto complete
             tuser.Focus();
@@ -47,7 +47,8 @@ namespace rct_lmis
         public static string getusername = "";
         public static string getpassword = "";
 
-        z_loadingform load = new z_loadingform();
+        LoadingFunction load = new LoadingFunction();
+        frm_home fh = new frm_home();
 
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int con, int val);
@@ -66,10 +67,27 @@ namespace rct_lmis
             {
                 if (ip.AddressFamily.ToString() == "InterNetwork")
                 {
-                    cip = ip.ToString();
+                    cip = "Active IP Address: " + ip.ToString();
                 }
                 lip.Text = cip;
             }
+        }
+
+        private void ChildForm(Form childForm)
+        {
+            if (currChildForm != null)
+            {
+                currChildForm.Close();
+            }
+            currChildForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+
+            pright.Controls.Add(childForm);
+            pright.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
 
         void fadeIn(object sender, EventArgs e)
@@ -127,5 +145,42 @@ namespace rct_lmis
                 MessageBox.Show("Sign-up Window is not Available. Contact the Developer immediately.");
             }
         }
+
+        private void pright_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void pbg_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void blogin_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tuser.Text))
+            {
+                MessageBox.Show("Please enter your username", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tuser.Clear();
+                tuser.Focus();
+            }
+            else if (string.IsNullOrEmpty(tpass.Text))
+            {
+                MessageBox.Show("Please enter your password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tpass.Clear();
+                tpass.Focus();
+            }
+            else
+            {
+                load.Show(this);
+                Thread.Sleep(1000);
+                fh.Show(this);
+                load.Close();
+
+                this.Hide();
+            }
+         }
     }
 }

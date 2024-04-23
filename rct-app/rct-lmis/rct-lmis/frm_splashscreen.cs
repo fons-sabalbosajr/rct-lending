@@ -64,7 +64,8 @@ namespace rct_lmis
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Failed to load. Connection has not established. Check your connection settings. Error(" + ex.Message + ")", "Connection Lost", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Failed to load. Connection has not established. Check your connection settings. Error(" + ex.Message + ")", 
+                    "Connection Lost", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Exit();
             }
         }

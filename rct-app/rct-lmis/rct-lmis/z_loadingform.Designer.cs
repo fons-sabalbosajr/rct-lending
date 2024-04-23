@@ -83,6 +83,7 @@ namespace rct_lmis
             // 
             this.tfade.Enabled = true;
             this.tfade.Interval = 5;
+            this.tfade.Tick += new System.EventHandler(this.tfade_Tick);
             // 
             // z_loadingform
             // 
