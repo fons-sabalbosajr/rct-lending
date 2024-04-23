@@ -361,6 +361,45 @@
   <ItemGroup>
     <None Include="Resources\icons8-gmail-48.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login p.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-menu-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-dashboard-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-peso-symbol-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-cash-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-books-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-client-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-safe-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-banking-loan-with-money-bag-in-hand-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-journal-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-utilities-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-logout-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-banking-loan-with-money-bag-in-hand-72.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

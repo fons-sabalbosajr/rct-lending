@@ -26,15 +26,6 @@ namespace rct_lmis
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
 
-        private void z_loadingform_Load(object sender, EventArgs e)
-        {
-          
-            this.Opacity = 0;
-            tfade.Interval = 10;
-            tfade.Tick += new EventHandler(fadeIn);
-            tfade.Start();
-        }
-
         public z_loadingform(Form parent)
         {
             InitializeComponent();
@@ -76,10 +67,24 @@ namespace rct_lmis
                 Opacity -= 0.05;
         }
 
+
+        private void z_loadingform_Load(object sender, EventArgs e)
+        {
+            this.Opacity = 0;
+            tfade.Interval = 10;
+            tfade.Tick += new EventHandler(fadeIn);
+            tfade.Start();
+        }
+
         private void pbody_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void tfade_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }
