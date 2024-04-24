@@ -268,11 +268,71 @@
     <Compile Include="frm_home.Designer.cs">
       <DependentUpon>frm_home.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_home_ADMIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_ADMIN.Designer.cs">
+      <DependentUpon>frm_home_ADMIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_clients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_clients.Designer.cs">
+      <DependentUpon>frm_home_clients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_dashboard.Designer.cs">
+      <DependentUpon>frm_home_dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_disburse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_disburse.Designer.cs">
+      <DependentUpon>frm_home_disburse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_journals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_journals.Designer.cs">
+      <DependentUpon>frm_home_journals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_loans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_loans.Designer.cs">
+      <DependentUpon>frm_home_loans.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_home_login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_home_login.Designer.cs">
       <DependentUpon>frm_home_login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_logout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_logout.Designer.cs">
+      <DependentUpon>frm_home_logout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_payments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_payments.Designer.cs">
+      <DependentUpon>frm_home_payments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_receiptbooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_receiptbooks.Designer.cs">
+      <DependentUpon>frm_home_receiptbooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_home_safekeeping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_safekeeping.Designer.cs">
+      <DependentUpon>frm_home_safekeeping.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_home_signup.cs">
       <SubType>Form</SubType>
@@ -280,11 +340,11 @@
     <Compile Include="frm_home_signup.Designer.cs">
       <DependentUpon>frm_home_signup.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_signup.cs">
+    <Compile Include="frm_home_utilities.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_signup.Designer.cs">
-      <DependentUpon>frm_signup.cs</DependentUpon>
+    <Compile Include="frm_home_utilities.Designer.cs">
+      <DependentUpon>frm_home_utilities.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_splashscreen.cs">
       <SubType>Form</SubType>
@@ -307,8 +367,8 @@
     <EmbeddedResource Include="frm_home_login.resx">
       <DependentUpon>frm_home_login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_signup.resx">
-      <DependentUpon>frm_signup.cs</DependentUpon>
+    <EmbeddedResource Include="frm_home_signup.resx">
+      <DependentUpon>frm_home_signup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_splashscreen.resx">
       <DependentUpon>frm_splashscreen.cs</DependentUpon>
@@ -399,6 +459,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-banking-loan-with-money-bag-in-hand-72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-back-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-eye-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-database-administrator-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />

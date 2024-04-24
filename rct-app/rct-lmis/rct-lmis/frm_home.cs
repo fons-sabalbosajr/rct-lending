@@ -31,6 +31,8 @@ namespace rct_lmis
             leftpanel = new Panel();
             leftpanel.Size = new Size(5, 45);
             pleft.Controls.Add(leftpanel);
+
+            ldate.Text = DateTime.Now.ToString("f");
         }
 
         #region "DISPLAY CUSTOM"
@@ -109,6 +111,7 @@ namespace rct_lmis
                     bdisburse.Text = "Disbursements";
                     bjentries.Text = "Journal Entries";
                     butilities.Text = "Utilities";
+                    badmin.Text = "Administrator";
                     blogout.Text = "Logout";
                     this.Refresh();
                 }
@@ -129,6 +132,7 @@ namespace rct_lmis
                     bdisburse.Text = "";
                     bjentries.Text = "";
                     butilities.Text = "";
+                    badmin.Text = "";
                     blogout.Text = "";
                     this.Refresh();
                 }

@@ -32,7 +32,8 @@ namespace rct_lmis
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home));
             this.paneltop = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ldate = new System.Windows.Forms.Label();
             this.lcountann = new System.Windows.Forms.Label();
             this.lcountpending = new System.Windows.Forms.Label();
             this.lfname = new System.Windows.Forms.Label();
@@ -45,6 +46,7 @@ namespace rct_lmis
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.tslide = new System.Windows.Forms.Timer(this.components);
             this.blogout = new Guna.UI2.WinForms.Guna2Button();
+            this.badmin = new Guna.UI2.WinForms.Guna2Button();
             this.butilities = new Guna.UI2.WinForms.Guna2Button();
             this.bjentries = new Guna.UI2.WinForms.Guna2Button();
             this.bdisburse = new Guna.UI2.WinForms.Guna2Button();
@@ -59,7 +61,12 @@ namespace rct_lmis
             this.pbphoto = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.bnotif = new Guna.UI2.WinForms.Guna2CircleButton();
             this.pblogo = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pbody = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.paneltop.SuspendLayout();
             this.pleft.SuspendLayout();
             this.psubutil.SuspendLayout();
@@ -71,8 +78,9 @@ namespace rct_lmis
             // 
             this.paneltop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.paneltop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.paneltop.Controls.Add(this.label2);
             this.paneltop.Controls.Add(this.label1);
+            this.paneltop.Controls.Add(this.label2);
+            this.paneltop.Controls.Add(this.ldate);
             this.paneltop.Controls.Add(this.bmenu);
             this.paneltop.Controls.Add(this.lcountann);
             this.paneltop.Controls.Add(this.lcountpending);
@@ -87,19 +95,30 @@ namespace rct_lmis
             this.paneltop.Size = new System.Drawing.Size(1284, 70);
             this.paneltop.TabIndex = 2;
             // 
-            // label1
+            // label2
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(868, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 16);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "Date";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Gotham Rounded Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(124, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 50);
+            this.label2.TabIndex = 41;
+            this.label2.Text = "RCT\r\nLMIS";
+            // 
+            // ldate
+            // 
+            this.ldate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ldate.AutoSize = true;
+            this.ldate.BackColor = System.Drawing.Color.Transparent;
+            this.ldate.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.ldate.Location = new System.Drawing.Point(723, 34);
+            this.ldate.Name = "ldate";
+            this.ldate.Size = new System.Drawing.Size(37, 16);
+            this.ldate.TabIndex = 40;
+            this.ldate.Text = "Date";
+            this.ldate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lcountann
             // 
@@ -151,6 +170,7 @@ namespace rct_lmis
             // 
             this.pleft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
             this.pleft.Controls.Add(this.blogout);
+            this.pleft.Controls.Add(this.badmin);
             this.pleft.Controls.Add(this.psubutil);
             this.pleft.Controls.Add(this.butilities);
             this.pleft.Controls.Add(this.bjentries);
@@ -165,7 +185,7 @@ namespace rct_lmis
             this.pleft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pleft.Location = new System.Drawing.Point(0, 70);
             this.pleft.Name = "pleft";
-            this.pleft.Size = new System.Drawing.Size(200, 691);
+            this.pleft.Size = new System.Drawing.Size(200, 791);
             this.pleft.TabIndex = 4;
             // 
             // psubutil
@@ -307,13 +327,38 @@ namespace rct_lmis
             this.blogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.blogout.ImageOffset = new System.Drawing.Point(10, 0);
             this.blogout.ImageSize = new System.Drawing.Size(18, 18);
-            this.blogout.Location = new System.Drawing.Point(0, 582);
+            this.blogout.Location = new System.Drawing.Point(0, 627);
             this.blogout.Name = "blogout";
             this.blogout.Size = new System.Drawing.Size(200, 45);
-            this.blogout.TabIndex = 18;
+            this.blogout.TabIndex = 19;
             this.blogout.Text = "Logout";
             this.blogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.blogout.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // badmin
+            // 
+            this.badmin.Animated = true;
+            this.badmin.BackColor = System.Drawing.Color.Transparent;
+            this.badmin.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.badmin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.badmin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.badmin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.badmin.Dock = System.Windows.Forms.DockStyle.Top;
+            this.badmin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.badmin.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.badmin.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.badmin.HoverState.ForeColor = System.Drawing.Color.White;
+            this.badmin.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
+            this.badmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.badmin.ImageOffset = new System.Drawing.Point(10, 0);
+            this.badmin.ImageSize = new System.Drawing.Size(18, 18);
+            this.badmin.Location = new System.Drawing.Point(0, 582);
+            this.badmin.Name = "badmin";
+            this.badmin.Size = new System.Drawing.Size(200, 45);
+            this.badmin.TabIndex = 18;
+            this.badmin.Text = "Administrator";
+            this.badmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.badmin.TextOffset = new System.Drawing.Point(20, 0);
             // 
             // butilities
             // 
@@ -634,22 +679,75 @@ namespace rct_lmis
             this.pblogo.TabIndex = 21;
             this.pblogo.TabStop = false;
             // 
-            // label2
+            // panel1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Gotham Rounded Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(124, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 50);
-            this.label2.TabIndex = 41;
-            this.label2.Text = "RCT\r\nLMIS";
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(200, 70);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(5, 791);
+            this.panel1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(1279, 70);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(5, 791);
+            this.panel2.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(205, 70);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1074, 5);
+            this.panel3.TabIndex = 7;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(205, 856);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1074, 5);
+            this.panel4.TabIndex = 8;
+            // 
+            // pbody
+            // 
+            this.pbody.BackColor = System.Drawing.Color.White;
+            this.pbody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbody.Location = new System.Drawing.Point(205, 75);
+            this.pbody.Name = "pbody";
+            this.pbody.Size = new System.Drawing.Size(1074, 781);
+            this.pbody.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(723, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "Date Today:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frm_home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 761);
+            this.ClientSize = new System.Drawing.Size(1284, 861);
+            this.Controls.Add(this.pbody);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pleft);
             this.Controls.Add(this.paneltop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -695,9 +793,16 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Button blogout;
-        public System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2Button badmin;
+        public System.Windows.Forms.Label ldate;
         private System.Windows.Forms.Timer tslide;
         private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2Button blogout;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pbody;
+        public System.Windows.Forms.Label label1;
     }
 }

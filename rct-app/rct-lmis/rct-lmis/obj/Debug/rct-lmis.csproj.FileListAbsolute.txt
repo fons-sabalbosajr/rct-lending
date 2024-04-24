@@ -206,7 +206,6 @@ D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_signup.resources
 C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
 C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home.resources
 C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
@@ -218,3 +217,4 @@ C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debu
 C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CoreCompileInputs.cache
 C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
 C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_signup.resources
