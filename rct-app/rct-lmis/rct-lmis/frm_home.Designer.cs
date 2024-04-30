@@ -32,6 +32,7 @@ namespace rct_lmis
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home));
             this.paneltop = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ldate = new System.Windows.Forms.Label();
             this.lcountann = new System.Windows.Forms.Label();
@@ -43,8 +44,14 @@ namespace rct_lmis
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.tslide = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pbody = new System.Windows.Forms.Panel();
             this.blogout = new Guna.UI2.WinForms.Guna2Button();
             this.badmin = new Guna.UI2.WinForms.Guna2Button();
             this.butilities = new Guna.UI2.WinForms.Guna2Button();
@@ -61,12 +68,7 @@ namespace rct_lmis
             this.pbphoto = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.bnotif = new Guna.UI2.WinForms.Guna2CircleButton();
             this.pblogo = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.pbody = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.paneltop.SuspendLayout();
             this.pleft.SuspendLayout();
             this.psubutil.SuspendLayout();
@@ -94,6 +96,20 @@ namespace rct_lmis
             this.paneltop.Name = "paneltop";
             this.paneltop.Size = new System.Drawing.Size(1284, 70);
             this.paneltop.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(723, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "Date Today:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
@@ -173,6 +189,7 @@ namespace rct_lmis
             this.pleft.Controls.Add(this.badmin);
             this.pleft.Controls.Add(this.psubutil);
             this.pleft.Controls.Add(this.butilities);
+            this.pleft.Controls.Add(this.guna2Button5);
             this.pleft.Controls.Add(this.bjentries);
             this.pleft.Controls.Add(this.bdisburse);
             this.pleft.Controls.Add(this.bcrbooks);
@@ -196,7 +213,7 @@ namespace rct_lmis
             this.psubutil.Controls.Add(this.guna2Button2);
             this.psubutil.Controls.Add(this.guna2Button1);
             this.psubutil.Dock = System.Windows.Forms.DockStyle.Top;
-            this.psubutil.Location = new System.Drawing.Point(0, 429);
+            this.psubutil.Location = new System.Drawing.Point(0, 474);
             this.psubutil.Name = "psubutil";
             this.psubutil.Size = new System.Drawing.Size(200, 153);
             this.psubutil.TabIndex = 17;
@@ -297,6 +314,30 @@ namespace rct_lmis
             this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button1.TextOffset = new System.Drawing.Point(20, 0);
             // 
+            // guna2Button5
+            // 
+            this.guna2Button5.Animated = true;
+            this.guna2Button5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Button5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.guna2Button5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button5.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.guna2Button5.HoverState.ForeColor = System.Drawing.Color.White;
+            this.guna2Button5.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button5.ImageOffset = new System.Drawing.Point(10, 0);
+            this.guna2Button5.ImageSize = new System.Drawing.Size(18, 18);
+            this.guna2Button5.Location = new System.Drawing.Point(0, 384);
+            this.guna2Button5.Name = "guna2Button5";
+            this.guna2Button5.Size = new System.Drawing.Size(200, 45);
+            this.guna2Button5.TabIndex = 20;
+            this.guna2Button5.Text = "Reports";
+            this.guna2Button5.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button5.TextOffset = new System.Drawing.Point(20, 0);
+            // 
             // guna2Panel2
             // 
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -309,6 +350,51 @@ namespace rct_lmis
             // 
             this.tslide.Interval = 1;
             this.tslide.Tick += new System.EventHandler(this.tslide_Tick);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(200, 70);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(5, 791);
+            this.panel1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(1279, 70);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(5, 791);
+            this.panel2.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(205, 70);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1074, 5);
+            this.panel3.TabIndex = 7;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(205, 856);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1074, 5);
+            this.panel4.TabIndex = 8;
+            // 
+            // pbody
+            // 
+            this.pbody.BackColor = System.Drawing.Color.White;
+            this.pbody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbody.Location = new System.Drawing.Point(205, 75);
+            this.pbody.Name = "pbody";
+            this.pbody.Size = new System.Drawing.Size(1074, 781);
+            this.pbody.TabIndex = 9;
             // 
             // blogout
             // 
@@ -327,13 +413,15 @@ namespace rct_lmis
             this.blogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.blogout.ImageOffset = new System.Drawing.Point(10, 0);
             this.blogout.ImageSize = new System.Drawing.Size(18, 18);
-            this.blogout.Location = new System.Drawing.Point(0, 627);
+            this.blogout.Location = new System.Drawing.Point(0, 672);
             this.blogout.Name = "blogout";
             this.blogout.Size = new System.Drawing.Size(200, 45);
             this.blogout.TabIndex = 19;
             this.blogout.Text = "Logout";
             this.blogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.blogout.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.blogout, "Logout");
+            this.blogout.Click += new System.EventHandler(this.blogout_Click);
             // 
             // badmin
             // 
@@ -352,13 +440,15 @@ namespace rct_lmis
             this.badmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.badmin.ImageOffset = new System.Drawing.Point(10, 0);
             this.badmin.ImageSize = new System.Drawing.Size(18, 18);
-            this.badmin.Location = new System.Drawing.Point(0, 582);
+            this.badmin.Location = new System.Drawing.Point(0, 627);
             this.badmin.Name = "badmin";
             this.badmin.Size = new System.Drawing.Size(200, 45);
             this.badmin.TabIndex = 18;
             this.badmin.Text = "Administrator";
             this.badmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.badmin.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.badmin, "Admin User Only");
+            this.badmin.Click += new System.EventHandler(this.badmin_Click);
             // 
             // butilities
             // 
@@ -377,13 +467,14 @@ namespace rct_lmis
             this.butilities.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.butilities.ImageOffset = new System.Drawing.Point(10, 0);
             this.butilities.ImageSize = new System.Drawing.Size(18, 18);
-            this.butilities.Location = new System.Drawing.Point(0, 384);
+            this.butilities.Location = new System.Drawing.Point(0, 429);
             this.butilities.Name = "butilities";
             this.butilities.Size = new System.Drawing.Size(200, 45);
             this.butilities.TabIndex = 16;
-            this.butilities.Text = "Utilities";
+            this.butilities.Text = "Settings";
             this.butilities.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.butilities.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.butilities, "View Settings");
             this.butilities.Click += new System.EventHandler(this.butilities_Click);
             // 
             // bjentries
@@ -410,6 +501,8 @@ namespace rct_lmis
             this.bjentries.Text = "Journal Entries";
             this.bjentries.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bjentries.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bjentries, "Check Journal Entries");
+            this.bjentries.Click += new System.EventHandler(this.bjentries_Click);
             // 
             // bdisburse
             // 
@@ -435,6 +528,8 @@ namespace rct_lmis
             this.bdisburse.Text = "Disbursements";
             this.bdisburse.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdisburse.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bdisburse, "Monitor Disbursement");
+            this.bdisburse.Click += new System.EventHandler(this.bdisburse_Click);
             // 
             // bcrbooks
             // 
@@ -460,6 +555,8 @@ namespace rct_lmis
             this.bcrbooks.Text = "Cash Receipts Books";
             this.bcrbooks.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bcrbooks.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bcrbooks, "Check Books");
+            this.bcrbooks.Click += new System.EventHandler(this.bcrbooks_Click);
             // 
             // bclient
             // 
@@ -485,6 +582,8 @@ namespace rct_lmis
             this.bclient.Text = "Clients";
             this.bclient.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bclient.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bclient, "Clients");
+            this.bclient.Click += new System.EventHandler(this.bclient_Click);
             // 
             // bsafekeeping
             // 
@@ -510,6 +609,8 @@ namespace rct_lmis
             this.bsafekeeping.Text = "Safekeeping";
             this.bsafekeeping.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bsafekeeping.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bsafekeeping, "Check Safekeeping Data");
+            this.bsafekeeping.Click += new System.EventHandler(this.bsafekeeping_Click);
             // 
             // bpayments
             // 
@@ -535,6 +636,8 @@ namespace rct_lmis
             this.bpayments.Text = "Payments";
             this.bpayments.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bpayments.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bpayments, "View Encode Payments");
+            this.bpayments.Click += new System.EventHandler(this.bpayments_Click);
             // 
             // bloans
             // 
@@ -562,6 +665,8 @@ namespace rct_lmis
             this.bloans.Text = "Loans";
             this.bloans.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bloans.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bloans, "Check Recent Loans");
+            this.bloans.Click += new System.EventHandler(this.bloans_Click);
             // 
             // bdashboard
             // 
@@ -590,6 +695,8 @@ namespace rct_lmis
             this.bdashboard.Text = "Dashboard";
             this.bdashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdashboard.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bdashboard, "View Metrics Dashboard");
+            this.bdashboard.Click += new System.EventHandler(this.bdashboard_Click);
             // 
             // bmenu
             // 
@@ -606,6 +713,7 @@ namespace rct_lmis
             this.bmenu.Name = "bmenu";
             this.bmenu.Size = new System.Drawing.Size(40, 40);
             this.bmenu.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.bmenu, "Slide Menu");
             this.bmenu.Click += new System.EventHandler(this.bmenu_Click);
             // 
             // bannouncement
@@ -679,65 +787,6 @@ namespace rct_lmis
             this.pblogo.TabIndex = 21;
             this.pblogo.TabStop = false;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(200, 70);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5, 791);
-            this.panel1.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1279, 70);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(5, 791);
-            this.panel2.TabIndex = 6;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(205, 70);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1074, 5);
-            this.panel3.TabIndex = 7;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(205, 856);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1074, 5);
-            this.panel4.TabIndex = 8;
-            // 
-            // pbody
-            // 
-            this.pbody.BackColor = System.Drawing.Color.White;
-            this.pbody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbody.Location = new System.Drawing.Point(205, 75);
-            this.pbody.Name = "pbody";
-            this.pbody.Size = new System.Drawing.Size(1074, 781);
-            this.pbody.TabIndex = 9;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(723, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 17);
-            this.label1.TabIndex = 42;
-            this.label1.Text = "Date Today:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // frm_home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -755,6 +804,7 @@ namespace rct_lmis
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RCT Lending Management Information System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_FormClosing);
             this.Load += new System.EventHandler(this.frm_home_Load);
             this.paneltop.ResumeLayout(false);
             this.paneltop.PerformLayout();
@@ -804,5 +854,7 @@ namespace rct_lmis
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel pbody;
         public System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button5;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

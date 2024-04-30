@@ -63,6 +63,26 @@ namespace rct_lmis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_file_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-add-file-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_file_481 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-add-file-481", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_back_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-back-48", resourceCulture);
@@ -173,6 +193,16 @@ namespace rct_lmis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_export_excel_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-export-excel-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_eye_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-eye-48", resourceCulture);
@@ -196,6 +226,16 @@ namespace rct_lmis.Properties {
         internal static System.Drawing.Bitmap icons8_gmail_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-gmail-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_help_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-help-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +273,39 @@ namespace rct_lmis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_more_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-more-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_peso_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-peso-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_peso_symbol_60 {
             get {
                 object obj = ResourceManager.GetObject("icons8-peso-symbol-60", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_print_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-print-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +323,29 @@ namespace rct_lmis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_search_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-search-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_utilities_60 {
             get {
                 object obj = ResourceManager.GetObject("icons8-utilities-60", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_view_file_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-view-file-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

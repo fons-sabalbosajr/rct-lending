@@ -49,6 +49,7 @@ namespace rct_lmis
             this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.bfacebook = new Guna.UI2.WinForms.Guna2CircleButton();
             this.pbg = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pright.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbg)).BeginInit();
@@ -261,6 +262,7 @@ namespace rct_lmis
             this.pbclose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbclose.TabIndex = 9;
             this.pbclose.TabStop = false;
+            this.toolTip1.SetToolTip(this.pbclose, "Exit");
             this.pbclose.Click += new System.EventHandler(this.pbclose_Click);
             // 
             // guna2CircleButton1
@@ -358,5 +360,6 @@ namespace rct_lmis
         private System.Windows.Forms.Timer tfade;
         private System.Windows.Forms.Label lstatus;
         private System.Windows.Forms.Panel pright;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

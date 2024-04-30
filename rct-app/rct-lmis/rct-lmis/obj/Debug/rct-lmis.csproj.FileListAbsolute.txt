@@ -218,3 +218,7 @@ C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debu
 C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
 C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_signup.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_loans.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_new.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_ADMIN.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_add.resources

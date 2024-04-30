@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -140,6 +141,25 @@ namespace rct_lmis
         }
         #endregion
 
+        #region "CHILD FORM"
+        private void ChildForm(Form childForm)
+        {
+            if (currChildForm != null)
+            {
+                currChildForm.Close();
+            }
+            currChildForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+
+            pbody.Controls.Add(childForm);
+            pbody.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
+        #endregion
+
         private void frm_home_Load(object sender, EventArgs e)
         {
 
@@ -154,6 +174,109 @@ namespace rct_lmis
         private void bmenu_Click(object sender, EventArgs e)
         {
             tslide.Start();
+        }
+
+        private void frm_home_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frm_home_login li = new frm_home_login();
+            li.Show();
+            this.Hide();
+            e.Cancel = true;
+        }
+
+        private void bdashboard_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_dashboard());
+            load.Close();
+        }
+
+        private void bloans_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_loans());
+            load.Close();
+        }
+
+        private void bpayments_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_payments());
+            load.Close();
+        }
+
+        private void bsafekeeping_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_safekeeping());
+            load.Close();
+        }
+
+        private void bclient_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_clients());
+            load.Close();
+        }
+
+        private void bcrbooks_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_receiptbooks());
+            load.Close();
+        }
+
+        private void bdisburse_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_disburse());
+            load.Close();
+        }
+
+        private void bjentries_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_journals());
+            load.Close();
+        }
+
+        private void badmin_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN());
+            load.Close();
+        }
+
+        private void blogout_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to logout?", "Logout", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes) 
+            {
+                frm_home_login fl = new frm_home_login();
+
+                load.Show(this);
+                Thread.Sleep(1000);
+                fl.Show(this);
+                this.Hide();
+                load.Close();
+            }
         }
     }
 }

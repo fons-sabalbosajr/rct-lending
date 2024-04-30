@@ -29,6 +29,7 @@ namespace rct_lmis
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tfullname = new Guna.UI2.WinForms.Guna2TextBox();
@@ -47,6 +48,7 @@ namespace rct_lmis
             this.pback = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
             this.bfacebook = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbeye)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pback)).BeginInit();
             this.SuspendLayout();
@@ -257,6 +259,7 @@ namespace rct_lmis
             this.pbeye.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbeye.TabIndex = 24;
             this.pbeye.TabStop = false;
+            this.toolTip1.SetToolTip(this.pbeye, "Show Password");
             this.pbeye.Click += new System.EventHandler(this.pbeye_Click);
             this.pbeye.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbeye_MouseDown);
             this.pbeye.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbeye_MouseUp);
@@ -272,6 +275,7 @@ namespace rct_lmis
             this.pback.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pback.TabIndex = 23;
             this.pback.TabStop = false;
+            this.toolTip1.SetToolTip(this.pback, "Back to Login");
             this.pback.Click += new System.EventHandler(this.pback_Click);
             // 
             // guna2CircleButton1
@@ -368,5 +372,6 @@ namespace rct_lmis
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2PictureBox pback;
         private Guna.UI2.WinForms.Guna2PictureBox pbeye;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -1,7 +1,7 @@
 ﻿
-namespace rct_lmis
+namespace rct_lmis.LOAN_SECTION
 {
-    partial class frm_home_loans
+    partial class frm_home_loan_add
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,19 @@ namespace rct_lmis
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // frm_home_loan_add
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "frm_home_loans";
+            this.ClientSize = new System.Drawing.Size(1082, 586);
+            this.Name = "frm_home_loan_add";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "frm_home_loan_add";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_loan_add_FormClosing);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
