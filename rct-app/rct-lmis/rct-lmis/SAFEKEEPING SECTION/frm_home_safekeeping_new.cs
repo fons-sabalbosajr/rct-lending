@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace rct_lmis
+namespace rct_lmis.SAFEKEEPING_SECTION
 {
-    public partial class frm_home_safekeeping : Form
+    public partial class frm_home_safekeeping_new : Form
     {
-        public frm_home_safekeeping()
+        public frm_home_safekeeping_new()
         {
             InitializeComponent();
         }

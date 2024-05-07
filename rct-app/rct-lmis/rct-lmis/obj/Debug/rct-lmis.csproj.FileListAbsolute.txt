@@ -224,3 +224,6 @@ D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_add.resources
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_payments.resources
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.PAYMENTS_SECTION.frm_home_payment_details.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_safekeeping.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_details.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_new.resources
