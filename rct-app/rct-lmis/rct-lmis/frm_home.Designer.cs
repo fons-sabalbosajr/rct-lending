@@ -35,26 +35,24 @@ namespace rct_lmis
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ldate = new System.Windows.Forms.Label();
+            this.bmenu = new Guna.UI2.WinForms.Guna2Button();
             this.lcountann = new System.Windows.Forms.Label();
             this.lcountpending = new System.Windows.Forms.Label();
+            this.bannouncement = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.pbphoto = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.bnotif = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.pblogo = new System.Windows.Forms.PictureBox();
             this.lfname = new System.Windows.Forms.Label();
             this.pleft = new Guna.UI2.WinForms.Guna2Panel();
+            this.blogout = new Guna.UI2.WinForms.Guna2Button();
+            this.badmin = new Guna.UI2.WinForms.Guna2Button();
             this.psubutil = new System.Windows.Forms.Panel();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.tslide = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.pbody = new System.Windows.Forms.Panel();
-            this.blogout = new Guna.UI2.WinForms.Guna2Button();
-            this.badmin = new Guna.UI2.WinForms.Guna2Button();
             this.butilities = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.bjentries = new Guna.UI2.WinForms.Guna2Button();
             this.bdisburse = new Guna.UI2.WinForms.Guna2Button();
             this.bcrbooks = new Guna.UI2.WinForms.Guna2Button();
@@ -63,17 +61,19 @@ namespace rct_lmis
             this.bpayments = new Guna.UI2.WinForms.Guna2Button();
             this.bloans = new Guna.UI2.WinForms.Guna2Button();
             this.bdashboard = new Guna.UI2.WinForms.Guna2Button();
-            this.bmenu = new Guna.UI2.WinForms.Guna2Button();
-            this.bannouncement = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.pbphoto = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.bnotif = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.pblogo = new System.Windows.Forms.PictureBox();
+            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.tslide = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pbody = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.paneltop.SuspendLayout();
-            this.pleft.SuspendLayout();
-            this.psubutil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
+            this.pleft.SuspendLayout();
+            this.psubutil.SuspendLayout();
             this.SuspendLayout();
             // 
             // paneltop
@@ -104,7 +104,7 @@ namespace rct_lmis
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(723, 18);
+            this.label1.Location = new System.Drawing.Point(738, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 42;
@@ -129,12 +129,30 @@ namespace rct_lmis
             this.ldate.BackColor = System.Drawing.Color.Transparent;
             this.ldate.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ldate.Location = new System.Drawing.Point(723, 34);
+            this.ldate.Location = new System.Drawing.Point(738, 34);
             this.ldate.Name = "ldate";
             this.ldate.Size = new System.Drawing.Size(37, 16);
             this.ldate.TabIndex = 40;
             this.ldate.Text = "Date";
             this.ldate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // bmenu
+            // 
+            this.bmenu.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bmenu.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bmenu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bmenu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bmenu.FillColor = System.Drawing.Color.Transparent;
+            this.bmenu.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bmenu.ForeColor = System.Drawing.Color.White;
+            this.bmenu.Image = global::rct_lmis.Properties.Resources.icons8_menu_60;
+            this.bmenu.ImageSize = new System.Drawing.Size(30, 30);
+            this.bmenu.Location = new System.Drawing.Point(10, 13);
+            this.bmenu.Name = "bmenu";
+            this.bmenu.Size = new System.Drawing.Size(40, 40);
+            this.bmenu.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.bmenu, "Slide Menu");
+            this.bmenu.Click += new System.EventHandler(this.bmenu_Click);
             // 
             // lcountann
             // 
@@ -167,6 +185,79 @@ namespace rct_lmis
             this.lcountpending.TabIndex = 38;
             this.lcountpending.Text = "1";
             this.lcountpending.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bannouncement
+            // 
+            this.bannouncement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bannouncement.Animated = true;
+            this.bannouncement.BackColor = System.Drawing.Color.Transparent;
+            this.bannouncement.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bannouncement.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bannouncement.DisabledState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bannouncement.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bannouncement.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bannouncement.FillColor = System.Drawing.Color.Transparent;
+            this.bannouncement.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bannouncement.ForeColor = System.Drawing.Color.White;
+            this.bannouncement.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bannouncement.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bannouncement.Image = global::rct_lmis.Properties.Resources.icons8_commercial_60;
+            this.bannouncement.ImageSize = new System.Drawing.Size(25, 25);
+            this.bannouncement.Location = new System.Drawing.Point(996, 23);
+            this.bannouncement.Name = "bannouncement";
+            this.bannouncement.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bannouncement.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.bannouncement.Size = new System.Drawing.Size(27, 27);
+            this.bannouncement.TabIndex = 36;
+            this.toolTip1.SetToolTip(this.bannouncement, "Annoucements");
+            // 
+            // pbphoto
+            // 
+            this.pbphoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbphoto.FillColor = System.Drawing.Color.LightGray;
+            this.pbphoto.ImageRotate = 0F;
+            this.pbphoto.Location = new System.Drawing.Point(1077, 21);
+            this.pbphoto.Name = "pbphoto";
+            this.pbphoto.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.pbphoto.Size = new System.Drawing.Size(32, 32);
+            this.pbphoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbphoto.TabIndex = 28;
+            this.pbphoto.TabStop = false;
+            // 
+            // bnotif
+            // 
+            this.bnotif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bnotif.Animated = true;
+            this.bnotif.BackColor = System.Drawing.Color.Transparent;
+            this.bnotif.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bnotif.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bnotif.DisabledState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bnotif.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bnotif.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bnotif.FillColor = System.Drawing.Color.Transparent;
+            this.bnotif.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bnotif.ForeColor = System.Drawing.Color.White;
+            this.bnotif.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bnotif.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bnotif.Image = global::rct_lmis.Properties.Resources.icons8_bell_60;
+            this.bnotif.ImageSize = new System.Drawing.Size(25, 25);
+            this.bnotif.Location = new System.Drawing.Point(1034, 23);
+            this.bnotif.Name = "bnotif";
+            this.bnotif.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bnotif.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.bnotif.Size = new System.Drawing.Size(27, 27);
+            this.bnotif.TabIndex = 35;
+            this.toolTip1.SetToolTip(this.bnotif, "Notifications");
+            // 
+            // pblogo
+            // 
+            this.pblogo.Image = global::rct_lmis.Properties.Resources.icons8_banking_loan_with_money_bag_in_hand_72;
+            this.pblogo.Location = new System.Drawing.Point(59, 9);
+            this.pblogo.Name = "pblogo";
+            this.pblogo.Size = new System.Drawing.Size(59, 50);
+            this.pblogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pblogo.TabIndex = 21;
+            this.pblogo.TabStop = false;
             // 
             // lfname
             // 
@@ -204,6 +295,60 @@ namespace rct_lmis
             this.pleft.Name = "pleft";
             this.pleft.Size = new System.Drawing.Size(200, 791);
             this.pleft.TabIndex = 4;
+            // 
+            // blogout
+            // 
+            this.blogout.Animated = true;
+            this.blogout.BackColor = System.Drawing.Color.Transparent;
+            this.blogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.blogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.blogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.blogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.blogout.Dock = System.Windows.Forms.DockStyle.Top;
+            this.blogout.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.blogout.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blogout.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.blogout.HoverState.ForeColor = System.Drawing.Color.White;
+            this.blogout.Image = global::rct_lmis.Properties.Resources.icons8_logout_60;
+            this.blogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.blogout.ImageOffset = new System.Drawing.Point(10, 0);
+            this.blogout.ImageSize = new System.Drawing.Size(18, 18);
+            this.blogout.Location = new System.Drawing.Point(0, 672);
+            this.blogout.Name = "blogout";
+            this.blogout.Size = new System.Drawing.Size(200, 45);
+            this.blogout.TabIndex = 19;
+            this.blogout.Text = "Logout";
+            this.blogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.blogout.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.blogout, "Logout");
+            this.blogout.Click += new System.EventHandler(this.blogout_Click);
+            // 
+            // badmin
+            // 
+            this.badmin.Animated = true;
+            this.badmin.BackColor = System.Drawing.Color.Transparent;
+            this.badmin.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.badmin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.badmin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.badmin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.badmin.Dock = System.Windows.Forms.DockStyle.Top;
+            this.badmin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.badmin.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.badmin.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.badmin.HoverState.ForeColor = System.Drawing.Color.White;
+            this.badmin.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
+            this.badmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.badmin.ImageOffset = new System.Drawing.Point(10, 0);
+            this.badmin.ImageSize = new System.Drawing.Size(18, 18);
+            this.badmin.Location = new System.Drawing.Point(0, 627);
+            this.badmin.Name = "badmin";
+            this.badmin.Size = new System.Drawing.Size(200, 45);
+            this.badmin.TabIndex = 18;
+            this.badmin.Text = "Administrator";
+            this.badmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.badmin.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.badmin, "Admin User Only");
+            this.badmin.Click += new System.EventHandler(this.badmin_Click);
             // 
             // psubutil
             // 
@@ -286,7 +431,7 @@ namespace rct_lmis
             this.guna2Button2.Name = "guna2Button2";
             this.guna2Button2.Size = new System.Drawing.Size(200, 35);
             this.guna2Button2.TabIndex = 18;
-            this.guna2Button2.Text = "User Settings";
+            this.guna2Button2.Text = "Loan Settings";
             this.guna2Button2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button2.TextOffset = new System.Drawing.Point(20, 0);
             // 
@@ -314,142 +459,6 @@ namespace rct_lmis
             this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button1.TextOffset = new System.Drawing.Point(20, 0);
             // 
-            // guna2Button5
-            // 
-            this.guna2Button5.Animated = true;
-            this.guna2Button5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Button5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.guna2Button5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button5.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.guna2Button5.HoverState.ForeColor = System.Drawing.Color.White;
-            this.guna2Button5.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button5.ImageOffset = new System.Drawing.Point(10, 0);
-            this.guna2Button5.ImageSize = new System.Drawing.Size(18, 18);
-            this.guna2Button5.Location = new System.Drawing.Point(0, 384);
-            this.guna2Button5.Name = "guna2Button5";
-            this.guna2Button5.Size = new System.Drawing.Size(200, 45);
-            this.guna2Button5.TabIndex = 20;
-            this.guna2Button5.Text = "Reports";
-            this.guna2Button5.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button5.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // guna2Panel2
-            // 
-            this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(200, 24);
-            this.guna2Panel2.TabIndex = 0;
-            // 
-            // tslide
-            // 
-            this.tslide.Interval = 1;
-            this.tslide.Tick += new System.EventHandler(this.tslide_Tick);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(200, 70);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5, 791);
-            this.panel1.TabIndex = 5;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1279, 70);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(5, 791);
-            this.panel2.TabIndex = 6;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(205, 70);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1074, 5);
-            this.panel3.TabIndex = 7;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(205, 856);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1074, 5);
-            this.panel4.TabIndex = 8;
-            // 
-            // pbody
-            // 
-            this.pbody.BackColor = System.Drawing.Color.White;
-            this.pbody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbody.Location = new System.Drawing.Point(205, 75);
-            this.pbody.Name = "pbody";
-            this.pbody.Size = new System.Drawing.Size(1074, 781);
-            this.pbody.TabIndex = 9;
-            // 
-            // blogout
-            // 
-            this.blogout.Animated = true;
-            this.blogout.BackColor = System.Drawing.Color.Transparent;
-            this.blogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.blogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.blogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.blogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.blogout.Dock = System.Windows.Forms.DockStyle.Top;
-            this.blogout.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.blogout.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blogout.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.blogout.HoverState.ForeColor = System.Drawing.Color.White;
-            this.blogout.Image = global::rct_lmis.Properties.Resources.icons8_logout_60;
-            this.blogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.blogout.ImageOffset = new System.Drawing.Point(10, 0);
-            this.blogout.ImageSize = new System.Drawing.Size(18, 18);
-            this.blogout.Location = new System.Drawing.Point(0, 672);
-            this.blogout.Name = "blogout";
-            this.blogout.Size = new System.Drawing.Size(200, 45);
-            this.blogout.TabIndex = 19;
-            this.blogout.Text = "Logout";
-            this.blogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.blogout.TextOffset = new System.Drawing.Point(20, 0);
-            this.toolTip1.SetToolTip(this.blogout, "Logout");
-            this.blogout.Click += new System.EventHandler(this.blogout_Click);
-            // 
-            // badmin
-            // 
-            this.badmin.Animated = true;
-            this.badmin.BackColor = System.Drawing.Color.Transparent;
-            this.badmin.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.badmin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.badmin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.badmin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.badmin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.badmin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.badmin.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.badmin.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.badmin.HoverState.ForeColor = System.Drawing.Color.White;
-            this.badmin.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
-            this.badmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.badmin.ImageOffset = new System.Drawing.Point(10, 0);
-            this.badmin.ImageSize = new System.Drawing.Size(18, 18);
-            this.badmin.Location = new System.Drawing.Point(0, 627);
-            this.badmin.Name = "badmin";
-            this.badmin.Size = new System.Drawing.Size(200, 45);
-            this.badmin.TabIndex = 18;
-            this.badmin.Text = "Administrator";
-            this.badmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.badmin.TextOffset = new System.Drawing.Point(20, 0);
-            this.toolTip1.SetToolTip(this.badmin, "Admin User Only");
-            this.badmin.Click += new System.EventHandler(this.badmin_Click);
-            // 
             // butilities
             // 
             this.butilities.Animated = true;
@@ -476,6 +485,31 @@ namespace rct_lmis
             this.butilities.TextOffset = new System.Drawing.Point(20, 0);
             this.toolTip1.SetToolTip(this.butilities, "View Settings");
             this.butilities.Click += new System.EventHandler(this.butilities_Click);
+            // 
+            // guna2Button5
+            // 
+            this.guna2Button5.Animated = true;
+            this.guna2Button5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Button5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.guna2Button5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button5.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.guna2Button5.HoverState.ForeColor = System.Drawing.Color.White;
+            this.guna2Button5.Image = global::rct_lmis.Properties.Resources.icons8_analyze_48;
+            this.guna2Button5.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button5.ImageOffset = new System.Drawing.Point(10, 0);
+            this.guna2Button5.ImageSize = new System.Drawing.Size(18, 18);
+            this.guna2Button5.Location = new System.Drawing.Point(0, 384);
+            this.guna2Button5.Name = "guna2Button5";
+            this.guna2Button5.Size = new System.Drawing.Size(200, 45);
+            this.guna2Button5.TabIndex = 20;
+            this.guna2Button5.Text = "Reports";
+            this.guna2Button5.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button5.TextOffset = new System.Drawing.Point(20, 0);
             // 
             // bjentries
             // 
@@ -698,94 +732,63 @@ namespace rct_lmis
             this.toolTip1.SetToolTip(this.bdashboard, "View Metrics Dashboard");
             this.bdashboard.Click += new System.EventHandler(this.bdashboard_Click);
             // 
-            // bmenu
+            // guna2Panel2
             // 
-            this.bmenu.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bmenu.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bmenu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bmenu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bmenu.FillColor = System.Drawing.Color.Transparent;
-            this.bmenu.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bmenu.ForeColor = System.Drawing.Color.White;
-            this.bmenu.Image = global::rct_lmis.Properties.Resources.icons8_menu_60;
-            this.bmenu.ImageSize = new System.Drawing.Size(30, 30);
-            this.bmenu.Location = new System.Drawing.Point(10, 13);
-            this.bmenu.Name = "bmenu";
-            this.bmenu.Size = new System.Drawing.Size(40, 40);
-            this.bmenu.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.bmenu, "Slide Menu");
-            this.bmenu.Click += new System.EventHandler(this.bmenu_Click);
+            this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel2.Name = "guna2Panel2";
+            this.guna2Panel2.Size = new System.Drawing.Size(200, 24);
+            this.guna2Panel2.TabIndex = 0;
             // 
-            // bannouncement
+            // tslide
             // 
-            this.bannouncement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bannouncement.Animated = true;
-            this.bannouncement.BackColor = System.Drawing.Color.Transparent;
-            this.bannouncement.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bannouncement.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bannouncement.DisabledState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bannouncement.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bannouncement.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bannouncement.FillColor = System.Drawing.Color.Transparent;
-            this.bannouncement.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bannouncement.ForeColor = System.Drawing.Color.White;
-            this.bannouncement.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.bannouncement.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.bannouncement.Image = global::rct_lmis.Properties.Resources.icons8_commercial_60;
-            this.bannouncement.ImageSize = new System.Drawing.Size(25, 25);
-            this.bannouncement.Location = new System.Drawing.Point(996, 23);
-            this.bannouncement.Name = "bannouncement";
-            this.bannouncement.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.bannouncement.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.bannouncement.Size = new System.Drawing.Size(27, 27);
-            this.bannouncement.TabIndex = 36;
+            this.tslide.Interval = 1;
+            this.tslide.Tick += new System.EventHandler(this.tslide_Tick);
             // 
-            // pbphoto
+            // panel1
             // 
-            this.pbphoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbphoto.FillColor = System.Drawing.Color.LightGray;
-            this.pbphoto.ImageRotate = 0F;
-            this.pbphoto.Location = new System.Drawing.Point(1077, 21);
-            this.pbphoto.Name = "pbphoto";
-            this.pbphoto.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.pbphoto.Size = new System.Drawing.Size(32, 32);
-            this.pbphoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbphoto.TabIndex = 28;
-            this.pbphoto.TabStop = false;
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(200, 70);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(5, 791);
+            this.panel1.TabIndex = 5;
             // 
-            // bnotif
+            // panel2
             // 
-            this.bnotif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bnotif.Animated = true;
-            this.bnotif.BackColor = System.Drawing.Color.Transparent;
-            this.bnotif.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bnotif.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bnotif.DisabledState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bnotif.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bnotif.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.bnotif.FillColor = System.Drawing.Color.Transparent;
-            this.bnotif.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bnotif.ForeColor = System.Drawing.Color.White;
-            this.bnotif.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.bnotif.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.bnotif.Image = global::rct_lmis.Properties.Resources.icons8_bell_60;
-            this.bnotif.ImageSize = new System.Drawing.Size(25, 25);
-            this.bnotif.Location = new System.Drawing.Point(1034, 23);
-            this.bnotif.Name = "bnotif";
-            this.bnotif.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.bnotif.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.bnotif.Size = new System.Drawing.Size(27, 27);
-            this.bnotif.TabIndex = 35;
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(1279, 70);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(5, 791);
+            this.panel2.TabIndex = 6;
             // 
-            // pblogo
+            // panel3
             // 
-            this.pblogo.Image = global::rct_lmis.Properties.Resources.icons8_banking_loan_with_money_bag_in_hand_72;
-            this.pblogo.Location = new System.Drawing.Point(59, 9);
-            this.pblogo.Name = "pblogo";
-            this.pblogo.Size = new System.Drawing.Size(59, 50);
-            this.pblogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pblogo.TabIndex = 21;
-            this.pblogo.TabStop = false;
+            this.panel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(205, 70);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1074, 5);
+            this.panel3.TabIndex = 7;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(205, 856);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1074, 5);
+            this.panel4.TabIndex = 8;
+            // 
+            // pbody
+            // 
+            this.pbody.BackColor = System.Drawing.Color.White;
+            this.pbody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbody.Location = new System.Drawing.Point(205, 75);
+            this.pbody.Name = "pbody";
+            this.pbody.Size = new System.Drawing.Size(1074, 781);
+            this.pbody.TabIndex = 9;
             // 
             // frm_home
             // 
@@ -808,10 +811,10 @@ namespace rct_lmis
             this.Load += new System.EventHandler(this.frm_home_Load);
             this.paneltop.ResumeLayout(false);
             this.paneltop.PerformLayout();
-            this.pleft.ResumeLayout(false);
-            this.psubutil.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).EndInit();
+            this.pleft.ResumeLayout(false);
+            this.psubutil.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

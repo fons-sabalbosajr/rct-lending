@@ -395,7 +395,7 @@ namespace rct_lmis
             this.bconfigcollector.Name = "bconfigcollector";
             this.bconfigcollector.Size = new System.Drawing.Size(194, 45);
             this.bconfigcollector.TabIndex = 25;
-            this.bconfigcollector.Text = "Collectors";
+            this.bconfigcollector.Text = "Staffs";
             this.bconfigcollector.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bconfigcollector.TextOffset = new System.Drawing.Point(20, 0);
             // 

@@ -78,7 +78,7 @@ namespace rct_lmis
         private void tslide_Tick(object sender, EventArgs e)
         {
             ploading.Width += 3;
-            if (ploading.Width >= 500)
+            if (ploading.Width >= 300)
             {
                 try
                 {

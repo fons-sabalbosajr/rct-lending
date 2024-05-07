@@ -63,6 +63,26 @@ namespace rct_lmis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-add-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_48__2_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-add-48 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_add_file_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-add-file-48", resourceCulture);
@@ -76,6 +96,16 @@ namespace rct_lmis.Properties {
         internal static System.Drawing.Bitmap icons8_add_file_481 {
             get {
                 object obj = ResourceManager.GetObject("icons8-add-file-481", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_analyze_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-analyze-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +136,16 @@ namespace rct_lmis.Properties {
         internal static System.Drawing.Bitmap icons8_banking_loan_with_money_bag_in_hand_72 {
             get {
                 object obj = ResourceManager.GetObject("icons8-banking-loan-with-money-bag-in-hand-72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_banking_loan_with_money_bag_in_hand_721 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-banking-loan-with-money-bag-in-hand-721", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +226,16 @@ namespace rct_lmis.Properties {
         internal static System.Drawing.Bitmap icons8_database_administrator_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-database-administrator-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_edit_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-edit-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,6 +343,16 @@ namespace rct_lmis.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_peso_symbol_48_gray {
+            get {
+                object obj = ResourceManager.GetObject("icons8-peso-symbol-48-gray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_peso_symbol_60 {
             get {
                 object obj = ResourceManager.GetObject("icons8-peso-symbol-60", resourceCulture);
@@ -376,6 +436,16 @@ namespace rct_lmis.Properties {
         internal static System.Drawing.Bitmap logo_black {
             get {
                 object obj = ResourceManager.GetObject("logo black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RCT_splashscreen {
+            get {
+                object obj = ResourceManager.GetObject("RCT_splashscreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

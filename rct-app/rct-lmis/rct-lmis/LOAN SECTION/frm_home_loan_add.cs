@@ -22,5 +22,15 @@ namespace rct_lmis.LOAN_SECTION
             this.Hide();
             e.Cancel = true;
         }
+
+        private void bsecID_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show(this, "Do you want to add a secondary ID/Document?", 
+                "Add Second ID/Document", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                grpIDsec.Enabled = true;
+                cbidtypesec.Focus();
+            }
+        }
     }
 }

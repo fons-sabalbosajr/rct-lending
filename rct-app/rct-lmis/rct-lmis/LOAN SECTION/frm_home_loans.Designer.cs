@@ -388,6 +388,7 @@ namespace rct_lmis
             this.cbsort.StartIndex = 0;
             this.cbsort.TabIndex = 8;
             this.cbsort.TextOffset = new System.Drawing.Point(10, 0);
+            this.toolTip1.SetToolTip(this.cbsort, "Select sort");
             // 
             // label11
             // 
@@ -453,6 +454,7 @@ namespace rct_lmis
             this.cbcollector.StartIndex = 0;
             this.cbcollector.TabIndex = 4;
             this.cbcollector.TextOffset = new System.Drawing.Point(10, 0);
+            this.toolTip1.SetToolTip(this.cbcollector, "Select Collector");
             // 
             // cbstatus
             // 
@@ -477,6 +479,7 @@ namespace rct_lmis
             this.cbstatus.StartIndex = 0;
             this.cbstatus.TabIndex = 3;
             this.cbstatus.TextOffset = new System.Drawing.Point(10, 0);
+            this.toolTip1.SetToolTip(this.cbstatus, "Select Status");
             // 
             // bmore
             // 
@@ -559,6 +562,7 @@ namespace rct_lmis
             this.tsearch.SelectedText = "";
             this.tsearch.Size = new System.Drawing.Size(377, 36);
             this.tsearch.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.tsearch, "Search Keyword");
             // 
             // bhelp
             // 

@@ -298,6 +298,12 @@
     <Compile Include="frm_home_journals.Designer.cs">
       <DependentUpon>frm_home_journals.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_home_reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_reports.Designer.cs">
+      <DependentUpon>frm_home_reports.cs</DependentUpon>
+    </Compile>
     <Compile Include="LOAN SECTION\frm_home_loans.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,6 +327,12 @@
     </Compile>
     <Compile Include="LOAN SECTION\frm_home_loan_add.Designer.cs">
       <DependentUpon>frm_home_loan_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PAYMENTS SECTION\frm_home_payment_details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PAYMENTS SECTION\frm_home_payment_details.Designer.cs">
+      <DependentUpon>frm_home_payment_details.cs</DependentUpon>
     </Compile>
     <Compile Include="PAYMENTS SECTION\frm_home_payments.cs">
       <SubType>Form</SubType>
@@ -396,6 +408,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loan_details.resx">
       <DependentUpon>frm_home_loan_details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAYMENTS SECTION\frm_home_payments.resx">
+      <DependentUpon>frm_home_payments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAYMENTS SECTION\frm_home_payment_details.resx">
+      <DependentUpon>frm_home_payment_details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -519,6 +537,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-peso-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RCT_splashscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-banking-loan-with-money-bag-in-hand-721.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-analyze-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-48 %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SETTINGS SECTION\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-peso-symbol-48-gray.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
