@@ -30,9 +30,9 @@ namespace rct_lmis
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.baddnew = new Guna.UI2.WinForms.Guna2Button();
             this.ltitle = new System.Windows.Forms.Label();
@@ -40,6 +40,7 @@ namespace rct_lmis
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.bmore = new Guna.UI2.WinForms.Guna2Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.luser = new System.Windows.Forms.Label();
@@ -53,6 +54,8 @@ namespace rct_lmis
             this.label3 = new System.Windows.Forms.Label();
             this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.pheaders = new System.Windows.Forms.Panel();
+            this.bexport = new Guna.UI2.WinForms.Guna2Button();
+            this.bprint = new Guna.UI2.WinForms.Guna2Button();
             this.cbsort = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
@@ -60,11 +63,8 @@ namespace rct_lmis
             this.label1 = new System.Windows.Forms.Label();
             this.cbcollector = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.bmore = new Guna.UI2.WinForms.Guna2Button();
-            this.bexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bprint = new Guna.UI2.WinForms.Guna2Button();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.bhelp = new Guna.UI2.WinForms.Guna2CircleButton();
             this.panel1.SuspendLayout();
             this.pbot.SuspendLayout();
@@ -145,26 +145,26 @@ namespace rct_lmis
             // 
             this.dgvdata.AllowUserToAddRows = false;
             this.dgvdata.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvdata.ColumnHeadersHeight = 4;
             this.dgvdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvdata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvdata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.Location = new System.Drawing.Point(0, 66);
@@ -220,6 +220,24 @@ namespace rct_lmis
             this.panel3.Size = new System.Drawing.Size(1300, 33);
             this.panel3.TabIndex = 1;
             // 
+            // bmore
+            // 
+            this.bmore.BorderRadius = 2;
+            this.bmore.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bmore.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bmore.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bmore.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bmore.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bmore.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bmore.ForeColor = System.Drawing.Color.White;
+            this.bmore.Image = global::rct_lmis.Properties.Resources.icons8_more_48;
+            this.bmore.Location = new System.Drawing.Point(910, 7);
+            this.bmore.Name = "bmore";
+            this.bmore.Size = new System.Drawing.Size(30, 20);
+            this.bmore.TabIndex = 0;
+            this.bmore.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bmore, "View collectors status");
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -239,7 +257,7 @@ namespace rct_lmis
             this.label9.ForeColor = System.Drawing.Color.DimGray;
             this.label9.Location = new System.Drawing.Point(677, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 15);
+            this.label9.Size = new System.Drawing.Size(81, 15);
             this.label9.TabIndex = 12;
             this.label9.Text = "Top Collector:";
             // 
@@ -337,7 +355,7 @@ namespace rct_lmis
             this.label3.ForeColor = System.Drawing.Color.DimGray;
             this.label3.Location = new System.Drawing.Point(14, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 15);
+            this.label3.Size = new System.Drawing.Size(70, 15);
             this.label3.TabIndex = 3;
             this.label3.Text = "Total Loans:";
             // 
@@ -366,6 +384,50 @@ namespace rct_lmis
             this.pheaders.Name = "pheaders";
             this.pheaders.Size = new System.Drawing.Size(1300, 66);
             this.pheaders.TabIndex = 0;
+            // 
+            // bexport
+            // 
+            this.bexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bexport.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bexport.BorderRadius = 2;
+            this.bexport.BorderThickness = 1;
+            this.bexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bexport.FillColor = System.Drawing.Color.White;
+            this.bexport.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bexport.ForeColor = System.Drawing.Color.White;
+            this.bexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
+            this.bexport.ImageSize = new System.Drawing.Size(28, 28);
+            this.bexport.Location = new System.Drawing.Point(1210, 15);
+            this.bexport.Name = "bexport";
+            this.bexport.Size = new System.Drawing.Size(35, 35);
+            this.bexport.TabIndex = 11;
+            this.bexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bexport, "Export to Excel");
+            // 
+            // bprint
+            // 
+            this.bprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bprint.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bprint.BorderRadius = 2;
+            this.bprint.BorderThickness = 1;
+            this.bprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bprint.FillColor = System.Drawing.Color.White;
+            this.bprint.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bprint.ForeColor = System.Drawing.Color.White;
+            this.bprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
+            this.bprint.ImageSize = new System.Drawing.Size(28, 28);
+            this.bprint.Location = new System.Drawing.Point(1251, 15);
+            this.bprint.Name = "bprint";
+            this.bprint.Size = new System.Drawing.Size(35, 35);
+            this.bprint.TabIndex = 10;
+            this.bprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bprint, "Print Table");
             // 
             // cbsort
             // 
@@ -481,68 +543,6 @@ namespace rct_lmis
             this.cbstatus.TextOffset = new System.Drawing.Point(10, 0);
             this.toolTip1.SetToolTip(this.cbstatus, "Select Status");
             // 
-            // bmore
-            // 
-            this.bmore.BorderRadius = 2;
-            this.bmore.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bmore.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bmore.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bmore.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bmore.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bmore.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bmore.ForeColor = System.Drawing.Color.White;
-            this.bmore.Image = global::rct_lmis.Properties.Resources.icons8_more_48;
-            this.bmore.Location = new System.Drawing.Point(910, 7);
-            this.bmore.Name = "bmore";
-            this.bmore.Size = new System.Drawing.Size(30, 20);
-            this.bmore.TabIndex = 0;
-            this.bmore.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bmore, "View collectors status");
-            // 
-            // bexport
-            // 
-            this.bexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bexport.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bexport.BorderRadius = 2;
-            this.bexport.BorderThickness = 1;
-            this.bexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bexport.FillColor = System.Drawing.Color.White;
-            this.bexport.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bexport.ForeColor = System.Drawing.Color.White;
-            this.bexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
-            this.bexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bexport.Location = new System.Drawing.Point(1210, 15);
-            this.bexport.Name = "bexport";
-            this.bexport.Size = new System.Drawing.Size(35, 35);
-            this.bexport.TabIndex = 11;
-            this.bexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bexport, "Export to Excel");
-            // 
-            // bprint
-            // 
-            this.bprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bprint.BorderRadius = 2;
-            this.bprint.BorderThickness = 1;
-            this.bprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bprint.FillColor = System.Drawing.Color.White;
-            this.bprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bprint.ForeColor = System.Drawing.Color.White;
-            this.bprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bprint.Location = new System.Drawing.Point(1251, 14);
-            this.bprint.Name = "bprint";
-            this.bprint.Size = new System.Drawing.Size(35, 35);
-            this.bprint.TabIndex = 10;
-            this.bprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bprint, "Print Table");
-            // 
             // tsearch
             // 
             this.tsearch.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -640,12 +640,12 @@ namespace rct_lmis
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label ltotal;
-        private Guna.UI2.WinForms.Guna2CircleButton bhelp;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private Guna.UI2.WinForms.Guna2ComboBox cbsort;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lnorecord;
         private Guna.UI2.WinForms.Guna2Button bprint;
         private Guna.UI2.WinForms.Guna2Button bexport;
+        private Guna.UI2.WinForms.Guna2CircleButton bhelp;
     }
 }

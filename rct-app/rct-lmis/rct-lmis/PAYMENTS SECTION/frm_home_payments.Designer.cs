@@ -44,6 +44,7 @@ namespace rct_lmis
             this.label11 = new System.Windows.Forms.Label();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.luser = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.ldate = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@ namespace rct_lmis
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
-            this.luser = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -185,7 +185,7 @@ namespace rct_lmis
             this.cbsort.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbsort.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbsort.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbsort.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbsort.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbsort.ItemHeight = 30;
             this.cbsort.Items.AddRange(new object[] {
             "default"});
@@ -219,6 +219,7 @@ namespace rct_lmis
             this.tsearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tsearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tsearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tsearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tsearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tsearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
             this.tsearch.Location = new System.Drawing.Point(11, 14);
@@ -250,6 +251,17 @@ namespace rct_lmis
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1300, 33);
             this.panel3.TabIndex = 3;
+            // 
+            // luser
+            // 
+            this.luser.AutoSize = true;
+            this.luser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.luser.ForeColor = System.Drawing.Color.DimGray;
+            this.luser.Location = new System.Drawing.Point(744, 10);
+            this.luser.Name = "luser";
+            this.luser.Size = new System.Drawing.Size(29, 15);
+            this.luser.TabIndex = 13;
+            this.luser.Text = "user";
             // 
             // label9
             // 
@@ -345,7 +357,7 @@ namespace rct_lmis
             this.label4.ForeColor = System.Drawing.Color.DimGray;
             this.label4.Location = new System.Drawing.Point(948, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 15);
+            this.label4.Size = new System.Drawing.Size(69, 15);
             this.label4.TabIndex = 4;
             this.label4.Text = "Date Today:";
             // 
@@ -356,7 +368,7 @@ namespace rct_lmis
             this.label3.ForeColor = System.Drawing.Color.DimGray;
             this.label3.Location = new System.Drawing.Point(14, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 15);
+            this.label3.Size = new System.Drawing.Size(70, 15);
             this.label3.TabIndex = 3;
             this.label3.Text = "Total Loans:";
             // 
@@ -366,17 +378,6 @@ namespace rct_lmis
             this.guna2VSeparator2.Name = "guna2VSeparator2";
             this.guna2VSeparator2.Size = new System.Drawing.Size(10, 17);
             this.guna2VSeparator2.TabIndex = 2;
-            // 
-            // luser
-            // 
-            this.luser.AutoSize = true;
-            this.luser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.luser.ForeColor = System.Drawing.Color.DimGray;
-            this.luser.Location = new System.Drawing.Point(744, 10);
-            this.luser.Name = "luser";
-            this.luser.Size = new System.Drawing.Size(29, 15);
-            this.luser.TabIndex = 13;
-            this.luser.Text = "user";
             // 
             // lnorecord
             // 

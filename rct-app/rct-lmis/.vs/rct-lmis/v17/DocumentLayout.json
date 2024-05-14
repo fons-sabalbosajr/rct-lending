@@ -1,107 +1,53 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\",
-<<<<<<< Updated upstream
+  "WorkspaceRootPath": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\supremo\\documents\\github\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\admin section\\frm_home_admin_loanrates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\admin section\\frm_home_admin_loanrates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\supremo\\documents\\github\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_home_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_home_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_home_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
-=======
-  "Documents": [],
->>>>>>> Stashed changes
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-<<<<<<< Updated upstream
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "frm_signup.cs",
-              "DocumentMoniker": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_signup.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\frm_signup.cs",
-              "ToolTip": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_signup.cs",
-              "RelativeToolTip": "rct-lmis\\frm_signup.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAawBUAAAAAAAAA",
+              "Title": "frm_home.cs",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\frm_home.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home.cs",
+              "RelativeToolTip": "rct-lmis\\frm_home.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAewJwAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-23T13:33:26.934Z",
+              "WhenOpened": "2024-05-14T12:41:26.523Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frm_home_login.cs",
-              "DocumentMoniker": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_login.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\frm_home_login.cs",
-              "ToolTip": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_login.cs",
-              "RelativeToolTip": "rct-lmis\\frm_home_login.cs",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAawHgAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T08:03:35.28Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frm_home_login.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_login.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\frm_home_login.cs",
-              "ToolTip": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_login.cs [Design]",
-              "RelativeToolTip": "rct-lmis\\frm_home_login.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T07:21:40.719Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frm_home_signup.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_signup.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\frm_home_signup.cs",
-              "ToolTip": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_signup.cs [Design]",
-              "RelativeToolTip": "rct-lmis\\frm_home_signup.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T07:21:37.815Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frm_signup.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_signup.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\frm_signup.cs",
-              "ToolTip": "C:\\Users\\Supremo\\Documents\\GitHub\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_signup.cs [Design]",
-              "RelativeToolTip": "rct-lmis\\frm_signup.cs [Design]",
+              "Title": "frm_home_ADMIN_loanrates.cs [Design]",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_loanrates.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_loanrates.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_loanrates.cs [Design]",
+              "RelativeToolTip": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_loanrates.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-20T07:10:28.967Z",
+              "WhenOpened": "2024-05-14T12:36:22.984Z",
               "EditorCaption": " [Design]"
             }
           ]
         }
       ]
-=======
-      "DocumentGroups": []
->>>>>>> Stashed changes
     }
   ]
 }

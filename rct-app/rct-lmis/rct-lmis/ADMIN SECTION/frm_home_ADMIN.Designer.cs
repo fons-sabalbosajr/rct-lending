@@ -49,13 +49,13 @@ namespace rct_lmis
             this.bconfigpenalty = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigrate = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.pbody = new System.Windows.Forms.Panel();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.pleft.SuspendLayout();
             this.psubdata.SuspendLayout();
             this.psubaccounting.SuspendLayout();
@@ -65,7 +65,7 @@ namespace rct_lmis
             // 
             // pleft
             // 
-            this.pleft.BackColor = System.Drawing.Color.White;
+            this.pleft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
             this.pleft.Controls.Add(this.psubdata);
             this.pleft.Controls.Add(this.bdatabase);
             this.pleft.Controls.Add(this.psubaccounting);
@@ -116,7 +116,7 @@ namespace rct_lmis
             this.bdatadelstaff.Name = "bdatadelstaff";
             this.bdatadelstaff.Size = new System.Drawing.Size(194, 35);
             this.bdatadelstaff.TabIndex = 20;
-            this.bdatadelstaff.Text = "Delete Staff Account";
+            this.bdatadelstaff.Text = "Admin Data";
             this.bdatadelstaff.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdatadelstaff.TextOffset = new System.Drawing.Point(20, 0);
             // 
@@ -140,7 +140,7 @@ namespace rct_lmis
             this.bdatadelcollector.Name = "bdatadelcollector";
             this.bdatadelcollector.Size = new System.Drawing.Size(194, 35);
             this.bdatadelcollector.TabIndex = 19;
-            this.bdatadelcollector.Text = "Delete Collector";
+            this.bdatadelcollector.Text = "Collector Data";
             this.bdatadelcollector.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdatadelcollector.TextOffset = new System.Drawing.Point(20, 0);
             // 
@@ -164,7 +164,7 @@ namespace rct_lmis
             this.bdatadelclient.Name = "bdatadelclient";
             this.bdatadelclient.Size = new System.Drawing.Size(194, 35);
             this.bdatadelclient.TabIndex = 18;
-            this.bdatadelclient.Text = "Delete Client Data";
+            this.bdatadelclient.Text = "Client Data";
             this.bdatadelclient.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdatadelclient.TextOffset = new System.Drawing.Point(20, 0);
             // 
@@ -491,9 +491,10 @@ namespace rct_lmis
             this.bconfigrate.Name = "bconfigrate";
             this.bconfigrate.Size = new System.Drawing.Size(194, 45);
             this.bconfigrate.TabIndex = 21;
-            this.bconfigrate.Text = "Rates Config";
+            this.bconfigrate.Text = "Loan Rates Config";
             this.bconfigrate.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bconfigrate.TextOffset = new System.Drawing.Point(20, 0);
+            this.bconfigrate.Click += new System.EventHandler(this.bconfigrate_Click);
             // 
             // panel1
             // 
@@ -505,19 +506,6 @@ namespace rct_lmis
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(194, 58);
             this.panel1.TabIndex = 0;
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox1.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(8, 10);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(34, 35);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
-            this.guna2PictureBox1.UseTransparentBackground = true;
             // 
             // label2
             // 
@@ -566,21 +554,34 @@ namespace rct_lmis
             this.panel5.Size = new System.Drawing.Size(5, 790);
             this.panel5.TabIndex = 19;
             // 
-            // panel6
+            // pbody
             // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(199, 5);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1096, 790);
-            this.panel6.TabIndex = 20;
+            this.pbody.BackColor = System.Drawing.Color.White;
+            this.pbody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbody.Location = new System.Drawing.Point(199, 5);
+            this.pbody.Name = "pbody";
+            this.pbody.Size = new System.Drawing.Size(1096, 790);
+            this.pbody.TabIndex = 20;
+            // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox1.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(8, 10);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(34, 35);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
+            this.guna2PictureBox1.UseTransparentBackground = true;
             // 
             // frm_home_ADMIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 800);
-            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.pbody);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
@@ -610,7 +611,7 @@ namespace rct_lmis
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel pbody;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2Button baccounting;
         private Guna.UI2.WinForms.Guna2Button bconfigfunds;

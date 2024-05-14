@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using rct_lmis.ADMIN_SECTION;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,8 +7,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace rct_lmis
 {
@@ -91,6 +94,27 @@ namespace rct_lmis
         }
         #endregion
 
+        #region "CHILD FORM"
+        private void ChildForm(Form childForm)
+        {
+            if (currChildForm != null)
+            {
+                currChildForm.Close();
+            }
+            currChildForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+
+            pbody.Controls.Add(childForm);
+            pbody.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
+        #endregion
+
+        LoadingFunction load = new LoadingFunction();
+
 
         private void frm_home_ADMIN_Load(object sender, EventArgs e)
         {
@@ -107,6 +131,15 @@ namespace rct_lmis
         {
             ActivateButton(sender, RGBColors.col);
             showpsub(psubdata);
+        }
+
+        private void bconfigrate_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN_loanrates());
+            load.Close();
         }
     }
 }

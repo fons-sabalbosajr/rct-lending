@@ -1,4 +1,5 @@
-﻿using Guna.UI2.WinForms;
+﻿using CrystalDecisions.Shared;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,13 +8,16 @@ using System.Deployment.Application;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace rct_lmis
+
 {
     public partial class frm_home : Form
     {
@@ -25,10 +29,19 @@ namespace rct_lmis
 
         LoadingFunction load = new LoadingFunction();
 
+        private void ShowVersion()
+        {
+            Version ver = (ApplicationDeployment.IsNetworkDeployed) ?
+               ApplicationDeployment.CurrentDeployment.CurrentVersion :
+               Assembly.GetExecutingAssembly().GetName().Version;
+            grpupdates.Text = "What's New in " + "ver." + ver.Major + "." + ver.Minor + "." + ver.Build;
+        }
+
         public frm_home()
         {
             InitializeComponent();
             customUI();
+            ShowVersion();
             leftpanel = new Panel();
             leftpanel.Size = new Size(5, 45);
             pleft.Controls.Add(leftpanel);
@@ -162,7 +175,7 @@ namespace rct_lmis
 
         private void frm_home_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void butilities_Click(object sender, EventArgs e)

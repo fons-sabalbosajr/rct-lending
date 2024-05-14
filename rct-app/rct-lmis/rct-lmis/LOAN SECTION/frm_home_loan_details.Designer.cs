@@ -71,31 +71,46 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvdataamt = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.bamtexport = new Guna.UI2.WinForms.Guna2Button();
+            this.bamtprint = new Guna.UI2.WinForms.Guna2Button();
             this.cbamtmo = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tamtsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgvdatadis = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cbdisenc = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.bdisexport = new Guna.UI2.WinForms.Guna2Button();
+            this.bdisprint = new Guna.UI2.WinForms.Guna2Button();
             this.cbdismo = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.tdissearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cbrenc = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.brcexport = new Guna.UI2.WinForms.Guna2Button();
+            this.bcrprint = new Guna.UI2.WinForms.Guna2Button();
             this.cbrmo = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.bcrsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvdatacr = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.cbjeenc = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.bjeexport = new Guna.UI2.WinForms.Guna2Button();
+            this.bjeprint = new Guna.UI2.WinForms.Guna2Button();
             this.cbejmo = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.tjesearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2DataGridView3 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.bviewfile = new Guna.UI2.WinForms.Guna2Button();
+            this.baddfile = new Guna.UI2.WinForms.Guna2Button();
+            this.tfilesearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2DataGridView4 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.breprepaydate = new Guna.UI2.WinForms.Guna2TextBox();
@@ -132,7 +147,11 @@ namespace rct_lmis.LOAN_SECTION
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
+            this.treploanpenalty = new Guna.UI2.WinForms.Guna2TextBox();
+            this.treploanbalance = new Guna.UI2.WinForms.Guna2TextBox();
+            this.trepcurrloan = new Guna.UI2.WinForms.Guna2TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.bcopyaccno = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lloanstatus = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -140,25 +159,6 @@ namespace rct_lmis.LOAN_SECTION
             this.laccno = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.bamtexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bamtprint = new Guna.UI2.WinForms.Guna2Button();
-            this.tamtsearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.bdisexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bdisprint = new Guna.UI2.WinForms.Guna2Button();
-            this.tdissearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.brcexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bcrprint = new Guna.UI2.WinForms.Guna2Button();
-            this.bcrsearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.bjeexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bjeprint = new Guna.UI2.WinForms.Guna2Button();
-            this.tjesearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.bviewfile = new Guna.UI2.WinForms.Guna2Button();
-            this.baddfile = new Guna.UI2.WinForms.Guna2Button();
-            this.tfilesearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.treploanpenalty = new Guna.UI2.WinForms.Guna2TextBox();
-            this.treploanbalance = new Guna.UI2.WinForms.Guna2TextBox();
-            this.trepcurrloan = new Guna.UI2.WinForms.Guna2TextBox();
-            this.bcopyaccno = new Guna.UI2.WinForms.Guna2Button();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -280,6 +280,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccemail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.taccemail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccemail.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taccemail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.taccemail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccemail.Location = new System.Drawing.Point(147, 417);
             this.taccemail.Name = "taccemail";
@@ -299,6 +300,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tacccontactno.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tacccontactno.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tacccontactno.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tacccontactno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tacccontactno.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tacccontactno.Location = new System.Drawing.Point(147, 368);
             this.tacccontactno.Name = "tacccontactno";
@@ -337,6 +339,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccprov.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.taccprov.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccprov.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taccprov.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.taccprov.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccprov.Location = new System.Drawing.Point(147, 264);
             this.taccprov.Name = "taccprov";
@@ -356,6 +359,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tacctown.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tacctown.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tacctown.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tacctown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tacctown.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tacctown.Location = new System.Drawing.Point(147, 215);
             this.tacctown.Name = "tacctown";
@@ -375,6 +379,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccbrgy.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.taccbrgy.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccbrgy.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taccbrgy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.taccbrgy.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccbrgy.Location = new System.Drawing.Point(147, 166);
             this.taccbrgy.Name = "taccbrgy";
@@ -430,6 +435,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taddbirth.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.taddbirth.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taddbirth.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taddbirth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.taddbirth.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taddbirth.Location = new System.Drawing.Point(618, 166);
             this.taddbirth.Name = "taddbirth";
@@ -461,6 +467,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccaddress.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.taccaddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccaddress.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taccaddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.taccaddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccaddress.Location = new System.Drawing.Point(147, 119);
             this.taccaddress.Name = "taccaddress";
@@ -480,6 +487,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccname.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.taccname.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccname.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taccname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.taccname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taccname.Location = new System.Drawing.Point(147, 70);
             this.taccname.Name = "taccname";
@@ -613,6 +621,50 @@ namespace rct_lmis.LOAN_SECTION
             this.panel2.Size = new System.Drawing.Size(890, 50);
             this.panel2.TabIndex = 4;
             // 
+            // bamtexport
+            // 
+            this.bamtexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bamtexport.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bamtexport.BorderRadius = 2;
+            this.bamtexport.BorderThickness = 1;
+            this.bamtexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bamtexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bamtexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bamtexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bamtexport.FillColor = System.Drawing.Color.White;
+            this.bamtexport.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bamtexport.ForeColor = System.Drawing.Color.White;
+            this.bamtexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
+            this.bamtexport.ImageSize = new System.Drawing.Size(28, 28);
+            this.bamtexport.Location = new System.Drawing.Point(808, 8);
+            this.bamtexport.Name = "bamtexport";
+            this.bamtexport.Size = new System.Drawing.Size(35, 35);
+            this.bamtexport.TabIndex = 13;
+            this.bamtexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bamtexport, "Export to Excel");
+            // 
+            // bamtprint
+            // 
+            this.bamtprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bamtprint.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bamtprint.BorderRadius = 2;
+            this.bamtprint.BorderThickness = 1;
+            this.bamtprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bamtprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bamtprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bamtprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bamtprint.FillColor = System.Drawing.Color.White;
+            this.bamtprint.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bamtprint.ForeColor = System.Drawing.Color.White;
+            this.bamtprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
+            this.bamtprint.ImageSize = new System.Drawing.Size(28, 28);
+            this.bamtprint.Location = new System.Drawing.Point(848, 8);
+            this.bamtprint.Name = "bamtprint";
+            this.bamtprint.Size = new System.Drawing.Size(35, 35);
+            this.bamtprint.TabIndex = 12;
+            this.bamtprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bamtprint, "Print Table");
+            // 
             // cbamtmo
             // 
             this.cbamtmo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -622,7 +674,7 @@ namespace rct_lmis.LOAN_SECTION
             this.cbamtmo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbamtmo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbamtmo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbamtmo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbamtmo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbamtmo.ItemHeight = 30;
             this.cbamtmo.Items.AddRange(new object[] {
             "--all--"});
@@ -645,6 +697,27 @@ namespace rct_lmis.LOAN_SECTION
             this.label3.Size = new System.Drawing.Size(84, 15);
             this.label3.TabIndex = 9;
             this.label3.Text = "Search Month:";
+            // 
+            // tamtsearch
+            // 
+            this.tamtsearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tamtsearch.DefaultText = "";
+            this.tamtsearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tamtsearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tamtsearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tamtsearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tamtsearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tamtsearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tamtsearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tamtsearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tamtsearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
+            this.tamtsearch.Location = new System.Drawing.Point(12, 7);
+            this.tamtsearch.Name = "tamtsearch";
+            this.tamtsearch.PasswordChar = '\0';
+            this.tamtsearch.PlaceholderText = "search any keyword...";
+            this.tamtsearch.SelectedText = "";
+            this.tamtsearch.Size = new System.Drawing.Size(527, 36);
+            this.tamtsearch.TabIndex = 2;
             // 
             // tabPage3
             // 
@@ -737,7 +810,7 @@ namespace rct_lmis.LOAN_SECTION
             this.cbdisenc.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbdisenc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbdisenc.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbdisenc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbdisenc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbdisenc.ItemHeight = 30;
             this.cbdisenc.Items.AddRange(new object[] {
             "--all--"});
@@ -761,6 +834,50 @@ namespace rct_lmis.LOAN_SECTION
             this.label16.TabIndex = 14;
             this.label16.Text = "Encoder:";
             // 
+            // bdisexport
+            // 
+            this.bdisexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bdisexport.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bdisexport.BorderRadius = 2;
+            this.bdisexport.BorderThickness = 1;
+            this.bdisexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bdisexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bdisexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bdisexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bdisexport.FillColor = System.Drawing.Color.White;
+            this.bdisexport.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bdisexport.ForeColor = System.Drawing.Color.White;
+            this.bdisexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
+            this.bdisexport.ImageSize = new System.Drawing.Size(28, 28);
+            this.bdisexport.Location = new System.Drawing.Point(814, 8);
+            this.bdisexport.Name = "bdisexport";
+            this.bdisexport.Size = new System.Drawing.Size(35, 35);
+            this.bdisexport.TabIndex = 13;
+            this.bdisexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bdisexport, "Export to Excel");
+            // 
+            // bdisprint
+            // 
+            this.bdisprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bdisprint.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bdisprint.BorderRadius = 2;
+            this.bdisprint.BorderThickness = 1;
+            this.bdisprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bdisprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bdisprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bdisprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bdisprint.FillColor = System.Drawing.Color.White;
+            this.bdisprint.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bdisprint.ForeColor = System.Drawing.Color.White;
+            this.bdisprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
+            this.bdisprint.ImageSize = new System.Drawing.Size(28, 28);
+            this.bdisprint.Location = new System.Drawing.Point(854, 8);
+            this.bdisprint.Name = "bdisprint";
+            this.bdisprint.Size = new System.Drawing.Size(35, 35);
+            this.bdisprint.TabIndex = 12;
+            this.bdisprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bdisprint, "Print Table");
+            // 
             // cbdismo
             // 
             this.cbdismo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -770,7 +887,7 @@ namespace rct_lmis.LOAN_SECTION
             this.cbdismo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbdismo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbdismo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbdismo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbdismo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbdismo.ItemHeight = 30;
             this.cbdismo.Items.AddRange(new object[] {
             "--all--"});
@@ -793,6 +910,27 @@ namespace rct_lmis.LOAN_SECTION
             this.label13.Size = new System.Drawing.Size(84, 15);
             this.label13.TabIndex = 9;
             this.label13.Text = "Search Month:";
+            // 
+            // tdissearch
+            // 
+            this.tdissearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tdissearch.DefaultText = "";
+            this.tdissearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tdissearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tdissearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tdissearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tdissearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tdissearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tdissearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tdissearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tdissearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
+            this.tdissearch.Location = new System.Drawing.Point(12, 7);
+            this.tdissearch.Name = "tdissearch";
+            this.tdissearch.PasswordChar = '\0';
+            this.tdissearch.PlaceholderText = "search any keyword...";
+            this.tdissearch.SelectedText = "";
+            this.tdissearch.Size = new System.Drawing.Size(311, 36);
+            this.tdissearch.TabIndex = 2;
             // 
             // tabPage4
             // 
@@ -830,7 +968,7 @@ namespace rct_lmis.LOAN_SECTION
             this.cbrenc.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbrenc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbrenc.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbrenc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbrenc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbrenc.ItemHeight = 30;
             this.cbrenc.Items.AddRange(new object[] {
             "--all--"});
@@ -854,6 +992,50 @@ namespace rct_lmis.LOAN_SECTION
             this.label17.TabIndex = 14;
             this.label17.Text = "Encoder:";
             // 
+            // brcexport
+            // 
+            this.brcexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.brcexport.BorderColor = System.Drawing.Color.Gainsboro;
+            this.brcexport.BorderRadius = 2;
+            this.brcexport.BorderThickness = 1;
+            this.brcexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.brcexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.brcexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.brcexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.brcexport.FillColor = System.Drawing.Color.White;
+            this.brcexport.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.brcexport.ForeColor = System.Drawing.Color.White;
+            this.brcexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
+            this.brcexport.ImageSize = new System.Drawing.Size(28, 28);
+            this.brcexport.Location = new System.Drawing.Point(814, 8);
+            this.brcexport.Name = "brcexport";
+            this.brcexport.Size = new System.Drawing.Size(35, 35);
+            this.brcexport.TabIndex = 13;
+            this.brcexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.brcexport, "Export to Excel");
+            // 
+            // bcrprint
+            // 
+            this.bcrprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bcrprint.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bcrprint.BorderRadius = 2;
+            this.bcrprint.BorderThickness = 1;
+            this.bcrprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bcrprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bcrprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bcrprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bcrprint.FillColor = System.Drawing.Color.White;
+            this.bcrprint.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bcrprint.ForeColor = System.Drawing.Color.White;
+            this.bcrprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
+            this.bcrprint.ImageSize = new System.Drawing.Size(28, 28);
+            this.bcrprint.Location = new System.Drawing.Point(854, 8);
+            this.bcrprint.Name = "bcrprint";
+            this.bcrprint.Size = new System.Drawing.Size(35, 35);
+            this.bcrprint.TabIndex = 12;
+            this.bcrprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bcrprint, "Print Table");
+            // 
             // cbrmo
             // 
             this.cbrmo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -863,7 +1045,7 @@ namespace rct_lmis.LOAN_SECTION
             this.cbrmo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbrmo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbrmo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbrmo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbrmo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbrmo.ItemHeight = 30;
             this.cbrmo.Items.AddRange(new object[] {
             "--all--"});
@@ -886,6 +1068,27 @@ namespace rct_lmis.LOAN_SECTION
             this.label18.Size = new System.Drawing.Size(84, 15);
             this.label18.TabIndex = 9;
             this.label18.Text = "Search Month:";
+            // 
+            // bcrsearch
+            // 
+            this.bcrsearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.bcrsearch.DefaultText = "";
+            this.bcrsearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.bcrsearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.bcrsearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.bcrsearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.bcrsearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.bcrsearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bcrsearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.bcrsearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.bcrsearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
+            this.bcrsearch.Location = new System.Drawing.Point(12, 7);
+            this.bcrsearch.Name = "bcrsearch";
+            this.bcrsearch.PasswordChar = '\0';
+            this.bcrsearch.PlaceholderText = "search any keyword...";
+            this.bcrsearch.SelectedText = "";
+            this.bcrsearch.Size = new System.Drawing.Size(311, 36);
+            this.bcrsearch.TabIndex = 2;
             // 
             // dgvdatacr
             // 
@@ -978,7 +1181,7 @@ namespace rct_lmis.LOAN_SECTION
             this.cbjeenc.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbjeenc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbjeenc.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbjeenc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbjeenc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbjeenc.ItemHeight = 30;
             this.cbjeenc.Items.AddRange(new object[] {
             "--all--"});
@@ -1002,6 +1205,50 @@ namespace rct_lmis.LOAN_SECTION
             this.label19.TabIndex = 14;
             this.label19.Text = "Encoder:";
             // 
+            // bjeexport
+            // 
+            this.bjeexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bjeexport.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bjeexport.BorderRadius = 2;
+            this.bjeexport.BorderThickness = 1;
+            this.bjeexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bjeexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bjeexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bjeexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bjeexport.FillColor = System.Drawing.Color.White;
+            this.bjeexport.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bjeexport.ForeColor = System.Drawing.Color.White;
+            this.bjeexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
+            this.bjeexport.ImageSize = new System.Drawing.Size(28, 28);
+            this.bjeexport.Location = new System.Drawing.Point(814, 8);
+            this.bjeexport.Name = "bjeexport";
+            this.bjeexport.Size = new System.Drawing.Size(35, 35);
+            this.bjeexport.TabIndex = 13;
+            this.bjeexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bjeexport, "Export to Excel");
+            // 
+            // bjeprint
+            // 
+            this.bjeprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bjeprint.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bjeprint.BorderRadius = 2;
+            this.bjeprint.BorderThickness = 1;
+            this.bjeprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bjeprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bjeprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bjeprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bjeprint.FillColor = System.Drawing.Color.White;
+            this.bjeprint.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bjeprint.ForeColor = System.Drawing.Color.White;
+            this.bjeprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
+            this.bjeprint.ImageSize = new System.Drawing.Size(28, 28);
+            this.bjeprint.Location = new System.Drawing.Point(854, 8);
+            this.bjeprint.Name = "bjeprint";
+            this.bjeprint.Size = new System.Drawing.Size(35, 35);
+            this.bjeprint.TabIndex = 12;
+            this.bjeprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bjeprint, "Print Table");
+            // 
             // cbejmo
             // 
             this.cbejmo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1011,7 +1258,7 @@ namespace rct_lmis.LOAN_SECTION
             this.cbejmo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbejmo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbejmo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbejmo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbejmo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbejmo.ItemHeight = 30;
             this.cbejmo.Items.AddRange(new object[] {
             "--all--"});
@@ -1034,6 +1281,27 @@ namespace rct_lmis.LOAN_SECTION
             this.label20.Size = new System.Drawing.Size(84, 15);
             this.label20.TabIndex = 9;
             this.label20.Text = "Search Month:";
+            // 
+            // tjesearch
+            // 
+            this.tjesearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tjesearch.DefaultText = "";
+            this.tjesearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tjesearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tjesearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tjesearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tjesearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tjesearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tjesearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tjesearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tjesearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
+            this.tjesearch.Location = new System.Drawing.Point(12, 7);
+            this.tjesearch.Name = "tjesearch";
+            this.tjesearch.PasswordChar = '\0';
+            this.tjesearch.PlaceholderText = "search any keyword...";
+            this.tjesearch.SelectedText = "";
+            this.tjesearch.Size = new System.Drawing.Size(311, 36);
+            this.tjesearch.TabIndex = 2;
             // 
             // guna2DataGridView3
             // 
@@ -1112,6 +1380,71 @@ namespace rct_lmis.LOAN_SECTION
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(896, 50);
             this.panel6.TabIndex = 8;
+            // 
+            // bviewfile
+            // 
+            this.bviewfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bviewfile.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bviewfile.BorderRadius = 2;
+            this.bviewfile.BorderThickness = 1;
+            this.bviewfile.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bviewfile.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bviewfile.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bviewfile.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bviewfile.FillColor = System.Drawing.Color.White;
+            this.bviewfile.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bviewfile.ForeColor = System.Drawing.Color.White;
+            this.bviewfile.Image = global::rct_lmis.Properties.Resources.icons8_view_file_48;
+            this.bviewfile.ImageSize = new System.Drawing.Size(28, 28);
+            this.bviewfile.Location = new System.Drawing.Point(814, 8);
+            this.bviewfile.Name = "bviewfile";
+            this.bviewfile.Size = new System.Drawing.Size(35, 35);
+            this.bviewfile.TabIndex = 13;
+            this.bviewfile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bviewfile, "Export to Excel");
+            // 
+            // baddfile
+            // 
+            this.baddfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.baddfile.BorderColor = System.Drawing.Color.Gainsboro;
+            this.baddfile.BorderRadius = 2;
+            this.baddfile.BorderThickness = 1;
+            this.baddfile.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.baddfile.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.baddfile.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.baddfile.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.baddfile.FillColor = System.Drawing.Color.White;
+            this.baddfile.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.baddfile.ForeColor = System.Drawing.Color.White;
+            this.baddfile.Image = global::rct_lmis.Properties.Resources.icons8_add_file_481;
+            this.baddfile.ImageSize = new System.Drawing.Size(28, 28);
+            this.baddfile.Location = new System.Drawing.Point(854, 8);
+            this.baddfile.Name = "baddfile";
+            this.baddfile.Size = new System.Drawing.Size(35, 35);
+            this.baddfile.TabIndex = 12;
+            this.baddfile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.baddfile, "Print Table");
+            // 
+            // tfilesearch
+            // 
+            this.tfilesearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tfilesearch.DefaultText = "";
+            this.tfilesearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tfilesearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tfilesearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tfilesearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tfilesearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tfilesearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tfilesearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tfilesearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tfilesearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
+            this.tfilesearch.Location = new System.Drawing.Point(12, 7);
+            this.tfilesearch.Name = "tfilesearch";
+            this.tfilesearch.PasswordChar = '\0';
+            this.tfilesearch.PlaceholderText = "search file...";
+            this.tfilesearch.SelectedText = "";
+            this.tfilesearch.Size = new System.Drawing.Size(443, 36);
+            this.tfilesearch.TabIndex = 2;
             // 
             // guna2DataGridView4
             // 
@@ -1224,6 +1557,7 @@ namespace rct_lmis.LOAN_SECTION
             this.breprepaydate.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.breprepaydate.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.breprepaydate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.breprepaydate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.breprepaydate.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.breprepaydate.Location = new System.Drawing.Point(636, 205);
             this.breprepaydate.Name = "breprepaydate";
@@ -1243,6 +1577,7 @@ namespace rct_lmis.LOAN_SECTION
             this.treploantotal.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.treploantotal.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.treploantotal.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.treploantotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.treploantotal.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.treploantotal.Location = new System.Drawing.Point(636, 163);
             this.treploantotal.Name = "treploantotal";
@@ -1262,6 +1597,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepcollector.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.trepcollector.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepcollector.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.trepcollector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.trepcollector.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepcollector.Location = new System.Drawing.Point(202, 289);
             this.trepcollector.Name = "trepcollector";
@@ -1281,6 +1617,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepidcard.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.trepidcard.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepidcard.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.trepidcard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.trepidcard.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepidcard.Location = new System.Drawing.Point(612, 61);
             this.trepidcard.Multiline = true;
@@ -1301,6 +1638,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepcontact.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.trepcontact.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepcontact.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.trepcontact.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.trepcontact.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepcontact.Location = new System.Drawing.Point(612, 14);
             this.trepcontact.Name = "trepcontact";
@@ -1320,6 +1658,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepaddress.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.trepaddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepaddress.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.trepaddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.trepaddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepaddress.Location = new System.Drawing.Point(100, 61);
             this.trepaddress.Multiline = true;
@@ -1340,6 +1679,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepname.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.trepname.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepname.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.trepname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.trepname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trepname.Location = new System.Drawing.Point(100, 14);
             this.trepname.Name = "trepname";
@@ -1711,6 +2051,95 @@ namespace rct_lmis.LOAN_SECTION
             this.guna2Separator3.Size = new System.Drawing.Size(872, 10);
             this.guna2Separator3.TabIndex = 15;
             // 
+            // treploanpenalty
+            // 
+            this.treploanpenalty.AutoScroll = true;
+            this.treploanpenalty.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.treploanpenalty.DefaultText = "";
+            this.treploanpenalty.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.treploanpenalty.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.treploanpenalty.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.treploanpenalty.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.treploanpenalty.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.treploanpenalty.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.treploanpenalty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treploanpenalty.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.treploanpenalty.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_48;
+            this.treploanpenalty.IconLeftSize = new System.Drawing.Size(15, 15);
+            this.treploanpenalty.Location = new System.Drawing.Point(202, 247);
+            this.treploanpenalty.Name = "treploanpenalty";
+            this.treploanpenalty.PasswordChar = '\0';
+            this.treploanpenalty.PlaceholderText = "";
+            this.treploanpenalty.SelectedText = "";
+            this.treploanpenalty.Size = new System.Drawing.Size(195, 36);
+            this.treploanpenalty.TabIndex = 55;
+            // 
+            // treploanbalance
+            // 
+            this.treploanbalance.AutoScroll = true;
+            this.treploanbalance.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.treploanbalance.DefaultText = "";
+            this.treploanbalance.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.treploanbalance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.treploanbalance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.treploanbalance.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.treploanbalance.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.treploanbalance.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.treploanbalance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treploanbalance.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.treploanbalance.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_48;
+            this.treploanbalance.IconLeftSize = new System.Drawing.Size(15, 15);
+            this.treploanbalance.Location = new System.Drawing.Point(202, 205);
+            this.treploanbalance.Name = "treploanbalance";
+            this.treploanbalance.PasswordChar = '\0';
+            this.treploanbalance.PlaceholderText = "";
+            this.treploanbalance.SelectedText = "";
+            this.treploanbalance.Size = new System.Drawing.Size(195, 36);
+            this.treploanbalance.TabIndex = 54;
+            // 
+            // trepcurrloan
+            // 
+            this.trepcurrloan.AutoScroll = true;
+            this.trepcurrloan.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.trepcurrloan.DefaultText = "";
+            this.trepcurrloan.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.trepcurrloan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.trepcurrloan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.trepcurrloan.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.trepcurrloan.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.trepcurrloan.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.trepcurrloan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.trepcurrloan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.trepcurrloan.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_48;
+            this.trepcurrloan.IconLeftSize = new System.Drawing.Size(15, 15);
+            this.trepcurrloan.Location = new System.Drawing.Point(202, 163);
+            this.trepcurrloan.Name = "trepcurrloan";
+            this.trepcurrloan.PasswordChar = '\0';
+            this.trepcurrloan.PlaceholderText = "";
+            this.trepcurrloan.SelectedText = "";
+            this.trepcurrloan.Size = new System.Drawing.Size(195, 36);
+            this.trepcurrloan.TabIndex = 53;
+            // 
+            // bcopyaccno
+            // 
+            this.bcopyaccno.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bcopyaccno.BorderRadius = 2;
+            this.bcopyaccno.BorderThickness = 1;
+            this.bcopyaccno.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bcopyaccno.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bcopyaccno.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bcopyaccno.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bcopyaccno.FillColor = System.Drawing.Color.White;
+            this.bcopyaccno.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bcopyaccno.ForeColor = System.Drawing.Color.White;
+            this.bcopyaccno.Image = global::rct_lmis.Properties.Resources.icons8_copy_24;
+            this.bcopyaccno.Location = new System.Drawing.Point(9, 12);
+            this.bcopyaccno.Name = "bcopyaccno";
+            this.bcopyaccno.Size = new System.Drawing.Size(25, 25);
+            this.bcopyaccno.TabIndex = 25;
+            this.bcopyaccno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bcopyaccno, "Copy Account number to clipboard");
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
@@ -1798,412 +2227,6 @@ namespace rct_lmis.LOAN_SECTION
             this.label1.Size = new System.Drawing.Size(116, 19);
             this.label1.TabIndex = 15;
             this.label1.Text = "Account Number:";
-            // 
-            // bamtexport
-            // 
-            this.bamtexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bamtexport.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bamtexport.BorderRadius = 2;
-            this.bamtexport.BorderThickness = 1;
-            this.bamtexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bamtexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bamtexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bamtexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bamtexport.FillColor = System.Drawing.Color.White;
-            this.bamtexport.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bamtexport.ForeColor = System.Drawing.Color.White;
-            this.bamtexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
-            this.bamtexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bamtexport.Location = new System.Drawing.Point(808, 8);
-            this.bamtexport.Name = "bamtexport";
-            this.bamtexport.Size = new System.Drawing.Size(35, 35);
-            this.bamtexport.TabIndex = 13;
-            this.bamtexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bamtexport, "Export to Excel");
-            // 
-            // bamtprint
-            // 
-            this.bamtprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bamtprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bamtprint.BorderRadius = 2;
-            this.bamtprint.BorderThickness = 1;
-            this.bamtprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bamtprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bamtprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bamtprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bamtprint.FillColor = System.Drawing.Color.White;
-            this.bamtprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bamtprint.ForeColor = System.Drawing.Color.White;
-            this.bamtprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bamtprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bamtprint.Location = new System.Drawing.Point(848, 8);
-            this.bamtprint.Name = "bamtprint";
-            this.bamtprint.Size = new System.Drawing.Size(35, 35);
-            this.bamtprint.TabIndex = 12;
-            this.bamtprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bamtprint, "Print Table");
-            // 
-            // tamtsearch
-            // 
-            this.tamtsearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tamtsearch.DefaultText = "";
-            this.tamtsearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tamtsearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tamtsearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tamtsearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tamtsearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tamtsearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tamtsearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tamtsearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
-            this.tamtsearch.Location = new System.Drawing.Point(12, 7);
-            this.tamtsearch.Name = "tamtsearch";
-            this.tamtsearch.PasswordChar = '\0';
-            this.tamtsearch.PlaceholderText = "search any keyword...";
-            this.tamtsearch.SelectedText = "";
-            this.tamtsearch.Size = new System.Drawing.Size(527, 36);
-            this.tamtsearch.TabIndex = 2;
-            // 
-            // bdisexport
-            // 
-            this.bdisexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bdisexport.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bdisexport.BorderRadius = 2;
-            this.bdisexport.BorderThickness = 1;
-            this.bdisexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bdisexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bdisexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bdisexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bdisexport.FillColor = System.Drawing.Color.White;
-            this.bdisexport.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bdisexport.ForeColor = System.Drawing.Color.White;
-            this.bdisexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
-            this.bdisexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bdisexport.Location = new System.Drawing.Point(814, 8);
-            this.bdisexport.Name = "bdisexport";
-            this.bdisexport.Size = new System.Drawing.Size(35, 35);
-            this.bdisexport.TabIndex = 13;
-            this.bdisexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bdisexport, "Export to Excel");
-            // 
-            // bdisprint
-            // 
-            this.bdisprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bdisprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bdisprint.BorderRadius = 2;
-            this.bdisprint.BorderThickness = 1;
-            this.bdisprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bdisprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bdisprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bdisprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bdisprint.FillColor = System.Drawing.Color.White;
-            this.bdisprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bdisprint.ForeColor = System.Drawing.Color.White;
-            this.bdisprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bdisprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bdisprint.Location = new System.Drawing.Point(854, 8);
-            this.bdisprint.Name = "bdisprint";
-            this.bdisprint.Size = new System.Drawing.Size(35, 35);
-            this.bdisprint.TabIndex = 12;
-            this.bdisprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bdisprint, "Print Table");
-            // 
-            // tdissearch
-            // 
-            this.tdissearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tdissearch.DefaultText = "";
-            this.tdissearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tdissearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tdissearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tdissearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tdissearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tdissearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tdissearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tdissearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
-            this.tdissearch.Location = new System.Drawing.Point(12, 7);
-            this.tdissearch.Name = "tdissearch";
-            this.tdissearch.PasswordChar = '\0';
-            this.tdissearch.PlaceholderText = "search any keyword...";
-            this.tdissearch.SelectedText = "";
-            this.tdissearch.Size = new System.Drawing.Size(311, 36);
-            this.tdissearch.TabIndex = 2;
-            // 
-            // brcexport
-            // 
-            this.brcexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.brcexport.BorderColor = System.Drawing.Color.Gainsboro;
-            this.brcexport.BorderRadius = 2;
-            this.brcexport.BorderThickness = 1;
-            this.brcexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.brcexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.brcexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.brcexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.brcexport.FillColor = System.Drawing.Color.White;
-            this.brcexport.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.brcexport.ForeColor = System.Drawing.Color.White;
-            this.brcexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
-            this.brcexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.brcexport.Location = new System.Drawing.Point(814, 8);
-            this.brcexport.Name = "brcexport";
-            this.brcexport.Size = new System.Drawing.Size(35, 35);
-            this.brcexport.TabIndex = 13;
-            this.brcexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.brcexport, "Export to Excel");
-            // 
-            // bcrprint
-            // 
-            this.bcrprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bcrprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bcrprint.BorderRadius = 2;
-            this.bcrprint.BorderThickness = 1;
-            this.bcrprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bcrprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bcrprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bcrprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bcrprint.FillColor = System.Drawing.Color.White;
-            this.bcrprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bcrprint.ForeColor = System.Drawing.Color.White;
-            this.bcrprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bcrprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bcrprint.Location = new System.Drawing.Point(854, 8);
-            this.bcrprint.Name = "bcrprint";
-            this.bcrprint.Size = new System.Drawing.Size(35, 35);
-            this.bcrprint.TabIndex = 12;
-            this.bcrprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bcrprint, "Print Table");
-            // 
-            // bcrsearch
-            // 
-            this.bcrsearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.bcrsearch.DefaultText = "";
-            this.bcrsearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.bcrsearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.bcrsearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.bcrsearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.bcrsearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.bcrsearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bcrsearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.bcrsearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
-            this.bcrsearch.Location = new System.Drawing.Point(12, 7);
-            this.bcrsearch.Name = "bcrsearch";
-            this.bcrsearch.PasswordChar = '\0';
-            this.bcrsearch.PlaceholderText = "search any keyword...";
-            this.bcrsearch.SelectedText = "";
-            this.bcrsearch.Size = new System.Drawing.Size(311, 36);
-            this.bcrsearch.TabIndex = 2;
-            // 
-            // bjeexport
-            // 
-            this.bjeexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bjeexport.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bjeexport.BorderRadius = 2;
-            this.bjeexport.BorderThickness = 1;
-            this.bjeexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bjeexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bjeexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bjeexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bjeexport.FillColor = System.Drawing.Color.White;
-            this.bjeexport.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bjeexport.ForeColor = System.Drawing.Color.White;
-            this.bjeexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
-            this.bjeexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bjeexport.Location = new System.Drawing.Point(814, 8);
-            this.bjeexport.Name = "bjeexport";
-            this.bjeexport.Size = new System.Drawing.Size(35, 35);
-            this.bjeexport.TabIndex = 13;
-            this.bjeexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bjeexport, "Export to Excel");
-            // 
-            // bjeprint
-            // 
-            this.bjeprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bjeprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bjeprint.BorderRadius = 2;
-            this.bjeprint.BorderThickness = 1;
-            this.bjeprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bjeprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bjeprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bjeprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bjeprint.FillColor = System.Drawing.Color.White;
-            this.bjeprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bjeprint.ForeColor = System.Drawing.Color.White;
-            this.bjeprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bjeprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bjeprint.Location = new System.Drawing.Point(854, 8);
-            this.bjeprint.Name = "bjeprint";
-            this.bjeprint.Size = new System.Drawing.Size(35, 35);
-            this.bjeprint.TabIndex = 12;
-            this.bjeprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bjeprint, "Print Table");
-            // 
-            // tjesearch
-            // 
-            this.tjesearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tjesearch.DefaultText = "";
-            this.tjesearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tjesearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tjesearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tjesearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tjesearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tjesearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tjesearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tjesearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
-            this.tjesearch.Location = new System.Drawing.Point(12, 7);
-            this.tjesearch.Name = "tjesearch";
-            this.tjesearch.PasswordChar = '\0';
-            this.tjesearch.PlaceholderText = "search any keyword...";
-            this.tjesearch.SelectedText = "";
-            this.tjesearch.Size = new System.Drawing.Size(311, 36);
-            this.tjesearch.TabIndex = 2;
-            // 
-            // bviewfile
-            // 
-            this.bviewfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bviewfile.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bviewfile.BorderRadius = 2;
-            this.bviewfile.BorderThickness = 1;
-            this.bviewfile.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bviewfile.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bviewfile.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bviewfile.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bviewfile.FillColor = System.Drawing.Color.White;
-            this.bviewfile.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bviewfile.ForeColor = System.Drawing.Color.White;
-            this.bviewfile.Image = global::rct_lmis.Properties.Resources.icons8_view_file_48;
-            this.bviewfile.ImageSize = new System.Drawing.Size(28, 28);
-            this.bviewfile.Location = new System.Drawing.Point(814, 8);
-            this.bviewfile.Name = "bviewfile";
-            this.bviewfile.Size = new System.Drawing.Size(35, 35);
-            this.bviewfile.TabIndex = 13;
-            this.bviewfile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bviewfile, "Export to Excel");
-            // 
-            // baddfile
-            // 
-            this.baddfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.baddfile.BorderColor = System.Drawing.Color.Gainsboro;
-            this.baddfile.BorderRadius = 2;
-            this.baddfile.BorderThickness = 1;
-            this.baddfile.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.baddfile.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.baddfile.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.baddfile.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.baddfile.FillColor = System.Drawing.Color.White;
-            this.baddfile.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.baddfile.ForeColor = System.Drawing.Color.White;
-            this.baddfile.Image = global::rct_lmis.Properties.Resources.icons8_add_file_481;
-            this.baddfile.ImageSize = new System.Drawing.Size(28, 28);
-            this.baddfile.Location = new System.Drawing.Point(854, 8);
-            this.baddfile.Name = "baddfile";
-            this.baddfile.Size = new System.Drawing.Size(35, 35);
-            this.baddfile.TabIndex = 12;
-            this.baddfile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.baddfile, "Print Table");
-            // 
-            // tfilesearch
-            // 
-            this.tfilesearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tfilesearch.DefaultText = "";
-            this.tfilesearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tfilesearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tfilesearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tfilesearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tfilesearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tfilesearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tfilesearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tfilesearch.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
-            this.tfilesearch.Location = new System.Drawing.Point(12, 7);
-            this.tfilesearch.Name = "tfilesearch";
-            this.tfilesearch.PasswordChar = '\0';
-            this.tfilesearch.PlaceholderText = "search file...";
-            this.tfilesearch.SelectedText = "";
-            this.tfilesearch.Size = new System.Drawing.Size(443, 36);
-            this.tfilesearch.TabIndex = 2;
-            // 
-            // treploanpenalty
-            // 
-            this.treploanpenalty.AutoScroll = true;
-            this.treploanpenalty.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.treploanpenalty.DefaultText = "";
-            this.treploanpenalty.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.treploanpenalty.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.treploanpenalty.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.treploanpenalty.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.treploanpenalty.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.treploanpenalty.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.treploanpenalty.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.treploanpenalty.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_48;
-            this.treploanpenalty.IconLeftSize = new System.Drawing.Size(15, 15);
-            this.treploanpenalty.Location = new System.Drawing.Point(202, 247);
-            this.treploanpenalty.Name = "treploanpenalty";
-            this.treploanpenalty.PasswordChar = '\0';
-            this.treploanpenalty.PlaceholderText = "";
-            this.treploanpenalty.SelectedText = "";
-            this.treploanpenalty.Size = new System.Drawing.Size(195, 36);
-            this.treploanpenalty.TabIndex = 55;
-            // 
-            // treploanbalance
-            // 
-            this.treploanbalance.AutoScroll = true;
-            this.treploanbalance.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.treploanbalance.DefaultText = "";
-            this.treploanbalance.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.treploanbalance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.treploanbalance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.treploanbalance.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.treploanbalance.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.treploanbalance.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.treploanbalance.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.treploanbalance.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_48;
-            this.treploanbalance.IconLeftSize = new System.Drawing.Size(15, 15);
-            this.treploanbalance.Location = new System.Drawing.Point(202, 205);
-            this.treploanbalance.Name = "treploanbalance";
-            this.treploanbalance.PasswordChar = '\0';
-            this.treploanbalance.PlaceholderText = "";
-            this.treploanbalance.SelectedText = "";
-            this.treploanbalance.Size = new System.Drawing.Size(195, 36);
-            this.treploanbalance.TabIndex = 54;
-            // 
-            // trepcurrloan
-            // 
-            this.trepcurrloan.AutoScroll = true;
-            this.trepcurrloan.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.trepcurrloan.DefaultText = "";
-            this.trepcurrloan.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.trepcurrloan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.trepcurrloan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.trepcurrloan.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.trepcurrloan.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.trepcurrloan.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.trepcurrloan.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.trepcurrloan.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_48;
-            this.trepcurrloan.IconLeftSize = new System.Drawing.Size(15, 15);
-            this.trepcurrloan.Location = new System.Drawing.Point(202, 163);
-            this.trepcurrloan.Name = "trepcurrloan";
-            this.trepcurrloan.PasswordChar = '\0';
-            this.trepcurrloan.PlaceholderText = "";
-            this.trepcurrloan.SelectedText = "";
-            this.trepcurrloan.Size = new System.Drawing.Size(195, 36);
-            this.trepcurrloan.TabIndex = 53;
-            // 
-            // bcopyaccno
-            // 
-            this.bcopyaccno.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bcopyaccno.BorderRadius = 2;
-            this.bcopyaccno.BorderThickness = 1;
-            this.bcopyaccno.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bcopyaccno.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bcopyaccno.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bcopyaccno.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bcopyaccno.FillColor = System.Drawing.Color.White;
-            this.bcopyaccno.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bcopyaccno.ForeColor = System.Drawing.Color.White;
-            this.bcopyaccno.Image = global::rct_lmis.Properties.Resources.icons8_copy_24;
-            this.bcopyaccno.Location = new System.Drawing.Point(9, 12);
-            this.bcopyaccno.Name = "bcopyaccno";
-            this.bcopyaccno.Size = new System.Drawing.Size(25, 25);
-            this.bcopyaccno.TabIndex = 25;
-            this.bcopyaccno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bcopyaccno, "Copy Account number to clipboard");
             // 
             // frm_home_loan_new
             // 

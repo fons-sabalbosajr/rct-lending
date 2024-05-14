@@ -262,6 +262,18 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_loanrates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_loanrates.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_loanrates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_penalty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_penalty.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_penalty.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -399,6 +411,12 @@
     </Compile>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN.resx">
       <DependentUpon>frm_home_ADMIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_loanrates.resx">
+      <DependentUpon>frm_home_ADMIN_loanrates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_penalty.resx">
+      <DependentUpon>frm_home_ADMIN_penalty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_home.resx">
       <DependentUpon>frm_home.cs</DependentUpon>
@@ -588,6 +606,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-copy-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgside.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
