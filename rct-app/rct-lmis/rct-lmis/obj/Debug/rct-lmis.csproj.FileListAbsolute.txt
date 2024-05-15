@@ -447,3 +447,7 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.application
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe.manifest
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
