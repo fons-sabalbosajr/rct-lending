@@ -154,6 +154,7 @@ namespace rct_lmis
             this.bexport.TabIndex = 11;
             this.bexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.bexport, "Export to Excel");
+            this.bexport.Click += new System.EventHandler(this.bexport_Click);
             // 
             // bprint
             // 

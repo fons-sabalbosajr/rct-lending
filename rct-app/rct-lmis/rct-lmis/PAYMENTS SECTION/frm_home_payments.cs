@@ -38,5 +38,11 @@ namespace rct_lmis
         {
 
         }
+
+        private void bexport_Click(object sender, EventArgs e)
+        {
+            frm_home_payment_details fpd = new frm_home_payment_details();
+            fpd.Show(this);
+        }
     }
 }

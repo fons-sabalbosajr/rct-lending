@@ -50,9 +50,11 @@ namespace rct_lmis
             this.bfacebook = new Guna.UI2.WinForms.Guna2CircleButton();
             this.pbg = new Guna.UI2.WinForms.Guna2PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pbeye = new Guna.UI2.WinForms.Guna2PictureBox();
             this.pright.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbeye)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -108,14 +110,14 @@ namespace rct_lmis
             this.tuser.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tuser.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tuser.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tuser.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tuser.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.tuser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.tuser.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tuser.Location = new System.Drawing.Point(29, 103);
             this.tuser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tuser.Name = "tuser";
             this.tuser.PasswordChar = '\0';
-            this.tuser.PlaceholderText = "";
+            this.tuser.PlaceholderText = "username";
             this.tuser.SelectedText = "";
             this.tuser.Size = new System.Drawing.Size(370, 36);
             this.tuser.TabIndex = 5;
@@ -129,14 +131,14 @@ namespace rct_lmis
             this.tpass.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tpass.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tpass.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tpass.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tpass.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.tpass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.tpass.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tpass.Location = new System.Drawing.Point(29, 168);
             this.tpass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tpass.Name = "tpass";
-            this.tpass.PasswordChar = '\0';
-            this.tpass.PlaceholderText = "";
+            this.tpass.PasswordChar = '•';
+            this.tpass.PlaceholderText = "password";
             this.tpass.SelectedText = "";
             this.tpass.Size = new System.Drawing.Size(370, 36);
             this.tpass.TabIndex = 6;
@@ -230,6 +232,7 @@ namespace rct_lmis
             // pright
             // 
             this.pright.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.pright.Controls.Add(this.pbeye);
             this.pright.Controls.Add(this.pbclose);
             this.pright.Controls.Add(this.lstatus);
             this.pright.Controls.Add(this.lip);
@@ -317,6 +320,23 @@ namespace rct_lmis
             this.pbg.TabStop = false;
             this.pbg.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbg_MouseDown);
             // 
+            // pbeye
+            // 
+            this.pbeye.BackColor = System.Drawing.Color.White;
+            this.pbeye.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.pbeye.Image = global::rct_lmis.Properties.Resources.icons8_eye_48;
+            this.pbeye.ImageRotate = 0F;
+            this.pbeye.Location = new System.Drawing.Point(365, 174);
+            this.pbeye.Name = "pbeye";
+            this.pbeye.Size = new System.Drawing.Size(25, 25);
+            this.pbeye.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbeye.TabIndex = 25;
+            this.pbeye.TabStop = false;
+            this.toolTip1.SetToolTip(this.pbeye, "Show Password");
+            this.pbeye.Click += new System.EventHandler(this.pbeye_Click);
+            this.pbeye.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbeye_MouseDown);
+            this.pbeye.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbeye_MouseUp);
+            // 
             // frm_home_login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,6 +355,7 @@ namespace rct_lmis
             this.pright.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbclose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbeye)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,5 +382,6 @@ namespace rct_lmis
         private System.Windows.Forms.Label lstatus;
         private System.Windows.Forms.Panel pright;
         private System.Windows.Forms.ToolTip toolTip1;
+        private Guna.UI2.WinForms.Guna2PictureBox pbeye;
     }
 }

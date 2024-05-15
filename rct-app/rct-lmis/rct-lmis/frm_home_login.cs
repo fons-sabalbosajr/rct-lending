@@ -182,5 +182,20 @@ namespace rct_lmis
                 this.Hide();
             }
          }
+
+        private void pbeye_MouseDown(object sender, MouseEventArgs e)
+        {
+            tpass.PasswordChar = (char)0;
+        }
+
+        private void pbeye_MouseUp(object sender, MouseEventArgs e)
+        {
+            tpass.PasswordChar = '•';
+        }
+
+        private void pbeye_Click(object sender, EventArgs e)
+        {
+            tpass.PasswordChar = (char)0;
+        }
     }
 }
