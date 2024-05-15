@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("rct-lmis")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("RCT-LMIS (Lending Management Information System)")]
+[assembly: AssemblyDescription("A lending management information system for RACATOM Lending Corp.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("rct-lmis")]
+[assembly: AssemblyCompany("RACATOM Corp.")]
+[assembly: AssemblyProduct("RCT-LMIS")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
