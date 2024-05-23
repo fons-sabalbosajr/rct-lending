@@ -32,5 +32,10 @@ namespace rct_lmis.LOAN_SECTION
                 cbidtypesec.Focus();
             }
         }
+
+        private void frm_home_loan_add_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

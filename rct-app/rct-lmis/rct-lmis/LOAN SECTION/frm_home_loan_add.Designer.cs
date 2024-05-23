@@ -1681,7 +1681,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label42.Location = new System.Drawing.Point(648, 255);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(77, 15);
+            this.label42.Size = new System.Drawing.Size(76, 15);
             this.label42.TabIndex = 93;
             this.label42.Text = "VAT Amount:";
             // 
@@ -1717,7 +1717,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label43.Location = new System.Drawing.Point(432, 255);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(56, 15);
+            this.label43.Size = new System.Drawing.Size(55, 15);
             this.label43.TabIndex = 91;
             this.label43.Text = "VAT Rate:";
             // 
@@ -2367,7 +2367,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label88.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label88.Location = new System.Drawing.Point(256, 435);
             this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(64, 15);
+            this.label88.Size = new System.Drawing.Size(63, 15);
             this.label88.TabIndex = 195;
             this.label88.Text = "Loan Type:";
             // 
@@ -2819,7 +2819,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label58.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label58.Location = new System.Drawing.Point(12, 166);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(77, 15);
+            this.label58.Size = new System.Drawing.Size(76, 15);
             this.label58.TabIndex = 145;
             this.label58.Text = "VAT Amount:";
             // 
@@ -3073,6 +3073,7 @@ namespace rct_lmis.LOAN_SECTION
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Loan Transaction";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_loan_add_FormClosing);
+            this.Load += new System.EventHandler(this.frm_home_loan_add_Load);
             this.guna2TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

@@ -312,6 +312,12 @@
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_penalty.Designer.cs">
       <DependentUpon>frm_home_ADMIN_penalty.cs</DependentUpon>
     </Compile>
+    <Compile Include="CLIENTS SECTION\frm_home_client_details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CLIENTS SECTION\frm_home_client_details.Designer.cs">
+      <DependentUpon>frm_home_client_details.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -324,10 +330,10 @@
     <Compile Include="ADMIN SECTION\frm_home_ADMIN.Designer.cs">
       <DependentUpon>frm_home_ADMIN.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_home_clients.cs">
+    <Compile Include="CLIENTS SECTION\frm_home_clients.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_home_clients.Designer.cs">
+    <Compile Include="CLIENTS SECTION\frm_home_clients.Designer.cs">
       <DependentUpon>frm_home_clients.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_home_dashboard.cs">
@@ -456,8 +462,14 @@
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_penalty.resx">
       <DependentUpon>frm_home_ADMIN_penalty.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CLIENTS SECTION\frm_home_client_details.resx">
+      <DependentUpon>frm_home_client_details.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_home.resx">
       <DependentUpon>frm_home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CLIENTS SECTION\frm_home_clients.resx">
+      <DependentUpon>frm_home_clients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loans.resx">
       <DependentUpon>frm_home_loans.cs</DependentUpon>
