@@ -1,11 +1,15 @@
 ﻿using CrystalDecisions.Shared;
 using Guna.UI2.WinForms;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.GridFS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Deployment.Application;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.ConstrainedExecution;
@@ -27,6 +31,8 @@ namespace rct_lmis
         private Guna2Button currentbtn;
         private Panel leftpanel;
 
+        private string loggedInUsername;
+
         LoadingFunction load = new LoadingFunction();
 
         private void ShowVersion()
@@ -37,7 +43,7 @@ namespace rct_lmis
             grpupdates.Text = "What's New in " + "ver." + ver.Major + "." + ver.Minor + "." + ver.Build;
         }
 
-        public frm_home()
+        public frm_home(string username)
         {
             InitializeComponent();
             customUI();
@@ -47,6 +53,7 @@ namespace rct_lmis
             pleft.Controls.Add(leftpanel);
 
             ldate.Text = DateTime.Now.ToString("f");
+            loggedInUsername = username;
         }
 
         #region "DISPLAY CUSTOM"
@@ -173,9 +180,40 @@ namespace rct_lmis
         }
         #endregion
 
+        private void LoadUserInfo(string username)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<BsonDocument>("user_accounts"); // 'user_accounts' is the name of your collection
+
+            var filter = Builders<BsonDocument>.Filter.Eq("Username", username);
+            var user = collection.Find(filter).FirstOrDefault();
+
+            if (user != null)
+            {
+                // Get the full name and split to get the first name
+                var fullName = user.GetValue("FullName").AsString;
+                var firstName = fullName.Split(' ')[0]; // Split by space and take the first part
+
+                // Set the first name
+                lfname.Text = firstName;
+
+                // Load the photo
+                if (user.Contains("Photo"))
+                {
+                    var photoData = user.GetValue("Photo").AsBsonBinaryData; // Assuming "Photo" is the field name storing the binary data of the photo
+
+                    // Load the photo from binary data
+                    using (var ms = new MemoryStream(photoData.Bytes))
+                    {
+                        pbphoto.Image = Image.FromStream(ms);
+                    }
+                }
+            }
+        }
+
         private void frm_home_Load(object sender, EventArgs e)
         {
-            
+            LoadUserInfo(loggedInUsername);
         }
 
         private void butilities_Click(object sender, EventArgs e)

@@ -73,6 +73,12 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.Core.3.7.100.14\lib\net45\AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.SecurityToken, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.SecurityToken.3.7.100.14\lib\net45\AWSSDK.SecurityToken.dll</HintPath>
+    </Reference>
     <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <HintPath>..\packages\CrystalReports.AxShockwaveFlashObjects.13.0.4003\lib\net40\AxShockwaveFlashObjects.dll</HintPath>
     </Reference>
@@ -81,6 +87,9 @@
     </Reference>
     <Reference Include="Azure.Identity, Version=1.11.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Azure.Identity.1.11.0\lib\netstandard2.0\Azure.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.3.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <HintPath>..\packages\CrystalReports.Engine.13.0.4003\lib\net40\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -141,6 +150,9 @@
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <HintPath>..\packages\CrystalReports.Windows.Forms.13.0.4003\lib\net40\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="DnsClient, Version=1.6.1.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.6.1\lib\net471\DnsClient.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.68.0\lib\net462\Google.Apis.dll</HintPath>
     </Reference>
@@ -150,8 +162,14 @@
     <Reference Include="Google.Apis.Core, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.Core.1.68.0\lib\net462\Google.Apis.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Sheets.v4, Version=1.67.0.3365, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Sheets.v4.1.67.0.3365\lib\net462\Google.Apis.Sheets.v4.dll</HintPath>
+    <Reference Include="Google.Apis.Drive.v3, Version=1.68.0.3428, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Drive.v3.1.68.0.3428\lib\net462\Google.Apis.Drive.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Oauth2.v2, Version=1.68.0.1869, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Oauth2.v2.1.68.0.1869\lib\net462\Google.Apis.Oauth2.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Sheets.v4, Version=1.68.0.3421, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Sheets.v4.1.68.0.3421\lib\net462\Google.Apis.Sheets.v4.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net48\Guna.UI2.dll</HintPath>
@@ -168,11 +186,17 @@
     <Reference Include="log4net, Version=2.0.17.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.17\lib\net45\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MailKit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.6.0\lib\net48\MailKit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.0-preview.3.24172.9\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.SqlClient.5.2.0\lib\net462\Microsoft.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Identity.Client, Version=4.60.2.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Identity.Client.4.60.2\lib\net462\Microsoft.Identity.Client.dll</HintPath>
@@ -198,14 +222,41 @@
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=7.5.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.7.5.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.6.0\lib\net48\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.25.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.25.0\lib\net472\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.25.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.25.0\lib\net472\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.25.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.25.0\lib\net472\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.GridFS, Version=2.25.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.GridFS.2.25.0\lib\net472\MongoDB.Driver.GridFS.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Libmongocrypt, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Libmongocrypt.1.9.0\lib\netstandard2.0\MongoDB.Libmongocrypt.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SharpCompress, Version=0.30.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.30.1\lib\net461\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <HintPath>..\packages\CrystalReports.ShockwaveFlashObjects.13.0.4003\lib\net40\ShockwaveFlashObjects.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Snappier, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a1b25124e6e13a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Snappier.1.0.0\lib\netstandard2.0\Snappier.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -217,6 +268,7 @@
     <Reference Include="System.CodeDom, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.CodeDom.9.0.0-preview.3.24172.9\lib\net462\System.CodeDom.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.ConfigurationManager, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Configuration.ConfigurationManager.9.0.0-preview.3.24172.9\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
@@ -228,9 +280,17 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.9.0.0-preview.3.24172.9\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Formats.Asn1, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.8.0.0\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=7.5.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.7.5.1\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.IO.FileSystem.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.FileSystem.AccessControl.5.0.0\lib\net461\System.IO.FileSystem.AccessControl.dll</HintPath>
@@ -243,9 +303,19 @@
       <HintPath>..\packages\System.Memory.Data.9.0.0-preview.3.24172.9\lib\net462\System.Memory.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -259,8 +329,28 @@
     <Reference Include="System.Security.AccessControl, Version=6.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.AccessControl.6.0.1\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Security.Cryptography.ProtectedData, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.ProtectedData.9.0.0-preview.3.24172.9\lib\net462\System.Security.Cryptography.ProtectedData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Security.Permissions, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Permissions.9.0.0-preview.3.24172.9\lib\net462\System.Security.Permissions.dll</HintPath>
@@ -269,6 +359,9 @@
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
     <Reference Include="System.Text.Encodings.Web, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.9.0.0-preview.3.24172.9\lib\net462\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
@@ -283,6 +376,7 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -290,7 +384,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="VisualReactiveWinForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0ee513efc52b401d, processorArchitecture=MSIL">
@@ -298,6 +391,9 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="ZstdSharp, Version=0.7.3.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZstdSharp.Port.0.7.3\lib\net461\ZstdSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_loanrates.cs">
@@ -312,11 +408,35 @@
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_penalty.Designer.cs">
       <DependentUpon>frm_home_ADMIN_penalty.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_signupaccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_signupaccounts.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_signupaccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_useraccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_useraccounts.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_useraccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="CLIENTS SECTION\frm_home_client_details.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CLIENTS SECTION\frm_home_client_details.Designer.cs">
       <DependentUpon>frm_home_client_details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CLIENTS SECTION\frm_home_client_new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CLIENTS SECTION\frm_home_client_new.Designer.cs">
+      <DependentUpon>frm_home_client_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.Designer.cs">
+      <DependentUpon>frm_home_disburse_editCV.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_home.cs">
       <SubType>Form</SubType>
@@ -342,16 +462,16 @@
     <Compile Include="frm_home_dashboard.Designer.cs">
       <DependentUpon>frm_home_dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_home_disburse.cs">
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_home_disburse.Designer.cs">
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse.Designer.cs">
       <DependentUpon>frm_home_disburse.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_home_journals.cs">
+    <Compile Include="JOURNAL SECTION\frm_home_journals.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_home_journals.Designer.cs">
+    <Compile Include="JOURNAL SECTION\frm_home_journals.Designer.cs">
       <DependentUpon>frm_home_journals.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_home_reports.cs">
@@ -360,16 +480,22 @@
     <Compile Include="frm_home_reports.Designer.cs">
       <DependentUpon>frm_home_reports.cs</DependentUpon>
     </Compile>
+    <Compile Include="JOURNAL SECTION\frm_home_journals_new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JOURNAL SECTION\frm_home_journals_new.Designer.cs">
+      <DependentUpon>frm_home_journals_new.cs</DependentUpon>
+    </Compile>
     <Compile Include="LOAN SECTION\frm_home_loans.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LOAN SECTION\frm_home_loans.Designer.cs">
       <DependentUpon>frm_home_loans.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_home_login.cs">
+    <Compile Include="SIGNUP_LOGIN\frm_home_login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_home_login.Designer.cs">
+    <Compile Include="SIGNUP_LOGIN\frm_home_login.Designer.cs">
       <DependentUpon>frm_home_login.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_home_logout.cs">
@@ -384,6 +510,7 @@
     <Compile Include="LOAN SECTION\frm_home_loan_add.Designer.cs">
       <DependentUpon>frm_home_loan_add.cs</DependentUpon>
     </Compile>
+    <Compile Include="mongdbconnection.cs" />
     <Compile Include="PAYMENTS SECTION\frm_home_payment_details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -402,16 +529,21 @@
     <Compile Include="frm_home_receiptbooks.Designer.cs">
       <DependentUpon>frm_home_receiptbooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SAFEKEEPING SECTION\frm_home_safekeeping.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SAFEKEEPING SECTION\frm_home_safekeeping.Designer.cs">
       <DependentUpon>frm_home_safekeeping.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_home_signup.cs">
+    <Compile Include="SIGNUP_LOGIN\frm_home_signup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_home_signup.Designer.cs">
+    <Compile Include="SIGNUP_LOGIN\frm_home_signup.Designer.cs">
       <DependentUpon>frm_home_signup.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_home_utilities.cs">
@@ -447,6 +579,7 @@
     <Compile Include="SAFEKEEPING SECTION\frm_home_safekeeping_new.Designer.cs">
       <DependentUpon>frm_home_safekeeping_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="SIGNUP_LOGIN\User.cs" />
     <Compile Include="z_loadingform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -462,8 +595,23 @@
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_penalty.resx">
       <DependentUpon>frm_home_ADMIN_penalty.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_signupaccounts.resx">
+      <DependentUpon>frm_home_ADMIN_signupaccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_useraccounts.resx">
+      <DependentUpon>frm_home_ADMIN_useraccounts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CLIENTS SECTION\frm_home_client_details.resx">
       <DependentUpon>frm_home_client_details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CLIENTS SECTION\frm_home_client_new.resx">
+      <DependentUpon>frm_home_client_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse.resx">
+      <DependentUpon>frm_home_disburse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.resx">
+      <DependentUpon>frm_home_disburse_editCV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_home.resx">
       <DependentUpon>frm_home.cs</DependentUpon>
@@ -471,13 +619,19 @@
     <EmbeddedResource Include="CLIENTS SECTION\frm_home_clients.resx">
       <DependentUpon>frm_home_clients.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="JOURNAL SECTION\frm_home_journals.resx">
+      <DependentUpon>frm_home_journals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JOURNAL SECTION\frm_home_journals_new.resx">
+      <DependentUpon>frm_home_journals_new.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loans.resx">
       <DependentUpon>frm_home_loans.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_home_login.resx">
+    <EmbeddedResource Include="SIGNUP_LOGIN\frm_home_login.resx">
       <DependentUpon>frm_home_login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_home_signup.resx">
+    <EmbeddedResource Include="SIGNUP_LOGIN\frm_home_signup.resx">
       <DependentUpon>frm_home_signup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_splashscreen.resx">
@@ -497,14 +651,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="SAFEKEEPING SECTION\frm_home_safekeeping.resx">
       <DependentUpon>frm_home_safekeeping.cs</DependentUpon>
     </EmbeddedResource>
@@ -517,6 +666,8 @@
     <EmbeddedResource Include="z_loadingform.resx">
       <DependentUpon>z_loadingform.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="libmongocrypt.dylib" />
+    <None Include="libmongocrypt.so" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -647,6 +798,7 @@
     <None Include="Resources\icons8-add-48 %282%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="adb_folder_data\" />
     <Folder Include="SETTINGS SECTION\" />
   </ItemGroup>
   <ItemGroup>
@@ -663,6 +815,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8-banking-loan-with-money-bag-in-hand-72.ico" />
+    <Content Include="mongocrypt.dll" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
@@ -681,6 +834,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\AWSSDK.SecurityToken.3.7.100.14\analyzers\dotnet\cs\AWSSDK.SecurityToken.CodeAnalysis.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -688,5 +844,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets'))" />
+    <Error Condition="!Exists('..\packages\MongoDB.Libmongocrypt.1.9.0\build\MongoDB.Libmongocrypt.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MongoDB.Libmongocrypt.1.9.0\build\MongoDB.Libmongocrypt.targets'))" />
   </Target>
+  <Import Project="..\packages\MongoDB.Libmongocrypt.1.9.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.9.0\build\MongoDB.Libmongocrypt.targets')" />
 </Project>

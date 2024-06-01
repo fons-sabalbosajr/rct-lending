@@ -2402,6 +2402,53 @@
         <member name="P:Google.Apis.Sheets.v4.Data.BubbleChartSpec.ETag">
             <summary>The ETag of the item.</summary>
         </member>
+        <member name="T:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshRequest">
+            <summary>
+            Cancels one or multiple refreshes of data source objects in the spreadsheet by the specified references.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshRequest.DataSourceId">
+            <summary>
+            Reference to a DataSource. If specified, cancels all associated data source object refreshes for this data
+            source.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshRequest.IsAll">
+            <summary>
+            Cancels all existing data source object refreshes for all data sources in the spreadsheet.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshRequest.References">
+            <summary>References to data source objects whose refreshes are to be cancelled.</summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshRequest.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshResponse">
+            <summary>The response from cancelling one or multiple data source object refreshes.</summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshResponse.Statuses">
+            <summary>
+            The cancellation statuses of refreshes of all data source objects specified in the request. If is_all is
+            specified, the field contains only those in failure status. Refreshing and canceling refresh the same data
+            source object is also not allowed in the same `batchUpdate`.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshResponse.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
+        <member name="T:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshStatus">
+            <summary>The status of cancelling a single data source object refresh.</summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshStatus.Reference">
+            <summary>Reference to the data source object whose refresh is being cancelled.</summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshStatus.RefreshCancellationStatus">
+            <summary>The cancellation status.</summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.CancelDataSourceRefreshStatus.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
         <member name="T:Google.Apis.Sheets.v4.Data.CandlestickChartSpec">
             <summary>A candlestick chart.</summary>
         </member>
@@ -5079,6 +5126,21 @@
         <member name="P:Google.Apis.Sheets.v4.Data.RandomizeRangeRequest.ETag">
             <summary>The ETag of the item.</summary>
         </member>
+        <member name="T:Google.Apis.Sheets.v4.Data.RefreshCancellationStatus">
+            <summary>
+            The status of a refresh cancellation. You can send a cancel request to explicitly cancel one or multiple data
+            source object refreshes.
+            </summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.RefreshCancellationStatus.ErrorCode">
+            <summary>The error code.</summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.RefreshCancellationStatus.State">
+            <summary>The state of a call to cancel a refresh in Sheets.</summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.RefreshCancellationStatus.ETag">
+            <summary>The ETag of the item.</summary>
+        </member>
         <member name="T:Google.Apis.Sheets.v4.Data.RefreshDataSourceObjectExecutionStatus">
             <summary>The execution status of refreshing one data source object.</summary>
         </member>
@@ -5202,6 +5264,9 @@
             <summary>
             Automatically resizes one or more dimensions based on the contents of the cells in that dimension.
             </summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.Request.CancelDataSourceRefresh">
+            <summary>Cancels refreshes of one or multiple data sources and associated dbobjects.</summary>
         </member>
         <member name="P:Google.Apis.Sheets.v4.Data.Request.ClearBasicFilter">
             <summary>Clears the basic filter on a sheet.</summary>
@@ -5388,6 +5453,9 @@
         </member>
         <member name="P:Google.Apis.Sheets.v4.Data.Response.AddSlicer">
             <summary>A reply from adding a slicer.</summary>
+        </member>
+        <member name="P:Google.Apis.Sheets.v4.Data.Response.CancelDataSourceRefresh">
+            <summary>A reply from cancelling data source object refreshes.</summary>
         </member>
         <member name="P:Google.Apis.Sheets.v4.Data.Response.CreateDeveloperMetadata">
             <summary>A reply from creating a developer metadata entry.</summary>
@@ -5813,7 +5881,7 @@
         </member>
         <member name="P:Google.Apis.Sheets.v4.Data.SpreadsheetProperties.ImportFunctionsExternalUrlAccessAllowed">
             <summary>
-            Whether to allow external url access for image and import functions. Read only when true. When false, you
+            Whether to allow external URL access for image and import functions. Read only when true. When false, you
             can set to true.
             </summary>
         </member>

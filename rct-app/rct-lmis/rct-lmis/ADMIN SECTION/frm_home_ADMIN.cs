@@ -71,6 +71,7 @@ namespace rct_lmis
         {
             psubaccounting.Visible = false;
             psubdata.Visible = false;
+            psubacc.Visible = false;
         }
         private void hidepsub()
         {
@@ -79,6 +80,9 @@ namespace rct_lmis
 
             if (psubdata.Visible == true)
                 psubdata.Visible = false;
+
+            if (psubacc.Visible == true)
+                psubacc.Visible = false;
         }
         private void showpsub(Panel psub)
         {
@@ -139,6 +143,30 @@ namespace rct_lmis
             load.Show(this);
             Thread.Sleep(1000);
             ChildForm(new frm_home_ADMIN_loanrates());
+            load.Close();
+        }
+
+        private void bconfigcollector_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            showpsub(psubacc);
+        }
+
+        private void bsignupacc_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN_signupaccounts());
+            load.Close();
+        }
+
+        private void buseraccounts_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN_useraccounts());
             load.Close();
         }
     }

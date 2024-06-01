@@ -43,22 +43,26 @@ namespace rct_lmis
             this.baccbal = new Guna.UI2.WinForms.Guna2Button();
             this.baccounting = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigfunds = new Guna.UI2.WinForms.Guna2Button();
+            this.psubacc = new System.Windows.Forms.Panel();
+            this.bsignupacc = new Guna.UI2.WinForms.Guna2Button();
+            this.buseraccounts = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigcollector = new Guna.UI2.WinForms.Guna2Button();
             this.bconfiginterest = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigamt = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigpenalty = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigrate = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pbody = new System.Windows.Forms.Panel();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.pleft.SuspendLayout();
             this.psubdata.SuspendLayout();
             this.psubaccounting.SuspendLayout();
+            this.psubacc.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -71,6 +75,7 @@ namespace rct_lmis
             this.pleft.Controls.Add(this.psubaccounting);
             this.pleft.Controls.Add(this.baccounting);
             this.pleft.Controls.Add(this.bconfigfunds);
+            this.pleft.Controls.Add(this.psubacc);
             this.pleft.Controls.Add(this.bconfigcollector);
             this.pleft.Controls.Add(this.bconfiginterest);
             this.pleft.Controls.Add(this.bconfigamt);
@@ -91,7 +96,7 @@ namespace rct_lmis
             this.psubdata.Controls.Add(this.bdatadelclient);
             this.psubdata.Controls.Add(this.bdatabackup);
             this.psubdata.Dock = System.Windows.Forms.DockStyle.Top;
-            this.psubdata.Location = new System.Drawing.Point(0, 571);
+            this.psubdata.Location = new System.Drawing.Point(0, 649);
             this.psubdata.Name = "psubdata";
             this.psubdata.Size = new System.Drawing.Size(194, 153);
             this.psubdata.TabIndex = 30;
@@ -208,7 +213,7 @@ namespace rct_lmis
             this.bdatabase.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdatabase.ImageOffset = new System.Drawing.Point(10, 0);
             this.bdatabase.ImageSize = new System.Drawing.Size(18, 18);
-            this.bdatabase.Location = new System.Drawing.Point(0, 526);
+            this.bdatabase.Location = new System.Drawing.Point(0, 604);
             this.bdatabase.Name = "bdatabase";
             this.bdatabase.Size = new System.Drawing.Size(194, 45);
             this.bdatabase.TabIndex = 29;
@@ -225,7 +230,7 @@ namespace rct_lmis
             this.psubaccounting.Controls.Add(this.baccVAT);
             this.psubaccounting.Controls.Add(this.baccbal);
             this.psubaccounting.Dock = System.Windows.Forms.DockStyle.Top;
-            this.psubaccounting.Location = new System.Drawing.Point(0, 373);
+            this.psubaccounting.Location = new System.Drawing.Point(0, 451);
             this.psubaccounting.Name = "psubaccounting";
             this.psubaccounting.Size = new System.Drawing.Size(194, 153);
             this.psubaccounting.TabIndex = 28;
@@ -342,7 +347,7 @@ namespace rct_lmis
             this.baccounting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.baccounting.ImageOffset = new System.Drawing.Point(10, 0);
             this.baccounting.ImageSize = new System.Drawing.Size(18, 18);
-            this.baccounting.Location = new System.Drawing.Point(0, 328);
+            this.baccounting.Location = new System.Drawing.Point(0, 406);
             this.baccounting.Name = "baccounting";
             this.baccounting.Size = new System.Drawing.Size(194, 45);
             this.baccounting.TabIndex = 27;
@@ -367,13 +372,74 @@ namespace rct_lmis
             this.bconfigfunds.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bconfigfunds.ImageOffset = new System.Drawing.Point(10, 0);
             this.bconfigfunds.ImageSize = new System.Drawing.Size(18, 18);
-            this.bconfigfunds.Location = new System.Drawing.Point(0, 283);
+            this.bconfigfunds.Location = new System.Drawing.Point(0, 361);
             this.bconfigfunds.Name = "bconfigfunds";
             this.bconfigfunds.Size = new System.Drawing.Size(194, 45);
             this.bconfigfunds.TabIndex = 26;
             this.bconfigfunds.Text = "Funds";
             this.bconfigfunds.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bconfigfunds.TextOffset = new System.Drawing.Point(20, 0);
+            // 
+            // psubacc
+            // 
+            this.psubacc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
+            this.psubacc.Controls.Add(this.bsignupacc);
+            this.psubacc.Controls.Add(this.buseraccounts);
+            this.psubacc.Dock = System.Windows.Forms.DockStyle.Top;
+            this.psubacc.Location = new System.Drawing.Point(0, 283);
+            this.psubacc.Name = "psubacc";
+            this.psubacc.Size = new System.Drawing.Size(194, 78);
+            this.psubacc.TabIndex = 29;
+            // 
+            // bsignupacc
+            // 
+            this.bsignupacc.Animated = true;
+            this.bsignupacc.BackColor = System.Drawing.Color.Transparent;
+            this.bsignupacc.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bsignupacc.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bsignupacc.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bsignupacc.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bsignupacc.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bsignupacc.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
+            this.bsignupacc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bsignupacc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.bsignupacc.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bsignupacc.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bsignupacc.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bsignupacc.ImageSize = new System.Drawing.Size(15, 15);
+            this.bsignupacc.Location = new System.Drawing.Point(0, 35);
+            this.bsignupacc.Name = "bsignupacc";
+            this.bsignupacc.Size = new System.Drawing.Size(194, 35);
+            this.bsignupacc.TabIndex = 18;
+            this.bsignupacc.Text = "Sign Up Accounts";
+            this.bsignupacc.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bsignupacc.TextOffset = new System.Drawing.Point(20, 0);
+            this.bsignupacc.Click += new System.EventHandler(this.bsignupacc_Click);
+            // 
+            // buseraccounts
+            // 
+            this.buseraccounts.Animated = true;
+            this.buseraccounts.BackColor = System.Drawing.Color.Transparent;
+            this.buseraccounts.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.buseraccounts.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.buseraccounts.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.buseraccounts.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.buseraccounts.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buseraccounts.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
+            this.buseraccounts.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buseraccounts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.buseraccounts.HoverState.ForeColor = System.Drawing.Color.White;
+            this.buseraccounts.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.buseraccounts.ImageOffset = new System.Drawing.Point(10, 0);
+            this.buseraccounts.ImageSize = new System.Drawing.Size(15, 15);
+            this.buseraccounts.Location = new System.Drawing.Point(0, 0);
+            this.buseraccounts.Name = "buseraccounts";
+            this.buseraccounts.Size = new System.Drawing.Size(194, 35);
+            this.buseraccounts.TabIndex = 17;
+            this.buseraccounts.Text = "User Accounts";
+            this.buseraccounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.buseraccounts.TextOffset = new System.Drawing.Point(20, 0);
+            this.buseraccounts.Click += new System.EventHandler(this.buseraccounts_Click);
             // 
             // bconfigcollector
             // 
@@ -398,6 +464,7 @@ namespace rct_lmis
             this.bconfigcollector.Text = "Staffs";
             this.bconfigcollector.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bconfigcollector.TextOffset = new System.Drawing.Point(20, 0);
+            this.bconfigcollector.Click += new System.EventHandler(this.bconfigcollector_Click);
             // 
             // bconfiginterest
             // 
@@ -507,6 +574,19 @@ namespace rct_lmis
             this.panel1.Size = new System.Drawing.Size(194, 58);
             this.panel1.TabIndex = 0;
             // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox1.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(8, 10);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(34, 35);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
+            this.guna2PictureBox1.UseTransparentBackground = true;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -563,19 +643,6 @@ namespace rct_lmis
             this.pbody.Size = new System.Drawing.Size(1096, 790);
             this.pbody.TabIndex = 20;
             // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox1.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(8, 10);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(34, 35);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
-            this.guna2PictureBox1.UseTransparentBackground = true;
-            // 
             // frm_home_ADMIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -595,6 +662,7 @@ namespace rct_lmis
             this.pleft.ResumeLayout(false);
             this.psubdata.ResumeLayout(false);
             this.psubaccounting.ResumeLayout(false);
+            this.psubacc.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
@@ -631,5 +699,8 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2Button baccotherfees;
         private Guna.UI2.WinForms.Guna2Button baccVAT;
         private Guna.UI2.WinForms.Guna2Button baccbal;
+        private System.Windows.Forms.Panel psubacc;
+        private Guna.UI2.WinForms.Guna2Button bsignupacc;
+        private Guna.UI2.WinForms.Guna2Button buseraccounts;
     }
 }
