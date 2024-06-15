@@ -468,6 +468,13 @@
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse.Designer.cs">
       <DependentUpon>frm_home_disburse.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_test_upload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_test_upload.Designer.cs">
+      <DependentUpon>frm_test_upload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoogleDriveHelper.cs" />
     <Compile Include="JOURNAL SECTION\frm_home_journals.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -618,6 +625,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CLIENTS SECTION\frm_home_clients.resx">
       <DependentUpon>frm_home_clients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_home_dashboard.resx">
+      <DependentUpon>frm_home_dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_test_upload.resx">
+      <DependentUpon>frm_test_upload.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JOURNAL SECTION\frm_home_journals.resx">
       <DependentUpon>frm_home_journals.cs</DependentUpon>
@@ -816,6 +829,9 @@
   <ItemGroup>
     <Content Include="icons8-banking-loan-with-money-bag-in-hand-72.ico" />
     <Content Include="mongocrypt.dll" />
+    <Content Include="google_drive_credentials.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

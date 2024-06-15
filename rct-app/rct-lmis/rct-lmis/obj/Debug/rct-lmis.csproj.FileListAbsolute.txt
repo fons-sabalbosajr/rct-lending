@@ -227,28 +227,48 @@ D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_safekeeping.resources
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_details.resources
 D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_new.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.application
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_details.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_clients.resources
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe.manifest
+D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\google_drive_credentials.json
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\mongocrypt.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.config
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.application
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.pdb
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AxShockwaveFlashObjects.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportSource.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Shared.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Windows.Forms.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Guna.UI2.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
@@ -257,12 +277,22 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.L
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Libmongocrypt.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SharpCompress.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.dll
@@ -273,19 +303,31 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessCon
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ValueTuple.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ZstdSharp.dll
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.pdb
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.pdb
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.pdb
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.pdb
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.pdb
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.pdb
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.pdb
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.pdb
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.pdb
@@ -295,8 +337,12 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.pdb
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.pdb
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll.config
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
@@ -305,12 +351,22 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.L
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.pdb
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll.config
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.xml
@@ -321,6 +377,7 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessCon
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.xml
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.xml
@@ -426,7 +483,20 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hans\Microsoft.Data.Sq
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_ADMIN.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_signupaccounts.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_useraccounts.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_details.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_new.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_disburse.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_editCV.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_clients.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_dashboard.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_test_upload.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_journals.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.JOURNAL_SECTION.frm_home_journals_new.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_loans.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_signup.resources
@@ -442,75 +512,8 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECT
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.z_loadingform.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.GenerateResource.cache
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CoreCompileInputs.cache
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe.manifest
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.Up2Date
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.application
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe.manifest
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.application
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_details.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_clients.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe.manifest
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_details.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_clients.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\mongocrypt.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Libmongocrypt.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SharpCompress.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ZstdSharp.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_signupaccounts.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_useraccounts.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_new.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_disburse.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_editCV.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_journals.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.JOURNAL_SECTION.frm_home_journals_new.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll.config
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll.config
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.xml

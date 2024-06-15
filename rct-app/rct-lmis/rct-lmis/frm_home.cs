@@ -32,6 +32,8 @@ namespace rct_lmis
         private Panel leftpanel;
 
         private string loggedInUsername;
+        private string _username;
+        private string userPosition;
 
         LoadingFunction load = new LoadingFunction();
 
@@ -54,6 +56,7 @@ namespace rct_lmis
 
             ldate.Text = DateTime.Now.ToString("f");
             loggedInUsername = username;
+            _username = username;
         }
 
         #region "DISPLAY CUSTOM"
@@ -180,6 +183,30 @@ namespace rct_lmis
         }
         #endregion
 
+        private void Logout(string username)
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var loginStatusCollection = database.GetCollection<LoginStatus>("login-status");
+
+                // Filter to find the latest login record for the user
+                var filter = Builders<LoginStatus>.Filter.Eq(ls => ls.Username, username) & Builders<LoginStatus>.Filter.Eq(ls => ls.IsLoggedIn, true);
+                var update = Builders<LoginStatus>.Update
+                    .Set(ls => ls.IsLoggedIn, false)
+                    .Set(ls => ls.LogoutTime, DateTime.UtcNow);
+
+                // Update the latest login record to set logout time
+                loginStatusCollection.UpdateOne(filter, update);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating logout time: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
         private void LoadUserInfo(string username)
         {
             var database = MongoDBConnection.Instance.Database;
@@ -196,6 +223,15 @@ namespace rct_lmis
 
                 // Set the first name
                 lfname.Text = firstName;
+
+                // Get user position
+                userPosition = user.GetValue("Position").AsString;
+
+                // Hide Administrator button if user is not an Administrator
+                if (userPosition != "Administrator")
+                {
+                    badmin.Visible = false; // Optionally, make it invisible
+                }
 
                 // Load the photo
                 if (user.Contains("Photo"))
@@ -229,6 +265,11 @@ namespace rct_lmis
 
         private void frm_home_FormClosing(object sender, FormClosingEventArgs e)
         {
+            load.Show(this);
+            Thread.Sleep(500);
+            Logout(loggedInUsername); // Call the Logout method
+            load.Close();
+
             frm_home_login li = new frm_home_login();
             li.Show();
             this.Hide();
@@ -240,7 +281,10 @@ namespace rct_lmis
             ActivateButton(sender, RGBColors.col);
             load.Show(this);
             Thread.Sleep(1000);
-            ChildForm(new frm_home_dashboard());
+
+            frm_home_dashboard dashboardForm = new frm_home_dashboard(_username);
+
+            ChildForm(dashboardForm);
             load.Close();
         }
 
@@ -318,8 +362,10 @@ namespace rct_lmis
 
         private void blogout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to logout?", "Logout", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes) 
+            if (MessageBox.Show("Do you want to logout?", "Logout", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                Logout(loggedInUsername); // Call the Logout method
+
                 frm_home_login fl = new frm_home_login();
 
                 load.Show(this);

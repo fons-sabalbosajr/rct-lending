@@ -1,18 +1,12 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Deployment.Application;
-using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace rct_lmis
@@ -51,7 +45,7 @@ namespace rct_lmis
         public static string getpassword = "";
 
         LoadingFunction load = new LoadingFunction();
-      
+
 
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int con, int val);
@@ -117,7 +111,7 @@ namespace rct_lmis
         }
 
 
-        private void login() 
+        private void login()
         {
             string username = tuser.Text;
             string password = tpass.Text;
@@ -126,13 +120,13 @@ namespace rct_lmis
 
             if (string.IsNullOrEmpty(tuser.Text))
             {
-                MessageBox.Show("Please enter your username", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                _ = MessageBox.Show("Please enter your username", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tuser.Clear();
                 tuser.Focus();
             }
             else if (string.IsNullOrEmpty(tpass.Text))
             {
-                MessageBox.Show("Please enter your password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                _ = MessageBox.Show("Please enter your password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tpass.Clear();
                 tpass.Focus();
             }
@@ -141,17 +135,29 @@ namespace rct_lmis
                 try
                 {
                     var database = MongoDBConnection.Instance.Database;
-                    var collection = database.GetCollection<BsonDocument>("user_accounts"); // 'users' is the name of your collection
+                    var userCollection = database.GetCollection<BsonDocument>("user_accounts");
+                    var loginStatusCollection = database.GetCollection<LoginStatus>("login-status");
 
                     var filter = Builders<BsonDocument>.Filter.Eq("Username", username) & Builders<BsonDocument>.Filter.Eq("Password", password);
-                    var user = collection.Find(filter).FirstOrDefault();
+                    var user = userCollection.Find(filter).FirstOrDefault();
 
                     if (user != null)
                     {
                         loginSuccessful = true;
+
+                        // Insert login status
+                        var loginStatus = new LoginStatus
+                        {
+                            UserId = user["_id"].AsObjectId.ToString(), // Convert ObjectId to string
+                            Name = user["FullName"].AsString,
+                            Username = username,
+                            IsLoggedIn = true,
+                            LoginTime = DateTime.UtcNow
+                        };
+                        loginStatusCollection.InsertOne(loginStatus);
+
                         load.Show(this);
                         Thread.Sleep(1000);
-
 
                         // Pass the username to the home form
                         frm_home fh = new frm_home(username);
@@ -162,12 +168,12 @@ namespace rct_lmis
                     }
                     else
                     {
-                        MessageBox.Show("Invalid username or password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _ = MessageBox.Show("Invalid username or password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    _ = MessageBox.Show(ex.Message);
                 }
             }
             if (!loginSuccessful)
@@ -177,6 +183,8 @@ namespace rct_lmis
                 tpass.Focus();
             }
         }
+
+
 
         private void frm_home_login_Load(object sender, EventArgs e)
         {
@@ -224,7 +232,7 @@ namespace rct_lmis
             }
             catch (Exception)
             {
-                MessageBox.Show("Sign-up Window is not Available. Contact the Developer immediately.");
+                _ = MessageBox.Show("Sign-up Window is not Available. Contact the Developer immediately.");
             }
         }
 
@@ -268,4 +276,15 @@ namespace rct_lmis
                 blogin.PerformClick();
         }
     }
+}
+
+public class LoginStatus
+{
+    public ObjectId Id { get; set; }
+    public string UserId { get; set; }
+    public string Name { get; set; }
+    public string Username { get; set; } // Added Username
+    public bool IsLoggedIn { get; set; }
+    public DateTime LoginTime { get; set; }
+    public DateTime? LogoutTime { get; set; } // Changed to nullable to allow for null values
 }

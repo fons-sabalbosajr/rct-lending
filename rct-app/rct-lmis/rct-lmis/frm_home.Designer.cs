@@ -128,7 +128,7 @@ namespace rct_lmis
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(738, 18);
+            this.label1.Location = new System.Drawing.Point(814, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 42;
@@ -153,7 +153,7 @@ namespace rct_lmis
             this.ldate.BackColor = System.Drawing.Color.Transparent;
             this.ldate.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ldate.Location = new System.Drawing.Point(738, 34);
+            this.ldate.Location = new System.Drawing.Point(814, 34);
             this.ldate.Name = "ldate";
             this.ldate.Size = new System.Drawing.Size(36, 16);
             this.ldate.TabIndex = 40;
@@ -186,7 +186,7 @@ namespace rct_lmis
             this.lcountann.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lcountann.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lcountann.ForeColor = System.Drawing.Color.White;
-            this.lcountann.Location = new System.Drawing.Point(994, 22);
+            this.lcountann.Location = new System.Drawing.Point(1047, 22);
             this.lcountann.Margin = new System.Windows.Forms.Padding(0);
             this.lcountann.Name = "lcountann";
             this.lcountann.Size = new System.Drawing.Size(13, 13);
@@ -202,7 +202,7 @@ namespace rct_lmis
             this.lcountpending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lcountpending.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lcountpending.ForeColor = System.Drawing.Color.White;
-            this.lcountpending.Location = new System.Drawing.Point(1034, 22);
+            this.lcountpending.Location = new System.Drawing.Point(1087, 22);
             this.lcountpending.Margin = new System.Windows.Forms.Padding(0);
             this.lcountpending.Name = "lcountpending";
             this.lcountpending.Size = new System.Drawing.Size(13, 13);
@@ -227,7 +227,7 @@ namespace rct_lmis
             this.bannouncement.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bannouncement.Image = global::rct_lmis.Properties.Resources.icons8_commercial_60;
             this.bannouncement.ImageSize = new System.Drawing.Size(25, 25);
-            this.bannouncement.Location = new System.Drawing.Point(996, 23);
+            this.bannouncement.Location = new System.Drawing.Point(1049, 23);
             this.bannouncement.Name = "bannouncement";
             this.bannouncement.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bannouncement.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -240,7 +240,7 @@ namespace rct_lmis
             this.pbphoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbphoto.FillColor = System.Drawing.Color.LightGray;
             this.pbphoto.ImageRotate = 0F;
-            this.pbphoto.Location = new System.Drawing.Point(1077, 21);
+            this.pbphoto.Location = new System.Drawing.Point(1130, 21);
             this.pbphoto.Name = "pbphoto";
             this.pbphoto.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.pbphoto.Size = new System.Drawing.Size(32, 32);
@@ -265,7 +265,7 @@ namespace rct_lmis
             this.bnotif.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bnotif.Image = global::rct_lmis.Properties.Resources.icons8_bell_60;
             this.bnotif.ImageSize = new System.Drawing.Size(25, 25);
-            this.bnotif.Location = new System.Drawing.Point(1034, 23);
+            this.bnotif.Location = new System.Drawing.Point(1087, 23);
             this.bnotif.Name = "bnotif";
             this.bnotif.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bnotif.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -290,7 +290,7 @@ namespace rct_lmis
             this.lfname.BackColor = System.Drawing.Color.Transparent;
             this.lfname.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lfname.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lfname.Location = new System.Drawing.Point(1120, 31);
+            this.lfname.Location = new System.Drawing.Point(1173, 31);
             this.lfname.Name = "lfname";
             this.lfname.Size = new System.Drawing.Size(34, 16);
             this.lfname.TabIndex = 2;

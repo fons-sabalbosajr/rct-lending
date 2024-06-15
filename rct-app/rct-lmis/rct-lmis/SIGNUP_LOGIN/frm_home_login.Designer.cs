@@ -230,7 +230,8 @@ namespace rct_lmis
             this.lstatus.Name = "lstatus";
             this.lstatus.Size = new System.Drawing.Size(228, 26);
             this.lstatus.TabIndex = 15;
-            this.lstatus.Text = "It seems you don\'t have an internet connection.\r\nPlease check your settings.";
+            this.lstatus.Text = "It seems you don\'t have an internet connection.\r\nPlease check your internet setti" +
+    "ngs.";
             // 
             // pright
             // 
