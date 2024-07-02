@@ -95,12 +95,11 @@ namespace rct_lmis
         #region "PANELS"
         private void customUI()
         {
-            psubutil.Visible = false;
+           
         }
         private void hidepsub()
         {
-            if (psubutil.Visible == true)
-                psubutil.Visible = false;
+           
         }
         private void showpsub(Panel psub)
         {
@@ -134,7 +133,6 @@ namespace rct_lmis
                     bcrbooks.Text = "Cash Receipt Books";
                     bdisburse.Text = "Disbursements";
                     bjentries.Text = "Journal Entries";
-                    butilities.Text = "Utilities";
                     badmin.Text = "Administrator";
                     blogout.Text = "Logout";
                     this.Refresh();
@@ -155,7 +153,6 @@ namespace rct_lmis
                     bcrbooks.Text = "";
                     bdisburse.Text = "";
                     bjentries.Text = "";
-                    butilities.Text = "";
                     badmin.Text = "";
                     blogout.Text = "";
                     this.Refresh();
@@ -250,12 +247,6 @@ namespace rct_lmis
         private void frm_home_Load(object sender, EventArgs e)
         {
             LoadUserInfo(loggedInUsername);
-        }
-
-        private void butilities_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, RGBColors.col);
-            showpsub(psubutil);
         }
 
         private void bmenu_Click(object sender, EventArgs e)

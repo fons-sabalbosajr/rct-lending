@@ -396,6 +396,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADMIN SECTION\Announcement.cs" />
+    <Compile Include="ADMIN SECTION\frm_ADMIN_annoucement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_ADMIN_annoucement.Designer.cs">
+      <DependentUpon>frm_ADMIN_annoucement.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_loanrates.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -593,6 +600,9 @@
     <Compile Include="z_loadingform.Designer.cs">
       <DependentUpon>z_loadingform.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ADMIN SECTION\frm_ADMIN_annoucement.resx">
+      <DependentUpon>frm_ADMIN_annoucement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN.resx">
       <DependentUpon>frm_home_ADMIN.cs</DependentUpon>
     </EmbeddedResource>
@@ -832,6 +842,7 @@
     <Content Include="google_drive_credentials.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-view-file-481.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

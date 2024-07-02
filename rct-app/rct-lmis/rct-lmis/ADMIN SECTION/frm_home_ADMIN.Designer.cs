@@ -36,19 +36,10 @@ namespace rct_lmis
             this.bdatadelclient = new Guna.UI2.WinForms.Guna2Button();
             this.bdatabackup = new Guna.UI2.WinForms.Guna2Button();
             this.bdatabase = new Guna.UI2.WinForms.Guna2Button();
-            this.psubaccounting = new System.Windows.Forms.Panel();
-            this.bacclegalpenalties = new Guna.UI2.WinForms.Guna2Button();
-            this.baccotherfees = new Guna.UI2.WinForms.Guna2Button();
-            this.baccVAT = new Guna.UI2.WinForms.Guna2Button();
-            this.baccbal = new Guna.UI2.WinForms.Guna2Button();
-            this.baccounting = new Guna.UI2.WinForms.Guna2Button();
-            this.bconfigfunds = new Guna.UI2.WinForms.Guna2Button();
             this.psubacc = new System.Windows.Forms.Panel();
             this.bsignupacc = new Guna.UI2.WinForms.Guna2Button();
             this.buseraccounts = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigcollector = new Guna.UI2.WinForms.Guna2Button();
-            this.bconfiginterest = new Guna.UI2.WinForms.Guna2Button();
-            this.bconfigamt = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigpenalty = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigrate = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,9 +50,9 @@ namespace rct_lmis
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pbody = new System.Windows.Forms.Panel();
+            this.bannouncement = new Guna.UI2.WinForms.Guna2Button();
             this.pleft.SuspendLayout();
             this.psubdata.SuspendLayout();
-            this.psubaccounting.SuspendLayout();
             this.psubacc.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
@@ -70,15 +61,11 @@ namespace rct_lmis
             // pleft
             // 
             this.pleft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.pleft.Controls.Add(this.bannouncement);
             this.pleft.Controls.Add(this.psubdata);
             this.pleft.Controls.Add(this.bdatabase);
-            this.pleft.Controls.Add(this.psubaccounting);
-            this.pleft.Controls.Add(this.baccounting);
-            this.pleft.Controls.Add(this.bconfigfunds);
             this.pleft.Controls.Add(this.psubacc);
             this.pleft.Controls.Add(this.bconfigcollector);
-            this.pleft.Controls.Add(this.bconfiginterest);
-            this.pleft.Controls.Add(this.bconfigamt);
             this.pleft.Controls.Add(this.bconfigpenalty);
             this.pleft.Controls.Add(this.bconfigrate);
             this.pleft.Controls.Add(this.panel1);
@@ -96,7 +83,7 @@ namespace rct_lmis
             this.psubdata.Controls.Add(this.bdatadelclient);
             this.psubdata.Controls.Add(this.bdatabackup);
             this.psubdata.Dock = System.Windows.Forms.DockStyle.Top;
-            this.psubdata.Location = new System.Drawing.Point(0, 649);
+            this.psubdata.Location = new System.Drawing.Point(0, 316);
             this.psubdata.Name = "psubdata";
             this.psubdata.Size = new System.Drawing.Size(194, 153);
             this.psubdata.TabIndex = 30;
@@ -213,7 +200,7 @@ namespace rct_lmis
             this.bdatabase.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdatabase.ImageOffset = new System.Drawing.Point(10, 0);
             this.bdatabase.ImageSize = new System.Drawing.Size(18, 18);
-            this.bdatabase.Location = new System.Drawing.Point(0, 604);
+            this.bdatabase.Location = new System.Drawing.Point(0, 271);
             this.bdatabase.Name = "bdatabase";
             this.bdatabase.Size = new System.Drawing.Size(194, 45);
             this.bdatabase.TabIndex = 29;
@@ -222,171 +209,13 @@ namespace rct_lmis
             this.bdatabase.TextOffset = new System.Drawing.Point(20, 0);
             this.bdatabase.Click += new System.EventHandler(this.bdatabase_Click);
             // 
-            // psubaccounting
-            // 
-            this.psubaccounting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.psubaccounting.Controls.Add(this.bacclegalpenalties);
-            this.psubaccounting.Controls.Add(this.baccotherfees);
-            this.psubaccounting.Controls.Add(this.baccVAT);
-            this.psubaccounting.Controls.Add(this.baccbal);
-            this.psubaccounting.Dock = System.Windows.Forms.DockStyle.Top;
-            this.psubaccounting.Location = new System.Drawing.Point(0, 451);
-            this.psubaccounting.Name = "psubaccounting";
-            this.psubaccounting.Size = new System.Drawing.Size(194, 153);
-            this.psubaccounting.TabIndex = 28;
-            // 
-            // bacclegalpenalties
-            // 
-            this.bacclegalpenalties.Animated = true;
-            this.bacclegalpenalties.BackColor = System.Drawing.Color.Transparent;
-            this.bacclegalpenalties.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bacclegalpenalties.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bacclegalpenalties.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bacclegalpenalties.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bacclegalpenalties.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bacclegalpenalties.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.bacclegalpenalties.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bacclegalpenalties.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.bacclegalpenalties.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bacclegalpenalties.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bacclegalpenalties.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bacclegalpenalties.ImageSize = new System.Drawing.Size(15, 15);
-            this.bacclegalpenalties.Location = new System.Drawing.Point(0, 105);
-            this.bacclegalpenalties.Name = "bacclegalpenalties";
-            this.bacclegalpenalties.Size = new System.Drawing.Size(194, 35);
-            this.bacclegalpenalties.TabIndex = 20;
-            this.bacclegalpenalties.Text = "Legal Action Penalties";
-            this.bacclegalpenalties.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bacclegalpenalties.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // baccotherfees
-            // 
-            this.baccotherfees.Animated = true;
-            this.baccotherfees.BackColor = System.Drawing.Color.Transparent;
-            this.baccotherfees.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.baccotherfees.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.baccotherfees.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.baccotherfees.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.baccotherfees.Dock = System.Windows.Forms.DockStyle.Top;
-            this.baccotherfees.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.baccotherfees.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baccotherfees.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.baccotherfees.HoverState.ForeColor = System.Drawing.Color.White;
-            this.baccotherfees.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccotherfees.ImageOffset = new System.Drawing.Point(10, 0);
-            this.baccotherfees.ImageSize = new System.Drawing.Size(15, 15);
-            this.baccotherfees.Location = new System.Drawing.Point(0, 70);
-            this.baccotherfees.Name = "baccotherfees";
-            this.baccotherfees.Size = new System.Drawing.Size(194, 35);
-            this.baccotherfees.TabIndex = 19;
-            this.baccotherfees.Text = "Other Fees";
-            this.baccotherfees.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccotherfees.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // baccVAT
-            // 
-            this.baccVAT.Animated = true;
-            this.baccVAT.BackColor = System.Drawing.Color.Transparent;
-            this.baccVAT.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.baccVAT.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.baccVAT.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.baccVAT.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.baccVAT.Dock = System.Windows.Forms.DockStyle.Top;
-            this.baccVAT.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.baccVAT.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baccVAT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.baccVAT.HoverState.ForeColor = System.Drawing.Color.White;
-            this.baccVAT.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccVAT.ImageOffset = new System.Drawing.Point(10, 0);
-            this.baccVAT.ImageSize = new System.Drawing.Size(15, 15);
-            this.baccVAT.Location = new System.Drawing.Point(0, 35);
-            this.baccVAT.Name = "baccVAT";
-            this.baccVAT.Size = new System.Drawing.Size(194, 35);
-            this.baccVAT.TabIndex = 18;
-            this.baccVAT.Text = "VAT";
-            this.baccVAT.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccVAT.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // baccbal
-            // 
-            this.baccbal.Animated = true;
-            this.baccbal.BackColor = System.Drawing.Color.Transparent;
-            this.baccbal.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.baccbal.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.baccbal.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.baccbal.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.baccbal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.baccbal.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.baccbal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baccbal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.baccbal.HoverState.ForeColor = System.Drawing.Color.White;
-            this.baccbal.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccbal.ImageOffset = new System.Drawing.Point(10, 0);
-            this.baccbal.ImageSize = new System.Drawing.Size(15, 15);
-            this.baccbal.Location = new System.Drawing.Point(0, 0);
-            this.baccbal.Name = "baccbal";
-            this.baccbal.Size = new System.Drawing.Size(194, 35);
-            this.baccbal.TabIndex = 17;
-            this.baccbal.Text = "Balances";
-            this.baccbal.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccbal.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // baccounting
-            // 
-            this.baccounting.Animated = true;
-            this.baccounting.BackColor = System.Drawing.Color.Transparent;
-            this.baccounting.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.baccounting.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.baccounting.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.baccounting.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.baccounting.Dock = System.Windows.Forms.DockStyle.Top;
-            this.baccounting.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.baccounting.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baccounting.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.baccounting.HoverState.ForeColor = System.Drawing.Color.White;
-            this.baccounting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccounting.ImageOffset = new System.Drawing.Point(10, 0);
-            this.baccounting.ImageSize = new System.Drawing.Size(18, 18);
-            this.baccounting.Location = new System.Drawing.Point(0, 406);
-            this.baccounting.Name = "baccounting";
-            this.baccounting.Size = new System.Drawing.Size(194, 45);
-            this.baccounting.TabIndex = 27;
-            this.baccounting.Text = "Accounting";
-            this.baccounting.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccounting.TextOffset = new System.Drawing.Point(20, 0);
-            this.baccounting.Click += new System.EventHandler(this.baccounting_Click);
-            // 
-            // bconfigfunds
-            // 
-            this.bconfigfunds.Animated = true;
-            this.bconfigfunds.BackColor = System.Drawing.Color.Transparent;
-            this.bconfigfunds.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bconfigfunds.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bconfigfunds.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bconfigfunds.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bconfigfunds.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bconfigfunds.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.bconfigfunds.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bconfigfunds.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.bconfigfunds.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bconfigfunds.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bconfigfunds.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bconfigfunds.ImageSize = new System.Drawing.Size(18, 18);
-            this.bconfigfunds.Location = new System.Drawing.Point(0, 361);
-            this.bconfigfunds.Name = "bconfigfunds";
-            this.bconfigfunds.Size = new System.Drawing.Size(194, 45);
-            this.bconfigfunds.TabIndex = 26;
-            this.bconfigfunds.Text = "Funds";
-            this.bconfigfunds.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bconfigfunds.TextOffset = new System.Drawing.Point(20, 0);
-            // 
             // psubacc
             // 
             this.psubacc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
             this.psubacc.Controls.Add(this.bsignupacc);
             this.psubacc.Controls.Add(this.buseraccounts);
             this.psubacc.Dock = System.Windows.Forms.DockStyle.Top;
-            this.psubacc.Location = new System.Drawing.Point(0, 283);
+            this.psubacc.Location = new System.Drawing.Point(0, 193);
             this.psubacc.Name = "psubacc";
             this.psubacc.Size = new System.Drawing.Size(194, 78);
             this.psubacc.TabIndex = 29;
@@ -457,7 +286,7 @@ namespace rct_lmis
             this.bconfigcollector.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bconfigcollector.ImageOffset = new System.Drawing.Point(10, 0);
             this.bconfigcollector.ImageSize = new System.Drawing.Size(18, 18);
-            this.bconfigcollector.Location = new System.Drawing.Point(0, 238);
+            this.bconfigcollector.Location = new System.Drawing.Point(0, 148);
             this.bconfigcollector.Name = "bconfigcollector";
             this.bconfigcollector.Size = new System.Drawing.Size(194, 45);
             this.bconfigcollector.TabIndex = 25;
@@ -465,54 +294,6 @@ namespace rct_lmis
             this.bconfigcollector.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bconfigcollector.TextOffset = new System.Drawing.Point(20, 0);
             this.bconfigcollector.Click += new System.EventHandler(this.bconfigcollector_Click);
-            // 
-            // bconfiginterest
-            // 
-            this.bconfiginterest.Animated = true;
-            this.bconfiginterest.BackColor = System.Drawing.Color.Transparent;
-            this.bconfiginterest.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bconfiginterest.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bconfiginterest.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bconfiginterest.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bconfiginterest.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bconfiginterest.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.bconfiginterest.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bconfiginterest.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.bconfiginterest.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bconfiginterest.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bconfiginterest.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bconfiginterest.ImageSize = new System.Drawing.Size(18, 18);
-            this.bconfiginterest.Location = new System.Drawing.Point(0, 193);
-            this.bconfiginterest.Name = "bconfiginterest";
-            this.bconfiginterest.Size = new System.Drawing.Size(194, 45);
-            this.bconfiginterest.TabIndex = 24;
-            this.bconfiginterest.Text = "Interests";
-            this.bconfiginterest.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bconfiginterest.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // bconfigamt
-            // 
-            this.bconfigamt.Animated = true;
-            this.bconfigamt.BackColor = System.Drawing.Color.Transparent;
-            this.bconfigamt.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bconfigamt.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bconfigamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bconfigamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bconfigamt.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bconfigamt.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.bconfigamt.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bconfigamt.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.bconfigamt.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bconfigamt.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bconfigamt.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bconfigamt.ImageSize = new System.Drawing.Size(18, 18);
-            this.bconfigamt.Location = new System.Drawing.Point(0, 148);
-            this.bconfigamt.Name = "bconfigamt";
-            this.bconfigamt.Size = new System.Drawing.Size(194, 45);
-            this.bconfigamt.TabIndex = 23;
-            this.bconfigamt.Text = "Ammortizations";
-            this.bconfigamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bconfigamt.TextOffset = new System.Drawing.Point(20, 0);
             // 
             // bconfigpenalty
             // 
@@ -643,6 +424,31 @@ namespace rct_lmis
             this.pbody.Size = new System.Drawing.Size(1096, 790);
             this.pbody.TabIndex = 20;
             // 
+            // bannouncement
+            // 
+            this.bannouncement.Animated = true;
+            this.bannouncement.BackColor = System.Drawing.Color.Transparent;
+            this.bannouncement.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bannouncement.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bannouncement.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bannouncement.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bannouncement.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bannouncement.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.bannouncement.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bannouncement.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.bannouncement.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bannouncement.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bannouncement.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bannouncement.ImageSize = new System.Drawing.Size(18, 18);
+            this.bannouncement.Location = new System.Drawing.Point(0, 469);
+            this.bannouncement.Name = "bannouncement";
+            this.bannouncement.Size = new System.Drawing.Size(194, 45);
+            this.bannouncement.TabIndex = 31;
+            this.bannouncement.Text = "Annoucement";
+            this.bannouncement.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bannouncement.TextOffset = new System.Drawing.Point(20, 0);
+            this.bannouncement.Click += new System.EventHandler(this.bannouncement_Click);
+            // 
             // frm_home_ADMIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -661,7 +467,6 @@ namespace rct_lmis
             this.Load += new System.EventHandler(this.frm_home_ADMIN_Load);
             this.pleft.ResumeLayout(false);
             this.psubdata.ResumeLayout(false);
-            this.psubaccounting.ResumeLayout(false);
             this.psubacc.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -681,11 +486,7 @@ namespace rct_lmis
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel pbody;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2Button baccounting;
-        private Guna.UI2.WinForms.Guna2Button bconfigfunds;
         private Guna.UI2.WinForms.Guna2Button bconfigcollector;
-        private Guna.UI2.WinForms.Guna2Button bconfiginterest;
-        private Guna.UI2.WinForms.Guna2Button bconfigamt;
         private Guna.UI2.WinForms.Guna2Button bconfigpenalty;
         private Guna.UI2.WinForms.Guna2Button bconfigrate;
         private System.Windows.Forms.Panel psubdata;
@@ -694,13 +495,9 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2Button bdatadelclient;
         private Guna.UI2.WinForms.Guna2Button bdatabackup;
         private Guna.UI2.WinForms.Guna2Button bdatabase;
-        private System.Windows.Forms.Panel psubaccounting;
-        private Guna.UI2.WinForms.Guna2Button bacclegalpenalties;
-        private Guna.UI2.WinForms.Guna2Button baccotherfees;
-        private Guna.UI2.WinForms.Guna2Button baccVAT;
-        private Guna.UI2.WinForms.Guna2Button baccbal;
         private System.Windows.Forms.Panel psubacc;
         private Guna.UI2.WinForms.Guna2Button bsignupacc;
         private Guna.UI2.WinForms.Guna2Button buseraccounts;
+        private Guna.UI2.WinForms.Guna2Button bannouncement;
     }
 }

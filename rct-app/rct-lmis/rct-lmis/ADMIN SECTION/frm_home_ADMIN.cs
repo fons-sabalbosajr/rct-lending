@@ -69,15 +69,12 @@ namespace rct_lmis
         #region "PANELS"
         private void customUI()
         {
-            psubaccounting.Visible = false;
+           
             psubdata.Visible = false;
             psubacc.Visible = false;
         }
         private void hidepsub()
         {
-            if (psubaccounting.Visible == true)
-                psubaccounting.Visible = false;
-
             if (psubdata.Visible == true)
                 psubdata.Visible = false;
 
@@ -128,7 +125,7 @@ namespace rct_lmis
         private void baccounting_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.col);
-            showpsub(psubaccounting);
+            
         }
 
         private void bdatabase_Click(object sender, EventArgs e)
@@ -168,6 +165,18 @@ namespace rct_lmis
             Thread.Sleep(1000);
             ChildForm(new frm_home_ADMIN_useraccounts());
             load.Close();
+        }
+
+        private void bannouncement_Click(object sender, EventArgs e)
+        {
+            frm_ADMIN_annoucement  ann = new frm_ADMIN_annoucement();
+
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            load.Close();
+            ann.ShowDialog();
+            
         }
     }
 }

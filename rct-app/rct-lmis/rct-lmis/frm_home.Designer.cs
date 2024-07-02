@@ -52,12 +52,6 @@ namespace rct_lmis
             this.pleft = new Guna.UI2.WinForms.Guna2Panel();
             this.blogout = new Guna.UI2.WinForms.Guna2Button();
             this.badmin = new Guna.UI2.WinForms.Guna2Button();
-            this.psubutil = new System.Windows.Forms.Panel();
-            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.butilities = new Guna.UI2.WinForms.Guna2Button();
             this.breports = new Guna.UI2.WinForms.Guna2Button();
             this.bjentries = new Guna.UI2.WinForms.Guna2Button();
             this.bdisburse = new Guna.UI2.WinForms.Guna2Button();
@@ -91,7 +85,6 @@ namespace rct_lmis
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
             this.pleft.SuspendLayout();
-            this.psubutil.SuspendLayout();
             this.pbody.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView2)).BeginInit();
@@ -302,8 +295,6 @@ namespace rct_lmis
             this.pleft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
             this.pleft.Controls.Add(this.blogout);
             this.pleft.Controls.Add(this.badmin);
-            this.pleft.Controls.Add(this.psubutil);
-            this.pleft.Controls.Add(this.butilities);
             this.pleft.Controls.Add(this.breports);
             this.pleft.Controls.Add(this.bjentries);
             this.pleft.Controls.Add(this.bdisburse);
@@ -337,7 +328,7 @@ namespace rct_lmis
             this.blogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.blogout.ImageOffset = new System.Drawing.Point(10, 0);
             this.blogout.ImageSize = new System.Drawing.Size(18, 18);
-            this.blogout.Location = new System.Drawing.Point(0, 672);
+            this.blogout.Location = new System.Drawing.Point(0, 474);
             this.blogout.Name = "blogout";
             this.blogout.Size = new System.Drawing.Size(200, 45);
             this.blogout.TabIndex = 19;
@@ -364,7 +355,7 @@ namespace rct_lmis
             this.badmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.badmin.ImageOffset = new System.Drawing.Point(10, 0);
             this.badmin.ImageSize = new System.Drawing.Size(18, 18);
-            this.badmin.Location = new System.Drawing.Point(0, 627);
+            this.badmin.Location = new System.Drawing.Point(0, 429);
             this.badmin.Name = "badmin";
             this.badmin.Size = new System.Drawing.Size(200, 45);
             this.badmin.TabIndex = 18;
@@ -373,142 +364,6 @@ namespace rct_lmis
             this.badmin.TextOffset = new System.Drawing.Point(20, 0);
             this.toolTip1.SetToolTip(this.badmin, "Admin User Only");
             this.badmin.Click += new System.EventHandler(this.badmin_Click);
-            // 
-            // psubutil
-            // 
-            this.psubutil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.psubutil.Controls.Add(this.guna2Button4);
-            this.psubutil.Controls.Add(this.guna2Button3);
-            this.psubutil.Controls.Add(this.guna2Button2);
-            this.psubutil.Controls.Add(this.guna2Button1);
-            this.psubutil.Dock = System.Windows.Forms.DockStyle.Top;
-            this.psubutil.Location = new System.Drawing.Point(0, 474);
-            this.psubutil.Name = "psubutil";
-            this.psubutil.Size = new System.Drawing.Size(200, 153);
-            this.psubutil.TabIndex = 17;
-            // 
-            // guna2Button4
-            // 
-            this.guna2Button4.Animated = true;
-            this.guna2Button4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Button4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.guna2Button4.HoverState.ForeColor = System.Drawing.Color.White;
-            this.guna2Button4.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button4.ImageOffset = new System.Drawing.Point(10, 0);
-            this.guna2Button4.ImageSize = new System.Drawing.Size(15, 15);
-            this.guna2Button4.Location = new System.Drawing.Point(0, 105);
-            this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.Size = new System.Drawing.Size(200, 35);
-            this.guna2Button4.TabIndex = 20;
-            this.guna2Button4.Text = "Backup Recovery";
-            this.guna2Button4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button4.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // guna2Button3
-            // 
-            this.guna2Button3.Animated = true;
-            this.guna2Button3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Button3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.guna2Button3.HoverState.ForeColor = System.Drawing.Color.White;
-            this.guna2Button3.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button3.ImageOffset = new System.Drawing.Point(10, 0);
-            this.guna2Button3.ImageSize = new System.Drawing.Size(15, 15);
-            this.guna2Button3.Location = new System.Drawing.Point(0, 70);
-            this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Size = new System.Drawing.Size(200, 35);
-            this.guna2Button3.TabIndex = 19;
-            this.guna2Button3.Text = "Rate Settings";
-            this.guna2Button3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button3.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // guna2Button2
-            // 
-            this.guna2Button2.Animated = true;
-            this.guna2Button2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.guna2Button2.HoverState.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button2.ImageOffset = new System.Drawing.Point(10, 0);
-            this.guna2Button2.ImageSize = new System.Drawing.Size(15, 15);
-            this.guna2Button2.Location = new System.Drawing.Point(0, 35);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(200, 35);
-            this.guna2Button2.TabIndex = 18;
-            this.guna2Button2.Text = "Loan Settings";
-            this.guna2Button2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button2.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // guna2Button1
-            // 
-            this.guna2Button1.Animated = true;
-            this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.guna2Button1.HoverState.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button1.ImageOffset = new System.Drawing.Point(10, 0);
-            this.guna2Button1.ImageSize = new System.Drawing.Size(15, 15);
-            this.guna2Button1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(200, 35);
-            this.guna2Button1.TabIndex = 17;
-            this.guna2Button1.Text = "Account Titles";
-            this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button1.TextOffset = new System.Drawing.Point(20, 0);
-            // 
-            // butilities
-            // 
-            this.butilities.Animated = true;
-            this.butilities.BackColor = System.Drawing.Color.Transparent;
-            this.butilities.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.butilities.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.butilities.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.butilities.DisabledState.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.butilities.Dock = System.Windows.Forms.DockStyle.Top;
-            this.butilities.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.butilities.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butilities.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.butilities.HoverState.ForeColor = System.Drawing.Color.White;
-            this.butilities.Image = global::rct_lmis.Properties.Resources.icons8_utilities_60;
-            this.butilities.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.butilities.ImageOffset = new System.Drawing.Point(10, 0);
-            this.butilities.ImageSize = new System.Drawing.Size(18, 18);
-            this.butilities.Location = new System.Drawing.Point(0, 429);
-            this.butilities.Name = "butilities";
-            this.butilities.Size = new System.Drawing.Size(200, 45);
-            this.butilities.TabIndex = 16;
-            this.butilities.Text = "Settings";
-            this.butilities.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.butilities.TextOffset = new System.Drawing.Point(20, 0);
-            this.toolTip1.SetToolTip(this.butilities, "View Settings");
-            this.butilities.Click += new System.EventHandler(this.butilities_Click);
             // 
             // breports
             // 
@@ -1097,7 +952,6 @@ namespace rct_lmis
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).EndInit();
             this.pleft.ResumeLayout(false);
-            this.psubutil.ResumeLayout(false);
             this.pbody.ResumeLayout(false);
             this.pbody.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1129,15 +983,9 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2Button bloans;
         private Guna.UI2.WinForms.Guna2Button bdashboard;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private Guna.UI2.WinForms.Guna2Button butilities;
         private Guna.UI2.WinForms.Guna2Button bjentries;
         private Guna.UI2.WinForms.Guna2Button bdisburse;
         private Guna.UI2.WinForms.Guna2Button bcrbooks;
-        private System.Windows.Forms.Panel psubutil;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button badmin;
         public System.Windows.Forms.Label ldate;
         private System.Windows.Forms.Timer tslide;

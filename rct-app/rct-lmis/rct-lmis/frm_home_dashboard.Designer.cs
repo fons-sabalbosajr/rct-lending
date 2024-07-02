@@ -32,12 +32,20 @@ namespace rct_lmis
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pusers = new Guna.UI2.WinForms.Guna2Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvusersonline = new Guna.UI2.WinForms.Guna2DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.dgvbulletin = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             this.pusers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvusersonline)).BeginInit();
+            this.guna2Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvbulletin)).BeginInit();
             this.SuspendLayout();
             // 
             // pusers
@@ -60,7 +68,7 @@ namespace rct_lmis
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(9, 11);
+            this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 20);
             this.label1.TabIndex = 1;
@@ -129,7 +137,7 @@ namespace rct_lmis
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(47, 56);
+            this.button1.Location = new System.Drawing.Point(12, 328);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
@@ -137,11 +145,97 @@ namespace rct_lmis
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.guna2Panel1.BorderColor = System.Drawing.Color.Silver;
+            this.guna2Panel1.BorderRadius = 10;
+            this.guna2Panel1.BorderThickness = 1;
+            this.guna2Panel1.Controls.Add(this.dgvbulletin);
+            this.guna2Panel1.Controls.Add(this.label2);
+            this.guna2Panel1.FillColor = System.Drawing.Color.White;
+            this.guna2Panel1.Location = new System.Drawing.Point(12, 22);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(783, 263);
+            this.guna2Panel1.TabIndex = 2;
+            // 
+            // dgvbulletin
+            // 
+            this.dgvbulletin.AllowUserToAddRows = false;
+            this.dgvbulletin.AllowUserToDeleteRows = false;
+            this.dgvbulletin.AllowUserToResizeColumns = false;
+            this.dgvbulletin.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvbulletin.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvbulletin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvbulletin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvbulletin.ColumnHeadersHeight = 20;
+            this.dgvbulletin.ColumnHeadersVisible = false;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvbulletin.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvbulletin.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvbulletin.Location = new System.Drawing.Point(9, 34);
+            this.dgvbulletin.Name = "dgvbulletin";
+            this.dgvbulletin.RowHeadersVisible = false;
+            this.dgvbulletin.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvbulletin.RowTemplate.Height = 50;
+            this.dgvbulletin.Size = new System.Drawing.Size(763, 222);
+            this.dgvbulletin.TabIndex = 2;
+            this.dgvbulletin.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
+            this.dgvbulletin.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvbulletin.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvbulletin.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvbulletin.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvbulletin.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvbulletin.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvbulletin.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvbulletin.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.White;
+            this.dgvbulletin.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvbulletin.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvbulletin.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgvbulletin.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvbulletin.ThemeStyle.HeaderStyle.Height = 20;
+            this.dgvbulletin.ThemeStyle.ReadOnly = false;
+            this.dgvbulletin.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvbulletin.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvbulletin.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.dgvbulletin.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvbulletin.ThemeStyle.RowsStyle.Height = 50;
+            this.dgvbulletin.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.White;
+            this.dgvbulletin.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(11, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Bulletin Table";
+            // 
             // frm_home_dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 650);
+            this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pusers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -152,6 +246,9 @@ namespace rct_lmis
             this.pusers.ResumeLayout(false);
             this.pusers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvusersonline)).EndInit();
+            this.guna2Panel1.ResumeLayout(false);
+            this.guna2Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvbulletin)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -162,5 +259,8 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2DataGridView dgvusersonline;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvbulletin;
+        private System.Windows.Forms.Label label2;
     }
 }

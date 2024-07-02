@@ -517,3 +517,4 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.Up2Date
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_ADMIN_annoucement.resources

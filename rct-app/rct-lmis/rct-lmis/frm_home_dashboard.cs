@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
+using rct_lmis.ADMIN_SECTION;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -19,6 +20,7 @@ namespace rct_lmis
             _username = username;
 
             dgvusersonline.ClearSelection();
+            dgvbulletin.ClearSelection();
         }
 
         private void frm_home_dashboard_Load(object sender, EventArgs e)
@@ -26,7 +28,9 @@ namespace rct_lmis
             InitializeDataGridView();
             PopulateDataGridView();
 
-           
+            InitializedBulletinView();
+            PopulateBulletinView();
+
         }
 
         private void InitializeDataGridView()
@@ -51,6 +55,57 @@ namespace rct_lmis
 
         }
 
+        private void InitializedBulletinView()
+        {// Clear existing columns if any
+            dgvbulletin.Columns.Clear();
+            dgvbulletin.ClearSelection();
+
+            // Add columns
+            dgvbulletin.Columns.Add(new DataGridViewTextBoxColumn { Name = "Date", HeaderText = "Date" });
+            dgvbulletin.Columns.Add(new DataGridViewTextBoxColumn { Name = "Subject", HeaderText = "Subject" });
+            dgvbulletin.Columns.Add(new DataGridViewTextBoxColumn { Name = "Content", HeaderText = "Content" });
+
+            // Adjust column widths and other properties as needed
+            dgvbulletin.Columns["Date"].Width = 100; // Adjust width for user's name column
+            dgvbulletin.Columns["Subject"].Width = 150; // Adjust width for user's name column
+            dgvbulletin.Columns["Content"].Width = 200; // Adjust width for status column
+
+            // Show headers
+            dgvbulletin.ColumnHeadersVisible = false;
+
+            dgvbulletin.CellFormatting += dgvusersonline_CellFormatting;
+            dgvbulletin.DataBindingComplete += dgvusersonline_DataBindingComplete;
+
+        }
+
+        private void PopulateBulletinView() 
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<Announcement>("annoucements");
+
+                // Fetch all announcements ordered by date
+                var announcements = collection.Find(Builders<Announcement>.Filter.Empty)
+                                              .SortByDescending(a => a.PostedDate)
+                                              .ToList();
+
+                // Clear existing rows
+                dgvbulletin.Rows.Clear();
+                dgvbulletin.ClearSelection();
+
+                // Populate DataGridView with announcements
+                foreach (var announcement in announcements)
+                {
+                    dgvbulletin.Rows.Add(announcement.PostedDate.ToString(), announcement.Title, announcement.Content);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void PopulateDataGridView()
         {
             try
