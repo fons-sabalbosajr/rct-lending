@@ -81,6 +81,7 @@ namespace rct_lmis
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.bviewapplications = new Guna.UI2.WinForms.Guna2Button();
             this.paneltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -121,7 +122,7 @@ namespace rct_lmis
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(814, 18);
+            this.label1.Location = new System.Drawing.Point(922, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 42;
@@ -146,7 +147,7 @@ namespace rct_lmis
             this.ldate.BackColor = System.Drawing.Color.Transparent;
             this.ldate.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ldate.Location = new System.Drawing.Point(814, 34);
+            this.ldate.Location = new System.Drawing.Point(922, 34);
             this.ldate.Name = "ldate";
             this.ldate.Size = new System.Drawing.Size(36, 16);
             this.ldate.TabIndex = 40;
@@ -179,7 +180,7 @@ namespace rct_lmis
             this.lcountann.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lcountann.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lcountann.ForeColor = System.Drawing.Color.White;
-            this.lcountann.Location = new System.Drawing.Point(1047, 22);
+            this.lcountann.Location = new System.Drawing.Point(1065, 22);
             this.lcountann.Margin = new System.Windows.Forms.Padding(0);
             this.lcountann.Name = "lcountann";
             this.lcountann.Size = new System.Drawing.Size(13, 13);
@@ -195,7 +196,7 @@ namespace rct_lmis
             this.lcountpending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lcountpending.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lcountpending.ForeColor = System.Drawing.Color.White;
-            this.lcountpending.Location = new System.Drawing.Point(1087, 22);
+            this.lcountpending.Location = new System.Drawing.Point(1105, 22);
             this.lcountpending.Margin = new System.Windows.Forms.Padding(0);
             this.lcountpending.Name = "lcountpending";
             this.lcountpending.Size = new System.Drawing.Size(13, 13);
@@ -220,7 +221,7 @@ namespace rct_lmis
             this.bannouncement.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bannouncement.Image = global::rct_lmis.Properties.Resources.icons8_commercial_60;
             this.bannouncement.ImageSize = new System.Drawing.Size(25, 25);
-            this.bannouncement.Location = new System.Drawing.Point(1049, 23);
+            this.bannouncement.Location = new System.Drawing.Point(1067, 23);
             this.bannouncement.Name = "bannouncement";
             this.bannouncement.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bannouncement.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -233,7 +234,7 @@ namespace rct_lmis
             this.pbphoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbphoto.FillColor = System.Drawing.Color.LightGray;
             this.pbphoto.ImageRotate = 0F;
-            this.pbphoto.Location = new System.Drawing.Point(1130, 21);
+            this.pbphoto.Location = new System.Drawing.Point(1148, 21);
             this.pbphoto.Name = "pbphoto";
             this.pbphoto.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.pbphoto.Size = new System.Drawing.Size(32, 32);
@@ -258,7 +259,7 @@ namespace rct_lmis
             this.bnotif.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bnotif.Image = global::rct_lmis.Properties.Resources.icons8_bell_60;
             this.bnotif.ImageSize = new System.Drawing.Size(25, 25);
-            this.bnotif.Location = new System.Drawing.Point(1087, 23);
+            this.bnotif.Location = new System.Drawing.Point(1105, 23);
             this.bnotif.Name = "bnotif";
             this.bnotif.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bnotif.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -283,7 +284,7 @@ namespace rct_lmis
             this.lfname.BackColor = System.Drawing.Color.Transparent;
             this.lfname.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lfname.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lfname.Location = new System.Drawing.Point(1173, 31);
+            this.lfname.Location = new System.Drawing.Point(1191, 31);
             this.lfname.Name = "lfname";
             this.lfname.Size = new System.Drawing.Size(34, 16);
             this.lfname.TabIndex = 2;
@@ -296,12 +297,13 @@ namespace rct_lmis
             this.pleft.Controls.Add(this.blogout);
             this.pleft.Controls.Add(this.badmin);
             this.pleft.Controls.Add(this.breports);
-            this.pleft.Controls.Add(this.bjentries);
-            this.pleft.Controls.Add(this.bdisburse);
-            this.pleft.Controls.Add(this.bcrbooks);
-            this.pleft.Controls.Add(this.bclient);
-            this.pleft.Controls.Add(this.bsafekeeping);
             this.pleft.Controls.Add(this.bpayments);
+            this.pleft.Controls.Add(this.bjentries);
+            this.pleft.Controls.Add(this.bsafekeeping);
+            this.pleft.Controls.Add(this.bcrbooks);
+            this.pleft.Controls.Add(this.bdisburse);
+            this.pleft.Controls.Add(this.bclient);
+            this.pleft.Controls.Add(this.bviewapplications);
             this.pleft.Controls.Add(this.bloans);
             this.pleft.Controls.Add(this.bdashboard);
             this.pleft.Controls.Add(this.guna2Panel2);
@@ -328,7 +330,7 @@ namespace rct_lmis
             this.blogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.blogout.ImageOffset = new System.Drawing.Point(10, 0);
             this.blogout.ImageSize = new System.Drawing.Size(18, 18);
-            this.blogout.Location = new System.Drawing.Point(0, 474);
+            this.blogout.Location = new System.Drawing.Point(0, 519);
             this.blogout.Name = "blogout";
             this.blogout.Size = new System.Drawing.Size(200, 45);
             this.blogout.TabIndex = 19;
@@ -355,7 +357,7 @@ namespace rct_lmis
             this.badmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.badmin.ImageOffset = new System.Drawing.Point(10, 0);
             this.badmin.ImageSize = new System.Drawing.Size(18, 18);
-            this.badmin.Location = new System.Drawing.Point(0, 429);
+            this.badmin.Location = new System.Drawing.Point(0, 474);
             this.badmin.Name = "badmin";
             this.badmin.Size = new System.Drawing.Size(200, 45);
             this.badmin.TabIndex = 18;
@@ -382,7 +384,7 @@ namespace rct_lmis
             this.breports.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.breports.ImageOffset = new System.Drawing.Point(10, 0);
             this.breports.ImageSize = new System.Drawing.Size(18, 18);
-            this.breports.Location = new System.Drawing.Point(0, 384);
+            this.breports.Location = new System.Drawing.Point(0, 429);
             this.breports.Name = "breports";
             this.breports.Size = new System.Drawing.Size(200, 45);
             this.breports.TabIndex = 20;
@@ -434,7 +436,7 @@ namespace rct_lmis
             this.bdisburse.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdisburse.ImageOffset = new System.Drawing.Point(10, 0);
             this.bdisburse.ImageSize = new System.Drawing.Size(18, 18);
-            this.bdisburse.Location = new System.Drawing.Point(0, 294);
+            this.bdisburse.Location = new System.Drawing.Point(0, 204);
             this.bdisburse.Name = "bdisburse";
             this.bdisburse.Size = new System.Drawing.Size(200, 45);
             this.bdisburse.TabIndex = 14;
@@ -488,7 +490,7 @@ namespace rct_lmis
             this.bclient.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bclient.ImageOffset = new System.Drawing.Point(10, 0);
             this.bclient.ImageSize = new System.Drawing.Size(18, 18);
-            this.bclient.Location = new System.Drawing.Point(0, 204);
+            this.bclient.Location = new System.Drawing.Point(0, 159);
             this.bclient.Name = "bclient";
             this.bclient.Size = new System.Drawing.Size(200, 45);
             this.bclient.TabIndex = 12;
@@ -515,7 +517,7 @@ namespace rct_lmis
             this.bsafekeeping.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bsafekeeping.ImageOffset = new System.Drawing.Point(10, 0);
             this.bsafekeeping.ImageSize = new System.Drawing.Size(18, 18);
-            this.bsafekeeping.Location = new System.Drawing.Point(0, 159);
+            this.bsafekeeping.Location = new System.Drawing.Point(0, 294);
             this.bsafekeeping.Name = "bsafekeeping";
             this.bsafekeeping.Size = new System.Drawing.Size(200, 45);
             this.bsafekeeping.TabIndex = 11;
@@ -542,7 +544,7 @@ namespace rct_lmis
             this.bpayments.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bpayments.ImageOffset = new System.Drawing.Point(10, 0);
             this.bpayments.ImageSize = new System.Drawing.Size(18, 18);
-            this.bpayments.Location = new System.Drawing.Point(0, 114);
+            this.bpayments.Location = new System.Drawing.Point(0, 384);
             this.bpayments.Name = "bpayments";
             this.bpayments.Size = new System.Drawing.Size(200, 45);
             this.bpayments.TabIndex = 10;
@@ -928,6 +930,34 @@ namespace rct_lmis
             this.label3.TabIndex = 1;
             this.label3.Text = "Welcome!";
             // 
+            // bviewapplications
+            // 
+            this.bviewapplications.Animated = true;
+            this.bviewapplications.BackColor = System.Drawing.Color.Transparent;
+            this.bviewapplications.CheckedState.ForeColor = System.Drawing.Color.White;
+            this.bviewapplications.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bviewapplications.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bviewapplications.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bviewapplications.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bviewapplications.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bviewapplications.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.bviewapplications.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bviewapplications.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.bviewapplications.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bviewapplications.Image = global::rct_lmis.Properties.Resources.icons8_peso_symbol_60;
+            this.bviewapplications.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bviewapplications.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bviewapplications.ImageSize = new System.Drawing.Size(18, 18);
+            this.bviewapplications.Location = new System.Drawing.Point(0, 114);
+            this.bviewapplications.Name = "bviewapplications";
+            this.bviewapplications.PressedColor = System.Drawing.Color.Transparent;
+            this.bviewapplications.Size = new System.Drawing.Size(200, 45);
+            this.bviewapplications.TabIndex = 21;
+            this.bviewapplications.Text = "Pending Applications (Admin)";
+            this.bviewapplications.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bviewapplications.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bviewapplications, "Check Recent Loans");
+            // 
             // frm_home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1011,5 +1041,6 @@ namespace rct_lmis
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private Guna.UI2.WinForms.Guna2Button bviewapplications;
     }
 }

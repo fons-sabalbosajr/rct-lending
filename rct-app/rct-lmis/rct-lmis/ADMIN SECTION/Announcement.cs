@@ -15,6 +15,6 @@ namespace rct_lmis.ADMIN_SECTION
         public string Content { get; set; }
 
         [BsonElement("PostedDate")]
-        public string PostedDate { get; set; }
+        public BsonDateTime PostedDate { get; set; }
     }
 }

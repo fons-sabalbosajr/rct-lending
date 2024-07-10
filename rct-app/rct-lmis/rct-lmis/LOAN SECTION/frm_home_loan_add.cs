@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,23 +12,39 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace rct_lmis.LOAN_SECTION
 {
     public partial class frm_home_loan_add : Form
     {
+
         public frm_home_loan_add()
         {
             InitializeComponent();
             bsavetransaction.Enabled = false;
             InitializeDataGridView();
-
+            InitializeMongoDBUpload();
+            InitializeGoogleDrive();
             SetupAutoCompleteProvince();
         }
+        private IMongoCollection<BsonDocument> collection;
+        private static string[] Scopes = { DriveService.Scope.DriveFile };
+        private static string ApplicationName = "rct-lmis";
+        private DriveService service;
 
+
+        // Folder IDs
+        private static string DocsFolderId = "1kMd3QjEw95oJsMSAK9xwEf-I3_MKlMBj";
+        private static string ImagesFolderId = "1O_-PLQyRAjUV7iy6d3PN5rLXznOzxean";
         private List<string> filePaths = new List<string>();
+
+
+
+        LoadingFunction load = new LoadingFunction();
 
         private void InitializeDataGridView()
         {
@@ -51,12 +73,47 @@ namespace rct_lmis.LOAN_SECTION
             DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn()
             {
                 Name = "Delete",
-                HeaderText = "Delete",
+                HeaderText = "Action",
                 Text = "Delete",
                 UseColumnTextForButtonValue = true, // This will show "Delete" on all buttons
                 Width = 100
             };
             dgvuploads.Columns.Add(deleteButtonColumn);
+        }
+
+        private void InitializeMongoDBUpload()
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<Application>("loan_application");
+        }
+
+        private async void InitializeGoogleDrive()
+        {
+            try
+            {
+                UserCredential credential;
+                using (var stream = new FileStream("google_drive_credentials.json", FileMode.Open, FileAccess.Read))
+                {
+                    var clientSecrets = GoogleClientSecrets.Load(stream).Secrets;
+                    credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        clientSecrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore("token.json", true));
+                }
+
+                // Create Drive API service
+                service = new DriveService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName,
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error initializing Google Drive service: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SetupAutoCompleteProvince()
@@ -100,6 +157,168 @@ namespace rct_lmis.LOAN_SECTION
             tbrprovpr.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
+        private async void bsubmit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (filePaths.Count == 0)
+                {
+                    MessageBox.Show("Please select files to upload.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                mainProgressBar.Maximum = filePaths.Count;
+                mainProgressBar.Value = 0;
+
+                statusLabel.Text = "Uploading files...";
+                statusLabel.ForeColor = Color.Black;
+
+                // Collections to hold file details
+                List<string> fileNames = new List<string>();
+                List<string> fileTypes = new List<string>();
+                List<string> fileLinks = new List<string>();
+
+                for (int i = 0; i < filePaths.Count; i++)
+                {
+                    string filePath = filePaths[i];
+
+                    if (string.IsNullOrEmpty(filePath))
+                    {
+                        MessageBox.Show("Please fill in all fields and select a file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string mimeType = GetMimeType(filePath);
+                    string destinationFolderId = GetDestinationFolderId(mimeType);
+                    string originalFileName = Path.GetFileName(filePath);
+
+                    // Update status in DataGridView (Invoke required for cross-thread access)
+                    dgvuploads.Invoke((MethodInvoker)(() =>
+                    {
+                        if (i < dgvuploads.Rows.Count)
+                            dgvuploads.Rows[i].Cells["Status"].Value = "Uploading";
+                    }));
+
+                    // Upload file to Google Drive
+                    string fileId = await UploadFileToDrive(filePath, destinationFolderId);
+
+                    // Update status in DataGridView (Invoke required for cross-thread access)
+                    dgvuploads.Invoke((MethodInvoker)(() =>
+                    {
+                        if (i < dgvuploads.Rows.Count)
+                        {
+                            if (fileId != null)
+                                dgvuploads.Rows[i].Cells["Status"].Value = "Upload Done";
+                            else
+                                dgvuploads.Rows[i].Cells["Status"].Value = "Failed";
+                        }
+                    }));
+
+                    // Update progress bar (Invoke required for cross-thread access)
+                    mainProgressBar.Invoke((MethodInvoker)(() =>
+                    {
+                        mainProgressBar.Value = i + 1;
+                    }));
+
+                    // Save data to MongoDB for successful uploads
+                    if (fileId != null)
+                    {
+                        // Generate Google Drive link
+                        string fileLink = $"https://drive.google.com/file/d/{fileId}/view?usp=sharing";
+
+                        // Collect file details
+                        fileNames.Add(originalFileName);
+                        fileTypes.Add(mimeType);
+                        fileLinks.Add(fileLink);
+                    }
+                }
+
+                // Combine file details
+                string combinedFileNames = string.Join(", ", fileNames);
+                string combinedFileTypes = string.Join(", ", fileTypes);
+                string combinedFileLinks = string.Join(", ", fileLinks);
+
+                // Update loan_application document with file details
+                var filter = Builders<Application>.Filter.Eq("AccountId", laccountid.Text);
+                var update = Builders<Application>.Update
+                    .Set("docs", combinedFileNames)
+                    .Set("doc_type", combinedFileTypes)
+                    .Set("doc-link", combinedFileLinks);
+
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<Application>("loan_application");
+                await collection.UpdateOneAsync(filter, update);
+
+                // Clear form fields after successful upload
+                filePaths.Clear();
+                dgvuploads.Invoke((MethodInvoker)(() => dgvuploads.Rows.Clear()));
+
+                // Update status label
+                statusLabel.Text = "Upload completed!";
+                statusLabel.ForeColor = Color.Green;
+
+                MessageBox.Show("Data and files uploaded successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error uploading files and saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private async Task<string> UploadFileToDrive(string filePath, string destinationFolderId)
+        {
+            try
+            {
+                var fileMetadata = new Google.Apis.Drive.v3.Data.File
+                {
+                    Name = Path.GetFileName(filePath),
+                    Parents = new List<string> { destinationFolderId }
+                };
+
+                FilesResource.CreateMediaUpload request;
+                using (var stream = new FileStream(filePath, FileMode.Open))
+                {
+                    request = service.Files.Create(fileMetadata, stream, GetMimeType(filePath));
+                    request.Fields = "id";
+                    await request.UploadAsync();
+                }
+
+                var file = request.ResponseBody;
+                return file.Id;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while uploading the file to Google Drive: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+
+        private string GetMimeType(string fileName)
+        {
+            string mimeType = "application/unknown";
+            string ext = System.IO.Path.GetExtension(fileName).ToLower();
+            Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
+            if (regKey != null && regKey.GetValue("Content Type") != null)
+            {
+                mimeType = regKey.GetValue("Content Type").ToString();
+            }
+            return mimeType;
+        }
+
+        private string GetDestinationFolderId(string mimeType)
+        {
+            if (mimeType.StartsWith("image/"))
+            {
+                return ImagesFolderId;
+            }
+            else
+            {
+                return DocsFolderId;
+            }
+        }
+
         private void frm_home_loan_add_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
@@ -141,6 +360,7 @@ namespace rct_lmis.LOAN_SECTION
 
                     dgvuploads.Rows.Add(Path.GetFileName(fileName), fileSizeString, "Ready to Upload", "Action");
                     lnofile.Visible = false;
+                    lfilesready.Visible = true;
                 }
             }
         }
@@ -149,11 +369,8 @@ namespace rct_lmis.LOAN_SECTION
         {
             dgvuploads.Rows.Clear();
             filePaths.Clear();
-        }
-
-        private void tbrprovince_TextChanged(object sender, EventArgs e)
-        {
-
+            lfilesready.Visible = false;
+            lnofile.Visible = true;
         }
 
         private void dgvuploads_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -184,10 +401,190 @@ namespace rct_lmis.LOAN_SECTION
                         if (filePaths.Count == 0)
                         {
                             lnofile.Visible = true;
+                            lfilesready.Visible = false;
                         }
                     }
                 }
             }
         }
+
+        private void buploadform_Click(object sender, EventArgs e)
+        {
+            var application = new Application
+            {
+                LoanType = rbnew.Checked ? "New" :
+                   rbrenewal.Checked ? "Renewal" :
+                   rbrentown.Checked ? "Owned" :
+                   rbrentrf.Checked ? "Rented" :
+                   rbrentrl.Checked ? "Living with Relatives" : string.Empty,
+                RBLate = dtbrbdate.Value,
+                RSDate = dtbrsdate.Value,
+                AccountId = laccountid.Text,
+                Status = cbstatus.SelectedItem?.ToString(),
+                CStatus = cbcstatus.SelectedItem?.ToString(),
+                Gender = cbgender.SelectedItem?.ToString(),
+                CGender = cbcgender.SelectedItem?.ToString(),
+                LastName = tbrlname.Text,
+                FirstName = tbrfname.Text,
+                MiddleName = tbrmname.Text,
+                SuffixName = tbrsname.Text,
+                Street = tbrstreet.Text,
+                Barangay = tbrbrgy.Text,
+                City = tbrcity.Text,
+                Province = tbrprovince.Text,
+                StreetPR = tbrstreetpr.Text,
+                BarangayPR = tbrbrgypr.Text,
+                CityPR = tbrcitypr.Text,
+                ProvincePR = tbrprovpr.Text,
+                Fee = trfee.Text,
+                StayLength = tstaylength.Text,
+                Business = tbusiness.Text,
+                Income = tincome.Text,
+                CP = tbrcp.Text,
+                Spouse = tspouse.Text,
+                Occupation = tbroccupation.Text,
+                SpIncome = tbrspincome.Text,
+                SpCP = tbrspcp.Text,
+                CBLName = tcblname.Text,
+                CBFName = tcbfname.Text,
+                CBMName = tcbmname.Text,
+                CBSName = tcbsname.Text,
+                CBStreet = tcstreet.Text,
+                CBBarangay = tcbrgy.Text,
+                CBCity = tccity.Text,
+                CBProvince = tcprov.Text,
+                CBAge = tcage.Text,
+                CBIncome = tcincome.Text,
+                CBCP = tccp.Text
+            };
+
+            SaveApplication(application);
+        }
+
+        private void SaveApplication(Application application)
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<Application>("loan_application");
+
+                load.Show(this);
+                Thread.Sleep(1000);
+                collection.InsertOne(application);
+                load.Close();
+
+                MessageBox.Show("Application saved successfully. Please proceed to the uploading of documents");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while saving the application: {ex.Message}");
+            }
+        }
+
+        private void bclearinfo_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you want to clear all fields?", "Reset Encoding", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes) 
+            {
+                // Clear RadioButtons
+                rbnew.Checked = false;
+                rbrenewal.Checked = false;
+                rbrentown.Checked = false;
+                rbrentrf.Checked = false;
+                rbrentrl.Checked = false;
+
+                // Clear DateTimePickers
+                dtbrbdate.Value = DateTime.Now;
+                dtbrsdate.Value = DateTime.Now;
+
+                // Clear Labels
+                laccountid.Text = string.Empty;
+
+                // Clear ComboBoxes
+                cbstatus.SelectedIndex = -1;
+                cbcstatus.SelectedIndex = -1;
+                cbgender.SelectedIndex = -1;
+                cbcgender.SelectedIndex = -1;
+
+                // Clear TextBoxes
+                tbrlname.Text = string.Empty;
+                tbrfname.Text = string.Empty;
+                tbrmname.Text = string.Empty;
+                tbrsname.Text = string.Empty;
+                tbrstreet.Text = string.Empty;
+                tbrbrgy.Text = string.Empty;
+                tbrcity.Text = string.Empty;
+                tbrprovince.Text = string.Empty;
+                tbrstreetpr.Text = string.Empty;
+                tbrbrgypr.Text = string.Empty;
+                tbrcitypr.Text = string.Empty;
+                tbrprovpr.Text = string.Empty;
+                trfee.Text = string.Empty;
+                tstaylength.Text = string.Empty;
+                tbusiness.Text = string.Empty;
+                tincome.Text = string.Empty;
+                tbrcp.Text = string.Empty;
+                tspouse.Text = string.Empty;
+                tbroccupation.Text = string.Empty;
+                tbrspincome.Text = string.Empty;
+                tbrspcp.Text = string.Empty;
+                tcblname.Text = string.Empty;
+                tcbfname.Text = string.Empty;
+                tcbmname.Text = string.Empty;
+                tcbsname.Text = string.Empty;
+                tcstreet.Text = string.Empty;
+                tcbrgy.Text = string.Empty;
+                tccity.Text = string.Empty;
+                tcprov.Text = string.Empty;
+                tcage.Text = string.Empty;
+                tcincome.Text = string.Empty;
+                tccp.Text = string.Empty;
+            }
+        }
+
+      
+    }
+
+    public class Application
+    {
+        public string LoanType { get; set; }
+        public DateTime RBLate { get; set; }
+        public DateTime RSDate { get; set; }
+        public string AccountId { get; set; }
+        public string Status { get; set; }
+        public string CStatus { get; set; }
+        public string Gender { get; set; }
+        public string CGender { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string SuffixName { get; set; }
+        public string Street { get; set; }
+        public string Barangay { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string StreetPR { get; set; }
+        public string BarangayPR { get; set; }
+        public string CityPR { get; set; }
+        public string ProvincePR { get; set; }
+        public string Fee { get; set; }
+        public string StayLength { get; set; }
+        public string Business { get; set; }
+        public string Income { get; set; }
+        public string CP { get; set; }
+        public string Spouse { get; set; }
+        public string Occupation { get; set; }
+        public string SpIncome { get; set; }
+        public string SpCP { get; set; }
+        public string CBLName { get; set; }
+        public string CBFName { get; set; }
+        public string CBMName { get; set; }
+        public string CBSName { get; set; }
+        public string CBStreet { get; set; }
+        public string CBBarangay { get; set; }
+        public string CBCity { get; set; }
+        public string CBProvince { get; set; }
+        public string CBAge { get; set; }
+        public string CBIncome { get; set; }
+        public string CBCP { get; set; }
     }
 }

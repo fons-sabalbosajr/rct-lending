@@ -1,4 +1,6 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -60,7 +62,7 @@ namespace rct_lmis.ADMIN_SECTION
             {
                 Title = title,
                 Content = content,
-                PostedDate = DateTime.Now.ToShortDateString()
+                PostedDate = DateTime.Now
             };
 
             await collection.InsertOneAsync(announcement);

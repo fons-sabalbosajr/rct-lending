@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_home_dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_home_dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\signup_login\\frm_home_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\signup_login\\frm_home_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\signup_login\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\signup_login\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,74 +31,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "frm_home_dashboard.cs",
-              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_dashboard.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\frm_home_dashboard.cs",
-              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_dashboard.cs",
-              "RelativeToolTip": "rct-lmis\\frm_home_dashboard.cs",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAqwFUAAABMAAAA",
+              "Title": "frm_home_loan_request.cs [Design]",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs [Design]",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T13:41:19.59Z",
+              "WhenOpened": "2024-07-10T13:50:46.072Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frm_home.cs",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\frm_home.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home.cs",
+              "RelativeToolTip": "rct-lmis\\frm_home.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAswP8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T12:17:11.533Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frm_home_dashboard.cs [Design]",
-              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_dashboard.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\frm_home_dashboard.cs",
-              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home_dashboard.cs [Design]",
-              "RelativeToolTip": "rct-lmis\\frm_home_dashboard.cs [Design]",
+              "Title": "frm_home_loans.cs [Design]",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loans.cs [Design]",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loans.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T12:50:06.4Z",
+              "WhenOpened": "2024-07-10T12:13:32.451Z",
               "EditorCaption": " [Design]"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "e2cc362d-0963-4b3c-9172-3fd0b7d96220",
-        "Display": 0,
-        "X": 1128,
-        "Y": 358,
-        "Width": 842,
-        "Height": 847,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\SIGNUP_LOGIN\\User.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\SIGNUP_LOGIN\\User.cs",
-              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\SIGNUP_LOGIN\\User.cs",
-              "RelativeToolTip": "rct-lmis\\SIGNUP_LOGIN\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T13:27:07.1Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frm_home_signup.cs",
-              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs",
-              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs",
-              "RelativeToolTip": "rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAzwFcAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T13:13:43.959Z",
-              "EditorCaption": ""
             }
           ]
         }

@@ -1,8 +1,10 @@
 ﻿using CrystalDecisions.Shared;
 using Guna.UI2.WinForms;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
+using rct_lmis.ADMIN_SECTION;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +23,6 @@ using System.Timers;
 using System.Windows.Forms;
 
 namespace rct_lmis
-
 {
     public partial class frm_home : Form
     {
@@ -180,6 +181,7 @@ namespace rct_lmis
         }
         #endregion
 
+
         private void Logout(string username)
         {
             try
@@ -201,8 +203,6 @@ namespace rct_lmis
                 MessageBox.Show($"Error updating logout time: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
         private void LoadUserInfo(string username)
         {
@@ -228,6 +228,7 @@ namespace rct_lmis
                 if (userPosition != "Administrator")
                 {
                     badmin.Visible = false; // Optionally, make it invisible
+                    bviewapplications.Visible = false;
                 }
 
                 // Load the photo
@@ -244,9 +245,66 @@ namespace rct_lmis
             }
         }
 
+        private void LoadTotalAnnouncements()
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<Announcement>("announcements");
+
+            // Get the first day of the current month
+            var firstDayOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            var firstDayOfNextMonth = firstDayOfMonth.AddMonths(1);
+
+            // Debug output to console (for debugging purposes)
+            Console.WriteLine($"First day of month: {firstDayOfMonth}");
+            Console.WriteLine($"First day of next month: {firstDayOfNextMonth}");
+
+            // Filter to count announcements within the current month
+            var filter = Builders<Announcement>.Filter.And(
+                Builders<Announcement>.Filter.Gte(a => a.PostedDate, firstDayOfMonth),
+                Builders<Announcement>.Filter.Lt(a => a.PostedDate, firstDayOfNextMonth)
+            );
+
+            var totalAnnouncements = collection.CountDocuments(filter);
+
+            // Debug output to console (for debugging purposes)
+            Console.WriteLine($"Total announcements in the current month: {totalAnnouncements}");
+
+            // Update the label in the UI thread
+            this.Invoke((MethodInvoker)delegate
+            {
+                Console.WriteLine("Updating UI...");
+                if (totalAnnouncements > 0)
+                {
+                    lcountann.Text = totalAnnouncements.ToString();
+                    lcountann.Visible = true; // Ensure the badge is visible if there are announcements
+                    Console.WriteLine("Badge should be visible");
+                }
+                else
+                {
+                    lcountann.Visible = false; // Hide the badge if there are no recent announcements
+                    Console.WriteLine("Badge should be hidden");
+                }
+            });
+        }
+
+
+        private void LoadDashboard()
+        {
+            ActivateButton(null, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+
+            frm_home_dashboard dashboardForm = new frm_home_dashboard(_username);
+
+            ChildForm(dashboardForm);
+            load.Close();
+        }
+
         private void frm_home_Load(object sender, EventArgs e)
         {
             LoadUserInfo(loggedInUsername);
+            LoadDashboard();
+            LoadTotalAnnouncements();
         }
 
         private void bmenu_Click(object sender, EventArgs e)
@@ -269,14 +327,7 @@ namespace rct_lmis
 
         private void bdashboard_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.col);
-            load.Show(this);
-            Thread.Sleep(1000);
-
-            frm_home_dashboard dashboardForm = new frm_home_dashboard(_username);
-
-            ChildForm(dashboardForm);
-            load.Close();
+            LoadDashboard();
         }
 
         private void bloans_Click(object sender, EventArgs e)
@@ -366,5 +417,15 @@ namespace rct_lmis
                 load.Close();
             }
         }
+    }
+
+    public class Announcement
+    {
+        public ObjectId Id { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime PostedDate { get; set; }
     }
 }

@@ -1243,6 +1243,30 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExcelDataReader.dll" size="181760">
+      <assemblyIdentity name="ExcelDataReader" version="3.7.0.0" publicKeyToken="93517DBE6A4012FA" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>1UqVE3h8d8tpElNKYJgGKxu0K6GXIocwNaCW/+F8azU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExcelDataReader.DataSet.dll" size="11264">
+      <assemblyIdentity name="ExcelDataReader.DataSet" version="3.7.0.0" publicKeyToken="93517DBE6A4012FA" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>H+44U+XgJYaaD5JvcvC4fTNa7RUlcMPp2doumqmQ1Wk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Google.Apis.dll" size="82944">
       <assemblyIdentity name="Google.Apis" version="1.68.0.0" publicKeyToken="4B01FA6E34DB77AB" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -1531,14 +1555,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Extensions.Logging.Abstractions.dll" size="46600">
-      <assemblyIdentity name="Microsoft.Extensions.Logging.Abstractions" version="2.0.0.0" publicKeyToken="ADB9793829DDAE60" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Extensions.Logging.Abstractions.dll" size="66168">
+      <assemblyIdentity name="Microsoft.Extensions.Logging.Abstractions" version="7.0.0.1" publicKeyToken="ADB9793829DDAE60" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uGPxuP1QvnTJUEdl8+dE5yxGM3IoK0i5edZEuyMrPdA=</dsig:DigestValue>
+        <dsig:DigestValue>W758HQZYXKtUgrULh6DfNHanYXxdhJp11tkeAT8ryHc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1735,14 +1759,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rct-lmis.exe" size="1651672">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rct-lmis.exe" size="1800664">
       <assemblyIdentity name="rct-lmis" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wfCjVqiBcNvdcAd3/qYb/N7Yofa/ASK+LufJgVH94eg=</dsig:DigestValue>
+        <dsig:DigestValue>6WdJ63Fo20X5Th+XM8p4qD4oy3q4q8IEtiLTprhPeZ4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -2023,6 +2047,30 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Tesseract.dll" size="133120">
+      <assemblyIdentity name="Tesseract" version="5.2.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>vCrWerX7noDl5g8aQiofRPgw+xuad1eehaY0saljCEA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TesseractOCR.dll" size="160768">
+      <assemblyIdentity name="TesseractOCR" version="5.3.3.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Vjm43Z+rerLRFwuY+/qnUwYzGAgVM12f3mlaMO/uqmM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VisualReactiveWinForms.dll" size="11264">
       <assemblyIdentity name="VisualReactiveWinForms" version="1.0.0.0" publicKeyToken="0EE513EFC52B401D" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -2100,13 +2148,22 @@
       <dsig:DigestValue>HmjfDx+iMGSRADTC48nnE9BAZavvrvRrzDdqkNB8/Ck=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="rct-lmis.exe.config" size="7840">
+  <file name="rct-lmis.exe.config" size="8105">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Fwf+zTGtAaHvNSR8SiY8VvZ5y+AgyCAIDtmu3C9Y2N4=</dsig:DigestValue>
+      <dsig:DigestValue>YVQnDnRbHWb3h7YEsllJJfnyl+bYrhmMQD49EgwBJl4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="tessdata\eng.traineddata" size="23466654">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>2qDJfWUcGfujsl6BMXzWl+mQjIIICQyUw5BTgcI/wEc=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

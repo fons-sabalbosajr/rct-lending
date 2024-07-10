@@ -30,6 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddFiles = new System.Windows.Forms.Button();
+            this.dgvFiles = new System.Windows.Forms.DataGridView();
             this.bupload = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@
             this.tname = new System.Windows.Forms.TextBox();
             this.statusLabel = new System.Windows.Forms.Label();
             this.mainProgressBar = new Guna.UI2.WinForms.Guna2ProgressBar();
-            this.dgvFiles = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFiles)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +67,14 @@
             this.btnAddFiles.Text = "Add File";
             this.btnAddFiles.UseVisualStyleBackColor = true;
             this.btnAddFiles.Click += new System.EventHandler(this.btnAddFiles_Click);
+            // 
+            // dgvFiles
+            // 
+            this.dgvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFiles.Location = new System.Drawing.Point(6, 143);
+            this.dgvFiles.Name = "dgvFiles";
+            this.dgvFiles.Size = new System.Drawing.Size(656, 159);
+            this.dgvFiles.TabIndex = 13;
             // 
             // bupload
             // 
@@ -129,19 +137,11 @@
             this.mainProgressBar.Text = "guna2ProgressBar1";
             this.mainProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             // 
-            // dgvFiles
-            // 
-            this.dgvFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFiles.Location = new System.Drawing.Point(6, 143);
-            this.dgvFiles.Name = "dgvFiles";
-            this.dgvFiles.Size = new System.Drawing.Size(656, 159);
-            this.dgvFiles.TabIndex = 13;
-            // 
             // frm_test_upload
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 513);
+            this.ClientSize = new System.Drawing.Size(1152, 649);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.mainProgressBar);

@@ -38,6 +38,7 @@ namespace rct_lmis.LOAN_SECTION
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_loan_add));
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lapptype = new System.Windows.Forms.Label();
             this.laccountid = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.buploadform = new Guna.UI2.WinForms.Guna2Button();
@@ -54,7 +55,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label98 = new System.Windows.Forms.Label();
             this.cbcgender = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label95 = new System.Windows.Forms.Label();
-            this.tcbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cbcstatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label96 = new System.Windows.Forms.Label();
             this.tcbsname = new Guna.UI2.WinForms.Guna2TextBox();
             this.tcbmname = new Guna.UI2.WinForms.Guna2TextBox();
@@ -68,10 +69,14 @@ namespace rct_lmis.LOAN_SECTION
             this.tbrspincome = new Guna.UI2.WinForms.Guna2TextBox();
             this.tbroccupation = new Guna.UI2.WinForms.Guna2TextBox();
             this.label91 = new System.Windows.Forms.Label();
+            this.dtbrsdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.label90 = new System.Windows.Forms.Label();
             this.tspouse = new Guna.UI2.WinForms.Guna2TextBox();
             this.label89 = new System.Windows.Forms.Label();
             this.tbrcp = new Guna.UI2.WinForms.Guna2TextBox();
             this.label24 = new System.Windows.Forms.Label();
+            this.dtbrbdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.label23 = new System.Windows.Forms.Label();
             this.tincome = new Guna.UI2.WinForms.Guna2TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tbusiness = new Guna.UI2.WinForms.Guna2TextBox();
@@ -107,7 +112,6 @@ namespace rct_lmis.LOAN_SECTION
             this.tbrlname = new Guna.UI2.WinForms.Guna2TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.bsavefile = new Guna.UI2.WinForms.Guna2Button();
             this.bclear = new Guna.UI2.WinForms.Guna2Button();
             this.lfilesready = new System.Windows.Forms.Label();
             this.baddfile = new Guna.UI2.WinForms.Guna2Button();
@@ -226,10 +230,10 @@ namespace rct_lmis.LOAN_SECTION
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.bsavetransaction = new Guna.UI2.WinForms.Guna2Button();
             this.laccno = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.dtbrbdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.label90 = new System.Windows.Forms.Label();
-            this.dtbrsdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.bclearinfo = new Guna.UI2.WinForms.Guna2Button();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.mainProgressBar = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.bsubmit = new Guna.UI2.WinForms.Guna2Button();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -276,6 +280,8 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.bclearinfo);
+            this.tabPage1.Controls.Add(this.lapptype);
             this.tabPage1.Controls.Add(this.laccountid);
             this.tabPage1.Controls.Add(this.label27);
             this.tabPage1.Controls.Add(this.buploadform);
@@ -292,7 +298,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage1.Controls.Add(this.label98);
             this.tabPage1.Controls.Add(this.cbcgender);
             this.tabPage1.Controls.Add(this.label95);
-            this.tabPage1.Controls.Add(this.tcbstatus);
+            this.tabPage1.Controls.Add(this.cbcstatus);
             this.tabPage1.Controls.Add(this.label96);
             this.tabPage1.Controls.Add(this.tcbsname);
             this.tabPage1.Controls.Add(this.tcbmname);
@@ -356,6 +362,15 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage1.Text = "General Information";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lapptype
+            // 
+            this.lapptype.AutoSize = true;
+            this.lapptype.Location = new System.Drawing.Point(19, 32);
+            this.lapptype.Name = "lapptype";
+            this.lapptype.Size = new System.Drawing.Size(35, 13);
+            this.lapptype.TabIndex = 120;
+            this.lapptype.Text = "label2";
+            // 
             // laccountid
             // 
             this.laccountid.AutoSize = true;
@@ -383,22 +398,22 @@ namespace rct_lmis.LOAN_SECTION
             // buploadform
             // 
             this.buploadform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buploadform.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.buploadform.BorderColor = System.Drawing.Color.White;
             this.buploadform.BorderRadius = 4;
             this.buploadform.BorderThickness = 1;
             this.buploadform.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buploadform.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buploadform.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buploadform.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buploadform.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.buploadform.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.buploadform.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buploadform.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.buploadform.Image = global::rct_lmis.Properties.Resources.icons8_view_file_481;
-            this.buploadform.Location = new System.Drawing.Point(644, 7);
+            this.buploadform.ForeColor = System.Drawing.Color.White;
+            this.buploadform.Location = new System.Drawing.Point(674, 623);
             this.buploadform.Name = "buploadform";
-            this.buploadform.Size = new System.Drawing.Size(238, 31);
+            this.buploadform.Size = new System.Drawing.Size(112, 32);
             this.buploadform.TabIndex = 35;
-            this.buploadform.Text = "Upload Application Form";
+            this.buploadform.Text = "Proceed";
+            this.buploadform.Click += new System.EventHandler(this.buploadform_Click);
             // 
             // tccp
             // 
@@ -618,24 +633,24 @@ namespace rct_lmis.LOAN_SECTION
             this.label95.TabIndex = 107;
             this.label95.Text = "Gender:";
             // 
-            // tcbstatus
+            // cbcstatus
             // 
-            this.tcbstatus.BackColor = System.Drawing.Color.Transparent;
-            this.tcbstatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.tcbstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tcbstatus.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcbstatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcbstatus.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.tcbstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.tcbstatus.ItemHeight = 20;
-            this.tcbstatus.Items.AddRange(new object[] {
+            this.cbcstatus.BackColor = System.Drawing.Color.Transparent;
+            this.cbcstatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbcstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbcstatus.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcstatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcstatus.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbcstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbcstatus.ItemHeight = 20;
+            this.cbcstatus.Items.AddRange(new object[] {
             "Single",
             "Married",
             "Widowed"});
-            this.tcbstatus.Location = new System.Drawing.Point(792, 494);
-            this.tcbstatus.Name = "tcbstatus";
-            this.tcbstatus.Size = new System.Drawing.Size(88, 26);
-            this.tcbstatus.TabIndex = 106;
+            this.cbcstatus.Location = new System.Drawing.Point(792, 494);
+            this.cbcstatus.Name = "cbcstatus";
+            this.cbcstatus.Size = new System.Drawing.Size(88, 26);
+            this.cbcstatus.TabIndex = 106;
             // 
             // label96
             // 
@@ -849,6 +864,35 @@ namespace rct_lmis.LOAN_SECTION
             this.label91.TabIndex = 92;
             this.label91.Text = "Occupation:";
             // 
+            // dtbrsdate
+            // 
+            this.dtbrsdate.Animated = true;
+            this.dtbrsdate.Checked = true;
+            this.dtbrsdate.CustomFormat = "MM/DD/YYYY";
+            this.dtbrsdate.FillColor = System.Drawing.Color.White;
+            this.dtbrsdate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtbrsdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtbrsdate.Location = new System.Drawing.Point(581, 338);
+            this.dtbrsdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtbrsdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtbrsdate.Name = "dtbrsdate";
+            this.dtbrsdate.Size = new System.Drawing.Size(152, 29);
+            this.dtbrsdate.TabIndex = 91;
+            this.dtbrsdate.UseTransparentBackground = true;
+            this.dtbrsdate.Value = new System.DateTime(2024, 6, 25, 21, 23, 52, 907);
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.BackColor = System.Drawing.Color.Transparent;
+            this.label90.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label90.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label90.Location = new System.Drawing.Point(488, 345);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(76, 15);
+            this.label90.TabIndex = 90;
+            this.label90.Text = "Date of Birth:";
+            // 
             // tspouse
             // 
             this.tspouse.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -912,6 +956,35 @@ namespace rct_lmis.LOAN_SECTION
             this.label24.Size = new System.Drawing.Size(86, 15);
             this.label24.TabIndex = 86;
             this.label24.Text = "Cellphone No.:";
+            // 
+            // dtbrbdate
+            // 
+            this.dtbrbdate.Animated = true;
+            this.dtbrbdate.Checked = true;
+            this.dtbrbdate.CustomFormat = "MM/DD/YYYY";
+            this.dtbrbdate.FillColor = System.Drawing.Color.White;
+            this.dtbrbdate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtbrbdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtbrbdate.Location = new System.Drawing.Point(581, 248);
+            this.dtbrbdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtbrbdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtbrbdate.Name = "dtbrbdate";
+            this.dtbrbdate.Size = new System.Drawing.Size(152, 29);
+            this.dtbrbdate.TabIndex = 85;
+            this.dtbrbdate.UseTransparentBackground = true;
+            this.dtbrbdate.Value = new System.DateTime(2024, 6, 25, 21, 23, 52, 907);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Transparent;
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label23.Location = new System.Drawing.Point(488, 255);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(76, 15);
+            this.label23.TabIndex = 84;
+            this.label23.Text = "Date of Birth:";
             // 
             // tincome
             // 
@@ -1275,7 +1348,6 @@ namespace rct_lmis.LOAN_SECTION
             this.tbrprovince.SelectedText = "";
             this.tbrprovince.Size = new System.Drawing.Size(200, 25);
             this.tbrprovince.TabIndex = 63;
-            this.tbrprovince.TextChanged += new System.EventHandler(this.tbrprovince_TextChanged);
             // 
             // tbrcity
             // 
@@ -1504,7 +1576,9 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.bsavefile);
+            this.tabPage2.Controls.Add(this.bsubmit);
+            this.tabPage2.Controls.Add(this.statusLabel);
+            this.tabPage2.Controls.Add(this.mainProgressBar);
             this.tabPage2.Controls.Add(this.bclear);
             this.tabPage2.Controls.Add(this.lfilesready);
             this.tabPage2.Controls.Add(this.baddfile);
@@ -1519,23 +1593,6 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage2.Text = "Document Requirements";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // bsavefile
-            // 
-            this.bsavefile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bsavefile.BorderRadius = 4;
-            this.bsavefile.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bsavefile.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bsavefile.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bsavefile.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bsavefile.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bsavefile.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bsavefile.ForeColor = System.Drawing.Color.White;
-            this.bsavefile.Location = new System.Drawing.Point(767, 45);
-            this.bsavefile.Name = "bsavefile";
-            this.bsavefile.Size = new System.Drawing.Size(101, 31);
-            this.bsavefile.TabIndex = 33;
-            this.bsavefile.Text = "SAVE FILES";
-            // 
             // bclear
             // 
             this.bclear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1547,7 +1604,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bclear.FillColor = System.Drawing.Color.Maroon;
             this.bclear.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bclear.ForeColor = System.Drawing.Color.White;
-            this.bclear.Location = new System.Drawing.Point(121, 45);
+            this.bclear.Location = new System.Drawing.Point(149, 45);
             this.bclear.Name = "bclear";
             this.bclear.Size = new System.Drawing.Size(90, 31);
             this.bclear.TabIndex = 71;
@@ -1557,7 +1614,7 @@ namespace rct_lmis.LOAN_SECTION
             // lfilesready
             // 
             this.lfilesready.AutoSize = true;
-            this.lfilesready.BackColor = System.Drawing.Color.Gainsboro;
+            this.lfilesready.BackColor = System.Drawing.Color.Transparent;
             this.lfilesready.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lfilesready.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lfilesready.Location = new System.Drawing.Point(218, 391);
@@ -1565,6 +1622,7 @@ namespace rct_lmis.LOAN_SECTION
             this.lfilesready.Size = new System.Drawing.Size(469, 19);
             this.lfilesready.TabIndex = 70;
             this.lfilesready.Text = "your files are ready for uploading. please complete remaining requirements.";
+            this.lfilesready.Visible = false;
             // 
             // baddfile
             // 
@@ -1579,9 +1637,9 @@ namespace rct_lmis.LOAN_SECTION
             this.baddfile.ForeColor = System.Drawing.Color.White;
             this.baddfile.Location = new System.Drawing.Point(22, 45);
             this.baddfile.Name = "baddfile";
-            this.baddfile.Size = new System.Drawing.Size(93, 31);
+            this.baddfile.Size = new System.Drawing.Size(112, 31);
             this.baddfile.TabIndex = 68;
-            this.baddfile.Text = "Browse";
+            this.baddfile.Text = "Browse Files";
             this.baddfile.Click += new System.EventHandler(this.baddfile_Click);
             // 
             // lnofile
@@ -1991,7 +2049,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label42.Location = new System.Drawing.Point(648, 255);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(77, 15);
+            this.label42.Size = new System.Drawing.Size(76, 15);
             this.label42.TabIndex = 93;
             this.label42.Text = "VAT Amount:";
             // 
@@ -2003,7 +2061,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label43.Location = new System.Drawing.Point(432, 255);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(56, 15);
+            this.label43.Size = new System.Drawing.Size(55, 15);
             this.label43.TabIndex = 91;
             this.label43.Text = "VAT Rate:";
             // 
@@ -2776,7 +2834,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label88.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label88.Location = new System.Drawing.Point(256, 435);
             this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(64, 15);
+            this.label88.Size = new System.Drawing.Size(63, 15);
             this.label88.TabIndex = 195;
             this.label88.Text = "Loan Type:";
             // 
@@ -3228,7 +3286,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label58.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label58.Location = new System.Drawing.Point(12, 166);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(77, 15);
+            this.label58.Size = new System.Drawing.Size(76, 15);
             this.label58.TabIndex = 145;
             this.label58.Text = "VAT Amount:";
             // 
@@ -3441,63 +3499,61 @@ namespace rct_lmis.LOAN_SECTION
             this.laccno.TabIndex = 19;
             this.laccno.Text = " LOAN APPLICATION";
             // 
-            // label23
+            // bclearinfo
             // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label23.Location = new System.Drawing.Point(488, 255);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(76, 15);
-            this.label23.TabIndex = 84;
-            this.label23.Text = "Date of Birth:";
+            this.bclearinfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bclearinfo.BorderRadius = 4;
+            this.bclearinfo.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bclearinfo.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bclearinfo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bclearinfo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bclearinfo.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bclearinfo.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bclearinfo.ForeColor = System.Drawing.Color.White;
+            this.bclearinfo.Location = new System.Drawing.Point(792, 623);
+            this.bclearinfo.Name = "bclearinfo";
+            this.bclearinfo.Size = new System.Drawing.Size(82, 31);
+            this.bclearinfo.TabIndex = 33;
+            this.bclearinfo.Text = "CLEAR";
+            this.bclearinfo.Click += new System.EventHandler(this.bclearinfo_Click);
             // 
-            // dtbrbdate
+            // statusLabel
             // 
-            this.dtbrbdate.Animated = true;
-            this.dtbrbdate.Checked = true;
-            this.dtbrbdate.CustomFormat = "MM/DD/YYYY";
-            this.dtbrbdate.FillColor = System.Drawing.Color.White;
-            this.dtbrbdate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtbrbdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtbrbdate.Location = new System.Drawing.Point(581, 248);
-            this.dtbrbdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtbrbdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtbrbdate.Name = "dtbrbdate";
-            this.dtbrbdate.Size = new System.Drawing.Size(152, 29);
-            this.dtbrbdate.TabIndex = 85;
-            this.dtbrbdate.UseTransparentBackground = true;
-            this.dtbrbdate.Value = new System.DateTime(2024, 6, 25, 21, 23, 52, 907);
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(21, 375);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(62, 13);
+            this.statusLabel.TabIndex = 73;
+            this.statusLabel.Text = "uploading...";
+            this.statusLabel.Visible = false;
             // 
-            // label90
+            // mainProgressBar
             // 
-            this.label90.AutoSize = true;
-            this.label90.BackColor = System.Drawing.Color.Transparent;
-            this.label90.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label90.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label90.Location = new System.Drawing.Point(488, 345);
-            this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(76, 15);
-            this.label90.TabIndex = 90;
-            this.label90.Text = "Date of Birth:";
+            this.mainProgressBar.Location = new System.Drawing.Point(22, 357);
+            this.mainProgressBar.Name = "mainProgressBar";
+            this.mainProgressBar.Size = new System.Drawing.Size(846, 14);
+            this.mainProgressBar.TabIndex = 72;
+            this.mainProgressBar.Text = "guna2ProgressBar1";
+            this.mainProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.mainProgressBar.Visible = false;
             // 
-            // dtbrsdate
+            // bsubmit
             // 
-            this.dtbrsdate.Animated = true;
-            this.dtbrsdate.Checked = true;
-            this.dtbrsdate.CustomFormat = "MM/DD/YYYY";
-            this.dtbrsdate.FillColor = System.Drawing.Color.White;
-            this.dtbrsdate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtbrsdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtbrsdate.Location = new System.Drawing.Point(581, 338);
-            this.dtbrsdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtbrsdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtbrsdate.Name = "dtbrsdate";
-            this.dtbrsdate.Size = new System.Drawing.Size(152, 29);
-            this.dtbrsdate.TabIndex = 91;
-            this.dtbrsdate.UseTransparentBackground = true;
-            this.dtbrsdate.Value = new System.DateTime(2024, 6, 25, 21, 23, 52, 907);
+            this.bsubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bsubmit.BorderRadius = 4;
+            this.bsubmit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bsubmit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bsubmit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bsubmit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bsubmit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bsubmit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bsubmit.ForeColor = System.Drawing.Color.White;
+            this.bsubmit.Location = new System.Drawing.Point(786, 45);
+            this.bsubmit.Name = "bsubmit";
+            this.bsubmit.Size = new System.Drawing.Size(82, 31);
+            this.bsubmit.TabIndex = 33;
+            this.bsubmit.Text = "SUBMIT";
+            this.bsubmit.Click += new System.EventHandler(this.bsubmit_Click);
             // 
             // frm_home_loan_add
             // 
@@ -3711,7 +3767,7 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.Label label98;
         private Guna.UI2.WinForms.Guna2ComboBox cbcgender;
         private System.Windows.Forms.Label label95;
-        private Guna.UI2.WinForms.Guna2ComboBox tcbstatus;
+        private Guna.UI2.WinForms.Guna2ComboBox cbcstatus;
         private System.Windows.Forms.Label label96;
         private Guna.UI2.WinForms.Guna2TextBox tcbsname;
         private Guna.UI2.WinForms.Guna2TextBox tcbmname;
@@ -3722,12 +3778,16 @@ namespace rct_lmis.LOAN_SECTION
         private Guna.UI2.WinForms.Guna2Button buploadform;
         private System.Windows.Forms.Label lfilesready;
         private Guna.UI2.WinForms.Guna2Button bclear;
-        private Guna.UI2.WinForms.Guna2Button bsavefile;
         private Guna.UI2.WinForms.Guna2Button bloansave;
         private Guna.UI2.WinForms.Guna2Button bloanclear;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtbrsdate;
         private System.Windows.Forms.Label label90;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtbrbdate;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lapptype;
+        private Guna.UI2.WinForms.Guna2Button bclearinfo;
+        private System.Windows.Forms.Label statusLabel;
+        private Guna.UI2.WinForms.Guna2ProgressBar mainProgressBar;
+        private Guna.UI2.WinForms.Guna2Button bsubmit;
     }
 }

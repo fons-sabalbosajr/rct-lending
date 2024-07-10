@@ -83,7 +83,7 @@ namespace rct_lmis
             try
             {
                 var database = MongoDBConnection.Instance.Database;
-                var collection = database.GetCollection<Announcement>("annoucements");
+                var collection = database.GetCollection<Announcement>("announcements");
 
                 // Fetch all announcements ordered by date
                 var announcements = collection.Find(Builders<Announcement>.Filter.Empty)
@@ -190,8 +190,12 @@ namespace rct_lmis
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frm_test_upload tu = new frm_test_upload();
-            tu.ShowDialog();
+           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 

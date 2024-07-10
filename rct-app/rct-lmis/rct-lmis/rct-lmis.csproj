@@ -153,6 +153,12 @@
     <Reference Include="DnsClient, Version=1.6.1.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
       <HintPath>..\packages\DnsClient.1.6.1\lib\net471\DnsClient.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelDataReader, Version=3.7.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.7.0\lib\net462\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.7.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.7.0\lib\net462\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.68.0\lib\net462\Google.Apis.dll</HintPath>
     </Reference>
@@ -195,8 +201,8 @@
     <Reference Include="Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.SqlClient.5.2.0\lib\net462\Microsoft.Data.SqlClient.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=7.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.1\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Identity.Client, Version=4.60.2.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Identity.Client.4.60.2\lib\net462\Microsoft.Identity.Client.dll</HintPath>
@@ -292,6 +298,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.FileSystem.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.FileSystem.AccessControl.5.0.0\lib\net461\System.IO.FileSystem.AccessControl.dll</HintPath>
     </Reference>
@@ -386,6 +393,12 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tesseract, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tesseract.5.2.0\lib\net48\Tesseract.dll</HintPath>
+    </Reference>
+    <Reference Include="TesseractOCR, Version=5.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TesseractOCR.5.3.5\lib\net48\TesseractOCR.dll</HintPath>
+    </Reference>
     <Reference Include="VisualReactiveWinForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0ee513efc52b401d, processorArchitecture=MSIL">
       <HintPath>..\packages\Visual.Reactive.WinForms.1.0.0\lib\VisualReactiveWinForms.dll</HintPath>
     </Reference>
@@ -475,6 +488,12 @@
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse.Designer.cs">
       <DependentUpon>frm_home_disburse.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_test_ocr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_test_ocr.Designer.cs">
+      <DependentUpon>frm_test_ocr.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_test_upload.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +524,12 @@
     </Compile>
     <Compile Include="LOAN SECTION\frm_home_loans.Designer.cs">
       <DependentUpon>frm_home_loans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LOAN SECTION\frm_home_loan_request.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOAN SECTION\frm_home_loan_request.Designer.cs">
+      <DependentUpon>frm_home_loan_request.cs</DependentUpon>
     </Compile>
     <Compile Include="SIGNUP_LOGIN\frm_home_login.cs">
       <SubType>Form</SubType>
@@ -639,6 +664,9 @@
     <EmbeddedResource Include="frm_home_dashboard.resx">
       <DependentUpon>frm_home_dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_test_ocr.resx">
+      <DependentUpon>frm_test_ocr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_test_upload.resx">
       <DependentUpon>frm_test_upload.cs</DependentUpon>
     </EmbeddedResource>
@@ -650,6 +678,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loans.resx">
       <DependentUpon>frm_home_loans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOAN SECTION\frm_home_loan_request.resx">
+      <DependentUpon>frm_home_loan_request.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SIGNUP_LOGIN\frm_home_login.resx">
       <DependentUpon>frm_home_login.cs</DependentUpon>
@@ -701,6 +732,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="tessdata\eng.traineddata" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -845,6 +877,15 @@
     <None Include="Resources\icons8-view-file-481.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\service.png" />
+    <None Include="Resources\pay.png" />
+    <None Include="Resources\cash.png" />
+    <None Include="Resources\calendar.png" />
+    <Content Include="tessdata\eng.traineddata">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
@@ -872,6 +913,14 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets'))" />
     <Error Condition="!Exists('..\packages\MongoDB.Libmongocrypt.1.9.0\build\MongoDB.Libmongocrypt.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MongoDB.Libmongocrypt.1.9.0\build\MongoDB.Libmongocrypt.targets'))" />
+    <Error Condition="!Exists('..\packages\Tesseract.5.2.0\build\Tesseract.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tesseract.5.2.0\build\Tesseract.targets'))" />
+    <Error Condition="!Exists('..\packages\TesseractOCR.5.3.5\build\TesseractOCR.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\TesseractOCR.5.3.5\build\TesseractOCR.targets'))" />
   </Target>
   <Import Project="..\packages\MongoDB.Libmongocrypt.1.9.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.9.0\build\MongoDB.Libmongocrypt.targets')" />
+  <Import Project="..\packages\Tesseract.5.2.0\build\Tesseract.targets" Condition="Exists('..\packages\Tesseract.5.2.0\build\Tesseract.targets')" />
+  <Import Project="..\packages\TesseractOCR.5.3.5\build\TesseractOCR.targets" Condition="Exists('..\packages\TesseractOCR.5.3.5\build\TesseractOCR.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /s /y "$(ProjectDir)tessdata" "$(TargetDir)tessdata\"
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>
