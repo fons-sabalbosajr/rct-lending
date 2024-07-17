@@ -537,3 +537,4 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\TesseractOCR.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\TesseractOCR.xml
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_test_ocr.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tessdata\eng.traineddata
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_request.resources

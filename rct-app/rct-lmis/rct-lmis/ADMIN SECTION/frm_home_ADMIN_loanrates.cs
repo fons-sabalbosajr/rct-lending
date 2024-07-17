@@ -7,6 +7,9 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using ExcelDataReader;
 using Guna.UI2.WinForms;
+using System.Text;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace rct_lmis.ADMIN_SECTION
 {
@@ -17,11 +20,134 @@ namespace rct_lmis.ADMIN_SECTION
         public frm_home_ADMIN_loanrates()
         {
             InitializeComponent();
+            disable();
 
             // Initialize MongoDB connection
             var database = MongoDBConnection.Instance.Database;
             loanRateCollection = database.GetCollection<BsonDocument>("loan_rate");
+
+
+            cbmpayment.Items.AddRange(new object[] { "ALL", "DAILY", "WEEKLY", "SEMI-MONTHLY", "MONTHLY" });
+            cbmpayment.SelectedIndex = 0;
         }
+
+        LoadingFunction load = new LoadingFunction();
+
+        private void disable()
+        {
+            cbltype.Enabled = false;
+            cblterms.Enabled = false;
+            cbmode.Enabled = false;
+            tloanamt.Enabled = false;
+            tprofee.Enabled = false;
+            tinterest.Enabled = false;
+            tnotfee.Enabled = false;
+            tannfee.Enabled = false;
+            tinsfee.Enabled = false;
+            tvatfee.Enabled = false;
+            tpenaltyfee.Enabled = false;
+            tmiscfee.Enabled = false;
+            tdocfee.Enabled = false;
+        }
+
+        private void enable()
+        {
+            cbltype.Enabled = true;
+            cblterms.Enabled = true;
+            cbmode.Enabled = true;
+            tloanamt.Enabled = true;
+            tprofee.Enabled = true;
+            tinterest.Enabled = true;
+            tnotfee.Enabled = true;
+            tannfee.Enabled = true;
+            tinsfee.Enabled = true;
+            tvatfee.Enabled = true;
+            tpenaltyfee.Enabled = true;
+            tmiscfee.Enabled = true;
+            tdocfee.Enabled = true;
+
+        }
+
+        private void ApplyFilters()
+        {
+            string searchText = tsearch.Text.ToLower();
+            string paymentMode = cbmpayment.SelectedItem?.ToString();
+
+            // Build MongoDB filter
+            var filters = new List<FilterDefinition<BsonDocument>>();
+
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                var textFilter = Builders<BsonDocument>.Filter.Or(
+                    Builders<BsonDocument>.Filter.Regex("Type", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Principal", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Term", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Mode", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Processing Fee", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Interest Rate/Month", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Notarial Rate", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Annotation Rate", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Insurance Rate", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Vat Rate", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Penalty Rate", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Doc Rate", new BsonRegularExpression(searchText, "i")),
+                    Builders<BsonDocument>.Filter.Regex("Misc. Rate", new BsonRegularExpression(searchText, "i"))
+                );
+                filters.Add(textFilter);
+            }
+
+            if (!string.IsNullOrWhiteSpace(paymentMode) && paymentMode != "ALL")
+            {
+                var modeFilter = Builders<BsonDocument>.Filter.Eq("Mode", paymentMode);
+                filters.Add(modeFilter);
+            }
+
+            var combinedFilter = filters.Count > 0 ? Builders<BsonDocument>.Filter.And(filters) : Builders<BsonDocument>.Filter.Empty;
+
+            // Retrieve data from MongoDB
+            var documents = loanRateCollection.Find(combinedFilter).ToList();
+
+            // Bind data to DataGridView
+            DataTable dataTable = new DataTable();
+
+            if (documents.Count > 0)
+            {
+                // Create columns based on the first document's elements
+                foreach (var element in documents[0].Elements)
+                {
+                    dataTable.Columns.Add(element.Name);
+                }
+
+                // Add rows to the DataTable
+                foreach (var doc in documents)
+                {
+                    DataRow row = dataTable.NewRow();
+                    foreach (var element in doc.Elements)
+                    {
+                        if (element.Value.IsNumeric())
+                        {
+                            // Round numeric values to the nearest ones
+                            row[element.Name] = Math.Round(element.Value.ToDouble(), 0);
+                        }
+                        else
+                        {
+                            row[element.Name] = element.Value.ToString();
+                        }
+                    }
+                    dataTable.Rows.Add(row);
+                }
+            }
+
+            dgvdata.DataSource = dataTable; // Bind the DataTable to the DataGridView
+
+            if (dgvdata.Columns.Count > 0)
+            {
+                dgvdata.Columns[0].Visible = false; // Hide the first column
+                lnorecord.Visible = false;
+            }
+        }
+
+
 
         private DataTable ReadExcelFile(string filePath)
         {
@@ -59,7 +185,6 @@ namespace rct_lmis.ADMIN_SECTION
                 loanRateCollection.InsertOne(document);
                 pbloading.Value += 1; // Update progress bar
             }
-            MessageBox.Show("Data uploaded successfully!");
             pbloading.Visible = false;
         }
 
@@ -72,8 +197,13 @@ namespace rct_lmis.ADMIN_SECTION
                 {
                     string filePath = openFileDialog.FileName;
                     DataTable dataTable = ReadExcelFile(filePath);
+
+                    load.Show(this);
+                    Thread.Sleep(1000);
                     SaveDataToMongoDB(dataTable);
                     LoadDataToDataGridView();
+                    load.Close();
+                    MessageBox.Show("Data uploaded successfully!");
                 }
             }
         }
@@ -125,6 +255,44 @@ namespace rct_lmis.ADMIN_SECTION
         {
             LoadDataToDataGridView();
 
+        }
+
+        private void beditrate_Click(object sender, EventArgs e)
+        {
+            enable();
+        }
+
+        private void dgvdata_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvdata.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dgvdata.SelectedRows[0];
+
+                // Map the DataGridView columns to the controls
+                cbltype.SelectedItem = selectedRow.Cells["Type"].Value?.ToString();
+                tloanamt.Text = selectedRow.Cells["Principal"].Value?.ToString();
+                cblterms.SelectedItem = selectedRow.Cells["Term"].Value?.ToString();
+                cbmode.SelectedItem = selectedRow.Cells["Mode"].Value?.ToString();
+                tprofee.Text = selectedRow.Cells["Processing Fee"].Value?.ToString();
+                tinterest.Text = selectedRow.Cells["Interest Rate/Month"].Value?.ToString();
+                tnotfee.Text = selectedRow.Cells["Notarial Rate"].Value?.ToString();
+                tannfee.Text = selectedRow.Cells["Annotation Rate"].Value?.ToString();
+                tinsfee.Text = selectedRow.Cells["Insurance Rate"].Value?.ToString();
+                tvatfee.Text = selectedRow.Cells["Vat Rate"].Value?.ToString();
+                tpenaltyfee.Text = selectedRow.Cells["Penalty Rate"].Value?.ToString();
+                tdocfee.Text = selectedRow.Cells["Doc Rate"].Value?.ToString();
+                tmiscfee.Text = selectedRow.Cells["Misc. Rate"].Value?.ToString();
+            }
+        }
+
+        private void tsearch_TextChanged(object sender, EventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void cbmpayment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyFilters();
         }
     }
 
