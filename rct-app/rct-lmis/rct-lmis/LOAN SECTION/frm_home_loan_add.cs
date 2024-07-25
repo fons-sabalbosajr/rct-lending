@@ -1,9 +1,11 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿using DnsClient.Protocol;
+using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using rct_lmis.ADMIN_SECTION;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +23,8 @@ namespace rct_lmis.LOAN_SECTION
 {
     public partial class frm_home_loan_add : Form
     {
+        private IMongoCollection<BsonDocument> collection;
+        private readonly IMongoCollection<BsonDocument> loanRateCollection;
 
         public frm_home_loan_add()
         {
@@ -30,8 +34,10 @@ namespace rct_lmis.LOAN_SECTION
             InitializeMongoDBUpload();
             InitializeGoogleDrive();
             SetupAutoCompleteProvince();
+            var database = MongoDBConnection.Instance.Database;
+            loanRateCollection = database.GetCollection<BsonDocument>("loan_rate");
+
         }
-        private IMongoCollection<BsonDocument> collection;
         private static string[] Scopes = { DriveService.Scope.DriveFile };
         private static string ApplicationName = "rct-lmis";
         private DriveService service;
@@ -41,7 +47,6 @@ namespace rct_lmis.LOAN_SECTION
         private static string DocsFolderId = "1kMd3QjEw95oJsMSAK9xwEf-I3_MKlMBj";
         private static string ImagesFolderId = "1O_-PLQyRAjUV7iy6d3PN5rLXznOzxean";
         private List<string> filePaths = new List<string>();
-
 
 
         LoadingFunction load = new LoadingFunction();
@@ -327,7 +332,7 @@ namespace rct_lmis.LOAN_SECTION
 
         private void frm_home_loan_add_Load(object sender, EventArgs e)
         {
-
+            LoadDataToDataGridView();
         }
 
         private string FormatFileSize(long fileSize)
@@ -413,10 +418,12 @@ namespace rct_lmis.LOAN_SECTION
             var application = new Application
             {
                 LoanType = rbnew.Checked ? "New" :
-                   rbrenewal.Checked ? "Renewal" :
-                   rbrentown.Checked ? "Owned" :
+                   rbrenewal.Checked ? "Renewal" : string.Empty,
+                
+                RentType = rbrentown.Checked ? "Owned" :
                    rbrentrf.Checked ? "Rented" :
                    rbrentrl.Checked ? "Living with Relatives" : string.Empty,
+
                 RBLate = dtbrbdate.Value,
                 RSDate = dtbrsdate.Value,
                 AccountId = laccountid.Text,
@@ -455,7 +462,8 @@ namespace rct_lmis.LOAN_SECTION
                 CBProvince = tcprov.Text,
                 CBAge = tcage.Text,
                 CBIncome = tcincome.Text,
-                CBCP = tccp.Text
+                CBCP = tccp.Text,
+                ApplicationDate = DateTime.Now
             };
 
             SaveApplication(application);
@@ -541,14 +549,290 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-      
+        private void LoadDataToDataGridView()
+        {
+            var filter = Builders<BsonDocument>.Filter.Empty; // Retrieve all documents
+            var documents = loanRateCollection.Find(filter).ToList();
+            DataTable dataTable = new DataTable();
+
+            // Define the columns to display in the DataGridView
+            string[] displayColumns = { "Term", "Principal", "Type", "Mode", "Interest Rate/Month", "Processing" };
+
+            // Create the columns in the DataTable
+            foreach (string column in displayColumns)
+            {
+                dataTable.Columns.Add(column);
+            }
+            dataTable.Columns.Add("FullDocument", typeof(BsonDocument)); // Hidden column to store the entire document
+
+            if (documents.Count > 0)
+            {
+                // Add rows to the DataTable
+                foreach (var doc in documents)
+                {
+                    DataRow row = dataTable.NewRow();
+                    foreach (string column in displayColumns)
+                    {
+                        if (doc.Contains(column))
+                        {
+                            var element = doc[column];
+                            if (element.IsNumeric())
+                            {
+                                if (column == "Principal")
+                                {
+                                    // Format Principal with ₱ text
+                                    row[column] = "₱ " + Math.Round(element.ToDouble(), 0).ToString();
+                                }
+                                else
+                                {
+                                    // Round numeric values to the nearest ones
+                                    row[column] = Math.Round(element.ToDouble(), 0);
+                                }
+                            }
+                            else
+                            {
+                                row[column] = element.ToString();
+                            }
+                        }
+                    }
+                    row["FullDocument"] = doc; // Store the entire document in the hidden column
+                    dataTable.Rows.Add(row);
+                }
+            }
+
+            dgvloandata.DataSource = dataTable;
+
+            if (dgvloandata.Columns.Count > 0)
+            {
+                dgvloandata.Columns["FullDocument"].Visible = false; // Hide the full document column
+            }
+
+            // Center align all columns and set specific numeric formatting
+            foreach (DataGridViewColumn column in dgvloandata.Columns)
+            {
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Format numeric columns to show two decimal places except "Term"
+                if (column.Name != "Term" && (column.Name == "Principal" || column.Name == "Interest Rate/Month" || column.Name == "Processing"))
+                {
+                    column.DefaultCellStyle.Format = "N2";
+                }
+            }
+
+            // Debug output to verify the DataTable structure and data
+            //Console.WriteLine("DataTable Columns:");
+            foreach (DataColumn col in dataTable.Columns)
+            {
+                Console.WriteLine($"Column: {col.ColumnName}");
+            }
+
+            //Console.WriteLine("DataTable Rows:");
+            foreach (DataRow row in dataTable.Rows)
+            {
+                foreach (var item in row.ItemArray)
+                {
+                    Console.Write($"{item} ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        private void SaveLoan()
+        {
+            if (dgvloandata.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dgvloandata.SelectedRows[0];
+                BsonDocument fullDocument = selectedRow.Cells["FullDocument"].Value as BsonDocument;
+
+                if (fullDocument != null)
+                {
+                    // Access the loan_application collection
+                    var database = MongoDBConnection.Instance.Database;
+                    var loanApplicationCollection = database.GetCollection<BsonDocument>("loan_application");
+
+                    // Fetch the last row added in the loan_application collection
+                    var filter = Builders<BsonDocument>.Filter.Empty;
+                    var lastDocument = loanApplicationCollection.Find(filter).SortByDescending(doc => doc["_id"]).FirstOrDefault();
+
+                    if (lastDocument != null)
+                    {
+                        try
+                        {
+                            var updateDefinition = Builders<BsonDocument>.Update
+                        .Set("Principal", tloanamt.Text.Replace("₱ ", "").Replace(".00", ""))
+                        .Set("Term", tloanterm.Text.Replace(" month/s", ""))
+                        .Set("Interest Rate/Month", tloaninterest.Text.Replace(".00", ""))
+                        .Set("Processing Fee", trfservicefee.Text.Replace(".00", ""))
+                        .Set("Notarial Rate", trfnotarialfee.Text.Replace(".00", ""))
+                        .Set("Insurance Rate", trfinsurancefee.Text.Replace(".00", ""))
+                        .Set("Annotation Rate", trfannotationfee.Text.Replace(".00", ""))
+                        .Set("Vat Rate", trfvat.Text.Replace(".00", ""))
+                        .Set("Misc. Rate", trfmisc.Text.Replace(".00", ""))
+                        .Set("Doc Rate", trfdocfee.Text.Replace(".00", ""))
+                        .Set("Penalty Rate", tpenaltymo.Text.Replace(".00", ""))
+                        .Set("Status", "For Approval and Verification");
+
+                            // Update the last document in the collection
+                            loanApplicationCollection.UpdateOne(
+                                Builders<BsonDocument>.Filter.Eq("_id", lastDocument["_id"]),
+                                updateDefinition
+                            );
+
+                            // Check the status and disable tabPage4 if necessary
+                            if (updateDefinition != null)
+                            {
+                                string status = "For Approval and Verification"; // Hardcoded status check for this example
+                                if (status == "For Approval and Verification")
+                                {
+                                    guna2TabControl1.TabPages["tabPage4"].Enabled = false;
+                                    papprove.Visible = true;
+                                }
+                                else
+                                {
+                                    guna2TabControl1.TabPages["tabPage4"].Enabled = true;
+                                    papprove.Visible = false;
+                                }
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Error updating document: " + ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No documents found in the loan_application collection.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Selected row or FullDocument is null.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to update.");
+            }
+        }
+
+        // Event handler to populate text boxes with selected row value
+        private void bsavetransaction_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bloanclear_Click(object sender, EventArgs e)
+        {
+            tloanamt.Clear();
+            tloanterm.Clear();
+            tloaninterest.Clear();
+            trfservicefee.Clear();
+            trfnotarialfee.Clear();
+            trfinsurancefee.Clear();
+            trfannotationfee.Clear();
+            trfvat.Clear();
+            trfmisc.Clear();
+            trfdocfee.Clear();
+
+            trfnotarialamt.Clear();
+            trfinsuranceamt.Clear();
+            trfannotationmt.Clear();
+            trfvatamt.Clear();
+            trfmiscamt.Clear();
+            trfdocamt.Clear();
+            tamortizedamt.Clear();
+            tpenaltymo.Clear();
+
+
+        }
+
+        private void dgvloandata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvloandata.ClearSelection();
+        }
+
+        private void dgvloandata_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure a valid row index is selected
+            {
+                DataGridViewRow selectedRow = dgvloandata.Rows[e.RowIndex];
+                if (selectedRow != null && selectedRow.Cells["FullDocument"].Value != null)
+                {
+                    BsonDocument fullDocument = selectedRow.Cells["FullDocument"].Value as BsonDocument;
+
+                    if (fullDocument != null)
+                    {
+                        // Debug output
+                        //Console.WriteLine("FullDocument: " + fullDocument.ToJson());
+
+                        try
+                        {
+                            tloanamt.Text = fullDocument.Contains("Principal") ? "₱ " + fullDocument["Principal"].ToString() + ".00" : string.Empty;
+                            tloanterm.Text = fullDocument.Contains("Term") ? fullDocument["Term"].ToString() + " month/s" : string.Empty;
+                            tloaninterest.Text = fullDocument.Contains("Interest Rate/Month") ? fullDocument["Interest Rate/Month"].ToString() + ".00" : string.Empty;
+                            trfservicefee.Text = fullDocument.Contains("Processing Fee") ? fullDocument["Processing Fee"].ToString() + ".00" : string.Empty;
+                            
+                            
+                            trfnotarialfee.Text = fullDocument.Contains("Notarial Rate") ? fullDocument["Notarial Rate"].ToString() + ".00" : string.Empty;
+                            trfnotarialamt.Text = trfannotationfee.Text;
+
+                            trfinsurancefee.Text = fullDocument.Contains("Insurance Rate") ? fullDocument["Insurance Rate"].ToString() + ".00" : string.Empty;
+                            trfinsuranceamt.Text = trfinsurancefee.Text;
+
+                            trfannotationfee.Text = fullDocument.Contains("Annotation Rate") ? fullDocument["Annotation Rate"].ToString() + ".00" : string.Empty;
+                            trfannotationmt.Text = trfannotationfee.Text;
+
+                            trfvat.Text = fullDocument.Contains("Vat Rate") ? fullDocument["Vat Rate"].ToString() + ".00" : string.Empty;
+                            trfvatamt.Text = trfvat.Text;
+
+                            trfmisc.Text = fullDocument.Contains("Misc. Rate") ? fullDocument["Misc. Rate"].ToString() + ".00" : string.Empty;
+                            trfmiscamt.Text = trfmisc.Text;
+
+                            trfdocfee.Text = fullDocument.Contains("Doc Rate") ? fullDocument["Doc Rate"].ToString() + ".00" : string.Empty;
+                            trfdocamt.Text = trfdocfee.Text;
+
+                            // Assuming you have logic to compute these amounts, otherwise set them as empty or with computed values.
+                            tamortizedamt.Text = string.Empty;
+                            tpenaltymo.Text = fullDocument.Contains("Penalty Rate") ? fullDocument["Penalty Rate"].ToString() + ".00" : string.Empty;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Error processing fullDocument: " + ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        // Debug output
+                        Console.WriteLine("FullDocument is null");
+                    }
+                }
+                else
+                {
+                    // Debug output
+                    Console.WriteLine("Selected row or FullDocument cell is null");
+                }
+            }
+        }
+
+        private void bloansave_Click(object sender, EventArgs e)
+        {
+            load.Show(this);
+            Thread.Sleep(2000);
+            SaveLoan();
+            load.Close();
+            MessageBox.Show("Update successful!", "Loan Application Amount Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 
     public class Application
     {
+        
         public string LoanType { get; set; }
+        public string RentType { get; set; }
         public DateTime RBLate { get; set; }
         public DateTime RSDate { get; set; }
+        public DateTime ApplicationDate { get; set; }
         public string AccountId { get; set; }
         public string Status { get; set; }
         public string CStatus { get; set; }

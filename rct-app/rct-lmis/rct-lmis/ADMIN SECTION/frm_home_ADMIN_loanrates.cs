@@ -147,8 +147,6 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
-
-
         private DataTable ReadExcelFile(string filePath)
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);

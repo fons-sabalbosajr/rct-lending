@@ -519,6 +519,12 @@
     <Compile Include="JOURNAL SECTION\frm_home_journals_new.Designer.cs">
       <DependentUpon>frm_home_journals_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="LOAN SECTION\frm_home_loand_req_details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOAN SECTION\frm_home_loand_req_details.Designer.cs">
+      <DependentUpon>frm_home_loand_req_details.cs</DependentUpon>
+    </Compile>
     <Compile Include="LOAN SECTION\frm_home_loans.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -675,6 +681,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="JOURNAL SECTION\frm_home_journals_new.resx">
       <DependentUpon>frm_home_journals_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOAN SECTION\frm_home_loand_req_details.resx">
+      <DependentUpon>frm_home_loand_req_details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loans.resx">
       <DependentUpon>frm_home_loans.cs</DependentUpon>

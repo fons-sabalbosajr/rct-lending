@@ -74,7 +74,6 @@
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.lnorecord = new System.Windows.Forms.Label();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.pleft.SuspendLayout();
             this.pnavtop.SuspendLayout();
@@ -127,7 +126,6 @@
             // pleft
             // 
             this.pleft.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pleft.Controls.Add(this.guna2Button1);
             this.pleft.Controls.Add(this.tpenaltyfee);
             this.pleft.Controls.Add(this.label15);
             this.pleft.Controls.Add(this.tinterest);
@@ -756,7 +754,6 @@
             this.cbmpayment.Location = new System.Drawing.Point(368, 16);
             this.cbmpayment.Name = "cbmpayment";
             this.cbmpayment.Size = new System.Drawing.Size(145, 26);
-            this.cbmpayment.StartIndex = 0;
             this.cbmpayment.TabIndex = 130;
             this.cbmpayment.SelectedIndexChanged += new System.EventHandler(this.cbmpayment_SelectedIndexChanged);
             // 
@@ -797,7 +794,7 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvdata.ColumnHeadersHeight = 25;
+            this.dgvdata.ColumnHeadersHeight = 30;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -812,7 +809,7 @@
             this.dgvdata.Name = "dgvdata";
             this.dgvdata.ReadOnly = true;
             this.dgvdata.RowHeadersVisible = false;
-            this.dgvdata.RowTemplate.Height = 20;
+            this.dgvdata.RowTemplate.Height = 30;
             this.dgvdata.Size = new System.Drawing.Size(947, 585);
             this.dgvdata.TabIndex = 4;
             this.dgvdata.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
@@ -828,13 +825,13 @@
             this.dgvdata.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvdata.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvdata.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvdata.ThemeStyle.HeaderStyle.Height = 25;
+            this.dgvdata.ThemeStyle.HeaderStyle.Height = 30;
             this.dgvdata.ThemeStyle.ReadOnly = true;
             this.dgvdata.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvdata.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvdata.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvdata.ThemeStyle.RowsStyle.Height = 20;
+            this.dgvdata.ThemeStyle.RowsStyle.Height = 30;
             this.dgvdata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvdata.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.SelectionChanged += new System.EventHandler(this.dgvdata_SelectionChanged);
@@ -850,23 +847,6 @@
             this.lnorecord.Size = new System.Drawing.Size(116, 20);
             this.lnorecord.TabIndex = 14;
             this.lnorecord.Text = "no record found";
-            // 
-            // guna2Button1
-            // 
-            this.guna2Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2Button1.BorderRadius = 4;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(24, 555);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(75, 31);
-            this.guna2Button1.TabIndex = 134;
-            this.guna2Button1.Text = "Update";
             // 
             // frm_home_ADMIN_loanrates
             // 
@@ -940,6 +920,5 @@
         private System.Windows.Forms.Label label15;
         private Guna.UI2.WinForms.Guna2TextBox tinterest;
         private System.Windows.Forms.Label label14;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

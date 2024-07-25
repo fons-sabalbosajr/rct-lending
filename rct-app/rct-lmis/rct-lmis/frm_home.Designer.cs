@@ -53,12 +53,13 @@ namespace rct_lmis
             this.blogout = new Guna.UI2.WinForms.Guna2Button();
             this.badmin = new Guna.UI2.WinForms.Guna2Button();
             this.breports = new Guna.UI2.WinForms.Guna2Button();
-            this.bjentries = new Guna.UI2.WinForms.Guna2Button();
-            this.bdisburse = new Guna.UI2.WinForms.Guna2Button();
-            this.bcrbooks = new Guna.UI2.WinForms.Guna2Button();
-            this.bclient = new Guna.UI2.WinForms.Guna2Button();
-            this.bsafekeeping = new Guna.UI2.WinForms.Guna2Button();
             this.bpayments = new Guna.UI2.WinForms.Guna2Button();
+            this.bjentries = new Guna.UI2.WinForms.Guna2Button();
+            this.bsafekeeping = new Guna.UI2.WinForms.Guna2Button();
+            this.bcrbooks = new Guna.UI2.WinForms.Guna2Button();
+            this.bdisburse = new Guna.UI2.WinForms.Guna2Button();
+            this.bclient = new Guna.UI2.WinForms.Guna2Button();
+            this.bviewapplications = new Guna.UI2.WinForms.Guna2Button();
             this.bloans = new Guna.UI2.WinForms.Guna2Button();
             this.bdashboard = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
@@ -81,7 +82,6 @@ namespace rct_lmis
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.bviewapplications = new Guna.UI2.WinForms.Guna2Button();
             this.paneltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -392,6 +392,33 @@ namespace rct_lmis
             this.breports.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.breports.TextOffset = new System.Drawing.Point(20, 0);
             // 
+            // bpayments
+            // 
+            this.bpayments.Animated = true;
+            this.bpayments.BackColor = System.Drawing.Color.Transparent;
+            this.bpayments.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bpayments.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bpayments.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bpayments.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bpayments.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bpayments.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.bpayments.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bpayments.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.bpayments.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bpayments.Image = global::rct_lmis.Properties.Resources.icons8_cash_48;
+            this.bpayments.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bpayments.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bpayments.ImageSize = new System.Drawing.Size(18, 18);
+            this.bpayments.Location = new System.Drawing.Point(0, 384);
+            this.bpayments.Name = "bpayments";
+            this.bpayments.Size = new System.Drawing.Size(200, 45);
+            this.bpayments.TabIndex = 10;
+            this.bpayments.Text = "Payments";
+            this.bpayments.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bpayments.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bpayments, "View Encode Payments");
+            this.bpayments.Click += new System.EventHandler(this.bpayments_Click);
+            // 
             // bjentries
             // 
             this.bjentries.Animated = true;
@@ -418,87 +445,6 @@ namespace rct_lmis
             this.bjentries.TextOffset = new System.Drawing.Point(20, 0);
             this.toolTip1.SetToolTip(this.bjentries, "Check Journal Entries");
             this.bjentries.Click += new System.EventHandler(this.bjentries_Click);
-            // 
-            // bdisburse
-            // 
-            this.bdisburse.Animated = true;
-            this.bdisburse.BackColor = System.Drawing.Color.Transparent;
-            this.bdisburse.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bdisburse.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bdisburse.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bdisburse.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bdisburse.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bdisburse.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.bdisburse.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bdisburse.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.bdisburse.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bdisburse.Image = global::rct_lmis.Properties.Resources.icons8_banking_loan_with_money_bag_in_hand_48;
-            this.bdisburse.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bdisburse.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bdisburse.ImageSize = new System.Drawing.Size(18, 18);
-            this.bdisburse.Location = new System.Drawing.Point(0, 204);
-            this.bdisburse.Name = "bdisburse";
-            this.bdisburse.Size = new System.Drawing.Size(200, 45);
-            this.bdisburse.TabIndex = 14;
-            this.bdisburse.Text = "Disbursements";
-            this.bdisburse.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bdisburse.TextOffset = new System.Drawing.Point(20, 0);
-            this.toolTip1.SetToolTip(this.bdisburse, "Monitor Disbursement");
-            this.bdisburse.Click += new System.EventHandler(this.bdisburse_Click);
-            // 
-            // bcrbooks
-            // 
-            this.bcrbooks.Animated = true;
-            this.bcrbooks.BackColor = System.Drawing.Color.Transparent;
-            this.bcrbooks.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bcrbooks.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bcrbooks.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bcrbooks.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bcrbooks.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bcrbooks.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.bcrbooks.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bcrbooks.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.bcrbooks.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bcrbooks.Image = global::rct_lmis.Properties.Resources.icons8_books_48;
-            this.bcrbooks.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bcrbooks.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bcrbooks.ImageSize = new System.Drawing.Size(18, 18);
-            this.bcrbooks.Location = new System.Drawing.Point(0, 249);
-            this.bcrbooks.Name = "bcrbooks";
-            this.bcrbooks.Size = new System.Drawing.Size(200, 45);
-            this.bcrbooks.TabIndex = 13;
-            this.bcrbooks.Text = "Cash Receipts Books";
-            this.bcrbooks.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bcrbooks.TextOffset = new System.Drawing.Point(20, 0);
-            this.toolTip1.SetToolTip(this.bcrbooks, "Check Books");
-            this.bcrbooks.Click += new System.EventHandler(this.bcrbooks_Click);
-            // 
-            // bclient
-            // 
-            this.bclient.Animated = true;
-            this.bclient.BackColor = System.Drawing.Color.Transparent;
-            this.bclient.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bclient.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bclient.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bclient.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bclient.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bclient.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.bclient.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bclient.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.bclient.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bclient.Image = global::rct_lmis.Properties.Resources.icons8_client_48;
-            this.bclient.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bclient.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bclient.ImageSize = new System.Drawing.Size(18, 18);
-            this.bclient.Location = new System.Drawing.Point(0, 159);
-            this.bclient.Name = "bclient";
-            this.bclient.Size = new System.Drawing.Size(200, 45);
-            this.bclient.TabIndex = 12;
-            this.bclient.Text = "Clients";
-            this.bclient.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bclient.TextOffset = new System.Drawing.Point(20, 0);
-            this.toolTip1.SetToolTip(this.bclient, "Clients");
-            this.bclient.Click += new System.EventHandler(this.bclient_Click);
             // 
             // bsafekeeping
             // 
@@ -527,32 +473,115 @@ namespace rct_lmis
             this.toolTip1.SetToolTip(this.bsafekeeping, "Check Safekeeping Data");
             this.bsafekeeping.Click += new System.EventHandler(this.bsafekeeping_Click);
             // 
-            // bpayments
+            // bcrbooks
             // 
-            this.bpayments.Animated = true;
-            this.bpayments.BackColor = System.Drawing.Color.Transparent;
-            this.bpayments.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bpayments.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bpayments.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bpayments.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bpayments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bpayments.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.bpayments.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bpayments.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.bpayments.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bpayments.Image = global::rct_lmis.Properties.Resources.icons8_cash_48;
-            this.bpayments.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bpayments.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bpayments.ImageSize = new System.Drawing.Size(18, 18);
-            this.bpayments.Location = new System.Drawing.Point(0, 384);
-            this.bpayments.Name = "bpayments";
-            this.bpayments.Size = new System.Drawing.Size(200, 45);
-            this.bpayments.TabIndex = 10;
-            this.bpayments.Text = "Payments";
-            this.bpayments.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bpayments.TextOffset = new System.Drawing.Point(20, 0);
-            this.toolTip1.SetToolTip(this.bpayments, "View Encode Payments");
-            this.bpayments.Click += new System.EventHandler(this.bpayments_Click);
+            this.bcrbooks.Animated = true;
+            this.bcrbooks.BackColor = System.Drawing.Color.Transparent;
+            this.bcrbooks.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bcrbooks.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bcrbooks.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bcrbooks.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bcrbooks.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bcrbooks.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.bcrbooks.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bcrbooks.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.bcrbooks.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bcrbooks.Image = global::rct_lmis.Properties.Resources.icons8_books_48;
+            this.bcrbooks.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bcrbooks.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bcrbooks.ImageSize = new System.Drawing.Size(18, 18);
+            this.bcrbooks.Location = new System.Drawing.Point(0, 249);
+            this.bcrbooks.Name = "bcrbooks";
+            this.bcrbooks.Size = new System.Drawing.Size(200, 45);
+            this.bcrbooks.TabIndex = 13;
+            this.bcrbooks.Text = "Cash Receipts Books";
+            this.bcrbooks.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bcrbooks.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bcrbooks, "Check Books");
+            this.bcrbooks.Click += new System.EventHandler(this.bcrbooks_Click);
+            // 
+            // bdisburse
+            // 
+            this.bdisburse.Animated = true;
+            this.bdisburse.BackColor = System.Drawing.Color.Transparent;
+            this.bdisburse.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bdisburse.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bdisburse.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bdisburse.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bdisburse.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bdisburse.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.bdisburse.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bdisburse.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.bdisburse.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bdisburse.Image = global::rct_lmis.Properties.Resources.icons8_banking_loan_with_money_bag_in_hand_48;
+            this.bdisburse.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bdisburse.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bdisburse.ImageSize = new System.Drawing.Size(18, 18);
+            this.bdisburse.Location = new System.Drawing.Point(0, 204);
+            this.bdisburse.Name = "bdisburse";
+            this.bdisburse.Size = new System.Drawing.Size(200, 45);
+            this.bdisburse.TabIndex = 14;
+            this.bdisburse.Text = "Disbursements";
+            this.bdisburse.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bdisburse.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bdisburse, "Monitor Disbursement");
+            this.bdisburse.Click += new System.EventHandler(this.bdisburse_Click);
+            // 
+            // bclient
+            // 
+            this.bclient.Animated = true;
+            this.bclient.BackColor = System.Drawing.Color.Transparent;
+            this.bclient.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bclient.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bclient.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bclient.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bclient.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bclient.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.bclient.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bclient.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.bclient.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bclient.Image = global::rct_lmis.Properties.Resources.icons8_client_48;
+            this.bclient.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bclient.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bclient.ImageSize = new System.Drawing.Size(18, 18);
+            this.bclient.Location = new System.Drawing.Point(0, 159);
+            this.bclient.Name = "bclient";
+            this.bclient.Size = new System.Drawing.Size(200, 45);
+            this.bclient.TabIndex = 12;
+            this.bclient.Text = "Clients";
+            this.bclient.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bclient.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bclient, "Clients");
+            this.bclient.Click += new System.EventHandler(this.bclient_Click);
+            // 
+            // bviewapplications
+            // 
+            this.bviewapplications.Animated = true;
+            this.bviewapplications.BackColor = System.Drawing.Color.Transparent;
+            this.bviewapplications.CheckedState.ForeColor = System.Drawing.Color.White;
+            this.bviewapplications.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bviewapplications.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bviewapplications.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bviewapplications.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bviewapplications.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bviewapplications.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.bviewapplications.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bviewapplications.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.bviewapplications.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bviewapplications.Image = global::rct_lmis.Properties.Resources.icons8_peso_symbol_60;
+            this.bviewapplications.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bviewapplications.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bviewapplications.ImageSize = new System.Drawing.Size(18, 18);
+            this.bviewapplications.Location = new System.Drawing.Point(0, 114);
+            this.bviewapplications.Name = "bviewapplications";
+            this.bviewapplications.PressedColor = System.Drawing.Color.Transparent;
+            this.bviewapplications.Size = new System.Drawing.Size(200, 45);
+            this.bviewapplications.TabIndex = 21;
+            this.bviewapplications.Text = "Pending Applications (Admin)";
+            this.bviewapplications.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bviewapplications.TextOffset = new System.Drawing.Point(20, 0);
+            this.toolTip1.SetToolTip(this.bviewapplications, "Check Recent Loans");
+            this.bviewapplications.Click += new System.EventHandler(this.bviewapplications_Click);
             // 
             // bloans
             // 
@@ -929,34 +958,6 @@ namespace rct_lmis
             this.label3.Size = new System.Drawing.Size(326, 86);
             this.label3.TabIndex = 1;
             this.label3.Text = "Welcome!";
-            // 
-            // bviewapplications
-            // 
-            this.bviewapplications.Animated = true;
-            this.bviewapplications.BackColor = System.Drawing.Color.Transparent;
-            this.bviewapplications.CheckedState.ForeColor = System.Drawing.Color.White;
-            this.bviewapplications.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bviewapplications.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bviewapplications.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bviewapplications.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bviewapplications.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bviewapplications.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.bviewapplications.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bviewapplications.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.bviewapplications.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bviewapplications.Image = global::rct_lmis.Properties.Resources.icons8_peso_symbol_60;
-            this.bviewapplications.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bviewapplications.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bviewapplications.ImageSize = new System.Drawing.Size(18, 18);
-            this.bviewapplications.Location = new System.Drawing.Point(0, 114);
-            this.bviewapplications.Name = "bviewapplications";
-            this.bviewapplications.PressedColor = System.Drawing.Color.Transparent;
-            this.bviewapplications.Size = new System.Drawing.Size(200, 45);
-            this.bviewapplications.TabIndex = 21;
-            this.bviewapplications.Text = "Pending Applications (Admin)";
-            this.bviewapplications.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bviewapplications.TextOffset = new System.Drawing.Point(20, 0);
-            this.toolTip1.SetToolTip(this.bviewapplications, "Check Recent Loans");
             // 
             // frm_home
             // 

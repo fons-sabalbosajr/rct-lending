@@ -5,6 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 using rct_lmis.ADMIN_SECTION;
+using rct_lmis.LOAN_SECTION;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -339,6 +340,15 @@ namespace rct_lmis
             load.Close();
         }
 
+        private void bviewapplications_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_loan_request());
+            load.Close();
+        }
+
         private void bpayments_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.col);
@@ -417,6 +427,8 @@ namespace rct_lmis
                 load.Close();
             }
         }
+
+       
     }
 
     public class Announcement
