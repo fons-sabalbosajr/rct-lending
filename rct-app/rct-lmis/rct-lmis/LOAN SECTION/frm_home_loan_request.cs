@@ -75,9 +75,9 @@ namespace rct_lmis.LOAN_SECTION
                     row["CBCP"] = doc.Contains("CBCP") ? doc["CBCP"].ToString() : string.Empty;
 
                     // Split the documents into separate lines based on the comma separator
-                    if (doc.Contains("file_name"))
+                    if (doc.Contains("docs"))
                     {
-                        var documentsList = doc["file_name"].ToString().Split(',');
+                        var documentsList = doc["docs"].ToString().Split(',');
                         row["Documents"] = string.Join("\n", documentsList);
                     }
                     else
@@ -118,7 +118,6 @@ namespace rct_lmis.LOAN_SECTION
                 if (dgvloanapps.Columns["FullNameAndAddress"] != null)
                 {
                     dgvloanapps.Columns["FullNameAndAddress"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                    //dgvloanapps.Columns["FullNameAndAddress"].DefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Italic);
                     dgvloanapps.Columns["FullNameAndAddress"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
 
@@ -158,11 +157,14 @@ namespace rct_lmis.LOAN_SECTION
                     DataGridViewButtonCell buttonCell = row.Cells["btnViewDetails"] as DataGridViewButtonCell;
                     if (buttonCell != null)
                     {
-                        buttonCell.Style.Padding = new Padding(20);
+                        // Adjust the padding values as needed
+                        buttonCell.Style.Padding = new Padding(5, 5, 5, 5); // Top, Left, Bottom, Right
                         buttonCell.Style.Font = new Font("Arial", 9);
-
                     }
                 }
+
+
+
             }
             catch (Exception ex)
             {
@@ -198,10 +200,35 @@ namespace rct_lmis.LOAN_SECTION
         {
             if (e.ColumnIndex == dgvloanapps.Columns["btnViewDetails"].Index && e.RowIndex >= 0)
             {
-                // Get the Account ID of the selected row
                 string accountId = dgvloanapps.Rows[e.RowIndex].Cells["AccountID"].Value.ToString();
 
-                // Open the frm_home_loan_req_details form and pass the Account ID
+                frm_home_loand_req_details req = new frm_home_loand_req_details(accountId);
+                load.Show(this);
+                Thread.Sleep(2000);
+                load.Close();
+                req.Show();
+            }
+        }
+
+        private void dgvloanapps_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvloanapps.Columns[e.ColumnIndex].Name == "Status")
+            {
+                var statusValue = e.Value?.ToString();
+                if (statusValue == "Approved Loan")
+                {
+                    e.CellStyle.BackColor = Color.LightGreen;
+                    e.CellStyle.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void dgvloanapps_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvloanapps.Columns["btnViewDetails"].Index && e.RowIndex >= 0)
+            {
+                string accountId = dgvloanapps.Rows[e.RowIndex].Cells["AccountID"].Value.ToString();
+
                 frm_home_loand_req_details req = new frm_home_loand_req_details(accountId);
                 load.Show(this);
                 Thread.Sleep(2000);

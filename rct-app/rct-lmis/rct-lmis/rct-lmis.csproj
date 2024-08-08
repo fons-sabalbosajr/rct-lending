@@ -531,6 +531,12 @@
     <Compile Include="LOAN SECTION\frm_home_loans.Designer.cs">
       <DependentUpon>frm_home_loans.cs</DependentUpon>
     </Compile>
+    <Compile Include="LOAN SECTION\frm_home_loan_disburse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOAN SECTION\frm_home_loan_disburse.Designer.cs">
+      <DependentUpon>frm_home_loan_disburse.cs</DependentUpon>
+    </Compile>
     <Compile Include="LOAN SECTION\frm_home_loan_request.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -687,6 +693,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loans.resx">
       <DependentUpon>frm_home_loans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOAN SECTION\frm_home_loan_disburse.resx">
+      <DependentUpon>frm_home_loan_disburse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loan_request.resx">
       <DependentUpon>frm_home_loan_request.cs</DependentUpon>

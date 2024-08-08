@@ -44,6 +44,8 @@
             this.laccno = new System.Windows.Forms.Label();
             this.dgvdisapproved = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabGen = new System.Windows.Forms.TabPage();
+            this.tloantype = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.tbsincome = new Guna.UI2.WinForms.Guna2TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.tbcontact = new Guna.UI2.WinForms.Guna2TextBox();
@@ -161,6 +163,7 @@
             this.bapproved.Size = new System.Drawing.Size(99, 31);
             this.bapproved.TabIndex = 31;
             this.bapproved.Text = "APPROVE";
+            this.bapproved.Click += new System.EventHandler(this.bapproved_Click);
             // 
             // laccno
             // 
@@ -209,6 +212,8 @@
             // 
             // tabGen
             // 
+            this.tabGen.Controls.Add(this.tloantype);
+            this.tabGen.Controls.Add(this.label27);
             this.tabGen.Controls.Add(this.tbsincome);
             this.tabGen.Controls.Add(this.label23);
             this.tabGen.Controls.Add(this.tbcontact);
@@ -269,6 +274,37 @@
             this.tabGen.Text = "General";
             this.tabGen.UseVisualStyleBackColor = true;
             // 
+            // tloantype
+            // 
+            this.tloantype.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tloantype.DefaultText = "";
+            this.tloantype.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tloantype.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tloantype.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tloantype.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tloantype.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tloantype.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tloantype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tloantype.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tloantype.Location = new System.Drawing.Point(772, 14);
+            this.tloantype.Name = "tloantype";
+            this.tloantype.PasswordChar = '\0';
+            this.tloantype.PlaceholderText = "";
+            this.tloantype.SelectedText = "";
+            this.tloantype.Size = new System.Drawing.Size(142, 25);
+            this.tloantype.TabIndex = 124;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label27.Location = new System.Drawing.Point(699, 19);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(63, 15);
+            this.label27.TabIndex = 123;
+            this.label27.Text = "Loan Type:";
+            // 
             // tbsincome
             // 
             this.tbsincome.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -279,6 +315,7 @@
             this.tbsincome.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tbsincome.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbsincome.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbsincome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbsincome.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbsincome.Location = new System.Drawing.Point(507, 569);
             this.tbsincome.Name = "tbsincome";
@@ -309,6 +346,7 @@
             this.tbcontact.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tbcontact.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbcontact.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbcontact.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbcontact.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbcontact.Location = new System.Drawing.Point(507, 532);
             this.tbcontact.Name = "tbcontact";
@@ -339,6 +377,7 @@
             this.tbage.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tbage.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbage.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbage.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbage.Location = new System.Drawing.Point(768, 496);
             this.tbage.Name = "tbage";
@@ -369,6 +408,7 @@
             this.tbmaritalstatus.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tbmaritalstatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbmaritalstatus.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbmaritalstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbmaritalstatus.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbmaritalstatus.Location = new System.Drawing.Point(620, 496);
             this.tbmaritalstatus.Name = "tbmaritalstatus";
@@ -399,6 +439,7 @@
             this.tbgender.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tbgender.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbgender.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbgender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbgender.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbgender.Location = new System.Drawing.Point(456, 496);
             this.tbgender.Name = "tbgender";
@@ -429,6 +470,7 @@
             this.tbfname.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tbfname.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbfname.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbfname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbfname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbfname.Location = new System.Drawing.Point(91, 496);
             this.tbfname.Name = "tbfname";
@@ -459,6 +501,7 @@
             this.tbaddress.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tbaddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbaddress.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbaddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbaddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbaddress.Location = new System.Drawing.Point(91, 532);
             this.tbaddress.Multiline = true;
@@ -514,6 +557,7 @@
             this.tsbirth.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tsbirth.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tsbirth.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tsbirth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tsbirth.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tsbirth.Location = new System.Drawing.Point(655, 313);
             this.tsbirth.Name = "tsbirth";
@@ -640,6 +684,7 @@
             this.tsfname.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tsfname.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tsfname.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tsfname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tsfname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tsfname.Location = new System.Drawing.Point(262, 311);
             this.tsfname.Name = "tsfname";
@@ -670,8 +715,9 @@
             this.tmincome.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tmincome.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tmincome.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tmincome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tmincome.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tmincome.Location = new System.Drawing.Point(559, 213);
+            this.tmincome.Location = new System.Drawing.Point(559, 210);
             this.tmincome.Name = "tmincome";
             this.tmincome.PasswordChar = '\0';
             this.tmincome.PlaceholderText = "";
@@ -684,7 +730,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(454, 210);
+            this.label12.Location = new System.Drawing.Point(454, 207);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(95, 30);
             this.label12.TabIndex = 24;
@@ -700,8 +746,9 @@
             this.tcontact.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tcontact.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tcontact.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tcontact.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcontact.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcontact.Location = new System.Drawing.Point(559, 176);
+            this.tcontact.Location = new System.Drawing.Point(559, 173);
             this.tcontact.Name = "tcontact";
             this.tcontact.PasswordChar = '\0';
             this.tcontact.PlaceholderText = "";
@@ -714,7 +761,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(454, 181);
+            this.label13.Location = new System.Drawing.Point(454, 178);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(74, 15);
             this.label13.TabIndex = 22;
@@ -730,8 +777,9 @@
             this.tbusiness.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tbusiness.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbusiness.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbusiness.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbusiness.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbusiness.Location = new System.Drawing.Point(135, 213);
+            this.tbusiness.Location = new System.Drawing.Point(135, 210);
             this.tbusiness.Name = "tbusiness";
             this.tbusiness.PasswordChar = '\0';
             this.tbusiness.PlaceholderText = "";
@@ -744,7 +792,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label11.Location = new System.Drawing.Point(18, 218);
+            this.label11.Location = new System.Drawing.Point(18, 215);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(95, 15);
             this.label11.TabIndex = 20;
@@ -760,8 +808,9 @@
             this.tbirth.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tbirth.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tbirth.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tbirth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbirth.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbirth.Location = new System.Drawing.Point(135, 176);
+            this.tbirth.Location = new System.Drawing.Point(135, 173);
             this.tbirth.Name = "tbirth";
             this.tbirth.PasswordChar = '\0';
             this.tbirth.PlaceholderText = "";
@@ -774,7 +823,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(18, 181);
+            this.label10.Location = new System.Drawing.Point(18, 178);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 15);
             this.label10.TabIndex = 18;
@@ -790,8 +839,9 @@
             this.trfee.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.trfee.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.trfee.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.trfee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.trfee.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.trfee.Location = new System.Drawing.Point(523, 126);
+            this.trfee.Location = new System.Drawing.Point(523, 121);
             this.trfee.Name = "trfee";
             this.trfee.PasswordChar = '\0';
             this.trfee.PlaceholderText = "";
@@ -804,7 +854,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(453, 131);
+            this.label9.Location = new System.Drawing.Point(453, 126);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 15);
             this.label9.TabIndex = 16;
@@ -820,6 +870,7 @@
             this.tstaylength.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tstaylength.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tstaylength.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tstaylength.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tstaylength.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tstaylength.Location = new System.Drawing.Point(772, 86);
             this.tstaylength.Name = "tstaylength";
@@ -834,7 +885,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(705, 86);
+            this.label8.Location = new System.Drawing.Point(704, 86);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 30);
             this.label8.TabIndex = 14;
@@ -850,8 +901,9 @@
             this.thousetype.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.thousetype.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.thousetype.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.thousetype.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.thousetype.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.thousetype.Location = new System.Drawing.Point(523, 86);
+            this.thousetype.Location = new System.Drawing.Point(523, 85);
             this.thousetype.Name = "thousetype";
             this.thousetype.PasswordChar = '\0';
             this.thousetype.PlaceholderText = "";
@@ -864,7 +916,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(453, 86);
+            this.label7.Location = new System.Drawing.Point(453, 85);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 30);
             this.label7.TabIndex = 12;
@@ -880,8 +932,9 @@
             this.tapplicationdate.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tapplicationdate.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tapplicationdate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tapplicationdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tapplicationdate.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tapplicationdate.Location = new System.Drawing.Point(523, 14);
+            this.tapplicationdate.Location = new System.Drawing.Point(469, 14);
             this.tapplicationdate.Name = "tapplicationdate";
             this.tapplicationdate.PasswordChar = '\0';
             this.tapplicationdate.PlaceholderText = "";
@@ -899,6 +952,7 @@
             this.tmaritalstatus.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tmaritalstatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tmaritalstatus.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tmaritalstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tmaritalstatus.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tmaritalstatus.Location = new System.Drawing.Point(772, 48);
             this.tmaritalstatus.Name = "tmaritalstatus";
@@ -929,6 +983,7 @@
             this.tfname.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tfname.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tfname.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tfname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tfname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tfname.Location = new System.Drawing.Point(135, 48);
             this.tfname.Name = "tfname";
@@ -959,6 +1014,7 @@
             this.tgender.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tgender.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tgender.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tgender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tgender.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tgender.Location = new System.Drawing.Point(523, 48);
             this.tgender.Name = "tgender";
@@ -989,8 +1045,9 @@
             this.taddress.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.taddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.taddress.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.taddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.taddress.Location = new System.Drawing.Point(135, 86);
+            this.taddress.Location = new System.Drawing.Point(135, 85);
             this.taddress.Multiline = true;
             this.taddress.Name = "taddress";
             this.taddress.PasswordChar = '\0';
@@ -1004,7 +1061,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(18, 86);
+            this.label3.Location = new System.Drawing.Point(18, 85);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 15);
             this.label3.TabIndex = 3;
@@ -1020,13 +1077,14 @@
             this.tlaccountno.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tlaccountno.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tlaccountno.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tlaccountno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tlaccountno.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tlaccountno.Location = new System.Drawing.Point(135, 14);
             this.tlaccountno.Name = "tlaccountno";
             this.tlaccountno.PasswordChar = '\0';
             this.tlaccountno.PlaceholderText = "";
             this.tlaccountno.SelectedText = "";
-            this.tlaccountno.Size = new System.Drawing.Size(243, 25);
+            this.tlaccountno.Size = new System.Drawing.Size(172, 25);
             this.tlaccountno.TabIndex = 2;
             // 
             // label2
@@ -1034,7 +1092,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(419, 19);
+            this.label2.Location = new System.Drawing.Point(365, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 15);
             this.label2.TabIndex = 1;
@@ -1084,7 +1142,7 @@
             this.dgvuploads.ColumnHeadersHeight = 30;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -1095,7 +1153,7 @@
             this.dgvuploads.Name = "dgvuploads";
             this.dgvuploads.ReadOnly = true;
             this.dgvuploads.RowHeadersVisible = false;
-            this.dgvuploads.RowTemplate.Height = 35;
+            this.dgvuploads.RowTemplate.Height = 50;
             this.dgvuploads.Size = new System.Drawing.Size(885, 580);
             this.dgvuploads.TabIndex = 70;
             this.dgvuploads.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
@@ -1115,11 +1173,12 @@
             this.dgvuploads.ThemeStyle.ReadOnly = true;
             this.dgvuploads.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvuploads.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvuploads.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvuploads.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvuploads.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvuploads.ThemeStyle.RowsStyle.Height = 35;
+            this.dgvuploads.ThemeStyle.RowsStyle.Height = 50;
             this.dgvuploads.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvuploads.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvuploads.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvuploads_CellContentClick);
             // 
             // label24
             // 
@@ -1397,5 +1456,7 @@
         private System.Windows.Forms.Label label25;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView2;
         private System.Windows.Forms.Label label26;
+        private Guna.UI2.WinForms.Guna2TextBox tloantype;
+        private System.Windows.Forms.Label label27;
     }
 }

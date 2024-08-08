@@ -34,6 +34,8 @@ namespace rct_lmis.LOAN_SECTION
             InitializeMongoDBUpload();
             InitializeGoogleDrive();
             SetupAutoCompleteProvince();
+            LoadNextAccountId();
+
             var database = MongoDBConnection.Instance.Database;
             loanRateCollection = database.GetCollection<BsonDocument>("loan_rate");
 
@@ -262,7 +264,7 @@ namespace rct_lmis.LOAN_SECTION
                 statusLabel.Text = "Upload completed!";
                 statusLabel.ForeColor = Color.Green;
 
-                MessageBox.Show("Data and files uploaded successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Data and files uploaded successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -324,6 +326,12 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+        private string GetTextBoxValueOrDefault(Guna.UI2.WinForms.Guna2TextBox textBox, string defaultValue = "n/a")
+        {
+            return string.IsNullOrWhiteSpace(textBox.Text) ? defaultValue : textBox.Text;
+        }
+
+
         private void frm_home_loan_add_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
@@ -333,6 +341,7 @@ namespace rct_lmis.LOAN_SECTION
         private void frm_home_loan_add_Load(object sender, EventArgs e)
         {
             LoadDataToDataGridView();
+
         }
 
         private string FormatFileSize(long fileSize)
@@ -418,56 +427,57 @@ namespace rct_lmis.LOAN_SECTION
             var application = new Application
             {
                 LoanType = rbnew.Checked ? "New" :
-                   rbrenewal.Checked ? "Renewal" : string.Empty,
-                
+                    rbrenewal.Checked ? "Renewal" : string.Empty,
+
                 RentType = rbrentown.Checked ? "Owned" :
-                   rbrentrf.Checked ? "Rented" :
-                   rbrentrl.Checked ? "Living with Relatives" : string.Empty,
+                    rbrentrf.Checked ? "Rented" :
+                    rbrentrl.Checked ? "Living with Relatives" : string.Empty,
 
                 RBLate = dtbrbdate.Value,
                 RSDate = dtbrsdate.Value,
                 AccountId = laccountid.Text,
-                Status = cbstatus.SelectedItem?.ToString(),
-                CStatus = cbcstatus.SelectedItem?.ToString(),
-                Gender = cbgender.SelectedItem?.ToString(),
-                CGender = cbcgender.SelectedItem?.ToString(),
-                LastName = tbrlname.Text,
-                FirstName = tbrfname.Text,
-                MiddleName = tbrmname.Text,
-                SuffixName = tbrsname.Text,
-                Street = tbrstreet.Text,
-                Barangay = tbrbrgy.Text,
-                City = tbrcity.Text,
-                Province = tbrprovince.Text,
-                StreetPR = tbrstreetpr.Text,
-                BarangayPR = tbrbrgypr.Text,
-                CityPR = tbrcitypr.Text,
-                ProvincePR = tbrprovpr.Text,
-                Fee = trfee.Text,
-                StayLength = tstaylength.Text,
-                Business = tbusiness.Text,
-                Income = tincome.Text,
-                CP = tbrcp.Text,
-                Spouse = tspouse.Text,
-                Occupation = tbroccupation.Text,
-                SpIncome = tbrspincome.Text,
-                SpCP = tbrspcp.Text,
-                CBLName = tcblname.Text,
-                CBFName = tcbfname.Text,
-                CBMName = tcbmname.Text,
-                CBSName = tcbsname.Text,
-                CBStreet = tcstreet.Text,
-                CBBarangay = tcbrgy.Text,
-                CBCity = tccity.Text,
-                CBProvince = tcprov.Text,
-                CBAge = tcage.Text,
-                CBIncome = tcincome.Text,
-                CBCP = tccp.Text,
+                Status = cbstatus.SelectedItem?.ToString() ?? "n/a",
+                CStatus = cbcstatus.SelectedItem?.ToString() ?? "n/a",
+                Gender = cbgender.SelectedItem?.ToString() ?? "n/a",
+                CGender = cbcgender.SelectedItem?.ToString() ?? "n/a",
+                LastName = GetTextBoxValueOrDefault(tbrlname),
+                FirstName = GetTextBoxValueOrDefault(tbrfname),
+                MiddleName = GetTextBoxValueOrDefault(tbrmname),
+                SuffixName = GetTextBoxValueOrDefault(tbrsname),
+                Street = GetTextBoxValueOrDefault(tbrstreet),
+                Barangay = GetTextBoxValueOrDefault(tbrbrgy),
+                City = GetTextBoxValueOrDefault(tbrcity),
+                Province = GetTextBoxValueOrDefault(tbrprovince),
+                StreetPR = GetTextBoxValueOrDefault(tbrstreetpr),
+                BarangayPR = GetTextBoxValueOrDefault(tbrbrgypr),
+                CityPR = GetTextBoxValueOrDefault(tbrcitypr),
+                ProvincePR = GetTextBoxValueOrDefault(tbrprovpr),
+                Fee = GetTextBoxValueOrDefault(trfee),
+                StayLength = GetTextBoxValueOrDefault(tstaylength),
+                Business = GetTextBoxValueOrDefault(tbusiness),
+                Income = GetTextBoxValueOrDefault(tincome),
+                CP = GetTextBoxValueOrDefault(tbrcp),
+                Spouse = GetTextBoxValueOrDefault(tspouse),
+                Occupation = GetTextBoxValueOrDefault(tbroccupation),
+                SpIncome = GetTextBoxValueOrDefault(tbrspincome),
+                SpCP = GetTextBoxValueOrDefault(tbrspcp),
+                CBLName = GetTextBoxValueOrDefault(tcblname),
+                CBFName = GetTextBoxValueOrDefault(tcbfname),
+                CBMName = GetTextBoxValueOrDefault(tcbmname),
+                CBSName = GetTextBoxValueOrDefault(tcbsname),
+                CBStreet = GetTextBoxValueOrDefault(tcstreet),
+                CBBarangay = GetTextBoxValueOrDefault(tcbrgy),
+                CBCity = GetTextBoxValueOrDefault(tccity),
+                CBProvince = GetTextBoxValueOrDefault(tcprov),
+                CBAge = GetTextBoxValueOrDefault(tcage),
+                CBIncome = GetTextBoxValueOrDefault(tcincome),
+                CBCP = GetTextBoxValueOrDefault(tccp),
                 ApplicationDate = DateTime.Now
             };
 
             SaveApplication(application);
         }
+
 
         private void SaveApplication(Application application)
         {
@@ -481,13 +491,58 @@ namespace rct_lmis.LOAN_SECTION
                 collection.InsertOne(application);
                 load.Close();
 
-                MessageBox.Show("Application saved successfully. Please proceed to the uploading of documents");
+                MessageBox.Show(this, "Application saved successfully. Please proceed to the uploading of documents");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while saving the application: {ex.Message}");
             }
         }
+
+        private void LoadNextAccountId()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_application");
+
+                var sort = Builders<BsonDocument>.Sort.Descending("AccountId");
+                var lastLoanApplication = collection.Find(new BsonDocument()).Sort(sort).FirstOrDefault();
+
+                string nextAccountId;
+
+                if (lastLoanApplication != null)
+                {
+                    var lastAccountId = lastLoanApplication.GetValue("AccountId", "").AsString;
+
+                    var parts = lastAccountId.Split('-');
+                    if (parts.Length == 3 && int.TryParse(parts[2], out int numericPart))
+                    {
+                        numericPart++;
+                        nextAccountId = $"{parts[0]}-{parts[1]}-{numericPart:D4}";
+                    }
+                    else
+                    {
+                        // Fallback if parsing fails
+                        throw new FormatException("Invalid AccountId format.");
+                    }
+                }
+                else
+                {
+                    // If there are no documents, start with the first AccountId
+                    nextAccountId = "RCT-2024-0001";
+                }
+
+                // Set the new AccountId to the label
+                laccountid.Text = nextAccountId;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading next account ID: " + ex.Message);
+                MessageBox.Show("Error loading next account ID. Please check the console for details.");
+            }
+        }
+
 
         private void bclearinfo_Click(object sender, EventArgs e)
         {
@@ -822,6 +877,26 @@ namespace rct_lmis.LOAN_SECTION
             SaveLoan();
             load.Close();
             MessageBox.Show("Update successful!", "Loan Application Amount Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void cbsameaddress_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbsameaddress.Checked)
+            {
+                // Copy values from the primary address textboxes to the permanent address textboxes
+                tbrstreetpr.Text = tbrstreet.Text;
+                tbrbrgypr.Text = tbrbrgy.Text;
+                tbrcitypr.Text = tbrcity.Text;
+                tbrprovpr.Text = tbrprovince.Text;
+            }
+            else
+            {
+                // Clear the permanent address textboxes if the checkbox is unchecked
+                tbrstreetpr.Clear();
+                tbrbrgypr.Clear();
+                tbrcitypr.Clear();
+                tbrprovpr.Clear();
+            }
         }
     }
 

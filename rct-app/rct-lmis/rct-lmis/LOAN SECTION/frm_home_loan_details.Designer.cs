@@ -113,7 +113,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tfilesearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2DataGridView4 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.breprepaydate = new Guna.UI2.WinForms.Guna2TextBox();
+            this.treprepaydate = new Guna.UI2.WinForms.Guna2TextBox();
             this.treploantotal = new Guna.UI2.WinForms.Guna2TextBox();
             this.trepcollector = new Guna.UI2.WinForms.Guna2TextBox();
             this.trepidcard = new Guna.UI2.WinForms.Guna2TextBox();
@@ -285,7 +285,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccemail.Location = new System.Drawing.Point(147, 417);
             this.taccemail.Name = "taccemail";
             this.taccemail.PasswordChar = '\0';
-            this.taccemail.PlaceholderText = "";
+            this.taccemail.PlaceholderText = "n/a";
             this.taccemail.SelectedText = "";
             this.taccemail.Size = new System.Drawing.Size(502, 36);
             this.taccemail.TabIndex = 30;
@@ -305,7 +305,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tacccontactno.Location = new System.Drawing.Point(147, 368);
             this.tacccontactno.Name = "tacccontactno";
             this.tacccontactno.PasswordChar = '\0';
-            this.tacccontactno.PlaceholderText = "";
+            this.tacccontactno.PlaceholderText = "n/a";
             this.tacccontactno.SelectedText = "";
             this.tacccontactno.Size = new System.Drawing.Size(502, 36);
             this.tacccontactno.TabIndex = 29;
@@ -344,7 +344,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccprov.Location = new System.Drawing.Point(147, 264);
             this.taccprov.Name = "taccprov";
             this.taccprov.PasswordChar = '\0';
-            this.taccprov.PlaceholderText = "";
+            this.taccprov.PlaceholderText = "n/a";
             this.taccprov.SelectedText = "";
             this.taccprov.Size = new System.Drawing.Size(324, 36);
             this.taccprov.TabIndex = 26;
@@ -364,7 +364,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tacctown.Location = new System.Drawing.Point(147, 215);
             this.tacctown.Name = "tacctown";
             this.tacctown.PasswordChar = '\0';
-            this.tacctown.PlaceholderText = "";
+            this.tacctown.PlaceholderText = "n/a";
             this.tacctown.SelectedText = "";
             this.tacctown.Size = new System.Drawing.Size(324, 36);
             this.tacctown.TabIndex = 25;
@@ -384,7 +384,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccbrgy.Location = new System.Drawing.Point(147, 166);
             this.taccbrgy.Name = "taccbrgy";
             this.taccbrgy.PasswordChar = '\0';
-            this.taccbrgy.PlaceholderText = "";
+            this.taccbrgy.PlaceholderText = "n/a";
             this.taccbrgy.SelectedText = "";
             this.taccbrgy.Size = new System.Drawing.Size(324, 36);
             this.taccbrgy.TabIndex = 24;
@@ -440,7 +440,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taddbirth.Location = new System.Drawing.Point(618, 166);
             this.taddbirth.Name = "taddbirth";
             this.taddbirth.PasswordChar = '\0';
-            this.taddbirth.PlaceholderText = "";
+            this.taddbirth.PlaceholderText = "n/a";
             this.taddbirth.SelectedText = "";
             this.taddbirth.Size = new System.Drawing.Size(212, 36);
             this.taddbirth.TabIndex = 20;
@@ -472,7 +472,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccaddress.Location = new System.Drawing.Point(147, 119);
             this.taccaddress.Name = "taccaddress";
             this.taccaddress.PasswordChar = '\0';
-            this.taccaddress.PlaceholderText = "";
+            this.taccaddress.PlaceholderText = "n/a";
             this.taccaddress.SelectedText = "";
             this.taccaddress.Size = new System.Drawing.Size(731, 36);
             this.taccaddress.TabIndex = 18;
@@ -492,7 +492,7 @@ namespace rct_lmis.LOAN_SECTION
             this.taccname.Location = new System.Drawing.Point(147, 70);
             this.taccname.Name = "taccname";
             this.taccname.PasswordChar = '\0';
-            this.taccname.PlaceholderText = "";
+            this.taccname.PlaceholderText = "n/a";
             this.taccname.SelectedText = "";
             this.taccname.Size = new System.Drawing.Size(731, 36);
             this.taccname.TabIndex = 17;
@@ -1503,7 +1503,7 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage7
             // 
-            this.tabPage7.Controls.Add(this.breprepaydate);
+            this.tabPage7.Controls.Add(this.treprepaydate);
             this.tabPage7.Controls.Add(this.treploantotal);
             this.tabPage7.Controls.Add(this.trepcollector);
             this.tabPage7.Controls.Add(this.trepidcard);
@@ -1547,25 +1547,25 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage7.Text = "Reports";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // breprepaydate
+            // treprepaydate
             // 
-            this.breprepaydate.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.breprepaydate.DefaultText = "";
-            this.breprepaydate.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.breprepaydate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.breprepaydate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.breprepaydate.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.breprepaydate.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.breprepaydate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.breprepaydate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.breprepaydate.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.breprepaydate.Location = new System.Drawing.Point(636, 205);
-            this.breprepaydate.Name = "breprepaydate";
-            this.breprepaydate.PasswordChar = '\0';
-            this.breprepaydate.PlaceholderText = "";
-            this.breprepaydate.SelectedText = "";
-            this.breprepaydate.Size = new System.Drawing.Size(198, 36);
-            this.breprepaydate.TabIndex = 58;
+            this.treprepaydate.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.treprepaydate.DefaultText = "";
+            this.treprepaydate.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.treprepaydate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.treprepaydate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.treprepaydate.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.treprepaydate.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.treprepaydate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.treprepaydate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treprepaydate.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.treprepaydate.Location = new System.Drawing.Point(636, 205);
+            this.treprepaydate.Name = "treprepaydate";
+            this.treprepaydate.PasswordChar = '\0';
+            this.treprepaydate.PlaceholderText = "n/a";
+            this.treprepaydate.SelectedText = "";
+            this.treprepaydate.Size = new System.Drawing.Size(198, 36);
+            this.treprepaydate.TabIndex = 58;
             // 
             // treploantotal
             // 
@@ -1582,7 +1582,7 @@ namespace rct_lmis.LOAN_SECTION
             this.treploantotal.Location = new System.Drawing.Point(636, 163);
             this.treploantotal.Name = "treploantotal";
             this.treploantotal.PasswordChar = '\0';
-            this.treploantotal.PlaceholderText = "";
+            this.treploantotal.PlaceholderText = "n/a";
             this.treploantotal.SelectedText = "";
             this.treploantotal.Size = new System.Drawing.Size(120, 36);
             this.treploantotal.TabIndex = 57;
@@ -1602,7 +1602,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepcollector.Location = new System.Drawing.Point(202, 289);
             this.trepcollector.Name = "trepcollector";
             this.trepcollector.PasswordChar = '\0';
-            this.trepcollector.PlaceholderText = "";
+            this.trepcollector.PlaceholderText = "n/a";
             this.trepcollector.SelectedText = "";
             this.trepcollector.Size = new System.Drawing.Size(298, 36);
             this.trepcollector.TabIndex = 56;
@@ -1623,7 +1623,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepidcard.Multiline = true;
             this.trepidcard.Name = "trepidcard";
             this.trepidcard.PasswordChar = '\0';
-            this.trepidcard.PlaceholderText = "";
+            this.trepidcard.PlaceholderText = "n/a";
             this.trepidcard.SelectedText = "";
             this.trepidcard.Size = new System.Drawing.Size(262, 71);
             this.trepidcard.TabIndex = 52;
@@ -1643,7 +1643,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepcontact.Location = new System.Drawing.Point(612, 14);
             this.trepcontact.Name = "trepcontact";
             this.trepcontact.PasswordChar = '\0';
-            this.trepcontact.PlaceholderText = "";
+            this.trepcontact.PlaceholderText = "n/a";
             this.trepcontact.SelectedText = "";
             this.trepcontact.Size = new System.Drawing.Size(262, 36);
             this.trepcontact.TabIndex = 51;
@@ -1664,7 +1664,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepaddress.Multiline = true;
             this.trepaddress.Name = "trepaddress";
             this.trepaddress.PasswordChar = '\0';
-            this.trepaddress.PlaceholderText = "";
+            this.trepaddress.PlaceholderText = "n/a";
             this.trepaddress.SelectedText = "";
             this.trepaddress.Size = new System.Drawing.Size(389, 71);
             this.trepaddress.TabIndex = 50;
@@ -1684,7 +1684,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepname.Location = new System.Drawing.Point(100, 14);
             this.trepname.Name = "trepname";
             this.trepname.PasswordChar = '\0';
-            this.trepname.PlaceholderText = "";
+            this.trepname.PlaceholderText = "n/a";
             this.trepname.SelectedText = "";
             this.trepname.Size = new System.Drawing.Size(389, 36);
             this.trepname.TabIndex = 49;
@@ -2069,7 +2069,7 @@ namespace rct_lmis.LOAN_SECTION
             this.treploanpenalty.Location = new System.Drawing.Point(202, 247);
             this.treploanpenalty.Name = "treploanpenalty";
             this.treploanpenalty.PasswordChar = '\0';
-            this.treploanpenalty.PlaceholderText = "";
+            this.treploanpenalty.PlaceholderText = "0.00";
             this.treploanpenalty.SelectedText = "";
             this.treploanpenalty.Size = new System.Drawing.Size(195, 36);
             this.treploanpenalty.TabIndex = 55;
@@ -2092,7 +2092,7 @@ namespace rct_lmis.LOAN_SECTION
             this.treploanbalance.Location = new System.Drawing.Point(202, 205);
             this.treploanbalance.Name = "treploanbalance";
             this.treploanbalance.PasswordChar = '\0';
-            this.treploanbalance.PlaceholderText = "";
+            this.treploanbalance.PlaceholderText = "0.00";
             this.treploanbalance.SelectedText = "";
             this.treploanbalance.Size = new System.Drawing.Size(195, 36);
             this.treploanbalance.TabIndex = 54;
@@ -2115,7 +2115,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trepcurrloan.Location = new System.Drawing.Point(202, 163);
             this.trepcurrloan.Name = "trepcurrloan";
             this.trepcurrloan.PasswordChar = '\0';
-            this.trepcurrloan.PlaceholderText = "";
+            this.trepcurrloan.PlaceholderText = "0.00";
             this.trepcurrloan.SelectedText = "";
             this.trepcurrloan.Size = new System.Drawing.Size(195, 36);
             this.trepcurrloan.TabIndex = 53;
@@ -2162,7 +2162,7 @@ namespace rct_lmis.LOAN_SECTION
             this.lloanstatus.BackColor = System.Drawing.Color.Transparent;
             this.lloanstatus.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lloanstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lloanstatus.Location = new System.Drawing.Point(932, 14);
+            this.lloanstatus.Location = new System.Drawing.Point(892, 14);
             this.lloanstatus.Name = "lloanstatus";
             this.lloanstatus.Size = new System.Drawing.Size(79, 20);
             this.lloanstatus.TabIndex = 22;
@@ -2174,7 +2174,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label14.Location = new System.Drawing.Point(792, 14);
+            this.label14.Location = new System.Drawing.Point(752, 14);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(138, 19);
             this.label14.TabIndex = 21;
@@ -2381,7 +2381,7 @@ namespace rct_lmis.LOAN_SECTION
         private Guna.UI2.WinForms.Guna2Button bgenledger;
         private Guna.UI2.WinForms.Guna2Button bgenSOA;
         private Guna.UI2.WinForms.Guna2Button bgemamt;
-        private Guna.UI2.WinForms.Guna2TextBox breprepaydate;
+        private Guna.UI2.WinForms.Guna2TextBox treprepaydate;
         private Guna.UI2.WinForms.Guna2TextBox treploantotal;
         private Guna.UI2.WinForms.Guna2TextBox trepcollector;
         private Guna.UI2.WinForms.Guna2TextBox treploanpenalty;

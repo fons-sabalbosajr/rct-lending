@@ -416,6 +416,8 @@
             this.dgvloanapps.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
             this.dgvloanapps.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvloanapps.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvloanapps_CellClick);
+            this.dgvloanapps.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvloanapps_CellContentClick);
+            this.dgvloanapps.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvloanapps_CellFormatting);
             this.dgvloanapps.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvloanapps_DataBindingComplete);
             // 
             // frm_home_loan_request
