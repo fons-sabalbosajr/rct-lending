@@ -23,7 +23,8 @@ namespace rct_lmis
         LoadingFunction load = new LoadingFunction();
         frm_home_loan_new flnew = new frm_home_loan_new();
         frm_home_loan_add fladd = new frm_home_loan_add();
-        
+
+        private string loggedInUsername;
 
         private void LoadApprovedLoansData()
         {
@@ -161,7 +162,7 @@ namespace rct_lmis
                         DataGridViewButtonCell buttonCell = row.Cells["btnViewDetails"] as DataGridViewButtonCell;
                         if (buttonCell != null)
                         {
-                            buttonCell.Style.Padding = new Padding(2, 2, 2, 2); // Adjust padding to reduce button size
+                            buttonCell.Style.Padding = new Padding(5, 5, 5, 5); // Adjust padding to reduce button size
                             buttonCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter; // Center-align the button
                             buttonCell.Style.Font = new Font("Arial", 9); // Adjust font size if needed
                         }
@@ -225,6 +226,25 @@ namespace rct_lmis
             }
         }
 
+        private void LoadUserInfo(string username)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<BsonDocument>("user_accounts"); // 'user_accounts' is the name of your collection
+
+            var filter = Builders<BsonDocument>.Filter.Eq("Username", username);
+            var user = collection.Find(filter).FirstOrDefault();
+
+            if (user != null)
+            {
+                // Get the full name and split to get the first name
+                var fullName = user.GetValue("FullName").AsString;
+                var firstName = fullName.Split(' ')[0]; // Split by space and take the first part
+
+                // Set the first name
+                luser.Text = firstName;
+            }
+        }
+
         private void baddnew_Click(object sender, EventArgs e)
         {
             load.Show(this);
@@ -236,7 +256,7 @@ namespace rct_lmis
         private void frm_home_loans_Load(object sender, EventArgs e)
         {
             LoadApprovedLoansData();
-
+            LoadUserInfo(loggedInUsername);
         }
 
         private void dgvdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

@@ -117,12 +117,12 @@ namespace rct_lmis
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(883, 18);
+            this.label1.Location = new System.Drawing.Point(838, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 42;
@@ -142,14 +142,14 @@ namespace rct_lmis
             // 
             // ldate
             // 
-            this.ldate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ldate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ldate.AutoSize = true;
             this.ldate.BackColor = System.Drawing.Color.Transparent;
             this.ldate.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ldate.Location = new System.Drawing.Point(883, 34);
+            this.ldate.Location = new System.Drawing.Point(838, 34);
             this.ldate.Name = "ldate";
-            this.ldate.Size = new System.Drawing.Size(36, 16);
+            this.ldate.Size = new System.Drawing.Size(37, 16);
             this.ldate.TabIndex = 40;
             this.ldate.Text = "Date";
             this.ldate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -286,7 +286,7 @@ namespace rct_lmis
             this.lfname.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lfname.Location = new System.Drawing.Point(1191, 31);
             this.lfname.Name = "lfname";
-            this.lfname.Size = new System.Drawing.Size(34, 16);
+            this.lfname.Size = new System.Drawing.Size(35, 16);
             this.lfname.TabIndex = 2;
             this.lfname.Text = "User";
             this.lfname.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

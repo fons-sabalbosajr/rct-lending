@@ -107,7 +107,7 @@ namespace rct_lmis.LOAN_SECTION
 
                 // Set font size and style for the entire DataGridView
                 dgvloanapps.DefaultCellStyle.Font = new Font("Arial", 10);
-                dgvloanapps.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+                dgvloanapps.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
 
                 // Center align specific columns
                 CenterAlignColumns("AccountID", "LoanType", "Principal", "Term", "CBCP");

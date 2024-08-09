@@ -26,7 +26,7 @@ namespace rct_lmis.LOAN_SECTION
         private async void frm_home_loan_new_Load(object sender, EventArgs e)
         {
             // Display the AccountID on the label
-            laccno.Text = $"Account ID: {AccountID}";
+            laccno.Text = $"{AccountID}";
 
             // Load data based on AccountID
             await LoadLoanDetailsAsync();
@@ -44,7 +44,7 @@ namespace rct_lmis.LOAN_SECTION
                 var collection = database.GetCollection<BsonDocument>("loan_approved");
 
                 // Query to find the document with the specified AccountID
-                var filter = Builders<BsonDocument>.Filter.Eq("" ,AccountID);
+                var filter = Builders<BsonDocument>.Filter.Eq("AccountId" , AccountID);
                 var document = await collection.Find(filter).FirstOrDefaultAsync();
 
                 if (document != null)

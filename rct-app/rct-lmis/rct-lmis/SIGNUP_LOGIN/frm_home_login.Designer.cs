@@ -186,6 +186,7 @@ namespace rct_lmis
             this.lip.Size = new System.Drawing.Size(60, 13);
             this.lip.TabIndex = 12;
             this.lip.Text = "IP Address";
+            this.lip.Visible = false;
             // 
             // blogin
             // 
