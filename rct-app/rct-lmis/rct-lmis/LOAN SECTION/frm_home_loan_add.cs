@@ -732,23 +732,6 @@ namespace rct_lmis.LOAN_SECTION
                                 Builders<BsonDocument>.Filter.Eq("_id", lastDocument["_id"]),
                                 updateDefinition
                             );
-
-                            // Check the status and disable tabPage4 if necessary
-                            if (updateDefinition != null)
-                            {
-                                string status = "For Approval and Verification"; // Hardcoded status check for this example
-                                if (status == "For Approval and Verification")
-                                {
-                                    guna2TabControl1.TabPages["tabPage4"].Enabled = false;
-                                    papprove.Visible = true;
-                                }
-                                else
-                                {
-                                    guna2TabControl1.TabPages["tabPage4"].Enabled = true;
-                                    papprove.Visible = false;
-                                }
-                            }
-
                         }
                         catch (Exception ex)
                         {
