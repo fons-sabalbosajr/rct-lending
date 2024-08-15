@@ -1759,14 +1759,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rct-lmis.exe" size="1867736">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rct-lmis.exe" size="1850840">
       <assemblyIdentity name="rct-lmis" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Hb0dwp1O6z8jol5h6GlBfAIfamDSV7ZSTo1zsblNKQQ=</dsig:DigestValue>
+        <dsig:DigestValue>ggDKlD+WEaN5PloW2GUpu9iBJ7mBXFeaxnEdmSFjfWs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

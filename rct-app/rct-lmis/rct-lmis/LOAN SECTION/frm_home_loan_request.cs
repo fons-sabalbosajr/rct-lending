@@ -158,12 +158,10 @@ namespace rct_lmis.LOAN_SECTION
                     if (buttonCell != null)
                     {
                         // Adjust the padding values as needed
-                        buttonCell.Style.Padding = new Padding(5, 5, 5, 5); // Top, Left, Bottom, Right
+                        buttonCell.Style.Padding = new Padding(30, 30, 30, 30); // Top, Left, Bottom, Right
                         buttonCell.Style.Font = new Font("Arial", 9);
                     }
                 }
-
-
 
             }
             catch (Exception ex)

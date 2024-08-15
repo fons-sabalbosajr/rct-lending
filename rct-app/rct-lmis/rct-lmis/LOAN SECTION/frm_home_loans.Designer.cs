@@ -191,6 +191,9 @@ namespace rct_lmis
             this.dgvdata.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellClick);
             this.dgvdata.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvdata_CellFormatting);
+            this.dgvdata.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellMouseEnter);
+            this.dgvdata.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellMouseLeave);
+            this.dgvdata.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvdata_CellPainting);
             this.dgvdata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdata_DataBindingComplete);
             // 
             // panel3
