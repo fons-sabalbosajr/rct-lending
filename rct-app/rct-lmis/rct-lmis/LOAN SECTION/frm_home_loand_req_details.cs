@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,17 +17,17 @@ namespace rct_lmis.LOAN_SECTION
     public partial class frm_home_loand_req_details : Form
     {
         private string accountId;
+        private LoadingFunction load;
 
         public frm_home_loand_req_details(string accountId)
         {
             InitializeComponent();
             this.accountId = accountId;
-           
             InitializeDataGridView();
+            load = new LoadingFunction();
         }
 
-        LoadingFunction load = new LoadingFunction();
-
+       
         private void InitializeDataGridView()
         {
             dgvuploads.Columns.Clear();
@@ -168,6 +169,9 @@ namespace rct_lmis.LOAN_SECTION
             LoadDetails();
         }
 
+
+        
+
         private void dgvuploads_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 2) // Assuming the "View File" link is in the third column (index 2)
@@ -189,10 +193,21 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-        private void ApprovedLoan() 
+        // Function to approve a loan
+        private void ApprovedLoan()
         {
             try
             {
+
+                var currentUser = UserSession.Instance.CurrentUser;
+
+                if (string.IsNullOrEmpty(currentUser))
+                {
+                    MessageBox.Show("Current user information is not available.");
+                    return;
+                }
+
+
                 // Access the loan_application and loan_approved collections
                 var database = MongoDBConnection.Instance.Database;
                 var loanAppCollection = database.GetCollection<BsonDocument>("loan_application");
@@ -245,6 +260,10 @@ namespace rct_lmis.LOAN_SECTION
                 { "CBIncome", loanApplication.GetValue("CBIncome", "") },
                 { "ApplicationDate", loanApplication.GetValue("ApplicationDate", "") },
                 { "LoanStatus", loanApplication.GetValue("LoanStatus", "Application Approved") },
+                { "docs", loanApplication.GetValue("docs", "") }, // Save the docs field
+                { "doc-link", loanApplication.GetValue("doc-link", "") }, // Save the doc-link field
+                { "ApprovalDate", DateTime.Now }, // Add the current date
+                { "ProcessedBy", currentUser } // Add the current user
             };
 
                     // Insert the document into loan_approved collection
@@ -253,6 +272,8 @@ namespace rct_lmis.LOAN_SECTION
                     // Update the Status in the loan_application collection
                     var update = Builders<BsonDocument>.Update.Set("Status", "Approved Loan");
                     loanAppCollection.UpdateOne(filter, update);
+
+                   
                 }
                 else
                 {
@@ -265,6 +286,99 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+
+        private void DeniedLoan()
+        {
+            try
+            {
+
+                var currentUser = UserSession.Instance.CurrentUser;
+
+                if (string.IsNullOrEmpty(currentUser))
+                {
+                    MessageBox.Show("Current user information is not available.");
+                    return;
+                }
+
+
+                // Access the loan_application and loan_denied collections
+                var database = MongoDBConnection.Instance.Database;
+                var loanAppCollection = database.GetCollection<BsonDocument>("loan_application");
+                var loanDeniedCollection = database.GetCollection<BsonDocument>("loan_denied");
+
+                // Retrieve the document based on accountId
+                var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                var loanApplication = loanAppCollection.Find(filter).FirstOrDefault();
+
+                if (loanApplication != null)
+                {
+                    // Prepare the document to insert into loan_denied collection
+                    var deniedLoan = new BsonDocument
+            {
+                { "AccountId", loanApplication.GetValue("AccountId", "") },
+                { "LoanType", loanApplication.GetValue("LoanType", "") },
+                { "FirstName", loanApplication.GetValue("FirstName", "") },
+                { "MiddleName", loanApplication.GetValue("MiddleName", "") },
+                { "LastName", loanApplication.GetValue("LastName", "") },
+                { "SuffixName", loanApplication.GetValue("SuffixName", "") },
+                { "Gender", loanApplication.GetValue("Gender", "") },
+                { "Street", loanApplication.GetValue("Street", "") },
+                { "Barangay", loanApplication.GetValue("Barangay", "") },
+                { "City", loanApplication.GetValue("City", "") },
+                { "Province", loanApplication.GetValue("Province", "") },
+                { "HouseType", loanApplication.GetValue("HouseType", "") },
+                { "StayLength", loanApplication.GetValue("StayLength", "") },
+                { "Fee", loanApplication.GetValue("Fee", "") },
+                { "RBLate", loanApplication.GetValue("RBLate", "") },
+                { "Business", loanApplication.GetValue("Business", "") },
+                { "CP", loanApplication.GetValue("CP", "") },
+                { "Income", loanApplication.GetValue("Income", "") },
+                { "Spouse", loanApplication.GetValue("Spouse", "") },
+                { "Occupation", loanApplication.GetValue("Occupation", "") },
+                { "SpIncome", loanApplication.GetValue("SpIncome", "") },
+                { "SpCP", loanApplication.GetValue("SpCP", "") },
+                { "RSDate", loanApplication.GetValue("RSDate", "") },
+                { "CBFName", loanApplication.GetValue("CBFName", "") },
+                { "CBMName", loanApplication.GetValue("CBMName", "") },
+                { "CBLName", loanApplication.GetValue("CBLName", "") },
+                { "CBSName", loanApplication.GetValue("CBSName", "") },
+                { "CBStreet", loanApplication.GetValue("CBStreet", "") },
+                { "CBBarangay", loanApplication.GetValue("CBBarangay", "") },
+                { "CBCity", loanApplication.GetValue("CBCity", "") },
+                { "CBProvince", loanApplication.GetValue("CBProvince", "") },
+                { "CGender", loanApplication.GetValue("CGender", "") },
+                { "CStatus", loanApplication.GetValue("CStatus", "") },
+                { "CBAge", loanApplication.GetValue("CBAge", "") },
+                { "CBCP", loanApplication.GetValue("CBCP", "") },
+                { "CBIncome", loanApplication.GetValue("CBIncome", "") },
+                { "ApplicationDate", loanApplication.GetValue("ApplicationDate", "") },
+                { "LoanStatus", loanApplication.GetValue("LoanStatus", "Application Denied") },
+                { "docs", loanApplication.GetValue("docs", "") }, // Save the docs field
+                { "doc-link", loanApplication.GetValue("doc-link", "") }, // Save the doc-link field
+                { "DenialDate", DateTime.Now }, // Add the current date
+                { "ProcessedBy", currentUser } // Add the current user
+            };
+
+                    // Insert the document into loan_denied collection
+                    loanDeniedCollection.InsertOne(deniedLoan);
+
+                    // Update the Status in the loan_application collection
+                    var update = Builders<BsonDocument>.Update.Set("Status", "Denied Loan");
+                    loanAppCollection.UpdateOne(filter, update);
+
+                }
+                else
+                {
+                    MessageBox.Show("No loan application found with the provided Account ID.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error denying the loan application: " + ex.Message);
+            }
+        }
+
+
         private void bapproved_Click(object sender, EventArgs e)
         {
             load.Show(this);
@@ -272,6 +386,15 @@ namespace rct_lmis.LOAN_SECTION
             ApprovedLoan();
             load.Close();
             MessageBox.Show(this, "Loan application approved and details updated.");
+        }
+
+        private void bdeny_Click(object sender, EventArgs e)
+        {
+            load.Show(this);
+            Thread.Sleep(2000);
+            DeniedLoan();
+            load.Close();
+            MessageBox.Show(this, "Loan application denied. \n The data has been stored in the Denied List");
         }
     }
 }

@@ -106,7 +106,7 @@ namespace rct_lmis.LOAN_SECTION
                 dgvloanapps.Columns["Documents"].Width = 275;
 
                 // Set font size and style for the entire DataGridView
-                dgvloanapps.DefaultCellStyle.Font = new Font("Arial", 10);
+                dgvloanapps.DefaultCellStyle.Font = new Font("Arial", 9);
                 dgvloanapps.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
 
                 // Center align specific columns
@@ -158,7 +158,7 @@ namespace rct_lmis.LOAN_SECTION
                     if (buttonCell != null)
                     {
                         // Adjust the padding values as needed
-                        buttonCell.Style.Padding = new Padding(30, 30, 30, 30); // Top, Left, Bottom, Right
+                        buttonCell.Style.Padding = new Padding(30, 15, 30, 15);
                         buttonCell.Style.Font = new Font("Arial", 9);
                     }
                 }
@@ -223,16 +223,19 @@ namespace rct_lmis.LOAN_SECTION
 
         private void dgvloanapps_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dgvloanapps.Columns["btnViewDetails"].Index && e.RowIndex >= 0)
-            {
-                string accountId = dgvloanapps.Rows[e.RowIndex].Cells["AccountID"].Value.ToString();
+            
+        }
 
-                frm_home_loand_req_details req = new frm_home_loand_req_details(accountId);
-                load.Show(this);
-                Thread.Sleep(2000);
-                load.Close();
-                req.Show();
-            }
+        private void frm_home_loan_request_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
+            
+        }
+
+        private void frm_home_loan_request_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Hide();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace rct_lmis.LOAN_SECTION
         public frm_home_loan_new()
         {
             InitializeComponent();
+            InitializeDataGridView();
         }
 
         LoadingFunction load =new LoadingFunction();
@@ -32,6 +33,63 @@ namespace rct_lmis.LOAN_SECTION
             await LoadLoanDetailsAsync();
 
         }
+
+        private void InitializeDataGridView()
+        {
+            dgvuploads.Columns.Clear();
+            dgvuploads.Columns.Add("DocumentName", "Document Name");
+            dgvuploads.Columns.Add("DocumentLink", "Document Link");
+            dgvuploads.Columns.Add(new DataGridViewLinkColumn
+            {
+                Name = "ViewFile",
+                HeaderText = "View File",
+                Text = "View File",
+                UseColumnTextForLinkValue = true
+            });
+        }
+
+        private void ConfigureDataGridView()
+        {
+            // Set the wrapping for the second column
+            dgvuploads.Columns[1].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvuploads.Columns[2].Width = 200;
+
+            // Optional: Adjust column width to fit the content
+            dgvuploads.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        private void LoadDocsIntoDataGridView(string docs, string docLinks)
+        {
+            dgvuploads.Rows.Clear();
+
+            // Split the docs and docLinks by comma, and trim any leading or trailing spaces
+            var docsArray = docs.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                .Select(doc => doc.Trim())
+                                .ToArray();
+
+            var docLinksArray = docLinks.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                        .Select(link => link.Trim())
+                                        .ToArray();
+
+            for (int i = 0; i < docsArray.Length; i++)
+            {
+                // Ensure docLinksArray has an element at index i, or default to an empty string
+                int rowIndex = dgvuploads.Rows.Add(docsArray[i], docLinksArray.Length > i ? docLinksArray[i] : string.Empty, "View File");
+
+                var link = new DataGridViewLinkCell
+                {
+                    Value = "View File",
+                    UseColumnTextForLinkValue = true
+                };
+
+                dgvuploads.Rows[rowIndex].Cells[2] = link;
+            }
+
+            // Configure the DataGridView after loading data
+            ConfigureDataGridView();
+        }
+
+
 
         private async Task LoadLoanDetailsAsync()
         {
@@ -84,6 +142,12 @@ namespace rct_lmis.LOAN_SECTION
                     //treploantotal.Text = document.GetValue("RepLoanTotal", "").ToString(); // Example field, adjust if necessary
                     //treprepaydate.Text = document.GetValue("RepRepayDate", "").ToString(); // Example field, adjust if necessary
 
+                      // Load docs into DataGridView
+                    if (document.TryGetValue("docs", out var docs) && docs.IsString && document.TryGetValue("doc-link", out var docLinks) && docLinks.IsString)
+                    {
+                        LoadDocsIntoDataGridView(docs.AsString, docLinks.AsString);
+                    }
+
                 }
                 else
                 {
@@ -93,6 +157,39 @@ namespace rct_lmis.LOAN_SECTION
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading loan details: {ex.Message}");
+            }
+        }
+
+        private void bcopyaccno_Click(object sender, EventArgs e)
+        {
+            // Get the text from the Label control
+            string accNo = laccno.Text;
+
+            // Copy the text to the clipboard
+            Clipboard.SetText(accNo);
+
+            // Show a message box to notify the user
+            MessageBox.Show("The account number has been copied to your clipboard.", "Copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dgvuploads_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2) // Assuming the "View File" link is in the third column (index 2)
+            {
+                var docLink = dgvuploads.Rows[e.RowIndex].Cells[1].Value.ToString();
+                try
+                {
+                    // Use Process.Start to open the URL in the default web browser
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = docLink,
+                        UseShellExecute = true
+                    });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error opening the file: " + ex.Message);
+                }
             }
         }
     }

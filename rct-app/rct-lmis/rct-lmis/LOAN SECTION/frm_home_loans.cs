@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace rct_lmis
@@ -86,11 +87,17 @@ namespace rct_lmis
 
                     row["CBCP"] = approvedDoc.Contains("CBCP") ? approvedDoc["CBCP"].ToString() : string.Empty;
 
+                    
+
                     // Split the documents into separate lines based on the comma separator
-                    if (row["Documents"] != null)
+                    if (approvedDoc.Contains("docs"))
                     {
-                        var documentsList = row["Documents"].ToString().Split(',');
+                        var documentsList = approvedDoc["docs"].ToString().Split(',');
                         row["Documents"] = string.Join("\n", documentsList);
+                    }
+                    else
+                    {
+                        row["Documents"] = string.Empty;
                     }
 
                     dataTable.Rows.Add(row);
@@ -137,11 +144,11 @@ namespace rct_lmis
                     dgvdata.Columns["Documents"].SortMode = DataGridViewColumnSortMode.Automatic;
                 }
 
-                if (dgvdata.Columns["btnViewDetails"] == null)
+                if (dgvdata.Columns["btnActions"] == null)
                 {
                     DataGridViewButtonColumn viewDetailsButtonColumn = new DataGridViewButtonColumn
                     {
-                        Name = "btnViewDetails",
+                        Name = "btnActions",
                         HeaderText = "Actions",
                         Text = "View Details",
                         UseColumnTextForButtonValue = true,
@@ -151,61 +158,39 @@ namespace rct_lmis
                     dgvdata.Columns.Add(viewDetailsButtonColumn);
                 }
 
-                // Set width, padding, and font size for the button column to avoid large size
-                var btnColumn = dgvdata.Columns["btnViewDetails"];
-                if (btnColumn != null)
-                {
-                    btnColumn.Width = 120;
-                }
-
-
-                // Set padding for the button column to avoid large size
-                foreach (DataGridViewRow row in dgvdata.Rows)
-                {
-                    DataGridViewButtonCell buttonCell = row.Cells["btnViewDetails"] as DataGridViewButtonCell;
-                    if (buttonCell != null)
-                    {
-                        // Adjust the padding values as needed
-                        buttonCell.Style.Padding = new Padding(30, 30, 30, 30); // Top, Left, Bottom, Right
-                        buttonCell.Style.Font = new Font("Arial", 9);
-                    }
-                }
-
-
-                // Add the "Disburse" button column if it doesn't exist
                 if (dgvdata.Columns["btnDisburse"] == null)
                 {
                     DataGridViewButtonColumn disburseButtonColumn = new DataGridViewButtonColumn
                     {
                         Name = "btnDisburse",
-                        HeaderText = " ",
+                        HeaderText = "Disburse",
                         Text = "Disburse",
                         UseColumnTextForButtonValue = true,
-                        FlatStyle = FlatStyle.Standard
-                        
+                        FlatStyle = FlatStyle.Standard,
                     };
 
                     dgvdata.Columns.Add(disburseButtonColumn);
                 }
 
-                // Set width, padding, and font size for the "Disburse" button column
-                var disburseColumn = dgvdata.Columns["btnDisburse"];
-                if (disburseColumn != null)
+                // Set width, padding, and font size for the button column to avoid large size
+                var btnColumn = dgvdata.Columns["btnActions"];
+                if (btnColumn != null)
                 {
-                    disburseColumn.Width = 120;
+                    btnColumn.Width = 120;
+                    btnColumn.DefaultCellStyle.Padding = new Padding(30, 20, 30, 20);
+                    btnColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    btnColumn.DefaultCellStyle.Font = new Font("Arial", 9);
                 }
 
-                foreach (DataGridViewRow row in dgvdata.Rows)
+                // Set width, padding, and font size for the "btnDisburse" column to avoid large size
+                var btnColumnDisburse = dgvdata.Columns["btnDisburse"];
+                if (btnColumnDisburse != null)
                 {
-                    DataGridViewButtonCell disburseButtonCell = row.Cells["btnDisburse"] as DataGridViewButtonCell;
-                    if (disburseButtonCell != null)
-                    {
-                        disburseButtonCell.Style.Padding = new Padding(30, 30, 30, 30); // Top, Left, Bottom, Right
-                        disburseButtonCell.Style.Font = new Font("Arial", 9); // Adjust font size if needed
-                    }
+                    btnColumnDisburse.Width = 120;
+                    btnColumnDisburse.DefaultCellStyle.Padding = new Padding(30, 20, 30, 20);
+                    btnColumnDisburse.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    btnColumnDisburse.DefaultCellStyle.Font = new Font("Arial", 9);
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -261,6 +246,7 @@ namespace rct_lmis
 
         private void dgvdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            dgvdata.ClearSelection();
             lnorecord.Visible = false;
         }
 
@@ -283,7 +269,7 @@ namespace rct_lmis
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
               
-                if (dgvdata.Columns[e.ColumnIndex].Name == "btnViewDetails")
+                if (dgvdata.Columns[e.ColumnIndex].Name == "btnActions")
                 {
                     var selectedAccountId = dgvdata.Rows[e.RowIndex].Cells["AccountID"].Value.ToString();
                     frm_home_loan_new loanDetailsForm = new frm_home_loan_new
@@ -310,56 +296,6 @@ namespace rct_lmis
                     fdis.Show(this);
                 }
             }
-        }
-
-        private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                if (dgvdata.Columns[e.ColumnIndex].Name == "btnViewDetails" || dgvdata.Columns[e.ColumnIndex].Name == "btnDisburse")
-                {
-                    e.PaintBackground(e.CellBounds, true);
-
-                    var buttonBounds = new Rectangle(
-                        e.CellBounds.Left + 5, // Padding from the left
-                        e.CellBounds.Top + 5,  // Padding from the top
-                        e.CellBounds.Width - 10, // Width with padding
-                        e.CellBounds.Height - 10 // Height with padding
-                    );
-
-                    // Determine colors based on cell state
-                    Color buttonColor = (hoveredCell != null && e.RowIndex == hoveredCell.RowIndex && e.ColumnIndex == hoveredCell.ColumnIndex)
-                        ? Color.LightGray // Color on hover
-                        : Color.White; // Default color
-
-                    using (var buttonBrush = new SolidBrush(buttonColor))
-                    using (var buttonBorderPen = new Pen(Color.LightGray))
-                    {
-                        e.Graphics.FillRectangle(buttonBrush, buttonBounds);
-                        e.Graphics.DrawRectangle(buttonBorderPen, buttonBounds);
-                    }
-
-                    // Draw button text
-                    TextRenderer.DrawText(e.Graphics,
-                                          e.Value?.ToString() ?? "Button",
-                                          this.Font,
-                                          buttonBounds,
-                                          Color.Black,
-                                          TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak);
-
-                    e.Handled = true;
-                }
-            }
-        }
-
-        private void dgvdata_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
-        private void dgvdata_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

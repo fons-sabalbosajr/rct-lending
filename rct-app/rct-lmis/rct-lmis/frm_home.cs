@@ -215,6 +215,8 @@ namespace rct_lmis
 
             if (user != null)
             {
+
+
                 // Get the full name and split to get the first name
                 var fullName = user.GetValue("FullName").AsString;
                 var firstName = fullName.Split(' ')[0]; // Split by space and take the first part
@@ -243,6 +245,9 @@ namespace rct_lmis
                         pbphoto.Image = Image.FromStream(ms);
                     }
                 }
+
+                // Update the user session
+                UserSession.Instance.CurrentUser = username;
             }
         }
 

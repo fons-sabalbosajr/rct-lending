@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_disburse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_disburse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_add.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_add.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_add.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_add.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_disburse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_disburse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_details.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_request.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,79 +50,103 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frm_home_loan_details.cs",
-              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_details.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_details.cs",
-              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_details.cs",
-              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_details.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAqwBAAAAAtAAAA",
+              "DocumentIndex": 1,
+              "Title": "frm_home_loan_add.cs",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_add.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_add.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_add.cs",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_add.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T13:51:33.664Z",
+              "WhenOpened": "2024-08-15T13:46:42.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frm_home_loan_disburse.cs",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-15T13:46:32.264Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "frm_home_loan_disburse.cs [Design]",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs [Design]",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-15T13:36:59.626Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frm_home_loan_add.cs [Design]",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_add.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_add.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_add.cs [Design]",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_add.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-15T13:36:35.44Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "frm_home_loan_details.cs [Design]",
               "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_details.cs",
               "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_details.cs",
               "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_details.cs [Design]",
               "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_details.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T13:51:32.107Z",
+              "WhenOpened": "2024-08-15T13:34:06.109Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frm_home_loan_disburse.cs",
-              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
-              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
-              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_disburse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAtAAAA",
+              "DocumentIndex": 5,
+              "Title": "frm_home_loans.cs",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
+              "ViewState": "AQIAAJcAAAAAAAAAAAAIwL0AAABbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T13:51:11.901Z",
+              "WhenOpened": "2024-08-15T13:26:35.828Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
+              "Title": "frm_home_loan_request.cs",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAIwFcAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-15T13:27:08.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "frm_home_loans.cs [Design]",
               "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
               "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
               "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loans.cs [Design]",
               "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loans.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T14:25:22.038Z",
+              "WhenOpened": "2024-08-15T13:16:07.56Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frm_home_loans.cs",
-              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
-              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
-              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loans.cs",
-              "ViewState": "AQIAAAABAAAAAAAAAAAgwCMBAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T14:25:23.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "frm_home_loan_request.cs",
-              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
-              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
-              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_request.cs",
-              "ViewState": "AQIAAMMAAAAAAAAAAADwv90AAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T13:01:51.909Z",
-              "EditorCaption": ""
             }
           ]
         }

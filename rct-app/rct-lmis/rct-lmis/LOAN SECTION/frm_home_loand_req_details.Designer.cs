@@ -31,12 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_loand_req_details));
             this.panel1 = new System.Windows.Forms.Panel();
             this.bdeny = new Guna.UI2.WinForms.Guna2Button();
@@ -101,21 +95,11 @@
             this.tabDocs = new System.Windows.Forms.TabPage();
             this.dgvuploads = new Guna.UI2.WinForms.Guna2DataGridView();
             this.label24 = new System.Windows.Forms.Label();
-            this.tabApprove = new System.Windows.Forms.TabPage();
-            this.dgvapproved = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.label25 = new System.Windows.Forms.Label();
-            this.tabDisapproved = new System.Windows.Forms.TabPage();
-            this.guna2DataGridView2 = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.label26 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.dgvdisapproved.SuspendLayout();
             this.tabGen.SuspendLayout();
             this.tabDocs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvuploads)).BeginInit();
-            this.tabApprove.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvapproved)).BeginInit();
-            this.tabDisapproved.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -146,6 +130,7 @@
             this.bdeny.Size = new System.Drawing.Size(85, 31);
             this.bdeny.TabIndex = 32;
             this.bdeny.Text = "DENY";
+            this.bdeny.Click += new System.EventHandler(this.bdeny_Click);
             // 
             // bapproved
             // 
@@ -182,8 +167,6 @@
             this.dgvdisapproved.Alignment = System.Windows.Forms.TabAlignment.Left;
             this.dgvdisapproved.Controls.Add(this.tabGen);
             this.dgvdisapproved.Controls.Add(this.tabDocs);
-            this.dgvdisapproved.Controls.Add(this.tabApprove);
-            this.dgvdisapproved.Controls.Add(this.tabDisapproved);
             this.dgvdisapproved.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvdisapproved.ItemSize = new System.Drawing.Size(150, 30);
             this.dgvdisapproved.Location = new System.Drawing.Point(0, 50);
@@ -1192,168 +1175,6 @@
             this.label24.TabIndex = 54;
             this.label24.Text = "Applicant Requirements";
             // 
-            // tabApprove
-            // 
-            this.tabApprove.Controls.Add(this.dgvapproved);
-            this.tabApprove.Controls.Add(this.label25);
-            this.tabApprove.Location = new System.Drawing.Point(154, 4);
-            this.tabApprove.Name = "tabApprove";
-            this.tabApprove.Size = new System.Drawing.Size(926, 653);
-            this.tabApprove.TabIndex = 2;
-            this.tabApprove.Text = "Approve Clients";
-            this.tabApprove.UseVisualStyleBackColor = true;
-            // 
-            // dgvapproved
-            // 
-            this.dgvapproved.AllowUserToAddRows = false;
-            this.dgvapproved.AllowUserToDeleteRows = false;
-            this.dgvapproved.AllowUserToResizeColumns = false;
-            this.dgvapproved.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvapproved.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvapproved.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dgvapproved.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvapproved.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvapproved.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvapproved.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvapproved.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvapproved.Location = new System.Drawing.Point(22, 51);
-            this.dgvapproved.Name = "dgvapproved";
-            this.dgvapproved.ReadOnly = true;
-            this.dgvapproved.RowHeadersVisible = false;
-            this.dgvapproved.RowTemplate.Height = 35;
-            this.dgvapproved.Size = new System.Drawing.Size(885, 580);
-            this.dgvapproved.TabIndex = 72;
-            this.dgvapproved.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
-            this.dgvapproved.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvapproved.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvapproved.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvapproved.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvapproved.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvapproved.ThemeStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvapproved.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvapproved.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.dgvapproved.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvapproved.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvapproved.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvapproved.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvapproved.ThemeStyle.HeaderStyle.Height = 30;
-            this.dgvapproved.ThemeStyle.ReadOnly = true;
-            this.dgvapproved.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvapproved.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvapproved.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvapproved.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvapproved.ThemeStyle.RowsStyle.Height = 35;
-            this.dgvapproved.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            this.dgvapproved.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label25.Location = new System.Drawing.Point(22, 22);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(106, 17);
-            this.label25.TabIndex = 71;
-            this.label25.Text = "Approve Clients";
-            // 
-            // tabDisapproved
-            // 
-            this.tabDisapproved.Controls.Add(this.guna2DataGridView2);
-            this.tabDisapproved.Controls.Add(this.label26);
-            this.tabDisapproved.Location = new System.Drawing.Point(154, 4);
-            this.tabDisapproved.Name = "tabDisapproved";
-            this.tabDisapproved.Size = new System.Drawing.Size(926, 653);
-            this.tabDisapproved.TabIndex = 3;
-            this.tabDisapproved.Text = "Disapproved Clients";
-            this.tabDisapproved.UseVisualStyleBackColor = true;
-            // 
-            // guna2DataGridView2
-            // 
-            this.guna2DataGridView2.AllowUserToAddRows = false;
-            this.guna2DataGridView2.AllowUserToDeleteRows = false;
-            this.guna2DataGridView2.AllowUserToResizeColumns = false;
-            this.guna2DataGridView2.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            this.guna2DataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.guna2DataGridView2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.guna2DataGridView2.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.guna2DataGridView2.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.guna2DataGridView2.DefaultCellStyle = dataGridViewCellStyle9;
-            this.guna2DataGridView2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.guna2DataGridView2.Location = new System.Drawing.Point(21, 51);
-            this.guna2DataGridView2.Name = "guna2DataGridView2";
-            this.guna2DataGridView2.ReadOnly = true;
-            this.guna2DataGridView2.RowHeadersVisible = false;
-            this.guna2DataGridView2.RowTemplate.Height = 35;
-            this.guna2DataGridView2.Size = new System.Drawing.Size(885, 580);
-            this.guna2DataGridView2.TabIndex = 74;
-            this.guna2DataGridView2.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
-            this.guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.guna2DataGridView2.ThemeStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.guna2DataGridView2.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.guna2DataGridView2.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.guna2DataGridView2.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.guna2DataGridView2.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2DataGridView2.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.guna2DataGridView2.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.guna2DataGridView2.ThemeStyle.HeaderStyle.Height = 30;
-            this.guna2DataGridView2.ThemeStyle.ReadOnly = true;
-            this.guna2DataGridView2.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.guna2DataGridView2.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.guna2DataGridView2.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2DataGridView2.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2DataGridView2.ThemeStyle.RowsStyle.Height = 35;
-            this.guna2DataGridView2.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            this.guna2DataGridView2.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label26.Location = new System.Drawing.Point(21, 22);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(132, 17);
-            this.label26.TabIndex = 73;
-            this.label26.Text = "Disapproved Clients";
-            // 
             // frm_home_loand_req_details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1377,12 +1198,6 @@
             this.tabDocs.ResumeLayout(false);
             this.tabDocs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvuploads)).EndInit();
-            this.tabApprove.ResumeLayout(false);
-            this.tabApprove.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvapproved)).EndInit();
-            this.tabDisapproved.ResumeLayout(false);
-            this.tabDisapproved.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1396,8 +1211,6 @@
         private Guna.UI2.WinForms.Guna2TabControl dgvdisapproved;
         private System.Windows.Forms.TabPage tabGen;
         private System.Windows.Forms.TabPage tabDocs;
-        private System.Windows.Forms.TabPage tabApprove;
-        private System.Windows.Forms.TabPage tabDisapproved;
         private Guna.UI2.WinForms.Guna2TextBox tlaccountno;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -1452,10 +1265,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label24;
         private Guna.UI2.WinForms.Guna2DataGridView dgvuploads;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvapproved;
-        private System.Windows.Forms.Label label25;
-        private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView2;
-        private System.Windows.Forms.Label label26;
         private Guna.UI2.WinForms.Guna2TextBox tloantype;
         private System.Windows.Forms.Label label27;
     }
