@@ -32,6 +32,8 @@ namespace rct_lmis
             this.pleft = new System.Windows.Forms.Panel();
             this.bannouncement = new Guna.UI2.WinForms.Guna2Button();
             this.psubdata = new System.Windows.Forms.Panel();
+            this.bdeniedloans = new Guna.UI2.WinForms.Guna2Button();
+            this.bapprovedloans = new Guna.UI2.WinForms.Guna2Button();
             this.bdatadelstaff = new Guna.UI2.WinForms.Guna2Button();
             this.bdatadelcollector = new Guna.UI2.WinForms.Guna2Button();
             this.bdatadelclient = new Guna.UI2.WinForms.Guna2Button();
@@ -89,7 +91,7 @@ namespace rct_lmis
             this.bannouncement.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bannouncement.ImageOffset = new System.Drawing.Point(10, 0);
             this.bannouncement.ImageSize = new System.Drawing.Size(18, 18);
-            this.bannouncement.Location = new System.Drawing.Point(0, 424);
+            this.bannouncement.Location = new System.Drawing.Point(0, 492);
             this.bannouncement.Name = "bannouncement";
             this.bannouncement.Size = new System.Drawing.Size(194, 45);
             this.bannouncement.TabIndex = 31;
@@ -101,6 +103,8 @@ namespace rct_lmis
             // psubdata
             // 
             this.psubdata.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
+            this.psubdata.Controls.Add(this.bdeniedloans);
+            this.psubdata.Controls.Add(this.bapprovedloans);
             this.psubdata.Controls.Add(this.bdatadelstaff);
             this.psubdata.Controls.Add(this.bdatadelcollector);
             this.psubdata.Controls.Add(this.bdatadelclient);
@@ -108,8 +112,58 @@ namespace rct_lmis
             this.psubdata.Dock = System.Windows.Forms.DockStyle.Top;
             this.psubdata.Location = new System.Drawing.Point(0, 271);
             this.psubdata.Name = "psubdata";
-            this.psubdata.Size = new System.Drawing.Size(194, 153);
+            this.psubdata.Size = new System.Drawing.Size(194, 221);
             this.psubdata.TabIndex = 30;
+            // 
+            // bdeniedloans
+            // 
+            this.bdeniedloans.Animated = true;
+            this.bdeniedloans.BackColor = System.Drawing.Color.Transparent;
+            this.bdeniedloans.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bdeniedloans.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bdeniedloans.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bdeniedloans.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bdeniedloans.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bdeniedloans.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
+            this.bdeniedloans.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bdeniedloans.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.bdeniedloans.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bdeniedloans.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bdeniedloans.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bdeniedloans.ImageSize = new System.Drawing.Size(15, 15);
+            this.bdeniedloans.Location = new System.Drawing.Point(0, 175);
+            this.bdeniedloans.Name = "bdeniedloans";
+            this.bdeniedloans.Size = new System.Drawing.Size(194, 35);
+            this.bdeniedloans.TabIndex = 22;
+            this.bdeniedloans.Text = "Denied Loans";
+            this.bdeniedloans.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bdeniedloans.TextOffset = new System.Drawing.Point(20, 0);
+            this.bdeniedloans.Click += new System.EventHandler(this.bdeniedloans_Click);
+            // 
+            // bapprovedloans
+            // 
+            this.bapprovedloans.Animated = true;
+            this.bapprovedloans.BackColor = System.Drawing.Color.Transparent;
+            this.bapprovedloans.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bapprovedloans.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bapprovedloans.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bapprovedloans.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bapprovedloans.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bapprovedloans.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
+            this.bapprovedloans.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bapprovedloans.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.bapprovedloans.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bapprovedloans.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bapprovedloans.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bapprovedloans.ImageSize = new System.Drawing.Size(15, 15);
+            this.bapprovedloans.Location = new System.Drawing.Point(0, 140);
+            this.bapprovedloans.Name = "bapprovedloans";
+            this.bapprovedloans.Size = new System.Drawing.Size(194, 35);
+            this.bapprovedloans.TabIndex = 21;
+            this.bapprovedloans.Text = "Approved Loans";
+            this.bapprovedloans.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bapprovedloans.TextOffset = new System.Drawing.Point(20, 0);
+            this.bapprovedloans.Click += new System.EventHandler(this.bapprovedloans_Click);
             // 
             // bdatadelstaff
             // 
@@ -134,6 +188,7 @@ namespace rct_lmis
             this.bdatadelstaff.Text = "Admin Data";
             this.bdatadelstaff.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdatadelstaff.TextOffset = new System.Drawing.Point(20, 0);
+            this.bdatadelstaff.Click += new System.EventHandler(this.bdatadelstaff_Click);
             // 
             // bdatadelcollector
             // 
@@ -472,5 +527,7 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2Button bsignupacc;
         private Guna.UI2.WinForms.Guna2Button buseraccounts;
         private Guna.UI2.WinForms.Guna2Button bannouncement;
+        private Guna.UI2.WinForms.Guna2Button bdeniedloans;
+        private Guna.UI2.WinForms.Guna2Button bapprovedloans;
     }
 }

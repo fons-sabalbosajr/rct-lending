@@ -178,5 +178,28 @@ namespace rct_lmis
             ann.ShowDialog();
             
         }
+
+        private void bdatadelstaff_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void bapprovedloans_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN_aploans());
+            load.Close();
+        }
+
+        private void bdeniedloans_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN_dnloans());
+            load.Close();
+        }
     }
 }

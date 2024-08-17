@@ -755,10 +755,101 @@ namespace rct_lmis.LOAN_SECTION
         }
 
         // Event handler to populate text boxes with selected row value
-        private void bsavetransaction_Click(object sender, EventArgs e)
-        {
 
+
+        private void GenerelSaveData() 
+        {
+            try 
+            {
+                var application = new Application
+                {
+                    LoanType = rbnew.Checked ? "New" :
+             rbrenewal.Checked ? "Renewal" : string.Empty,
+
+                    RentType = rbrentown.Checked ? "Owned" :
+             rbrentrf.Checked ? "Rented" :
+             rbrentrl.Checked ? "Living with Relatives" : string.Empty,
+
+                    RBLate = dtbrbdate.Value,
+                    RSDate = dtbrsdate.Value,
+                    AccountId = laccountid.Text,
+                    Status = cbstatus.SelectedItem?.ToString() ?? "n/a",
+                    CStatus = cbcstatus.SelectedItem?.ToString() ?? "n/a",
+                    Gender = cbgender.SelectedItem?.ToString() ?? "n/a",
+                    CGender = cbcgender.SelectedItem?.ToString() ?? "n/a",
+                    LastName = GetTextBoxValueOrDefault(tbrlname),
+                    FirstName = GetTextBoxValueOrDefault(tbrfname),
+                    MiddleName = GetTextBoxValueOrDefault(tbrmname),
+                    SuffixName = GetTextBoxValueOrDefault(tbrsname),
+                    Street = GetTextBoxValueOrDefault(tbrstreet),
+                    Barangay = GetTextBoxValueOrDefault(tbrbrgy),
+                    City = GetTextBoxValueOrDefault(tbrcity),
+                    Province = GetTextBoxValueOrDefault(tbrprovince),
+                    StreetPR = GetTextBoxValueOrDefault(tbrstreetpr),
+                    BarangayPR = GetTextBoxValueOrDefault(tbrbrgypr),
+                    CityPR = GetTextBoxValueOrDefault(tbrcitypr),
+                    ProvincePR = GetTextBoxValueOrDefault(tbrprovpr),
+                    Fee = GetTextBoxValueOrDefault(trfee),
+                    StayLength = GetTextBoxValueOrDefault(tstaylength),
+                    Business = GetTextBoxValueOrDefault(tbusiness),
+                    Income = GetTextBoxValueOrDefault(tincome),
+                    CP = GetTextBoxValueOrDefault(tbrcp),
+                    Spouse = GetTextBoxValueOrDefault(tspouse),
+                    Occupation = GetTextBoxValueOrDefault(tbroccupation),
+                    SpIncome = GetTextBoxValueOrDefault(tbrspincome),
+                    SpCP = GetTextBoxValueOrDefault(tbrspcp),
+                    CBLName = GetTextBoxValueOrDefault(tcblname),
+                    CBFName = GetTextBoxValueOrDefault(tcbfname),
+                    CBMName = GetTextBoxValueOrDefault(tcbmname),
+                    CBSName = GetTextBoxValueOrDefault(tcbsname),
+                    CBStreet = GetTextBoxValueOrDefault(tcstreet),
+                    CBBarangay = GetTextBoxValueOrDefault(tcbrgy),
+                    CBCity = GetTextBoxValueOrDefault(tccity),
+                    CBProvince = GetTextBoxValueOrDefault(tcprov),
+                    CBAge = GetTextBoxValueOrDefault(tcage),
+                    CBIncome = GetTextBoxValueOrDefault(tcincome),
+                    CBCP = GetTextBoxValueOrDefault(tccp),
+                    ApplicationDate = DateTime.Now
+                };
+
+                SaveApplication(application);
+                SaveLoan();
+            }
+            catch (Exception e) 
+            {
+                MessageBox.Show("There is a problem in saving transaction" + e.Message, "Transaction not saved");
+            }
         }
+
+        private void DeleteApplication()
+        {
+            try
+            {
+                // Access the loan_application collection
+                var database = MongoDBConnection.Instance.Database;
+                var loanApplicationCollection = database.GetCollection<BsonDocument>("loan_application");
+
+                // Fetch the last document added in the loan_application collection
+                var filter = Builders<BsonDocument>.Filter.Empty;
+                var lastDocument = loanApplicationCollection.Find(filter).SortByDescending(doc => doc["_id"]).FirstOrDefault();
+
+                if (lastDocument != null)
+                {
+                    // Delete the last document
+                    loanApplicationCollection.DeleteOne(Builders<BsonDocument>.Filter.Eq("_id", lastDocument["_id"]));
+                }
+                else
+                {
+                    MessageBox.Show("No documents found in the loan_application collection.", "Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while deleting the application: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         private void bloanclear_Click(object sender, EventArgs e)
         {
@@ -879,6 +970,31 @@ namespace rct_lmis.LOAN_SECTION
                 tbrbrgypr.Clear();
                 tbrcitypr.Clear();
                 tbrprovpr.Clear();
+            }
+        }
+
+        private void babort_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to cancel the transaction?", "Cancel Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes) 
+            {
+                load.Show(this);
+                Thread.Sleep(1000);
+                DeleteApplication();
+                load.Close();
+                MessageBox.Show("The last saved application has been successfully deleted.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void bsavetransaction_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to save the transaction?", "Save Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                load.Show(this);
+                Thread.Sleep(1000);
+                GenerelSaveData();
+                load.Close();
+                MessageBox.Show("Transaction has been saved?", "Transaction Save successfully!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
         }
     }

@@ -416,6 +416,18 @@
     <Compile Include="ADMIN SECTION\frm_ADMIN_annoucement.Designer.cs">
       <DependentUpon>frm_ADMIN_annoucement.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_aploans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_aploans.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_aploans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_dnloans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_dnloans.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_dnloans.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_loanrates.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -643,6 +655,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN.resx">
       <DependentUpon>frm_home_ADMIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_aploans.resx">
+      <DependentUpon>frm_home_ADMIN_aploans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_dnloans.resx">
+      <DependentUpon>frm_home_ADMIN_dnloans.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_loanrates.resx">
       <DependentUpon>frm_home_ADMIN_loanrates.cs</DependentUpon>

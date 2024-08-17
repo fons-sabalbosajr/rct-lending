@@ -845,3 +845,5 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.c
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_disburse.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_aploans.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_dnloans.resources

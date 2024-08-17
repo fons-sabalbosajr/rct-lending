@@ -19,7 +19,7 @@ namespace rct_lmis.LOAN_SECTION
 
         private IMongoCollection<BsonDocument> collection;
         private readonly IMongoCollection<BsonDocument> loanRateCollection;
-
+        private DataTable dataTable;
 
         public frm_home_loan_disburse()
         {
@@ -120,6 +120,102 @@ namespace rct_lmis.LOAN_SECTION
                     Console.Write($"{item} ");
                 }
                 Console.WriteLine();
+            }
+        }
+
+        private void tsearchamt_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = tsearchamt.Text.Trim();
+            string filterExpression = string.Empty;
+
+            try
+            {
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    // Create the filter expression
+                    filterExpression = string.Format(
+                        "Term LIKE '%{0}%' OR Principal LIKE '%{0}%' OR [Interest Rate/Month] LIKE '%{0}%' OR Processing LIKE '%{0}%' OR Type LIKE '%{0}%' OR Mode LIKE '%{0}%'",
+                        searchText);
+
+                    // Apply the filter to the DataTable
+                    DataView dv = new DataView(dataTable);
+                    dv.RowFilter = filterExpression;
+                    dgvloandata.DataSource = dv;
+                }
+                else
+                {
+                    // Reset the DataView if the search text is empty
+                    // Make sure `dataTable` is properly assigned with the full dataset initially
+                    dgvloandata.DataSource = dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error applying search filter: " + ex.Message);
+            }
+        }
+
+
+        private void dgvloandata_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure a valid row index is selected
+            {
+                DataGridViewRow selectedRow = dgvloandata.Rows[e.RowIndex];
+                if (selectedRow != null && selectedRow.Cells["FullDocument"].Value != null)
+                {
+                    BsonDocument fullDocument = selectedRow.Cells["FullDocument"].Value as BsonDocument;
+
+                    if (fullDocument != null)
+                    {
+                        // Debug output
+                        //Console.WriteLine("FullDocument: " + fullDocument.ToJson());
+
+                        try
+                        {
+                            tloanamt.Text = fullDocument.Contains("Principal") ? "₱ " + fullDocument["Principal"].ToString() + ".00" : string.Empty;
+                            tloanterm.Text = fullDocument.Contains("Term") ? fullDocument["Term"].ToString() + " month/s" : string.Empty;
+                            tloaninterest.Text = fullDocument.Contains("Interest Rate/Month") ? fullDocument["Interest Rate/Month"].ToString() + ".00" : string.Empty;
+                            trfservicefee.Text = fullDocument.Contains("Processing Fee") ? fullDocument["Processing Fee"].ToString() + ".00" : string.Empty;
+
+
+                            trfnotarialfee.Text = fullDocument.Contains("Notarial Rate") ? fullDocument["Notarial Rate"].ToString() + ".00" : string.Empty;
+                            trfnotarialamt.Text = trfannotationfee.Text;
+
+                            trfinsurancefee.Text = fullDocument.Contains("Insurance Rate") ? fullDocument["Insurance Rate"].ToString() + ".00" : string.Empty;
+                            trfinsuranceamt.Text = trfinsurancefee.Text;
+
+                            trfannotationfee.Text = fullDocument.Contains("Annotation Rate") ? fullDocument["Annotation Rate"].ToString() + ".00" : string.Empty;
+                            trfannotationmt.Text = trfannotationfee.Text;
+
+                            trfvat.Text = fullDocument.Contains("Vat Rate") ? fullDocument["Vat Rate"].ToString() + ".00" : string.Empty;
+                            trfvatamt.Text = trfvat.Text;
+
+                            trfmisc.Text = fullDocument.Contains("Misc. Rate") ? fullDocument["Misc. Rate"].ToString() + ".00" : string.Empty;
+                            trfmiscamt.Text = trfmisc.Text;
+
+                            trfdocfee.Text = fullDocument.Contains("Doc Rate") ? fullDocument["Doc Rate"].ToString() + ".00" : string.Empty;
+                            trfdocamt.Text = trfdocfee.Text;
+
+                            // Assuming you have logic to compute these amounts, otherwise set them as empty or with computed values.
+                            tamortizedamt.Text = string.Empty;
+                            tpenaltymo.Text = fullDocument.Contains("Penalty Rate") ? fullDocument["Penalty Rate"].ToString() + ".00" : string.Empty;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Error processing fullDocument: " + ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        // Debug output
+                        Console.WriteLine("FullDocument is null");
+                    }
+                }
+                else
+                {
+                    // Debug output
+                    Console.WriteLine("Selected row or FullDocument cell is null");
+                }
             }
         }
     }

@@ -29,12 +29,12 @@ namespace rct_lmis.LOAN_SECTION
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_loan_add));
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -127,9 +127,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bloansave = new Guna.UI2.WinForms.Guna2Button();
             this.bloanclear = new Guna.UI2.WinForms.Guna2Button();
             this.label49 = new System.Windows.Forms.Label();
-            this.tpenaltymo = new Guna.UI2.WinForms.Guna2TextBox();
             this.label48 = new System.Windows.Forms.Label();
-            this.tamortizedamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
@@ -157,6 +155,12 @@ namespace rct_lmis.LOAN_SECTION
             this.grploanrate = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvloandata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tloanamt = new Guna.UI2.WinForms.Guna2TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.babort = new Guna.UI2.WinForms.Guna2Button();
+            this.bsavetransaction = new Guna.UI2.WinForms.Guna2Button();
+            this.laccno = new System.Windows.Forms.Label();
+            this.tpenaltymo = new Guna.UI2.WinForms.Guna2TextBox();
+            this.tamortizedamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfdocamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfdocfee = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfmiscamt = new Guna.UI2.WinForms.Guna2TextBox();
@@ -170,10 +174,6 @@ namespace rct_lmis.LOAN_SECTION
             this.trfnotarialamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfnotarialfee = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfservicefee = new Guna.UI2.WinForms.Guna2TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.babort = new Guna.UI2.WinForms.Guna2Button();
-            this.bsavetransaction = new Guna.UI2.WinForms.Guna2Button();
-            this.laccno = new System.Windows.Forms.Label();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -1656,27 +1656,27 @@ namespace rct_lmis.LOAN_SECTION
             this.dgvuploads.AllowUserToDeleteRows = false;
             this.dgvuploads.AllowUserToResizeColumns = false;
             this.dgvuploads.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            this.dgvuploads.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            this.dgvuploads.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvuploads.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvuploads.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvuploads.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvuploads.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvuploads.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvuploads.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvuploads.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgvuploads.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvuploads.Location = new System.Drawing.Point(22, 91);
             this.dgvuploads.Name = "dgvuploads";
@@ -1727,9 +1727,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage3.Controls.Add(this.bloansave);
             this.tabPage3.Controls.Add(this.bloanclear);
             this.tabPage3.Controls.Add(this.label49);
-            this.tabPage3.Controls.Add(this.tpenaltymo);
             this.tabPage3.Controls.Add(this.label48);
-            this.tabPage3.Controls.Add(this.tamortizedamt);
             this.tabPage3.Controls.Add(this.label46);
             this.tabPage3.Controls.Add(this.label47);
             this.tabPage3.Controls.Add(this.label45);
@@ -1756,6 +1754,8 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage3.Controls.Add(this.label25);
             this.tabPage3.Controls.Add(this.grploanrate);
             this.tabPage3.Controls.Add(this.tloanamt);
+            this.tabPage3.Controls.Add(this.tpenaltymo);
+            this.tabPage3.Controls.Add(this.tamortizedamt);
             this.tabPage3.Controls.Add(this.trfdocamt);
             this.tabPage3.Controls.Add(this.trfdocfee);
             this.tabPage3.Controls.Add(this.trfmiscamt);
@@ -1792,7 +1792,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bloansave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.bloansave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.bloansave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bloansave.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bloansave.FillColor = System.Drawing.Color.SeaGreen;
             this.bloansave.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bloansave.ForeColor = System.Drawing.Color.White;
             this.bloansave.Location = new System.Drawing.Point(520, 442);
@@ -1812,7 +1812,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bloanclear.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.bloanclear.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.bloanclear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bloanclear.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.bloanclear.FillColor = System.Drawing.Color.White;
             this.bloanclear.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bloanclear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.bloanclear.Location = new System.Drawing.Point(439, 442);
@@ -1834,27 +1834,6 @@ namespace rct_lmis.LOAN_SECTION
             this.label49.TabIndex = 110;
             this.label49.Text = "Penalty Rate\r\nper Month:";
             // 
-            // tpenaltymo
-            // 
-            this.tpenaltymo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tpenaltymo.DefaultText = "";
-            this.tpenaltymo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tpenaltymo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tpenaltymo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tpenaltymo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tpenaltymo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tpenaltymo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tpenaltymo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tpenaltymo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tpenaltymo.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_symbol_48_gray;
-            this.tpenaltymo.Location = new System.Drawing.Point(508, 390);
-            this.tpenaltymo.Name = "tpenaltymo";
-            this.tpenaltymo.PasswordChar = '\0';
-            this.tpenaltymo.PlaceholderText = "";
-            this.tpenaltymo.SelectedText = "";
-            this.tpenaltymo.Size = new System.Drawing.Size(144, 30);
-            this.tpenaltymo.TabIndex = 111;
-            // 
             // label48
             // 
             this.label48.AutoSize = true;
@@ -1866,27 +1845,6 @@ namespace rct_lmis.LOAN_SECTION
             this.label48.Size = new System.Drawing.Size(62, 30);
             this.label48.TabIndex = 108;
             this.label48.Text = "Amortized\r\nAmount:";
-            // 
-            // tamortizedamt
-            // 
-            this.tamortizedamt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tamortizedamt.DefaultText = "";
-            this.tamortizedamt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tamortizedamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tamortizedamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tamortizedamt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tamortizedamt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tamortizedamt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tamortizedamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tamortizedamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tamortizedamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_symbol_48_gray;
-            this.tamortizedamt.Location = new System.Drawing.Point(508, 349);
-            this.tamortizedamt.Name = "tamortizedamt";
-            this.tamortizedamt.PasswordChar = '\0';
-            this.tamortizedamt.PlaceholderText = "";
-            this.tamortizedamt.SelectedText = "";
-            this.tamortizedamt.Size = new System.Drawing.Size(144, 30);
-            this.tamortizedamt.TabIndex = 109;
             // 
             // label46
             // 
@@ -2052,9 +2010,9 @@ namespace rct_lmis.LOAN_SECTION
             this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label34.Location = new System.Drawing.Point(431, 153);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(68, 15);
+            this.label34.Size = new System.Drawing.Size(88, 15);
             this.label34.TabIndex = 76;
-            this.label34.Text = "Service Fee:";
+            this.label34.Text = "Processing Fee:";
             // 
             // label32
             // 
@@ -2205,25 +2163,25 @@ namespace rct_lmis.LOAN_SECTION
             this.dgvloandata.AllowUserToDeleteRows = false;
             this.dgvloandata.AllowUserToResizeColumns = false;
             this.dgvloandata.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.dgvloandata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvloandata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            this.dgvloandata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvloandata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvloandata.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvloandata.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvloandata.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgvloandata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvloandata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvloandata.Location = new System.Drawing.Point(0, 40);
@@ -2277,6 +2235,108 @@ namespace rct_lmis.LOAN_SECTION
             this.tloanamt.SelectedText = "";
             this.tloanamt.Size = new System.Drawing.Size(191, 30);
             this.tloanamt.TabIndex = 63;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.babort);
+            this.panel1.Controls.Add(this.bsavetransaction);
+            this.panel1.Controls.Add(this.laccno);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1079, 50);
+            this.panel1.TabIndex = 2;
+            // 
+            // babort
+            // 
+            this.babort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.babort.BorderRadius = 4;
+            this.babort.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.babort.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.babort.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.babort.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.babort.FillColor = System.Drawing.Color.Maroon;
+            this.babort.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.babort.ForeColor = System.Drawing.Color.White;
+            this.babort.Location = new System.Drawing.Point(894, 12);
+            this.babort.Name = "babort";
+            this.babort.Size = new System.Drawing.Size(85, 31);
+            this.babort.TabIndex = 32;
+            this.babort.Text = "CANCEL";
+            this.babort.Click += new System.EventHandler(this.babort_Click);
+            // 
+            // bsavetransaction
+            // 
+            this.bsavetransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bsavetransaction.BorderRadius = 4;
+            this.bsavetransaction.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bsavetransaction.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bsavetransaction.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bsavetransaction.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bsavetransaction.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bsavetransaction.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bsavetransaction.ForeColor = System.Drawing.Color.White;
+            this.bsavetransaction.Location = new System.Drawing.Point(985, 12);
+            this.bsavetransaction.Name = "bsavetransaction";
+            this.bsavetransaction.Size = new System.Drawing.Size(82, 31);
+            this.bsavetransaction.TabIndex = 31;
+            this.bsavetransaction.Text = "SAVE";
+            this.bsavetransaction.Click += new System.EventHandler(this.bsavetransaction_Click);
+            // 
+            // laccno
+            // 
+            this.laccno.AutoSize = true;
+            this.laccno.BackColor = System.Drawing.Color.Transparent;
+            this.laccno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.laccno.Location = new System.Drawing.Point(12, 15);
+            this.laccno.Name = "laccno";
+            this.laccno.Size = new System.Drawing.Size(157, 20);
+            this.laccno.TabIndex = 19;
+            this.laccno.Text = " LOAN APPLICATION";
+            // 
+            // tpenaltymo
+            // 
+            this.tpenaltymo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tpenaltymo.DefaultText = "";
+            this.tpenaltymo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tpenaltymo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tpenaltymo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tpenaltymo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tpenaltymo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tpenaltymo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tpenaltymo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tpenaltymo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tpenaltymo.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_symbol_48_gray;
+            this.tpenaltymo.Location = new System.Drawing.Point(508, 390);
+            this.tpenaltymo.Name = "tpenaltymo";
+            this.tpenaltymo.PasswordChar = '\0';
+            this.tpenaltymo.PlaceholderText = "";
+            this.tpenaltymo.SelectedText = "";
+            this.tpenaltymo.Size = new System.Drawing.Size(144, 30);
+            this.tpenaltymo.TabIndex = 111;
+            // 
+            // tamortizedamt
+            // 
+            this.tamortizedamt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tamortizedamt.DefaultText = "";
+            this.tamortizedamt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tamortizedamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tamortizedamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tamortizedamt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tamortizedamt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tamortizedamt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tamortizedamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tamortizedamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tamortizedamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_symbol_48_gray;
+            this.tamortizedamt.Location = new System.Drawing.Point(508, 349);
+            this.tamortizedamt.Name = "tamortizedamt";
+            this.tamortizedamt.PasswordChar = '\0';
+            this.tamortizedamt.PlaceholderText = "";
+            this.tamortizedamt.SelectedText = "";
+            this.tamortizedamt.Size = new System.Drawing.Size(144, 30);
+            this.tamortizedamt.TabIndex = 109;
             // 
             // trfdocamt
             // 
@@ -2589,65 +2649,6 @@ namespace rct_lmis.LOAN_SECTION
             this.trfservicefee.Size = new System.Drawing.Size(100, 20);
             this.trfservicefee.TabIndex = 77;
             this.trfservicefee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel1.Controls.Add(this.babort);
-            this.panel1.Controls.Add(this.bsavetransaction);
-            this.panel1.Controls.Add(this.laccno);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1079, 50);
-            this.panel1.TabIndex = 2;
-            // 
-            // babort
-            // 
-            this.babort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.babort.BorderRadius = 4;
-            this.babort.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.babort.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.babort.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.babort.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.babort.FillColor = System.Drawing.Color.Maroon;
-            this.babort.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.babort.ForeColor = System.Drawing.Color.White;
-            this.babort.Location = new System.Drawing.Point(894, 12);
-            this.babort.Name = "babort";
-            this.babort.Size = new System.Drawing.Size(85, 31);
-            this.babort.TabIndex = 32;
-            this.babort.Text = "CANCEL";
-            // 
-            // bsavetransaction
-            // 
-            this.bsavetransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bsavetransaction.BorderRadius = 4;
-            this.bsavetransaction.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bsavetransaction.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bsavetransaction.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bsavetransaction.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bsavetransaction.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bsavetransaction.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bsavetransaction.ForeColor = System.Drawing.Color.White;
-            this.bsavetransaction.Location = new System.Drawing.Point(985, 12);
-            this.bsavetransaction.Name = "bsavetransaction";
-            this.bsavetransaction.Size = new System.Drawing.Size(82, 31);
-            this.bsavetransaction.TabIndex = 31;
-            this.bsavetransaction.Text = "SAVE";
-            this.bsavetransaction.Click += new System.EventHandler(this.bsavetransaction_Click);
-            // 
-            // laccno
-            // 
-            this.laccno.AutoSize = true;
-            this.laccno.BackColor = System.Drawing.Color.Transparent;
-            this.laccno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccno.Location = new System.Drawing.Point(12, 15);
-            this.laccno.Name = "laccno";
-            this.laccno.Size = new System.Drawing.Size(157, 20);
-            this.laccno.TabIndex = 19;
-            this.laccno.Text = " LOAN APPLICATION";
             // 
             // frm_home_loan_add
             // 
