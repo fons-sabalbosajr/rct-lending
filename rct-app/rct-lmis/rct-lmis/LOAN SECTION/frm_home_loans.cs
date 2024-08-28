@@ -17,16 +17,18 @@ namespace rct_lmis
 {
     public partial class frm_home_loans : Form
     {
+        private string loggedInUsername;
+        
+
         public frm_home_loans()
         {
             InitializeComponent();
+            loggedInUsername = UserSession.Instance.CurrentUser;
         }
+
         LoadingFunction load = new LoadingFunction();
         frm_home_loan_new flnew = new frm_home_loan_new();
         frm_home_loan_add fladd = new frm_home_loan_add();
-
-        private string loggedInUsername;
-        private DataGridViewCell hoveredCell = null;
 
         private void LoadApprovedLoansData()
         {
@@ -86,8 +88,6 @@ namespace rct_lmis
                     row["FullNameAndAddress"] = $"{fullName}\n{address}";
 
                     row["CBCP"] = approvedDoc.Contains("CBCP") ? approvedDoc["CBCP"].ToString() : string.Empty;
-
-                    
 
                     // Split the documents into separate lines based on the comma separator
                     if (approvedDoc.Contains("docs"))
@@ -221,14 +221,15 @@ namespace rct_lmis
 
             if (user != null)
             {
-                // Get the full name and split to get the first name
+                // Get the full name
                 var fullName = user.GetValue("FullName").AsString;
-                var firstName = fullName.Split(' ')[0]; // Split by space and take the first part
 
-                // Set the first name
-                luser.Text = firstName;
+                // Display the full name
+                luser.Text = fullName;
             }
         }
+
+     
 
         private void baddnew_Click(object sender, EventArgs e)
         {
@@ -242,6 +243,10 @@ namespace rct_lmis
         {
             LoadApprovedLoansData();
             LoadUserInfo(loggedInUsername);
+           
+
+            ltotalloancount.Text = dgvdata.Rows.Count.ToString();
+           
         }
 
         private void dgvdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -286,14 +291,17 @@ namespace rct_lmis
                 else if (dgvdata.Columns[e.ColumnIndex].Name == "btnDisburse")
                 {
                     var selectedAccountId = dgvdata.Rows[e.RowIndex].Cells["AccountID"].Value.ToString();
+
+                    // Pass the AccountID to the frm_home_loan_disburse form
                     frm_home_loan_disburse fdis = new frm_home_loan_disburse
                     {
-                        AccountID = selectedAccountId
+                        AccountID = selectedAccountId // Set the AccountID
                     };
+
                     load.Show(this);
                     Thread.Sleep(500);
                     load.Close();
-                    fdis.Show(this);
+                    fdis.Show(this); // Open the frm_home_loan_disburse form
                 }
             }
         }

@@ -422,6 +422,18 @@
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_aploans.Designer.cs">
       <DependentUpon>frm_home_ADMIN_aploans.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_collectors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors_docs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors_docs.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_collectors_docs.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_dnloans.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -658,6 +670,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_aploans.resx">
       <DependentUpon>frm_home_ADMIN_aploans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_collectors.resx">
+      <DependentUpon>frm_home_ADMIN_collectors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_collectors_docs.resx">
+      <DependentUpon>frm_home_ADMIN_collectors_docs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_dnloans.resx">
       <DependentUpon>frm_home_ADMIN_dnloans.cs</DependentUpon>

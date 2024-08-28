@@ -29,13 +29,13 @@ namespace rct_lmis.LOAN_SECTION
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_loan_add));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.bclearinfo = new Guna.UI2.WinForms.Guna2Button();
@@ -113,15 +113,9 @@ namespace rct_lmis.LOAN_SECTION
             this.tbrlname = new Guna.UI2.WinForms.Guna2TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.bsubmit = new Guna.UI2.WinForms.Guna2Button();
             this.statusLabel = new System.Windows.Forms.Label();
             this.mainProgressBar = new Guna.UI2.WinForms.Guna2ProgressBar();
-            this.bclear = new Guna.UI2.WinForms.Guna2Button();
             this.lfilesready = new System.Windows.Forms.Label();
-            this.baddfile = new Guna.UI2.WinForms.Guna2Button();
-            this.lnofile = new System.Windows.Forms.Label();
-            this.dgvuploads = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.guna2Separator4 = new Guna.UI2.WinForms.Guna2Separator();
             this.bloansave = new Guna.UI2.WinForms.Guna2Button();
@@ -155,10 +149,6 @@ namespace rct_lmis.LOAN_SECTION
             this.grploanrate = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvloandata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tloanamt = new Guna.UI2.WinForms.Guna2TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.babort = new Guna.UI2.WinForms.Guna2Button();
-            this.bsavetransaction = new Guna.UI2.WinForms.Guna2Button();
-            this.laccno = new System.Windows.Forms.Label();
             this.tpenaltymo = new Guna.UI2.WinForms.Guna2TextBox();
             this.tamortizedamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfdocamt = new Guna.UI2.WinForms.Guna2TextBox();
@@ -174,14 +164,24 @@ namespace rct_lmis.LOAN_SECTION
             this.trfnotarialamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfnotarialfee = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfservicefee = new Guna.UI2.WinForms.Guna2TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.babort = new Guna.UI2.WinForms.Guna2Button();
+            this.bsavetransaction = new Guna.UI2.WinForms.Guna2Button();
+            this.laccno = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dgvuploads = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.lnofile = new System.Windows.Forms.Label();
+            this.baddfile = new Guna.UI2.WinForms.Guna2Button();
+            this.bclear = new Guna.UI2.WinForms.Guna2Button();
+            this.bsubmit = new Guna.UI2.WinForms.Guna2Button();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvuploads)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.grploanrate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvloandata)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvuploads)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2TabControl1
@@ -1551,24 +1551,6 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage2.Text = "Document Requirements";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // bsubmit
-            // 
-            this.bsubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bsubmit.BorderRadius = 4;
-            this.bsubmit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bsubmit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bsubmit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bsubmit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bsubmit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bsubmit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bsubmit.ForeColor = System.Drawing.Color.White;
-            this.bsubmit.Location = new System.Drawing.Point(786, 45);
-            this.bsubmit.Name = "bsubmit";
-            this.bsubmit.Size = new System.Drawing.Size(82, 31);
-            this.bsubmit.TabIndex = 33;
-            this.bsubmit.Text = "SUBMIT";
-            this.bsubmit.Click += new System.EventHandler(this.bsubmit_Click);
-            // 
             // statusLabel
             // 
             this.statusLabel.AutoSize = true;
@@ -1589,24 +1571,6 @@ namespace rct_lmis.LOAN_SECTION
             this.mainProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.mainProgressBar.Visible = false;
             // 
-            // bclear
-            // 
-            this.bclear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bclear.BorderRadius = 4;
-            this.bclear.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bclear.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bclear.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bclear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bclear.FillColor = System.Drawing.Color.Maroon;
-            this.bclear.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bclear.ForeColor = System.Drawing.Color.White;
-            this.bclear.Location = new System.Drawing.Point(149, 45);
-            this.bclear.Name = "bclear";
-            this.bclear.Size = new System.Drawing.Size(90, 31);
-            this.bclear.TabIndex = 71;
-            this.bclear.Text = "Clear";
-            this.bclear.Click += new System.EventHandler(this.bclear_Click);
-            // 
             // lfilesready
             // 
             this.lfilesready.AutoSize = true;
@@ -1619,107 +1583,6 @@ namespace rct_lmis.LOAN_SECTION
             this.lfilesready.TabIndex = 70;
             this.lfilesready.Text = "your files are ready for uploading. please complete remaining requirements.";
             this.lfilesready.Visible = false;
-            // 
-            // baddfile
-            // 
-            this.baddfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.baddfile.BorderRadius = 4;
-            this.baddfile.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.baddfile.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.baddfile.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.baddfile.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.baddfile.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.baddfile.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baddfile.ForeColor = System.Drawing.Color.White;
-            this.baddfile.Location = new System.Drawing.Point(22, 45);
-            this.baddfile.Name = "baddfile";
-            this.baddfile.Size = new System.Drawing.Size(112, 31);
-            this.baddfile.TabIndex = 68;
-            this.baddfile.Text = "Browse Files";
-            this.baddfile.Click += new System.EventHandler(this.baddfile_Click);
-            // 
-            // lnofile
-            // 
-            this.lnofile.AutoSize = true;
-            this.lnofile.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lnofile.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lnofile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnofile.Location = new System.Drawing.Point(411, 188);
-            this.lnofile.Name = "lnofile";
-            this.lnofile.Size = new System.Drawing.Size(89, 19);
-            this.lnofile.TabIndex = 66;
-            this.lnofile.Text = "no file found.";
-            // 
-            // dgvuploads
-            // 
-            this.dgvuploads.AllowUserToAddRows = false;
-            this.dgvuploads.AllowUserToDeleteRows = false;
-            this.dgvuploads.AllowUserToResizeColumns = false;
-            this.dgvuploads.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            this.dgvuploads.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
-            this.dgvuploads.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dgvuploads.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvuploads.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            this.dgvuploads.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvuploads.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dgvuploads.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvuploads.Location = new System.Drawing.Point(22, 91);
-            this.dgvuploads.Name = "dgvuploads";
-            this.dgvuploads.ReadOnly = true;
-            this.dgvuploads.RowHeadersVisible = false;
-            this.dgvuploads.RowTemplate.Height = 35;
-            this.dgvuploads.Size = new System.Drawing.Size(846, 250);
-            this.dgvuploads.TabIndex = 69;
-            this.dgvuploads.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
-            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvuploads.ThemeStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvuploads.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvuploads.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.dgvuploads.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvuploads.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvuploads.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvuploads.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvuploads.ThemeStyle.HeaderStyle.Height = 30;
-            this.dgvuploads.ThemeStyle.ReadOnly = true;
-            this.dgvuploads.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvuploads.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvuploads.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvuploads.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvuploads.ThemeStyle.RowsStyle.Height = 35;
-            this.dgvuploads.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            this.dgvuploads.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvuploads.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvuploads_CellClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(19, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 17);
-            this.label1.TabIndex = 53;
-            this.label1.Text = "Upload Requirements";
             // 
             // tabPage3
             // 
@@ -2163,25 +2026,25 @@ namespace rct_lmis.LOAN_SECTION
             this.dgvloandata.AllowUserToDeleteRows = false;
             this.dgvloandata.AllowUserToResizeColumns = false;
             this.dgvloandata.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            this.dgvloandata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvloandata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvloandata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvloandata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvloandata.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvloandata.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvloandata.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvloandata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvloandata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvloandata.Location = new System.Drawing.Point(0, 40);
@@ -2235,66 +2098,6 @@ namespace rct_lmis.LOAN_SECTION
             this.tloanamt.SelectedText = "";
             this.tloanamt.Size = new System.Drawing.Size(191, 30);
             this.tloanamt.TabIndex = 63;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel1.Controls.Add(this.babort);
-            this.panel1.Controls.Add(this.bsavetransaction);
-            this.panel1.Controls.Add(this.laccno);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1079, 50);
-            this.panel1.TabIndex = 2;
-            // 
-            // babort
-            // 
-            this.babort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.babort.BorderRadius = 4;
-            this.babort.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.babort.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.babort.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.babort.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.babort.FillColor = System.Drawing.Color.Maroon;
-            this.babort.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.babort.ForeColor = System.Drawing.Color.White;
-            this.babort.Location = new System.Drawing.Point(894, 12);
-            this.babort.Name = "babort";
-            this.babort.Size = new System.Drawing.Size(85, 31);
-            this.babort.TabIndex = 32;
-            this.babort.Text = "CANCEL";
-            this.babort.Click += new System.EventHandler(this.babort_Click);
-            // 
-            // bsavetransaction
-            // 
-            this.bsavetransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bsavetransaction.BorderRadius = 4;
-            this.bsavetransaction.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bsavetransaction.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bsavetransaction.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bsavetransaction.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bsavetransaction.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bsavetransaction.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bsavetransaction.ForeColor = System.Drawing.Color.White;
-            this.bsavetransaction.Location = new System.Drawing.Point(985, 12);
-            this.bsavetransaction.Name = "bsavetransaction";
-            this.bsavetransaction.Size = new System.Drawing.Size(82, 31);
-            this.bsavetransaction.TabIndex = 31;
-            this.bsavetransaction.Text = "SAVE";
-            this.bsavetransaction.Click += new System.EventHandler(this.bsavetransaction_Click);
-            // 
-            // laccno
-            // 
-            this.laccno.AutoSize = true;
-            this.laccno.BackColor = System.Drawing.Color.Transparent;
-            this.laccno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccno.Location = new System.Drawing.Point(12, 15);
-            this.laccno.Name = "laccno";
-            this.laccno.Size = new System.Drawing.Size(157, 20);
-            this.laccno.TabIndex = 19;
-            this.laccno.Text = " LOAN APPLICATION";
             // 
             // tpenaltymo
             // 
@@ -2650,6 +2453,203 @@ namespace rct_lmis.LOAN_SECTION
             this.trfservicefee.TabIndex = 77;
             this.trfservicefee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.babort);
+            this.panel1.Controls.Add(this.bsavetransaction);
+            this.panel1.Controls.Add(this.laccno);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1079, 50);
+            this.panel1.TabIndex = 2;
+            // 
+            // babort
+            // 
+            this.babort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.babort.BorderRadius = 4;
+            this.babort.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.babort.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.babort.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.babort.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.babort.FillColor = System.Drawing.Color.Maroon;
+            this.babort.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.babort.ForeColor = System.Drawing.Color.White;
+            this.babort.Location = new System.Drawing.Point(894, 12);
+            this.babort.Name = "babort";
+            this.babort.Size = new System.Drawing.Size(85, 31);
+            this.babort.TabIndex = 32;
+            this.babort.Text = "CANCEL";
+            this.babort.Click += new System.EventHandler(this.babort_Click);
+            // 
+            // bsavetransaction
+            // 
+            this.bsavetransaction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bsavetransaction.BorderRadius = 4;
+            this.bsavetransaction.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bsavetransaction.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bsavetransaction.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bsavetransaction.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bsavetransaction.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bsavetransaction.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bsavetransaction.ForeColor = System.Drawing.Color.White;
+            this.bsavetransaction.Location = new System.Drawing.Point(985, 12);
+            this.bsavetransaction.Name = "bsavetransaction";
+            this.bsavetransaction.Size = new System.Drawing.Size(82, 31);
+            this.bsavetransaction.TabIndex = 31;
+            this.bsavetransaction.Text = "SAVE";
+            this.bsavetransaction.Click += new System.EventHandler(this.bsavetransaction_Click);
+            // 
+            // laccno
+            // 
+            this.laccno.AutoSize = true;
+            this.laccno.BackColor = System.Drawing.Color.Transparent;
+            this.laccno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.laccno.Location = new System.Drawing.Point(12, 15);
+            this.laccno.Name = "laccno";
+            this.laccno.Size = new System.Drawing.Size(157, 20);
+            this.laccno.TabIndex = 19;
+            this.laccno.Text = " LOAN APPLICATION";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(19, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 17);
+            this.label1.TabIndex = 53;
+            this.label1.Text = "Upload Requirements";
+            // 
+            // dgvuploads
+            // 
+            this.dgvuploads.AllowUserToAddRows = false;
+            this.dgvuploads.AllowUserToDeleteRows = false;
+            this.dgvuploads.AllowUserToResizeColumns = false;
+            this.dgvuploads.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvuploads.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvuploads.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgvuploads.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvuploads.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvuploads.ColumnHeadersHeight = 30;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvuploads.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvuploads.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvuploads.Location = new System.Drawing.Point(22, 91);
+            this.dgvuploads.Name = "dgvuploads";
+            this.dgvuploads.ReadOnly = true;
+            this.dgvuploads.RowHeadersVisible = false;
+            this.dgvuploads.RowTemplate.Height = 35;
+            this.dgvuploads.Size = new System.Drawing.Size(846, 250);
+            this.dgvuploads.TabIndex = 69;
+            this.dgvuploads.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
+            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvuploads.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvuploads.ThemeStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvuploads.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvuploads.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.dgvuploads.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvuploads.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvuploads.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvuploads.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvuploads.ThemeStyle.HeaderStyle.Height = 30;
+            this.dgvuploads.ThemeStyle.ReadOnly = true;
+            this.dgvuploads.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvuploads.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvuploads.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvuploads.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvuploads.ThemeStyle.RowsStyle.Height = 35;
+            this.dgvuploads.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            this.dgvuploads.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvuploads.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvuploads_CellClick);
+            // 
+            // lnofile
+            // 
+            this.lnofile.AutoSize = true;
+            this.lnofile.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lnofile.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lnofile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lnofile.Location = new System.Drawing.Point(411, 188);
+            this.lnofile.Name = "lnofile";
+            this.lnofile.Size = new System.Drawing.Size(89, 19);
+            this.lnofile.TabIndex = 66;
+            this.lnofile.Text = "no file found.";
+            // 
+            // baddfile
+            // 
+            this.baddfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.baddfile.BorderRadius = 4;
+            this.baddfile.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.baddfile.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.baddfile.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.baddfile.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.baddfile.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.baddfile.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.baddfile.ForeColor = System.Drawing.Color.White;
+            this.baddfile.Location = new System.Drawing.Point(22, 45);
+            this.baddfile.Name = "baddfile";
+            this.baddfile.Size = new System.Drawing.Size(112, 31);
+            this.baddfile.TabIndex = 68;
+            this.baddfile.Text = "Browse Files";
+            this.baddfile.Click += new System.EventHandler(this.baddfile_Click);
+            // 
+            // bclear
+            // 
+            this.bclear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bclear.BorderRadius = 4;
+            this.bclear.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bclear.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bclear.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bclear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bclear.FillColor = System.Drawing.Color.Maroon;
+            this.bclear.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bclear.ForeColor = System.Drawing.Color.White;
+            this.bclear.Location = new System.Drawing.Point(149, 45);
+            this.bclear.Name = "bclear";
+            this.bclear.Size = new System.Drawing.Size(90, 31);
+            this.bclear.TabIndex = 71;
+            this.bclear.Text = "Clear";
+            this.bclear.Click += new System.EventHandler(this.bclear_Click);
+            // 
+            // bsubmit
+            // 
+            this.bsubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bsubmit.BorderRadius = 4;
+            this.bsubmit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bsubmit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bsubmit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bsubmit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bsubmit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bsubmit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bsubmit.ForeColor = System.Drawing.Color.White;
+            this.bsubmit.Location = new System.Drawing.Point(786, 45);
+            this.bsubmit.Name = "bsubmit";
+            this.bsubmit.Size = new System.Drawing.Size(82, 31);
+            this.bsubmit.TabIndex = 33;
+            this.bsubmit.Text = "SUBMIT";
+            this.bsubmit.Click += new System.EventHandler(this.bsubmit_Click);
+            // 
             // frm_home_loan_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2671,13 +2671,13 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvuploads)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.grploanrate.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvloandata)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvuploads)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2695,10 +2695,6 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.Label label15;
         private Guna.UI2.WinForms.Guna2TextBox tbrlname;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lnofile;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvuploads;
-        private Guna.UI2.WinForms.Guna2Button baddfile;
         private Guna.UI2.WinForms.Guna2TextBox tloanamt;
         private System.Windows.Forms.Label laccountid;
         private System.Windows.Forms.Label label27;
@@ -2809,7 +2805,6 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.Label label94;
         private Guna.UI2.WinForms.Guna2Button buploadform;
         private System.Windows.Forms.Label lfilesready;
-        private Guna.UI2.WinForms.Guna2Button bclear;
         private Guna.UI2.WinForms.Guna2Button bloansave;
         private Guna.UI2.WinForms.Guna2Button bloanclear;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtbrsdate;
@@ -2820,7 +2815,12 @@ namespace rct_lmis.LOAN_SECTION
         private Guna.UI2.WinForms.Guna2Button bclearinfo;
         private System.Windows.Forms.Label statusLabel;
         private Guna.UI2.WinForms.Guna2ProgressBar mainProgressBar;
-        private Guna.UI2.WinForms.Guna2Button bsubmit;
         private Guna.UI2.WinForms.Guna2DataGridView dgvloandata;
+        private Guna.UI2.WinForms.Guna2Button bsubmit;
+        private Guna.UI2.WinForms.Guna2Button bclear;
+        private Guna.UI2.WinForms.Guna2Button baddfile;
+        private System.Windows.Forms.Label lnofile;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvuploads;
+        private System.Windows.Forms.Label label1;
     }
 }

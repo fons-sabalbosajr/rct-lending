@@ -213,6 +213,7 @@ namespace rct_lmis
             this.bdatadelcollector.Text = "Collector Data";
             this.bdatadelcollector.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdatadelcollector.TextOffset = new System.Drawing.Point(20, 0);
+            this.bdatadelcollector.Click += new System.EventHandler(this.bdatadelcollector_Click);
             // 
             // bdatadelclient
             // 

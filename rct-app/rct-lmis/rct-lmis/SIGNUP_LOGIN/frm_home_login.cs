@@ -145,6 +145,10 @@ namespace rct_lmis
                     {
                         loginSuccessful = true;
 
+                        // Set the current user in the session
+                        UserSession.Instance.CurrentUser = username;
+
+
                         // Insert login status
                         var loginStatus = new LoginStatus
                         {

@@ -201,5 +201,14 @@ namespace rct_lmis
             ChildForm(new frm_home_ADMIN_dnloans());
             load.Close();
         }
+
+        private void bdatadelcollector_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN_collectors());
+            load.Close();
+        }
     }
 }

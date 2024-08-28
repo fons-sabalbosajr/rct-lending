@@ -40,19 +40,10 @@ namespace rct_lmis
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.bmore = new Guna.UI2.WinForms.Guna2Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.luser = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ltotal = new System.Windows.Forms.Label();
-            this.guna2VSeparator3 = new Guna.UI2.WinForms.Guna2VSeparator();
-            this.label5 = new System.Windows.Forms.Label();
+            this.ltotalloancount = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.pheaders = new System.Windows.Forms.Panel();
             this.bexport = new Guna.UI2.WinForms.Guna2Button();
             this.bprint = new Guna.UI2.WinForms.Guna2Button();
@@ -61,6 +52,7 @@ namespace rct_lmis
             this.cbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.panel1.SuspendLayout();
             this.pbot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -196,16 +188,8 @@ namespace rct_lmis
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Controls.Add(this.bmore);
-            this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.luser);
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.ltotal);
-            this.panel3.Controls.Add(this.guna2VSeparator3);
-            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.ltotalloancount);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.guna2VSeparator2);
@@ -215,129 +199,35 @@ namespace rct_lmis
             this.panel3.Size = new System.Drawing.Size(1300, 33);
             this.panel3.TabIndex = 1;
             // 
-            // bmore
-            // 
-            this.bmore.BorderRadius = 2;
-            this.bmore.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bmore.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bmore.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bmore.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bmore.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bmore.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bmore.ForeColor = System.Drawing.Color.White;
-            this.bmore.Image = global::rct_lmis.Properties.Resources.icons8_more_48;
-            this.bmore.Location = new System.Drawing.Point(910, 7);
-            this.bmore.Name = "bmore";
-            this.bmore.Size = new System.Drawing.Size(30, 20);
-            this.bmore.TabIndex = 0;
-            this.bmore.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bmore, "View collectors status");
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(760, 10);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(107, 15);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "Juan Dela Cruz (45)";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.DimGray;
-            this.label9.Location = new System.Drawing.Point(677, 10);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 15);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Top Collector:";
-            // 
             // luser
             // 
             this.luser.AutoSize = true;
+            this.luser.BackColor = System.Drawing.Color.SeaGreen;
             this.luser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.luser.ForeColor = System.Drawing.Color.DimGray;
-            this.luser.Location = new System.Drawing.Point(1017, 10);
+            this.luser.ForeColor = System.Drawing.Color.White;
+            this.luser.Location = new System.Drawing.Point(301, 10);
             this.luser.Name = "luser";
             this.luser.Size = new System.Drawing.Size(78, 15);
             this.luser.TabIndex = 11;
             this.luser.Text = "staff/encoder";
             // 
-            // label8
+            // ltotalloancount
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(524, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 15);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "For Penalty (23)";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Gold;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(467, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 15);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Due (50)";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(398, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 15);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Active(36)";
-            // 
-            // ltotal
-            // 
-            this.ltotal.AutoSize = true;
-            this.ltotal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ltotal.ForeColor = System.Drawing.Color.DimGray;
-            this.ltotal.Location = new System.Drawing.Point(89, 9);
-            this.ltotal.Name = "ltotal";
-            this.ltotal.Size = new System.Drawing.Size(22, 15);
-            this.ltotal.TabIndex = 7;
-            this.ltotal.Text = "---";
-            // 
-            // guna2VSeparator3
-            // 
-            this.guna2VSeparator3.Location = new System.Drawing.Point(940, 9);
-            this.guna2VSeparator3.Name = "guna2VSeparator3";
-            this.guna2VSeparator3.Size = new System.Drawing.Size(10, 17);
-            this.guna2VSeparator3.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(296, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 15);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Loans per Status:";
+            this.ltotalloancount.AutoSize = true;
+            this.ltotalloancount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltotalloancount.ForeColor = System.Drawing.Color.DimGray;
+            this.ltotalloancount.Location = new System.Drawing.Point(89, 10);
+            this.ltotalloancount.Name = "ltotalloancount";
+            this.ltotalloancount.Size = new System.Drawing.Size(22, 15);
+            this.ltotalloancount.TabIndex = 7;
+            this.ltotalloancount.Text = "---";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DimGray;
-            this.label4.Location = new System.Drawing.Point(948, 10);
+            this.label4.Location = new System.Drawing.Point(232, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 15);
             this.label4.TabIndex = 4;
@@ -348,18 +238,11 @@ namespace rct_lmis
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(14, 9);
+            this.label3.Location = new System.Drawing.Point(14, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 15);
             this.label3.TabIndex = 3;
             this.label3.Text = "Total Loans:";
-            // 
-            // guna2VSeparator2
-            // 
-            this.guna2VSeparator2.Location = new System.Drawing.Point(285, 8);
-            this.guna2VSeparator2.Name = "guna2VSeparator2";
-            this.guna2VSeparator2.Size = new System.Drawing.Size(10, 17);
-            this.guna2VSeparator2.TabIndex = 2;
             // 
             // pheaders
             // 
@@ -486,6 +369,13 @@ namespace rct_lmis
             this.tsearch.TabIndex = 1;
             this.toolTip1.SetToolTip(this.tsearch, "Search Keyword");
             // 
+            // guna2VSeparator2
+            // 
+            this.guna2VSeparator2.Location = new System.Drawing.Point(216, 9);
+            this.guna2VSeparator2.Name = "guna2VSeparator2";
+            this.guna2VSeparator2.Size = new System.Drawing.Size(10, 17);
+            this.guna2VSeparator2.TabIndex = 2;
+            // 
             // frm_home_loans
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -520,27 +410,19 @@ namespace rct_lmis
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel pheaders;
         private System.Windows.Forms.Panel panel3;
-        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator2;
         private Guna.UI2.WinForms.Guna2ComboBox cbstatus;
         private Guna.UI2.WinForms.Guna2TextBox tsearch;
         private Guna.UI2.WinForms.Guna2Button baddnew;
         private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2Button bmore;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label luser;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label ltotal;
+        private System.Windows.Forms.Label ltotalloancount;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private Guna.UI2.WinForms.Guna2Button bprint;
         private Guna.UI2.WinForms.Guna2Button bexport;
         private System.Windows.Forms.Label lnorecord;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdata;
+        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator2;
     }
 }
