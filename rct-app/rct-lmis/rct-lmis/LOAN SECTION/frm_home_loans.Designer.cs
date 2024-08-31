@@ -44,6 +44,7 @@ namespace rct_lmis
             this.ltotalloancount = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.pheaders = new System.Windows.Forms.Panel();
             this.bexport = new Guna.UI2.WinForms.Guna2Button();
             this.bprint = new Guna.UI2.WinForms.Guna2Button();
@@ -52,7 +53,6 @@ namespace rct_lmis
             this.cbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.panel1.SuspendLayout();
             this.pbot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -148,7 +148,7 @@ namespace rct_lmis
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvdata.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvdata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvdata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
@@ -243,6 +243,13 @@ namespace rct_lmis
             this.label3.Size = new System.Drawing.Size(69, 15);
             this.label3.TabIndex = 3;
             this.label3.Text = "Total Loans:";
+            // 
+            // guna2VSeparator2
+            // 
+            this.guna2VSeparator2.Location = new System.Drawing.Point(216, 9);
+            this.guna2VSeparator2.Name = "guna2VSeparator2";
+            this.guna2VSeparator2.Size = new System.Drawing.Size(10, 17);
+            this.guna2VSeparator2.TabIndex = 2;
             // 
             // pheaders
             // 
@@ -368,13 +375,6 @@ namespace rct_lmis
             this.tsearch.Size = new System.Drawing.Size(377, 36);
             this.tsearch.TabIndex = 1;
             this.toolTip1.SetToolTip(this.tsearch, "Search Keyword");
-            // 
-            // guna2VSeparator2
-            // 
-            this.guna2VSeparator2.Location = new System.Drawing.Point(216, 9);
-            this.guna2VSeparator2.Name = "guna2VSeparator2";
-            this.guna2VSeparator2.Size = new System.Drawing.Size(10, 17);
-            this.guna2VSeparator2.TabIndex = 2;
             // 
             // frm_home_loans
             // 

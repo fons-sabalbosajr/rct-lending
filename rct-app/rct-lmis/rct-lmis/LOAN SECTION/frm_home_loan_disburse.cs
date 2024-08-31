@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,12 +19,10 @@ namespace rct_lmis.LOAN_SECTION
     {
         public string AccountID { get; set; }
 
-
-        private IMongoCollection<BsonDocument> collection;
         private readonly IMongoCollection<BsonDocument> loanRateCollection;
-        private readonly IMongoCollection<BsonDocument> disbursedcollection;
-
+     
         private DataTable dataTable = new DataTable();
+        LoadingFunction load = new LoadingFunction();
 
         public frm_home_loan_disburse()
         {
@@ -30,11 +30,15 @@ namespace rct_lmis.LOAN_SECTION
 
             var database = MongoDBConnection.Instance.Database;
             loanRateCollection = database.GetCollection<BsonDocument>("loan_rate");
-            
+
             gpocash.Enabled = false;
             gpoonline.Enabled = false;
             gpobank.Enabled = false;
 
+            dtpcash.Value = DateTime.Now;
+            dtponline.Value = DateTime.Now;
+            dtpbank.Value = DateTime.Now;
+            dtpayoutdate.Value = DateTime.Now;
         }
 
         private void frm_home_loan_disburse_Load(object sender, EventArgs e)
@@ -81,10 +85,6 @@ namespace rct_lmis.LOAN_SECTION
             {
                 // Generate increment ID
                 tcashno.Text = GenerateIncrementId();
-
-                // Set current date
-                tcashpodate.Text = DateTime.Now.ToString("MM/dd/yyyy, dddd hh:mm: tt");
-
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_approved");
 
@@ -169,9 +169,6 @@ namespace rct_lmis.LOAN_SECTION
                 // Set cashout platform
                 cbonlineplatform.Text = "select platform";
 
-                // Set current date and time
-                tonlinepodate.Text = DateTime.Now.ToString("MM/dd/yyyy, dddd hh:mm: tt");
-
                 // Generate increment ID
                 tponlinerefno.Text = GenerateIncrementIdOnline();
 
@@ -253,9 +250,6 @@ namespace rct_lmis.LOAN_SECTION
                 // Set bank type platform
                 cbbankplatform.Text = "Specify the bank type";
 
-                // Set current date
-                tbankpodate.Text = DateTime.Now.ToString("MM/dd/yyyy, dddd");
-
                 // Generate increment ID
                 tbankporefno.Text = GenerateIncrementIdBank();
 
@@ -297,9 +291,6 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show("Error filling up Bank GroupBox: " + ex.Message);
             }
         }
-
-
-
 
         private void LoadDataToDataGridView()
         {
@@ -369,14 +360,14 @@ namespace rct_lmis.LOAN_SECTION
                 string loanAmtText = tloanamt.Text.Replace("₱", "").Replace(",", "").Trim();
                 if (!double.TryParse(loanAmtText, out double principal))
                 {
-                    MessageBox.Show("Please enter a valid loan amount.");
+                    //MessageBox.Show("Please enter a valid loan amount.");
                     return;
                 }
 
                 // Parse and validate loan term
                 if (!int.TryParse(tloanterm.Text.Trim(), out int term))
                 {
-                    MessageBox.Show("Please enter a valid loan term (in months).");
+                    //MessageBox.Show("Please enter a valid loan term (in months).");
                     return;
                 }
 
@@ -401,6 +392,310 @@ namespace rct_lmis.LOAN_SECTION
             {
                 MessageBox.Show("Error computing amortization: " + ex.Message);
             }
+        }
+
+        private string GetClientNumber(IMongoCollection<BsonDocument> loanApprovedCollection, string accountId)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+            var document = loanApprovedCollection.Find(filter).FirstOrDefault();
+
+            if (document != null && document.Contains("ClientNumber"))
+            {
+                return document["ClientNumber"].AsString;
+            }
+
+            return null; // Return null if not found or if field is missing
+        }
+
+        private void DisbursedInitial()
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
+            var loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
+            var loanRateCollection = database.GetCollection<BsonDocument>("loan_rate");
+
+            // Retrieve the ClientNumber from the loan_approved collection
+            string accountId = tloanaccno.Text;
+            string clientNumber = GetClientNumber(loanApprovedCollection, accountId);
+
+            if (clientNumber == null)
+            {
+                MessageBox.Show("Client Number could not be found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if a document with the same ClientNumber already exists in loan_disbursed
+            var filterExisting = Builders<BsonDocument>.Filter.Eq("cashClnNo", clientNumber);
+            var existingDocument = loanDisbursedCollection.Find(filterExisting).FirstOrDefault();
+
+            if (existingDocument != null)
+            {
+                // Collect the existing fields for detailed error message
+                string existingOnlineRefNo = existingDocument.GetValue("onlineRefNo", "Not Available").AsString;
+                string existingCashClnNo = existingDocument.GetValue("cashClnNo", "Not Available").AsString;
+
+                MessageBox.Show($"This data detected that transaction already exists in our database:\n" +
+                                $"Online Ref No: {existingOnlineRefNo}\n" +
+                                $"Cash Client No: {existingCashClnNo}",
+                                "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Exit the method to avoid adding duplicate data
+            }
+
+            // Convert loan amount to numeric value, removing the Peso sign
+            double loanAmount;
+            string loanAmtText = tloanamt.Text.Replace("₱", "").Replace(",", "").Trim();
+            if (!double.TryParse(loanAmtText, NumberStyles.Number, CultureInfo.InvariantCulture, out loanAmount))
+            {
+                MessageBox.Show("Invalid loan amount format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Retrieve Loan Type and Mode
+            var loanRateFilter = Builders<BsonDocument>.Filter.Eq("Principal", loanAmount);
+            var loanRateDocument = loanRateCollection.Find(loanRateFilter).FirstOrDefault();
+
+            if (loanRateDocument == null)
+            {
+                MessageBox.Show("Loan Rate data could not be found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string loanType = "First Time Borrower"; 
+            string mode = loanRateDocument.GetValue("Mode", "Not Available").AsString;
+
+            // Prepare the loan disburse document
+            var loanDisburseDocument = new BsonDocument
+             {
+                 { "LoanIDNo", GenerateNewLoanID() },
+                 { "cashClnNo", clientNumber },
+                 { "loanAmt", loanAmount },
+                 { "loanTerm", tloanterm.Text },
+                 { "loanInterest", tloaninterest.Text },
+                 { "days", tdays.Text },
+                 { "loanInterestAmt", tloaninterestamt.Text },
+                 { "rfServiceFee", trfservicefee.Text },
+                 { "rfNotarialFee", trfnotarialfee.Text },
+                 { "rfInsuranceFee", trfinsurancefee.Text },
+                 { "rfAnnotationFee", trfannotationfee.Text },
+                 { "rfVat", trfvat.Text },
+                 { "rfMisc", trfmisc.Text },
+                 { "rfDocFee", trfdocfee.Text },
+                 { "rfNotarialAmt", trfnotarialamt.Text },
+                 { "rfInsuranceAmt", trfinsuranceamt.Text },
+                 { "rfAnnotationAmt", trfannotationmt.Text },
+                 { "rfVatAmt", trfvatamt.Text },
+                 { "rfMiscAmt", trfmiscamt.Text },
+                 { "rfDocAmt", trfdocamt.Text },
+                 { "amortizedAmt", tamortizedamt.Text },
+                 { "LoanType", loanType },
+                 { "Mode", mode },
+                 { "PaymentStartDate", dtpayoutdate.Value.ToString("MM/dd/yyyy") }
+             };
+
+            // Add payment fields based on selected payment method
+            if (cbpocash.Checked)
+            {
+                AddCashPaymentFields(loanDisburseDocument);
+            }
+            else if (cbpoonline.Checked)
+            {
+                AddOnlinePaymentFields(loanDisburseDocument);
+            }
+            else if (cbpobank.Checked)
+            {
+                AddBankPaymentFields(loanDisburseDocument);
+            }
+            else
+            {
+                MessageBox.Show("Please select a payment method.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Insert the document as it is a new entry
+            loanDisbursedCollection.InsertOne(loanDisburseDocument);
+
+            // Update the loan_approved document
+            var updateFilter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientNumber);
+            var update = Builders<BsonDocument>.Update
+                .Set("LoanStatus", "For Releasing Loan Disbursement")
+                .Set("LoanType", loanType) // This sets the updated LoanType
+                .Set("DisbursementDate", DateTime.UtcNow); // Set DisbursementDate to current date
+
+            loanApprovedCollection.UpdateOne(updateFilter, update);
+
+            // Notify user and clear form
+            MessageBox.Show(this, "Transactions disbursed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            frm_home_loan_voucher voucherForm = new frm_home_loan_voucher(clientNumber);
+            voucherForm.Show();
+            ClearAll();
+        }
+
+
+
+        private void AddCashPaymentFields(BsonDocument document)
+        {
+            document.Add("cashNo", tcashno.Text);
+            document.Add("cashName", tcashname.Text);
+            document.Add("cashProFee", tcashprofee.Text);
+            document.Add("cashAmt", tcashamt.Text);
+            document.Add("cashPoAmt", tcashpoamt.Text);
+            document.Add("cashDate", dtpcash.Value.ToString("MM/dd/yyyy"));
+
+            // Remove irrelevant fields for cash payment
+            RemoveIrrelevantFields(document, "cash");
+        }
+
+        private void AddOnlinePaymentFields(BsonDocument document)
+        {
+            document.Add("onlinePlatform", cbonlineplatform.Text);
+            document.Add("onlineRefNo", tponlinerefno.Text);
+            document.Add("onlineAccNo", tponlineaccno.Text);
+            document.Add("onlineName", tponlinename.Text);
+            document.Add("onlineAmt", tponlineamt.Text);
+            document.Add("onlineProFee", tonlineprofee.Text);
+            document.Add("onlinePoAmt", tonlinepoamt.Text);
+            document.Add("onlineDate", dtponline.Value.ToString("MM/dd/yyyy"));
+
+            // Remove irrelevant fields for online payment
+            RemoveIrrelevantFields(document, "online");
+        }
+
+        private void AddBankPaymentFields(BsonDocument document)
+        {
+            document.Add("bankPlatform", cbbankplatform.Text);
+            document.Add("bankRefNo", tbankporefno.Text);
+            document.Add("bankAccNo", tbankpoaccno.Text);
+            document.Add("bankName", tbankname.Text);
+            document.Add("bankPoAmt", tbankpoamt.Text);
+            document.Add("bankProFee", tbankpoprofee.Text);
+            document.Add("bankAmt", tbankamt.Text);
+            document.Add("bankDate", dtpbank.Value.ToString("MM/dd/yyyy hh:mm tt"));
+
+            // Remove irrelevant fields for bank payment
+            RemoveIrrelevantFields(document, "bank");
+        }
+
+        private void RemoveIrrelevantFields(BsonDocument document, string paymentType)
+        {
+            if (paymentType != "cash")
+            {
+                document.Remove("cashNo");
+                document.Remove("cashProFee");
+                document.Remove("cashAmt");
+                document.Remove("cashPoAmt");
+                document.Remove("cashDate");
+            }
+
+            if (paymentType != "online")
+            {
+                document.Remove("onlinePlatform");
+                document.Remove("onlineRefNo");
+                document.Remove("onlineAccNo");
+                document.Remove("onlineName");
+                document.Remove("onlineAmt");
+                document.Remove("onlineProFee");
+                document.Remove("onlinePoAmt");
+                document.Remove("onlineDate");
+            }
+
+            if (paymentType != "bank")
+            {
+                document.Remove("bankPlatform");
+                document.Remove("bankRefNo");
+                document.Remove("bankAccNo");
+                document.Remove("bankName");
+                document.Remove("bankPoAmt");
+                document.Remove("bankProFee");
+                document.Remove("bankAmt");
+                document.Remove("bankDate");
+            }
+        }
+
+
+        private string GenerateNewLoanID()
+        {
+            // Generate a new Loan ID No.
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<BsonDocument>("loan_disbursed");
+
+            var lastLoanDocument = collection.Find(new BsonDocument())
+                                            .Sort(Builders<BsonDocument>.Sort.Descending("LoanIDNo"))
+                                            .Limit(1)
+                                            .FirstOrDefault();
+
+            string newLoanID;
+            if (lastLoanDocument != null && lastLoanDocument.Contains("LoanIDNo"))
+            {
+                string lastLoanID = lastLoanDocument["LoanIDNo"].AsString;
+                int lastNumber = int.Parse(lastLoanID.Substring(10)); // Assuming "RCT-LNR1-" is fixed
+                newLoanID = $"RCT-LNR1-{(lastNumber + 1).ToString("D8")}";
+            }
+            else
+            {
+                newLoanID = "RCT-LNR1-20240001";
+            }
+
+            return newLoanID;
+        }
+
+        private void ClearAll() 
+        {
+            // Clear the textboxes when unchecked
+            tcashno.Text = string.Empty;
+            tcashprofee.Text = string.Empty;
+            tcashamt.Text = string.Empty;
+            tcashpoamt.Text = string.Empty;
+            tcashclnno.Text = string.Empty;
+            tcashname.Text = string.Empty;
+
+            // Disable the cash group box
+            gpocash.Enabled = false;
+
+
+            // Clear all text boxes in the online group box
+            cbonlineplatform.Text = string.Empty;
+            tponlinerefno.Text = string.Empty;
+            tponlineaccno.Text = string.Empty;
+            tponlinename.Text = string.Empty;
+            tponlineamt.Text = string.Empty;
+            tonlineprofee.Text = string.Empty;
+            tonlinepoamt.Text = string.Empty;
+
+            // Disable the online group box
+            gpoonline.Enabled = false;
+
+
+            cbbankplatform.Text = string.Empty;
+            tbankporefno.Text = string.Empty;
+            tbankpoaccno.Text = string.Empty;
+            tbankname.Text = string.Empty;
+            tbankpoamt.Text = string.Empty;
+            tbankpoprofee.Text = string.Empty;
+            tbankamt.Text = string.Empty;
+
+            // Disable the bank group box
+            gpobank.Enabled = false;
+
+            tloanamt.Text = string.Empty;
+            tloanterm.Text = string.Empty;
+            tloaninterest.Text = string.Empty;
+            tdays.Text = string.Empty;
+            tloaninterestamt.Text = string.Empty;
+            trfservicefee.Text = string.Empty;
+            trfnotarialfee.Text = string.Empty;
+            trfinsurancefee.Text = string.Empty;
+            trfannotationfee.Text = string.Empty;
+            trfvat.Text = string.Empty;
+            trfmisc.Text = string.Empty;
+            trfdocfee.Text = string.Empty;
+            trfnotarialamt.Text = string.Empty;
+            trfinsuranceamt.Text = string.Empty;
+            trfannotationmt.Text = string.Empty;
+            trfvatamt.Text = string.Empty;
+            trfmiscamt.Text = string.Empty;
+            trfdocamt.Text = string.Empty;
+            tamortizedamt.Text = string.Empty;
+
         }
 
         private void tsearchamt_TextChanged(object sender, EventArgs e)
@@ -429,7 +724,6 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show("Error applying search filter: " + ex.Message);
             }
         }
-
 
         private void dgvloandata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -494,11 +788,6 @@ namespace rct_lmis.LOAN_SECTION
             ComputeAmortization();
         }
 
-        private void tloanterm_TextChanged_1(object sender, EventArgs e)
-        {
-            ComputeAmortization();
-        }
-
         private void tloanterm_TextChanged(object sender, EventArgs e)
         {
             ComputeAmortization();
@@ -510,7 +799,7 @@ namespace rct_lmis.LOAN_SECTION
             {
                 if (cbpoonline.Checked || cbpobank.Checked)
                 {
-                    MessageBox.Show("Only one option can be selected at a time. The other options will be unchecked.", 
+                    MessageBox.Show("Only one option can be selected at a time. The other options will be unchecked.",
                         "Selection Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
@@ -531,7 +820,6 @@ namespace rct_lmis.LOAN_SECTION
                 tcashprofee.Text = string.Empty;
                 tcashamt.Text = string.Empty;
                 tcashpoamt.Text = string.Empty;
-                tcashpodate.Text = string.Empty;
                 tcashclnno.Text = string.Empty;
                 tcashname.Text = string.Empty;
 
@@ -565,7 +853,6 @@ namespace rct_lmis.LOAN_SECTION
             {
                 // Clear all text boxes in the online group box
                 cbonlineplatform.Text = string.Empty;
-                tonlinepodate.Text = string.Empty;
                 tponlinerefno.Text = string.Empty;
                 tponlineaccno.Text = string.Empty;
                 tponlinename.Text = string.Empty;
@@ -602,7 +889,6 @@ namespace rct_lmis.LOAN_SECTION
             {
                 // Clear Bank GroupBox textboxes if unchecked
                 cbbankplatform.Text = string.Empty;
-                tbankpodate.Text = string.Empty;
                 tbankporefno.Text = string.Empty;
                 tbankpoaccno.Text = string.Empty;
                 tbankname.Text = string.Empty;
@@ -613,6 +899,93 @@ namespace rct_lmis.LOAN_SECTION
                 // Disable the bank group box
                 gpobank.Enabled = false;
             }
+        }
+
+        private void bloansave_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to disrbuse all the transactions?",
+                "Disburse Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                // Show loading indicator (assuming 'load' is a form or control)
+                load.Show(this);
+                Thread.Sleep(1000);
+                load.Close();
+                DisbursedInitial();
+            }
+        }
+
+        private void bloanclear_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to cancel all the transactions?",
+                "Cancel Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                ClearAll();
+                this.Close();
+
+            }
+        }
+
+        private void frm_home_loan_disburse_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Clear the textboxes when unchecked
+            tcashno.Text = string.Empty;
+            tcashprofee.Text = string.Empty;
+            tcashamt.Text = string.Empty;
+            tcashpoamt.Text = string.Empty;
+            tcashclnno.Text = string.Empty;
+            tcashname.Text = string.Empty;
+
+            // Disable the cash group box
+            gpocash.Enabled = false;
+
+
+            // Clear all text boxes in the online group box
+            cbonlineplatform.Text = string.Empty;
+            tponlinerefno.Text = string.Empty;
+            tponlineaccno.Text = string.Empty;
+            tponlinename.Text = string.Empty;
+            tponlineamt.Text = string.Empty;
+            tonlineprofee.Text = string.Empty;
+            tonlinepoamt.Text = string.Empty;
+
+            // Disable the online group box
+            gpoonline.Enabled = false;
+
+
+            cbbankplatform.Text = string.Empty;
+            tbankporefno.Text = string.Empty;
+            tbankpoaccno.Text = string.Empty;
+            tbankname.Text = string.Empty;
+            tbankpoamt.Text = string.Empty;
+            tbankpoprofee.Text = string.Empty;
+            tbankamt.Text = string.Empty;
+
+            // Disable the bank group box
+            gpobank.Enabled = false;
+
+            tloanamt.Text = string.Empty;
+            tloanterm.Text = string.Empty;
+            tloaninterest.Text = string.Empty;
+            tdays.Text = string.Empty;
+            tloaninterestamt.Text = string.Empty;
+            trfservicefee.Text = string.Empty;
+            trfnotarialfee.Text = string.Empty;
+            trfinsurancefee.Text = string.Empty;
+            trfannotationfee.Text = string.Empty;
+            trfvat.Text = string.Empty;
+            trfmisc.Text = string.Empty;
+            trfdocfee.Text = string.Empty;
+            trfnotarialamt.Text = string.Empty;
+            trfinsuranceamt.Text = string.Empty;
+            trfannotationmt.Text = string.Empty;
+            trfvatamt.Text = string.Empty;
+            trfmiscamt.Text = string.Empty;
+            trfdocamt.Text = string.Empty;
+            tamortizedamt.Text = string.Empty;
+
+            this.Hide();
+            e.Cancel = true;
         }
     }
 }

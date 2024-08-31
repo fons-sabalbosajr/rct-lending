@@ -567,6 +567,12 @@
     <Compile Include="LOAN SECTION\frm_home_loan_request.Designer.cs">
       <DependentUpon>frm_home_loan_request.cs</DependentUpon>
     </Compile>
+    <Compile Include="LOAN SECTION\frm_home_loan_voucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOAN SECTION\frm_home_loan_voucher.Designer.cs">
+      <DependentUpon>frm_home_loan_voucher.cs</DependentUpon>
+    </Compile>
     <Compile Include="SIGNUP_LOGIN\frm_home_login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -736,6 +742,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loan_request.resx">
       <DependentUpon>frm_home_loan_request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOAN SECTION\frm_home_loan_voucher.resx">
+      <DependentUpon>frm_home_loan_voucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SIGNUP_LOGIN\frm_home_login.resx">
       <DependentUpon>frm_home_login.cs</DependentUpon>
@@ -936,6 +945,7 @@
     <None Include="Resources\pay.png" />
     <None Include="Resources\cash.png" />
     <None Include="Resources\calendar.png" />
+    <None Include="Resources\icons8-refresh-48.png" />
     <Content Include="tessdata\eng.traineddata">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

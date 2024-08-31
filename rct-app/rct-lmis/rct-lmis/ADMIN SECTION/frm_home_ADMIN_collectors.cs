@@ -504,5 +504,10 @@ namespace rct_lmis.ADMIN_SECTION
             SetNextCollectorID();
             ClearForm();
         }
+
+        private void brefresh_Click(object sender, EventArgs e)
+        {
+            LoadDataToDataGridView();
+        }
     }
 }
