@@ -117,10 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAMQOAADEDgAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxVkz/cVZM/3FWTP86Lif/AAAAAAAA
+        AAAAAAAAAAAAAAAAAAD7k1f//7F7//+xe/8AAAAA/7F7/3FWTP9xVkz/cVZM/1E/N/9xVkz/Oi4n/0g4
+        Mf8AAAAAAAAAAAAAAAD7k1f/+5NX//+xe///sXv//7F7//+xe/9xVkz/UT83/3FWTP9xVkz/cVZM/zou
+        J/9VQTrHZ4WT/zouJ/8AAAAA+5NX//uTV///sXv//7F7//+xe///sXv/cVZM/3FWTP9xVkz/UT83/3FW
+        TP86Lif/RTcu/1E/N/86Lif/AAAAAAAAAAD7k1f/+5NX//uTV///sXv//7F7/3FWTP9YRTz/cVZM/3FW
+        TP9xVkz/Oi4n/0I0LP+R1/f/Oi4n/wAAAAAAAAAAAAAAAPuTV//7k1f//7F7//+xe/9xVkz/cVZM/3FW
+        TP9xVkz/cVZM/zouJ/8+MSr/UT83/zouJ/8AAAAAAAAAAAAAAAD7k1f/+5NX//+xe///sXv/cVZM/3FW
+        TP9xVkz/cVZM/3FWTP9xVkz/Oi4n/5Td//86Lif/AAAAAAAAAAAAAAAAAAAAAPuTV//7k1f//7F7//+x
+        e/9xVkz/cVZM/3FWTP9xVkz/cVZM/3FWTP9xVkz/Oi4n/wAAAAAAAAAAAAAAAAAAAAD7k1f/+5NX//uT
+        V///sXv//7F7//+xe/9xVkz/cVZM/3FWTP9xVkz//7F7//+xe/8AAAAAAAAAAAAAAAAAAAAAAAAAAPuT
+        V//7k1f/+5NX//uTV///sXv//7F7/3FWTP//sXv//7F7//+xe///sXv//7F7/wAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAPuTV//7k1f//7F7//+xe///sXv//7F7//+xe///sXv//7F7//+xe/8AAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAD7k1f/+5NX//yZX///sXv//7F7//+xe///sXv/+5NX//+xe/8AAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAPuTV//7k1f//7F7//+xe///sXv//7F7//uTV/8AAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+5NX//uTV//7k1f//7F7/wAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8k1ZQ+5NX/wAAAAAAAAAAAAAAAAAA
+        AAAAAAAA//8AAP8PAACIBwAAAAkAAAABAACAAQAAwAEAAMABAADgAQAA4AEAAPAAAAD8AAAA/AEAAP4D
+        AAD/DwAA/98AAA==
+</value>
+  </data>
 </root>

@@ -848,5 +848,6 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_aploans.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_dnloans.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors_docs.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_voucher.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors_upload.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collector_attachments.resources

@@ -198,6 +198,7 @@
             this.bvoucher.Size = new System.Drawing.Size(185, 31);
             this.bvoucher.TabIndex = 180;
             this.bvoucher.Text = "Receiving Voucher Report";
+            this.bvoucher.Click += new System.EventHandler(this.bvoucher_Click);
             // 
             // brelease
             // 
@@ -251,6 +252,7 @@
             this.bsoa.Size = new System.Drawing.Size(93, 31);
             this.bsoa.TabIndex = 183;
             this.bsoa.Text = "Print SOA";
+            this.bsoa.Click += new System.EventHandler(this.bsoa_Click);
             // 
             // label6
             // 
@@ -569,7 +571,7 @@
             this.dgvdisburse.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;

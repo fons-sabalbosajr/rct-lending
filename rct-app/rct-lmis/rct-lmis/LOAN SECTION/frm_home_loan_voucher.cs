@@ -424,5 +424,15 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show($"An error occurred while deleting data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void bvoucher_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bsoa_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

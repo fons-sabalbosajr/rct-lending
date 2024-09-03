@@ -1195,6 +1195,7 @@ namespace rct_lmis.LOAN_SECTION
             this.dgvuploads.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvuploads.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvuploads.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvuploads_CellContentClick);
+            this.dgvuploads.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvuploads_DataBindingComplete);
             // 
             // panel6
             // 

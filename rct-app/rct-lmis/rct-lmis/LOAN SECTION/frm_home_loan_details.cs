@@ -192,5 +192,10 @@ namespace rct_lmis.LOAN_SECTION
                 }
             }
         }
+
+        private void dgvuploads_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvuploads.ClearSelection();
+        }
     }
 }

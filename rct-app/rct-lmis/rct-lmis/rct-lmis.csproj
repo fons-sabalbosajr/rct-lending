@@ -428,11 +428,17 @@
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors.Designer.cs">
       <DependentUpon>frm_home_ADMIN_collectors.cs</DependentUpon>
     </Compile>
-    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors_docs.cs">
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors_upload.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors_docs.Designer.cs">
-      <DependentUpon>frm_home_ADMIN_collectors_docs.cs</DependentUpon>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors_upload.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_collectors_upload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collector_attachments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collector_attachments.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_collector_attachments.cs</DependentUpon>
     </Compile>
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_dnloans.cs">
       <SubType>Form</SubType>
@@ -680,8 +686,11 @@
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_collectors.resx">
       <DependentUpon>frm_home_ADMIN_collectors.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_collectors_docs.resx">
-      <DependentUpon>frm_home_ADMIN_collectors_docs.cs</DependentUpon>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_collectors_upload.resx">
+      <DependentUpon>frm_home_ADMIN_collectors_upload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_collector_attachments.resx">
+      <DependentUpon>frm_home_ADMIN_collector_attachments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_dnloans.resx">
       <DependentUpon>frm_home_ADMIN_dnloans.cs</DependentUpon>
@@ -784,6 +793,7 @@
     <EmbeddedResource Include="z_loadingform.resx">
       <DependentUpon>z_loadingform.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="docs\receiving_voucher.pdf" />
     <None Include="libmongocrypt.dylib" />
     <None Include="libmongocrypt.so" />
     <None Include="packages.config" />
@@ -917,7 +927,6 @@
     <None Include="Resources\icons8-add-48 %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="adb_folder_data\" />
     <Folder Include="SETTINGS SECTION\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.Identity.Client;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TesseractOCR.Font;
 
 namespace rct_lmis.ADMIN_SECTION
 {
@@ -25,8 +27,6 @@ namespace rct_lmis.ADMIN_SECTION
 
         LoadingFunction load = new LoadingFunction();
        
-        frm_home_ADMIN_collectors_docs docs = new frm_home_ADMIN_collectors_docs();
-
         private void DisableElements()
         {
             cbarea.Enabled = false;
@@ -118,8 +118,7 @@ namespace rct_lmis.ADMIN_SECTION
             cbempstatus.SelectedIndex = -1;
             dtdateemp.Value = DateTime.Now;
             trole.Text = string.Empty;
-            lbbankacc.Items.Clear();
-            lbattachdoc.Items.Clear();
+           
             _currentId = null;
 
         }
@@ -140,8 +139,10 @@ namespace rct_lmis.ADMIN_SECTION
                 { "AlternateContactNumber", tcontactnoalt.Text },
                 { "EmploymentStatus", cbempstatus.SelectedItem?.ToString() },
                 { "Email", temail.Text },
-                { "EmploymentDate", dtdateemp.Value.ToString("yyyy-mm-dd") },
-                { "Role", trole.Text }
+                { "EmploymentDate", dtdateemp.Value.ToString("d") },
+                { "Role", trole.Text },
+                { "ReceiptBookNo", trecbookno.Text },
+                { "BankAccount", tbankaccountno.Text }
             };
 
             var filter = Builders<BsonDocument>.Filter.Eq("GeneratedIDNumber", tidno.Text);
@@ -191,10 +192,10 @@ namespace rct_lmis.ADMIN_SECTION
 
             // Add columns
             dgvdatacollector.Columns.Add("AreaRoute", "Area Route");
-            dgvdatacollector.Columns.Add("IDNumber", "ID Number");
+            dgvdatacollector.Columns.Add("IDNumber", "ID Number/Receip Book Info.");
             dgvdatacollector.Columns.Add("ContactInfo", "Collector Information");
             dgvdatacollector.Columns.Add("EmploymentStatus", "Employment Status");
-          
+
             if (dgvdatacollector.Columns["btnAction"] == null)
             {
                 DataGridViewButtonColumn actionColumn = new DataGridViewButtonColumn
@@ -225,9 +226,9 @@ namespace rct_lmis.ADMIN_SECTION
             {
                 DataGridViewButtonColumn suspendColumn = new DataGridViewButtonColumn
                 {
-                    Name = "Suspension",
+                    Name = "Documents",
                     HeaderText = "",
-                    Text = "Generate Suspension Report",
+                    Text = "View Documents",
                     UseColumnTextForButtonValue = true,
                     FlatStyle = FlatStyle.Standard,
                 };
@@ -250,19 +251,15 @@ namespace rct_lmis.ADMIN_SECTION
                 btnColumn2.DefaultCellStyle.Padding = new Padding(17, 20, 17, 20);
                 btnColumn2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 btnColumn2.DefaultCellStyle.Font = new Font("Arial", 8);
-               
-
             }
 
-            var btnColumn3 = dgvdatacollector.Columns["Suspension"];
+            var btnColumn3 = dgvdatacollector.Columns["Documents"];
             if (btnColumn3 != null)
             {            
                 btnColumn3.Width = 120;
                 btnColumn3.DefaultCellStyle.Padding = new Padding(17, 20, 17, 20);
                 btnColumn3.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 btnColumn3.DefaultCellStyle.Font = new Font("Arial", 8);
-                btnColumn3.DefaultCellStyle.BackColor = Color.Maroon;
-                btnColumn3.DefaultCellStyle.ForeColor = Color.White;
             }
 
             // Adjust column widths
@@ -301,18 +298,18 @@ namespace rct_lmis.ADMIN_SECTION
                     string contactNoAlt = doc["AlternateContactNumber"].AsString;
                     string email = doc["Email"].AsString;
                     string empdateStr = doc["EmploymentDate"].AsString;
-
+                    string receiptbook = doc.Contains("ReceiptBookNo") ? doc["ReceiptBookNo"].AsString : "N/A";
                     string role = doc["Role"].AsString;
-
+                    string bankacc = doc.Contains("BankAccount") ? doc["BankAccount"].AsString : "N/A";
                     string employmentStatus = doc["EmploymentStatus"].AsString;
+                    string idinfo = $"{idNumber}\n{receiptbook}";
+                    string contactInfo = $"{name}\n{address}\n{contactNo}\n{contactNoAlt}\n{email}\n{role}\n{empdateStr}\n{bankacc}";
 
-                    string contactInfo = $"{name}\n{address}\n{contactNo}\n{contactNoAlt}\n{email}\n{role}\n{empdateStr}";
-
-                    dgvdatacollector.Rows.Add(areaRoute, idNumber, contactInfo, employmentStatus);
+                    dgvdatacollector.Rows.Add(areaRoute, idinfo, contactInfo, employmentStatus);
 
 
                     // Convert the EmploymentDate to DateTime and set the dtdataemp value
-                    if (DateTime.TryParseExact(empdateStr, "yyyy-mm-dd", null, System.Globalization.DateTimeStyles.None, out DateTime empdate))
+                    if (DateTime.TryParseExact(empdateStr, "mm/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime empdate))
                     {
                         dtdateemp.Value = empdate;
                     }
@@ -392,10 +389,12 @@ namespace rct_lmis.ADMIN_SECTION
 
         private void buploaddoc_Click(object sender, EventArgs e)
         {
+            frm_home_ADMIN_collectors_upload upload = new frm_home_ADMIN_collectors_upload();
+
             load.Show(this);
             Thread.Sleep(1000);
             load.Close();
-            docs.Show(this);
+            upload.Show(this);
         }
 
       
@@ -406,8 +405,10 @@ namespace rct_lmis.ADMIN_SECTION
             Thread.Sleep(1000);
             AddCollector();
             load.Close();
-            MessageBox.Show("Collector information saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(this, "Collector information added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadDataToDataGridView();
+            bcreate.Enabled = false;
+            bsave.Enabled = false;
         }
 
         private void cbarea_SelectedIndexChanged(object sender, EventArgs e)
@@ -421,7 +422,7 @@ namespace rct_lmis.ADMIN_SECTION
             Thread.Sleep(1000);
             SaveCollector();
             load.Close();
-            MessageBox.Show("Collector information saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(this, "Collector information saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Optionally, clear the form after saving
             //ClearForm();
@@ -432,23 +433,24 @@ namespace rct_lmis.ADMIN_SECTION
             if (e.RowIndex >= 0)
             {
                 var columnName = dgvdatacollector.Columns[e.ColumnIndex].Name;
-                var rowIndex = e.RowIndex;
-
+               
                 // Check which button was clicked
                 if (columnName == "Action")
                 {
                     // Handle "Generate Report"
-                    MessageBox.Show($"Generating report for ID {dgvdatacollector.Rows[rowIndex].Cells["IDNumber"].Value}");
+                    MessageBox.Show(this, "This function is not yet supported in this version.", 
+                        "Feature not yet supported", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (columnName == "ActionPayroll")
+                else if (columnName == "Payroll")
                 {
                     // Handle "Generate Payroll Form"
-                    MessageBox.Show($"Generating payroll form for ID {dgvdatacollector.Rows[rowIndex].Cells["IDNumber"].Value}");
+                    MessageBox.Show(this, "This function is not yet supported in this version.",
+                       "Feature not yet supported", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (columnName == "ActionSuspension")
+                else if (columnName == "Documents")
                 {
-                    // Handle "Generate Suspension Report"
-                    MessageBox.Show($"Generating suspension report for ID {dgvdatacollector.Rows[rowIndex].Cells["IDNumber"].Value}");
+                   frm_home_ADMIN_collector_attachments attachments = new frm_home_ADMIN_collector_attachments();
+                    attachments.Show(this);
                 }
             }
         }
@@ -458,9 +460,13 @@ namespace rct_lmis.ADMIN_SECTION
             dgvdatacollector.ClearSelection();
         }
 
+       
+
         private void dgvdatacollector_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             EnableElements();
+            bsave.Enabled = true;
+            bedit.Enabled = true;
             // Check if the click is on a valid row
             if (e.RowIndex >= 0 && e.RowIndex < dgvdatacollector.Rows.Count)
             {
@@ -468,9 +474,6 @@ namespace rct_lmis.ADMIN_SECTION
 
                 // Load data into textboxes
                 cbarea.SelectedItem = row.Cells["AreaRoute"].Value?.ToString();
-                tidno.Text = row.Cells["IDNumber"].Value?.ToString();
-               
-                
 
                 var contactInfo = row.Cells["ContactInfo"].Value?.ToString();
                 if (!string.IsNullOrEmpty(contactInfo))
@@ -485,12 +488,30 @@ namespace rct_lmis.ADMIN_SECTION
                         tcontactnoalt.Text = contactLines[3]; // Alternate Contact Number
                         temail.Text = contactLines[4];
                         trole.Text = contactLines[5];
+                        dtdateemp.Text = contactLines[6];
+                        tbankaccountno.Text = contactLines[7];
+                    }
+                }
+
+                var idInfo = row.Cells["IDNumber"].Value?.ToString();
+                if (!string.IsNullOrEmpty(idInfo))
+                {
+                    var contactLines = idInfo.Split(new[] { '\n' }, StringSplitOptions.None);
+                    if (contactLines.Length >= 2)
+                    {
+                        tidno.Text = contactLines[0];
+                        trecbookno.Text = contactLines[1];
                     }
                 }
 
                 // Set other fields from the row
                 cbempstatus.SelectedItem = row.Cells["EmploymentStatus"].Value?.ToString();
+
+                // Pass the IDNumber to the frm_home_ADMIN_collectors_upload form
+                frm_home_ADMIN_collectors_upload.StoredAccountID = tidno.Text;
+                frm_home_ADMIN_collector_attachments.StoredAccountID = tidno.Text;
             }
+            
         }
 
         private void bedit_Click(object sender, EventArgs e)
@@ -501,6 +522,7 @@ namespace rct_lmis.ADMIN_SECTION
 
         private void bcreate_Click(object sender, EventArgs e)
         {
+            bcreate.Enabled = true;
             SetNextCollectorID();
             ClearForm();
         }

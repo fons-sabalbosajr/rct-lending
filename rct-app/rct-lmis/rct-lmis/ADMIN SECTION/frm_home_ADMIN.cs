@@ -17,8 +17,6 @@ namespace rct_lmis
     public partial class frm_home_ADMIN : Form
     {
 
-        int pwidth;
-        bool isShow;
         private Form currChildForm;
         private Guna2Button currentbtn;
         private Panel leftpanel;
@@ -117,9 +115,22 @@ namespace rct_lmis
         LoadingFunction load = new LoadingFunction();
 
 
+        private void Config()
+        {
+            ActivateButton(null, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+
+            frm_home_ADMIN_loanrates rate = new frm_home_ADMIN_loanrates();
+
+            ChildForm(rate);
+            load.Close();
+        }
+
+
         private void frm_home_ADMIN_Load(object sender, EventArgs e)
         {
-
+            Config();
         }
 
         private void baccounting_Click(object sender, EventArgs e)
