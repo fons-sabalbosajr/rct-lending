@@ -222,6 +222,14 @@ namespace rct_lmis.LOAN_SECTION
 
         private BsonDocument CreateLoanReleasedDocument()
         {
+
+            // Get the current user's full name
+            string encoderName = UserSession.Instance.UserName; // Assuming this retrieves the current logged-in user's full name
+
+            // Get the current date and time
+            DateTime currentDateTime = DateTime.Now;
+
+
             var document = new BsonDocument
             {
                 { "LoanIDNo", loanLNno.Text },
@@ -246,7 +254,9 @@ namespace rct_lmis.LOAN_SECTION
                 { "AreaRoute", tarearoute.Text },        
                 { "IDNo", tidno.Text },                 
                 { "Designation", tdesignation.Text },    
-                { "Contact", tcontact.Text }
+                { "Contact", tcontact.Text },
+                { "Encoder", encoderName },
+                { "ReleasingDate", currentDateTime }
             };
 
             AddPaymentDetails(document);
@@ -286,8 +296,32 @@ namespace rct_lmis.LOAN_SECTION
         private void SaveDocumentToCollection(BsonDocument document)
         {
             var database = MongoDBConnection.Instance.Database;
-            var collection = database.GetCollection<BsonDocument>("loan_released");
-            collection.InsertOne(document);
+            var releasedCollection = database.GetCollection<BsonDocument>("loan_released");
+            var approvedCollection = database.GetCollection<BsonDocument>("loan_approved");
+
+            // Insert the document into the loan_released collection
+            releasedCollection.InsertOne(document);
+
+            // Extract the ClientNumber from the document to identify the related loan in the loan_approved collection
+            string clientNumber = document["cashClnNo"].AsString;
+
+            // Get the current user's full name
+            string encoderName = UserSession.Instance.UserName; // Assuming this retrieves the current logged-in user's full name
+
+            // Get the current date and time
+            DateTime currentDateTime = DateTime.Now;
+
+            // Create the update definition for updating the loan_approved document
+            var updateDefinition = Builders<BsonDocument>.Update
+                .Set("LoanStatus", "Loan Released")
+                .Set("LoanReleasedDate", currentDateTime)
+                .Set("Encoder", encoderName);
+
+            // Create the filter to find the correct loan in the loan_approved collection by ClientNumber
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientNumber);
+
+            // Update the loan_approved document
+            approvedCollection.UpdateOne(filter, updateDefinition);
         }
 
         // Helper method to extract numeric values from formatted strings

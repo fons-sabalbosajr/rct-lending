@@ -198,7 +198,7 @@ namespace rct_lmis.LOAN_SECTION
         {
             try
             {
-                var currentUser = UserSession.Instance.CurrentUser;
+                var currentUser = UserSession.Instance.UserName;
 
                 if (string.IsNullOrEmpty(currentUser))
                 {
@@ -240,51 +240,51 @@ namespace rct_lmis.LOAN_SECTION
 
                     // Prepare the document to insert into loan_approved collection
                     var approvedLoan = new BsonDocument
-            {
-                { "AccountId", loanApplication.GetValue("AccountId", "") },
-                { "LoanType", loanApplication.GetValue("LoanType", "") },
-                { "FirstName", loanApplication.GetValue("FirstName", "") },
-                { "MiddleName", loanApplication.GetValue("MiddleName", "") },
-                { "LastName", loanApplication.GetValue("LastName", "") },
-                { "SuffixName", loanApplication.GetValue("SuffixName", "") },
-                { "Gender", loanApplication.GetValue("Gender", "") },
-                { "Street", loanApplication.GetValue("Street", "") },
-                { "Barangay", loanApplication.GetValue("Barangay", "") },
-                { "City", loanApplication.GetValue("City", "") },
-                { "Province", loanApplication.GetValue("Province", "") },
-                { "HouseType", loanApplication.GetValue("HouseType", "") },
-                { "StayLength", loanApplication.GetValue("StayLength", "") },
-                { "Fee", loanApplication.GetValue("Fee", "") },
-                { "RBLate", loanApplication.GetValue("RBLate", "") },
-                { "Business", loanApplication.GetValue("Business", "") },
-                { "CP", loanApplication.GetValue("CP", "") },
-                { "Income", loanApplication.GetValue("Income", "") },
-                { "Spouse", loanApplication.GetValue("Spouse", "") },
-                { "Occupation", loanApplication.GetValue("Occupation", "") },
-                { "SpIncome", loanApplication.GetValue("SpIncome", "") },
-                { "SpCP", loanApplication.GetValue("SpCP", "") },
-                { "RSDate", loanApplication.GetValue("RSDate", "") },
-                { "CBFName", loanApplication.GetValue("CBFName", "") },
-                { "CBMName", loanApplication.GetValue("CBMName", "") },
-                { "CBLName", loanApplication.GetValue("CBLName", "") },
-                { "CBSName", loanApplication.GetValue("CBSName", "") },
-                { "CBStreet", loanApplication.GetValue("CBStreet", "") },
-                { "CBBarangay", loanApplication.GetValue("CBBarangay", "") },
-                { "CBCity", loanApplication.GetValue("CBCity", "") },
-                { "CBProvince", loanApplication.GetValue("CBProvince", "") },
-                { "CGender", loanApplication.GetValue("CGender", "") },
-                { "CStatus", loanApplication.GetValue("CStatus", "") },
-                { "CBAge", loanApplication.GetValue("CBAge", "") },
-                { "CBCP", loanApplication.GetValue("CBCP", "") },
-                { "CBIncome", loanApplication.GetValue("CBIncome", "") },
-                { "ApplicationDate", loanApplication.GetValue("ApplicationDate", "") },
-                { "LoanStatus", loanApplication.GetValue("LoanStatus", "Application Approved") },
-                { "docs", loanApplication.GetValue("docs", "") }, // Save the docs field
-                { "doc-link", loanApplication.GetValue("doc-link", "") }, // Save the doc-link field
-                { "ApprovalDate", DateTime.Now }, // Add the current date
-                { "ProcessedBy", currentUser }, // Add the current user
-                { "ClientNumber", newClientNumber } // Assign the generated Client Number
-            };
+                    {
+                        { "AccountId", loanApplication.GetValue("AccountId", "") },
+                        { "LoanType", loanApplication.GetValue("LoanType", "") },
+                        { "FirstName", loanApplication.GetValue("FirstName", "") },
+                        { "MiddleName", loanApplication.GetValue("MiddleName", "") },
+                        { "LastName", loanApplication.GetValue("LastName", "") },
+                        { "SuffixName", loanApplication.GetValue("SuffixName", "") },
+                        { "Gender", loanApplication.GetValue("Gender", "") },
+                        { "Street", loanApplication.GetValue("Street", "") },
+                        { "Barangay", loanApplication.GetValue("Barangay", "") },
+                        { "City", loanApplication.GetValue("City", "") },
+                        { "Province", loanApplication.GetValue("Province", "") },
+                        { "HouseType", loanApplication.GetValue("HouseType", "") },
+                        { "StayLength", loanApplication.GetValue("StayLength", "") },
+                        { "Fee", loanApplication.GetValue("Fee", "") },
+                        { "RBLate", loanApplication.GetValue("RBLate", "") },
+                        { "Business", loanApplication.GetValue("Business", "") },
+                        { "CP", loanApplication.GetValue("CP", "") },
+                        { "Income", loanApplication.GetValue("Income", "") },
+                        { "Spouse", loanApplication.GetValue("Spouse", "") },
+                        { "Occupation", loanApplication.GetValue("Occupation", "") },
+                        { "SpIncome", loanApplication.GetValue("SpIncome", "") },
+                        { "SpCP", loanApplication.GetValue("SpCP", "") },
+                        { "RSDate", loanApplication.GetValue("RSDate", "") },
+                        { "CBFName", loanApplication.GetValue("CBFName", "") },
+                        { "CBMName", loanApplication.GetValue("CBMName", "") },
+                        { "CBLName", loanApplication.GetValue("CBLName", "") },
+                        { "CBSName", loanApplication.GetValue("CBSName", "") },
+                        { "CBStreet", loanApplication.GetValue("CBStreet", "") },
+                        { "CBBarangay", loanApplication.GetValue("CBBarangay", "") },
+                        { "CBCity", loanApplication.GetValue("CBCity", "") },
+                        { "CBProvince", loanApplication.GetValue("CBProvince", "") },
+                        { "CGender", loanApplication.GetValue("CGender", "") },
+                        { "CStatus", loanApplication.GetValue("CStatus", "") },
+                        { "CBAge", loanApplication.GetValue("CBAge", "") },
+                        { "CBCP", loanApplication.GetValue("CBCP", "") },
+                        { "CBIncome", loanApplication.GetValue("CBIncome", "") },
+                        { "ApplicationDate", loanApplication.GetValue("ApplicationDate", "") },
+                        { "LoanStatus", loanApplication.GetValue("LoanStatus", "Application Approved") },
+                        { "docs", loanApplication.GetValue("docs", "") }, // Save the docs field
+                        { "doc-link", loanApplication.GetValue("doc-link", "") }, // Save the doc-link field
+                        { "ApprovalDate", DateTime.Now }, // Add the current date
+                        { "ProcessedBy", currentUser }, // Add the current user
+                        { "ClientNumber", newClientNumber } // Assign the generated Client Number
+                    };
 
                     // Insert the document into loan_approved collection
                     loanApprovedCollection.InsertOne(approvedLoan);
@@ -306,14 +306,11 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-
-
-
         private void DeniedLoan()
         {
             try
             {
-                var currentUser = UserSession.Instance.CurrentUser;
+                var currentUser = UserSession.Instance.UserName;
 
                 if (string.IsNullOrEmpty(currentUser))
                 {

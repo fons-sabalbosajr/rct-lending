@@ -147,6 +147,7 @@ namespace rct_lmis
 
                         // Set the current user in the session
                         UserSession.Instance.CurrentUser = username;
+                        UserSession.Instance.UserName = user["FullName"].AsString;
 
 
                         // Insert login status

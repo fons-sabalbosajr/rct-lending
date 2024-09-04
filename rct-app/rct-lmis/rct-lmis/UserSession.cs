@@ -10,6 +10,7 @@ namespace rct_lmis
     {
         private static UserSession _instance;
         public string CurrentUser { get; set; }
+        public string UserName { get; set; }
 
         private UserSession() { }
 

@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_loan_disburse));
             this.guna2Separator4 = new Guna.UI2.WinForms.Guna2Separator();
             this.bloansave = new Guna.UI2.WinForms.Guna2Button();
@@ -62,6 +63,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.grploanrate = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.tsearchamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvloandata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tloanamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -78,6 +80,7 @@
             this.cbpoonline = new Guna.UI2.WinForms.Guna2CheckBox();
             this.cbpobank = new Guna.UI2.WinForms.Guna2CheckBox();
             this.gpocash = new System.Windows.Forms.GroupBox();
+            this.dtpcash = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label50 = new System.Windows.Forms.Label();
             this.tcashpoamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -92,6 +95,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.gpoonline = new System.Windows.Forms.GroupBox();
+            this.dtponline = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.cbonlineplatform = new System.Windows.Forms.ComboBox();
             this.tonlineprofee = new Guna.UI2.WinForms.Guna2TextBox();
@@ -108,6 +112,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.gpobank = new System.Windows.Forms.GroupBox();
+            this.dtpbank = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
             this.tbankpoprofee = new Guna.UI2.WinForms.Guna2TextBox();
             this.label53 = new System.Windows.Forms.Label();
@@ -123,12 +128,8 @@
             this.tbankpoaccno = new Guna.UI2.WinForms.Guna2TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.dtpcash = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dtponline = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dtpbank = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.tpenaltymo = new Guna.UI2.WinForms.Guna2TextBox();
             this.tamortizedamt = new Guna.UI2.WinForms.Guna2TextBox();
-            this.tsearchamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfdocamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfdocfee = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfmiscamt = new Guna.UI2.WinForms.Guna2TextBox();
@@ -142,6 +143,8 @@
             this.trfnotarialamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfnotarialfee = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfservicefee = new Guna.UI2.WinForms.Guna2TextBox();
+            this.beditcash = new Guna.UI2.WinForms.Guna2Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.grploanrate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvloandata)).BeginInit();
             this.gpocash.SuspendLayout();
@@ -174,6 +177,7 @@
             this.bloansave.Size = new System.Drawing.Size(106, 31);
             this.bloansave.TabIndex = 160;
             this.bloansave.Text = "DISBURSE";
+            this.toolTip1.SetToolTip(this.bloansave, "Disburse Loan");
             this.bloansave.Click += new System.EventHandler(this.bloansave_Click);
             // 
             // bloanclear
@@ -194,6 +198,7 @@
             this.bloanclear.Size = new System.Drawing.Size(100, 31);
             this.bloanclear.TabIndex = 161;
             this.bloanclear.Text = "CANCEL";
+            this.toolTip1.SetToolTip(this.bloanclear, "Cancel Disbursement");
             this.bloanclear.Click += new System.EventHandler(this.bloanclear_Click);
             // 
             // label49
@@ -538,31 +543,54 @@
             this.grploanrate.TabIndex = 120;
             this.grploanrate.Text = "Choose Loan Rate Template";
             // 
+            // tsearchamt
+            // 
+            this.tsearchamt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tsearchamt.DefaultText = "";
+            this.tsearchamt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tsearchamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tsearchamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tsearchamt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tsearchamt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tsearchamt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsearchamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tsearchamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tsearchamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
+            this.tsearchamt.Location = new System.Drawing.Point(181, 4);
+            this.tsearchamt.Name = "tsearchamt";
+            this.tsearchamt.PasswordChar = '\0';
+            this.tsearchamt.PlaceholderText = "search amount, mode, etc...";
+            this.tsearchamt.SelectedText = "";
+            this.tsearchamt.Size = new System.Drawing.Size(226, 30);
+            this.tsearchamt.TabIndex = 164;
+            this.tsearchamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tsearchamt.TextChanged += new System.EventHandler(this.tsearchamt_TextChanged);
+            // 
             // dgvloandata
             // 
             this.dgvloandata.AllowUserToAddRows = false;
             this.dgvloandata.AllowUserToDeleteRows = false;
             this.dgvloandata.AllowUserToResizeColumns = false;
             this.dgvloandata.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvloandata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvloandata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvloandata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvloandata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvloandata.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvloandata.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvloandata.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvloandata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvloandata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvloandata.Location = new System.Drawing.Point(0, 40);
@@ -855,6 +883,24 @@
             this.gpocash.TabStop = false;
             this.gpocash.Text = "Cash Payout";
             // 
+            // dtpcash
+            // 
+            this.dtpcash.Animated = true;
+            this.dtpcash.BackColor = System.Drawing.Color.Transparent;
+            this.dtpcash.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtpcash.Checked = true;
+            this.dtpcash.FillColor = System.Drawing.Color.White;
+            this.dtpcash.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpcash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtpcash.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpcash.Location = new System.Drawing.Point(57, 45);
+            this.dtpcash.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpcash.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpcash.Name = "dtpcash";
+            this.dtpcash.Size = new System.Drawing.Size(141, 26);
+            this.dtpcash.TabIndex = 197;
+            this.dtpcash.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
+            // 
             // label50
             // 
             this.label50.AutoSize = true;
@@ -1101,6 +1147,24 @@
             this.gpoonline.TabIndex = 190;
             this.gpoonline.TabStop = false;
             this.gpoonline.Text = "Online Payout";
+            // 
+            // dtponline
+            // 
+            this.dtponline.Animated = true;
+            this.dtponline.BackColor = System.Drawing.Color.Transparent;
+            this.dtponline.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtponline.Checked = true;
+            this.dtponline.FillColor = System.Drawing.Color.White;
+            this.dtponline.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtponline.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtponline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtponline.Location = new System.Drawing.Point(58, 45);
+            this.dtponline.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtponline.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtponline.Name = "dtponline";
+            this.dtponline.Size = new System.Drawing.Size(141, 26);
+            this.dtponline.TabIndex = 198;
+            this.dtponline.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
             // 
             // label51
             // 
@@ -1374,6 +1438,24 @@
             this.gpobank.TabStop = false;
             this.gpobank.Text = "Bank Payout";
             // 
+            // dtpbank
+            // 
+            this.dtpbank.Animated = true;
+            this.dtpbank.BackColor = System.Drawing.Color.Transparent;
+            this.dtpbank.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtpbank.Checked = true;
+            this.dtpbank.FillColor = System.Drawing.Color.White;
+            this.dtpbank.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpbank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtpbank.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpbank.Location = new System.Drawing.Point(60, 45);
+            this.dtpbank.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpbank.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpbank.Name = "dtpbank";
+            this.dtpbank.Size = new System.Drawing.Size(141, 26);
+            this.dtpbank.TabIndex = 199;
+            this.dtpbank.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -1627,60 +1709,6 @@
             this.label24.TabIndex = 181;
             this.label24.Text = "Payout\r\nDate:";
             // 
-            // dtpcash
-            // 
-            this.dtpcash.Animated = true;
-            this.dtpcash.BackColor = System.Drawing.Color.Transparent;
-            this.dtpcash.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dtpcash.Checked = true;
-            this.dtpcash.FillColor = System.Drawing.Color.White;
-            this.dtpcash.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtpcash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dtpcash.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpcash.Location = new System.Drawing.Point(57, 45);
-            this.dtpcash.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpcash.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpcash.Name = "dtpcash";
-            this.dtpcash.Size = new System.Drawing.Size(141, 26);
-            this.dtpcash.TabIndex = 197;
-            this.dtpcash.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
-            // 
-            // dtponline
-            // 
-            this.dtponline.Animated = true;
-            this.dtponline.BackColor = System.Drawing.Color.Transparent;
-            this.dtponline.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dtponline.Checked = true;
-            this.dtponline.FillColor = System.Drawing.Color.White;
-            this.dtponline.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtponline.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dtponline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtponline.Location = new System.Drawing.Point(58, 45);
-            this.dtponline.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtponline.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtponline.Name = "dtponline";
-            this.dtponline.Size = new System.Drawing.Size(141, 26);
-            this.dtponline.TabIndex = 198;
-            this.dtponline.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
-            // 
-            // dtpbank
-            // 
-            this.dtpbank.Animated = true;
-            this.dtpbank.BackColor = System.Drawing.Color.Transparent;
-            this.dtpbank.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dtpbank.Checked = true;
-            this.dtpbank.FillColor = System.Drawing.Color.White;
-            this.dtpbank.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtpbank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dtpbank.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpbank.Location = new System.Drawing.Point(60, 45);
-            this.dtpbank.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpbank.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpbank.Name = "dtpbank";
-            this.dtpbank.Size = new System.Drawing.Size(141, 26);
-            this.dtpbank.TabIndex = 199;
-            this.dtpbank.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
-            // 
             // tpenaltymo
             // 
             this.tpenaltymo.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -1727,29 +1755,6 @@
             this.tamortizedamt.Size = new System.Drawing.Size(128, 30);
             this.tamortizedamt.TabIndex = 157;
             this.tamortizedamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tsearchamt
-            // 
-            this.tsearchamt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tsearchamt.DefaultText = "";
-            this.tsearchamt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tsearchamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tsearchamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tsearchamt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tsearchamt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tsearchamt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsearchamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tsearchamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tsearchamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
-            this.tsearchamt.Location = new System.Drawing.Point(181, 4);
-            this.tsearchamt.Name = "tsearchamt";
-            this.tsearchamt.PasswordChar = '\0';
-            this.tsearchamt.PlaceholderText = "search amount, mode, etc...";
-            this.tsearchamt.SelectedText = "";
-            this.tsearchamt.Size = new System.Drawing.Size(226, 30);
-            this.tsearchamt.TabIndex = 164;
-            this.tsearchamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tsearchamt.TextChanged += new System.EventHandler(this.tsearchamt_TextChanged);
             // 
             // trfdocamt
             // 
@@ -2063,11 +2068,35 @@
             this.trfservicefee.TabIndex = 130;
             this.trfservicefee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // beditcash
+            // 
+            this.beditcash.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.beditcash.BorderColor = System.Drawing.Color.Silver;
+            this.beditcash.BorderRadius = 4;
+            this.beditcash.BorderThickness = 1;
+            this.beditcash.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.beditcash.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.beditcash.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.beditcash.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.beditcash.Enabled = false;
+            this.beditcash.FillColor = System.Drawing.Color.White;
+            this.beditcash.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.beditcash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.beditcash.Image = global::rct_lmis.Properties.Resources.icons8_edit_48;
+            this.beditcash.Location = new System.Drawing.Point(446, 690);
+            this.beditcash.Name = "beditcash";
+            this.beditcash.Size = new System.Drawing.Size(100, 31);
+            this.beditcash.TabIndex = 194;
+            this.beditcash.Text = "Edit Amounts";
+            this.toolTip1.SetToolTip(this.beditcash, "Edit Amounts");
+            this.beditcash.Click += new System.EventHandler(this.beditcash_Click);
+            // 
             // frm_home_loan_disburse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 733);
+            this.Controls.Add(this.beditcash);
             this.Controls.Add(this.tpenaltymo);
             this.Controls.Add(this.label49);
             this.Controls.Add(this.gpobank);
@@ -2265,5 +2294,7 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpcash;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtponline;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpbank;
+        private Guna.UI2.WinForms.Guna2Button beditcash;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

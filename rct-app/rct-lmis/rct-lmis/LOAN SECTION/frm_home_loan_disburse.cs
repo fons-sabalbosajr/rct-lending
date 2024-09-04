@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -299,7 +300,7 @@ namespace rct_lmis.LOAN_SECTION
             var filter = Builders<BsonDocument>.Filter.Empty;
             var documents = loanRateCollection.Find(filter).ToList();
 
-            string[] displayColumns = { "Term", "Principal", "Type", "Mode", "Interest Rate/Month", "Processing" };
+            string[] displayColumns = { "Term", "Principal", "Type", "Mode", "Interest Rate/Month" };
 
             foreach (string column in displayColumns)
             {
@@ -319,13 +320,29 @@ namespace rct_lmis.LOAN_SECTION
                         if (element.IsNumeric())
                         {
                             if (column == "Principal")
+                            {
                                 row[column] = "₱ " + Math.Round(element.ToDouble(), 0).ToString();
+                            }
+                            else if (column == "Interest Rate/Month")
+                            {
+                                row[column] = Math.Round(element.ToDouble(), 2) + "%"; // Add percentage symbol
+                            }
                             else
+                            {
                                 row[column] = Math.Round(element.ToDouble(), 0);
+                            }
                         }
                         else
                         {
-                            row[column] = element.ToString();
+                            if (column == "Term")
+                            {
+                                int termValue = int.Parse(element.ToString());
+                                row[column] = termValue + (termValue == 1 ? " month" : " months"); // Add "month" or "months"
+                            }
+                            else
+                            {
+                                row[column] = element.ToString();
+                            }
                         }
                     }
                 }
@@ -340,11 +357,12 @@ namespace rct_lmis.LOAN_SECTION
             foreach (DataGridViewColumn column in dgvloandata.Columns)
             {
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                if (column.Name != "Term" && (column.Name == "Principal" || column.Name == "Interest Rate/Month" || column.Name == "Processing"))
+                if (column.Name == "Principal" || column.Name == "Interest Rate/Month")
+                {
                     column.DefaultCellStyle.Format = "N2";
+                }
             }
         }
-
 
         private void ComputeAmortization()
         {
@@ -463,6 +481,9 @@ namespace rct_lmis.LOAN_SECTION
             string loanType = "First Time Borrower"; 
             string mode = loanRateDocument.GetValue("Mode", "Not Available").AsString;
 
+            string encoder = UserSession.Instance.UserName;
+            DateTime currentTime = DateTime.Now;
+
             // Prepare the loan disburse document
             var loanDisburseDocument = new BsonDocument
              {
@@ -489,7 +510,10 @@ namespace rct_lmis.LOAN_SECTION
                  { "amortizedAmt", tamortizedamt.Text },
                  { "LoanType", loanType },
                  { "Mode", mode },
-                 { "PaymentStartDate", dtpayoutdate.Value.ToString("MM/dd/yyyy") }
+                 { "PaymentStartDate", dtpayoutdate.Value.ToString("MM/dd/yyyy") },
+                 { "Encoder", encoder },  // Add encoder
+                 { "DisbursementTime", currentTime }  // Add disbursement time
+  
              };
 
             // Add payment fields based on selected payment method
@@ -518,8 +542,8 @@ namespace rct_lmis.LOAN_SECTION
             var updateFilter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientNumber);
             var update = Builders<BsonDocument>.Update
                 .Set("LoanStatus", "For Releasing Loan Disbursement")
-                .Set("LoanType", loanType) // This sets the updated LoanType
-                .Set("DisbursementDate", DateTime.UtcNow); // Set DisbursementDate to current date
+                .Set("LoanType", loanType)
+                .Set("DisbursementDate", DateTime.Now.ToString("f"));
 
             loanApprovedCollection.UpdateOne(updateFilter, update);
 
@@ -707,7 +731,7 @@ namespace rct_lmis.LOAN_SECTION
                 if (!string.IsNullOrEmpty(searchText))
                 {
                     string filterExpression = string.Format(
-                        "Term LIKE '%{0}%' OR Principal LIKE '%{0}%' OR [Interest Rate/Month] LIKE '%{0}%' OR Processing LIKE '%{0}%' OR Type LIKE '%{0}%' OR Mode LIKE '%{0}%'",
+                        "Term LIKE '%{0}%' OR Principal LIKE '%{0}%' OR [Interest Rate/Month] LIKE '%{0}%' OR Type LIKE '%{0}%' OR Mode LIKE '%{0}%'",
                         searchText.Replace("'", "''")); // Replace single quotes to avoid SQL-like errors
 
                     DataView dv = new DataView(dataTable);
@@ -986,6 +1010,16 @@ namespace rct_lmis.LOAN_SECTION
 
             this.Hide();
             e.Cancel = true;
+        }
+
+        private void beditcash_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to edit the loan amounts? Please ask for assistance",
+               "Edit Disbursement Amounts", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                frm_home_loan_editamounts editamounts = new frm_home_loan_editamounts();
+                editamounts.ShowDialog(this);
+            }
         }
     }
 }

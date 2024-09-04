@@ -228,12 +228,29 @@ namespace rct_lmis.ADMIN_SECTION
                     {
                         if (element.Value.IsNumeric())
                         {
-                            // Round numeric values to the nearest ones
-                            row[element.Name] = Math.Round(element.Value.ToDouble(), 0);
+                            if (element.Name == "Interest Rate/Month")
+                            {
+                                // Format Interest Rate/Month with percentage
+                                row[element.Name] = Math.Round(element.Value.ToDouble(), 2) + "%";
+                            }
+                            else
+                            {
+                                // Round numeric values to the nearest ones
+                                row[element.Name] = Math.Round(element.Value.ToDouble(), 0);
+                            }
                         }
                         else
                         {
-                            row[element.Name] = element.Value.ToString();
+                            if (element.Name == "Term")
+                            {
+                                // Convert the term value to an integer and append "month" or "months"
+                                int termValue = int.Parse(element.Value.ToString());
+                                row[element.Name] = termValue + (termValue == 1 ? " month" : " months");
+                            }
+                            else
+                            {
+                                row[element.Name] = element.Value.ToString();
+                            }
                         }
                     }
                     dataTable.Rows.Add(row);
@@ -248,6 +265,7 @@ namespace rct_lmis.ADMIN_SECTION
                 lnorecord.Visible = false;
             }
         }
+
 
         private void frm_home_ADMIN_loanrates_Load(object sender, EventArgs e)
         {
