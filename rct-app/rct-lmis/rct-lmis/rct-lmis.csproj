@@ -802,6 +802,7 @@
     <EmbeddedResource Include="z_loadingform.resx">
       <DependentUpon>z_loadingform.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="docs\cash voucher.pdf" />
     <None Include="docs\receiving_voucher.pdf" />
     <None Include="libmongocrypt.dylib" />
     <None Include="libmongocrypt.so" />
