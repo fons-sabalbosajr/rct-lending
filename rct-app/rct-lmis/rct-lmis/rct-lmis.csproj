@@ -482,6 +482,24 @@
     <Compile Include="CLIENTS SECTION\frm_home_client_new.Designer.cs">
       <DependentUpon>frm_home_client_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_collections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_collections.Designer.cs">
+      <DependentUpon>frm_home_disburse_collections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_collections_add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_collections_add.Designer.cs">
+      <DependentUpon>frm_home_disburse_collections_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_details.Designer.cs">
+      <DependentUpon>frm_home_disburse_details.cs</DependentUpon>
+    </Compile>
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -721,6 +739,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse.resx">
       <DependentUpon>frm_home_disburse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_collections.resx">
+      <DependentUpon>frm_home_disburse_collections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_collections_add.resx">
+      <DependentUpon>frm_home_disburse_collections_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_details.resx">
+      <DependentUpon>frm_home_disburse_details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.resx">
       <DependentUpon>frm_home_disburse_editCV.cs</DependentUpon>

@@ -179,7 +179,7 @@ namespace rct_lmis
                     btnColumn.Width = 120;
                     btnColumn.DefaultCellStyle.Padding = new Padding(30, 20, 30, 20);
                     btnColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    btnColumn.DefaultCellStyle.Font = new Font("Arial", 9);
+                    btnColumn.DefaultCellStyle.Font = new Font("Segoe UI", 9);
                 }
 
                 // Set width, padding, and font size for the "btnDisburse" column to avoid large size
@@ -189,7 +189,7 @@ namespace rct_lmis
                     btnColumnDisburse.Width = 120;
                     btnColumnDisburse.DefaultCellStyle.Padding = new Padding(30, 20, 30, 20);
                     btnColumnDisburse.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    btnColumnDisburse.DefaultCellStyle.Font = new Font("Arial", 9);
+                    btnColumnDisburse.DefaultCellStyle.Font = new Font("Segoe UI", 9);
                 }
             }
             catch (Exception ex)
