@@ -192,7 +192,11 @@ namespace rct_lmis
 
         private void bdatadelstaff_Click(object sender, EventArgs e)
         {
-           
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN_accountdata());
+            load.Close();
         }
 
         private void bapprovedloans_Click(object sender, EventArgs e)

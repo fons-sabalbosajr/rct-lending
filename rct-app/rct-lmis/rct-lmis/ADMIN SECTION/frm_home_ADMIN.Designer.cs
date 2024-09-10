@@ -185,7 +185,7 @@ namespace rct_lmis
             this.bdatadelstaff.Name = "bdatadelstaff";
             this.bdatadelstaff.Size = new System.Drawing.Size(194, 35);
             this.bdatadelstaff.TabIndex = 20;
-            this.bdatadelstaff.Text = "Admin Data";
+            this.bdatadelstaff.Text = "Account Titles Data";
             this.bdatadelstaff.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdatadelstaff.TextOffset = new System.Drawing.Point(20, 0);
             this.bdatadelstaff.Click += new System.EventHandler(this.bdatadelstaff_Click);

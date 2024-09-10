@@ -30,10 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_collections_add));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tloanid = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.bcopyaccno = new Guna.UI2.WinForms.Guna2Button();
             this.laccountid = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.bcancel = new Guna.UI2.WinForms.Guna2Button();
             this.laccno = new System.Windows.Forms.Label();
+            this.bcancel = new Guna.UI2.WinForms.Guna2Button();
             this.tclientno = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tlnno = new Guna.UI2.WinForms.Guna2TextBox();
@@ -56,7 +59,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tpayamort = new Guna.UI2.WinForms.Guna2TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.label11 = new System.Windows.Forms.Label();
             this.tcolpayamt = new Guna.UI2.WinForms.Guna2TextBox();
@@ -64,13 +66,12 @@
             this.cbarea = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbcollector = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.cbadvance = new Guna.UI2.WinForms.Guna2CheckBox();
             this.dtdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.bsave = new Guna.UI2.WinForms.Guna2Button();
             this.bprintreceipt = new Guna.UI2.WinForms.Guna2Button();
-            this.tcoldue = new Guna.UI2.WinForms.Guna2TextBox();
+            this.tprincipaldue = new Guna.UI2.WinForms.Guna2TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.tloanbal = new Guna.UI2.WinForms.Guna2TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -87,23 +88,23 @@
             this.cbpaymentmode = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.tcolrefno = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label25 = new System.Windows.Forms.Label();
+            this.lcolrefno = new System.Windows.Forms.Label();
             this.tcoldaterec = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label26 = new System.Windows.Forms.Label();
+            this.lcoldaterec = new System.Windows.Forms.Label();
             this.tcolbank = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label28 = new System.Windows.Forms.Label();
+            this.lcolbank = new System.Windows.Forms.Label();
             this.tcolbranch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lcolbranch = new System.Windows.Forms.Label();
             this.tpaymentstatus = new Guna.UI2.WinForms.Guna2TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.bcopyaccno = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.tloanid);
+            this.panel1.Controls.Add(this.label31);
             this.panel1.Controls.Add(this.bcopyaccno);
             this.panel1.Controls.Add(this.laccountid);
             this.panel1.Controls.Add(this.label27);
@@ -113,6 +114,59 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(884, 47);
             this.panel1.TabIndex = 4;
+            // 
+            // tloanid
+            // 
+            this.tloanid.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tloanid.DefaultText = "";
+            this.tloanid.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tloanid.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tloanid.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tloanid.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tloanid.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tloanid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tloanid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tloanid.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tloanid.Location = new System.Drawing.Point(270, 10);
+            this.tloanid.Name = "tloanid";
+            this.tloanid.PasswordChar = '\0';
+            this.tloanid.PlaceholderText = "n/a";
+            this.tloanid.ReadOnly = true;
+            this.tloanid.SelectedText = "";
+            this.tloanid.Size = new System.Drawing.Size(138, 25);
+            this.tloanid.TabIndex = 151;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label31.Location = new System.Drawing.Point(217, 15);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(47, 15);
+            this.label31.TabIndex = 150;
+            this.label31.Text = "LN No.:";
+            // 
+            // bcopyaccno
+            // 
+            this.bcopyaccno.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bcopyaccno.BorderRadius = 2;
+            this.bcopyaccno.BorderThickness = 1;
+            this.bcopyaccno.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bcopyaccno.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bcopyaccno.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bcopyaccno.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bcopyaccno.FillColor = System.Drawing.Color.White;
+            this.bcopyaccno.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bcopyaccno.ForeColor = System.Drawing.Color.White;
+            this.bcopyaccno.Image = global::rct_lmis.Properties.Resources.icons8_copy_24;
+            this.bcopyaccno.Location = new System.Drawing.Point(849, 12);
+            this.bcopyaccno.Name = "bcopyaccno";
+            this.bcopyaccno.Size = new System.Drawing.Size(25, 25);
+            this.bcopyaccno.TabIndex = 150;
+            this.bcopyaccno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.bcopyaccno.Click += new System.EventHandler(this.bcopyaccno_Click);
             // 
             // laccountid
             // 
@@ -140,6 +194,18 @@
             this.label27.TabIndex = 35;
             this.label27.Text = "Collection No.:";
             // 
+            // laccno
+            // 
+            this.laccno.AutoSize = true;
+            this.laccno.BackColor = System.Drawing.Color.Transparent;
+            this.laccno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.laccno.Location = new System.Drawing.Point(12, 15);
+            this.laccno.Name = "laccno";
+            this.laccno.Size = new System.Drawing.Size(138, 20);
+            this.laccno.TabIndex = 19;
+            this.laccno.Text = "NEW COLLECTION";
+            // 
             // bcancel
             // 
             this.bcancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -157,18 +223,6 @@
             this.bcancel.TabIndex = 31;
             this.bcancel.Text = "Cancel";
             // 
-            // laccno
-            // 
-            this.laccno.AutoSize = true;
-            this.laccno.BackColor = System.Drawing.Color.Transparent;
-            this.laccno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccno.Location = new System.Drawing.Point(12, 15);
-            this.laccno.Name = "laccno";
-            this.laccno.Size = new System.Drawing.Size(138, 20);
-            this.laccno.TabIndex = 19;
-            this.laccno.Text = "NEW COLLECTION";
-            // 
             // tclientno
             // 
             this.tclientno.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -185,6 +239,7 @@
             this.tclientno.Name = "tclientno";
             this.tclientno.PasswordChar = '\0';
             this.tclientno.PlaceholderText = "n/a";
+            this.tclientno.ReadOnly = true;
             this.tclientno.SelectedText = "";
             this.tclientno.Size = new System.Drawing.Size(230, 25);
             this.tclientno.TabIndex = 88;
@@ -231,11 +286,11 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label15.Location = new System.Drawing.Point(8, 61);
+            this.label15.Location = new System.Drawing.Point(37, 62);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(106, 15);
+            this.label15.Size = new System.Drawing.Size(77, 15);
             this.label15.TabIndex = 85;
-            this.label15.Text = "Loan No. (LN No.):";
+            this.label15.Text = "Account No.:";
             // 
             // tname
             // 
@@ -253,6 +308,7 @@
             this.tname.Name = "tname";
             this.tname.PasswordChar = '\0';
             this.tname.PlaceholderText = "n/a";
+            this.tname.ReadOnly = true;
             this.tname.SelectedText = "";
             this.tname.Size = new System.Drawing.Size(230, 25);
             this.tname.TabIndex = 90;
@@ -286,6 +342,7 @@
             this.taddress.Name = "taddress";
             this.taddress.PasswordChar = '\0';
             this.taddress.PlaceholderText = "n/a";
+            this.taddress.ReadOnly = true;
             this.taddress.SelectedText = "";
             this.taddress.Size = new System.Drawing.Size(230, 56);
             this.taddress.TabIndex = 92;
@@ -318,6 +375,7 @@
             this.tcontact.Name = "tcontact";
             this.tcontact.PasswordChar = '\0';
             this.tcontact.PlaceholderText = "n/a";
+            this.tcontact.ReadOnly = true;
             this.tcontact.SelectedText = "";
             this.tcontact.Size = new System.Drawing.Size(230, 25);
             this.tcontact.TabIndex = 94;
@@ -350,6 +408,7 @@
             this.tpaymode.Name = "tpaymode";
             this.tpaymode.PasswordChar = '\0';
             this.tpaymode.PlaceholderText = "n/a";
+            this.tpaymode.ReadOnly = true;
             this.tpaymode.SelectedText = "";
             this.tpaymode.Size = new System.Drawing.Size(138, 25);
             this.tpaymode.TabIndex = 104;
@@ -382,6 +441,7 @@
             this.tpaymature.Name = "tpaymature";
             this.tpaymature.PasswordChar = '\0';
             this.tpaymature.PlaceholderText = "mm/dd/yyyy";
+            this.tpaymature.ReadOnly = true;
             this.tpaymature.SelectedText = "";
             this.tpaymature.Size = new System.Drawing.Size(138, 25);
             this.tpaymature.TabIndex = 102;
@@ -414,6 +474,7 @@
             this.tpaystart.Name = "tpaystart";
             this.tpaystart.PasswordChar = '\0';
             this.tpaystart.PlaceholderText = "mm/dd/yyyy";
+            this.tpaystart.ReadOnly = true;
             this.tpaystart.SelectedText = "";
             this.tpaystart.Size = new System.Drawing.Size(138, 25);
             this.tpaystart.TabIndex = 100;
@@ -446,6 +507,7 @@
             this.tterm.Name = "tterm";
             this.tterm.PasswordChar = '\0';
             this.tterm.PlaceholderText = "0 months";
+            this.tterm.ReadOnly = true;
             this.tterm.SelectedText = "";
             this.tterm.Size = new System.Drawing.Size(138, 25);
             this.tterm.TabIndex = 98;
@@ -478,6 +540,7 @@
             this.tloanamt.Name = "tloanamt";
             this.tloanamt.PasswordChar = '\0';
             this.tloanamt.PlaceholderText = "0.00";
+            this.tloanamt.ReadOnly = true;
             this.tloanamt.SelectedText = "";
             this.tloanamt.Size = new System.Drawing.Size(138, 25);
             this.tloanamt.TabIndex = 96;
@@ -511,6 +574,7 @@
             this.tpayamort.Name = "tpayamort";
             this.tpayamort.PasswordChar = '\0';
             this.tpayamort.PlaceholderText = "n/a";
+            this.tpayamort.ReadOnly = true;
             this.tpayamort.SelectedText = "";
             this.tpayamort.Size = new System.Drawing.Size(138, 25);
             this.tpayamort.TabIndex = 106;
@@ -526,17 +590,6 @@
             this.label10.Size = new System.Drawing.Size(79, 15);
             this.label10.TabIndex = 105;
             this.label10.Text = "Amortization:";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cbadvance);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(639, 163);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 70);
-            this.groupBox1.TabIndex = 107;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Conditions";
             // 
             // guna2Separator1
             // 
@@ -560,7 +613,7 @@
             // tcolpayamt
             // 
             this.tcolpayamt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tcolpayamt.DefaultText = "100.00";
+            this.tcolpayamt.DefaultText = "";
             this.tcolpayamt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.tcolpayamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.tcolpayamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -573,11 +626,12 @@
             this.tcolpayamt.Location = new System.Drawing.Point(682, 335);
             this.tcolpayamt.Name = "tcolpayamt";
             this.tcolpayamt.PasswordChar = '\0';
-            this.tcolpayamt.PlaceholderText = "";
+            this.tcolpayamt.PlaceholderText = "0.00";
             this.tcolpayamt.SelectedText = "";
             this.tcolpayamt.Size = new System.Drawing.Size(178, 36);
             this.tcolpayamt.TabIndex = 110;
             this.tcolpayamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tcolpayamt.TextChanged += new System.EventHandler(this.tcolpayamt_TextChanged);
             // 
             // label12
             // 
@@ -585,11 +639,11 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(411, 298);
+            this.label12.Location = new System.Drawing.Point(206, 298);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 15);
+            this.label12.Size = new System.Drawing.Size(68, 15);
             this.label12.TabIndex = 109;
-            this.label12.Text = "Area Route";
+            this.label12.Text = "Area Route:";
             // 
             // cbarea
             // 
@@ -601,24 +655,26 @@
             this.cbarea.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbarea.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbarea.ItemHeight = 30;
-            this.cbarea.Location = new System.Drawing.Point(475, 287);
+            this.cbarea.Location = new System.Drawing.Point(280, 287);
             this.cbarea.Name = "cbarea";
-            this.cbarea.Size = new System.Drawing.Size(168, 36);
+            this.cbarea.Size = new System.Drawing.Size(130, 36);
             this.cbarea.TabIndex = 111;
+            this.cbarea.SelectedIndexChanged += new System.EventHandler(this.cbarea_SelectedIndexChanged);
             // 
             // cbcollector
             // 
             this.cbcollector.BackColor = System.Drawing.Color.Transparent;
             this.cbcollector.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbcollector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbcollector.Enabled = false;
             this.cbcollector.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbcollector.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbcollector.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbcollector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbcollector.ItemHeight = 30;
-            this.cbcollector.Location = new System.Drawing.Point(266, 287);
+            this.cbcollector.Location = new System.Drawing.Point(481, 287);
             this.cbcollector.Name = "cbcollector";
-            this.cbcollector.Size = new System.Drawing.Size(138, 36);
+            this.cbcollector.Size = new System.Drawing.Size(173, 36);
             this.cbcollector.TabIndex = 113;
             // 
             // label13
@@ -627,29 +683,11 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(208, 298);
+            this.label13.Location = new System.Drawing.Point(420, 298);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 15);
+            this.label13.Size = new System.Drawing.Size(58, 15);
             this.label13.TabIndex = 112;
-            this.label13.Text = "Collector";
-            // 
-            // cbadvance
-            // 
-            this.cbadvance.AutoSize = true;
-            this.cbadvance.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbadvance.CheckedState.BorderRadius = 0;
-            this.cbadvance.CheckedState.BorderThickness = 0;
-            this.cbadvance.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbadvance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbadvance.Location = new System.Drawing.Point(19, 32);
-            this.cbadvance.Name = "cbadvance";
-            this.cbadvance.Size = new System.Drawing.Size(122, 19);
-            this.cbadvance.TabIndex = 114;
-            this.cbadvance.Text = "Advance Payment";
-            this.cbadvance.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.cbadvance.UncheckedState.BorderRadius = 0;
-            this.cbadvance.UncheckedState.BorderThickness = 0;
-            this.cbadvance.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.label13.Text = "Collector:";
             // 
             // dtdate
             // 
@@ -726,25 +764,26 @@
             this.bprintreceipt.TabIndex = 118;
             this.bprintreceipt.Text = "Print Receipt";
             // 
-            // tcoldue
+            // tprincipaldue
             // 
-            this.tcoldue.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tcoldue.DefaultText = "";
-            this.tcoldue.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tcoldue.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tcoldue.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tcoldue.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tcoldue.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcoldue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tcoldue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tcoldue.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcoldue.Location = new System.Drawing.Point(139, 340);
-            this.tcoldue.Name = "tcoldue";
-            this.tcoldue.PasswordChar = '\0';
-            this.tcoldue.PlaceholderText = "0.00";
-            this.tcoldue.SelectedText = "";
-            this.tcoldue.Size = new System.Drawing.Size(138, 25);
-            this.tcoldue.TabIndex = 120;
+            this.tprincipaldue.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tprincipaldue.DefaultText = "";
+            this.tprincipaldue.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tprincipaldue.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tprincipaldue.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tprincipaldue.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tprincipaldue.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tprincipaldue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tprincipaldue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tprincipaldue.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tprincipaldue.Location = new System.Drawing.Point(139, 340);
+            this.tprincipaldue.Name = "tprincipaldue";
+            this.tprincipaldue.PasswordChar = '\0';
+            this.tprincipaldue.PlaceholderText = "0.00";
+            this.tprincipaldue.ReadOnly = true;
+            this.tprincipaldue.SelectedText = "";
+            this.tprincipaldue.Size = new System.Drawing.Size(138, 25);
+            this.tprincipaldue.TabIndex = 120;
             // 
             // label17
             // 
@@ -754,9 +793,9 @@
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label17.Location = new System.Drawing.Point(54, 344);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(78, 15);
+            this.label17.Size = new System.Drawing.Size(80, 15);
             this.label17.TabIndex = 119;
-            this.label17.Text = "Amount Due:";
+            this.label17.Text = "Principal Due:";
             // 
             // tloanbal
             // 
@@ -774,6 +813,7 @@
             this.tloanbal.Name = "tloanbal";
             this.tloanbal.PasswordChar = '\0';
             this.tloanbal.PlaceholderText = "0.00";
+            this.tloanbal.ReadOnly = true;
             this.tloanbal.SelectedText = "";
             this.tloanbal.Size = new System.Drawing.Size(138, 25);
             this.tloanbal.TabIndex = 122;
@@ -854,6 +894,7 @@
             this.tcolinterest.Name = "tcolinterest";
             this.tcolinterest.PasswordChar = '\0';
             this.tcolinterest.PlaceholderText = "0.00";
+            this.tcolinterest.ReadOnly = true;
             this.tcolinterest.SelectedText = "";
             this.tcolinterest.Size = new System.Drawing.Size(138, 25);
             this.tcolinterest.TabIndex = 132;
@@ -874,6 +915,7 @@
             this.tcolpenalty.Name = "tcolpenalty";
             this.tcolpenalty.PasswordChar = '\0';
             this.tcolpenalty.PlaceholderText = "0.00";
+            this.tcolpenalty.ReadOnly = true;
             this.tcolpenalty.SelectedText = "";
             this.tcolpenalty.Size = new System.Drawing.Size(138, 25);
             this.tcolpenalty.TabIndex = 133;
@@ -894,6 +936,7 @@
             this.tcoltotal.Name = "tcoltotal";
             this.tcoltotal.PasswordChar = '\0';
             this.tcoltotal.PlaceholderText = "0.00";
+            this.tcoltotal.ReadOnly = true;
             this.tcoltotal.SelectedText = "";
             this.tcoltotal.Size = new System.Drawing.Size(138, 25);
             this.tcoltotal.TabIndex = 134;
@@ -914,6 +957,7 @@
             this.tcolpaid.Name = "tcolpaid";
             this.tcolpaid.PasswordChar = '\0';
             this.tcolpaid.PlaceholderText = "0.00";
+            this.tcolpaid.ReadOnly = true;
             this.tcolpaid.SelectedText = "";
             this.tcolpaid.Size = new System.Drawing.Size(138, 25);
             this.tcolpaid.TabIndex = 135;
@@ -934,6 +978,7 @@
             this.tcolactual.Name = "tcolactual";
             this.tcolactual.PasswordChar = '\0';
             this.tcolactual.PlaceholderText = "0.00";
+            this.tcolactual.ReadOnly = true;
             this.tcolactual.SelectedText = "";
             this.tcolactual.Size = new System.Drawing.Size(138, 25);
             this.tcolactual.TabIndex = 137;
@@ -957,13 +1002,14 @@
             this.cbpaymentmode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbpaymentmode.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbpaymentmode.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbpaymentmode.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbpaymentmode.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cbpaymentmode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbpaymentmode.ItemHeight = 30;
             this.cbpaymentmode.Location = new System.Drawing.Point(722, 287);
             this.cbpaymentmode.Name = "cbpaymentmode";
             this.cbpaymentmode.Size = new System.Drawing.Size(138, 36);
             this.cbpaymentmode.TabIndex = 139;
+            this.cbpaymentmode.SelectedIndexChanged += new System.EventHandler(this.cbpaymentmode_SelectedIndexChanged);
             // 
             // label24
             // 
@@ -993,21 +1039,24 @@
             this.tcolrefno.Name = "tcolrefno";
             this.tcolrefno.PasswordChar = '\0';
             this.tcolrefno.PlaceholderText = "n/a";
+            this.tcolrefno.ReadOnly = true;
             this.tcolrefno.SelectedText = "";
             this.tcolrefno.Size = new System.Drawing.Size(138, 25);
             this.tcolrefno.TabIndex = 141;
+            this.tcolrefno.Visible = false;
             // 
-            // label25
+            // lcolrefno
             // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label25.Location = new System.Drawing.Point(298, 407);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(102, 15);
-            this.label25.TabIndex = 140;
-            this.label25.Text = "Payment Ref. No.:";
+            this.lcolrefno.AutoSize = true;
+            this.lcolrefno.BackColor = System.Drawing.Color.Transparent;
+            this.lcolrefno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lcolrefno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lcolrefno.Location = new System.Drawing.Point(298, 407);
+            this.lcolrefno.Name = "lcolrefno";
+            this.lcolrefno.Size = new System.Drawing.Size(102, 15);
+            this.lcolrefno.TabIndex = 140;
+            this.lcolrefno.Text = "Payment Ref. No.:";
+            this.lcolrefno.Visible = false;
             // 
             // tcoldaterec
             // 
@@ -1022,24 +1071,28 @@
             this.tcoldaterec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcoldaterec.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tcoldaterec.Location = new System.Drawing.Point(414, 433);
+            this.tcoldaterec.Multiline = true;
             this.tcoldaterec.Name = "tcoldaterec";
             this.tcoldaterec.PasswordChar = '\0';
             this.tcoldaterec.PlaceholderText = "mm/dd/yyyy";
+            this.tcoldaterec.ReadOnly = true;
             this.tcoldaterec.SelectedText = "";
-            this.tcoldaterec.Size = new System.Drawing.Size(138, 25);
+            this.tcoldaterec.Size = new System.Drawing.Size(138, 49);
             this.tcoldaterec.TabIndex = 143;
+            this.tcoldaterec.Visible = false;
             // 
-            // label26
+            // lcoldaterec
             // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label26.Location = new System.Drawing.Point(298, 430);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(95, 30);
-            this.label26.TabIndex = 142;
-            this.label26.Text = "Date of Payment\r\nReceived:";
+            this.lcoldaterec.AutoSize = true;
+            this.lcoldaterec.BackColor = System.Drawing.Color.Transparent;
+            this.lcoldaterec.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lcoldaterec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lcoldaterec.Location = new System.Drawing.Point(298, 430);
+            this.lcoldaterec.Name = "lcoldaterec";
+            this.lcoldaterec.Size = new System.Drawing.Size(95, 30);
+            this.lcoldaterec.TabIndex = 142;
+            this.lcoldaterec.Text = "Date of Payment\r\nReceived:";
+            this.lcoldaterec.Visible = false;
             // 
             // tcolbank
             // 
@@ -1059,28 +1112,30 @@
             this.tcolbank.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tcolbank.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tcolbank.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcolbank.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcolbank.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tcolbank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolbank.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tcolbank.Location = new System.Drawing.Point(654, 402);
             this.tcolbank.Name = "tcolbank";
             this.tcolbank.PasswordChar = '\0';
-            this.tcolbank.PlaceholderText = "n/a";
+            this.tcolbank.PlaceholderText = "type \"BDO, BPI etc.\"";
             this.tcolbank.SelectedText = "";
             this.tcolbank.Size = new System.Drawing.Size(206, 25);
             this.tcolbank.TabIndex = 145;
+            this.tcolbank.Visible = false;
             // 
-            // label28
+            // lcolbank
             // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label28.Location = new System.Drawing.Point(561, 406);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(87, 15);
-            this.label28.TabIndex = 144;
-            this.label28.Text = "Bank/Platform:";
+            this.lcolbank.AutoSize = true;
+            this.lcolbank.BackColor = System.Drawing.Color.Transparent;
+            this.lcolbank.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lcolbank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lcolbank.Location = new System.Drawing.Point(561, 406);
+            this.lcolbank.Name = "lcolbank";
+            this.lcolbank.Size = new System.Drawing.Size(87, 15);
+            this.lcolbank.TabIndex = 144;
+            this.lcolbank.Text = "Bank/Platform:";
+            this.lcolbank.Visible = false;
             // 
             // tcolbranch
             // 
@@ -1097,22 +1152,24 @@
             this.tcolbranch.Location = new System.Drawing.Point(654, 433);
             this.tcolbranch.Name = "tcolbranch";
             this.tcolbranch.PasswordChar = '\0';
-            this.tcolbranch.PlaceholderText = "n/a";
+            this.tcolbranch.PlaceholderText = "type \"San Fernando, Apalit etc.\"";
             this.tcolbranch.SelectedText = "";
             this.tcolbranch.Size = new System.Drawing.Size(206, 25);
             this.tcolbranch.TabIndex = 147;
+            this.tcolbranch.Visible = false;
             // 
-            // label29
+            // lcolbranch
             // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label29.Location = new System.Drawing.Point(601, 437);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(47, 15);
-            this.label29.TabIndex = 146;
-            this.label29.Text = "Branch:";
+            this.lcolbranch.AutoSize = true;
+            this.lcolbranch.BackColor = System.Drawing.Color.Transparent;
+            this.lcolbranch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lcolbranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lcolbranch.Location = new System.Drawing.Point(601, 437);
+            this.lcolbranch.Name = "lcolbranch";
+            this.lcolbranch.Size = new System.Drawing.Size(47, 15);
+            this.lcolbranch.TabIndex = 146;
+            this.lcolbranch.Text = "Branch:";
+            this.lcolbranch.Visible = false;
             // 
             // tpaymentstatus
             // 
@@ -1130,6 +1187,7 @@
             this.tpaymentstatus.Name = "tpaymentstatus";
             this.tpaymentstatus.PasswordChar = '\0';
             this.tpaymentstatus.PlaceholderText = "n/a";
+            this.tpaymentstatus.ReadOnly = true;
             this.tpaymentstatus.SelectedText = "";
             this.tpaymentstatus.Size = new System.Drawing.Size(138, 25);
             this.tpaymentstatus.TabIndex = 149;
@@ -1146,26 +1204,6 @@
             this.label30.TabIndex = 148;
             this.label30.Text = "Payment Status:";
             // 
-            // bcopyaccno
-            // 
-            this.bcopyaccno.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bcopyaccno.BorderRadius = 2;
-            this.bcopyaccno.BorderThickness = 1;
-            this.bcopyaccno.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bcopyaccno.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bcopyaccno.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bcopyaccno.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bcopyaccno.FillColor = System.Drawing.Color.White;
-            this.bcopyaccno.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bcopyaccno.ForeColor = System.Drawing.Color.White;
-            this.bcopyaccno.Image = global::rct_lmis.Properties.Resources.icons8_copy_24;
-            this.bcopyaccno.Location = new System.Drawing.Point(849, 12);
-            this.bcopyaccno.Name = "bcopyaccno";
-            this.bcopyaccno.Size = new System.Drawing.Size(25, 25);
-            this.bcopyaccno.TabIndex = 150;
-            this.bcopyaccno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.bcopyaccno.Click += new System.EventHandler(this.bcopyaccno_Click);
-            // 
             // frm_home_disburse_collections_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1174,13 +1212,13 @@
             this.Controls.Add(this.tpaymentstatus);
             this.Controls.Add(this.label30);
             this.Controls.Add(this.tcolbranch);
-            this.Controls.Add(this.label29);
+            this.Controls.Add(this.lcolbranch);
             this.Controls.Add(this.tcolbank);
-            this.Controls.Add(this.label28);
+            this.Controls.Add(this.lcolbank);
             this.Controls.Add(this.tcoldaterec);
-            this.Controls.Add(this.label26);
+            this.Controls.Add(this.lcoldaterec);
             this.Controls.Add(this.tcolrefno);
-            this.Controls.Add(this.label25);
+            this.Controls.Add(this.lcolrefno);
             this.Controls.Add(this.cbpaymentmode);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.tcolactual);
@@ -1195,7 +1233,7 @@
             this.Controls.Add(this.label19);
             this.Controls.Add(this.tloanbal);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.tcoldue);
+            this.Controls.Add(this.tprincipaldue);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.bprintreceipt);
             this.Controls.Add(this.bsave);
@@ -1210,7 +1248,6 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.guna2Separator1);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tpayamort);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.tpaymode);
@@ -1244,8 +1281,6 @@
             this.Load += new System.EventHandler(this.frm_home_disburse_collections_add_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1280,8 +1315,6 @@
         private System.Windows.Forms.Label label9;
         private Guna.UI2.WinForms.Guna2TextBox tpayamort;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private Guna.UI2.WinForms.Guna2CheckBox cbadvance;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private System.Windows.Forms.Label label11;
         private Guna.UI2.WinForms.Guna2TextBox tcolpayamt;
@@ -1294,7 +1327,7 @@
         private System.Windows.Forms.Label label16;
         private Guna.UI2.WinForms.Guna2Button bsave;
         private Guna.UI2.WinForms.Guna2Button bprintreceipt;
-        private Guna.UI2.WinForms.Guna2TextBox tcoldue;
+        private Guna.UI2.WinForms.Guna2TextBox tprincipaldue;
         private System.Windows.Forms.Label label17;
         private Guna.UI2.WinForms.Guna2TextBox tloanbal;
         private System.Windows.Forms.Label label18;
@@ -1311,15 +1344,17 @@
         private Guna.UI2.WinForms.Guna2ComboBox cbpaymentmode;
         private System.Windows.Forms.Label label24;
         private Guna.UI2.WinForms.Guna2TextBox tcolrefno;
-        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label lcolrefno;
         private Guna.UI2.WinForms.Guna2TextBox tcoldaterec;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lcoldaterec;
         private Guna.UI2.WinForms.Guna2TextBox tcolbank;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label lcolbank;
         private Guna.UI2.WinForms.Guna2TextBox tcolbranch;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lcolbranch;
         private Guna.UI2.WinForms.Guna2TextBox tpaymentstatus;
         private System.Windows.Forms.Label label30;
         private Guna.UI2.WinForms.Guna2Button bcopyaccno;
+        private Guna.UI2.WinForms.Guna2TextBox tloanid;
+        private System.Windows.Forms.Label label31;
     }
 }

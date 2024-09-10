@@ -20,41 +20,119 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private IMongoCollection<BsonDocument> _loanApprovedCollection;
         private IMongoCollection<BsonDocument> _loanCollectionsCollection;
         private IMongoCollection<BsonDocument> _loanDisbursedCollection;
+        private IMongoCollection<BsonDocument> _loanCollectorsCollection;
+
         private List<string> _accountIdList; // To store AccountId values
 
         public frm_home_disburse_collections_add()
         {
             InitializeComponent();
 
+            dtdate.Value = DateTime.Now;
+
             // Initialize MongoDB connection for loan_approved collection
             var database = MongoDBConnection.Instance.Database;
             _loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
             _loanCollectionsCollection = database.GetCollection<BsonDocument>("loan_collections");
             _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
+            _loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
 
             // Load AccountId values for autocomplete
             LoadAccountIdsForAutocomplete();
 
             // Set up the tlnno TextBox for autocomplete
             SetupAutocompleteForTlnno();
+            LoadPaymentModes();
+            LoadAreaRoutes();
+
         }
 
-        private DateTime CalculateMaturityDate(DateTime startDate, int days)
+        private void LoadAreaRoutes()
         {
-            DateTime currentDate = startDate;
-            int addedDays = 0;
-
-            while (addedDays < days)
+            try
             {
-                currentDate = currentDate.AddDays(1);
-                if (currentDate.DayOfWeek != DayOfWeek.Saturday && currentDate.DayOfWeek != DayOfWeek.Sunday)
+                // Clear the combo box items
+                cbarea.Items.Clear();
+
+                // Add the default item
+                cbarea.Items.Add("--select area--");
+
+                // Set the default selected item
+                cbarea.SelectedIndex = 0;
+
+                // Get all documents from loan_collectors collection
+                var collectors = _loanCollectorsCollection.Find(new BsonDocument()).ToList();
+
+                // Loop through the collectors and add their AreaRoute to the combo box
+                foreach (var collector in collectors)
                 {
-                    addedDays++;
+                    string areaRoute = collector.GetValue("AreaRoute").AsString;
+                    cbarea.Items.Add(areaRoute);
                 }
             }
-
-            return currentDate;
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while loading area routes: " + ex.Message);
+            }
         }
+
+        private void LoadCollectorsByAreaRoute(string areaRoute)
+        {
+            try
+            {
+                // Clear the cbcollector combo box
+                cbcollector.Items.Clear();
+
+                // Add default item
+                cbcollector.Items.Add("--select collector--");
+                cbcollector.SelectedIndex = 0;
+
+                // Check if a valid area route is selected
+                if (areaRoute != "--select area--")
+                {
+                    // Set up a filter to match the selected AreaRoute
+                    var filter = Builders<BsonDocument>.Filter.Eq("AreaRoute", areaRoute);
+
+                    // Get collectors that match the selected AreaRoute
+                    var collectors = _loanCollectorsCollection.Find(filter).ToList();
+
+                    // Loop through the filtered collectors and add their names to cbcollector
+                    foreach (var collector in collectors)
+                    {
+                        string collectorName = collector.GetValue("Name").AsString;
+                        cbcollector.Items.Add(collectorName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while loading collectors: " + ex.Message);
+            }
+        }
+
+        private void LoadPaymentModes()
+        {
+            // Clear any existing items
+            cbpaymentmode.Items.Clear();
+
+            // Add common payment modes
+            cbpaymentmode.Items.Add("--select payment mode--");
+            cbpaymentmode.Items.Add("Cash");
+            cbpaymentmode.Items.Add("Check");
+            cbpaymentmode.Items.Add("Bank Transfer");
+            cbpaymentmode.Items.Add("Online Payment");
+           
+            // Set the default selected item
+            cbpaymentmode.SelectedIndex = 0;
+        }
+
+        private decimal ConvertToDecimal(string currencyString)
+        {
+            // Remove the '₱' symbol and commas, then convert to decimal
+            return decimal.Parse(currencyString.Replace("₱", "").Replace(",", "").Trim());
+        }
+
+       
 
         private void LoadAccountIdsForAutocomplete()
         {
@@ -159,17 +237,34 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             if (loanDisbursed != null)
             {
                 // Populate textboxes
+                tloanid.Text = loanDisbursed["LoanIDNo"].ToString();
                 tloanamt.Text = loanDisbursed["loanAmt"].ToString();
                 tterm.Text = loanDisbursed["loanTerm"].AsString;
                 tpaystart.Text = loanDisbursed["PaymentStartDate"].ToString();
                 tpaymode.Text = loanDisbursed["Mode"].ToString();
                 tpayamort.Text = loanDisbursed["amortizedAmt"].ToString();
+                tcolpaid.Text = loanDisbursed["amortizedAmt"].ToString();
+                tcoltotal.Text = loanDisbursed["amortizedAmt"].ToString();
+
+                // Convert and clean currency values
+                decimal cashAmt = ConvertToDecimal(loanDisbursed["cashAmt"].ToString());
+                decimal loanInterestAmt = ConvertToDecimal(loanDisbursed["loanInterestAmt"].ToString());
+                int days = int.Parse(loanDisbursed["days"].ToString());  // Assuming days is the loan term
+
+                // Compute Principal Due and Interest
+                decimal principalDue = cashAmt / days;
+                decimal interestDue = loanInterestAmt / days;
+
+                // Set computed values with Philippine Peso sign
+                tprincipaldue.Text = principalDue.ToString("C", new System.Globalization.CultureInfo("en-PH"));
+                tcolinterest.Text = interestDue.ToString("C", new System.Globalization.CultureInfo("en-PH"));
 
                 // Automatically compute interest, maturity date, and balance
                 ComputeInterestAndMaturity();
                 ComputeLoanBalance();
             }
         }
+
 
         private void ClearLoanDisbursedFields()
         {
@@ -181,7 +276,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             tpayamort.Text = string.Empty;
             tloanbal.Text = string.Empty;
             tpaymentstatus.Text = string.Empty;
-            tcoldue.Text = string.Empty;
+            tprincipaldue.Text = string.Empty;
             tcolinterest.Text = string.Empty;
             tcoltotal.Text = string.Empty;
         }
@@ -206,18 +301,16 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             try
             {
-                if (decimal.TryParse(tloanamt.Text, out decimal loanAmount) && int.TryParse(tterm.Text, out int loanTerm))
+                if (int.TryParse(tterm.Text, out int loanTermInMonths))
                 {
-                    // Compute interest per term
-                    decimal interestPerTerm = loanAmount / loanTerm;
-                    tcolinterest.Text = interestPerTerm.ToString("C", new CultureInfo("en-PH")); // Philippine Peso
-
-                    // Calculate maturity date based on the start date and term in days (excluding weekends)
+                    // Calculate maturity date based on the start date and term in months (convert to days)
                     DateTime startDate = DateTime.Parse(tpaystart.Text); // Payment start date from the textbox
-                    int days = loanTerm; // Convert term to days if needed
+                    int totalDays = ConvertMonthsToDays(loanTermInMonths);
 
-                    DateTime maturityDate = CalculateMaturityDate(startDate, days);
-                    tpaymature.Text = maturityDate.ToString("MM/dd/yyyy"); // Format the maturity date
+                    DateTime maturityDate = CalculateMaturityDate(startDate, totalDays);
+
+                    // Display Maturity Date in dd/MM/yyyy format
+                    tpaymature.Text = maturityDate.ToString("MM/dd/yyyy");
                 }
                 else
                 {
@@ -230,6 +323,32 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 MessageBox.Show($"Error computing interest or maturity date: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private int ConvertMonthsToDays(int months)
+        {
+            // Assume 30 days per month and ignore the 31st day if it exists
+            return months * 30;
+        }
+
+        private DateTime CalculateMaturityDate(DateTime startDate, int days)
+        {
+            DateTime currentDate = startDate;
+            int addedDays = 0;
+
+            while (addedDays < days)
+            {
+                currentDate = currentDate.AddDays(1);
+
+                // Skip weekends (Saturday and Sunday)
+                if (currentDate.DayOfWeek != DayOfWeek.Saturday && currentDate.DayOfWeek != DayOfWeek.Sunday)
+                {
+                    addedDays++;
+                }
+            }
+
+            return currentDate;
+        }
+
 
         // Compute Loan Balance: Loan Amount - Payment
         private void ComputeLoanBalance()
@@ -287,6 +406,94 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private void tclientno_TextChanged(object sender, EventArgs e)
         {
             LoadLoanDisbursedData(tclientno.Text);
+        }
+
+        private void cbarea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected AreaRoute
+            string selectedAreaRoute = cbarea.SelectedItem.ToString();
+
+            // Load collectors based on the selected AreaRoute
+            LoadCollectorsByAreaRoute(selectedAreaRoute);
+
+            cbcollector.Enabled = true;
+        }
+
+        private void cbpaymentmode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected payment mode
+            string selectedPaymentMode = cbpaymentmode.SelectedItem.ToString();
+
+            // Set the visibility of textboxes based on the selected payment mode
+            if (selectedPaymentMode == "Cash")
+            {
+                // Show Reference No. and Date of Payment Received
+                tcolrefno.Visible = true;
+                tcoldaterec.Visible = true;
+                lcolrefno.Visible = true;
+                lcoldaterec.Visible = true;
+
+
+                // Hide Bank and Branch
+                tcolbank.Visible = false;
+                tcolbranch.Visible = false;
+                lcolbank.Visible = false;
+                lcolbranch.Visible = false;
+            }
+            else if (selectedPaymentMode == "Check" || selectedPaymentMode == "Bank Transfer")
+            {
+                // Show all fields for Check or Bank Transfer
+                tcolrefno.Visible = true;
+                lcolrefno.Visible= true;
+
+                tcoldaterec.Visible = true;
+                lcoldaterec.Visible= true;
+
+                tcolbank.Visible = true;
+                lcolbank.Visible= true;
+
+                tcolbranch.Visible = true;
+                lcolbranch.Visible = true; 
+            }
+            else if (selectedPaymentMode == "Mobile Payment" || selectedPaymentMode == "Online Payment")
+            {
+                // Show Reference No. and Date of Payment Received, hide Bank and Branch
+                tcolrefno.Visible = true;
+                lcolrefno.Visible = true;
+
+                tcoldaterec.Visible = true;
+                lcoldaterec.Visible = true;
+
+                tcolbank.Visible = false;
+                lcolbank.Visible = false;
+
+                tcolbranch.Visible = false;
+                lcolbranch.Visible = false;
+            }
+            else
+            {
+                // Hide all fields if no valid payment mode is selected
+                tcolrefno.Visible = false;
+                lcolrefno.Visible = false;
+
+                tcoldaterec.Visible = false;
+                lcoldaterec.Visible = false;
+
+                tcolbank.Visible = false;
+                lcolbank.Visible = false;
+
+                tcolbranch.Visible = false;
+                lcolbranch.Visible = false;
+            }
+        }
+
+        private void tcolpayamt_TextChanged(object sender, EventArgs e)
+        {
+            // Set tcolpayamt.Text to tcolactual.Text
+            tcolactual.Text = tcolpayamt.Text;
+
+            // Set the current date and time in mm/dd/yyyy hh:mm AM/PM format
+            tcoldaterec.Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
         }
     }
 }

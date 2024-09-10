@@ -416,6 +416,12 @@
     <Compile Include="ADMIN SECTION\frm_ADMIN_annoucement.Designer.cs">
       <DependentUpon>frm_ADMIN_annoucement.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_accountdata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_accountdata.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_accountdata.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_aploans.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -703,6 +709,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN.resx">
       <DependentUpon>frm_home_ADMIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_accountdata.resx">
+      <DependentUpon>frm_home_ADMIN_accountdata.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_aploans.resx">
       <DependentUpon>frm_home_ADMIN_aploans.cs</DependentUpon>

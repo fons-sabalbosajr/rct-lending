@@ -49,6 +49,7 @@
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.bpayadvance = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -57,6 +58,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.bpayadvance);
             this.panel1.Controls.Add(this.bexport);
             this.panel1.Controls.Add(this.bprint);
             this.panel1.Controls.Add(this.laccountid);
@@ -118,7 +120,7 @@
             this.laccountid.BackColor = System.Drawing.Color.Transparent;
             this.laccountid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.laccountid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccountid.Location = new System.Drawing.Point(762, 13);
+            this.laccountid.Location = new System.Drawing.Point(536, 15);
             this.laccountid.Name = "laccountid";
             this.laccountid.Size = new System.Drawing.Size(121, 20);
             this.laccountid.TabIndex = 36;
@@ -131,7 +133,7 @@
             this.label27.BackColor = System.Drawing.Color.Transparent;
             this.label27.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label27.Location = new System.Drawing.Point(673, 14);
+            this.label27.Location = new System.Drawing.Point(447, 16);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(93, 19);
             this.label27.TabIndex = 35;
@@ -148,7 +150,7 @@
             this.bnew.FillColor = System.Drawing.Color.SeaGreen;
             this.bnew.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnew.ForeColor = System.Drawing.Color.White;
-            this.bnew.Location = new System.Drawing.Point(953, 9);
+            this.bnew.Location = new System.Drawing.Point(805, 10);
             this.bnew.Name = "bnew";
             this.bnew.Size = new System.Drawing.Size(141, 30);
             this.bnew.TabIndex = 31;
@@ -313,6 +315,23 @@
             this.dgvdata.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellContentClick);
             this.dgvdata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdata_DataBindingComplete);
             // 
+            // bpayadvance
+            // 
+            this.bpayadvance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bpayadvance.BorderRadius = 3;
+            this.bpayadvance.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bpayadvance.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bpayadvance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bpayadvance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bpayadvance.FillColor = System.Drawing.Color.SteelBlue;
+            this.bpayadvance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bpayadvance.ForeColor = System.Drawing.Color.White;
+            this.bpayadvance.Location = new System.Drawing.Point(952, 10);
+            this.bpayadvance.Name = "bpayadvance";
+            this.bpayadvance.Size = new System.Drawing.Size(141, 30);
+            this.bpayadvance.TabIndex = 39;
+            this.bpayadvance.Text = "Advance Payment";
+            // 
             // frm_home_disburse_collections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,5 +376,6 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker dtdate;
         private System.Windows.Forms.Label label11;
         private Guna.UI2.WinForms.Guna2TextBox tsearch;
+        private Guna.UI2.WinForms.Guna2Button bpayadvance;
     }
 }
