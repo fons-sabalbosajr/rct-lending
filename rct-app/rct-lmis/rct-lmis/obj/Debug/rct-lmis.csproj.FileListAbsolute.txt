@@ -856,3 +856,14 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SEC
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections_add.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_accountdata.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_accountdata.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_aploans.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors_upload.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collector_attachments.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_dnloans.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections_add.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamounts.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_voucher.resources

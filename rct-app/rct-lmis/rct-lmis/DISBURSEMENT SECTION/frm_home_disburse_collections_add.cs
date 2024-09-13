@@ -45,6 +45,40 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             LoadPaymentModes();
             LoadAreaRoutes();
 
+
+            bprintreceipt.Enabled = false;
+            bsave.Enabled = false;
+            bcancel.Enabled = false;
+
+
+        }
+
+        private void ClearAndDisableFields()
+        {
+            tloanamt.Text = string.Empty;
+            tterm.Text = string.Empty;
+            tpaystart.Text = string.Empty;
+            tpaymature.Text = string.Empty;
+            tpaymode.Text = string.Empty;
+            tpayamort.Text = string.Empty;
+            tloanbal.Text = string.Empty;
+            tpaymentstatus.Text = string.Empty;
+            tprincipaldue.Text = string.Empty;
+            tcolinterest.Text = string.Empty;
+            tcolpenalty.Text = string.Empty;
+            tcoltotal.Text = string.Empty;
+            tcolpaid.Text = string.Empty;
+            tcolactual.Text = string.Empty;
+            tcolrefno.Text = string.Empty;
+            tcoldaterec.Text = string.Empty;
+            tcolpayamt.Text = string.Empty;
+            tcolbank.Text = string.Empty;
+            tcolbranch.Text = string.Empty;
+
+            // Disable buttons
+            bprintreceipt.Enabled = false;
+            bsave.Enabled = false;
+            bcancel.Enabled = false;
         }
 
         private void LoadAreaRoutes()
@@ -130,9 +164,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             // Remove the '₱' symbol and commas, then convert to decimal
             return decimal.Parse(currencyString.Replace("₱", "").Replace(",", "").Trim());
-        }
-
-       
+        }  
 
         private void LoadAccountIdsForAutocomplete()
         {
@@ -231,54 +263,54 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void LoadLoanDisbursedData(string clientNumber)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("cashClnNo", clientNumber);
-            var loanDisbursed = _loanDisbursedCollection.Find(filter).FirstOrDefault();
-
-            if (loanDisbursed != null)
+            try
             {
-                // Populate textboxes
-                tloanid.Text = loanDisbursed["LoanIDNo"].ToString();
-                tloanamt.Text = loanDisbursed["loanAmt"].ToString();
-                tterm.Text = loanDisbursed["loanTerm"].AsString;
-                tpaystart.Text = loanDisbursed["PaymentStartDate"].ToString();
-                tpaymode.Text = loanDisbursed["Mode"].ToString();
-                tpayamort.Text = loanDisbursed["amortizedAmt"].ToString();
-                tcolpaid.Text = loanDisbursed["amortizedAmt"].ToString();
-                tcoltotal.Text = loanDisbursed["amortizedAmt"].ToString();
+                var filter = Builders<BsonDocument>.Filter.Eq("cashClnNo", clientNumber);
+                var loanDisbursed = _loanDisbursedCollection.Find(filter).FirstOrDefault();
 
-                // Convert and clean currency values
-                decimal cashAmt = ConvertToDecimal(loanDisbursed["cashAmt"].ToString());
-                decimal loanInterestAmt = ConvertToDecimal(loanDisbursed["loanInterestAmt"].ToString());
-                int days = int.Parse(loanDisbursed["days"].ToString());  // Assuming days is the loan term
+                if (loanDisbursed != null)
+                {
+                    try
+                    {
+                        // Populate textboxes with data
+                        tloanid.Text = loanDisbursed.GetValue("LoanIDNo", "").ToString();
+                        tloanamt.Text = loanDisbursed.GetValue("loanAmt", "").ToString();
+                        tterm.Text = loanDisbursed.GetValue("loanTerm", "").ToString();
+                        tpaystart.Text = loanDisbursed.GetValue("PaymentStartDate", "").ToString();
+                        tpaymode.Text = loanDisbursed.GetValue("Mode", "").ToString();
+                        tpayamort.Text = loanDisbursed.GetValue("amortizedAmt", "").ToString();
+                        tcolpaid.Text = loanDisbursed.GetValue("amortizedAmt", "").ToString();
+                        tcoltotal.Text = loanDisbursed.GetValue("amortizedAmt", "").ToString();
 
-                // Compute Principal Due and Interest
-                decimal principalDue = cashAmt / days;
-                decimal interestDue = loanInterestAmt / days;
+                        // Convert and clean currency values
+                        decimal cashAmt = ConvertToDecimal(loanDisbursed.GetValue("cashAmt", "0").ToString());
+                        decimal loanInterestAmt = ConvertToDecimal(loanDisbursed.GetValue("loanInterestAmt", "0").ToString());
+                        int days = int.Parse(loanDisbursed.GetValue("days", "0").ToString());  // Assuming days is the loan term
 
-                // Set computed values with Philippine Peso sign
-                tprincipaldue.Text = principalDue.ToString("C", new System.Globalization.CultureInfo("en-PH"));
-                tcolinterest.Text = interestDue.ToString("C", new System.Globalization.CultureInfo("en-PH"));
+                        // Compute Principal Due and Interest
+                        decimal principalDue = cashAmt / days;
+                        decimal interestDue = loanInterestAmt / days;
 
-                // Automatically compute interest, maturity date, and balance
-                ComputeInterestAndMaturity();
-                ComputeLoanBalance();
+                        // Set computed values with Philippine Peso sign
+                        tprincipaldue.Text = principalDue.ToString("C", new System.Globalization.CultureInfo("en-PH"));
+                        tcolinterest.Text = interestDue.ToString("C", new System.Globalization.CultureInfo("en-PH"));
+
+                        // Automatically compute interest, maturity date, and balance
+                        ComputeInterestAndMaturity();
+                        ComputeLoanBalance();
+                    }
+                    catch (Exception ex) 
+                    {
+                        MessageBox.Show(this, ex.Message);
+                    }
+
+                }
             }
-        }
-
-
-        private void ClearLoanDisbursedFields()
-        {
-            tloanamt.Text = string.Empty;
-            tterm.Text = string.Empty;
-            tpaystart.Text = string.Empty;
-            tpaymature.Text = string.Empty;
-            tpaymode.Text = string.Empty;
-            tpayamort.Text = string.Empty;
-            tloanbal.Text = string.Empty;
-            tpaymentstatus.Text = string.Empty;
-            tprincipaldue.Text = string.Empty;
-            tcolinterest.Text = string.Empty;
-            tcoltotal.Text = string.Empty;
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading loan disbursed data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Exception in LoadLoanDisbursedData: {ex}");
+            }
         }
 
         private string GetPaymentStatus(decimal loanPaid, decimal loanAmount)
@@ -296,6 +328,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 return "Due";
             }
         }
+
 
         private void ComputeInterestAndMaturity()
         {
@@ -355,26 +388,117 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             try
             {
-                if (decimal.TryParse(tloanamt.Text, out decimal loanAmount) && decimal.TryParse(tcolpayamt.Text, out decimal payment))
+                // Debug hint to check if laccountid.Text is populated
+                if (string.IsNullOrEmpty(laccountid.Text))
                 {
-                    decimal loanBalance = loanAmount - payment;
-                    tloanbal.Text = loanBalance.ToString("C", new CultureInfo("en-PH")); // Philippine Peso
+                    MessageBox.Show("Account ID is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Retrieve the loan disbursed data based on the LoanIDNo
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanIDNo", tloanid.Text);
+                var loanDisbursed = _loanDisbursedCollection.Find(filter).FirstOrDefault();
+
+                if (loanDisbursed != null)
+                {
+                    try
+                    {
+                        // Parse the necessary values from the loan_disbursed collection
+                        decimal cashAmt = loanDisbursed["loanAmt"].ToDecimal();  // e.g., 15000
+                        decimal loanInterest = decimal.Parse(loanDisbursed["loanInterest"].ToString().TrimEnd('%'));  // Convert interest like "5%" to 5
+                        decimal loanTerm = decimal.Parse(loanDisbursed["loanTerm"].ToString());  // Convert term like "4" to decimal
+
+                        // Convert loanInterest to percentage
+                        decimal interestRate = loanInterest / 100;
+
+                        // Calculate the interest amount: cashAmt * loanInterest * loanTerm
+                        decimal interestAmount = cashAmt * interestRate * loanTerm;
+
+                        // Debug hint to check interest amount
+                        Console.WriteLine($"Interest Amount: {interestAmount}");
+
+                        // Retrieve the existing collections records
+                        var collectionFilter = Builders<BsonDocument>.Filter.Eq("LoanIDNo", laccountid.Text);
+                        var collections = _loanCollectionsCollection.Find(collectionFilter).ToList();
+
+                        decimal totalPaid = collections.Sum(c => c["paymentAmount"].ToDecimal()); // Assuming "paymentAmount" field for the payments
+
+                        // Calculate the total loan balance: cashAmt + interestAmount - totalPaid
+                        decimal totalLoanBalance = (cashAmt + interestAmount) - totalPaid;
+
+                        // Display the computed loan balance in tloanbal
+                        tloanbal.Text = totalLoanBalance.ToString("C", new CultureInfo("en-PH"));
+
+                        // Get the payment status based on totalPaid and loan amount + interest
+                        string paymentStatus = GetPaymentStatus(totalPaid, cashAmt + interestAmount);
+
+                        // Display payment status in tpaymentstatus.Text
+                        tpaymentstatus.Text = paymentStatus;
+
+                        // Debug hint for balance and payment status
+                        Console.WriteLine($"Total Loan Balance: {totalLoanBalance}, Payment Status: {paymentStatus}");
+                    }
+                    catch (FormatException fex)
+                    {
+                        MessageBox.Show($"Error parsing loan details: {fex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Console.WriteLine($"Error parsing values: {fex}");
+                    }
                 }
                 else
                 {
-                    tloanbal.Text = string.Empty;
+                    MessageBox.Show("Loan details not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Console.WriteLine("Loan details not found for the given LoanIDNo.");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error computing loan balance: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Exception caught in ComputeLoanBalance: {ex}");
             }
         }
 
 
+
+
+        private void GenerateCollectionId()
+        {
+            // Get the AccountId from the loan_approved collection based on the laccountid.Text
+            var filterApproved = Builders<BsonDocument>.Filter.Eq("AccountId", laccountid.Text);
+            var loanApproved = _loanApprovedCollection.Find(filterApproved).FirstOrDefault();
+
+            if (loanApproved != null)
+            {
+                string accountId = loanApproved["AccountId"].ToString();  // RCT-2024-0001 part
+
+                // Find the last collection for this AccountId in loan_collections
+                var filterCollections = Builders<BsonDocument>.Filter.Regex("CollectionId", new BsonRegularExpression(accountId + "-COL-"));
+                var sort = Builders<BsonDocument>.Sort.Descending("CollectionId");
+                var lastCollection = _loanCollectionsCollection.Find(filterCollections).Sort(sort).FirstOrDefault();
+
+                // Extract and increment the collection number
+                int collectionNumber = 1;  // Default if no collections exist yet
+                if (lastCollection != null)
+                {
+                    string lastCollectionId = lastCollection["CollectionId"].ToString();
+                    string lastNumberStr = lastCollectionId.Substring(lastCollectionId.LastIndexOf("-COL-") + 5);
+                    collectionNumber = int.Parse(lastNumberStr) + 1;
+                }
+
+                // Format the new CollectionId
+                string newCollectionId = $"{accountId}-COL-{collectionNumber:D4}";
+
+                // Assign the new CollectionId to the laccountid label
+                laccountid.Text = newCollectionId;
+            }
+            else
+            {
+                Console.WriteLine("AccountId not found in loan_approved.");
+            }
+        }
+
         private void frm_home_disburse_collections_add_Load(object sender, EventArgs e)
         {
-
+            GenerateCollectionId();
         }
 
         private void bcopyaccno_Click(object sender, EventArgs e)
@@ -392,6 +516,9 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 LoadLoanApprovedData(tlnno.Text);
                 GenerateCollectionNo(tlnno.Text);
 
+                bprintreceipt.Enabled = true;
+                bsave.Enabled = true;
+                bcancel.Enabled = true;
             }
             else
             {
@@ -400,6 +527,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 tname.Text = string.Empty;
                 taddress.Text = string.Empty;
                 tcontact.Text = string.Empty;
+
+                ClearAndDisableFields();
             }
         }
 
