@@ -6,66 +6,55 @@
     <title>Install RCT Lending Application</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
         }
         .container {
-            text-align: center;
-            padding: 50px;
+            padding: 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            max-width: 500px;
+            margin: auto;
         }
         h1 {
-            color: #4CAF50;
-            font-size: 36px;
+            color: #333;
         }
         p {
-            font-size: 18px;
-            margin-bottom: 30px;
+            font-size: 16px;
+            color: #555;
         }
         .install-button {
-            background-color: #007bff;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
             color: white;
-            padding: 15px 30px;
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
-            display: inline-block;
-        }
-        .install-button:hover {
-            background-color: #0056b3;
-        }
-        .alternative {
             margin-top: 20px;
         }
-        .footer {
-            margin-top: 50px;
-            font-size: 14px;
-            color: #777;
-        }
-        a {
-            color: #007bff;
+        .install-button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Install RCT Lending Application</h1>
-        <p>Click the button below to install the RCT Lending application via ClickOnce.</p>
-        
-        <!-- Main ClickOnce Installation Link -->
-        <a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="install-button">Install RCT Lending Application</a>
 
-        <!-- Alternative Setup Download -->
-        <div class="alternative">
-            <p>If you encounter issues with ClickOnce, you can manually download the setup file:</p>
-            <a href="rct-app/rct-lmis/clickonce/setup.exe" class="install-button" download>Download Setup</a>
-        </div>
-        
-        <div class="footer">
-            <p>Need help? Contact <a href="mailto:fonssabalbosa.27@gmail.com">support@rctlending.com</a></p>
-        </div>
-    </div>
+<div class="container">
+    <h1>Install RCT Lending Application</h1>
+    <p>Click the button below to install the RCT Lending Application.</p>
+    
+    <!-- Corrected ClickOnce link -->
+    <a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="install-button">Install Now</a>
+    
+    <p>For manual installation, download the following:</p>
+    <ul style="list-style-type: none; padding: 0;">
+        <li><a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="install-button">Download .application</a></li>
+        <li><a href="rct-app/rct-lmis/clickonce/setup.exe" class="install-button">Download setup.exe</a></li>
+    </ul>
+</div>
+
 </body>
 </html>
