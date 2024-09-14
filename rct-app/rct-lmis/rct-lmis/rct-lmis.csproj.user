@@ -4,7 +4,7 @@
     <PublishUrlHistory>E:\RCT\rct-lending\rct-app\rct-lmis\clickonce\|E:\RCT\clickonce\|publish\</PublishUrlHistory>
     <InstallUrlHistory>https://fons-sabalbosajr.github.io/rct-lending/rct-app/rct-lmis/clickonce/|https://fons-sabalbosajr.github.io/rct-lending/|https://github.com/fons-sabalbosajr/rct-lending.git/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory>https://fons-sabalbosajr.github.io/rct-lending/</UpdateUrlHistory>
+    <UpdateUrlHistory>https://fons-sabalbosajr.github.io/rct-lending/rct-app/rct-lmis/clickonce/|https://fons-sabalbosajr.github.io/rct-lending/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
