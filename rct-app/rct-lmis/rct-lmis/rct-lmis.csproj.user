@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>E:\RCT\clickonce\|publish\</PublishUrlHistory>
-    <InstallUrlHistory>https://fons-sabalbosajr.github.io/rct-lending/|https://github.com/fons-sabalbosajr/rct-lending.git/</InstallUrlHistory>
+    <PublishUrlHistory>E:\RCT\rct-lending\rct-app\rct-lmis\clickonce\|E:\RCT\clickonce\|publish\</PublishUrlHistory>
+    <InstallUrlHistory>https://fons-sabalbosajr.github.io/rct-lending/rct-app/rct-lmis/clickonce/|https://fons-sabalbosajr.github.io/rct-lending/|https://github.com/fons-sabalbosajr/rct-lending.git/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <UpdateUrlHistory>https://fons-sabalbosajr.github.io/rct-lending/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>

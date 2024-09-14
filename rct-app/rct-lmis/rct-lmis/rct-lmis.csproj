@@ -15,7 +15,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>E:\RCT\clickonce\</PublishUrl>
+    <PublishUrl>E:\RCT\rct-lending\rct-app\rct-lmis\clickonce\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -25,15 +25,15 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://fons-sabalbosajr.github.io/rct-lending/</InstallUrl>
-    <UpdateUrl>https://fons-sabalbosajr.github.io/rct-lending/</UpdateUrl>
+    <InstallUrl>https://fons-sabalbosajr.github.io/rct-lending/rct-app/rct-lmis/clickonce/</InstallUrl>
+    <UpdateUrl>https://fons-sabalbosajr.github.io/rct-lending/rct-app/rct-lmis/clickonce/</UpdateUrl>
     <ProductName>RCT-LMIS %28Lending Management Information System%29</ProductName>
     <PublisherName>ACS Micro IT Solutions Co.</PublisherName>
     <SuiteName>RACATOM Corporation</SuiteName>
     <MinimumRequiredVersion>1.0.0.0</MinimumRequiredVersion>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
