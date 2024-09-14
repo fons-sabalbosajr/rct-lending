@@ -6,37 +6,85 @@
     <title>Install RCT Lending Application</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
         }
         .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
-            border: 2px solid #4CAF50;
             border-radius: 10px;
-            background-color: #f9f9f9;
-            max-width: 500px;
-            margin: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
         }
         h1 {
-            color: #333;
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
         p {
-            font-size: 16px;
-            color: #555;
+            font-size: 1rem;
+            margin-bottom: 20px;
         }
         .install-button {
-            display: inline-block;
-            padding: 10px 20px;
+            display: block;
+            width: 100%;
+            padding: 15px;
             background-color: #4CAF50;
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 1.25rem;
+            font-weight: bold;
             border-radius: 5px;
-            margin-top: 20px;
+            transition: background-color 0.3s;
         }
         .install-button:hover {
             background-color: #45a049;
+        }
+        .manual-downloads {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .manual-downloads h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .download-button {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #ffffff;
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .download-button:hover {
+            background-color: #f0f0f0;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+            .install-button {
+                font-size: 1rem;
+            }
+            .download-button {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -44,16 +92,16 @@
 
 <div class="container">
     <h1>Install RCT Lending Application</h1>
-    <p>Click the button below to install the RCT Lending Application.</p>
+    <p>Click the button below to quickly install the RCT Lending Application.</p>
     
-    <!-- Corrected ClickOnce link -->
+    <!-- Priority Install Now button -->
     <a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="install-button">Install Now</a>
     
-    <p>For manual installation, download the following:</p>
-    <ul style="list-style-type: none; padding: 0;">
-        <li><a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="install-button">Download .application</a></li>
-        <li><a href="rct-app/rct-lmis/clickonce/setup.exe" class="install-button">Download setup.exe</a></li>
-    </ul>
+    <div class="manual-downloads">
+        <h3>Manual Installation</h3>
+        <a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="download-button">Download .application</a>
+        <a href="rct-app/rct-lmis/clickonce/setup.exe" class="download-button">Download setup.exe</a>
+    </div>
 </div>
 
 </body>
