@@ -3,58 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCT Lending Application Installer</title>
+    <title>Install RCT Lending Application</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
             margin: 0;
             padding: 0;
-            text-align: center;
-            color: #333;
         }
         .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 50px;
         }
         h1 {
-            color: #0056b3;
+            color: #4CAF50;
+            font-size: 36px;
         }
         p {
             font-size: 18px;
-            line-height: 1.6;
+            margin-bottom: 30px;
         }
-        a {
-            display: inline-block;
-            font-size: 18px;
-            color: #fff;
+        .install-button {
             background-color: #007bff;
+            color: white;
             padding: 15px 30px;
             text-decoration: none;
+            font-size: 18px;
             border-radius: 5px;
-            margin-top: 20px;
+            display: inline-block;
         }
-        a:hover {
+        .install-button:hover {
             background-color: #0056b3;
         }
+        .alternative {
+            margin-top: 20px;
+        }
         .footer {
-            margin-top: 30px;
+            margin-top: 50px;
             font-size: 14px;
             color: #777;
+        }
+        a {
+            color: #007bff;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the RCT Lending Application</h1>
-        <p>To install the application, you can download the full ClickOnce package using the link below. After downloading, extract the files and run the setup.exe to install the application.</p>
-        <a href="rct-app/rct-lmis/clickonce/RCT-Lending-ClickOnce-Setup.zip" download>Download Full ClickOnce Package</a>
+        <h1>Install RCT Lending Application</h1>
+        <p>Click the button below to install the RCT Lending application via ClickOnce.</p>
+        
+        <!-- Main ClickOnce Installation Link -->
+        <a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="install-button">Install RCT Lending Application</a>
+
+        <!-- Alternative Setup Download -->
+        <div class="alternative">
+            <p>If you encounter issues with ClickOnce, you can manually download the setup file:</p>
+            <a href="rct-app/rct-lmis/clickonce/setup.exe" class="install-button" download>Download Setup</a>
+        </div>
+        
         <div class="footer">
-            <p>If you encounter any issues, please contact support at <a href="mailto:fonssabalbosa.27@gmail.com">support@rctlending.com</a>.</p>
+            <p>Need help? Contact <a href="mailto:fonssabalbosa.27@gmail.com">support@rctlending.com</a></p>
         </div>
     </div>
 </body>
