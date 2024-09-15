@@ -5,104 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Install RCT Lending Application</title>
     <style>
+        /* Define color variables for light and dark mode */
+        :root {
+            --bg-color: #f0f0f0;
+            --text-color: #333;
+            --button-bg-color: #4CAF50;
+            --button-text-color: #fff;
+            --button-hover-bg: #45a049;
+            --container-bg-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark mode color variables */
+        [data-theme="dark"] {
+            --bg-color: #333;
+            --text-color: #fff;
+            --button-bg-color: #8BC34A;
+            --button-text-color: #333;
+            --button-hover-bg: #7BAE42;
+            --container-bg-color: rgba(255, 255, 255, 0.1);
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #fff;
+            transition: background-color 0.3s, color 0.3s;
         }
+
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--container-bg-color);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             max-width: 400px;
             width: 90%;
         }
+
         h1 {
             font-size: 2rem;
             margin-bottom: 10px;
         }
+
         p {
             font-size: 1rem;
             margin-bottom: 20px;
         }
-        .install-button {
+
+        .install-button, .download-button {
             display: block;
             width: 100%;
             padding: 15px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
             text-decoration: none;
             font-size: 1.25rem;
             font-weight: bold;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-        .install-button:hover {
-            background-color: #45a049;
+
+        .install-button:hover, .download-button:hover {
+            background-color: var(--button-hover-bg);
         }
+
         .manual-downloads {
             margin-top: 30px;
             background: rgba(255, 255, 255, 0.2);
             padding: 15px;
             border-radius: 10px;
         }
+
         .manual-downloads h3 {
             font-size: 1.2rem;
             margin-bottom: 10px;
         }
-        .download-button {
-            display: block;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #ffffff;
-            color: #4CAF50;
-            text-decoration: none;
-            font-size: 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .download-button:hover {
-            background-color: #f0f0f0;
-        }
+
         @media (max-width: 600px) {
             h1 {
                 font-size: 1.5rem;
             }
+
             p {
                 font-size: 0.9rem;
             }
+
             .install-button {
                 font-size: 1rem;
             }
+
             .download-button {
                 font-size: 0.9rem;
             }
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--button-hover-bg);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Install RCT Lending Application</h1>
-    <p>Click the button below to quickly install the RCT Lending Application.</p>
-    
-    <!-- Priority Install Now button -->
-    <a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="install-button">Install Now</a>
-    
-    <div class="manual-downloads">
-        <h3>Manual Installation</h3>
-        <a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="download-button">Download .application</a>
-        <a href="rct-app/rct-lmis/clickonce/setup.exe" class="download-button">Download setup.exe</a>
+    <!-- Dark mode toggle button -->
+    <button class="theme-toggle" id="theme-toggle">Switch to Dark Mode</button>
+
+    <div class="container">
+        <h1>Install RCT Lending Application</h1>
+        <p>Click the button below to quickly install the RCT Lending Application.</p>
+        
+        <!-- Priority Install Now button -->
+        <a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="install-button">Install Now</a>
+        
+        <div class="manual-downloads">
+            <h3>Manual Installation</h3>
+            <a href="rct-app/rct-lmis/clickonce/rct-lmis.application" class="download-button">Download .application</a>
+            <a href="rct-app/rct-lmis/clickonce/setup.exe" class="download-button">Download setup.exe</a>
+        </div>
     </div>
-</div>
+
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const bodyElement = document.body;
+
+        // Check if a theme is already stored in localStorage
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        bodyElement.setAttribute('data-theme', currentTheme);
+
+        if (currentTheme === 'dark') {
+            toggleButton.textContent = 'Switch to Light Mode';
+        }
+
+        toggleButton.addEventListener('click', function() {
+            const newTheme = bodyElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            bodyElement.setAttribute('data-theme', newTheme);
+            toggleButton.textContent = newTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+
+            // Store the selected theme in localStorage
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
 
 </body>
 </html>
