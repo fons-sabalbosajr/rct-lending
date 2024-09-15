@@ -23,7 +23,63 @@ namespace rct_lmis.ADMIN_SECTION
             _loanAccountTitlesCollection = database.GetCollection<BsonDocument>("loan_account_titles");
 
             Disable();
+            ConfigureAutocompleteForTextBoxes();
+        }
 
+        private void ConfigureAutocompleteForTextBoxes()
+        {
+            // Call MongoDB and populate autocomplete for each textbox
+            taccno.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            taccno.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            taccgrp.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            taccgrp.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            tacccode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            tacccode.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            taccgrpcode.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            taccgrpcode.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            taccname.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            taccname.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            // Populate autocomplete suggestions
+            PopulateAutocompleteSuggestions();
+        }
+
+        private void PopulateAutocompleteSuggestions()
+        {
+            try
+            {
+                var accNoSuggestions = _loanAccountTitlesCollection.Distinct<string>("AccountId", Builders<BsonDocument>.Filter.Empty).ToList();
+                var accGrpSuggestions = _loanAccountTitlesCollection.Distinct<string>("AccountGroup", Builders<BsonDocument>.Filter.Empty).ToList();
+                var accCodeSuggestions = _loanAccountTitlesCollection.Distinct<string>("AccountCode", Builders<BsonDocument>.Filter.Empty).ToList();
+                var accGrpCodeSuggestions = _loanAccountTitlesCollection.Distinct<string>("AccountGroupCode", Builders<BsonDocument>.Filter.Empty).ToList();
+                var accNameSuggestions = _loanAccountTitlesCollection.Distinct<string>("AccountName", Builders<BsonDocument>.Filter.Empty).ToList();
+
+                // Create AutoCompleteStringCollection for each textbox
+                AutoCompleteStringCollection accNoCollection = new AutoCompleteStringCollection();
+                accNoCollection.AddRange(accNoSuggestions.ToArray());
+                taccno.AutoCompleteCustomSource = accNoCollection;
+
+                AutoCompleteStringCollection accGrpCollection = new AutoCompleteStringCollection();
+                accGrpCollection.AddRange(accGrpSuggestions.ToArray());
+                taccgrp.AutoCompleteCustomSource = accGrpCollection;
+
+                AutoCompleteStringCollection accCodeCollection = new AutoCompleteStringCollection();
+                accCodeCollection.AddRange(accCodeSuggestions.ToArray());
+                tacccode.AutoCompleteCustomSource = accCodeCollection;
+
+                AutoCompleteStringCollection accGrpCodeCollection = new AutoCompleteStringCollection();
+                accGrpCodeCollection.AddRange(accGrpCodeSuggestions.ToArray());
+                taccgrpcode.AutoCompleteCustomSource = accGrpCodeCollection;
+
+                AutoCompleteStringCollection accNameCollection = new AutoCompleteStringCollection();
+                accNameCollection.AddRange(accNameSuggestions.ToArray());
+                taccname.AutoCompleteCustomSource = accNameCollection;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error setting autocomplete: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Exception in PopulateAutocompleteSuggestions: {ex}");
+            }
         }
 
         private void Disable() 
@@ -107,6 +163,13 @@ namespace rct_lmis.ADMIN_SECTION
                     }
 
                     dgvdata.DataSource = dataTable;
+
+                    // Set custom column headers
+                    dgvdata.Columns["AccountId"].HeaderText = "Account ID";
+                    dgvdata.Columns["AccountGroup"].HeaderText = "Account Group";
+                    dgvdata.Columns["AccountCode"].HeaderText = "Account Code";
+                    dgvdata.Columns["AccountGroupCode"].HeaderText = "Account Group Code";
+                    dgvdata.Columns["AccountName"].HeaderText = "Account Name";
                 }
                 else
                 {
@@ -120,6 +183,7 @@ namespace rct_lmis.ADMIN_SECTION
                 Console.WriteLine($"Exception in LoadDataIntoDGV: {ex}");
             }
         }
+
 
         private void frm_home_ADMIN_accountdata_Load(object sender, EventArgs e)
         {

@@ -551,7 +551,6 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.D
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamounts.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_voucher.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\google_drive_credentials.json
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tessdata\eng.traineddata
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\leptonica-1.82.0.dll
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\tesseract50.dll

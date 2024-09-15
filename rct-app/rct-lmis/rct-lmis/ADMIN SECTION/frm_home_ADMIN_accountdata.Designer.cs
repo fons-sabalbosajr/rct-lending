@@ -28,15 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bhelp = new Guna.UI2.WinForms.Guna2CircleButton();
             this.ltitle = new System.Windows.Forms.Label();
             this.pleft = new System.Windows.Forms.Panel();
+            this.taccgrp = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.taccname = new Guna.UI2.WinForms.Guna2TextBox();
+            this.taccgrpcode = new Guna.UI2.WinForms.Guna2TextBox();
+            this.tacccode = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bloansave = new Guna.UI2.WinForms.Guna2Button();
             this.taccno = new Guna.UI2.WinForms.Guna2TextBox();
             this.label34 = new System.Windows.Forms.Label();
+            this.beditrate = new Guna.UI2.WinForms.Guna2Button();
             this.pnavtop = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.bexport = new Guna.UI2.WinForms.Guna2Button();
@@ -45,16 +55,6 @@
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.beditrate = new Guna.UI2.WinForms.Guna2Button();
-            this.bloansave = new Guna.UI2.WinForms.Guna2Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tacccode = new Guna.UI2.WinForms.Guna2TextBox();
-            this.taccgrpcode = new Guna.UI2.WinForms.Guna2TextBox();
-            this.taccname = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.taccgrp = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.pleft.SuspendLayout();
             this.pnavtop.SuspendLayout();
@@ -125,8 +125,175 @@
             this.pleft.Size = new System.Drawing.Size(353, 648);
             this.pleft.TabIndex = 3;
             // 
+            // taccgrp
+            // 
+            this.taccgrp.AutoCompleteCustomSource.AddRange(new string[] {
+            "Asset",
+            "Liability",
+            "Capital",
+            "Income",
+            "Expense"});
+            this.taccgrp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.taccgrp.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.taccgrp.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.taccgrp.DefaultText = "";
+            this.taccgrp.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.taccgrp.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.taccgrp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.taccgrp.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.taccgrp.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.taccgrp.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taccgrp.ForeColor = System.Drawing.Color.DimGray;
+            this.taccgrp.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.taccgrp.IconLeftSize = new System.Drawing.Size(15, 15);
+            this.taccgrp.Location = new System.Drawing.Point(127, 63);
+            this.taccgrp.Name = "taccgrp";
+            this.taccgrp.PasswordChar = '\0';
+            this.taccgrp.PlaceholderText = "--";
+            this.taccgrp.SelectedText = "";
+            this.taccgrp.Size = new System.Drawing.Size(191, 25);
+            this.taccgrp.TabIndex = 137;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label6.Location = new System.Drawing.Point(17, 70);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 15);
+            this.label6.TabIndex = 136;
+            this.label6.Text = "Account Group:";
+            // 
+            // taccname
+            // 
+            this.taccname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.taccname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.taccname.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.taccname.DefaultText = "";
+            this.taccname.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.taccname.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.taccname.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.taccname.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.taccname.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.taccname.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taccname.ForeColor = System.Drawing.Color.DimGray;
+            this.taccname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.taccname.IconLeftSize = new System.Drawing.Size(15, 15);
+            this.taccname.Location = new System.Drawing.Point(148, 186);
+            this.taccname.Multiline = true;
+            this.taccname.Name = "taccname";
+            this.taccname.PasswordChar = '\0';
+            this.taccname.PlaceholderText = "--";
+            this.taccname.SelectedText = "";
+            this.taccname.Size = new System.Drawing.Size(188, 63);
+            this.taccname.TabIndex = 135;
+            // 
+            // taccgrpcode
+            // 
+            this.taccgrpcode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.taccgrpcode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.taccgrpcode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.taccgrpcode.DefaultText = "";
+            this.taccgrpcode.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.taccgrpcode.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.taccgrpcode.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.taccgrpcode.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.taccgrpcode.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.taccgrpcode.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.taccgrpcode.ForeColor = System.Drawing.Color.DimGray;
+            this.taccgrpcode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.taccgrpcode.IconLeftSize = new System.Drawing.Size(15, 15);
+            this.taccgrpcode.Location = new System.Drawing.Point(148, 146);
+            this.taccgrpcode.Name = "taccgrpcode";
+            this.taccgrpcode.PasswordChar = '\0';
+            this.taccgrpcode.PlaceholderText = "--";
+            this.taccgrpcode.SelectedText = "";
+            this.taccgrpcode.Size = new System.Drawing.Size(188, 25);
+            this.taccgrpcode.TabIndex = 133;
+            // 
+            // tacccode
+            // 
+            this.tacccode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tacccode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tacccode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tacccode.DefaultText = "";
+            this.tacccode.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tacccode.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tacccode.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tacccode.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tacccode.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tacccode.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tacccode.ForeColor = System.Drawing.Color.DimGray;
+            this.tacccode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tacccode.IconLeftSize = new System.Drawing.Size(15, 15);
+            this.tacccode.Location = new System.Drawing.Point(148, 110);
+            this.tacccode.Name = "tacccode";
+            this.tacccode.PasswordChar = '\0';
+            this.tacccode.PlaceholderText = "--";
+            this.tacccode.SelectedText = "";
+            this.tacccode.Size = new System.Drawing.Size(188, 25);
+            this.tacccode.TabIndex = 132;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(17, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 15);
+            this.label4.TabIndex = 130;
+            this.label4.Text = "Account No.:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(17, 151);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(122, 15);
+            this.label3.TabIndex = 129;
+            this.label3.Text = "Account Group Code:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(17, 186);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 15);
+            this.label1.TabIndex = 128;
+            this.label1.Text = "Account Name:";
+            // 
+            // bloansave
+            // 
+            this.bloansave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bloansave.BorderRadius = 4;
+            this.bloansave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bloansave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bloansave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bloansave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bloansave.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bloansave.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bloansave.ForeColor = System.Drawing.Color.White;
+            this.bloansave.Location = new System.Drawing.Point(261, 274);
+            this.bloansave.Name = "bloansave";
+            this.bloansave.Size = new System.Drawing.Size(75, 31);
+            this.bloansave.TabIndex = 127;
+            this.bloansave.Text = "Save";
+            this.bloansave.Click += new System.EventHandler(this.bloansave_Click);
+            // 
             // taccno
             // 
+            this.taccno.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.taccno.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.taccno.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.taccno.DefaultText = "";
             this.taccno.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -157,6 +324,24 @@
             this.label34.Size = new System.Drawing.Size(86, 15);
             this.label34.TabIndex = 77;
             this.label34.Text = "Account Code:";
+            // 
+            // beditrate
+            // 
+            this.beditrate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.beditrate.BorderRadius = 4;
+            this.beditrate.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.beditrate.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.beditrate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.beditrate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.beditrate.FillColor = System.Drawing.Color.SeaGreen;
+            this.beditrate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.beditrate.ForeColor = System.Drawing.Color.White;
+            this.beditrate.Location = new System.Drawing.Point(176, 274);
+            this.beditrate.Name = "beditrate";
+            this.beditrate.Size = new System.Drawing.Size(79, 31);
+            this.beditrate.TabIndex = 33;
+            this.beditrate.Text = "Edit";
+            this.beditrate.Click += new System.EventHandler(this.beditrate_Click);
             // 
             // pnavtop
             // 
@@ -278,25 +463,25 @@
             this.dgvdata.AllowUserToDeleteRows = false;
             this.dgvdata.AllowUserToResizeColumns = false;
             this.dgvdata.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvdata.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvdata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvdata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.Location = new System.Drawing.Point(353, 115);
@@ -328,183 +513,6 @@
             this.dgvdata.ThemeStyle.RowsStyle.Height = 30;
             this.dgvdata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvdata.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // beditrate
-            // 
-            this.beditrate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.beditrate.BorderRadius = 4;
-            this.beditrate.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.beditrate.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.beditrate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.beditrate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.beditrate.FillColor = System.Drawing.Color.SeaGreen;
-            this.beditrate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.beditrate.ForeColor = System.Drawing.Color.White;
-            this.beditrate.Location = new System.Drawing.Point(176, 274);
-            this.beditrate.Name = "beditrate";
-            this.beditrate.Size = new System.Drawing.Size(79, 31);
-            this.beditrate.TabIndex = 33;
-            this.beditrate.Text = "Edit";
-            this.beditrate.Click += new System.EventHandler(this.beditrate_Click);
-            // 
-            // bloansave
-            // 
-            this.bloansave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bloansave.BorderRadius = 4;
-            this.bloansave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bloansave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bloansave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bloansave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bloansave.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bloansave.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bloansave.ForeColor = System.Drawing.Color.White;
-            this.bloansave.Location = new System.Drawing.Point(261, 274);
-            this.bloansave.Name = "bloansave";
-            this.bloansave.Size = new System.Drawing.Size(75, 31);
-            this.bloansave.TabIndex = 127;
-            this.bloansave.Text = "Save";
-            this.bloansave.Click += new System.EventHandler(this.bloansave_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(17, 186);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 15);
-            this.label1.TabIndex = 128;
-            this.label1.Text = "Account Name:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(17, 151);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 15);
-            this.label3.TabIndex = 129;
-            this.label3.Text = "Account Group Code:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(17, 33);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 15);
-            this.label4.TabIndex = 130;
-            this.label4.Text = "Account No.:";
-            // 
-            // tacccode
-            // 
-            this.tacccode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tacccode.DefaultText = "";
-            this.tacccode.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tacccode.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tacccode.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tacccode.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tacccode.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tacccode.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.tacccode.ForeColor = System.Drawing.Color.DimGray;
-            this.tacccode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tacccode.IconLeftSize = new System.Drawing.Size(15, 15);
-            this.tacccode.Location = new System.Drawing.Point(148, 110);
-            this.tacccode.Name = "tacccode";
-            this.tacccode.PasswordChar = '\0';
-            this.tacccode.PlaceholderText = "--";
-            this.tacccode.SelectedText = "";
-            this.tacccode.Size = new System.Drawing.Size(188, 25);
-            this.tacccode.TabIndex = 132;
-            // 
-            // taccgrpcode
-            // 
-            this.taccgrpcode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.taccgrpcode.DefaultText = "";
-            this.taccgrpcode.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.taccgrpcode.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.taccgrpcode.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.taccgrpcode.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.taccgrpcode.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.taccgrpcode.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.taccgrpcode.ForeColor = System.Drawing.Color.DimGray;
-            this.taccgrpcode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.taccgrpcode.IconLeftSize = new System.Drawing.Size(15, 15);
-            this.taccgrpcode.Location = new System.Drawing.Point(148, 146);
-            this.taccgrpcode.Name = "taccgrpcode";
-            this.taccgrpcode.PasswordChar = '\0';
-            this.taccgrpcode.PlaceholderText = "--";
-            this.taccgrpcode.SelectedText = "";
-            this.taccgrpcode.Size = new System.Drawing.Size(188, 25);
-            this.taccgrpcode.TabIndex = 133;
-            // 
-            // taccname
-            // 
-            this.taccname.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.taccname.DefaultText = "";
-            this.taccname.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.taccname.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.taccname.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.taccname.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.taccname.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.taccname.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.taccname.ForeColor = System.Drawing.Color.DimGray;
-            this.taccname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.taccname.IconLeftSize = new System.Drawing.Size(15, 15);
-            this.taccname.Location = new System.Drawing.Point(148, 186);
-            this.taccname.Multiline = true;
-            this.taccname.Name = "taccname";
-            this.taccname.PasswordChar = '\0';
-            this.taccname.PlaceholderText = "--";
-            this.taccname.SelectedText = "";
-            this.taccname.Size = new System.Drawing.Size(188, 63);
-            this.taccname.TabIndex = 135;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(17, 70);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 15);
-            this.label6.TabIndex = 136;
-            this.label6.Text = "Account Group:";
-            // 
-            // taccgrp
-            // 
-            this.taccgrp.AutoCompleteCustomSource.AddRange(new string[] {
-            "Asset",
-            "Liability",
-            "Capital",
-            "Income",
-            "Expense"});
-            this.taccgrp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.taccgrp.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.taccgrp.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.taccgrp.DefaultText = "";
-            this.taccgrp.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.taccgrp.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.taccgrp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.taccgrp.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.taccgrp.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.taccgrp.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.taccgrp.ForeColor = System.Drawing.Color.DimGray;
-            this.taccgrp.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.taccgrp.IconLeftSize = new System.Drawing.Size(15, 15);
-            this.taccgrp.Location = new System.Drawing.Point(127, 63);
-            this.taccgrp.Name = "taccgrp";
-            this.taccgrp.PasswordChar = '\0';
-            this.taccgrp.PlaceholderText = "--";
-            this.taccgrp.SelectedText = "";
-            this.taccgrp.Size = new System.Drawing.Size(191, 25);
-            this.taccgrp.TabIndex = 137;
             // 
             // frm_home_ADMIN_accountdata
             // 
