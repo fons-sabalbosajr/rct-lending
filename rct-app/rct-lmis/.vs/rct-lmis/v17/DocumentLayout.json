@@ -10,10 +10,6 @@
       "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\signup_login\\frm_home_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\signup_login\\frm_home_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\signup_login\\frm_home_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|cc4014f5-b18d-439c-9352-f99d984cca85"
     }
   ],
@@ -50,22 +46,10 @@
               "RelativeDocumentMoniker": "rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs",
               "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs",
               "RelativeToolTip": "rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs",
-              "ViewState": "AQIAAGIAAAAAAAAAAAAkwHkAAAAFAAAA",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAkwGoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-15T06:57:35.454Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frm_home_signup.cs [Design]",
-              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs",
-              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs [Design]",
-              "RelativeToolTip": "rct-lmis\\SIGNUP_LOGIN\\frm_home_signup.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T06:57:32.867Z",
-              "EditorCaption": " [Design]"
             }
           ]
         }
