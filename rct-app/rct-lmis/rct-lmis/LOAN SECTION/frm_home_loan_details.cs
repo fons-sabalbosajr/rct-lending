@@ -1,12 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,67 +17,85 @@ namespace rct_lmis.LOAN_SECTION
             InitializeDataGridView();
         }
 
-        LoadingFunction load =new LoadingFunction();
-
         private async void frm_home_loan_new_Load(object sender, EventArgs e)
         {
-            // Display the AccountID on the label
             laccno.Text = $"{AccountID}";
-
-            // Load data based on AccountID
             await LoadLoanDetailsAsync();
-
         }
 
         private void InitializeDataGridView()
         {
             dgvuploads.Columns.Clear();
-            dgvuploads.Columns.Add("DocumentName", "Document Name");
-            dgvuploads.Columns.Add("DocumentLink", "Document Link");
-            dgvuploads.Columns.Add(new DataGridViewLinkColumn
+
+            // Add Document Name column and set its width
+            var documentNameColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "DocumentName",
+                HeaderText = "Document Name",
+                Width = 400 // Set the desired width here
+            };
+            dgvuploads.Columns.Add(documentNameColumn);
+
+
+            var viewFileButtonColumn = new DataGridViewButtonColumn
             {
                 Name = "ViewFile",
                 HeaderText = "View File",
                 Text = "View File",
-                UseColumnTextForLinkValue = true
-            });
+                UseColumnTextForButtonValue = true,
+                Width = 100 // Adjust width to make the button smaller
+            };
+            dgvuploads.Columns.Add(viewFileButtonColumn);
+
+            dgvuploads.Columns.Add("DocumentLink", "Document Link");
+            dgvuploads.Columns["DocumentLink"].Visible = false;
+
+            // Adjust the DataGridView button's padding
+            foreach (DataGridViewColumn column in dgvuploads.Columns)
+            {
+                column.DefaultCellStyle.Padding = new Padding(2); // Smaller padding
+            }
+
+            
+           
         }
+
 
         private void ConfigureDataGridView()
         {
-            // Set the wrapping for the second column
-            dgvuploads.Columns[1].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dgvuploads.Columns[2].Width = 200;
+            // Set the wrapping for the "Document Name" column
+            dgvuploads.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Hide the "Document Link" column
+            dgvuploads.Columns["DocumentLink"].Visible = false;
 
             // Optional: Adjust column width to fit the content
-            dgvuploads.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvuploads.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
 
-        private void LoadDocsIntoDataGridView(string docs, string docLinks)
+
+        private void LoadDocsIntoDataGridView(string[] docsArray, string[] docLinksArray)
         {
             dgvuploads.Rows.Clear();
 
-            // Split the docs and docLinks by comma, and trim any leading or trailing spaces
-            var docsArray = docs.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                .Select(doc => doc.Trim())
-                                .ToArray();
+            // Check if both document names and links arrays are valid
+            if (docsArray == null || docLinksArray == null || docsArray.Length == 0 || docLinksArray.Length == 0)
+            {
+                MessageBox.Show("Document names or links are missing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            var docLinksArray = docLinks.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                        .Select(link => link.Trim())
-                                        .ToArray();
-
+            // Load each document name and link into the DataGridView
             for (int i = 0; i < docsArray.Length; i++)
             {
-                // Ensure docLinksArray has an element at index i, or default to an empty string
-                int rowIndex = dgvuploads.Rows.Add(docsArray[i], docLinksArray.Length > i ? docLinksArray[i] : string.Empty, "View File");
+                string docName = docsArray[i];
+                string docLink = (i < docLinksArray.Length) ? docLinksArray[i] : string.Empty;
 
-                var link = new DataGridViewLinkCell
-                {
-                    Value = "View File",
-                    UseColumnTextForLinkValue = true
-                };
-
-                dgvuploads.Rows[rowIndex].Cells[2] = link;
+                // Add both the document name and document link to the row
+                int rowIndex = dgvuploads.Rows.Add();
+                dgvuploads.Rows[rowIndex].Cells["DocumentName"].Value = docName;
+                dgvuploads.Rows[rowIndex].Cells["DocumentLink"].Value = docLink; // Store the document link in the hidden column
+                dgvuploads.Rows[rowIndex].Cells["ViewFile"].Value = "View File"; // Set the button text
             }
 
             // Configure the DataGridView after loading data
@@ -91,9 +104,9 @@ namespace rct_lmis.LOAN_SECTION
 
 
 
+
         private async Task LoadLoanDetailsAsync()
         {
-            // Retrieve the AccountId from the label
             string accountId = laccno.Text;
 
             try
@@ -101,32 +114,30 @@ namespace rct_lmis.LOAN_SECTION
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_approved");
 
-                // Query to find the document with the specified AccountID
-                var filter = Builders<BsonDocument>.Filter.Eq("AccountId" , AccountID);
+                var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
                 var document = await collection.Find(filter).FirstOrDefaultAsync();
 
                 if (document != null)
                 {
-                    // Populate the text boxes with the data from the document
                     taccname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")} {document.GetValue("SuffixName", "")}".Trim();
                     taccaddress.Text = document.GetValue("Street", "").ToString();
                     taccbrgy.Text = document.GetValue("Barangay", "").ToString();
                     tacctown.Text = document.GetValue("City", "").ToString();
                     taccprov.Text = document.GetValue("Province", "").ToString();
-                    
+
                     if (document.TryGetValue("RBLate", out BsonValue rbLateValue) && rbLateValue.IsBsonDateTime)
                     {
-                        DateTime rbLateDate = rbLateValue.ToUniversalTime(); 
-                        taddbirth.Text = rbLateDate.ToString("MM/dd/yyyy"); 
+                        DateTime rbLateDate = rbLateValue.ToUniversalTime();
+                        taddbirth.Text = rbLateDate.ToString("MM/dd/yyyy");
                     }
                     else
                     {
                         taddbirth.Text = string.Empty;
                     }
-                    tacccontactno.Text = document.GetValue("CP", "").ToString();
-                    taccemail.Text = document.GetValue("Email", "").ToString(); 
 
-                    // Populate the loan status on the label
+                    tacccontactno.Text = document.GetValue("CP", "").ToString();
+                    taccemail.Text = document.GetValue("Email", "").ToString();
+
                     laccstatus.Text = document.GetValue("LoanStatus", "Not Available").ToString();
                     lloanstatus.Text = "FOR DISBURSEMENT";
 
@@ -134,20 +145,26 @@ namespace rct_lmis.LOAN_SECTION
                     trepname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")} {document.GetValue("SuffixName", "")}".Trim();
                     trepaddress.Text = $"{document.GetValue("Street", "")} , {document.GetValue("Barangay", "")} , {document.GetValue("City", "")} , {document.GetValue("Province", "")}".Trim();
                     trepcontact.Text = document.GetValue("CP", "").ToString(); // Example field, adjust if necessary
-                    //trepidcard.Text = document.GetValue("RepIDCard", "").ToString(); // Example field, adjust if necessary
-                    //trepcurrloan.Text = document.GetValue("RepCurrentLoan", "").ToString(); // Example field, adjust if necessary
-                    //treploanbalance.Text = document.GetValue("RepLoanBalance", "").ToString(); // Example field, adjust if necessary
-                    //treploanpenalty.Text = document.GetValue("RepLoanPenalty", "").ToString(); // Example field, adjust if necessary
-                    //trepcollector.Text = document.GetValue("RepCollector", "").ToString(); // Example field, adjust if necessary
-                    //treploantotal.Text = document.GetValue("RepLoanTotal", "").ToString(); // Example field, adjust if necessary
-                    //treprepaydate.Text = document.GetValue("RepRepayDate", "").ToString(); // Example field, adjust if necessary
 
-                      // Load docs into DataGridView
-                    if (document.TryGetValue("docs", out var docs) && docs.IsString && document.TryGetValue("doc-link", out var docLinks) && docLinks.IsString)
+                    // Load docs into DataGridView
+                    if (document.TryGetValue("docs", out BsonValue docsValue) && document.TryGetValue("doc-link", out BsonValue docLinksValue))
                     {
-                        LoadDocsIntoDataGridView(docs.AsString, docLinks.AsString);
-                    }
+                        if (docsValue.IsBsonArray && docLinksValue.IsBsonArray)
+                        {
+                            var docsArray = docsValue.AsBsonArray.Select(d => d.AsString).ToArray();
+                            var docLinksArray = docLinksValue.AsBsonArray.Select(l => l.AsString).ToArray();
 
+                            LoadDocsIntoDataGridView(docsArray, docLinksArray);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Document data is missing or incorrect.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Document data is missing or incorrect.");
+                    }
                 }
                 else
                 {
@@ -160,6 +177,46 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+
+        private void dgvuploads_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the clicked cell is in the "ViewFile" button column
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgvuploads.Columns["ViewFile"].Index)
+            {
+                // Retrieve the corresponding document link from the hidden column
+                var linkCell = dgvuploads.Rows[e.RowIndex].Cells["DocumentLink"];
+                if (linkCell?.Value != null && !string.IsNullOrWhiteSpace(linkCell.Value.ToString()))
+                {
+                    string docLink = linkCell.Value.ToString();
+
+                    try
+                    {
+                        // Open the document link in the default browser
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = docLink,
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error opening the file: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No document link found for this file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+        private void dgvuploads_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvuploads.ClearSelection();
+        }
+
+
         private void bcopyaccno_Click(object sender, EventArgs e)
         {
             // Get the text from the Label control
@@ -170,32 +227,6 @@ namespace rct_lmis.LOAN_SECTION
 
             // Show a message box to notify the user
             MessageBox.Show("The account number has been copied to your clipboard.", "Copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void dgvuploads_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 2) // Assuming the "View File" link is in the third column (index 2)
-            {
-                var docLink = dgvuploads.Rows[e.RowIndex].Cells[1].Value.ToString();
-                try
-                {
-                    // Use Process.Start to open the URL in the default web browser
-                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                    {
-                        FileName = docLink,
-                        UseShellExecute = true
-                    });
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error opening the file: " + ex.Message);
-                }
-            }
-        }
-
-        private void dgvuploads_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dgvuploads.ClearSelection();
         }
     }
 }

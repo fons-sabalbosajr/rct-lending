@@ -121,8 +121,8 @@ namespace rct_lmis
                 dgvdata.Columns["Documents"].Width = 275;
 
                 // Set font size and style for the entire DataGridView
-                dgvdata.DefaultCellStyle.Font = new Font("Arial", 9);
-                dgvdata.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
+                dgvdata.DefaultCellStyle.Font = new Font("Segoe UI", 9);
+                dgvdata.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
 
                 // Center align specific columns
                 CenterAlignColumns("AccountID", "LoanType", "Principal", "Term", "CBCP");

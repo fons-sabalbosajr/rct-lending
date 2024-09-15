@@ -82,6 +82,7 @@ namespace rct_lmis
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ttime = new System.Windows.Forms.Timer(this.components);
             this.paneltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -417,6 +418,7 @@ namespace rct_lmis
             this.bpayments.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bpayments.TextOffset = new System.Drawing.Point(20, 0);
             this.toolTip1.SetToolTip(this.bpayments, "View Encode Payments");
+            this.bpayments.Visible = false;
             this.bpayments.Click += new System.EventHandler(this.bpayments_Click);
             // 
             // bjentries
@@ -444,6 +446,7 @@ namespace rct_lmis
             this.bjentries.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bjentries.TextOffset = new System.Drawing.Point(20, 0);
             this.toolTip1.SetToolTip(this.bjentries, "Check Journal Entries");
+            this.bjentries.Visible = false;
             this.bjentries.Click += new System.EventHandler(this.bjentries_Click);
             // 
             // bsafekeeping
@@ -471,6 +474,7 @@ namespace rct_lmis
             this.bsafekeeping.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bsafekeeping.TextOffset = new System.Drawing.Point(20, 0);
             this.toolTip1.SetToolTip(this.bsafekeeping, "Check Safekeeping Data");
+            this.bsafekeeping.Visible = false;
             this.bsafekeeping.Click += new System.EventHandler(this.bsafekeeping_Click);
             // 
             // bcrbooks
@@ -959,6 +963,11 @@ namespace rct_lmis
             this.label3.TabIndex = 1;
             this.label3.Text = "Welcome!";
             // 
+            // ttime
+            // 
+            this.ttime.Enabled = true;
+            this.ttime.Interval = 60000;
+            // 
             // frm_home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1043,5 +1052,6 @@ namespace rct_lmis
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2Button bviewapplications;
+        private System.Windows.Forms.Timer ttime;
     }
 }
