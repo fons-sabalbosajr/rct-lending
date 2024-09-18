@@ -43,7 +43,6 @@
             this.bvoucher = new Guna.UI2.WinForms.Guna2Button();
             this.brelease = new Guna.UI2.WinForms.Guna2Button();
             this.bcancel = new Guna.UI2.WinForms.Guna2Button();
-            this.bsoa = new Guna.UI2.WinForms.Guna2Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
@@ -235,24 +234,6 @@
             this.bcancel.TabIndex = 182;
             this.bcancel.Text = "Cancel";
             this.bcancel.Click += new System.EventHandler(this.bcancel_Click);
-            // 
-            // bsoa
-            // 
-            this.bsoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bsoa.BorderRadius = 4;
-            this.bsoa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bsoa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bsoa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bsoa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bsoa.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bsoa.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bsoa.ForeColor = System.Drawing.Color.White;
-            this.bsoa.Location = new System.Drawing.Point(209, 518);
-            this.bsoa.Name = "bsoa";
-            this.bsoa.Size = new System.Drawing.Size(93, 31);
-            this.bsoa.TabIndex = 183;
-            this.bsoa.Text = "Print SOA";
-            this.bsoa.Click += new System.EventHandler(this.bsoa_Click);
             // 
             // label6
             // 
@@ -569,10 +550,11 @@
             this.dgvdisburse.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.dgvdisburse.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -970,7 +952,6 @@
             this.Controls.Add(this.label39);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.bsoa);
             this.Controls.Add(this.bcancel);
             this.Controls.Add(this.brelease);
             this.Controls.Add(this.bvoucher);
@@ -1010,7 +991,6 @@
         private Guna.UI2.WinForms.Guna2Button bvoucher;
         private Guna.UI2.WinForms.Guna2Button brelease;
         private Guna.UI2.WinForms.Guna2Button bcancel;
-        private Guna.UI2.WinForms.Guna2Button bsoa;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label49;

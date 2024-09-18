@@ -38,10 +38,12 @@ namespace rct_lmis
                 var database = MongoDBConnection.Instance.Database;
                 var approvedLoansCollection = database.GetCollection<BsonDocument>("loan_approved");
                 var applicationsCollection = database.GetCollection<BsonDocument>("loan_applications");
+                var releasedCollection = database.GetCollection<BsonDocument>("loan_released");
 
-                // Retrieve all documents from both collections
+                // Retrieve all documents from the collections
                 var approvedDocuments = approvedLoansCollection.Find(new BsonDocument()).ToList();
                 var applicationDocuments = applicationsCollection.Find(new BsonDocument()).ToList();
+                var releasedDocuments = releasedCollection.Find(new BsonDocument()).ToList();
 
                 // Create a DataTable to hold the data
                 DataTable dataTable = new DataTable();
@@ -49,8 +51,8 @@ namespace rct_lmis
                 // Define the columns to display
                 dataTable.Columns.Add("AccountID");
                 dataTable.Columns.Add("LoanType");
-                dataTable.Columns.Add("Principal");
-                dataTable.Columns.Add("Term");
+                dataTable.Columns.Add("PrincipalAmount");
+                dataTable.Columns.Add("LoanTerm");
                 dataTable.Columns.Add("LoanStatus");
                 dataTable.Columns.Add("FullNameAndAddress");
                 dataTable.Columns.Add("CBCP");
@@ -63,8 +65,8 @@ namespace rct_lmis
                     var accountId = approvedDoc.Contains("AccountId") ? approvedDoc["AccountId"].ToString() : string.Empty;
                     row["AccountID"] = accountId;
                     row["LoanType"] = approvedDoc.Contains("LoanType") ? approvedDoc["LoanType"].ToString() : string.Empty;
-                    row["Principal"] = approvedDoc.Contains("Principal") ? "₱ " + approvedDoc["Principal"].ToString() + ".00" : string.Empty;
-                    row["Term"] = approvedDoc.Contains("Term") ? approvedDoc["Term"].ToString() + " month/s" : string.Empty;
+                    row["PrincipalAmount"] = approvedDoc.Contains("PrincipalAmount") ? "₱ " + approvedDoc["PrincipalAmount"].ToString() + ".00" : string.Empty;
+                    row["LoanTerm"] = approvedDoc.Contains("LoanTerm") ? approvedDoc["LoanTerm"].ToString() + " month/s" : string.Empty;
 
                     // Fetch status and documents from the loan_applications collection
                     var applicationDoc = applicationDocuments.FirstOrDefault(doc => doc.Contains("AccountId") && doc["AccountId"].ToString() == accountId);
@@ -110,9 +112,9 @@ namespace rct_lmis
                 dgvdata.Columns["AccountID"].HeaderText = "Account ID";
                 dgvdata.Columns["LoanType"].HeaderText = "Loan Type";
                 dgvdata.Columns["LoanType"].Width = 70;
-                dgvdata.Columns["Principal"].HeaderText = "Principal Amount";
-                dgvdata.Columns["Principal"].Width = 100;
-                dgvdata.Columns["Term"].HeaderText = "Loan Term";
+                dgvdata.Columns["PrincipalAmount"].HeaderText = "Principal Amount";
+                dgvdata.Columns["PrincipalAmount"].Width = 100;
+                dgvdata.Columns["LoanTerm"].HeaderText = "Loan Term";
                 dgvdata.Columns["LoanStatus"].HeaderText = "Loan Status";
                 dgvdata.Columns["FullNameAndAddress"].HeaderText = "Client Name";
                 dgvdata.Columns["FullNameAndAddress"].Width = 250;
@@ -125,7 +127,7 @@ namespace rct_lmis
                 dgvdata.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
 
                 // Center align specific columns
-                CenterAlignColumns("AccountID", "LoanType", "Principal", "Term", "CBCP");
+                CenterAlignColumns("AccountID", "LoanType", "PrincipalAmount", "LoanTerm", "CBCP");
 
                 lnorecord.Visible = dgvdata.Rows.Count == 0;
 
@@ -144,6 +146,7 @@ namespace rct_lmis
                     dgvdata.Columns["Documents"].SortMode = DataGridViewColumnSortMode.Automatic;
                 }
 
+                // Add button columns if not already added
                 if (dgvdata.Columns["btnActions"] == null)
                 {
                     DataGridViewButtonColumn viewDetailsButtonColumn = new DataGridViewButtonColumn
@@ -172,7 +175,7 @@ namespace rct_lmis
                     dgvdata.Columns.Add(disburseButtonColumn);
                 }
 
-                // Set width, padding, and font size for the button column to avoid large size
+                // Set width, padding, and font size for the button columns
                 var btnColumn = dgvdata.Columns["btnActions"];
                 if (btnColumn != null)
                 {
@@ -182,7 +185,6 @@ namespace rct_lmis
                     btnColumn.DefaultCellStyle.Font = new Font("Segoe UI", 9);
                 }
 
-                // Set width, padding, and font size for the "btnDisburse" column to avoid large size
                 var btnColumnDisburse = dgvdata.Columns["btnDisburse"];
                 if (btnColumnDisburse != null)
                 {
@@ -191,13 +193,36 @@ namespace rct_lmis
                     btnColumnDisburse.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     btnColumnDisburse.DefaultCellStyle.Font = new Font("Segoe UI", 9);
                 }
+
+                // Hide the "Disburse" button column if the Principal Amount is greater than 0 and the ClientNumber exists in loan_released
+                bool shouldHideDisburseColumn = false;
+                foreach (DataGridViewRow row in dgvdata.Rows)
+                {
+                    var accountId = row.Cells["AccountID"].Value.ToString();
+                    var principalAmount = row.Cells["PrincipalAmount"].Value.ToString().Replace("₱ ", "").Replace(".00", "");
+
+                    if (decimal.TryParse(principalAmount, out decimal principalAmountValue) && principalAmountValue == 0)
+                    {
+                        var existsInReleased = releasedDocuments.Any(doc => doc.Contains("ClientNumber") && doc["ClientNumber"].ToString() == accountId);
+
+                        if (existsInReleased)
+                        {
+                            shouldHideDisburseColumn = true;
+                            break;
+                        }
+                    }
+                }
+
+                // Show or hide the "Disburse" button column based on the condition
+                dgvdata.Columns["btnDisburse"].Visible = !shouldHideDisburseColumn;
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error loading approved loans data: " + ex.Message);
-                MessageBox.Show("Error loading approved loans data. Please check the console for details.");
+                MessageBox.Show("An error occurred while loading the approved loans data: " + ex.Message);
             }
         }
+
 
 
         private void CenterAlignColumns(params string[] columnNames)

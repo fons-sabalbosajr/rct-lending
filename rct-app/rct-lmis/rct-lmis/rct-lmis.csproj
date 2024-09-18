@@ -15,7 +15,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\FONS\Dropbox\lmis\</PublishUrl>
+    <PublishUrl>C:\Users\Wenster\Dropbox\lmis\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -590,11 +590,11 @@
     <Compile Include="LOAN SECTION\frm_home_loan_disburse.Designer.cs">
       <DependentUpon>frm_home_loan_disburse.cs</DependentUpon>
     </Compile>
-    <Compile Include="LOAN SECTION\frm_home_loan_editamounts.cs">
+    <Compile Include="LOAN SECTION\frm_home_loan_editamt_pass.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LOAN SECTION\frm_home_loan_editamounts.Designer.cs">
-      <DependentUpon>frm_home_loan_editamounts.cs</DependentUpon>
+    <Compile Include="LOAN SECTION\frm_home_loan_editamt_pass.Designer.cs">
+      <DependentUpon>frm_home_loan_editamt_pass.cs</DependentUpon>
     </Compile>
     <Compile Include="LOAN SECTION\frm_home_loan_request.cs">
       <SubType>Form</SubType>
@@ -790,8 +790,8 @@
     <EmbeddedResource Include="LOAN SECTION\frm_home_loan_disburse.resx">
       <DependentUpon>frm_home_loan_disburse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LOAN SECTION\frm_home_loan_editamounts.resx">
-      <DependentUpon>frm_home_loan_editamounts.cs</DependentUpon>
+    <EmbeddedResource Include="LOAN SECTION\frm_home_loan_editamt_pass.resx">
+      <DependentUpon>frm_home_loan_editamt_pass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loan_request.resx">
       <DependentUpon>frm_home_loan_request.cs</DependentUpon>
@@ -972,9 +972,7 @@
   <ItemGroup>
     <None Include="Resources\icons8-add-48 %282%29.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SETTINGS SECTION\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\icons8-peso-symbol-48-gray.png" />
   </ItemGroup>

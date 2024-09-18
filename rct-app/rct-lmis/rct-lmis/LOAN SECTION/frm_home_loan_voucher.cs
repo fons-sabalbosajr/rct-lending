@@ -12,17 +12,24 @@ namespace rct_lmis.LOAN_SECTION
 {
     public partial class frm_home_loan_voucher : Form
     {
+        private Action _refreshCallback;
         private string _cashClnNo;
 
-        public frm_home_loan_voucher(string cashClnNo)
+        public frm_home_loan_voucher(string cashClnNo, Action refreshCallback)
         {
             InitializeComponent();
             _cashClnNo = cashClnNo;
-            bsoa.Enabled = false;
+            _refreshCallback = refreshCallback;
             bvoucher.Enabled = false;
         }
 
+        public frm_home_loan_voucher(string clientNumber)
+        {
+            this.clientNumber = clientNumber;
+        }
+
         LoadingFunction load = new LoadingFunction();
+        private string clientNumber;
 
         private void LoadCollectors()
         {
@@ -56,6 +63,22 @@ namespace rct_lmis.LOAN_SECTION
             return document;
         }
 
+        private double GetAmountInterest(string cashClnNo)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("cashClnNo", cashClnNo);
+            var document = loanDisbursedCollection.Find(filter).FirstOrDefault();
+
+            if (document != null)
+            {
+                return document.Contains("AmountInterest") ? ConvertToDouble(document["AmountInterest"]) : 0;
+            }
+            return 0;
+        }
+
+
         private void LoadDataToUI(string cashClnNo)
         {
             var document = FetchDocument(cashClnNo);
@@ -88,7 +111,6 @@ namespace rct_lmis.LOAN_SECTION
                 {
                     lclientname.Text = document["cashName"].AsString;
                     lpaymentmode.Text = "Cash";
-
                 }
                 else if (document.Contains("onlineName"))
                 {
@@ -105,6 +127,13 @@ namespace rct_lmis.LOAN_SECTION
                     lclientname.Text = "N/A";
                 }
 
+                // Get AmountInterest from loan_disbursed collection
+                double amountInterest = GetAmountInterest(cashClnNo);
+
+                // Calculate AmountToPay
+                double loanAmount = document.Contains("loanAmt") ? ConvertToDouble(document["loanAmt"]) : 0;
+                double amountToPay = loanAmount + amountInterest;
+
                 // Populate DataGridView
                 var dataTable = new DataTable();
                 dataTable.Columns.Add("Transaction No.");
@@ -112,6 +141,7 @@ namespace rct_lmis.LOAN_SECTION
                 dataTable.Columns.Add("Loan Amount (Principal)");
                 dataTable.Columns.Add("Processing Fee");
                 dataTable.Columns.Add("Disbursed Amount");
+                dataTable.Columns.Add("Amount To Pay");
 
                 // Check which payment method is used and populate accordingly
                 if (document.Contains("cashNo"))
@@ -122,8 +152,8 @@ namespace rct_lmis.LOAN_SECTION
                         document.Contains("cashDate") ? document["cashDate"].AsString : "N/A",
                         document.Contains("cashAmt") ? FormatCurrency(ConvertToDouble(document["cashAmt"])) : "N/A",
                         document.Contains("cashProFee") ? FormatCurrency(ConvertToDouble(document["cashProFee"])) : "N/A",
-                        document.Contains("cashPoAmt") ? FormatCurrency(ConvertToDouble(document["cashPoAmt"])) : "N/A"
-
+                        document.Contains("cashPoAmt") ? FormatCurrency(ConvertToDouble(document["cashPoAmt"])) : "N/A",
+                        FormatCurrency(amountToPay) // Amount To Pay
                     );
                 }
                 else if (document.Contains("onlineRefNo"))
@@ -134,7 +164,8 @@ namespace rct_lmis.LOAN_SECTION
                         document.Contains("onlineDate") ? document["onlineDate"].AsString : "N/A",
                         document.Contains("onlineAmt") ? FormatCurrency(ConvertToDouble(document["onlineAmt"])) : "N/A",
                         document.Contains("onlineProFee") ? FormatCurrency(ConvertToDouble(document["onlineProFee"])) : "N/A",
-                        document.Contains("onlinePoAmt") ? FormatCurrency(ConvertToDouble(document["onlinePoAmt"])) : "N/A"
+                        document.Contains("onlinePoAmt") ? FormatCurrency(ConvertToDouble(document["onlinePoAmt"])) : "N/A",
+                        FormatCurrency(amountToPay) // Amount To Pay
                     );
                 }
                 else if (document.Contains("bankRefNo"))
@@ -145,7 +176,8 @@ namespace rct_lmis.LOAN_SECTION
                         document.Contains("bankDate") ? document["bankDate"].AsString : "N/A",
                         document.Contains("bankAmt") ? FormatCurrency(ConvertToDouble(document["bankAmt"])) : "N/A",
                         document.Contains("bankProFee") ? FormatCurrency(ConvertToDouble(document["bankProFee"])) : "N/A",
-                        document.Contains("bankPoAmt") ? FormatCurrency(ConvertToDouble(document["bankPoAmt"])) : "N/A"
+                        document.Contains("bankPoAmt") ? FormatCurrency(ConvertToDouble(document["bankPoAmt"])) : "N/A",
+                        FormatCurrency(amountToPay) // Amount To Pay
                     );
                 }
                 else
@@ -160,6 +192,10 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show("Data not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+
 
         private double ConvertToDouble(BsonValue bsonValue)
         {
@@ -222,18 +258,23 @@ namespace rct_lmis.LOAN_SECTION
 
         private BsonDocument CreateLoanReleasedDocument()
         {
-
             // Get the current user's full name
-            string encoderName = UserSession.Instance.UserName; // Assuming this retrieves the current logged-in user's full name
+            string encoderName = UserSession.Instance.UserName;
 
             // Get the current date and time
             DateTime currentDateTime = DateTime.Now;
 
+            // Get AmountInterest from loan_disbursed collection
+            double amountInterest = GetAmountInterest(lclientno.Text);
+
+            // Calculate AmountToPay
+            double loanAmount = ConvertToDouble(ExtractNumericValue(lloanamt.Text));
+            double amountToPay = loanAmount + amountInterest;
 
             var document = new BsonDocument
             {
                 { "LoanIDNo", loanLNno.Text },
-                { "loanAmt", ConvertToDouble(ExtractNumericValue(lloanamt.Text)) },
+                { "loanAmt", loanAmount },
                 { "loanTerm", ExtractNumericValue(lloanterm.Text) },
                 { "loanInterest", ExtractNumericValue(lloaninterest.Text) },
                 { "days", ExtractNumericValue(lamotperiod.Text) },
@@ -251,12 +292,13 @@ namespace rct_lmis.LOAN_SECTION
                 { "clientName", lclientname.Text },
                 { "paymentMode", lpaymentmode.Text },
                 { "CollectorName", cbcollector.SelectedItem.ToString() },
-                { "AreaRoute", tarearoute.Text },        
-                { "IDNo", tidno.Text },                 
-                { "Designation", tdesignation.Text },    
+                { "AreaRoute", tarearoute.Text },
+                { "IDNo", tidno.Text },
+                { "Designation", tdesignation.Text },
                 { "Contact", tcontact.Text },
                 { "Encoder", encoderName },
-                { "ReleasingDate", currentDateTime }
+                { "ReleasingDate", currentDateTime },
+                { "AmountToPay", amountToPay } // Add AmountToPay field
             };
 
             AddPaymentDetails(document);
@@ -264,34 +306,6 @@ namespace rct_lmis.LOAN_SECTION
             return document;
         }
 
-        private void AddPaymentDetails(BsonDocument document)
-        {
-            var paymentDetails = new BsonDocument
-             {
-                 { "Transaction No.", "N/A" },
-                 { "Releasing Date", "N/A" },
-                 { "Loan Amount (Principal)", "N/A" },
-                 { "Processing Fee", "N/A" },
-                 { "Disbursed Amount", "N/A" }
-             };
-
-            if (dgvdisburse.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dgvdisburse.Rows)
-                {
-                    if (!row.IsNewRow)
-                    {
-                        paymentDetails["Transaction No."] = row.Cells["Transaction No."].Value?.ToString() ?? "N/A";
-                        paymentDetails["Releasing Date"] = row.Cells["Releasing Date"].Value?.ToString() ?? "N/A";
-                        paymentDetails["Loan Amount (Principal)"] = row.Cells["Loan Amount (Principal)"].Value?.ToString() ?? "N/A";
-                        paymentDetails["Processing Fee"] = row.Cells["Processing Fee"].Value?.ToString() ?? "N/A";
-                        paymentDetails["Disbursed Amount"] = row.Cells["Disbursed Amount"].Value?.ToString() ?? "N/A";
-                    }
-                }
-            }
-
-            document["PaymentDetails"] = paymentDetails;
-        }
 
         private void SaveDocumentToCollection(BsonDocument document)
         {
@@ -322,6 +336,41 @@ namespace rct_lmis.LOAN_SECTION
 
             // Update the loan_approved document
             approvedCollection.UpdateOne(filter, updateDefinition);
+
+           
+        }
+
+
+        private void AddPaymentDetails(BsonDocument document)
+        {
+            var paymentDetails = new BsonDocument
+             {
+                 { "Transaction No.", "N/A" },
+                 { "Releasing Date", "N/A" },
+                 { "Loan Amount (Principal)", "N/A" },
+                 { "Processing Fee", "N/A" },
+                 { "Disbursed Amount", "N/A" },
+                 { "Amount To Pay", "N/A" }
+             };
+
+            if (dgvdisburse.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgvdisburse.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        paymentDetails["Transaction No."] = row.Cells["Transaction No."].Value?.ToString() ?? "N/A";
+                        paymentDetails["Releasing Date"] = row.Cells["Releasing Date"].Value?.ToString() ?? "N/A";
+                        paymentDetails["Loan Amount (Principal)"] = row.Cells["Loan Amount (Principal)"].Value?.ToString() ?? "N/A";
+                        paymentDetails["Processing Fee"] = row.Cells["Processing Fee"].Value?.ToString() ?? "N/A";
+                        paymentDetails["Disbursed Amount"] = row.Cells["Disbursed Amount"].Value?.ToString() ?? "N/A";
+                        paymentDetails["Amount To Pay"] = row.Cells["Amount To Pay"].Value?.ToString() ?? "N/A";
+
+                    }
+                }
+            }
+
+            document["PaymentDetails"] = paymentDetails;
         }
 
         // Helper method to extract numeric values from formatted strings
@@ -402,6 +451,10 @@ namespace rct_lmis.LOAN_SECTION
             {
                 try
                 {
+
+                    frm_home_disburse disburseForm = new frm_home_disburse();
+
+
                     load.Show(this);
                     Thread.Sleep(4000);
                     var document = CreateLoanReleasedDocument();
@@ -409,8 +462,10 @@ namespace rct_lmis.LOAN_SECTION
                     load.Close();
 
                     MessageBox.Show(this, "Data saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    bsoa.Enabled = true;
                     bvoucher.Enabled = true;
+                    // Refresh dgvdata by calling the LoadLoanDisbursedData method
+                    _refreshCallback?.Invoke();
+
                 }
                 catch (Exception ex)
                 {

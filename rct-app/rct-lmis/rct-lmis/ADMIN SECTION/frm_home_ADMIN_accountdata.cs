@@ -24,6 +24,8 @@ namespace rct_lmis.ADMIN_SECTION
 
             Disable();
             ConfigureAutocompleteForTextBoxes();
+
+            taccno.ReadOnly = true;
         }
 
         private void ConfigureAutocompleteForTextBoxes()
@@ -102,12 +104,8 @@ namespace rct_lmis.ADMIN_SECTION
         {
             try
             {
-                // Define the prefix and format
-                string prefix = "RCT-AT";
-                string idFormat = "D3"; // Three-digit format
-
                 // Find the most recent ID
-                var filter = Builders<BsonDocument>.Filter.Regex("AccountId", new BsonRegularExpression($"^{prefix}"));
+                var filter = Builders<BsonDocument>.Filter.Empty;
                 var sort = Builders<BsonDocument>.Sort.Descending("AccountId");
                 var latestRecord = _loanAccountTitlesCollection.Find(filter).Sort(sort).FirstOrDefault();
 
@@ -117,14 +115,20 @@ namespace rct_lmis.ADMIN_SECTION
                 {
                     // Extract the number from the last ID
                     string lastId = latestRecord["AccountId"].ToString();
-                    if (int.TryParse(lastId.Substring(prefix.Length), out int lastNumber))
+                    if (int.TryParse(lastId, out int lastNumber))
                     {
-                        nextNumber = lastNumber + 1;
+                        nextNumber = lastNumber + 3;
+                    }
+                    else
+                    {
+                        // Handle cases where lastId is not an integer
+                        MessageBox.Show("The latest AccountId is not in a valid numeric format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return string.Empty;
                     }
                 }
 
                 // Generate the new ID
-                string newId = $"{prefix}{nextNumber.ToString(idFormat)}";
+                string newId = nextNumber.ToString();
                 return newId;
             }
             catch (Exception ex)
@@ -134,12 +138,26 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
-        private void LoadDataIntoDGV()
+        private void LoadDataIntoDGV(string searchText = "")
         {
             try
             {
                 lnorecord.Visible = false;
-                var filter = Builders<BsonDocument>.Filter.Empty;
+
+                // If searchText is provided, apply a filter
+                FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Empty;
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    filter = Builders<BsonDocument>.Filter.Or(
+                        Builders<BsonDocument>.Filter.Regex("AccountId", new BsonRegularExpression(searchText, "i")),
+                        Builders<BsonDocument>.Filter.Regex("AccountGroup", new BsonRegularExpression(searchText, "i")),
+                        Builders<BsonDocument>.Filter.Regex("AccountCode", new BsonRegularExpression(searchText, "i")),
+                        Builders<BsonDocument>.Filter.Regex("AccountGroupCode", new BsonRegularExpression(searchText, "i")),
+                        Builders<BsonDocument>.Filter.Regex("AccountName", new BsonRegularExpression(searchText, "i"))
+                    );
+                }
+
+                // Fetch and filter data from MongoDB
                 var loanAccountTitles = _loanAccountTitlesCollection.Find(filter).ToList();
 
                 if (loanAccountTitles.Count > 0)
@@ -184,7 +202,6 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
-
         private void frm_home_ADMIN_accountdata_Load(object sender, EventArgs e)
         {
             // Generate and display the new ID
@@ -193,57 +210,179 @@ namespace rct_lmis.ADMIN_SECTION
 
             // Load data into DataGridView
             LoadDataIntoDGV();
-
-            // Generate and display the new ID for the next record
-            _ = GenerateNextId();
-            taccno.Text = newId;
         }
 
         private void bloansave_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validate input fields
                 if (string.IsNullOrEmpty(taccgrp.Text) ||
                     string.IsNullOrEmpty(tacccode.Text) ||
                     string.IsNullOrEmpty(taccgrpcode.Text) ||
-                    string.IsNullOrEmpty(taccname.Text))
+                    string.IsNullOrEmpty(taccname.Text) ||
+                    string.IsNullOrEmpty(taccno.Text))
                 {
                     MessageBox.Show("All fields are required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Create a new BSON document with the values from textboxes
+                string accountId = taccno.Text;
+                if (!int.TryParse(accountId, out int _))
+                {
+                    MessageBox.Show("Invalid AccountId format. Must be numeric.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Check if an existing document with the same AccountId already exists
+                var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                var existingDocument = _loanAccountTitlesCollection.Find(filter).FirstOrDefault();
+
+                if (existingDocument != null)
+                {
+                    // Notify user that the AccountId already exists
+                    MessageBox.Show("An account with this ID already exists. No new data saved.", "Duplicate Account ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Exit the method to prevent saving
+                }
+
+                // Insert a new document if no existing document with the same AccountId is found
                 var newDocument = new BsonDocument
                 {
-                    { "AccountId", taccno.Text },
+                    { "AccountId", accountId },
                     { "AccountGroup", taccgrp.Text },
                     { "AccountCode", tacccode.Text },
                     { "AccountGroupCode", taccgrpcode.Text },
                     { "AccountName", taccname.Text }
                 };
 
-                // Insert the new document into the collection
                 _loanAccountTitlesCollection.InsertOne(newDocument);
 
-                // Notify the user
                 MessageBox.Show("Account data saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Optionally, reload the data into the DataGridView to reflect the new entry
+                // Reload the data into DataGridView
                 LoadDataIntoDGV();
 
+                // Clear the input fields
+                taccno.Clear();
+                taccgrp.Clear();
+                tacccode.Clear();
+                taccgrpcode.Clear();
                 taccname.Clear();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving account data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine($"Exception in btnSave_Click: {ex}");
+            }
+        }
+
+
+        private void ReorderAccountIds()
+        {
+            try
+            {
+                // Retrieve all remaining documents, sorted by the current AccountId
+                var allDocuments = _loanAccountTitlesCollection.Find(new BsonDocument())
+                    .Sort(Builders<BsonDocument>.Sort.Ascending("AccountId"))
+                    .ToList();
+
+                // Start from 1 to assign new AccountIds
+                int newAccountIdNumber = 1;
+
+                foreach (var document in allDocuments)
+                {
+                    var filter = Builders<BsonDocument>.Filter.Eq("_id", document["_id"]);
+
+                    // Generate the new AccountId as a string
+                    string newAccountId = newAccountIdNumber.ToString();
+
+                    // Update the document's AccountId with the new value
+                    var updateDefinition = Builders<BsonDocument>.Update.Set("AccountId", newAccountId);
+                    _loanAccountTitlesCollection.UpdateOne(filter, updateDefinition);
+
+                    // Increment the number for the next AccountId
+                    newAccountIdNumber++;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reordering AccountIds: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Exception in ReorderAccountIds: {ex}");
             }
         }
 
         private void beditrate_Click(object sender, EventArgs e)
         {
             Enable();
+        }
+
+        private void tsearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadDataIntoDGV(tsearch.Text);
+        }
+
+        private void bdel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ensure the AccountId is provided
+                if (string.IsNullOrEmpty(taccno.Text))
+                {
+                    MessageBox.Show("Please enter a valid AccountId to delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Create a filter to identify the document to delete based on AccountId
+                var filter = Builders<BsonDocument>.Filter.Eq("AccountId", taccno.Text);
+
+                // Find the document to delete
+                var documentToDelete = _loanAccountTitlesCollection.Find(filter).FirstOrDefault();
+                if (documentToDelete == null)
+                {
+                    MessageBox.Show("AccountId not found.", "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Delete the document
+                _loanAccountTitlesCollection.DeleteOne(filter);
+                MessageBox.Show("Account deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // After deletion, reorder the remaining documents' AccountId
+                ReorderAccountIds();
+
+                // Reload the data into the DataGridView to reflect the changes
+                LoadDataIntoDGV();
+
+                // Clear the input fields
+                taccno.Clear();
+                taccgrp.Clear();
+                tacccode.Clear();
+                taccgrpcode.Clear();
+                taccname.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting account data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Exception in bdel_Click: {ex}");
+            }
+        }
+
+        private void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ensure the click is not on the header row and the index is valid
+            if (e.RowIndex >= 0)
+            {
+                // Retrieve the selected row
+                DataGridViewRow row = dgvdata.Rows[e.RowIndex];
+
+                // Populate the textboxes with the row data
+                taccno.Text = row.Cells["AccountId"].Value.ToString();
+                taccgrp.Text = row.Cells["AccountGroup"].Value.ToString();
+                tacccode.Text = row.Cells["AccountCode"].Value.ToString();
+                taccgrpcode.Text = row.Cells["AccountGroupCode"].Value.ToString();
+                taccname.Text = row.Cells["AccountName"].Value.ToString();
+
+                // Enable the textboxes for editing
+                Enable();
+            }
         }
     }
 }

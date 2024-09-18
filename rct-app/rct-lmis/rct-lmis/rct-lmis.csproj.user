@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>C:\Users\FONS\Dropbox\lmis\|C:\Users\FONS\Dropbox\|C:\xampp\htdocs\lmis\|E:\RCT\rct-lending\rct-app\rct-lmis\clickonce\|E:\RCT\clickonce\</PublishUrlHistory>
+    <PublishUrlHistory>C:\Users\Wenster\Dropbox\lmis\|C:\Users\FONS\Dropbox\lmis\|C:\Users\FONS\Dropbox\|C:\xampp\htdocs\lmis\|E:\RCT\rct-lending\rct-app\rct-lmis\clickonce\</PublishUrlHistory>
     <InstallUrlHistory>http://localhost/lmis/|https://fons-sabalbosajr.github.io/rct-lending/rct-app/rct-lmis/clickonce/|https://fons-sabalbosajr.github.io/rct-lending/|https://github.com/fons-sabalbosajr/rct-lending.git/</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory>http://localhost/lmis/|https://fons-sabalbosajr.github.io/rct-lending/rct-app/rct-lmis/clickonce/|https://fons-sabalbosajr.github.io/rct-lending/</UpdateUrlHistory>

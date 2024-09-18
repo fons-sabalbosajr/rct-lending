@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using rct_lmis.DISBURSEMENT_SECTION;
+using rct_lmis.LOAN_SECTION;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,13 +17,13 @@ namespace rct_lmis
 {
     public partial class frm_home_disburse : Form
     {
-
         private IMongoCollection<BsonDocument> loanDisbursedCollection;
         private IMongoCollection<BsonDocument> loanApprovedCollection;
 
         public frm_home_disburse()
         {
             InitializeComponent();
+            trefresh.Start();
 
             // Initialize MongoDB connections
             var database = MongoDBConnection.Instance.Database;
@@ -30,6 +31,8 @@ namespace rct_lmis
             loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
         }
         LoadingFunction load = new LoadingFunction();
+
+     
 
         // Function to calculate Maturity Date excluding weekends
         private DateTime CalculateMaturityDate(DateTime startDate, int days)
@@ -50,7 +53,7 @@ namespace rct_lmis
         }
 
 
-        private async Task LoadLoanDisbursedData(string searchQuery = "")
+        public async Task LoadLoanDisbursedData(string searchQuery = "")
         {
             try
             {
@@ -391,6 +394,16 @@ namespace rct_lmis
                 frm_home_disburse_collections collections = new frm_home_disburse_collections(loanId);
                 collections.ShowDialog();
             }
+        }
+
+        private void trefresh_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void frm_home_disburse_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            trefresh.Stop();
         }
     }
 }

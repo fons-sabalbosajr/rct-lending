@@ -63,7 +63,6 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.grploanrate = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.tsearchamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvloandata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tloanamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -128,8 +127,11 @@
             this.tbankpoaccno = new Guna.UI2.WinForms.Guna2TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.beditcash = new Guna.UI2.WinForms.Guna2Button();
             this.tpenaltymo = new Guna.UI2.WinForms.Guna2TextBox();
             this.tamortizedamt = new Guna.UI2.WinForms.Guna2TextBox();
+            this.tsearchamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfdocamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfdocfee = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfmiscamt = new Guna.UI2.WinForms.Guna2TextBox();
@@ -143,8 +145,6 @@
             this.trfnotarialamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfnotarialfee = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfservicefee = new Guna.UI2.WinForms.Guna2TextBox();
-            this.beditcash = new Guna.UI2.WinForms.Guna2Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.grploanrate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvloandata)).BeginInit();
             this.gpocash.SuspendLayout();
@@ -543,29 +543,6 @@
             this.grploanrate.TabIndex = 120;
             this.grploanrate.Text = "Choose Loan Rate Template";
             // 
-            // tsearchamt
-            // 
-            this.tsearchamt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tsearchamt.DefaultText = "";
-            this.tsearchamt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tsearchamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tsearchamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tsearchamt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tsearchamt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tsearchamt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsearchamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tsearchamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tsearchamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
-            this.tsearchamt.Location = new System.Drawing.Point(181, 4);
-            this.tsearchamt.Name = "tsearchamt";
-            this.tsearchamt.PasswordChar = '\0';
-            this.tsearchamt.PlaceholderText = "search amount, mode, etc...";
-            this.tsearchamt.SelectedText = "";
-            this.tsearchamt.Size = new System.Drawing.Size(226, 30);
-            this.tsearchamt.TabIndex = 164;
-            this.tsearchamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tsearchamt.TextChanged += new System.EventHandler(this.tsearchamt_TextChanged);
-            // 
             // dgvloandata
             // 
             this.dgvloandata.AllowUserToAddRows = false;
@@ -789,7 +766,7 @@
             this.dtpayoutdate.Name = "dtpayoutdate";
             this.dtpayoutdate.Size = new System.Drawing.Size(141, 24);
             this.dtpayoutdate.TabIndex = 174;
-            this.dtpayoutdate.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
+            this.dtpayoutdate.Value = new System.DateTime(2024, 9, 17, 0, 0, 0, 0);
             // 
             // label7
             // 
@@ -899,7 +876,7 @@
             this.dtpcash.Name = "dtpcash";
             this.dtpcash.Size = new System.Drawing.Size(141, 26);
             this.dtpcash.TabIndex = 197;
-            this.dtpcash.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
+            this.dtpcash.Value = new System.DateTime(2024, 9, 17, 0, 0, 0, 0);
             // 
             // label50
             // 
@@ -1164,7 +1141,7 @@
             this.dtponline.Name = "dtponline";
             this.dtponline.Size = new System.Drawing.Size(141, 26);
             this.dtponline.TabIndex = 198;
-            this.dtponline.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
+            this.dtponline.Value = new System.DateTime(2024, 9, 17, 0, 0, 0, 0);
             // 
             // label51
             // 
@@ -1454,7 +1431,7 @@
             this.dtpbank.Name = "dtpbank";
             this.dtpbank.Size = new System.Drawing.Size(141, 26);
             this.dtpbank.TabIndex = 199;
-            this.dtpbank.Value = new System.DateTime(2024, 8, 24, 0, 0, 0, 0);
+            this.dtpbank.Value = new System.DateTime(2024, 9, 17, 0, 0, 0, 0);
             // 
             // label19
             // 
@@ -1709,6 +1686,28 @@
             this.label24.TabIndex = 181;
             this.label24.Text = "Payout\r\nDate:";
             // 
+            // beditcash
+            // 
+            this.beditcash.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.beditcash.BorderColor = System.Drawing.Color.Silver;
+            this.beditcash.BorderRadius = 4;
+            this.beditcash.BorderThickness = 1;
+            this.beditcash.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.beditcash.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.beditcash.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.beditcash.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.beditcash.FillColor = System.Drawing.Color.White;
+            this.beditcash.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.beditcash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.beditcash.Image = global::rct_lmis.Properties.Resources.icons8_edit_48;
+            this.beditcash.Location = new System.Drawing.Point(446, 690);
+            this.beditcash.Name = "beditcash";
+            this.beditcash.Size = new System.Drawing.Size(100, 31);
+            this.beditcash.TabIndex = 194;
+            this.beditcash.Text = "Edit Amounts";
+            this.toolTip1.SetToolTip(this.beditcash, "Edit Amounts");
+            this.beditcash.Click += new System.EventHandler(this.beditcash_Click);
+            // 
             // tpenaltymo
             // 
             this.tpenaltymo.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -1755,6 +1754,29 @@
             this.tamortizedamt.Size = new System.Drawing.Size(128, 30);
             this.tamortizedamt.TabIndex = 157;
             this.tamortizedamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tsearchamt
+            // 
+            this.tsearchamt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tsearchamt.DefaultText = "";
+            this.tsearchamt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tsearchamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tsearchamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tsearchamt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tsearchamt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tsearchamt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsearchamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tsearchamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tsearchamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
+            this.tsearchamt.Location = new System.Drawing.Point(181, 4);
+            this.tsearchamt.Name = "tsearchamt";
+            this.tsearchamt.PasswordChar = '\0';
+            this.tsearchamt.PlaceholderText = "search amount, mode, etc...";
+            this.tsearchamt.SelectedText = "";
+            this.tsearchamt.Size = new System.Drawing.Size(226, 30);
+            this.tsearchamt.TabIndex = 164;
+            this.tsearchamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tsearchamt.TextChanged += new System.EventHandler(this.tsearchamt_TextChanged);
             // 
             // trfdocamt
             // 
@@ -2067,29 +2089,6 @@
             this.trfservicefee.Size = new System.Drawing.Size(100, 20);
             this.trfservicefee.TabIndex = 130;
             this.trfservicefee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // beditcash
-            // 
-            this.beditcash.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.beditcash.BorderColor = System.Drawing.Color.Silver;
-            this.beditcash.BorderRadius = 4;
-            this.beditcash.BorderThickness = 1;
-            this.beditcash.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.beditcash.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.beditcash.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.beditcash.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.beditcash.Enabled = false;
-            this.beditcash.FillColor = System.Drawing.Color.White;
-            this.beditcash.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.beditcash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.beditcash.Image = global::rct_lmis.Properties.Resources.icons8_edit_48;
-            this.beditcash.Location = new System.Drawing.Point(446, 690);
-            this.beditcash.Name = "beditcash";
-            this.beditcash.Size = new System.Drawing.Size(100, 31);
-            this.beditcash.TabIndex = 194;
-            this.beditcash.Text = "Edit Amounts";
-            this.toolTip1.SetToolTip(this.beditcash, "Edit Amounts");
-            this.beditcash.Click += new System.EventHandler(this.beditcash_Click);
             // 
             // frm_home_loan_disburse
             // 

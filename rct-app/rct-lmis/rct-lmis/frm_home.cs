@@ -56,7 +56,7 @@ namespace rct_lmis
             leftpanel.Size = new Size(5, 45);
             pleft.Controls.Add(leftpanel);
 
-            ldate.Text = DateTime.Now.ToString("f");
+            ttime.Start();
             loggedInUsername = username;
             _username = username;
         }
@@ -433,7 +433,10 @@ namespace rct_lmis
             }
         }
 
-       
+        private void ttime_Tick(object sender, EventArgs e)
+        {
+            ldate.Text = DateTime.Now.ToString("f");
+        }
     }
 
     public class Announcement

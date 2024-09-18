@@ -29,6 +29,7 @@ namespace rct_lmis
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -40,7 +41,7 @@ namespace rct_lmis
             this.pheaders = new System.Windows.Forms.Panel();
             this.beditentries = new Guna.UI2.WinForms.Guna2Button();
             this.cbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.dtdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.bexport = new Guna.UI2.WinForms.Guna2Button();
             this.bprint = new Guna.UI2.WinForms.Guna2Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@ namespace rct_lmis
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.trefresh = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.pheaders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -91,7 +93,7 @@ namespace rct_lmis
             this.ltitle.AutoSize = true;
             this.ltitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ltitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.ltitle.Location = new System.Drawing.Point(19, 11);
+            this.ltitle.Location = new System.Drawing.Point(11, 11);
             this.ltitle.Name = "ltitle";
             this.ltitle.Size = new System.Drawing.Size(184, 30);
             this.ltitle.TabIndex = 2;
@@ -102,7 +104,7 @@ namespace rct_lmis
             this.pheaders.BackColor = System.Drawing.Color.White;
             this.pheaders.Controls.Add(this.beditentries);
             this.pheaders.Controls.Add(this.cbstatus);
-            this.pheaders.Controls.Add(this.guna2DateTimePicker1);
+            this.pheaders.Controls.Add(this.dtdate);
             this.pheaders.Controls.Add(this.bexport);
             this.pheaders.Controls.Add(this.bprint);
             this.pheaders.Controls.Add(this.label11);
@@ -145,29 +147,29 @@ namespace rct_lmis
             this.cbstatus.ItemHeight = 30;
             this.cbstatus.Items.AddRange(new object[] {
             "--all payee--"});
-            this.cbstatus.Location = new System.Drawing.Point(695, 14);
+            this.cbstatus.Location = new System.Drawing.Point(709, 14);
             this.cbstatus.Name = "cbstatus";
             this.cbstatus.Size = new System.Drawing.Size(186, 36);
             this.cbstatus.StartIndex = 0;
             this.cbstatus.TabIndex = 12;
             this.cbstatus.TextOffset = new System.Drawing.Point(10, 0);
             // 
-            // guna2DateTimePicker1
+            // dtdate
             // 
-            this.guna2DateTimePicker1.Animated = true;
-            this.guna2DateTimePicker1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2DateTimePicker1.Checked = true;
-            this.guna2DateTimePicker1.FillColor = System.Drawing.Color.White;
-            this.guna2DateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2DateTimePicker1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.guna2DateTimePicker1.Location = new System.Drawing.Point(480, 14);
-            this.guna2DateTimePicker1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.guna2DateTimePicker1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            this.guna2DateTimePicker1.Size = new System.Drawing.Size(141, 36);
-            this.guna2DateTimePicker1.TabIndex = 6;
-            this.guna2DateTimePicker1.Value = new System.DateTime(2024, 5, 28, 20, 18, 34, 560);
+            this.dtdate.Animated = true;
+            this.dtdate.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtdate.Checked = true;
+            this.dtdate.FillColor = System.Drawing.Color.White;
+            this.dtdate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtdate.Location = new System.Drawing.Point(480, 14);
+            this.dtdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtdate.Name = "dtdate";
+            this.dtdate.Size = new System.Drawing.Size(141, 36);
+            this.dtdate.TabIndex = 6;
+            this.dtdate.Value = new System.DateTime(2024, 5, 28, 20, 18, 34, 560);
             // 
             // bexport
             // 
@@ -217,11 +219,11 @@ namespace rct_lmis
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(402, 25);
+            this.label11.Location = new System.Drawing.Point(407, 17);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 15);
+            this.label11.Size = new System.Drawing.Size(69, 30);
             this.label11.TabIndex = 7;
-            this.label11.Text = "Search Date:";
+            this.label11.Text = "Search Date\r\nEncoded:";
             // 
             // guna2Separator1
             // 
@@ -237,11 +239,11 @@ namespace rct_lmis
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(631, 25);
+            this.label2.Location = new System.Drawing.Point(645, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 15);
+            this.label2.Size = new System.Drawing.Size(58, 30);
             this.label2.TabIndex = 6;
-            this.label2.Text = "CV Payee:";
+            this.label2.Text = "Search\r\nBorrower:";
             // 
             // tsearch
             // 
@@ -349,6 +351,12 @@ namespace rct_lmis
             this.dgvdata.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvdata_CellFormatting);
             this.dgvdata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdata_DataBindingComplete);
             // 
+            // trefresh
+            // 
+            this.trefresh.Enabled = true;
+            this.trefresh.Interval = 5000;
+            this.trefresh.Tick += new System.EventHandler(this.trefresh_Tick);
+            // 
             // frm_home_disburse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,6 +370,7 @@ namespace rct_lmis
             this.Name = "frm_home_disburse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Disbursements";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_disburse_FormClosing);
             this.Load += new System.EventHandler(this.frm_home_disburse_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -378,7 +387,7 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2CircleButton bhelp;
         private System.Windows.Forms.Label ltitle;
         private System.Windows.Forms.Panel pheaders;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtdate;
         private Guna.UI2.WinForms.Guna2Button bexport;
         private Guna.UI2.WinForms.Guna2Button bprint;
         private System.Windows.Forms.Label label11;
@@ -389,5 +398,6 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2Button beditentries;
         private System.Windows.Forms.Label lnorecord;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdata;
+        private System.Windows.Forms.Timer trefresh;
     }
 }

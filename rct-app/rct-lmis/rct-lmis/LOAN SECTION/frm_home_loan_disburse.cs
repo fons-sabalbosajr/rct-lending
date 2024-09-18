@@ -432,7 +432,6 @@ namespace rct_lmis.LOAN_SECTION
             var loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
             var loanRateCollection = database.GetCollection<BsonDocument>("loan_rate");
 
-            // Retrieve the ClientNumber from the loan_approved collection
             string accountId = tloanaccno.Text;
             string clientNumber = GetClientNumber(loanApprovedCollection, accountId);
 
@@ -442,13 +441,11 @@ namespace rct_lmis.LOAN_SECTION
                 return;
             }
 
-            // Check if a document with the same ClientNumber already exists in loan_disbursed
             var filterExisting = Builders<BsonDocument>.Filter.Eq("cashClnNo", clientNumber);
             var existingDocument = loanDisbursedCollection.Find(filterExisting).FirstOrDefault();
 
             if (existingDocument != null)
             {
-                // Collect the existing fields for detailed error message
                 string existingOnlineRefNo = existingDocument.GetValue("onlineRefNo", "Not Available").AsString;
                 string existingCashClnNo = existingDocument.GetValue("cashClnNo", "Not Available").AsString;
 
@@ -456,10 +453,9 @@ namespace rct_lmis.LOAN_SECTION
                                 $"Online Ref No: {existingOnlineRefNo}\n" +
                                 $"Cash Client No: {existingCashClnNo}",
                                 "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Exit the method to avoid adding duplicate data
+                return;
             }
 
-            // Convert loan amount to numeric value, removing the Peso sign
             double loanAmount;
             string loanAmtText = tloanamt.Text.Replace("₱", "").Replace(",", "").Trim();
             if (!double.TryParse(loanAmtText, NumberStyles.Number, CultureInfo.InvariantCulture, out loanAmount))
@@ -468,7 +464,25 @@ namespace rct_lmis.LOAN_SECTION
                 return;
             }
 
-            // Retrieve Loan Type and Mode
+            // Parse loan interest and term
+            double loanInterest;
+            string loanInterestText = tloaninterest.Text.Replace("%", "").Trim();
+            if (!double.TryParse(loanInterestText, NumberStyles.Number, CultureInfo.InvariantCulture, out loanInterest))
+            {
+                MessageBox.Show("Invalid loan interest format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int loanTerm;
+            if (!int.TryParse(tloanterm.Text, out loanTerm))
+            {
+                MessageBox.Show("Invalid loan term format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Calculate AmountInterest
+            double amountInterest = loanAmount * (loanInterest / 100) * loanTerm;
+
             var loanRateFilter = Builders<BsonDocument>.Filter.Eq("Principal", loanAmount);
             var loanRateDocument = loanRateCollection.Find(loanRateFilter).FirstOrDefault();
 
@@ -478,13 +492,11 @@ namespace rct_lmis.LOAN_SECTION
                 return;
             }
 
-            string loanType = "First Time Borrower"; 
+            string loanType = "First Time Borrower";
             string mode = loanRateDocument.GetValue("Mode", "Not Available").AsString;
-
             string encoder = UserSession.Instance.UserName;
             DateTime currentTime = DateTime.Now;
 
-            // Prepare the loan disburse document
             var loanDisburseDocument = new BsonDocument
              {
                  { "LoanIDNo", GenerateNewLoanID() },
@@ -511,12 +523,11 @@ namespace rct_lmis.LOAN_SECTION
                  { "LoanType", loanType },
                  { "Mode", mode },
                  { "PaymentStartDate", dtpayoutdate.Value.ToString("MM/dd/yyyy") },
-                 { "Encoder", encoder },  // Add encoder
-                 { "DisbursementTime", currentTime }  // Add disbursement time
-  
+                 { "Encoder", encoder },
+                 { "DisbursementTime", currentTime },
+                 { "AmountInterest", amountInterest }  // Change AmountToPay to AmountInterest
              };
 
-            // Add payment fields based on selected payment method
             if (cbpocash.Checked)
             {
                 AddCashPaymentFields(loanDisburseDocument);
@@ -535,24 +546,28 @@ namespace rct_lmis.LOAN_SECTION
                 return;
             }
 
-            // Insert the document as it is a new entry
             loanDisbursedCollection.InsertOne(loanDisburseDocument);
 
-            // Update the loan_approved document
             var updateFilter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientNumber);
             var update = Builders<BsonDocument>.Update
                 .Set("LoanStatus", "For Releasing Loan Disbursement")
                 .Set("LoanType", loanType)
-                .Set("DisbursementDate", DateTime.Now.ToString("f"));
+                .Set("DisbursementDate", DateTime.Now.ToString("f"))
+                .Set("Principal", loanAmount)
+                .Set("LoanTerm", tloanterm.Text);
 
             loanApprovedCollection.UpdateOne(updateFilter, update);
 
-            // Notify user and clear form
             MessageBox.Show(this, "Transactions disbursed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             frm_home_loan_voucher voucherForm = new frm_home_loan_voucher(clientNumber);
             voucherForm.Show();
             ClearAll();
         }
+
+
+
+
 
 
 
@@ -763,7 +778,7 @@ namespace rct_lmis.LOAN_SECTION
                         try
                         {
                             tloanamt.Text = fullDocument.Contains("Principal") ? "₱ " + fullDocument["Principal"].ToString() + ".00" : string.Empty;
-                            tloanterm.Text = fullDocument.Contains("Term") ? fullDocument["Term"].ToString() : string.Empty;
+                            tloanterm.Text = fullDocument.Contains("LoanTerm") ? fullDocument["LoanTerm"].ToString() : string.Empty;
                             tloaninterest.Text = fullDocument.Contains("Interest Rate/Month") ? fullDocument["Interest Rate/Month"].ToString() + "%" : string.Empty;
                             trfservicefee.Text = fullDocument.Contains("Processing Fee") ? fullDocument["Processing Fee"].ToString() + ".00" : string.Empty;
 
@@ -934,6 +949,7 @@ namespace rct_lmis.LOAN_SECTION
                 load.Show(this);
                 Thread.Sleep(1000);
                 load.Close();
+                
                 DisbursedInitial();
             }
         }
@@ -1017,8 +1033,22 @@ namespace rct_lmis.LOAN_SECTION
             if (MessageBox.Show("Do you want to edit the loan amounts? Please ask for assistance",
                "Edit Disbursement Amounts", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                frm_home_loan_editamounts editamounts = new frm_home_loan_editamounts();
-                editamounts.ShowDialog(this);
+                frm_home_loan_editamt_pass editamounts = new frm_home_loan_editamt_pass();
+                if (editamounts.ShowDialog() == DialogResult.OK)
+                {
+                    // If password is correct, disable the read-only mode of textboxes
+                    tcashamt.ReadOnly = false;
+                    tcashprofee.ReadOnly = false;
+                    tcashpoamt.ReadOnly = false;
+
+                    tponlineamt.ReadOnly = false;
+                    tonlineprofee.ReadOnly = false;
+                    tonlinepoamt.ReadOnly = false;
+
+                    tbankamt.ReadOnly = false;
+                    tbankpoprofee.ReadOnly = false;
+                    tbankpoamt.ReadOnly = false;
+                }
             }
         }
     }

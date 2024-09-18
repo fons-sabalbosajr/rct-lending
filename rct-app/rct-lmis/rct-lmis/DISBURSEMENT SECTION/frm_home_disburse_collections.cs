@@ -20,6 +20,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             // MongoDB connection initialization
             var database = MongoDBConnection.Instance.Database;
             _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_collections");
+
+            dtdate.Value = DateTime.Now;
         }
 
         private void LoadLoanCollections()
