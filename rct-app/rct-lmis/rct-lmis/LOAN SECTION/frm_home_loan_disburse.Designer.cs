@@ -63,6 +63,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.grploanrate = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.tsearchamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvloandata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tloanamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -131,7 +132,6 @@
             this.beditcash = new Guna.UI2.WinForms.Guna2Button();
             this.tpenaltymo = new Guna.UI2.WinForms.Guna2TextBox();
             this.tamortizedamt = new Guna.UI2.WinForms.Guna2TextBox();
-            this.tsearchamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfdocamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfdocfee = new Guna.UI2.WinForms.Guna2TextBox();
             this.trfmiscamt = new Guna.UI2.WinForms.Guna2TextBox();
@@ -543,6 +543,29 @@
             this.grploanrate.TabIndex = 120;
             this.grploanrate.Text = "Choose Loan Rate Template";
             // 
+            // tsearchamt
+            // 
+            this.tsearchamt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tsearchamt.DefaultText = "";
+            this.tsearchamt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tsearchamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tsearchamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tsearchamt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tsearchamt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tsearchamt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsearchamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tsearchamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tsearchamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
+            this.tsearchamt.Location = new System.Drawing.Point(181, 4);
+            this.tsearchamt.Name = "tsearchamt";
+            this.tsearchamt.PasswordChar = '\0';
+            this.tsearchamt.PlaceholderText = "search amount, mode, etc...";
+            this.tsearchamt.SelectedText = "";
+            this.tsearchamt.Size = new System.Drawing.Size(226, 30);
+            this.tsearchamt.TabIndex = 164;
+            this.tsearchamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tsearchamt.TextChanged += new System.EventHandler(this.tsearchamt_TextChanged);
+            // 
             // dgvloandata
             // 
             this.dgvloandata.AllowUserToAddRows = false;
@@ -676,7 +699,6 @@
             this.tdays.SelectedText = "";
             this.tdays.Size = new System.Drawing.Size(44, 30);
             this.tdays.TabIndex = 168;
-            this.tdays.Visible = false;
             // 
             // tloaninterestamt
             // 
@@ -711,7 +733,6 @@
             this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 170;
             this.label3.Text = "days";
-            this.label3.Visible = false;
             // 
             // label4
             // 
@@ -1754,29 +1775,6 @@
             this.tamortizedamt.Size = new System.Drawing.Size(128, 30);
             this.tamortizedamt.TabIndex = 157;
             this.tamortizedamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tsearchamt
-            // 
-            this.tsearchamt.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tsearchamt.DefaultText = "";
-            this.tsearchamt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tsearchamt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tsearchamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tsearchamt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tsearchamt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tsearchamt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsearchamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tsearchamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tsearchamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_search_48;
-            this.tsearchamt.Location = new System.Drawing.Point(181, 4);
-            this.tsearchamt.Name = "tsearchamt";
-            this.tsearchamt.PasswordChar = '\0';
-            this.tsearchamt.PlaceholderText = "search amount, mode, etc...";
-            this.tsearchamt.SelectedText = "";
-            this.tsearchamt.Size = new System.Drawing.Size(226, 30);
-            this.tsearchamt.TabIndex = 164;
-            this.tsearchamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tsearchamt.TextChanged += new System.EventHandler(this.tsearchamt_TextChanged);
             // 
             // trfdocamt
             // 

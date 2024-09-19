@@ -194,21 +194,30 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             tlnno.AutoCompleteCustomSource = accountIdCollection;
         }
 
-        private void LoadLoanApprovedData(string accountId)
+        private void LoadLoanApprovedDataByName(string fullName)
         {
-            // Query to find the document based on AccountId
-            var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+            // Trim the full name to avoid issues with extra spaces
+            fullName = fullName.Trim();
+
+            // Query to find the document based on the borrower's full name (FirstName, MiddleName, LastName, SuffixName)
+            var filter = Builders<BsonDocument>.Filter.And(
+                Builders<BsonDocument>.Filter.Eq("FirstName", fullName.Split(' ')[0]),
+                Builders<BsonDocument>.Filter.Eq("MiddleName", fullName.Split(' ')[1]),
+                Builders<BsonDocument>.Filter.Eq("LastName", fullName.Split(' ')[2]),
+                Builders<BsonDocument>.Filter.Eq("SuffixName", fullName.Split(' ').Length > 3 ? fullName.Split(' ')[3] : "")
+            );
+
             var loanApproved = _loanApprovedCollection.Find(filter).FirstOrDefault();
 
             if (loanApproved != null)
             {
-                // Populate textboxes with data from loan_approved document
+                // Populate textboxes with data from the loan_approved document
                 tlnno.Text = loanApproved["AccountId"].AsString;
                 tclientno.Text = loanApproved["ClientNumber"].AsString;
 
                 // Full name from FirstName, MiddleName, LastName, SuffixName
-                string fullName = $"{loanApproved["FirstName"].AsString} {loanApproved["MiddleName"].AsString} {loanApproved["LastName"].AsString} {loanApproved["SuffixName"].AsString}";
-                tname.Text = fullName.Trim(); // Trim to remove any extra spaces
+                string retrievedFullName = $"{loanApproved["FirstName"].AsString} {loanApproved["MiddleName"].AsString} {loanApproved["LastName"].AsString} {loanApproved["SuffixName"].AsString}";
+                tname.Text = retrievedFullName.Trim(); // Trim to remove any extra spaces
 
                 // Address from Street, Barangay, City, Province
                 string fullAddress = $"{loanApproved["Street"].AsString}, {loanApproved["Barangay"].AsString}, {loanApproved["City"].AsString}, {loanApproved["Province"].AsString}";
@@ -225,6 +234,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 tcontact.Text = string.Empty;
             }
         }
+
 
         private void GenerateCollectionNo(string loanId)
         {
@@ -510,26 +520,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void tlnno_TextChanged(object sender, EventArgs e)
         {
-            // When the text changes, attempt to load data if the entered text matches an AccountId
-            if (_accountIdList.Contains(tlnno.Text))
-            {
-                LoadLoanApprovedData(tlnno.Text);
-                GenerateCollectionNo(tlnno.Text);
-
-                bprintreceipt.Enabled = true;
-                bsave.Enabled = true;
-                bcancel.Enabled = true;
-            }
-            else
-            {
-                // Clear other text boxes if AccountId not found
-                tclientno.Text = string.Empty;
-                tname.Text = string.Empty;
-                taddress.Text = string.Empty;
-                tcontact.Text = string.Empty;
-
-                ClearAndDisableFields();
-            }
+          
         }
 
         private void tclientno_TextChanged(object sender, EventArgs e)
@@ -623,6 +614,27 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
             // Set the current date and time in mm/dd/yyyy hh:mm AM/PM format
             tcoldaterec.Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+        }
+
+        private void tname_TextChanged(object sender, EventArgs e)
+        {
+            // When the text changes, attempt to load data if the entered name matches a borrower
+            string enteredName = tname.Text.Trim();
+            LoadLoanApprovedDataByName(enteredName);
+
+            // You can then enable or disable buttons as needed
+            if (!string.IsNullOrEmpty(tlnno.Text))
+            {
+                GenerateCollectionNo(tlnno.Text);
+
+                bprintreceipt.Enabled = true;
+                bsave.Enabled = true;
+                bcancel.Enabled = true;
+            }
+            else
+            {
+                ClearAndDisableFields();
+            }
         }
     }
 }

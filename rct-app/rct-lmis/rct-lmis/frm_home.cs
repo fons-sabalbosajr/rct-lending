@@ -59,6 +59,8 @@ namespace rct_lmis
             ttime.Start();
             loggedInUsername = username;
             _username = username;
+
+            ldate.Text = DateTime.Now.ToString("f");
         }
 
         #region "DISPLAY CUSTOM"

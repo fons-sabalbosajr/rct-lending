@@ -138,8 +138,22 @@ namespace rct_lmis.LOAN_SECTION
                     tacccontactno.Text = document.GetValue("CP", "").ToString();
                     taccemail.Text = document.GetValue("Email", "").ToString();
 
-                    laccstatus.Text = document.GetValue("LoanStatus", "Not Available").ToString();
-                    lloanstatus.Text = "FOR DISBURSEMENT";
+                    string loanStatus = document.GetValue("LoanStatus", "Not Available").ToString();
+                    laccstatus.Text = loanStatus;
+
+                    // Update lloanstatus based on LoanStatus value
+                    if (loanStatus == "For Releasing Loan Disbursement")
+                    {
+                        lloanstatus.Text = "FOR DISBURSEMENT";
+                    }
+                    else if (loanStatus == "Loan Released")
+                    {
+                        lloanstatus.Text = "ACTIVE";
+                    }
+                    else
+                    {
+                        lloanstatus.Text = "UNKNOWN STATUS"; // Default case
+                    }
 
                     // Populate additional fields
                     trepname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")} {document.GetValue("SuffixName", "")}".Trim();
@@ -176,6 +190,7 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show($"Error loading loan details: {ex.Message}");
             }
         }
+
 
 
         private void dgvuploads_CellContentClick(object sender, DataGridViewCellEventArgs e)

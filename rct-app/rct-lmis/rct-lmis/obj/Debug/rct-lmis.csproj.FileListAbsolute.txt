@@ -1181,3 +1181,4 @@ C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct
 C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
 C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
 C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamt_pass.resources
+C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ACCOUNTING.frm_home_accounting.resources

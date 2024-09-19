@@ -45,13 +45,14 @@ namespace rct_lmis
             this.bconfigcollector = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigrate = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pbody = new System.Windows.Forms.Panel();
+            this.baccounting = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.pleft.SuspendLayout();
             this.psubdata.SuspendLayout();
             this.psubacc.SuspendLayout();
@@ -62,6 +63,7 @@ namespace rct_lmis
             // pleft
             // 
             this.pleft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.pleft.Controls.Add(this.baccounting);
             this.pleft.Controls.Add(this.bannouncement);
             this.pleft.Controls.Add(this.psubdata);
             this.pleft.Controls.Add(this.bdatabase);
@@ -410,19 +412,6 @@ namespace rct_lmis
             this.panel1.Size = new System.Drawing.Size(194, 58);
             this.panel1.TabIndex = 0;
             // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox1.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(8, 10);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(34, 35);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
-            this.guna2PictureBox1.UseTransparentBackground = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -479,6 +468,44 @@ namespace rct_lmis
             this.pbody.Size = new System.Drawing.Size(1096, 790);
             this.pbody.TabIndex = 20;
             // 
+            // baccounting
+            // 
+            this.baccounting.Animated = true;
+            this.baccounting.BackColor = System.Drawing.Color.Transparent;
+            this.baccounting.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.baccounting.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.baccounting.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.baccounting.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.baccounting.Dock = System.Windows.Forms.DockStyle.Top;
+            this.baccounting.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.baccounting.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.baccounting.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.baccounting.HoverState.ForeColor = System.Drawing.Color.White;
+            this.baccounting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.baccounting.ImageOffset = new System.Drawing.Point(10, 0);
+            this.baccounting.ImageSize = new System.Drawing.Size(18, 18);
+            this.baccounting.Location = new System.Drawing.Point(0, 537);
+            this.baccounting.Name = "baccounting";
+            this.baccounting.Size = new System.Drawing.Size(194, 45);
+            this.baccounting.TabIndex = 32;
+            this.baccounting.Text = "Accounting";
+            this.baccounting.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.baccounting.TextOffset = new System.Drawing.Point(20, 0);
+            this.baccounting.Click += new System.EventHandler(this.baccounting_Click_1);
+            // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox1.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(8, 10);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(34, 35);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
+            this.guna2PictureBox1.UseTransparentBackground = true;
+            // 
             // frm_home_ADMIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -530,5 +557,6 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2Button bannouncement;
         private Guna.UI2.WinForms.Guna2Button bdeniedloans;
         private Guna.UI2.WinForms.Guna2Button bapprovedloans;
+        private Guna.UI2.WinForms.Guna2Button baccounting;
     }
 }

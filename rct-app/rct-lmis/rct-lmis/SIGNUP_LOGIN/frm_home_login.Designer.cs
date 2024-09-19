@@ -354,7 +354,7 @@ namespace rct_lmis
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_home_login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frm_home_login";
+            this.Text = "Welcome!";
             this.Load += new System.EventHandler(this.frm_home_login_Load);
             this.pright.ResumeLayout(false);
             this.pright.PerformLayout();

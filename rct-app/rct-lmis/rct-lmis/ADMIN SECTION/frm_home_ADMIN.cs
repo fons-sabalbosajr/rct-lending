@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using rct_lmis.ACCOUNTING;
 using rct_lmis.ADMIN_SECTION;
 using System;
 using System.Collections.Generic;
@@ -223,6 +224,16 @@ namespace rct_lmis
             load.Show(this);
             Thread.Sleep(1000);
             ChildForm(new frm_home_ADMIN_collectors());
+            load.Close();
+        }
+
+        private void baccounting_Click_1(object sender, EventArgs e)
+        {
+
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_accounting());
             load.Close();
         }
     }

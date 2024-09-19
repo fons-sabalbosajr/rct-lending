@@ -194,26 +194,8 @@ namespace rct_lmis
                     btnColumnDisburse.DefaultCellStyle.Font = new Font("Segoe UI", 9);
                 }
 
-                // Hide the "Disburse" button column if the Principal Amount is greater than 0 and the ClientNumber exists in loan_released
-                bool shouldHideDisburseColumn = false;
-                foreach (DataGridViewRow row in dgvdata.Rows)
-                {
-                    var accountId = row.Cells["AccountID"].Value.ToString();
-                    var principalAmount = row.Cells["PrincipalAmount"].Value.ToString().Replace("₱ ", "").Replace(".00", "");
-
-                    if (decimal.TryParse(principalAmount, out decimal principalAmountValue) && principalAmountValue == 0)
-                    {
-                        var existsInReleased = releasedDocuments.Any(doc => doc.Contains("ClientNumber") && doc["ClientNumber"].ToString() == accountId);
-
-                        if (existsInReleased)
-                        {
-                            shouldHideDisburseColumn = true;
-                            break;
-                        }
-                    }
-                }
-
-                // Show or hide the "Disburse" button column based on the condition
+                // Hide the "Disburse" button column if any loan status is "Loan Released"
+                bool shouldHideDisburseColumn = dataTable.AsEnumerable().Any(row => row.Field<string>("LoanStatus").Equals("Loan Released", StringComparison.OrdinalIgnoreCase));
                 dgvdata.Columns["btnDisburse"].Visible = !shouldHideDisburseColumn;
 
             }

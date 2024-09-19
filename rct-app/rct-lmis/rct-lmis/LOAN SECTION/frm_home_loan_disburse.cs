@@ -364,7 +364,7 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-        private void ComputeAmortization()
+        private void ComputeAmortization(string loanMode)
         {
             try
             {
@@ -378,14 +378,14 @@ namespace rct_lmis.LOAN_SECTION
                 string loanAmtText = tloanamt.Text.Replace("₱", "").Replace(",", "").Trim();
                 if (!double.TryParse(loanAmtText, out double principal))
                 {
-                    //MessageBox.Show("Please enter a valid loan amount.");
+                    MessageBox.Show("Invalid loan amount.");
                     return;
                 }
 
                 // Parse and validate loan term
                 if (!int.TryParse(tloanterm.Text.Trim(), out int term))
                 {
-                    //MessageBox.Show("Please enter a valid loan term (in months).");
+                    MessageBox.Show("Invalid loan term format.");
                     return;
                 }
 
@@ -395,12 +395,43 @@ namespace rct_lmis.LOAN_SECTION
                 // Calculate total interest amount for the entire term
                 double totalInterest = principal * interestRate * term;
 
-                // Calculate the total number of weekdays (excluding weekends)
-                int totalDays = 5 * 4 * term;
-                tdays.Text = totalDays.ToString();
+                // Variable to hold the number of payments depending on the mode
+                int totalPayments;
+
+                // Compute the number of payments based on the mode
+                switch (loanMode.ToUpper())
+                {
+                    case "DAILY":
+                        // Calculate the total number of weekdays (excluding weekends) in the term
+                        totalPayments = GetBusinessDaysInMonths(term);
+                        break;
+
+                    case "WEEKLY":
+                        // 4 weeks per month
+                        totalPayments = 4 * term;
+                        break;
+
+                    case "SEMI-MONTHLY":
+                        // 2 payments per month (1st and 15th)
+                        totalPayments = 2 * term;
+                        break;
+
+                    case "MONTHLY":
+                        // 1 payment per month
+                        totalPayments = term;
+                        break;
+
+                    default:
+                        // Invalid mode, return without computing
+                        MessageBox.Show("Invalid loan mode.");
+                        return;
+                }
+
+                // Display the total number of payments
+                tdays.Text = totalPayments.ToString();
 
                 // Calculate amortized amount considering the total interest over the term
-                double amortizedAmount = (principal + totalInterest) / totalDays;
+                double amortizedAmount = (principal + totalInterest) / totalPayments;
 
                 // Display the results
                 tamortizedamt.Text = amortizedAmount.ToString("N2");
@@ -411,6 +442,9 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show("Error computing amortization: " + ex.Message);
             }
         }
+
+
+
 
         private string GetClientNumber(IMongoCollection<BsonDocument> loanApprovedCollection, string accountId)
         {
@@ -483,6 +517,20 @@ namespace rct_lmis.LOAN_SECTION
             // Calculate AmountInterest
             double amountInterest = loanAmount * (loanInterest / 100) * loanTerm;
 
+            // Get selected mode
+            string selectedMode = GetSelectedMode();
+
+            // Validate mode
+            if (selectedMode == null)
+            {
+                MessageBox.Show("Please select a mode.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Use the selected mode to set days, calculate amortization, etc.
+            int totalDays = GetTotalDaysBasedOnMode(selectedMode, loanTerm);
+            tdays.Text = totalDays.ToString();
+
             var loanRateFilter = Builders<BsonDocument>.Filter.Eq("Principal", loanAmount);
             var loanRateDocument = loanRateCollection.Find(loanRateFilter).FirstOrDefault();
 
@@ -492,8 +540,7 @@ namespace rct_lmis.LOAN_SECTION
                 return;
             }
 
-            string loanType = "First Time Borrower";
-            string mode = loanRateDocument.GetValue("Mode", "Not Available").AsString;
+            string loanType = GetLoanType(clientNumber); // Method to determine loan type based on client history
             string encoder = UserSession.Instance.UserName;
             DateTime currentTime = DateTime.Now;
 
@@ -505,7 +552,7 @@ namespace rct_lmis.LOAN_SECTION
                  { "loanTerm", tloanterm.Text },
                  { "loanInterest", tloaninterest.Text },
                  { "days", tdays.Text },
-                 { "loanInterestAmt", tloaninterestamt.Text },
+                 { "loanInterestAmt", trfservicefee.Text },  // Ensure these values are correct
                  { "rfServiceFee", trfservicefee.Text },
                  { "rfNotarialFee", trfnotarialfee.Text },
                  { "rfInsuranceFee", trfinsurancefee.Text },
@@ -521,11 +568,11 @@ namespace rct_lmis.LOAN_SECTION
                  { "rfDocAmt", trfdocamt.Text },
                  { "amortizedAmt", tamortizedamt.Text },
                  { "LoanType", loanType },
-                 { "Mode", mode },
+                 { "Mode", selectedMode },  // Use selected mode here
                  { "PaymentStartDate", dtpayoutdate.Value.ToString("MM/dd/yyyy") },
                  { "Encoder", encoder },
                  { "DisbursementTime", currentTime },
-                 { "AmountInterest", amountInterest }  // Change AmountToPay to AmountInterest
+                 { "AmountInterest", amountInterest }
              };
 
             if (cbpocash.Checked)
@@ -554,7 +601,7 @@ namespace rct_lmis.LOAN_SECTION
                 .Set("LoanType", loanType)
                 .Set("DisbursementDate", DateTime.Now.ToString("f"))
                 .Set("Principal", loanAmount)
-                .Set("LoanTerm", tloanterm.Text);
+                .Set("Term", tloanterm.Text);
 
             loanApprovedCollection.UpdateOne(updateFilter, update);
 
@@ -565,10 +612,79 @@ namespace rct_lmis.LOAN_SECTION
             ClearAll();
         }
 
+        private string GetSelectedMode()
+        {
+            if (dgvloandata.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvloandata.SelectedRows[0];
+                return selectedRow.Cells["Mode"].Value.ToString();
+            }
+            return null;
+        }
+
+        private int GetTotalDaysBasedOnMode(string mode, int term)
+        {
+            int totalDays = 0;
+
+            switch (mode.ToUpper())
+            {
+                case "DAILY":
+                    // Calculate total days excluding weekends
+                    totalDays = GetBusinessDaysInMonths(term);
+                    break;
+
+                case "WEEKLY":
+                    // Convert term in months to total weeks (4 weeks per month)
+                    totalDays = term * 4 * 5; // 4 weeks per month, 7 days per week
+                    break;
+
+                case "SEMI-MONTHLY":
+                    // Calculate total semi-monthly periods (2 periods per month)
+                    totalDays = term * 2 * 15; // 2 periods per month, approx. 15 days each
+                    break;
+
+                case "MONTHLY":
+                    // Total months = total days (1 payment per month)
+                    totalDays = term * 30; // Approx. 30 days per month
+                    break;
+
+                default:
+                    throw new ArgumentException("Invalid mode");
+            }
+
+            return totalDays;
+        }
+
+        // Helper method to calculate business days in a given number of months
+        private int GetBusinessDaysInMonths(int months)
+        {
+            // Assuming 5 weekdays per week
+            int weekdaysPerWeek = 5;
+            int weeksPerMonth = 4;
+            int totalBusinessDays = months * weeksPerMonth * weekdaysPerWeek;
+
+            return totalBusinessDays;
+        }
 
 
 
+        private string GetLoanType(string clientNumber)
+        {
+            var loanCollections = MongoDBConnection.Instance.Database.GetCollection<BsonDocument>("loan_collections");
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientNumber);
+            var document = loanCollections.Find(filter).FirstOrDefault();
 
+            if (document != null)
+            {
+                int latePayments = (int)document.GetValue("LatePayments", 0);
+                if (latePayments >= 5)
+                    return "Irregular Borrower";
+                else
+                    return "Regular Borrower";
+            }
+
+            return "First Time Borrower"; // Default if no records found
+        }
 
 
         private void AddCashPaymentFields(BsonDocument document)
@@ -778,7 +894,7 @@ namespace rct_lmis.LOAN_SECTION
                         try
                         {
                             tloanamt.Text = fullDocument.Contains("Principal") ? "₱ " + fullDocument["Principal"].ToString() + ".00" : string.Empty;
-                            tloanterm.Text = fullDocument.Contains("LoanTerm") ? fullDocument["LoanTerm"].ToString() : string.Empty;
+                            tloanterm.Text = fullDocument.Contains("Term") ? fullDocument["Term"].ToString() : string.Empty;
                             tloaninterest.Text = fullDocument.Contains("Interest Rate/Month") ? fullDocument["Interest Rate/Month"].ToString() + "%" : string.Empty;
                             trfservicefee.Text = fullDocument.Contains("Processing Fee") ? fullDocument["Processing Fee"].ToString() + ".00" : string.Empty;
 
@@ -800,8 +916,11 @@ namespace rct_lmis.LOAN_SECTION
                             trfdocfee.Text = fullDocument.Contains("Doc Rate") ? fullDocument["Doc Rate"].ToString() + ".00" : string.Empty;
                             trfdocamt.Text = trfdocfee.Text;
 
-                            // Compute amortization whenever the loan data changes
-                            ComputeAmortization();
+                            // Get the Mode from the FullDocument or selectedRow
+                            string loanMode = fullDocument.Contains("Mode") ? fullDocument["Mode"].ToString() : string.Empty;
+
+                            // Compute amortization with the selected Mode
+                            ComputeAmortization(loanMode); // Pass Mode to ComputeAmortization
                         }
                         catch (Exception ex)
                         {
@@ -824,12 +943,12 @@ namespace rct_lmis.LOAN_SECTION
 
         private void tloanamt_TextChanged(object sender, EventArgs e)
         {
-            ComputeAmortization();
+            //ComputeAmortization();
         }
 
         private void tloanterm_TextChanged(object sender, EventArgs e)
         {
-            ComputeAmortization();
+            //ComputeAmortization();
         }
 
         private void cbpocash_CheckedChanged(object sender, EventArgs e)
@@ -1048,6 +1167,8 @@ namespace rct_lmis.LOAN_SECTION
                     tbankamt.ReadOnly = false;
                     tbankpoprofee.ReadOnly = false;
                     tbankpoamt.ReadOnly = false;
+
+                    tamortizedamt.ReadOnly = false;
                 }
             }
         }

@@ -30,7 +30,7 @@
     <PublisherName>ACS Micro IT Solutions Co.</PublisherName>
     <SuiteName>RACATOM Corporation</SuiteName>
     <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -408,6 +408,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ACCOUNTING\frm_home_accounting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ACCOUNTING\frm_home_accounting.Designer.cs">
+      <DependentUpon>frm_home_accounting.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADMIN SECTION\Announcement.cs" />
     <Compile Include="ADMIN SECTION\frm_ADMIN_annoucement.cs">
       <SubType>Form</SubType>
@@ -703,6 +709,9 @@
     <Compile Include="z_loadingform.Designer.cs">
       <DependentUpon>z_loadingform.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ACCOUNTING\frm_home_accounting.resx">
+      <DependentUpon>frm_home_accounting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_ADMIN_annoucement.resx">
       <DependentUpon>frm_ADMIN_annoucement.cs</DependentUpon>
     </EmbeddedResource>
@@ -996,6 +1005,9 @@
     <None Include="Resources\cash.png" />
     <None Include="Resources\calendar.png" />
     <None Include="Resources\icons8-refresh-48.png" />
+    <None Include="Resources\icons8-coin-wallet-48.png" />
+    <None Include="Resources\icons8-minus-48.png" />
+    <None Include="Resources\icons8-plus-48.png" />
     <Content Include="tessdata\eng.traineddata">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
