@@ -25,7 +25,7 @@ namespace rct_lmis.ADMIN_SECTION
             Disable();
             ConfigureAutocompleteForTextBoxes();
 
-            taccno.ReadOnly = true;
+            //taccno.ReadOnly = true;
         }
 
         private void ConfigureAutocompleteForTextBoxes()
@@ -104,7 +104,7 @@ namespace rct_lmis.ADMIN_SECTION
         {
             try
             {
-                // Find the most recent ID
+                // Find the most recent AccountId from the collection
                 var filter = Builders<BsonDocument>.Filter.Empty;
                 var sort = Builders<BsonDocument>.Sort.Descending("AccountId");
                 var latestRecord = _loanAccountTitlesCollection.Find(filter).Sort(sort).FirstOrDefault();
@@ -113,11 +113,11 @@ namespace rct_lmis.ADMIN_SECTION
 
                 if (latestRecord != null)
                 {
-                    // Extract the number from the last ID
+                    // Extract the AccountId from the latest record and ensure it's a valid integer
                     string lastId = latestRecord["AccountId"].ToString();
                     if (int.TryParse(lastId, out int lastNumber))
                     {
-                        nextNumber = lastNumber + 3;
+                        nextNumber = lastNumber + 4; // Increment by 1
                     }
                     else
                     {
@@ -127,9 +127,8 @@ namespace rct_lmis.ADMIN_SECTION
                     }
                 }
 
-                // Generate the new ID
-                string newId = nextNumber.ToString();
-                return newId;
+                // Return the new incremented AccountId as a string
+                return nextNumber.ToString();
             }
             catch (Exception ex)
             {
@@ -204,9 +203,18 @@ namespace rct_lmis.ADMIN_SECTION
 
         private void frm_home_ADMIN_accountdata_Load(object sender, EventArgs e)
         {
-            // Generate and display the new ID
-            string newId = GenerateNextId();
-            taccno.Text = newId;
+            // Call the method to generate the next AccountId
+            string newAccountId = GenerateNextId();
+
+            // Display the new AccountId in a TextBox or other control
+            if (!string.IsNullOrEmpty(newAccountId))
+            {
+                taccno.Text = newAccountId; // Assuming txtAccountId is the name of the TextBox where you show the AccountId
+            }
+            else
+            {
+                MessageBox.Show("Failed to generate the next AccountId.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             // Load data into DataGridView
             LoadDataIntoDGV();
@@ -256,7 +264,7 @@ namespace rct_lmis.ADMIN_SECTION
 
                 _loanAccountTitlesCollection.InsertOne(newDocument);
 
-                MessageBox.Show("Account data saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Account data saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Reload the data into DataGridView
                 LoadDataIntoDGV();
@@ -267,6 +275,19 @@ namespace rct_lmis.ADMIN_SECTION
                 tacccode.Clear();
                 taccgrpcode.Clear();
                 taccname.Clear();
+
+                // Call the method to generate the next AccountId
+                string newAccountId = GenerateNextId();
+
+                // Display the new AccountId in a TextBox or other control
+                if (!string.IsNullOrEmpty(newAccountId))
+                {
+                    taccno.Text = newAccountId; // Assuming txtAccountId is the name of the TextBox where you show the AccountId
+                }
+                else
+                {
+                    MessageBox.Show("Failed to generate the next AccountId.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
