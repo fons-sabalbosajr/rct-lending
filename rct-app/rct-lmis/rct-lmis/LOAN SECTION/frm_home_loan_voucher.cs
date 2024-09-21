@@ -98,6 +98,53 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+        private void ComputeEndPaymentDate()
+        {
+            // Step 1: Parse the lstartpayment.Text as a DateTime
+            DateTime startDate;
+            if (!DateTime.TryParse(lstartpayment.Text, out startDate))
+            {
+                MessageBox.Show("Invalid start date format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Step 2: Extract the total number of days from lamotperiod.Text
+            int totalDays = 0;
+            if (!int.TryParse(lamotperiod.Text.Split(' ')[0], out totalDays))
+            {
+                MessageBox.Show("Invalid amortization period format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Step 3: Compute the end date, excluding weekends (Saturday and Sunday)
+            DateTime endDate = ComputeEndDateExcludingWeekends(startDate, totalDays);
+
+            // Step 4: Set the computed end date in lendpayment.Text
+            lendpayment.Text = endDate.ToString("MM/dd/yyyy");
+        }
+
+        // Helper method to compute the end date excluding weekends
+        private DateTime ComputeEndDateExcludingWeekends(DateTime startDate, int totalDays)
+        {
+            DateTime currentDate = startDate;
+            int addedDays = 0;
+
+            while (addedDays < totalDays)
+            {
+                // Move to the next day
+                currentDate = currentDate.AddDays(1);
+
+                // Skip Saturday (DayOfWeek = 6) and Sunday (DayOfWeek = 0)
+                if (currentDate.DayOfWeek != DayOfWeek.Saturday && currentDate.DayOfWeek != DayOfWeek.Sunday)
+                {
+                    addedDays++; // Only count weekdays
+                }
+            }
+
+            return currentDate;
+        }
+
+
         private void LoadDataToUI(string cashClnNo)
         {
             var document = FetchDocument(cashClnNo);
@@ -150,6 +197,8 @@ namespace rct_lmis.LOAN_SECTION
 
                 // Calculate AmountToPay
                 double amountToPay = loanAmount + amountInterest;
+
+                ComputeEndPaymentDate();
 
                 // Populate DataGridView
                 var dataTable = new DataTable();
@@ -321,7 +370,7 @@ namespace rct_lmis.LOAN_SECTION
                   { "loanAmt", loanAmount },
                   { "loanTerm", ExtractNumericValue(lloanterm.Text) },
                   { "loanInterest", ExtractNumericValue(lloaninterest.Text) },
-                  { "days", ExtractNumericValue(lamotperiod.Text) },
+                  { "days", ExtractNumericValueDays(lamotperiod.Text) },
                   { "LoanType", lloantype.Text },
                   { "Mode", lloanmode.Text },
                   { "cashProFee", ConvertBsonValueToDouble(ExtractNumericValue(lloanprocessfee.Text)) },
@@ -356,97 +405,45 @@ namespace rct_lmis.LOAN_SECTION
         {
             var database = MongoDBConnection.Instance.Database;
             var releasedCollection = database.GetCollection<BsonDocument>("loan_released");
-            var approvedCollection = database.GetCollection<BsonDocument>("loan_approved");
 
-            // Calculate the 'days' field based on the loan mode and term
-            string loanMode = document.Contains("Mode") ? document["Mode"].AsString.ToUpper() : string.Empty;
-            int term = document.Contains("loanTerm") ? ConvertBsonValueToInt(document["loanTerm"]) : 0;
-            string days = CalculateDaysBasedOnMode(loanMode, term);
+            // Update the 'days' field
+            document["days"] = ExtractNumericValueDays(lloanterm.Text);
 
-            // Update the 'days' field in the document
-            document["days"] = days;
+            // Get the amortized amount from dgvdisburse
+            if (dgvdisburse.DataSource is DataTable dataTable && dataTable.Rows.Count > 0)
+            {
+                var amortizedAmountObj = dataTable.Rows[0]["Amortized Amount"];
+                if (amortizedAmountObj != null)
+                {
+                    // Convert the amortized amount to decimal and then to BsonValue
+                    document["amortizedAmt"] = ConvertBsonValueToDecimal(amortizedAmountObj.ToString());
+                }
+            }
 
             // Insert the document into the loan_released collection
             releasedCollection.InsertOne(document);
 
-            // Extract the ClientNumber from the document to identify the related loan in the loan_approved collection
-            string clientNumber = document.Contains("cashClnNo") ? document["cashClnNo"].AsString : string.Empty;
-
-            if (string.IsNullOrEmpty(clientNumber))
-            {
-                // Handle the case where ClientNumber is not found
-                MessageBox.Show("Client number not found in the document.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Get the current user's full name
-            string encoderName = UserSession.Instance.UserName;
-
-            // Get the current date and time
-            DateTime currentDateTime = DateTime.Now;
-
-            // Create the update definition for updating the loan_approved document
-            var updateDefinition = Builders<BsonDocument>.Update
-                .Set("LoanStatus", "Loan Released")
-                .Set("LoanReleasedDate", currentDateTime)
-                .Set("Encoder", encoderName);
-
-            // Create the filter to find the correct loan in the loan_approved collection by ClientNumber
-            var filter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientNumber);
-
-            // Update the loan_approved document
-            var updateResult = approvedCollection.UpdateOne(filter, updateDefinition);
-
-            if (updateResult.ModifiedCount == 0)
-            {
-                // Handle the case where no documents were updated
-                MessageBox.Show("No matching loan found in the approved collection to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            MessageBox.Show("Loan released information saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
-        private string CalculateDaysBasedOnMode(string loanMode, int term)
+
+        // Helper method to extract numeric value from string (e.g., "80 days" -> 80)
+        private int ExtractNumericValueDays(string loanTerm)
         {
-            switch (loanMode)
+            // Remove "days" and any extra spaces, then convert to an integer
+            string numericPart = loanTerm.Replace("days", "").Trim();
+
+            // Try to parse the string to an integer
+            if (int.TryParse(numericPart, out int result))
             {
-                case "DAILY":
-                    // Calculate the total number of business days in the term
-                    return GetBusinessDaysInMonths(term).ToString() + " days";
-                case "WEEKLY":
-                    // Calculate the total number of weeks excluding weekends
-                    return (GetTotalWeeks(term)).ToString() + " weeks";
-                case "SEMI-MONTHLY":
-                    // Calculate the total number of semi-monthly periods
-                    return (2 * term).ToString() + " cut-offs";
-                case "MONTHLY":
-                    // Calculate the total number of months
-                    return term.ToString() + " months";
-                default:
-                    return "N/A";
-            }
-        }
-
-        private int GetBusinessDaysInMonths(int months)
-        {
-            int totalDays = 0;
-            int weekends = 0;
-
-            for (int i = 0; i < months; i++)
-            {
-                DateTime startOfMonth = DateTime.Now.AddMonths(i);
-                DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
-
-                for (DateTime date = startOfMonth; date <= endOfMonth; date = date.AddDays(1))
-                {
-                    if (date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday)
-                    {
-                        totalDays++;
-                    }
-                }
+                return result;
             }
 
-            return totalDays;
+            // Return 0 if parsing fails
+            return 0;
         }
+
 
         private int GetTotalWeeks(int days)
         {
@@ -473,8 +470,6 @@ namespace rct_lmis.LOAN_SECTION
 
             return totalWeeks;
         }
-
-
 
         private void AddPaymentDetails(BsonDocument document)
         {
@@ -513,15 +508,6 @@ namespace rct_lmis.LOAN_SECTION
         {
             string cleanedValue = CleanCurrencyString(formattedValue);
             return ConvertToDouble(new BsonString(cleanedValue));
-        }
-
-        private void DeleteDocumentFromCollection(string cashClnNo)
-        {
-            var database = MongoDBConnection.Instance.Database;
-            var collection = database.GetCollection<BsonDocument>("loan_disbursed");
-
-            var filter = Builders<BsonDocument>.Filter.Eq("cashClnNo", cashClnNo);
-            collection.DeleteOne(filter);
         }
 
         private void ClearUIFields()
@@ -582,6 +568,180 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+        private void SaveVoucherToCollection(BsonDocument document)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var voucherCollection = database.GetCollection<BsonDocument>("loan_release_voucher");
+            var accountsCollection = database.GetCollection<BsonDocument>("user_accounts");
+
+            // Generate CV No.
+            string cvNo = GenerateNextCVNo(voucherCollection);
+
+            // Extract necessary fields
+            string clientName = document.Contains("cashName") ? document["cashName"].AsString : string.Empty;
+            string loanAccountNo = document.Contains("LoanIDNo") ? document["LoanIDNo"].AsString : string.Empty;
+
+            // Fetch amortized amount from the document
+            decimal amortization = document.Contains("amortizedAmt") ? ConvertBsonValueToDecimal(document["amortizedAmt"]) : 0;
+            decimal loanAmount = document.Contains("loanAmt") ? ConvertBsonValueToDecimal(document["loanAmt"]) : 0;
+            int loanTerm = document.Contains("loanTerm") ? ConvertBsonValueToIntTerm(document["loanTerm"]) : 0;
+            string loanMode = document.Contains("Mode") ? document["Mode"].AsString : "N/A";
+            DateTime paymentStartDate = document.Contains("payoutDate") ? document["payoutDate"].ToUniversalTime() : DateTime.MinValue;
+
+            // Compute the Maturity Date
+            DateTime maturityDate = CalculateMaturityDate(paymentStartDate, loanTerm, loanMode);
+
+            // Convert the amount to words
+            string amountInWords = ConvertAmountToWords(loanAmount);
+
+            // Get the current user and date
+            string preparedBy = UserSession.Instance.UserName;
+            DateTime currentDate = DateTime.Now;
+
+            // Fetch Finance Officer and General Manager from user_accounts collection
+            var financeOfficer = GetUserByRole(accountsCollection, "Finance Officer");
+            var generalManager = GetUserByRole(accountsCollection, "General Manager");
+
+            // Create voucher document
+            var voucherDocument = new BsonDocument
+             {
+                 { "CVNo", cvNo },
+                 { "ClientName", clientName },
+                 { "LoanAccountNo", loanAccountNo },
+                 { "AmountLoanReleased", loanAmount },
+                 { "MaturityDate", maturityDate },
+                 { "Amortization", amortization },
+                 { "LoanTerm", loanTerm },
+                 { "PaymentMode", loanMode },
+                 { "PaymentStartDate", paymentStartDate },
+                 { "PreparedBy", preparedBy },
+                 { "AmountInWords", amountInWords },
+                 { "ReceivedBy", clientName },
+                 { "Date", currentDate },
+                 { "FinanceOfficer", financeOfficer ?? string.Empty },
+                 { "GeneralManager", generalManager ?? string.Empty }
+             };
+
+            // Insert the voucher document into the loan_release_voucher collection
+            voucherCollection.InsertOne(voucherDocument);
+        }
+
+
+
+
+        // Helper method to convert BSON values to decimal
+        private decimal ConvertBsonValueToDecimal(BsonValue bsonValue)
+        {
+            if (bsonValue.IsDouble)
+            {
+                return Convert.ToDecimal(bsonValue.AsDouble);
+            }
+            else if (bsonValue.IsInt32)
+            {
+                return Convert.ToDecimal(bsonValue.AsInt32);
+            }
+            else if (bsonValue.IsInt64)
+            {
+                return Convert.ToDecimal(bsonValue.AsInt64);
+            }
+            else
+            {
+                return 0; // or throw an exception based on your logic
+            }
+        }
+
+
+        // Helper method to convert BSON values to int
+        private int ConvertBsonValueToIntTerm(BsonValue bsonValue)
+        {
+            if (bsonValue.IsInt32)
+            {
+                return bsonValue.AsInt32;
+            }
+            else if (bsonValue.IsDouble)
+            {
+                return Convert.ToInt32(bsonValue.AsDouble);
+            }
+            else if (bsonValue.IsInt64)
+            {
+                return Convert.ToInt32(bsonValue.AsInt64);
+            }
+            else
+            {
+                return 0; // or throw an exception based on your logic
+            }
+        }
+
+        // Remaining helper methods (e.g., CalculateMaturityDate, ComputeAmortization, etc.) remain unchanged.
+
+
+
+
+        // Helper Method to generate the next CV No.
+        private string GenerateNextCVNo(IMongoCollection<BsonDocument> voucherCollection)
+        {
+            var lastVoucher = voucherCollection.Find(new BsonDocument())
+                                .Sort(Builders<BsonDocument>.Sort.Descending("CVNo"))
+                                .Limit(1)
+                                .FirstOrDefault();
+
+            string lastCVNo = lastVoucher != null ? lastVoucher["CVNo"].AsString : "RCT-CV00000";
+            int nextNumber = int.Parse(lastCVNo.Replace("RCT-CV", "")) + 1;
+
+            return $"RCT-CV{nextNumber:D5}";
+        }
+
+        // Helper Method to calculate Maturity Date
+        private DateTime CalculateMaturityDate(DateTime startDate, int loanTerm, string loanMode)
+        {
+            switch (loanMode.ToUpper())
+            {
+                case "DAILY":
+                    return startDate.AddDays(loanTerm * 30);  // Multiply by 30 for days
+                case "WEEKLY":
+                    return startDate.AddDays(loanTerm * 7 * 4); // Multiply by 4 weeks
+                case "MONTHLY":
+                    return startDate.AddMonths(loanTerm); // Add the term as months
+                default:
+                    return startDate; // Return startDate if loan mode is unrecognized
+            }
+        }
+
+
+        // Helper Method to calculate Amortization
+        private decimal ComputeAmortization(decimal loanAmount, int loanTerm, string loanMode)
+        {
+            if (loanTerm <= 0 || loanAmount <= 0) return 0;
+
+            // Example logic for daily, weekly, monthly payments. Adjust accordingly.
+            switch (loanMode.ToUpper())
+            {
+                case "DAILY":
+                    return loanAmount / (loanTerm * 30); // Assuming 30 days per month
+                case "WEEKLY":
+                    return loanAmount / (loanTerm * 4);  // Assuming 4 weeks per month
+                case "MONTHLY":
+                    return loanAmount / loanTerm;        // Direct monthly amortization
+                default:
+                    return 0;
+            }
+        }
+
+
+        // Helper Method to convert amount to words
+        private string ConvertAmountToWords(decimal amount)
+        {
+           
+            return NumberToWordsConverter.ConvertToWords(amount); // Use any library or your own logic
+        }
+
+        // Helper Method to get user by role
+        private string GetUserByRole(IMongoCollection<BsonDocument> accountsCollection, string role)
+        {
+            var user = accountsCollection.Find(Builders<BsonDocument>.Filter.Eq("Role", role)).FirstOrDefault();
+            return user != null ? user["UserName"].AsString : string.Empty;
+        }
+
 
 
         private void frm_home_loan_voucher_Load(object sender, EventArgs e)
@@ -590,6 +750,8 @@ namespace rct_lmis.LOAN_SECTION
             if (!string.IsNullOrEmpty(_cashClnNo))
             {
                 LoadDataToUI(_cashClnNo);
+
+
             }
         }
 
@@ -612,30 +774,42 @@ namespace rct_lmis.LOAN_SECTION
 
         private void brelease_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this, "Do you want to release the disbursement process?", 
-                "Release Disbursement Process", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes) 
+            if (MessageBox.Show(this, "Do you want to release the disbursement process?",
+                "Release Disbursement Process", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
-
                     frm_home_disburse disburseForm = new frm_home_disburse();
 
-
+                    // Show loading screen
                     load.Show(this);
                     Thread.Sleep(4000);
+
+                    // Create the loan released document
                     var document = CreateLoanReleasedDocument();
+
+                    // Save the loan released document to the loan_released collection
                     SaveDocumentToCollection(document);
+
+                    // Save the voucher to the loan_release_voucher collection using the same document
+                    SaveVoucherToCollection(document);
+
+                    // Close the loading screen
                     load.Close();
 
                     MessageBox.Show(this, "Data saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Enable the voucher button
                     bvoucher.Enabled = true;
+
+                    
                 }
                 catch (Exception ex)
                 {
+                    // Handle errors
                     MessageBox.Show($"An error occurred while saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
 
         private void dgvdisburse_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

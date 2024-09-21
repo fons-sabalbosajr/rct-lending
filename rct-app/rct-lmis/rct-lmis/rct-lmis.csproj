@@ -614,6 +614,7 @@
     <Compile Include="LOAN SECTION\frm_home_loan_voucher.Designer.cs">
       <DependentUpon>frm_home_loan_voucher.cs</DependentUpon>
     </Compile>
+    <Compile Include="NumberToWordsConverter.cs" />
     <Compile Include="SIGNUP_LOGIN\frm_home_login.cs">
       <SubType>Form</SubType>
     </Compile>

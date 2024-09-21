@@ -92,6 +92,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lamotperiod = new System.Windows.Forms.Label();
             this.lnorecord = new System.Windows.Forms.Label();
+            this.lendpayment = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdisburse)).BeginInit();
             this.SuspendLayout();
             // 
@@ -225,14 +227,14 @@
             this.bcancel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.bcancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.bcancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bcancel.FillColor = System.Drawing.Color.Maroon;
+            this.bcancel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.bcancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bcancel.ForeColor = System.Drawing.Color.White;
             this.bcancel.Location = new System.Drawing.Point(789, 518);
             this.bcancel.Name = "bcancel";
             this.bcancel.Size = new System.Drawing.Size(83, 31);
             this.bcancel.TabIndex = 182;
-            this.bcancel.Text = "Cancel";
+            this.bcancel.Text = "Close";
             this.bcancel.Click += new System.EventHandler(this.bcancel_Click);
             // 
             // label6
@@ -898,11 +900,37 @@
             this.lnorecord.Text = "no data found";
             this.lnorecord.Visible = false;
             // 
+            // lendpayment
+            // 
+            this.lendpayment.AutoSize = true;
+            this.lendpayment.BackColor = System.Drawing.Color.Transparent;
+            this.lendpayment.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lendpayment.ForeColor = System.Drawing.Color.Black;
+            this.lendpayment.Location = new System.Drawing.Point(370, 179);
+            this.lendpayment.Name = "lendpayment";
+            this.lendpayment.Size = new System.Drawing.Size(69, 15);
+            this.lendpayment.TabIndex = 235;
+            this.lendpayment.Text = "mature Day";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label12.Location = new System.Drawing.Point(253, 179);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(82, 15);
+            this.label12.TabIndex = 234;
+            this.label12.Text = "Maturity Date:";
+            // 
             // frm_home_loan_voucher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.lendpayment);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.lnorecord);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lamotperiod);
@@ -1040,5 +1068,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lamotperiod;
         private System.Windows.Forms.Label lnorecord;
+        private System.Windows.Forms.Label lendpayment;
+        private System.Windows.Forms.Label label12;
     }
 }

@@ -844,7 +844,6 @@ E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.JOURNAL_SECTION.
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loand_req_details.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_loans.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_disburse.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamounts.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_request.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_voucher.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
@@ -1182,3 +1181,5 @@ C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct
 C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
 C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamt_pass.resources
 C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ACCOUNTING.frm_home_accounting.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ACCOUNTING.frm_home_accounting.resources
+E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamt_pass.resources

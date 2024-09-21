@@ -280,17 +280,17 @@ namespace rct_lmis
             // Update the label in the UI thread
             this.Invoke((MethodInvoker)delegate
             {
-                Console.WriteLine("Updating UI...");
+                //Console.WriteLine("Updating UI...");
                 if (totalAnnouncements > 0)
                 {
                     lcountann.Text = totalAnnouncements.ToString();
                     lcountann.Visible = true; // Ensure the badge is visible if there are announcements
-                    Console.WriteLine("Badge should be visible");
+                    //Console.WriteLine("Badge should be visible");
                 }
                 else
                 {
                     lcountann.Visible = false; // Hide the badge if there are no recent announcements
-                    Console.WriteLine("Badge should be hidden");
+                    //Console.WriteLine("Badge should be hidden");
                 }
             });
         }

@@ -1061,7 +1061,7 @@ namespace rct_lmis.LOAN_SECTION
 
         private void bloansave_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to disrbuse all the transactions?",
+            if (MessageBox.Show("Do you want to disburse all the transactions?",
                 "Disburse Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 // Show loading indicator (assuming 'load' is a form or control)
