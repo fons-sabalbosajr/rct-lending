@@ -17,6 +17,8 @@ namespace rct_lmis
         public frm_home_dashboard(string username)
         {
             InitializeComponent();
+
+            InitializeClientsView();
             _username = username;
 
             dgvusersonline.ClearSelection();
@@ -31,6 +33,17 @@ namespace rct_lmis
             InitializedBulletinView();
             PopulateBulletinView();
 
+            LoadClientTotal();
+            PopulateClientsView();
+
+            LoadLoanTotal();
+            PopulatePendingLoansView();
+
+            LoadCollectionTotal();
+            PopulateCollectionsView();
+
+            LoadDueLoanTotal();
+            PopulateUpcomingPaymentsView();
         }
 
         private void InitializeDataGridView()
@@ -56,29 +69,35 @@ namespace rct_lmis
         }
 
         private void InitializedBulletinView()
-        {// Clear existing columns if any
+        {
+            // Clear existing columns if any
             dgvbulletin.Columns.Clear();
             dgvbulletin.ClearSelection();
 
             // Add columns
             dgvbulletin.Columns.Add(new DataGridViewTextBoxColumn { Name = "Date", HeaderText = "Date" });
-            dgvbulletin.Columns.Add(new DataGridViewTextBoxColumn { Name = "Subject", HeaderText = "Subject" });
-            dgvbulletin.Columns.Add(new DataGridViewTextBoxColumn { Name = "Content", HeaderText = "Content" });
+            dgvbulletin.Columns.Add(new DataGridViewTextBoxColumn { Name = "SubjectContent", HeaderText = "Subject and Content" });
+            dgvbulletin.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "ViewButton",
+                HeaderText = "",
+                Text = "View",
+                UseColumnTextForButtonValue = true
+            });
 
             // Adjust column widths and other properties as needed
-            dgvbulletin.Columns["Date"].Width = 100; // Adjust width for user's name column
-            dgvbulletin.Columns["Subject"].Width = 150; // Adjust width for user's name column
-            dgvbulletin.Columns["Content"].Width = 200; // Adjust width for status column
+            dgvbulletin.Columns["Date"].Width = 100;
+            dgvbulletin.Columns["SubjectContent"].Width = 300; // Wider to accommodate content
+            dgvbulletin.Columns["ViewButton"].Width = 50;
 
-            // Show headers
-            dgvbulletin.ColumnHeadersVisible = false;
+            dgvbulletin.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            //dgvbulletin.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
 
             dgvbulletin.CellFormatting += dgvusersonline_CellFormatting;
             dgvbulletin.DataBindingComplete += dgvusersonline_DataBindingComplete;
-
         }
 
-        private void PopulateBulletinView() 
+        private void PopulateBulletinView()
         {
             try
             {
@@ -97,7 +116,10 @@ namespace rct_lmis
                 // Populate DataGridView with announcements
                 foreach (var announcement in announcements)
                 {
-                    dgvbulletin.Rows.Add(announcement.PostedDate.ToString(), announcement.Title, announcement.Content);
+                    // Combine Subject and Content into a single string with line break
+                    string subjectAndContent = $"{announcement.Title}\n{announcement.Content}";
+
+                    dgvbulletin.Rows.Add(announcement.PostedDate.ToString(), subjectAndContent);
                 }
             }
             catch (Exception ex)
@@ -106,6 +128,7 @@ namespace rct_lmis
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void PopulateDataGridView()
         {
             try
@@ -157,6 +180,261 @@ namespace rct_lmis
             }
         }
 
+        private void LoadClientTotal()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_approved");
+
+                // Get the total count of documents in the loan_approved collection
+                var totalCount = collection.CountDocuments(Builders<BsonDocument>.Filter.Empty);
+
+                // Display the total count in the lclienttotal label
+                lclienttotal.Text = totalCount.ToString();
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error loading client total: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void InitializeClientsView()
+        {
+            // Clear existing columns if any
+            dgvclients.Columns.Clear();
+
+            // Add columns
+            dgvclients.Columns.Add(new DataGridViewTextBoxColumn { Name = "ClientInfo", HeaderText = "Client Information" });
+            dgvclients.Columns.Add(new DataGridViewTextBoxColumn { Name = "LoanStatus", HeaderText = "Loan Status" });
+
+            // Adjust column widths as needed
+            dgvclients.Columns["ClientInfo"].Width = 400;
+            dgvclients.Columns["LoanStatus"].Width = 100;
+
+            dgvclients.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvclients.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+        }
+
+        private void PopulateClientsView()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_approved");
+
+                // Fetch all approved loans
+                var clients = collection.Find(Builders<BsonDocument>.Filter.Empty).ToList();
+
+                // Clear existing rows in the DataGridView
+                dgvclients.Rows.Clear();
+
+                // Populate DataGridView with client information
+                foreach (var client in clients)
+                {
+                    string fullName = $"{client["FirstName"]} {client["MiddleName"]} {client["LastName"]}".Trim();
+                    string address = $"{client["Street"]}, {client["Barangay"]}, {client["City"]}, {client["Province"]}".Trim();
+                    string contactNumber = client.Contains("CP") ? client["CP"].ToString() : "";
+                    string loanAmount = client.Contains("PrincipalAmount") ? client["PrincipalAmount"].ToString() : "";
+                    string startPaymentDate = client.Contains("PaymentStartDate") ? client["PaymentStartDate"].ToString() : "";
+
+                    // Merge information into a single string
+                    string clientInfo = $"{fullName}\n{address}\n{contactNumber}\nLoan Amount: {loanAmount}\nStart Payment Date: {startPaymentDate}".Trim();
+
+                    // Get loan status
+                    string loanStatus = client.Contains("LoanStatus") ? client["LoanStatus"].ToString() : "";
+
+                    // Add row to the DataGridView
+                    dgvclients.Rows.Add(clientInfo, loanStatus);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error loading clients: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+
+        private void LoadLoanTotal()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_disbursed");
+
+                // Get the total count of documents in the loan_disbursed collection
+                var totalCount = collection.CountDocuments(Builders<BsonDocument>.Filter.Empty);
+
+                // Display the total count in the lloantotal label
+                lloantotal.Text = totalCount.ToString();
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error loading loan total: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void PopulatePendingLoansView()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_application");
+
+                // Fetch pending loan applications
+                var pendingLoans = collection.Find(Builders<BsonDocument>.Filter.Eq("LoanStatus", "Pending")) // Assuming LoanStatus indicates if it's pending
+                                             .SortByDescending(a => a["ApplicationDate"]) // Sort by application date
+                                             .ToList();
+
+                // Clear existing rows in the DataGridView
+                dgvpendingloans.Rows.Clear();
+
+                // Populate DataGridView with pending loan information
+                foreach (var loan in pendingLoans)
+                {
+                    string fullName = $"{loan["FirstName"]} {loan["MiddleName"]} {loan["LastName"]} {loan["SuffixName"]}".Trim();
+                    string applicationDate = loan.Contains("ApplicationDate") ? loan["ApplicationDate"].ToString() : "";
+
+                    // Add row to the DataGridView
+                    dgvpendingloans.Rows.Add(fullName, applicationDate);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error loading pending loans: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void LoadCollectionTotal()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_collections");
+
+                // Get the total count of distinct LoanIDNo in the loan_collections collection
+                var distinctLoanIDNos = collection.Distinct<string>("LoanIDNo", Builders<BsonDocument>.Filter.Empty).ToList();
+                int totalCount = distinctLoanIDNos.Count;
+
+                // Display the total count in the lcollectiontotal label
+                lcollectiontotal.Text = totalCount.ToString();
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error loading collection total: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PopulateCollectionsView()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_collections");
+
+                // Fetch recent collections ordered by date
+                var recentCollections = collection.Find(Builders<BsonDocument>.Filter.Empty)
+                                                  .SortByDescending(c => c["CollectionDate"]) // Assuming there's a CollectionDate field
+                                                  .ToList();
+
+                // Clear existing rows in the DataGridView
+                dgvcollectionsnew.Rows.Clear();
+
+                // Populate DataGridView with collection information
+                foreach (var collectionDoc in recentCollections)
+                {
+                    string loanId = collectionDoc.Contains("LoanIDNo") ? collectionDoc["LoanIDNo"].ToString() : "";
+                    string amount = collectionDoc.Contains("Amount") ? collectionDoc["Amount"].ToString() : "";
+                    string collectionDate = collectionDoc.Contains("CollectionDate") ? collectionDoc["CollectionDate"].ToString() : "";
+                    string collectedBy = collectionDoc.Contains("CollectedBy") ? collectionDoc["CollectedBy"].ToString() : ""; // Adjust field name as necessary
+
+                    // Add row to the DataGridView
+                    dgvcollectionsnew.Rows.Add(loanId, amount, collectionDate, collectedBy);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error loading collections: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void LoadDueLoanTotal()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_disbursed");
+
+                // Get today's date for comparison
+                DateTime today = DateTime.Today;
+
+                // Fetch all documents from the loan_disbursed collection
+                var dueLoans = collection.Find(Builders<BsonDocument>.Filter.Empty).ToList();
+
+                // Count how many PaymentStartDate entries are due today or in the future
+                int dueCount = dueLoans.Count(loan =>
+                {
+                    if (loan.Contains("PaymentStartDate") && DateTime.TryParse(loan["PaymentStartDate"].ToString(), out DateTime paymentStartDate))
+                    {
+                        return paymentStartDate.Date >= today; // Check if the payment date is today or in the future
+                    }
+                    return false;
+                });
+
+                // Display the due count in the ldueloantotal label
+                ldueloantotal.Text = dueCount.ToString();
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error loading due loan total: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PopulateUpcomingPaymentsView()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_collections");
+
+                // Get upcoming payments based on the next payment date
+                var upcomingPayments = collection.Find(Builders<BsonDocument>.Filter.Empty)
+                                                 .SortBy(c => c["NextPaymentDate"]) // Assuming there's a NextPaymentDate field
+                                                 .ToList();
+
+                // Clear existing rows in the DataGridView
+                dgvupcomingpayments.Rows.Clear();
+
+                // Populate DataGridView with upcoming payment information
+                foreach (var payment in upcomingPayments)
+                {
+                    string loanId = payment.Contains("LoanIDNo") ? payment["LoanIDNo"].ToString() : "";
+                    string amountDue = payment.Contains("AmountDue") ? payment["AmountDue"].ToString() : ""; // Adjust field name as necessary
+                    string nextPaymentDate = payment.Contains("NextPaymentDate") ? payment["NextPaymentDate"].ToString() : "";
+                    string collectedBy = payment.Contains("CollectedBy") ? payment["CollectedBy"].ToString() : ""; // Adjust field name as necessary
+
+                    // Add row to the DataGridView
+                    dgvupcomingpayments.Rows.Add(loanId, amountDue, nextPaymentDate, collectedBy);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show($"Error loading upcoming payments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         private void dgvusersonline_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -188,14 +466,47 @@ namespace rct_lmis
             dgvusersonline.ClearSelection();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void dgvbulletin_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+            // Check if the clicked cell is in the "ViewButton" column
+            if (e.ColumnIndex == dgvbulletin.Columns["ViewButton"].Index && e.RowIndex >= 0)
+            {
+                // Get the selected announcement details
+                var announcement = dgvbulletin.Rows[e.RowIndex];
+                string date = announcement.Cells["Date"].Value.ToString();
+                string subject = announcement.Cells["SubjectContent"].Value.ToString().Split('\n')[0]; // Get the subject
+                string content = announcement.Cells["SubjectContent"].Value.ToString().Split('\n')[1]; // Get the content
+
+                // Display the details or open a new form, etc.
+                MessageBox.Show($"Date: {date}\nSubject: {subject}\n\nContent: {content}", "Announcement Details", MessageBoxButtons.OK);
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void dgvbulletin_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
+            // Set padding and style for the View button
+            if (e.ColumnIndex == dgvbulletin.Columns["ViewButton"].Index && e.RowIndex >= 0)
+            {
+                var cell = dgvbulletin[e.ColumnIndex, e.RowIndex] as DataGridViewButtonCell;
+
+                // Set padding (in pixels)
+                var padding = new Padding(10, 15, 10, 15); // Adjust padding as needed
+                cell.Style.Padding = padding;
+
+                // Set font size and style
+                cell.Style.Font = new Font("Segoe UI", 8, FontStyle.Regular); // Adjust font family, size, and style as needed
+            }
+        }
+
+        private void dgvbulletin_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvbulletin.ClearSelection();
+        }
+
+        private void dgvclients_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvclients.ClearSelection();
         }
     }
 

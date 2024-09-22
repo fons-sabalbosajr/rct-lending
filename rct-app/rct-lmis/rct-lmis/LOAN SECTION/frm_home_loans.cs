@@ -196,7 +196,7 @@ namespace rct_lmis
 
                 // Hide the "Disburse" button column if any loan status is "Loan Released"
                 bool shouldHideDisburseColumn = dataTable.AsEnumerable().Any(row => row.Field<string>("LoanStatus").Equals("Loan Released", StringComparison.OrdinalIgnoreCase));
-                dgvdata.Columns["btnDisburse"].Visible = !shouldHideDisburseColumn;
+                //dgvdata.Columns["btnDisburse"].Visible = !shouldHideDisburseColumn;
 
             }
             catch (Exception ex)

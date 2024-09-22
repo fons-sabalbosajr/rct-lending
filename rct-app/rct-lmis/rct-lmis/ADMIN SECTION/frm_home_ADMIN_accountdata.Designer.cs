@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bhelp = new Guna.UI2.WinForms.Guna2CircleButton();
             this.ltitle = new System.Windows.Forms.Label();
             this.pleft = new System.Windows.Forms.Panel();
+            this.pbloading = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.bupload = new Guna.UI2.WinForms.Guna2Button();
             this.bdel = new Guna.UI2.WinForms.Guna2Button();
             this.taccgrp = new Guna.UI2.WinForms.Guna2TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,13 +49,12 @@
             this.bloansave = new Guna.UI2.WinForms.Guna2Button();
             this.taccno = new Guna.UI2.WinForms.Guna2TextBox();
             this.label34 = new System.Windows.Forms.Label();
-            this.beditrate = new Guna.UI2.WinForms.Guna2Button();
             this.pnavtop = new System.Windows.Forms.Panel();
             this.bexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bprint = new Guna.UI2.WinForms.Guna2Button();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.badd = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.pleft.SuspendLayout();
             this.pnavtop.SuspendLayout();
@@ -91,6 +92,7 @@
             this.bhelp.TabIndex = 4;
             this.bhelp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.bhelp.TextOffset = new System.Drawing.Point(10, 0);
+            this.bhelp.Click += new System.EventHandler(this.bhelp_Click);
             // 
             // ltitle
             // 
@@ -106,6 +108,9 @@
             // pleft
             // 
             this.pleft.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pleft.Controls.Add(this.badd);
+            this.pleft.Controls.Add(this.pbloading);
+            this.pleft.Controls.Add(this.bupload);
             this.pleft.Controls.Add(this.bdel);
             this.pleft.Controls.Add(this.taccgrp);
             this.pleft.Controls.Add(this.label6);
@@ -118,12 +123,39 @@
             this.pleft.Controls.Add(this.bloansave);
             this.pleft.Controls.Add(this.taccno);
             this.pleft.Controls.Add(this.label34);
-            this.pleft.Controls.Add(this.beditrate);
             this.pleft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pleft.Location = new System.Drawing.Point(0, 52);
             this.pleft.Name = "pleft";
             this.pleft.Size = new System.Drawing.Size(353, 648);
             this.pleft.TabIndex = 3;
+            // 
+            // pbloading
+            // 
+            this.pbloading.Location = new System.Drawing.Point(20, 310);
+            this.pbloading.Name = "pbloading";
+            this.pbloading.Size = new System.Drawing.Size(315, 10);
+            this.pbloading.TabIndex = 140;
+            this.pbloading.Text = "Loading";
+            this.pbloading.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.pbloading.Visible = false;
+            // 
+            // bupload
+            // 
+            this.bupload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bupload.BorderRadius = 4;
+            this.bupload.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bupload.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bupload.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bupload.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bupload.FillColor = System.Drawing.Color.SeaGreen;
+            this.bupload.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bupload.ForeColor = System.Drawing.Color.White;
+            this.bupload.Location = new System.Drawing.Point(249, 273);
+            this.bupload.Name = "bupload";
+            this.bupload.Size = new System.Drawing.Size(92, 31);
+            this.bupload.TabIndex = 139;
+            this.bupload.Text = "Upload CSV";
+            this.bupload.Click += new System.EventHandler(this.bupload_Click);
             // 
             // bdel
             // 
@@ -134,11 +166,11 @@
             this.bdel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.bdel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.bdel.FillColor = System.Drawing.Color.Maroon;
-            this.bdel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bdel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bdel.ForeColor = System.Drawing.Color.White;
-            this.bdel.Location = new System.Drawing.Point(200, 273);
+            this.bdel.Location = new System.Drawing.Point(178, 273);
             this.bdel.Name = "bdel";
-            this.bdel.Size = new System.Drawing.Size(79, 31);
+            this.bdel.Size = new System.Drawing.Size(65, 31);
             this.bdel.TabIndex = 138;
             this.bdel.Text = "Delete";
             this.bdel.Click += new System.EventHandler(this.bdel_Click);
@@ -299,13 +331,13 @@
             this.bloansave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.bloansave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.bloansave.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bloansave.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bloansave.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bloansave.ForeColor = System.Drawing.Color.White;
-            this.bloansave.Location = new System.Drawing.Point(119, 273);
+            this.bloansave.Location = new System.Drawing.Point(101, 273);
             this.bloansave.Name = "bloansave";
-            this.bloansave.Size = new System.Drawing.Size(75, 31);
+            this.bloansave.Size = new System.Drawing.Size(71, 31);
             this.bloansave.TabIndex = 127;
-            this.bloansave.Text = "Save";
+            this.bloansave.Text = "Update";
             this.bloansave.Click += new System.EventHandler(this.bloansave_Click);
             // 
             // taccno
@@ -343,28 +375,9 @@
             this.label34.TabIndex = 77;
             this.label34.Text = "Account Code:";
             // 
-            // beditrate
-            // 
-            this.beditrate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.beditrate.BorderRadius = 4;
-            this.beditrate.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.beditrate.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.beditrate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.beditrate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.beditrate.FillColor = System.Drawing.Color.SeaGreen;
-            this.beditrate.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.beditrate.ForeColor = System.Drawing.Color.White;
-            this.beditrate.Location = new System.Drawing.Point(18, 273);
-            this.beditrate.Name = "beditrate";
-            this.beditrate.Size = new System.Drawing.Size(95, 31);
-            this.beditrate.TabIndex = 33;
-            this.beditrate.Text = "Edit/Add";
-            this.beditrate.Click += new System.EventHandler(this.beditrate_Click);
-            // 
             // pnavtop
             // 
             this.pnavtop.Controls.Add(this.bexport);
-            this.pnavtop.Controls.Add(this.bprint);
             this.pnavtop.Controls.Add(this.tsearch);
             this.pnavtop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnavtop.Location = new System.Drawing.Point(353, 52);
@@ -387,32 +400,12 @@
             this.bexport.ForeColor = System.Drawing.Color.White;
             this.bexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
             this.bexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bexport.Location = new System.Drawing.Point(759, 13);
+            this.bexport.Location = new System.Drawing.Point(800, 13);
             this.bexport.Name = "bexport";
             this.bexport.Size = new System.Drawing.Size(35, 35);
             this.bexport.TabIndex = 13;
             this.bexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // bprint
-            // 
-            this.bprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bprint.BorderRadius = 2;
-            this.bprint.BorderThickness = 1;
-            this.bprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bprint.FillColor = System.Drawing.Color.White;
-            this.bprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bprint.ForeColor = System.Drawing.Color.White;
-            this.bprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bprint.Location = new System.Drawing.Point(800, 13);
-            this.bprint.Name = "bprint";
-            this.bprint.Size = new System.Drawing.Size(35, 35);
-            this.bprint.TabIndex = 12;
-            this.bprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.bexport.Click += new System.EventHandler(this.bexport_Click);
             // 
             // tsearch
             // 
@@ -437,11 +430,12 @@
             // 
             // lnorecord
             // 
+            this.lnorecord.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lnorecord.AutoSize = true;
             this.lnorecord.BackColor = System.Drawing.Color.White;
             this.lnorecord.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.lnorecord.ForeColor = System.Drawing.Color.DimGray;
-            this.lnorecord.Location = new System.Drawing.Point(745, 216);
+            this.lnorecord.Location = new System.Drawing.Point(721, 214);
             this.lnorecord.Name = "lnorecord";
             this.lnorecord.Size = new System.Drawing.Size(116, 20);
             this.lnorecord.TabIndex = 16;
@@ -453,25 +447,25 @@
             this.dgvdata.AllowUserToDeleteRows = false;
             this.dgvdata.AllowUserToResizeColumns = false;
             this.dgvdata.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvdata.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgvdata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvdata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.Location = new System.Drawing.Point(353, 115);
@@ -504,6 +498,25 @@
             this.dgvdata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvdata.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellClick);
+            this.dgvdata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdata_DataBindingComplete);
+            // 
+            // badd
+            // 
+            this.badd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.badd.BorderRadius = 4;
+            this.badd.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.badd.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.badd.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.badd.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.badd.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.badd.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.badd.ForeColor = System.Drawing.Color.White;
+            this.badd.Location = new System.Drawing.Point(20, 273);
+            this.badd.Name = "badd";
+            this.badd.Size = new System.Drawing.Size(75, 31);
+            this.badd.TabIndex = 141;
+            this.badd.Text = "Insert";
+            this.badd.Click += new System.EventHandler(this.badd_Click);
             // 
             // frm_home_ADMIN_accountdata
             // 
@@ -541,7 +554,6 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Panel pnavtop;
         private Guna.UI2.WinForms.Guna2Button bexport;
-        private Guna.UI2.WinForms.Guna2Button bprint;
         private Guna.UI2.WinForms.Guna2TextBox tsearch;
         private System.Windows.Forms.Label lnorecord;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdata;
@@ -552,9 +564,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Button bloansave;
-        private Guna.UI2.WinForms.Guna2Button beditrate;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2TextBox taccgrp;
         private Guna.UI2.WinForms.Guna2Button bdel;
+        private Guna.UI2.WinForms.Guna2Button bupload;
+        private Guna.UI2.WinForms.Guna2ProgressBar pbloading;
+        private Guna.UI2.WinForms.Guna2Button badd;
     }
 }

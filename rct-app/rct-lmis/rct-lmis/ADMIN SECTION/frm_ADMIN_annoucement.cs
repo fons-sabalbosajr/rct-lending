@@ -56,7 +56,7 @@ namespace rct_lmis.ADMIN_SECTION
         private async Task SaveAnnouncementData(string title, string content)
         {
             var database = MongoDBConnection.Instance.Database;
-            var collection = database.GetCollection<Announcement>("annoucements");
+            var collection = database.GetCollection<Announcement>("announcements");
 
             var announcement = new Announcement
             {
