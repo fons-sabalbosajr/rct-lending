@@ -533,6 +533,12 @@
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.Designer.cs">
       <DependentUpon>frm_home_disburse_editCV.cs</DependentUpon>
     </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_remarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_remarks.Designer.cs">
+      <DependentUpon>frm_home_disburse_remarks.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -785,6 +791,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.resx">
       <DependentUpon>frm_home_disburse_editCV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_remarks.resx">
+      <DependentUpon>frm_home_disburse_remarks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_home.resx">
       <DependentUpon>frm_home.cs</DependentUpon>

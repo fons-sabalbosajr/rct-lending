@@ -3,6 +3,9 @@ using MongoDB.Driver;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
+using System.Linq;
+
 
 namespace rct_lmis.DISBURSEMENT_SECTION
 {
@@ -21,104 +24,212 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             var database = MongoDBConnection.Instance.Database;
             _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_collections");
 
-            dtdate.Value = DateTime.Now;
+            // Initialize DataTable for binding to DataGridView
+            _loanCollectionTable = new DataTable();
         }
 
         private void LoadLoanCollections()
         {
+            // Ensure the _loanCollectionTable is initialized with the correct columns
+            if (_loanCollectionTable.Columns.Count == 0)
+            {
+                // Add columns for each category: Client, Loan, Payment, Collection Information
+                _loanCollectionTable.Columns.Add("Client Information", typeof(string));
+                _loanCollectionTable.Columns.Add("Loan Information", typeof(string));
+                _loanCollectionTable.Columns.Add("Payment Information", typeof(string));
+                _loanCollectionTable.Columns.Add("Collection Information", typeof(string));
+                _loanCollectionTable.Columns.Add("Remarks", typeof(string));
+            }
+
+            // Clear existing rows before loading new data
+            _loanCollectionTable.Rows.Clear();
+            dgvdata.DataSource = null; // Clear existing data source
+
             // Query to get the loan collections based on LoanID
             var filter = Builders<BsonDocument>.Filter.Eq("LoanID", _loanId);
             var loanCollections = _loanDisbursedCollection.Find(filter).ToList();
 
-            // Convert MongoDB data to a DataTable for display
-            DataTable dt = new DataTable();
-            dt.Columns.Add("CollectionID");
-            dt.Columns.Add("DateCollected");
-            dt.Columns.Add("Amount");
-            dt.Columns.Add("Collector");
-
             foreach (var collection in loanCollections)
             {
-                dt.Rows.Add(
-                    collection["CollectionID"].AsString,
-                    collection["DateCollected"].ToUniversalTime().ToString("yyyy-MM-dd"),
-                    collection["Amount"].AsDouble.ToString("F2"),
-                    collection["Collector"].AsString
-                );
+                // Client Information
+                string collectionDate = collection.Contains("CollectionDate") ? collection["CollectionDate"].ToUniversalTime().ToString("yyyy-MM-dd") : "";
+                string accountId = collection.Contains("AccountId") ? collection["AccountId"].AsString : "";
+                string name = collection.Contains("Name") ? collection["Name"].AsString : "";
+
+                // Concatenate Client Information fields into a single string
+                string clientInfo = $"Col. Date: {collectionDate}\n" +
+                                    $"Col. No.: {accountId}\n" +
+                                    $"Name: {name}";
+
+                // Loan Information
+                string loanAmount = collection.Contains("LoanAmount") ? ((double)collection["LoanAmount"].AsDecimal128).ToString("F2") : "0.00";
+                string paymentsMode = collection.Contains("PaymentsMode") ? collection["PaymentsMode"].AsString : "";
+                string loanToPay = collection.Contains("LoantoPay") ? ((double)collection["LoantoPay"].AsDecimal128).ToString("F2") : "0.00";
+                string amortization = collection.Contains("Amortization") ? ((double)collection["Amortization"].AsDecimal128).ToString("F2") : "0.00";
+                string runningBalance = collection.Contains("RunningBalance") ? ((double)collection["RunningBalance"].AsDecimal128).ToString("F2") : "0.00";
+
+                // Concatenate Loan Information fields into a single string
+                string loanInfo = $"Loan Amount: {loanAmount}\n" +
+                                  $"Loan to Pay: {loanToPay}\n" +
+                                  $"Amortization: {amortization}\n" +
+                                  $"Running Balance: {runningBalance}";
+
+                // Payment Information
+                string dateReceived = collection.Contains("DateReceived") ? collection["DateReceived"].AsString : "";
+                string amountPaid = collection.Contains("AmountPaid") ? ((double)collection["AmountPaid"].AsDecimal128).ToString("F2") : "0.00";
+                string penalty = collection.Contains("CollectedPenalty") ? ((double)collection["CollectedPenalty"].AsDecimal128).ToString("F2") : "0.00";
+                string paymentMode = collection.Contains("PaymentMode") ? collection["PaymentMode"].AsString : "";
+                
+                // Concatenate Payment Information fields into a single string
+                string paymentInfo = $"Date Received: {dateReceived}\n" +
+                                     $"Amount Paid: {amountPaid}\n" +
+                                     $"Penalty: {penalty}\n" +
+                                     $"Payment Mode: {paymentMode}";
+                                    
+                // Collection Information
+                string collector = collection.Contains("Collector") ? collection["Collector"].AsString : "";
+                string area = collection.Contains("Area") ? collection["Area"].AsString : "";
+
+                // Determine Collection Status
+                string collectionStatus;
+                DateTime collDate = collection["CollectionDate"].ToUniversalTime();
+                DateTime receivedDate = DateTime.Parse(dateReceived);
+
+                if (paymentsMode == "DAILY")
+                {
+                    // Compare dates (ignore time)
+                    if (collDate.Date == receivedDate.Date)
+                    {
+                        collectionStatus = "Paid on Time";
+                    }
+                    else
+                    {
+                        collectionStatus = "Over Due";
+                    }
+                }
+                else if (paymentsMode == "WEEKLY")
+                {
+                    // Check if the collection date is within the same week as the date received
+                    if (collDate.Date >= receivedDate.Date && collDate.Date < receivedDate.Date.AddDays(7))
+                    {
+                        collectionStatus = "Paid on Time";
+                    }
+                    else
+                    {
+                        collectionStatus = "Over Due";
+                    }
+                }
+                else if (paymentsMode == "SEMI-MONTHLY")
+                {
+                    // Assuming semi-monthly means twice a month (e.g., 1st and 15th)
+                    DateTime firstPaymentDue = new DateTime(collDate.Year, collDate.Month, 1);
+                    DateTime secondPaymentDue = new DateTime(collDate.Year, collDate.Month, 15);
+                    if ((receivedDate.Date == firstPaymentDue.Date) || (receivedDate.Date == secondPaymentDue.Date))
+                    {
+                        collectionStatus = "Paid on Time";
+                    }
+                    else
+                    {
+                        collectionStatus = "Over Due";
+                    }
+                }
+                else if (paymentsMode == "MONTHLY")
+                {
+                    // Check if the collection date is the same as the received date (monthly)
+                    if (collDate.Date == receivedDate.Date)
+                    {
+                        collectionStatus = "Paid on Time";
+                    }
+                    else
+                    {
+                        collectionStatus = "Over Due";
+                    }
+                }
+                else
+                {
+                    // For any other payment modes, default to "Over Due"
+                    collectionStatus = "Over Due";
+                }
+
+                // Concatenate Collection Information fields into a single string
+                string collectionInfo = $"Collector: {collector}\n" +
+                                        $"Area Route: {area}\n" +
+                                        $"Collection Status: {collectionStatus}";
+
+                // Remarks Logic
+                string paymentStartDateStr = collection.Contains("PaymentStartDate") ? collection["PaymentStartDate"].AsString : "";
+                DateTime paymentStartDate = DateTime.Parse(paymentStartDateStr);
+
+                // Calculate remarks
+                string remarks;
+                if (paymentStartDate.Date == receivedDate.Date)
+                {
+                    // Calculate total days missed (could be negative)
+                    int daysMissed = (collDate.Date - paymentStartDate.Date).Days;
+                    remarks = $"Total Days Missed: {daysMissed} on {paymentStartDate:MM/dd/yyyy}";
+                }
+                else
+                {
+                    remarks = "Payment Completed";
+                }
+
+                // Add the concatenated information to the DataTable
+                _loanCollectionTable.Rows.Add(clientInfo, loanInfo, paymentInfo, collectionInfo, remarks);
             }
 
             // Bind data to DataGridView
-            dgvdata.DataSource = dt;
+            dgvdata.DataSource = _loanCollectionTable;
 
-            if (dgvdata.Rows.Count == 0)
+            // Set columns to fill the whole row
+            dgvdata.Columns["Client Information"].Width = 300;
+            dgvdata.Columns["Payment Information"].Width = 300;
+            dgvdata.Columns["Collection Information"].Width = 200;
+            dgvdata.Columns["Remarks"].Width = 200;
+            dgvdata.Columns["Loan Information"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+
+            // Check if the button column is already added to avoid duplicates
+            if (!dgvdata.Columns.Contains("ViewDetails"))
             {
-                // Show lnorecord label if no data
-                lnorecord.Visible = true;
+                // Add the button column directly to DataGridView, not the DataTable
+                DataGridViewButtonColumn viewDetailsButton = new DataGridViewButtonColumn();
+                viewDetailsButton.Name = "ViewDetails";
+                viewDetailsButton.HeaderText = "View Details";
+                viewDetailsButton.Text = "View Details";
+                viewDetailsButton.UseColumnTextForButtonValue = true; // Display text on the button
+                viewDetailsButton.FlatStyle = FlatStyle.Standard; // Optional: style for button
+                //viewDetailsButton.Width = 80; // Set the width of the button column
+                dgvdata.Columns.Add(viewDetailsButton);
             }
-            else
+
+            // Change the style of the Collection Status in the Collection Information
+            foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                // Hide lnorecord label and show DataGridView if data exists
-                lnorecord.Visible = false;
-                AddRowButtons();
+                string collectionInfo = row.Cells[3].Value.ToString(); // Assuming the Collection Information is in the 4th column
+                string[] collectionInfoParts = collectionInfo.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                string statusLine = collectionInfoParts.Last(); // Get the last line for status
+                string collectorLine = collectionInfoParts[0]; // Get the collector information
+                string areaLine = collectionInfoParts[1]; // Get the area information
+
+                // Set the base text for the Collection Information
+                row.Cells[3].Value = $"{collectorLine}\n{areaLine}\n{statusLine}";
+
+                // Apply styling based on Collection Status
+                if (statusLine.Contains("Paid on Time"))
+                {
+                    row.Cells[3].Style.ForeColor = Color.Green;
+                    row.Cells[3].Style.Font = new Font(dgvdata.Font, FontStyle.Bold);
+                }
+                else if (statusLine.Contains("Over Due"))
+                {
+                    row.Cells[3].Style.ForeColor = Color.Red;
+                    row.Cells[3].Style.Font = new Font(dgvdata.Font, FontStyle.Bold);
+                }
             }
-        }
 
-        private void AddRowButtons()
-        {
-            // Clear any existing button columns
-            dgvdata.Columns.Clear();
-            LoadLoanCollections();
 
-            // Add "View" button column
-            DataGridViewButtonColumn btnView = new DataGridViewButtonColumn();
-            btnView.HeaderText = "View";
-            btnView.Text = "View";
-            btnView.UseColumnTextForButtonValue = true;
-            dgvdata.Columns.Add(btnView);
-
-            // Add "Print" button column
-            DataGridViewButtonColumn btnPrint = new DataGridViewButtonColumn();
-            btnPrint.HeaderText = "Print";
-            btnPrint.Text = "Print";
-            btnPrint.UseColumnTextForButtonValue = true;
-            dgvdata.Columns.Add(btnPrint);
-
-            // Add "Delete" button column
-            DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
-            btnDelete.HeaderText = "Delete";
-            btnDelete.Text = "Delete";
-            btnDelete.UseColumnTextForButtonValue = true;
-            dgvdata.Columns.Add(btnDelete);
-        }
-
-      
-        private void ViewCollectionDetails(string collectionId)
-        {
-            // Display details for the selected collection
-            MessageBox.Show($"Viewing details for Collection ID: {collectionId}");
-        }
-
-        private void PrintCollectionDetails(string collectionId)
-        {
-            // Print logic for the selected collection
-            MessageBox.Show($"Printing details for Collection ID: {collectionId}");
-        }
-
-        private void DeleteCollection(string collectionId)
-        {
-            var filter = Builders<BsonDocument>.Filter.Eq("CollectionID", collectionId);
-            var result = _loanDisbursedCollection.DeleteOne(filter);
-
-            if (result.DeletedCount > 0)
-            {
-                MessageBox.Show($"Collection ID: {collectionId} has been deleted.");
-                // Reload the data after deletion
-                LoadLoanCollections();
-            }
-            else
-            {
-                MessageBox.Show($"Failed to delete Collection ID: {collectionId}");
-            }
+            // Show or hide the 'lnorecord' label depending on the number of rows
+            lnorecord.Visible = dgvdata.Rows.Count == 0;
         }
 
         private void SearchInDataGrid(string keyword)
@@ -148,12 +259,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             if (dgvdata.Rows.Count == 0)
             {
                 lnorecord.Visible = true;
-                
             }
             else
             {
                 lnorecord.Visible = false;
-               
             }
         }
 
@@ -165,23 +274,18 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            // Check if the click is in the button column (last column)
+            if (e.ColumnIndex == dgvdata.Columns.Count - 1 && e.RowIndex >= 0)
             {
-                string collectionId = dgvdata.Rows[e.RowIndex].Cells["CollectionID"].Value.ToString();
+                // Retrieve the data from the current row to show details
+                string details = ""; // Replace with your logic to fetch the details
+                                     // You can access other cells in the row to show more info
+                string remarks = dgvdata.Rows[e.RowIndex].Cells["Remarks"].Value.ToString();
+                // Create your details string or a new form to show details
+                details = $"Details for Row {e.RowIndex + 1}:\n{remarks}";
 
-                // Check which button was clicked based on the column index
-                if (dgvdata.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.ColumnIndex == dgvdata.Columns["View"].Index)
-                {
-                    ViewCollectionDetails(collectionId);
-                }
-                else if (dgvdata.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.ColumnIndex == dgvdata.Columns["Print"].Index)
-                {
-                    PrintCollectionDetails(collectionId);
-                }
-                else if (dgvdata.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.ColumnIndex == dgvdata.Columns["Delete"].Index)
-                {
-                    DeleteCollection(collectionId);
-                }
+                // For example, show a message box with details
+                MessageBox.Show(details, "View Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -199,6 +303,23 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             frm_home_disburse_collections_add add = new frm_home_disburse_collections_add();
             add.ShowDialog(this);
+        }
+
+        private void dgvdata_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && e.ColumnIndex < dgvdata.Columns.Count &&
+                dgvdata.Columns[e.ColumnIndex].Name == "ViewDetails")
+            {
+                // Check if the cell has a style
+                if (dgvdata.Rows[e.RowIndex].Cells[e.ColumnIndex].Style != null)
+                {
+                    // Retrieve the existing cell style
+                    DataGridViewCellStyle cellStyle = dgvdata.Rows[e.RowIndex].Cells[e.ColumnIndex].Style;
+
+                    // Apply padding: 20px left/right, 15px top/bottom
+                    cellStyle.Padding = new Padding(40, 40, 40, 40);
+                }
+            }
         }
     }
 }

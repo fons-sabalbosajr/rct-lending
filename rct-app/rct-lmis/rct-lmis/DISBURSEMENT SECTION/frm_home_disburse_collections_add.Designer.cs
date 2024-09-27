@@ -70,7 +70,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.bsave = new Guna.UI2.WinForms.Guna2Button();
-            this.bprintreceipt = new Guna.UI2.WinForms.Guna2Button();
             this.tprincipaldue = new Guna.UI2.WinForms.Guna2TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.tloanbal = new Guna.UI2.WinForms.Guna2TextBox();
@@ -307,7 +306,6 @@
             this.tname.Name = "tname";
             this.tname.PasswordChar = '\0';
             this.tname.PlaceholderText = "n/a";
-            this.tname.ReadOnly = true;
             this.tname.SelectedText = "";
             this.tname.Size = new System.Drawing.Size(230, 25);
             this.tname.TabIndex = 90;
@@ -746,23 +744,7 @@
             this.bsave.Size = new System.Drawing.Size(82, 31);
             this.bsave.TabIndex = 117;
             this.bsave.Text = "Save";
-            // 
-            // bprintreceipt
-            // 
-            this.bprintreceipt.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.bprintreceipt.BorderRadius = 4;
-            this.bprintreceipt.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bprintreceipt.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bprintreceipt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bprintreceipt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bprintreceipt.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bprintreceipt.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bprintreceipt.ForeColor = System.Drawing.Color.White;
-            this.bprintreceipt.Location = new System.Drawing.Point(581, 466);
-            this.bprintreceipt.Name = "bprintreceipt";
-            this.bprintreceipt.Size = new System.Drawing.Size(110, 31);
-            this.bprintreceipt.TabIndex = 118;
-            this.bprintreceipt.Text = "Print Receipt";
+            this.bsave.Click += new System.EventHandler(this.bsave_Click);
             // 
             // tprincipaldue
             // 
@@ -1235,7 +1217,6 @@
             this.Controls.Add(this.label18);
             this.Controls.Add(this.tprincipaldue);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.bprintreceipt);
             this.Controls.Add(this.bsave);
             this.Controls.Add(this.bcancel);
             this.Controls.Add(this.label16);
@@ -1326,7 +1307,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private Guna.UI2.WinForms.Guna2Button bsave;
-        private Guna.UI2.WinForms.Guna2Button bprintreceipt;
         private Guna.UI2.WinForms.Guna2TextBox tprincipaldue;
         private System.Windows.Forms.Label label17;
         private Guna.UI2.WinForms.Guna2TextBox tloanbal;

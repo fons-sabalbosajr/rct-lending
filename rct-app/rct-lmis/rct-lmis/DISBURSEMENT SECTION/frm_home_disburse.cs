@@ -388,7 +388,7 @@ namespace rct_lmis
             if (e.ColumnIndex == dgvdata.Columns["ViewCollections"].Index && e.RowIndex >= 0)
             {
                 // Get the Loan ID No from the clicked row
-                string loanId = dgvdata.Rows[e.RowIndex].Cells["Disbursement Reference No."].Value.ToString();
+                string loanId = dgvdata.Rows[e.RowIndex].Cells["Loan ID No"].Value.ToString();
 
                 // Open the detail form
                 frm_home_disburse_collections collections = new frm_home_disburse_collections(loanId);

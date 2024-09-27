@@ -36,21 +36,21 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_collections));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.bpayadvance = new Guna.UI2.WinForms.Guna2Button();
             this.bexport = new Guna.UI2.WinForms.Guna2Button();
             this.bprint = new Guna.UI2.WinForms.Guna2Button();
             this.laccountid = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.bnew = new Guna.UI2.WinForms.Guna2Button();
             this.laccno = new System.Windows.Forms.Label();
+            this.bpayadvance = new Guna.UI2.WinForms.Guna2Button();
+            this.bnew = new Guna.UI2.WinForms.Guna2Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.bsoa = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.bsoa = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -69,24 +69,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1184, 50);
             this.panel1.TabIndex = 4;
-            // 
-            // bpayadvance
-            // 
-            this.bpayadvance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bpayadvance.BorderRadius = 3;
-            this.bpayadvance.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bpayadvance.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bpayadvance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bpayadvance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bpayadvance.FillColor = System.Drawing.Color.SteelBlue;
-            this.bpayadvance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bpayadvance.ForeColor = System.Drawing.Color.White;
-            this.bpayadvance.Location = new System.Drawing.Point(785, 11);
-            this.bpayadvance.Name = "bpayadvance";
-            this.bpayadvance.Size = new System.Drawing.Size(141, 30);
-            this.bpayadvance.TabIndex = 39;
-            this.bpayadvance.Text = "Advance Payment";
-            this.toolTip1.SetToolTip(this.bpayadvance, "Generate Advance Payment");
             // 
             // bexport
             // 
@@ -137,7 +119,7 @@
             this.laccountid.BackColor = System.Drawing.Color.Transparent;
             this.laccountid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.laccountid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccountid.Location = new System.Drawing.Point(536, 15);
+            this.laccountid.Location = new System.Drawing.Point(865, 15);
             this.laccountid.Name = "laccountid";
             this.laccountid.Size = new System.Drawing.Size(121, 20);
             this.laccountid.TabIndex = 36;
@@ -150,11 +132,41 @@
             this.label27.BackColor = System.Drawing.Color.Transparent;
             this.label27.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label27.Location = new System.Drawing.Point(447, 16);
+            this.label27.Location = new System.Drawing.Point(776, 16);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(93, 19);
             this.label27.TabIndex = 35;
             this.label27.Text = "Disb. Ref. No.:";
+            // 
+            // laccno
+            // 
+            this.laccno.AutoSize = true;
+            this.laccno.BackColor = System.Drawing.Color.Transparent;
+            this.laccno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.laccno.Location = new System.Drawing.Point(12, 15);
+            this.laccno.Name = "laccno";
+            this.laccno.Size = new System.Drawing.Size(280, 20);
+            this.laccno.TabIndex = 19;
+            this.laccno.Text = "DISBURSEMENT COLLECTION DETAILS";
+            // 
+            // bpayadvance
+            // 
+            this.bpayadvance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bpayadvance.BorderRadius = 3;
+            this.bpayadvance.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bpayadvance.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bpayadvance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bpayadvance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bpayadvance.FillColor = System.Drawing.Color.SteelBlue;
+            this.bpayadvance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bpayadvance.ForeColor = System.Drawing.Color.White;
+            this.bpayadvance.Location = new System.Drawing.Point(785, 11);
+            this.bpayadvance.Name = "bpayadvance";
+            this.bpayadvance.Size = new System.Drawing.Size(141, 30);
+            this.bpayadvance.TabIndex = 39;
+            this.bpayadvance.Text = "Advance Payment";
+            this.toolTip1.SetToolTip(this.bpayadvance, "Generate Advance Payment");
             // 
             // bnew
             // 
@@ -175,17 +187,23 @@
             this.toolTip1.SetToolTip(this.bnew, "New Collection Transaction");
             this.bnew.Click += new System.EventHandler(this.bnew_Click);
             // 
-            // laccno
+            // bsoa
             // 
-            this.laccno.AutoSize = true;
-            this.laccno.BackColor = System.Drawing.Color.Transparent;
-            this.laccno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccno.Location = new System.Drawing.Point(12, 15);
-            this.laccno.Name = "laccno";
-            this.laccno.Size = new System.Drawing.Size(280, 20);
-            this.laccno.TabIndex = 19;
-            this.laccno.Text = "DISBURSEMENT COLLECTION DETAILS";
+            this.bsoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bsoa.BorderRadius = 4;
+            this.bsoa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bsoa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bsoa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bsoa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bsoa.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bsoa.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bsoa.ForeColor = System.Drawing.Color.White;
+            this.bsoa.Location = new System.Drawing.Point(1079, 11);
+            this.bsoa.Name = "bsoa";
+            this.bsoa.Size = new System.Drawing.Size(93, 31);
+            this.bsoa.TabIndex = 184;
+            this.bsoa.Text = "Print SOA";
+            this.toolTip1.SetToolTip(this.bsoa, "Print Statement of Account");
             // 
             // panel2
             // 
@@ -285,7 +303,8 @@
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -308,7 +327,7 @@
             dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvdata.RowTemplate.Height = 80;
+            this.dgvdata.RowTemplate.Height = 120;
             this.dgvdata.Size = new System.Drawing.Size(1184, 556);
             this.dgvdata.TabIndex = 12;
             this.dgvdata.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
@@ -329,30 +348,13 @@
             this.dgvdata.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvdata.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvdata.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.dgvdata.ThemeStyle.RowsStyle.Height = 80;
+            this.dgvdata.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvdata.ThemeStyle.RowsStyle.Height = 120;
             this.dgvdata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvdata.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellContentClick);
+            this.dgvdata.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvdata_CellFormatting);
             this.dgvdata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdata_DataBindingComplete);
-            // 
-            // bsoa
-            // 
-            this.bsoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bsoa.BorderRadius = 4;
-            this.bsoa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bsoa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bsoa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bsoa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bsoa.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bsoa.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bsoa.ForeColor = System.Drawing.Color.White;
-            this.bsoa.Location = new System.Drawing.Point(1079, 11);
-            this.bsoa.Name = "bsoa";
-            this.bsoa.Size = new System.Drawing.Size(93, 31);
-            this.bsoa.TabIndex = 184;
-            this.bsoa.Text = "Print SOA";
-            this.toolTip1.SetToolTip(this.bsoa, "Print Statement of Account");
             // 
             // frm_home_disburse_collections
             // 

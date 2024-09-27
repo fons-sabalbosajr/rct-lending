@@ -42,8 +42,8 @@ namespace rct_lmis
             LoadCollectionTotal();
             PopulateCollectionsView();
 
-            LoadDueLoanTotal();
-            PopulateUpcomingPaymentsView();
+            //LoadDueLoanTotal();
+            //PopulateUpcomingPaymentsView();
         }
 
         private void InitializeDataGridView()
@@ -318,9 +318,9 @@ namespace rct_lmis
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_collections");
 
-                // Get the total count of distinct LoanIDNo in the loan_collections collection
-                var distinctLoanIDNos = collection.Distinct<string>("LoanIDNo", Builders<BsonDocument>.Filter.Empty).ToList();
-                int totalCount = distinctLoanIDNos.Count;
+                // Get the total count of distinct LoanID in the loan_collections collection
+                var distinctLoanIDs = collection.Distinct<string>("LoanID", Builders<BsonDocument>.Filter.Empty).ToList();
+                int totalCount = distinctLoanIDs.Count;
 
                 // Display the total count in the lcollectiontotal label
                 lcollectiontotal.Text = totalCount.ToString();
@@ -332,6 +332,7 @@ namespace rct_lmis
             }
         }
 
+
         private void PopulateCollectionsView()
         {
             try
@@ -339,10 +340,19 @@ namespace rct_lmis
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_collections");
 
-                // Fetch recent collections ordered by date
+                // Fetch recent collections ordered by CollectionDate
                 var recentCollections = collection.Find(Builders<BsonDocument>.Filter.Empty)
-                                                  .SortByDescending(c => c["CollectionDate"]) // Assuming there's a CollectionDate field
+                                                  .SortByDescending(c => c["CollectionDate"]) // Sorting by CollectionDate field
                                                   .ToList();
+
+                // Ensure the DataGridView has the necessary columns
+                if (dgvcollectionsnew.Columns.Count == 0)
+                {
+                    dgvcollectionsnew.Columns.Add("LoanID", "Loan ID");
+                    dgvcollectionsnew.Columns.Add("AmountPaid", "Amount Paid");
+                    dgvcollectionsnew.Columns.Add("CollectionDate", "Collection Date");
+                    dgvcollectionsnew.Columns.Add("Collector", "Collected By");
+                }
 
                 // Clear existing rows in the DataGridView
                 dgvcollectionsnew.Rows.Clear();
@@ -350,13 +360,37 @@ namespace rct_lmis
                 // Populate DataGridView with collection information
                 foreach (var collectionDoc in recentCollections)
                 {
-                    string loanId = collectionDoc.Contains("LoanIDNo") ? collectionDoc["LoanIDNo"].ToString() : "";
-                    string amount = collectionDoc.Contains("Amount") ? collectionDoc["Amount"].ToString() : "";
-                    string collectionDate = collectionDoc.Contains("CollectionDate") ? collectionDoc["CollectionDate"].ToString() : "";
-                    string collectedBy = collectionDoc.Contains("CollectedBy") ? collectionDoc["CollectedBy"].ToString() : ""; // Adjust field name as necessary
+                    // Extract data with proper null checks and formatting
+                    string loanId = collectionDoc.Contains("LoanID") ? collectionDoc["LoanID"].AsString : "";
+
+                    // Handling BsonDecimal128 or BsonDouble for AmountPaid
+                    double amountPaid = 0.0;
+                    if (collectionDoc.Contains("AmountPaid"))
+                    {
+                        var amountPaidBson = collectionDoc["AmountPaid"];
+                        if (amountPaidBson.BsonType == BsonType.Decimal128)
+                        {
+                            amountPaid = (double)amountPaidBson.AsDecimal128;
+                        }
+                        else if (amountPaidBson.BsonType == BsonType.Double)
+                        {
+                            amountPaid = amountPaidBson.AsDouble;
+                        }
+                    }
+
+                    DateTime collectionDate = collectionDoc.Contains("CollectionDate") && collectionDoc["CollectionDate"].IsBsonDateTime
+                        ? collectionDoc["CollectionDate"].ToUniversalTime()
+                        : DateTime.MinValue;
+
+                    string collectedBy = collectionDoc.Contains("Collector") ? collectionDoc["Collector"].AsString : "";
+
+                    // Format the date for display
+                    string formattedCollectionDate = collectionDate != DateTime.MinValue
+                        ? collectionDate.ToString("yyyy-MM-dd")
+                        : "";
 
                     // Add row to the DataGridView
-                    dgvcollectionsnew.Rows.Add(loanId, amount, collectionDate, collectedBy);
+                    dgvcollectionsnew.Rows.Add(loanId, amountPaid.ToString("F2"), formattedCollectionDate, collectedBy);
                 }
             }
             catch (Exception ex)
@@ -365,6 +399,9 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading collections: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
 
 
         private void LoadDueLoanTotal()
@@ -407,9 +444,9 @@ namespace rct_lmis
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_collections");
 
-                // Get upcoming payments based on the next payment date
+                // Get upcoming payments sorted by the collection date (since no "NextPaymentDate" is in the sample data)
                 var upcomingPayments = collection.Find(Builders<BsonDocument>.Filter.Empty)
-                                                 .SortBy(c => c["NextPaymentDate"]) // Assuming there's a NextPaymentDate field
+                                                 .SortBy(c => c["CollectionDate"]) // Using CollectionDate for sorting
                                                  .ToList();
 
                 // Clear existing rows in the DataGridView
@@ -418,13 +455,16 @@ namespace rct_lmis
                 // Populate DataGridView with upcoming payment information
                 foreach (var payment in upcomingPayments)
                 {
-                    string loanId = payment.Contains("LoanIDNo") ? payment["LoanIDNo"].ToString() : "";
-                    string amountDue = payment.Contains("AmountDue") ? payment["AmountDue"].ToString() : ""; // Adjust field name as necessary
-                    string nextPaymentDate = payment.Contains("NextPaymentDate") ? payment["NextPaymentDate"].ToString() : "";
-                    string collectedBy = payment.Contains("CollectedBy") ? payment["CollectedBy"].ToString() : ""; // Adjust field name as necessary
+                    // Retrieve data from BsonDocument and handle missing fields
+                    string loanId = payment.Contains("LoanID") ? payment["LoanID"].AsString : "N/A";
+                    string amountDue = payment.Contains("LoantoPay") ? payment["LoantoPay"].ToString() : "0.00"; // Adjust field name
+                    string collectionDate = payment.Contains("CollectionDate")
+                                            ? payment["CollectionDate"].ToLocalTime().ToString("yyyy-MM-dd")
+                                            : "N/A";
+                    string collector = payment.Contains("Collector") ? payment["Collector"].AsString : "Unknown"; // Adjust field name
 
                     // Add row to the DataGridView
-                    dgvupcomingpayments.Rows.Add(loanId, amountDue, nextPaymentDate, collectedBy);
+                    dgvupcomingpayments.Rows.Add(loanId, amountDue, collectionDate, collector);
                 }
             }
             catch (Exception ex)
@@ -433,6 +473,7 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading upcoming payments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 

@@ -233,6 +233,12 @@ namespace rct_lmis.ADMIN_SECTION
                                 // Format Interest Rate/Month with percentage
                                 row[element.Name] = Math.Round(element.Value.ToDouble(), 2) + "%";
                             }
+                            else if (element.Name == "Penalty Rate")
+                            {
+                                // Format Interest Rate/Month with percentage
+                                row[element.Name] = Math.Round(element.Value.ToDouble(), 2) + "%";
+                            }
+
                             else
                             {
                                 // Round numeric values to the nearest ones
