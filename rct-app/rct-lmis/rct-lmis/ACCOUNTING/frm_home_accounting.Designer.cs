@@ -208,9 +208,9 @@ namespace rct_lmis.ACCOUNTING
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(23, 46);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(119, 25);
+            this.label6.Size = new System.Drawing.Size(50, 25);
             this.label6.TabIndex = 3;
-            this.label6.Text = "Net Amount";
+            this.label6.Text = "0.00";
             // 
             // guna2CirclePictureBox3
             // 
@@ -257,9 +257,9 @@ namespace rct_lmis.ACCOUNTING
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(22, 46);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(119, 25);
+            this.label5.Size = new System.Drawing.Size(50, 25);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Net Amount";
+            this.label5.Text = "0.00";
             // 
             // guna2CirclePictureBox2
             // 
@@ -320,9 +320,9 @@ namespace rct_lmis.ACCOUNTING
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(21, 46);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 25);
+            this.label4.Size = new System.Drawing.Size(50, 25);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Net Amount";
+            this.label4.Text = "0.00";
             // 
             // label1
             // 

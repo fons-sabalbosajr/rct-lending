@@ -8,20 +8,20 @@
         <beforeApplicationStartup />
       </update>
     </subscription>
-    <deploymentProvider codebase="http://desktop-anepmcf/lmis/rct-lmis.application" />
+    <deploymentProvider codebase="http://desktop-l6p2e50/lmis/rct-lmis.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="rct-lmis.exe.manifest" size="131459">
+    <dependentAssembly dependencyType="install" codebase="rct-lmis.exe.manifest" size="138279">
       <assemblyIdentity name="rct-lmis.exe" version="1.0.0.6" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BqB/yA97Up12hW4AO33vi0c30NUCtIDjdzn4v23D/b4=</dsig:DigestValue>
+        <dsig:DigestValue>mr8YPi8c0Nw3TzJHJfdu6tiOOF0a0mAvoaAk2wP+1S4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

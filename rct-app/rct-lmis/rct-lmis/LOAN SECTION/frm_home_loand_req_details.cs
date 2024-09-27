@@ -242,7 +242,7 @@ namespace rct_lmis.LOAN_SECTION
                     var approvedLoan = new BsonDocument
                     {
                         { "AccountId", loanApplication.GetValue("AccountId", "") },
-                        { "LoanType", loanApplication.GetValue("LoanType", "") },
+                        { "LoanType", "First Time Borrower" },
                         { "FirstName", loanApplication.GetValue("FirstName", "") },
                         { "MiddleName", loanApplication.GetValue("MiddleName", "") },
                         { "LastName", loanApplication.GetValue("LastName", "") },
@@ -278,7 +278,7 @@ namespace rct_lmis.LOAN_SECTION
                         { "CBCP", loanApplication.GetValue("CBCP", "") },
                         { "CBIncome", loanApplication.GetValue("CBIncome", "") },
                         { "ApplicationDate", loanApplication.GetValue("ApplicationDate", "") },
-                        { "LoanStatus", loanApplication.GetValue("LoanStatus", "Application Approved") },
+                        { "LoanStatus", "Application Approved" },
                         { "docs", loanApplication.GetValue("docs", "") }, // Save the docs field
                         { "doc-link", loanApplication.GetValue("doc-link", "") }, // Save the doc-link field
                         { "ApprovalDate", DateTime.Now }, // Add the current date

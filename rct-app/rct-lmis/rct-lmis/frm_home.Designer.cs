@@ -123,7 +123,7 @@ namespace rct_lmis
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(758, 17);
+            this.label1.Location = new System.Drawing.Point(810, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 42;
@@ -148,9 +148,9 @@ namespace rct_lmis
             this.ldate.BackColor = System.Drawing.Color.Transparent;
             this.ldate.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ldate.Location = new System.Drawing.Point(758, 33);
+            this.ldate.Location = new System.Drawing.Point(810, 33);
             this.ldate.Name = "ldate";
-            this.ldate.Size = new System.Drawing.Size(37, 16);
+            this.ldate.Size = new System.Drawing.Size(36, 16);
             this.ldate.TabIndex = 40;
             this.ldate.Text = "Date";
             this.ldate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -287,7 +287,7 @@ namespace rct_lmis
             this.lfname.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lfname.Location = new System.Drawing.Point(1191, 31);
             this.lfname.Name = "lfname";
-            this.lfname.Size = new System.Drawing.Size(35, 16);
+            this.lfname.Size = new System.Drawing.Size(34, 16);
             this.lfname.TabIndex = 2;
             this.lfname.Text = "User";
             this.lfname.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -392,6 +392,7 @@ namespace rct_lmis
             this.breports.Text = "Reports";
             this.breports.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.breports.TextOffset = new System.Drawing.Point(20, 0);
+            this.breports.Visible = false;
             // 
             // bpayments
             // 
@@ -502,6 +503,7 @@ namespace rct_lmis
             this.bcrbooks.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bcrbooks.TextOffset = new System.Drawing.Point(20, 0);
             this.toolTip1.SetToolTip(this.bcrbooks, "Check Books");
+            this.bcrbooks.Visible = false;
             this.bcrbooks.Click += new System.EventHandler(this.bcrbooks_Click);
             // 
             // bdisburse

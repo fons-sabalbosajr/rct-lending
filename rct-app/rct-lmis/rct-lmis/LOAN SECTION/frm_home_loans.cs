@@ -194,10 +194,11 @@ namespace rct_lmis
                     btnColumnDisburse.DefaultCellStyle.Font = new Font("Segoe UI", 9);
                 }
 
-                // Hide the "Disburse" button column if any loan status is "Loan Released"
-                bool shouldHideDisburseColumn = dataTable.AsEnumerable().Any(row => row.Field<string>("LoanStatus").Equals("Loan Released", StringComparison.OrdinalIgnoreCase));
-                //dgvdata.Columns["btnDisburse"].Visible = !shouldHideDisburseColumn;
+                // Show or hide the Disburse button column based on LoanStatus
+                bool shouldShowDisburseColumn = dataTable.AsEnumerable().Any(row => row.Field<string>("LoanStatus").Equals("Application Approved", StringComparison.OrdinalIgnoreCase));
+                dgvdata.Columns["btnDisburse"].Visible = shouldShowDisburseColumn;
 
+               
             }
             catch (Exception ex)
             {
@@ -205,7 +206,23 @@ namespace rct_lmis
             }
         }
 
+        private BsonDocument GetLoanCollectionData(string accountId)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collections = database.GetCollection<BsonDocument>("loan_collections");
 
+            var filter = Builders<BsonDocument>.Filter.Eq("LoanNumber", accountId);
+            return collections.Find(filter).FirstOrDefault();
+        }
+
+        private BsonDocument GetLoanRReleaseData(string clientId)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collections = database.GetCollection<BsonDocument>("loan_disbursed");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("cashClnNo", clientId);
+            return collections.Find(filter).FirstOrDefault();
+        }
 
         private void CenterAlignColumns(params string[] columnNames)
         {
@@ -277,10 +294,8 @@ namespace rct_lmis
 
         private void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            if (e.RowIndex >= 0) // Ensure a valid row index is clicked
             {
-              
                 if (dgvdata.Columns[e.ColumnIndex].Name == "btnActions")
                 {
                     var selectedAccountId = dgvdata.Rows[e.RowIndex].Cells["AccountID"].Value.ToString();
@@ -294,21 +309,53 @@ namespace rct_lmis
                     loanDetailsForm.Show(this);
                     load.Close();
                 }
-               
                 else if (dgvdata.Columns[e.ColumnIndex].Name == "btnDisburse")
                 {
-                    var selectedAccountId = dgvdata.Rows[e.RowIndex].Cells["AccountID"].Value.ToString();
-
-                    // Pass the AccountID to the frm_home_loan_disburse form
-                    frm_home_loan_disburse fdis = new frm_home_loan_disburse
+                    string loanStatus = dgvdata.Rows[e.RowIndex].Cells["LoanStatus"].Value.ToString();
+                    if (loanStatus == "Loan Released")
                     {
-                        AccountID = selectedAccountId // Set the AccountID
-                    };
+                        // Fetch loan collection data based on AccountId
+                        string accountId = dgvdata.Rows[e.RowIndex].Cells["AccountID"].Value.ToString();
+                        var collectionData = GetLoanCollectionData(accountId); // Fetch loan collection data
 
-                    load.Show(this);
-                    Thread.Sleep(500);
-                    load.Close();
-                    fdis.Show(this); // Open the frm_home_loan_disburse form
+                        // Assuming 'ClientNumber' is equivalent to your clientId
+                        //var clientNumber = dgvdata.Rows[e.RowIndex].Cells["ClientNumber"].Value.ToString();
+                        //var loanReleaseData = GetLoanRReleaseData(clientNumber); // Fetch loan release data
+
+                        if (collectionData != null)
+                        {
+                            //string loanReleaseDate = loanReleaseData != null ? loanReleaseData["DisbursementTime"].ToString() : "Not available";
+                            string message =
+                                $"Sorry. This account has been released the loan: The details are given below: \n\n" +
+                                $"Loan Released for Account: {accountId}\n" +
+                                $"Borrower Name: {collectionData["Name"]}\n" +
+                                $"Loan ID: {collectionData["LoanID"]}\n" +
+                                $"Loan Amount: ₱ {collectionData["LoanAmount"]}\n" +
+                                $"Payment Start Date: {collectionData["PaymentStartDate"]}\n" +
+                                $"Payment Maturity Date: {collectionData["PaymentMaturityDate"]}\n" +
+                                $"Collector: {collectionData["Collector"]}\n";
+                            MessageBox.Show(message, "Loan Released Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No collection data found for this loan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        var selectedAccountId = dgvdata.Rows[e.RowIndex].Cells["AccountID"].Value.ToString();
+
+                        // Pass the AccountID to the frm_home_loan_disburse form
+                        frm_home_loan_disburse fdis = new frm_home_loan_disburse
+                        {
+                            AccountID = selectedAccountId // Set the AccountID
+                        };
+
+                        load.Show(this);
+                        Thread.Sleep(500);
+                        load.Close();
+                        fdis.Show(this); // Open the frm_home_loan_disburse form
+                    }
                 }
             }
         }

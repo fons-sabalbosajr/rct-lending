@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using DnsClient.Protocol;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using rct_lmis.ADMIN_SECTION;
@@ -23,6 +24,10 @@ namespace rct_lmis
 
             dgvusersonline.ClearSelection();
             dgvbulletin.ClearSelection();
+
+            dgvclients.ClearSelection();
+            dgvbulletin.ClearSelection();
+            dgvcollectionsnew.ClearSelection();
         }
 
         private void frm_home_dashboard_Load(object sender, EventArgs e)
@@ -36,8 +41,8 @@ namespace rct_lmis
             LoadClientTotal();
             PopulateClientsView();
 
-            LoadLoanTotal();
-            PopulatePendingLoansView();
+            //LoadLoanTotal();
+            //PopulatePendingLoansView();
 
             LoadCollectionTotal();
             PopulateCollectionsView();
@@ -248,6 +253,8 @@ namespace rct_lmis
                     // Add row to the DataGridView
                     dgvclients.Rows.Add(clientInfo, loanStatus);
                 }
+                dgvclients.DataBindingComplete += dgvclients_DataBindingComplete;
+
             }
             catch (Exception ex)
             {
@@ -255,9 +262,6 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading clients: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
 
         private void LoadLoanTotal()
         {
@@ -340,58 +344,75 @@ namespace rct_lmis
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_collections");
 
-                // Fetch recent collections ordered by CollectionDate
-                var recentCollections = collection.Find(Builders<BsonDocument>.Filter.Empty)
-                                                  .SortByDescending(c => c["CollectionDate"]) // Sorting by CollectionDate field
-                                                  .ToList();
-
                 // Ensure the DataGridView has the necessary columns
                 if (dgvcollectionsnew.Columns.Count == 0)
                 {
-                    dgvcollectionsnew.Columns.Add("LoanID", "Loan ID");
+                    dgvcollectionsnew.Columns.Add("ClientInfo", "Client Information");
+                    dgvcollectionsnew.Columns.Add("LoanAmount", "Loan Amount");
                     dgvcollectionsnew.Columns.Add("AmountPaid", "Amount Paid");
-                    dgvcollectionsnew.Columns.Add("CollectionDate", "Collection Date");
-                    dgvcollectionsnew.Columns.Add("Collector", "Collected By");
+                    dgvcollectionsnew.Columns.Add("CollectorInfo", "Collection Information");
                 }
 
-                // Clear existing rows in the DataGridView
+                // Clear existing rows before loading new data
                 dgvcollectionsnew.Rows.Clear();
+                dgvcollectionsnew.DataBindingComplete += dgvcollectionsnew_DataBindingComplete;
+
+                // Query to get all loan collections
+                var loanCollections = collection.Find(Builders<BsonDocument>.Filter.Empty)
+                                                .ToList();
 
                 // Populate DataGridView with collection information
-                foreach (var collectionDoc in recentCollections)
+                foreach (var collectionDoc in loanCollections)
                 {
-                    // Extract data with proper null checks and formatting
-                    string loanId = collectionDoc.Contains("LoanID") ? collectionDoc["LoanID"].AsString : "";
+                    // Client Information
+                    string collectionDate = collectionDoc.Contains("CollectionDate") ?
+                        collectionDoc["CollectionDate"].ToUniversalTime().ToString("yyyy-MM-dd") : "";
+                    string accountId = collectionDoc.Contains("AccountId") ?
+                        collectionDoc["AccountId"].AsString : "";
+                    string name = collectionDoc.Contains("Name") ?
+                        collectionDoc["Name"].AsString : "";
 
-                    // Handling BsonDecimal128 or BsonDouble for AmountPaid
-                    double amountPaid = 0.0;
-                    if (collectionDoc.Contains("AmountPaid"))
+                    // Concatenate Client Information fields into a single string
+                    string clientInfo = $"Col. Date: {collectionDate} | Col. No.: {accountId} | Name: {name}";
+
+                    // Loan Information
+                    string loanAmount = collectionDoc.Contains("LoanAmount") ?
+                        ((double)collectionDoc["LoanAmount"].AsDecimal128).ToString("F2") : "0.00";
+
+                    // Payment Information (optional, can be omitted if not needed)
+                    string amountPaid = collectionDoc.Contains("ActualCollection") ?
+                        ((double)collectionDoc["ActualCollection"].AsDecimal128).ToString("F2") : "0.00";
+
+                    // Collection Information
+                    string collector = collectionDoc.Contains("Collector") ?
+                        collectionDoc["Collector"].AsString : "";
+                    string area = collectionDoc.Contains("Area") ?
+                        collectionDoc["Area"].AsString : "";
+
+                    // Determine Collection Status
+                    string collectionStatus = "Over Due"; // Default status
+                    if (collectionDoc.Contains("CollectionDate") && collectionDoc.Contains("DateReceived"))
                     {
-                        var amountPaidBson = collectionDoc["AmountPaid"];
-                        if (amountPaidBson.BsonType == BsonType.Decimal128)
-                        {
-                            amountPaid = (double)amountPaidBson.AsDecimal128;
-                        }
-                        else if (amountPaidBson.BsonType == BsonType.Double)
-                        {
-                            amountPaid = amountPaidBson.AsDouble;
-                        }
+                        DateTime collDate = collectionDoc["CollectionDate"].ToUniversalTime();
+                        DateTime receivedDate = DateTime.Parse(collectionDoc["DateReceived"].AsString);
+
+                        // Add logic to determine the status based on your criteria here
+                        collectionStatus = collDate.Date == receivedDate.Date ? "Paid on Time" : "Over Due";
                     }
 
-                    DateTime collectionDate = collectionDoc.Contains("CollectionDate") && collectionDoc["CollectionDate"].IsBsonDateTime
-                        ? collectionDoc["CollectionDate"].ToUniversalTime()
-                        : DateTime.MinValue;
+                    // Concatenate Collection Information fields into a single string
+                    string collectionInfo = $"Collector: {collector} | Area Route: {area} | Collection Status: {collectionStatus}";
 
-                    string collectedBy = collectionDoc.Contains("Collector") ? collectionDoc["Collector"].AsString : "";
-
-                    // Format the date for display
-                    string formattedCollectionDate = collectionDate != DateTime.MinValue
-                        ? collectionDate.ToString("yyyy-MM-dd")
-                        : "";
-
-                    // Add row to the DataGridView
-                    dgvcollectionsnew.Rows.Add(loanId, amountPaid.ToString("F2"), formattedCollectionDate, collectedBy);
+                    // Add the concatenated information to the DataGridView
+                    dgvcollectionsnew.Rows.Add(clientInfo, loanAmount, amountPaid, collectionInfo);
                 }
+
+                // Set column widths and other properties if needed
+                dgvcollectionsnew.Columns[0].Width = 300; // Client Information
+                dgvcollectionsnew.Columns[1].Width = 200; // Loan Amount
+                dgvcollectionsnew.Columns[2].Width = 200; // Amount Paid
+                dgvcollectionsnew.Columns[3].Width = 200; // Collection Information
+
             }
             catch (Exception ex)
             {
@@ -399,8 +420,6 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading collections: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
 
 
@@ -475,8 +494,6 @@ namespace rct_lmis
         }
 
 
-
-
         private void dgvusersonline_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvusersonline.Columns["Status"].Index)
@@ -548,6 +565,11 @@ namespace rct_lmis
         private void dgvclients_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvclients.ClearSelection();
+        }
+
+        private void dgvcollectionsnew_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvcollectionsnew.ClearSelection();
         }
     }
 

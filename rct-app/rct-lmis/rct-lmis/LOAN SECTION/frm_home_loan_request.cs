@@ -55,7 +55,7 @@ namespace rct_lmis.LOAN_SECTION
                     row["LoanType"] = doc.Contains("LoanType") ? doc["LoanType"].ToString() : string.Empty;
                     row["Principal"] = doc.Contains("Principal") ? "₱ " + doc["Principal"].ToString() + ".00" : string.Empty;
                     row["Term"] = doc.Contains("Term") ? doc["Term"].ToString() + " month/s" : string.Empty;
-                    row["Status"] = doc.Contains("Status") ? doc["Status"].ToString() : string.Empty;
+                    row["Status"] = doc.Contains("LoanStatus") ? doc["LoanStatus"].ToString() : string.Empty;
 
                     string firstName = doc.Contains("FirstName") ? doc["FirstName"].ToString() : string.Empty;
                     string middleName = doc.Contains("MiddleName") ? doc["MiddleName"].ToString() : string.Empty;

@@ -204,6 +204,7 @@
             this.bsoa.TabIndex = 184;
             this.bsoa.Text = "Print SOA";
             this.toolTip1.SetToolTip(this.bsoa, "Print Statement of Account");
+            this.bsoa.Click += new System.EventHandler(this.bsoa_Click);
             // 
             // panel2
             // 
@@ -327,7 +328,7 @@
             dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvdata.RowTemplate.Height = 120;
+            this.dgvdata.RowTemplate.Height = 100;
             this.dgvdata.Size = new System.Drawing.Size(1184, 556);
             this.dgvdata.TabIndex = 12;
             this.dgvdata.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
@@ -349,7 +350,7 @@
             this.dgvdata.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvdata.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvdata.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvdata.ThemeStyle.RowsStyle.Height = 120;
+            this.dgvdata.ThemeStyle.RowsStyle.Height = 100;
             this.dgvdata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvdata.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellContentClick);

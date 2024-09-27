@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_collections_add));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tloanid = new Guna.UI2.WinForms.Guna2TextBox();
@@ -96,6 +97,8 @@
             this.lcolbranch = new System.Windows.Forms.Label();
             this.tpaymentstatus = new Guna.UI2.WinForms.Guna2TextBox();
             this.label30 = new System.Windows.Forms.Label();
+            this.bamtfull = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,7 +129,7 @@
             this.tloanid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tloanid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tloanid.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanid.Location = new System.Drawing.Point(270, 10);
+            this.tloanid.Location = new System.Drawing.Point(270, 13);
             this.tloanid.Name = "tloanid";
             this.tloanid.PasswordChar = '\0';
             this.tloanid.PlaceholderText = "n/a";
@@ -141,7 +144,7 @@
             this.label31.BackColor = System.Drawing.Color.Transparent;
             this.label31.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label31.Location = new System.Drawing.Point(217, 15);
+            this.label31.Location = new System.Drawing.Point(217, 18);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(47, 15);
             this.label31.TabIndex = 150;
@@ -174,7 +177,7 @@
             this.laccountid.BackColor = System.Drawing.Color.Transparent;
             this.laccountid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.laccountid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccountid.Location = new System.Drawing.Point(621, 15);
+            this.laccountid.Location = new System.Drawing.Point(639, 15);
             this.laccountid.Name = "laccountid";
             this.laccountid.Size = new System.Drawing.Size(121, 20);
             this.laccountid.TabIndex = 36;
@@ -187,7 +190,7 @@
             this.label27.BackColor = System.Drawing.Color.Transparent;
             this.label27.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label27.Location = new System.Drawing.Point(518, 15);
+            this.label27.Location = new System.Drawing.Point(536, 16);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(97, 19);
             this.label27.TabIndex = 35;
@@ -221,6 +224,8 @@
             this.bcancel.Size = new System.Drawing.Size(82, 31);
             this.bcancel.TabIndex = 31;
             this.bcancel.Text = "Cancel";
+            this.toolTip1.SetToolTip(this.bcancel, "Cancel Transaction");
+            this.bcancel.Click += new System.EventHandler(this.bcancel_Click);
             // 
             // tclientno
             // 
@@ -617,7 +622,7 @@
             this.tcolpayamt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tcolpayamt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.tcolpayamt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcolpayamt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcolpayamt.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcolpayamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolpayamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tcolpayamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_symbol_48_gray;
@@ -626,7 +631,7 @@
             this.tcolpayamt.PasswordChar = '\0';
             this.tcolpayamt.PlaceholderText = "0.00";
             this.tcolpayamt.SelectedText = "";
-            this.tcolpayamt.Size = new System.Drawing.Size(178, 36);
+            this.tcolpayamt.Size = new System.Drawing.Size(178, 39);
             this.tcolpayamt.TabIndex = 110;
             this.tcolpayamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tcolpayamt.TextChanged += new System.EventHandler(this.tcolpayamt_TextChanged);
@@ -722,7 +727,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label16.Location = new System.Drawing.Point(622, 346);
+            this.label16.Location = new System.Drawing.Point(622, 334);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(54, 15);
             this.label16.TabIndex = 116;
@@ -744,6 +749,7 @@
             this.bsave.Size = new System.Drawing.Size(82, 31);
             this.bsave.TabIndex = 117;
             this.bsave.Text = "Save";
+            this.toolTip1.SetToolTip(this.bsave, "Save Transaction");
             this.bsave.Click += new System.EventHandler(this.bsave_Click);
             // 
             // tprincipaldue
@@ -1021,7 +1027,6 @@
             this.tcolrefno.Name = "tcolrefno";
             this.tcolrefno.PasswordChar = '\0';
             this.tcolrefno.PlaceholderText = "n/a";
-            this.tcolrefno.ReadOnly = true;
             this.tcolrefno.SelectedText = "";
             this.tcolrefno.Size = new System.Drawing.Size(138, 25);
             this.tcolrefno.TabIndex = 141;
@@ -1186,11 +1191,24 @@
             this.label30.TabIndex = 148;
             this.label30.Text = "Payment Status:";
             // 
+            // bamtfull
+            // 
+            this.bamtfull.Location = new System.Drawing.Point(604, 349);
+            this.bamtfull.Name = "bamtfull";
+            this.bamtfull.Size = new System.Drawing.Size(75, 25);
+            this.bamtfull.TabIndex = 150;
+            this.bamtfull.Text = "Full Amount";
+            this.toolTip1.SetToolTip(this.bamtfull, "Click for Full Amount");
+            this.bamtfull.UseVisualStyleBackColor = true;
+            this.bamtfull.Visible = false;
+            this.bamtfull.Click += new System.EventHandler(this.bamtfull_Click);
+            // 
             // frm_home_disburse_collections_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 507);
+            this.Controls.Add(this.bamtfull);
             this.Controls.Add(this.tpaymentstatus);
             this.Controls.Add(this.label30);
             this.Controls.Add(this.tcolbranch);
@@ -1259,6 +1277,7 @@
             this.Name = "frm_home_disburse_collections_add";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Collection";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_disburse_collections_add_FormClosing);
             this.Load += new System.EventHandler(this.frm_home_disburse_collections_add_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1336,5 +1355,7 @@
         private Guna.UI2.WinForms.Guna2Button bcopyaccno;
         private Guna.UI2.WinForms.Guna2TextBox tloanid;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Button bamtfull;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

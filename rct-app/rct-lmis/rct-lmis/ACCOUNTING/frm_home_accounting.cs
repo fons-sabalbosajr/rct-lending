@@ -71,6 +71,15 @@ namespace rct_lmis.ACCOUNTING
             dgvloans.Columns.Add(new DataGridViewTextBoxColumn { Name = "Debit", HeaderText = "Debit" });
             dgvloans.Columns.Add(new DataGridViewTextBoxColumn { Name = "Credit", HeaderText = "Credit" });
 
+            // Optionally set column widths and other properties
+            dgvloans.Columns["Date"].Width = 100;
+            dgvloans.Columns["Reference"].Width = 150;
+            dgvloans.Columns["AccountTitle"].Width = 200;
+            dgvloans.Columns["Debit"].Width = 100;
+            dgvloans.Columns["Credit"].Width = 100;
+
+            dgvloans.ClearSelection();
+
         }
         
         private void PopulateLoansView()
@@ -165,6 +174,9 @@ namespace rct_lmis.ACCOUNTING
         {
             try
             {
+                // Ensure the columns are initialized
+                InitializeLoansView();
+
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_account_data");
 
@@ -241,7 +253,6 @@ namespace rct_lmis.ACCOUNTING
             }
         }
 
-      
 
         private void frm_home_accounting_Load(object sender, EventArgs e)
         {
