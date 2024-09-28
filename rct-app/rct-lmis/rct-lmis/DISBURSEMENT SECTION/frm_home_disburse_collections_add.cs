@@ -32,6 +32,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             InitializeComponent();
             _parentForm = parentForm;
             dtdate.Value = DateTime.Now;
+            dtcoldate.Value = DateTime.Now;
+
             loggedInUsername = UserSession.Instance.CurrentUser;
             // Initialize MongoDB connection for loan_approved collection
             var database = MongoDBConnection.Instance.Database;
@@ -69,7 +71,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             tcolpaid.Text = string.Empty;
             tcolactual.Text = string.Empty;
             tcolrefno.Text = string.Empty;
-            tcoldaterec.Text = string.Empty;
             tcolpayamt.Text = string.Empty;
             tcolbank.Text = string.Empty;
             tcolbranch.Text = string.Empty;
@@ -540,7 +541,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 // Validate and safely convert numeric fields
                 decimal loanAmount = ParseCurrency(tloanamt.Text);
-                decimal collectionPaymentAmount = ParseCurrency(tcolpayamt.Text);
+                decimal collectionPaymentAmount = ParseCurrency(tcolactual.Text);
 
                 // Get loan interest rate from loan_disbursed collection
                 var loanIdNo = tloanid.Text.Trim();
@@ -593,7 +594,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                      { "TotalCollected", ParseCurrency(tcoltotal.Text) },
                      { "ActualCollection", ParseCurrency(tcolactual.Text) },
                      { "CollectionReferenceNo", tcolrefno.Text.Trim() },
-                     { "DateReceived", tcoldaterec.Text.Trim() },
+                     { "DateReceived", dtdate.Value },
                      { "CollectionPayment", collectionPaymentAmount },
                      { "RunningBalance", runningBalance },
                      { "TotalLoanToPay", totalLoanToPay },  // Add Total Loan to Pay here
@@ -753,7 +754,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             {
                 // Show Reference No. and Date of Payment Received
                 tcolrefno.Visible = true;
-                tcoldaterec.Visible = true;
+                dtcoldate.Visible = true;
                 lcolrefno.Visible = true;
                 lcoldaterec.Visible = true;
 
@@ -775,7 +776,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 tcolrefno.Visible = true;
                 lcolrefno.Visible= true;
 
-                tcoldaterec.Visible = true;
+                dtcoldate.Visible = true;
                 lcoldaterec.Visible= true;
 
                 tcolbank.Visible = true;
@@ -795,7 +796,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 tcolrefno.Visible = true;
                 lcolrefno.Visible = true;
 
-                tcoldaterec.Visible = true;
+                dtcoldate.Visible = true;
                 lcoldaterec.Visible = true;
 
                 tcolbank.Visible = false;
@@ -815,7 +816,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 tcolrefno.Visible = false;
                 lcolrefno.Visible = false;
 
-                tcoldaterec.Visible = false;
+                dtcoldate.Visible = false;
                 lcoldaterec.Visible = false;
 
                 tcolbank.Visible = false;
@@ -832,7 +833,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             tcolactual.Text = tcolpayamt.Text;
             bamtfull.Visible = true;
             // Set the current date and time in mm/dd/yyyy hh:mm AM/PM format
-            tcoldaterec.Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+            //tcoldaterec.Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
 
             if (string.IsNullOrEmpty(tcolpayamt.Text)) 
             {
@@ -929,7 +930,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 tcolpaid.Text = "";
                 tcolactual.Text = "";
                 tcolrefno.Text = "";
-                tcoldaterec.Text = "";
                 tcolpayamt.Text = "";
                 tcolbank.Text = "";
                 tcolbranch.Text = "";

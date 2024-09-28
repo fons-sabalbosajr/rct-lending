@@ -57,14 +57,14 @@ namespace rct_lmis.LOAN_SECTION
                 var collection = database.GetCollection<BsonDocument>("loan_disbursed");
 
                 // Define filter and sort to find the highest current ID
-                var sort = Builders<BsonDocument>.Sort.Descending("IncrementId");
+                var sort = Builders<BsonDocument>.Sort.Descending("cashNo");
                 var lastRecord = collection.Find(new BsonDocument()).Sort(sort).FirstOrDefault();
 
                 // Increment ID logic
                 int nextIdNumber = 1;
-                if (lastRecord != null && lastRecord.Contains("IncrementId"))
+                if (lastRecord != null && lastRecord.Contains("cashNo"))
                 {
-                    string lastId = lastRecord["IncrementId"].AsString;
+                    string lastId = lastRecord["cashNo"].AsString;
                     int lastIdNumber = int.Parse(lastId.Substring(lastId.LastIndexOf('-') + 1));
                     nextIdNumber = lastIdNumber + 1;
                 }
@@ -138,15 +138,15 @@ namespace rct_lmis.LOAN_SECTION
                 var collection = database.GetCollection<BsonDocument>("loan_disbursed");
 
                 // Define filter and sort to find the highest current ID with the "OLP" prefix
-                var sort = Builders<BsonDocument>.Sort.Descending("IncrementId");
-                var filter = Builders<BsonDocument>.Filter.Regex("IncrementId", new BsonRegularExpression("^RCT-DB-OLP-"));
+                var sort = Builders<BsonDocument>.Sort.Descending("cashNo");
+                var filter = Builders<BsonDocument>.Filter.Regex("cashNo", new BsonRegularExpression("^RCT-DB-OLP-"));
                 var lastRecord = collection.Find(filter).Sort(sort).FirstOrDefault();
 
                 // Increment ID logic
                 int nextIdNumber = 1;
-                if (lastRecord != null && lastRecord.Contains("IncrementId"))
+                if (lastRecord != null && lastRecord.Contains("cashNo"))
                 {
-                    string lastId = lastRecord["IncrementId"].AsString;
+                    string lastId = lastRecord["cashNo"].AsString;
                     int lastIdNumber = int.Parse(lastId.Substring(lastId.LastIndexOf('-') + 1));
                     nextIdNumber = lastIdNumber + 1;
                 }
@@ -221,14 +221,14 @@ namespace rct_lmis.LOAN_SECTION
                 var collection = database.GetCollection<BsonDocument>("loan_disbursed");
 
                 // Define filter and sort to find the highest current ID
-                var sort = Builders<BsonDocument>.Sort.Descending("IncrementId");
+                var sort = Builders<BsonDocument>.Sort.Descending("cashNo");
                 var lastRecord = collection.Find(new BsonDocument()).Sort(sort).FirstOrDefault();
 
                 // Increment ID logic
                 int nextIdNumber = 1;
-                if (lastRecord != null && lastRecord.Contains("IncrementId"))
+                if (lastRecord != null && lastRecord.Contains("cashNo"))
                 {
-                    string lastId = lastRecord["IncrementId"].AsString;
+                    string lastId = lastRecord["cashNo"].AsString;
                     int lastIdNumber = int.Parse(lastId.Substring(lastId.LastIndexOf('-') + 1));
                     nextIdNumber = lastIdNumber + 1;
                 }

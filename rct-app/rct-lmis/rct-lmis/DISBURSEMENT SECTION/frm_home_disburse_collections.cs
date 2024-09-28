@@ -8,6 +8,7 @@ using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.IO;
+using System.Globalization;
 
 namespace rct_lmis.DISBURSEMENT_SECTION
 {
@@ -79,10 +80,15 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                                   $"Running Balance: {runningBalance}";
 
                 // Payment Information
-                string dateReceived = collection.Contains("DateReceived") ? collection["DateReceived"].AsString : "";
-                string amountPaid = collection.Contains("ActualCollection") ? ((double)collection["ActualCollection"].AsDecimal128).ToString("F2") : "0.00";
-                string penalty = collection.Contains("CollectedPenalty") ? ((double)collection["CollectedPenalty"].AsDecimal128).ToString("F2") : "0.00";
-                string paymentMode = collection.Contains("PaymentMode") ? collection["PaymentMode"].AsString : "";
+                // Payment Information
+                string dateReceived = collection.Contains("DateReceived") ?
+                                      collection["DateReceived"].AsBsonDateTime.ToLocalTime().ToString("MM/dd/yyyy") : "";
+                string amountPaid = collection.Contains("ActualCollection") ?
+                                    ((double)collection["ActualCollection"].AsDecimal128).ToString("F2") : "0.00";
+                string penalty = collection.Contains("CollectedPenalty") ?
+                                 ((double)collection["CollectedPenalty"].AsDecimal128).ToString("F2") : "";
+                string paymentMode = collection.Contains("PaymentMode") ?
+                                     collection["PaymentMode"].AsString : "";
 
                 // Concatenate Payment Information fields into a single string
                 string paymentInfo = $"Date Received: {dateReceived}\n" +
@@ -250,6 +256,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 double loanAmount = 0.0;
                 string interestRate = "";
                 double loanTerm = 0.0;
+                string days = "";
+                double loantopay = 0.0;
 
                 // Fetch loan disbursement details using LoanIDNo
                 var disbursementFilter = Builders<BsonDocument>.Filter.Eq("LoanIDNo", loanId);
@@ -266,9 +274,11 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 clientID = loanDisbursement.Contains("cashClnNo") ? loanDisbursement["cashClnNo"].AsString : "Unknown ClientID";
                 loanAmount = loanDisbursement.Contains("loanAmt") ? loanDisbursement["loanAmt"].ToDouble() : 0.0;
                 interestRate = loanDisbursement.Contains("loanInterest") ? loanDisbursement["loanInterest"].AsString : "N/A";
+                loantopay = loanDisbursement.Contains("loanAmt") ? loanDisbursement["loanAmt"].ToDouble() : 0.0;
 
                 // Safely parse loanTerm
                 loanTerm = loanDisbursement.Contains("loanTerm") ? loanDisbursement["loanTerm"].ToDouble() : 0.0;
+                days = loanDisbursement.Contains("days") ? loanDisbursement["days"].AsString : "0";
 
                 // Now, fetch address and contact number from loan approved collection using cashClnNo
                 var approvedFilter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientID);
@@ -308,8 +318,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     worksheet.Cells["B12"].Value = borrowerName;
                     worksheet.Cells["A13"].Value = "Address:";
                     worksheet.Cells["B13"].Value = address;
-                    worksheet.Cells["D13"].Value = "Contact_No:";
-                    worksheet.Cells["E13"].Value = contactNo;
+                    worksheet.Cells["C13"].Value = "Contact No:";
+                    worksheet.Cells["D13"].Value = contactNo;
 
                     worksheet.Cells["B10:E13"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
                     worksheet.Cells["A8:E13"].Style.Font.SetFromFont("Arial", 9);
@@ -320,14 +330,18 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                     worksheet.Cells["A16"].Value = "Loan Amount:";
                     worksheet.Cells["B16"].Value = loanAmount;
-                    worksheet.Cells["D16"].Value = "Interest Rate:";
-                    worksheet.Cells["E16"].Value = interestRate;
+                    worksheet.Cells["C16"].Value = "Interest Rate:";
+                    worksheet.Cells["D16"].Value = interestRate;
                     worksheet.Cells["A17"].Value = "Loan Term:";
                     worksheet.Cells["B17"].Value = $"{loanTerm} months"; // Display term with 'months'
+                    worksheet.Cells["A18"].Value = "No. of Days:";
+                    worksheet.Cells["B18"].Value = $"{days} days";
+                    worksheet.Cells["A19"].Value = "Amount to Pay:";
+                    worksheet.Cells["B19"].Value = loantopay;
 
                     // Date Released
-                    worksheet.Cells["A18"].Value = "Date Released:";
-                    worksheet.Cells["B18"].Value = loanDisbursement.Contains("cashDate") && DateTime.TryParse(loanDisbursement["cashDate"].AsString, out var cashDate)
+                    worksheet.Cells["C17"].Value = "Date Released:";
+                    worksheet.Cells["D17"].Value = loanDisbursement.Contains("cashDate") && DateTime.TryParse(loanDisbursement["cashDate"].AsString, out var cashDate)
                         ? cashDate.ToString("MM/dd/yyyy")
                         : "N/A";
 
@@ -337,17 +351,17 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     var loanCollectionMaturity = _loanCollection.Find(maturityDateFilter).FirstOrDefault();
 
                     // Extract the PaymentMaturityDate from the loan_collections collection
-                    worksheet.Cells["D18"].Value = "Payment Maturity Date:";
-                    worksheet.Cells["E18"].Value = loanCollectionMaturity.Contains("PaymentMaturityDate") && DateTime.TryParse(loanCollectionMaturity["PaymentMaturityDate"].AsString, out var paymentMaturityDate)
+                    worksheet.Cells["C19"].Value = "Payment Maturity Date:";
+                    worksheet.Cells["D19"].Value = loanCollectionMaturity.Contains("PaymentMaturityDate") && DateTime.TryParse(loanCollectionMaturity["PaymentMaturityDate"].AsString, out var paymentMaturityDate)
                        ? paymentMaturityDate.ToString("MM/dd/yyyy")
                        : "N/A";
 
-                    worksheet.Cells["A19"].Value = "Amortization:";
-                    worksheet.Cells["B19"].Value = GetDoubleValue(loanDisbursement, "amortizedAmt");
-                    worksheet.Cells["A20"].Value = "Payment Mode:";
-                    worksheet.Cells["B20"].Value = loanDisbursement.Contains("Mode") ? loanDisbursement["Mode"].ToString() : "N/A";
-                    worksheet.Cells["A21"].Value = "Payment Start Date:";
-                    worksheet.Cells["B21"].Value = loanDisbursement.Contains("PaymentStartDate") && DateTime.TryParse(loanDisbursement["PaymentStartDate"].AsString, out var paymentStartDate)
+                    worksheet.Cells["A20"].Value = "Amortization:";
+                    worksheet.Cells["B20"].Value = GetDoubleValue(loanDisbursement, "amortizedAmt");
+                    worksheet.Cells["C20"].Value = "Payment Mode:";
+                    worksheet.Cells["D20"].Value = loanDisbursement.Contains("Mode") ? loanDisbursement["Mode"].ToString() : "N/A";
+                    worksheet.Cells["C18"].Value = "Payment Start Date:";
+                    worksheet.Cells["D18"].Value = loanDisbursement.Contains("PaymentStartDate") && DateTime.TryParse(loanDisbursement["PaymentStartDate"].AsString, out var paymentStartDate)
                         ? paymentStartDate.ToString("MM/dd/yyyy")
                         : "N/A";
 
@@ -386,16 +400,18 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     foreach (var collection in loanCollections)
                     {
                         string collectionDate = collection.Contains("CollectionDate") && collection["CollectionDate"].IsBsonDateTime
-                                                 ? collection["CollectionDate"].AsDateTime.ToUniversalTime().ToString("MM/dd/yyyy")
-                                                 : "";
+                                                ? collection["CollectionDate"].AsDateTime.ToUniversalTime().ToString("MM/dd/yyyy")
+                                                : "";
 
                         double amortization = GetDoubleValue(collection, "Amortization");
-                        double amountPaid = GetDoubleValue(collection, "AmountPaid");
+                        double amountPaid = GetDoubleValue(collection, "ActualCollection");
                         double runningBalance = GetDoubleValue(collection, "RunningBalance");
                         string status = collection.Contains("PaymentStatus") ? collection["PaymentStatus"].ToString() : "N/A";
-                        string missedDay = (collection.Contains("CollectionDate") && collection["CollectionDate"].IsBsonDateTime &&
+
+                        // Correctly check DateReceived
+                        string missedDay = (collection.Contains("DateReceived") && collection["DateReceived"].IsBsonDateTime &&
                                             collection["CollectionDate"].AsDateTime.ToUniversalTime().Date >
-                                            DateTime.Parse(collection["DateReceived"].AsString).Date) ? "Y" : "N";
+                                            collection["DateReceived"].AsDateTime.ToUniversalTime().Date) ? "Y" : "N";
 
                         // Calculate Deficiency/Overpaid or Excess Payment
                         double excessPayment = amountPaid - amortization;
@@ -438,7 +454,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                         MessageBox.Show("Image file not found: " + imagePath);
                     }
 
-
                     // Set column widths
                     worksheet.Cells.AutoFitColumns();
 
@@ -447,6 +462,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                     // Enable Word Wrap for all cells
                     worksheet.Cells.Style.WrapText = true;
+
 
                     using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                     {
@@ -468,9 +484,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}");
+                MessageBox.Show($"An error occurred: {ex.Message + ex.StackTrace}");
             }
         }
+
 
         private double GetDoubleValue(BsonDocument collection, string fieldName)
         {
@@ -496,8 +513,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
             return 0.0;
         }
-
-
 
 
         private void frm_home_disburse_collections_Load(object sender, EventArgs e)

@@ -314,7 +314,6 @@ namespace rct_lmis
             }
         }
 
-
         private void LoadCollectionTotal()
         {
             try
@@ -335,7 +334,6 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading collection total: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void PopulateCollectionsView()
         {
@@ -372,8 +370,8 @@ namespace rct_lmis
                     string name = collectionDoc.Contains("Name") ?
                         collectionDoc["Name"].AsString : "";
 
-                    // Concatenate Client Information fields into a single string
-                    string clientInfo = $"Col. Date: {collectionDate} | Col. No.: {accountId} | Name: {name}";
+                    // Concatenate Client Information fields into a single string with new lines
+                    string clientInfo = $"Col. Date: {collectionDate}\nCol. No.: {accountId}\nName: {name}";
 
                     // Loan Information
                     string loanAmount = collectionDoc.Contains("LoanAmount") ?
@@ -394,17 +392,23 @@ namespace rct_lmis
                     if (collectionDoc.Contains("CollectionDate") && collectionDoc.Contains("DateReceived"))
                     {
                         DateTime collDate = collectionDoc["CollectionDate"].ToUniversalTime();
-                        DateTime receivedDate = DateTime.Parse(collectionDoc["DateReceived"].AsString);
+                        DateTime receivedDate = DateTime.Parse(collectionDoc["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy"));
 
                         // Add logic to determine the status based on your criteria here
                         collectionStatus = collDate.Date == receivedDate.Date ? "Paid on Time" : "Over Due";
                     }
 
-                    // Concatenate Collection Information fields into a single string
-                    string collectionInfo = $"Collector: {collector} | Area Route: {area} | Collection Status: {collectionStatus}";
+                    // Concatenate Collection Information fields into a single string with new lines
+                    string collectionInfo = $"Collector: {collector}\nArea Route: {area}\nCollection Status: {collectionStatus}";
 
                     // Add the concatenated information to the DataGridView
                     dgvcollectionsnew.Rows.Add(clientInfo, loanAmount, amountPaid, collectionInfo);
+                }
+
+                // Enable word wrapping for the DataGridView
+                foreach (DataGridViewColumn column in dgvcollectionsnew.Columns)
+                {
+                    column.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 }
 
                 // Set column widths and other properties if needed
@@ -413,6 +417,8 @@ namespace rct_lmis
                 dgvcollectionsnew.Columns[2].Width = 200; // Amount Paid
                 dgvcollectionsnew.Columns[3].Width = 200; // Collection Information
 
+                // Adjust row heights to fit content
+                dgvcollectionsnew.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
             }
             catch (Exception ex)
             {

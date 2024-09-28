@@ -89,7 +89,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.tcolrefno = new Guna.UI2.WinForms.Guna2TextBox();
             this.lcolrefno = new System.Windows.Forms.Label();
-            this.tcoldaterec = new Guna.UI2.WinForms.Guna2TextBox();
             this.lcoldaterec = new System.Windows.Forms.Label();
             this.tcolbank = new Guna.UI2.WinForms.Guna2TextBox();
             this.lcolbank = new System.Windows.Forms.Label();
@@ -99,6 +98,7 @@
             this.label30 = new System.Windows.Forms.Label();
             this.bamtfull = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.dtcoldate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -626,7 +626,8 @@
             this.tcolpayamt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolpayamt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tcolpayamt.IconLeft = global::rct_lmis.Properties.Resources.icons8_peso_symbol_48_gray;
-            this.tcolpayamt.Location = new System.Drawing.Point(682, 335);
+            this.tcolpayamt.Location = new System.Drawing.Point(694, 328);
+            this.tcolpayamt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tcolpayamt.Name = "tcolpayamt";
             this.tcolpayamt.PasswordChar = '\0';
             this.tcolpayamt.PlaceholderText = "0.00";
@@ -642,7 +643,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(206, 298);
+            this.label12.Location = new System.Drawing.Point(206, 294);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(68, 15);
             this.label12.TabIndex = 109;
@@ -658,7 +659,7 @@
             this.cbarea.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbarea.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbarea.ItemHeight = 30;
-            this.cbarea.Location = new System.Drawing.Point(280, 287);
+            this.cbarea.Location = new System.Drawing.Point(280, 283);
             this.cbarea.Name = "cbarea";
             this.cbarea.Size = new System.Drawing.Size(130, 36);
             this.cbarea.TabIndex = 111;
@@ -675,7 +676,7 @@
             this.cbcollector.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbcollector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbcollector.ItemHeight = 30;
-            this.cbcollector.Location = new System.Drawing.Point(481, 287);
+            this.cbcollector.Location = new System.Drawing.Point(481, 283);
             this.cbcollector.Name = "cbcollector";
             this.cbcollector.Size = new System.Drawing.Size(173, 36);
             this.cbcollector.TabIndex = 113;
@@ -686,7 +687,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(420, 298);
+            this.label13.Location = new System.Drawing.Point(420, 294);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(58, 15);
             this.label13.TabIndex = 112;
@@ -701,7 +702,7 @@
             this.dtdate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dtdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtdate.Location = new System.Drawing.Point(58, 287);
+            this.dtdate.Location = new System.Drawing.Point(58, 283);
             this.dtdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtdate.Name = "dtdate";
@@ -715,7 +716,7 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label14.Location = new System.Drawing.Point(21, 298);
+            this.label14.Location = new System.Drawing.Point(21, 294);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(34, 15);
             this.label14.TabIndex = 115;
@@ -727,7 +728,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label16.Location = new System.Drawing.Point(622, 334);
+            this.label16.Location = new System.Drawing.Point(634, 327);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(54, 15);
             this.label16.TabIndex = 116;
@@ -764,7 +765,7 @@
             this.tprincipaldue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tprincipaldue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tprincipaldue.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tprincipaldue.Location = new System.Drawing.Point(139, 340);
+            this.tprincipaldue.Location = new System.Drawing.Point(139, 331);
             this.tprincipaldue.Name = "tprincipaldue";
             this.tprincipaldue.PasswordChar = '\0';
             this.tprincipaldue.PlaceholderText = "0.00";
@@ -779,7 +780,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label17.Location = new System.Drawing.Point(54, 344);
+            this.label17.Location = new System.Drawing.Point(54, 335);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(80, 15);
             this.label17.TabIndex = 119;
@@ -824,7 +825,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label19.Location = new System.Drawing.Point(83, 376);
+            this.label19.Location = new System.Drawing.Point(83, 367);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(49, 15);
             this.label19.TabIndex = 123;
@@ -836,7 +837,7 @@
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label20.Location = new System.Drawing.Point(83, 407);
+            this.label20.Location = new System.Drawing.Point(83, 398);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(49, 15);
             this.label20.TabIndex = 125;
@@ -848,7 +849,7 @@
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label21.Location = new System.Drawing.Point(298, 345);
+            this.label21.Location = new System.Drawing.Point(290, 336);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(110, 15);
             this.label21.TabIndex = 127;
@@ -860,7 +861,7 @@
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label23.Location = new System.Drawing.Point(25, 437);
+            this.label23.Location = new System.Drawing.Point(25, 428);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(107, 15);
             this.label23.TabIndex = 131;
@@ -878,7 +879,7 @@
             this.tcolinterest.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcolinterest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolinterest.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcolinterest.Location = new System.Drawing.Point(138, 371);
+            this.tcolinterest.Location = new System.Drawing.Point(138, 362);
             this.tcolinterest.Name = "tcolinterest";
             this.tcolinterest.PasswordChar = '\0';
             this.tcolinterest.PlaceholderText = "0.00";
@@ -899,7 +900,7 @@
             this.tcolpenalty.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcolpenalty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolpenalty.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcolpenalty.Location = new System.Drawing.Point(138, 402);
+            this.tcolpenalty.Location = new System.Drawing.Point(138, 393);
             this.tcolpenalty.Name = "tcolpenalty";
             this.tcolpenalty.PasswordChar = '\0';
             this.tcolpenalty.PlaceholderText = "0.00";
@@ -920,7 +921,7 @@
             this.tcoltotal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcoltotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcoltotal.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcoltotal.Location = new System.Drawing.Point(138, 433);
+            this.tcoltotal.Location = new System.Drawing.Point(138, 424);
             this.tcoltotal.Name = "tcoltotal";
             this.tcoltotal.PasswordChar = '\0';
             this.tcoltotal.PlaceholderText = "0.00";
@@ -941,7 +942,7 @@
             this.tcolpaid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcolpaid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolpaid.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcolpaid.Location = new System.Drawing.Point(414, 340);
+            this.tcolpaid.Location = new System.Drawing.Point(406, 331);
             this.tcolpaid.Name = "tcolpaid";
             this.tcolpaid.PasswordChar = '\0';
             this.tcolpaid.PlaceholderText = "0.00";
@@ -962,7 +963,7 @@
             this.tcolactual.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcolactual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolactual.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcolactual.Location = new System.Drawing.Point(414, 371);
+            this.tcolactual.Location = new System.Drawing.Point(406, 362);
             this.tcolactual.Name = "tcolactual";
             this.tcolactual.PasswordChar = '\0';
             this.tcolactual.PlaceholderText = "0.00";
@@ -977,7 +978,7 @@
             this.label22.BackColor = System.Drawing.Color.Transparent;
             this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label22.Location = new System.Drawing.Point(298, 376);
+            this.label22.Location = new System.Drawing.Point(290, 367);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(94, 15);
             this.label22.TabIndex = 136;
@@ -993,7 +994,7 @@
             this.cbpaymentmode.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cbpaymentmode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbpaymentmode.ItemHeight = 30;
-            this.cbpaymentmode.Location = new System.Drawing.Point(722, 287);
+            this.cbpaymentmode.Location = new System.Drawing.Point(722, 283);
             this.cbpaymentmode.Name = "cbpaymentmode";
             this.cbpaymentmode.Size = new System.Drawing.Size(138, 36);
             this.cbpaymentmode.TabIndex = 139;
@@ -1005,7 +1006,7 @@
             this.label24.BackColor = System.Drawing.Color.Transparent;
             this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label24.Location = new System.Drawing.Point(660, 290);
+            this.label24.Location = new System.Drawing.Point(660, 286);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(54, 30);
             this.label24.TabIndex = 138;
@@ -1023,12 +1024,12 @@
             this.tcolrefno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcolrefno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolrefno.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcolrefno.Location = new System.Drawing.Point(414, 402);
+            this.tcolrefno.Location = new System.Drawing.Point(666, 375);
             this.tcolrefno.Name = "tcolrefno";
             this.tcolrefno.PasswordChar = '\0';
             this.tcolrefno.PlaceholderText = "n/a";
             this.tcolrefno.SelectedText = "";
-            this.tcolrefno.Size = new System.Drawing.Size(138, 25);
+            this.tcolrefno.Size = new System.Drawing.Size(206, 25);
             this.tcolrefno.TabIndex = 141;
             this.tcolrefno.Visible = false;
             // 
@@ -1038,35 +1039,12 @@
             this.lcolrefno.BackColor = System.Drawing.Color.Transparent;
             this.lcolrefno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lcolrefno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcolrefno.Location = new System.Drawing.Point(298, 407);
+            this.lcolrefno.Location = new System.Drawing.Point(558, 380);
             this.lcolrefno.Name = "lcolrefno";
             this.lcolrefno.Size = new System.Drawing.Size(102, 15);
             this.lcolrefno.TabIndex = 140;
             this.lcolrefno.Text = "Payment Ref. No.:";
             this.lcolrefno.Visible = false;
-            // 
-            // tcoldaterec
-            // 
-            this.tcoldaterec.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tcoldaterec.DefaultText = "";
-            this.tcoldaterec.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tcoldaterec.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tcoldaterec.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tcoldaterec.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tcoldaterec.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcoldaterec.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tcoldaterec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tcoldaterec.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcoldaterec.Location = new System.Drawing.Point(414, 433);
-            this.tcoldaterec.Multiline = true;
-            this.tcoldaterec.Name = "tcoldaterec";
-            this.tcoldaterec.PasswordChar = '\0';
-            this.tcoldaterec.PlaceholderText = "mm/dd/yyyy";
-            this.tcoldaterec.ReadOnly = true;
-            this.tcoldaterec.SelectedText = "";
-            this.tcoldaterec.Size = new System.Drawing.Size(138, 49);
-            this.tcoldaterec.TabIndex = 143;
-            this.tcoldaterec.Visible = false;
             // 
             // lcoldaterec
             // 
@@ -1074,7 +1052,7 @@
             this.lcoldaterec.BackColor = System.Drawing.Color.Transparent;
             this.lcoldaterec.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lcoldaterec.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcoldaterec.Location = new System.Drawing.Point(298, 430);
+            this.lcoldaterec.Location = new System.Drawing.Point(290, 401);
             this.lcoldaterec.Name = "lcoldaterec";
             this.lcoldaterec.Size = new System.Drawing.Size(95, 30);
             this.lcoldaterec.TabIndex = 142;
@@ -1102,7 +1080,7 @@
             this.tcolbank.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tcolbank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolbank.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcolbank.Location = new System.Drawing.Point(654, 402);
+            this.tcolbank.Location = new System.Drawing.Point(666, 404);
             this.tcolbank.Name = "tcolbank";
             this.tcolbank.PasswordChar = '\0';
             this.tcolbank.PlaceholderText = "type \"BDO, BPI etc.\"";
@@ -1117,7 +1095,7 @@
             this.lcolbank.BackColor = System.Drawing.Color.Transparent;
             this.lcolbank.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lcolbank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcolbank.Location = new System.Drawing.Point(561, 406);
+            this.lcolbank.Location = new System.Drawing.Point(573, 408);
             this.lcolbank.Name = "lcolbank";
             this.lcolbank.Size = new System.Drawing.Size(87, 15);
             this.lcolbank.TabIndex = 144;
@@ -1136,7 +1114,7 @@
             this.tcolbranch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcolbranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcolbranch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcolbranch.Location = new System.Drawing.Point(654, 433);
+            this.tcolbranch.Location = new System.Drawing.Point(666, 432);
             this.tcolbranch.Name = "tcolbranch";
             this.tcolbranch.PasswordChar = '\0';
             this.tcolbranch.PlaceholderText = "type \"San Fernando, Apalit etc.\"";
@@ -1151,7 +1129,7 @@
             this.lcolbranch.BackColor = System.Drawing.Color.Transparent;
             this.lcolbranch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lcolbranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lcolbranch.Location = new System.Drawing.Point(601, 437);
+            this.lcolbranch.Location = new System.Drawing.Point(613, 436);
             this.lcolbranch.Name = "lcolbranch";
             this.lcolbranch.Size = new System.Drawing.Size(47, 15);
             this.lcolbranch.TabIndex = 146;
@@ -1193,7 +1171,7 @@
             // 
             // bamtfull
             // 
-            this.bamtfull.Location = new System.Drawing.Point(604, 349);
+            this.bamtfull.Location = new System.Drawing.Point(616, 342);
             this.bamtfull.Name = "bamtfull";
             this.bamtfull.Size = new System.Drawing.Size(75, 25);
             this.bamtfull.TabIndex = 150;
@@ -1203,11 +1181,29 @@
             this.bamtfull.Visible = false;
             this.bamtfull.Click += new System.EventHandler(this.bamtfull_Click);
             // 
+            // dtcoldate
+            // 
+            this.dtcoldate.Animated = true;
+            this.dtcoldate.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtcoldate.Checked = true;
+            this.dtcoldate.FillColor = System.Drawing.Color.White;
+            this.dtcoldate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtcoldate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtcoldate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtcoldate.Location = new System.Drawing.Point(406, 398);
+            this.dtcoldate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtcoldate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtcoldate.Name = "dtcoldate";
+            this.dtcoldate.Size = new System.Drawing.Size(138, 36);
+            this.dtcoldate.TabIndex = 151;
+            this.dtcoldate.Value = new System.DateTime(2024, 9, 8, 0, 0, 0, 0);
+            // 
             // frm_home_disburse_collections_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 507);
+            this.Controls.Add(this.dtcoldate);
             this.Controls.Add(this.bamtfull);
             this.Controls.Add(this.tpaymentstatus);
             this.Controls.Add(this.label30);
@@ -1215,7 +1211,6 @@
             this.Controls.Add(this.lcolbranch);
             this.Controls.Add(this.tcolbank);
             this.Controls.Add(this.lcolbank);
-            this.Controls.Add(this.tcoldaterec);
             this.Controls.Add(this.lcoldaterec);
             this.Controls.Add(this.tcolrefno);
             this.Controls.Add(this.lcolrefno);
@@ -1344,7 +1339,6 @@
         private System.Windows.Forms.Label label24;
         private Guna.UI2.WinForms.Guna2TextBox tcolrefno;
         private System.Windows.Forms.Label lcolrefno;
-        private Guna.UI2.WinForms.Guna2TextBox tcoldaterec;
         private System.Windows.Forms.Label lcoldaterec;
         private Guna.UI2.WinForms.Guna2TextBox tcolbank;
         private System.Windows.Forms.Label lcolbank;
@@ -1357,5 +1351,6 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Button bamtfull;
         private System.Windows.Forms.ToolTip toolTip1;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtcoldate;
     }
 }

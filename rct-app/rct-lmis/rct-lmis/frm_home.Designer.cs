@@ -558,6 +558,7 @@ namespace rct_lmis
             this.bclient.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bclient.TextOffset = new System.Drawing.Point(20, 0);
             this.toolTip1.SetToolTip(this.bclient, "Clients");
+            this.bclient.Visible = false;
             this.bclient.Click += new System.EventHandler(this.bclient_Click);
             // 
             // bviewapplications

@@ -29,7 +29,6 @@ namespace rct_lmis
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -39,18 +38,15 @@ namespace rct_lmis
             this.bhelp = new Guna.UI2.WinForms.Guna2CircleButton();
             this.ltitle = new System.Windows.Forms.Label();
             this.pheaders = new System.Windows.Forms.Panel();
-            this.beditentries = new Guna.UI2.WinForms.Guna2Button();
             this.cbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.dtdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.bexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bprint = new Guna.UI2.WinForms.Guna2Button();
             this.label11 = new System.Windows.Forms.Label();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.label2 = new System.Windows.Forms.Label();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.trefresh = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.pheaders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -87,6 +83,7 @@ namespace rct_lmis
             this.bhelp.TabIndex = 3;
             this.bhelp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.bhelp.TextOffset = new System.Drawing.Point(10, 0);
+            this.bhelp.Click += new System.EventHandler(this.bhelp_Click);
             // 
             // ltitle
             // 
@@ -102,11 +99,9 @@ namespace rct_lmis
             // pheaders
             // 
             this.pheaders.BackColor = System.Drawing.Color.White;
-            this.pheaders.Controls.Add(this.beditentries);
             this.pheaders.Controls.Add(this.cbstatus);
             this.pheaders.Controls.Add(this.dtdate);
             this.pheaders.Controls.Add(this.bexport);
-            this.pheaders.Controls.Add(this.bprint);
             this.pheaders.Controls.Add(this.label11);
             this.pheaders.Controls.Add(this.guna2Separator1);
             this.pheaders.Controls.Add(this.label2);
@@ -116,24 +111,6 @@ namespace rct_lmis
             this.pheaders.Name = "pheaders";
             this.pheaders.Size = new System.Drawing.Size(1300, 66);
             this.pheaders.TabIndex = 5;
-            // 
-            // beditentries
-            // 
-            this.beditentries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.beditentries.BorderRadius = 4;
-            this.beditentries.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.beditentries.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.beditentries.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.beditentries.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.beditentries.FillColor = System.Drawing.Color.SeaGreen;
-            this.beditentries.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.beditentries.ForeColor = System.Drawing.Color.White;
-            this.beditentries.Location = new System.Drawing.Point(1106, 15);
-            this.beditentries.Name = "beditentries";
-            this.beditentries.Size = new System.Drawing.Size(102, 36);
-            this.beditentries.TabIndex = 34;
-            this.beditentries.Text = "Edit Entries";
-            this.beditentries.Click += new System.EventHandler(this.beditentries_Click);
             // 
             // cbstatus
             // 
@@ -153,6 +130,7 @@ namespace rct_lmis
             this.cbstatus.StartIndex = 0;
             this.cbstatus.TabIndex = 12;
             this.cbstatus.TextOffset = new System.Drawing.Point(10, 0);
+            this.cbstatus.SelectedIndexChanged += new System.EventHandler(this.cbstatus_SelectedIndexChanged);
             // 
             // dtdate
             // 
@@ -170,10 +148,10 @@ namespace rct_lmis
             this.dtdate.Size = new System.Drawing.Size(141, 36);
             this.dtdate.TabIndex = 6;
             this.dtdate.Value = new System.DateTime(2024, 5, 28, 20, 18, 34, 560);
+            this.dtdate.ValueChanged += new System.EventHandler(this.dtdate_ValueChangedAsync);
             // 
             // bexport
             // 
-            this.bexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bexport.BorderColor = System.Drawing.Color.Gainsboro;
             this.bexport.BorderRadius = 2;
             this.bexport.BorderThickness = 1;
@@ -186,32 +164,12 @@ namespace rct_lmis
             this.bexport.ForeColor = System.Drawing.Color.White;
             this.bexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
             this.bexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bexport.Location = new System.Drawing.Point(1210, 15);
+            this.bexport.Location = new System.Drawing.Point(901, 15);
             this.bexport.Name = "bexport";
             this.bexport.Size = new System.Drawing.Size(35, 35);
             this.bexport.TabIndex = 11;
             this.bexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // bprint
-            // 
-            this.bprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bprint.BorderRadius = 2;
-            this.bprint.BorderThickness = 1;
-            this.bprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bprint.FillColor = System.Drawing.Color.White;
-            this.bprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bprint.ForeColor = System.Drawing.Color.White;
-            this.bprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bprint.Location = new System.Drawing.Point(1251, 15);
-            this.bprint.Name = "bprint";
-            this.bprint.Size = new System.Drawing.Size(35, 35);
-            this.bprint.TabIndex = 10;
-            this.bprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.bexport.Click += new System.EventHandler(this.bexport_Click);
             // 
             // label11
             // 
@@ -229,7 +187,7 @@ namespace rct_lmis
             // 
             this.guna2Separator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2Separator1.Location = new System.Drawing.Point(6, 56);
+            this.guna2Separator1.Location = new System.Drawing.Point(6, 54);
             this.guna2Separator1.Name = "guna2Separator1";
             this.guna2Separator1.Size = new System.Drawing.Size(1287, 10);
             this.guna2Separator1.TabIndex = 3;
@@ -351,12 +309,6 @@ namespace rct_lmis
             this.dgvdata.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvdata_CellFormatting);
             this.dgvdata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdata_DataBindingComplete);
             // 
-            // trefresh
-            // 
-            this.trefresh.Enabled = true;
-            this.trefresh.Interval = 5000;
-            this.trefresh.Tick += new System.EventHandler(this.trefresh_Tick);
-            // 
             // frm_home_disburse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -370,7 +322,6 @@ namespace rct_lmis
             this.Name = "frm_home_disburse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Disbursements";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_disburse_FormClosing);
             this.Load += new System.EventHandler(this.frm_home_disburse_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -389,15 +340,12 @@ namespace rct_lmis
         private System.Windows.Forms.Panel pheaders;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtdate;
         private Guna.UI2.WinForms.Guna2Button bexport;
-        private Guna.UI2.WinForms.Guna2Button bprint;
         private System.Windows.Forms.Label label11;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2TextBox tsearch;
         private Guna.UI2.WinForms.Guna2ComboBox cbstatus;
-        private Guna.UI2.WinForms.Guna2Button beditentries;
         private System.Windows.Forms.Label lnorecord;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdata;
-        private System.Windows.Forms.Timer trefresh;
     }
 }

@@ -699,6 +699,7 @@
             this.tdays.SelectedText = "";
             this.tdays.Size = new System.Drawing.Size(44, 30);
             this.tdays.TabIndex = 168;
+            this.tdays.Visible = false;
             // 
             // tloaninterestamt
             // 
@@ -733,6 +734,7 @@
             this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 170;
             this.label3.Text = "days";
+            this.label3.Visible = false;
             // 
             // label4
             // 

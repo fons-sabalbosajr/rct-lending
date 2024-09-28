@@ -329,7 +329,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tccp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tccp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tccp.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tccp.Location = new System.Drawing.Point(540, 592);
+            this.tccp.Location = new System.Drawing.Point(540, 574);
             this.tccp.Name = "tccp";
             this.tccp.PasswordChar = '\0';
             this.tccp.PlaceholderText = "";
@@ -343,7 +343,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label101.BackColor = System.Drawing.Color.Transparent;
             this.label101.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label101.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label101.Location = new System.Drawing.Point(448, 597);
+            this.label101.Location = new System.Drawing.Point(448, 579);
             this.label101.Name = "label101";
             this.label101.Size = new System.Drawing.Size(86, 15);
             this.label101.TabIndex = 118;
@@ -361,7 +361,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tcage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcage.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcage.Location = new System.Drawing.Point(540, 530);
+            this.tcage.Location = new System.Drawing.Point(540, 510);
             this.tcage.Name = "tcage";
             this.tcage.PasswordChar = '\0';
             this.tcage.PlaceholderText = "";
@@ -375,7 +375,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label100.BackColor = System.Drawing.Color.Transparent;
             this.label100.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label100.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label100.Location = new System.Drawing.Point(503, 535);
+            this.label100.Location = new System.Drawing.Point(503, 515);
             this.label100.Name = "label100";
             this.label100.Size = new System.Drawing.Size(31, 15);
             this.label100.TabIndex = 116;
@@ -393,7 +393,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tcincome.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcincome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcincome.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcincome.Location = new System.Drawing.Point(540, 561);
+            this.tcincome.Location = new System.Drawing.Point(540, 541);
             this.tcincome.Name = "tcincome";
             this.tcincome.PasswordChar = '\0';
             this.tcincome.PlaceholderText = "";
@@ -407,7 +407,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label99.BackColor = System.Drawing.Color.Transparent;
             this.label99.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label99.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label99.Location = new System.Drawing.Point(431, 566);
+            this.label99.Location = new System.Drawing.Point(431, 546);
             this.label99.Name = "label99";
             this.label99.Size = new System.Drawing.Size(103, 15);
             this.label99.TabIndex = 114;
@@ -425,7 +425,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tcprov.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcprov.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcprov.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcprov.Location = new System.Drawing.Point(135, 623);
+            this.tcprov.Location = new System.Drawing.Point(135, 605);
             this.tcprov.Name = "tcprov";
             this.tcprov.PasswordChar = '\0';
             this.tcprov.PlaceholderText = "Province";
@@ -445,7 +445,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tccity.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tccity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tccity.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tccity.Location = new System.Drawing.Point(135, 592);
+            this.tccity.Location = new System.Drawing.Point(135, 574);
             this.tccity.Name = "tccity";
             this.tccity.PasswordChar = '\0';
             this.tccity.PlaceholderText = "Town / City";
@@ -465,7 +465,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tcbrgy.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcbrgy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcbrgy.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcbrgy.Location = new System.Drawing.Point(135, 561);
+            this.tcbrgy.Location = new System.Drawing.Point(135, 541);
             this.tcbrgy.Name = "tcbrgy";
             this.tcbrgy.PasswordChar = '\0';
             this.tcbrgy.PlaceholderText = "Barangay";
@@ -485,7 +485,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tcstreet.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcstreet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcstreet.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcstreet.Location = new System.Drawing.Point(135, 530);
+            this.tcstreet.Location = new System.Drawing.Point(135, 510);
             this.tcstreet.Name = "tcstreet";
             this.tcstreet.PasswordChar = '\0';
             this.tcstreet.PlaceholderText = "Lot. No. , Street";
@@ -499,7 +499,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label98.BackColor = System.Drawing.Color.Transparent;
             this.label98.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label98.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label98.Location = new System.Drawing.Point(15, 532);
+            this.label98.Location = new System.Drawing.Point(15, 512);
             this.label98.Name = "label98";
             this.label98.Size = new System.Drawing.Size(113, 15);
             this.label98.TabIndex = 109;
@@ -518,9 +518,9 @@ namespace rct_lmis.LOAN_SECTION
             this.cbcgender.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cbcgender.Location = new System.Drawing.Point(664, 494);
+            this.cbcgender.Location = new System.Drawing.Point(580, 474);
             this.cbcgender.Name = "cbcgender";
-            this.cbcgender.Size = new System.Drawing.Size(72, 26);
+            this.cbcgender.Size = new System.Drawing.Size(120, 26);
             this.cbcgender.TabIndex = 108;
             // 
             // label95
@@ -529,7 +529,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label95.BackColor = System.Drawing.Color.Transparent;
             this.label95.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label95.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label95.Location = new System.Drawing.Point(611, 500);
+            this.label95.Location = new System.Drawing.Point(526, 480);
             this.label95.Name = "label95";
             this.label95.Size = new System.Drawing.Size(48, 15);
             this.label95.TabIndex = 107;
@@ -549,9 +549,9 @@ namespace rct_lmis.LOAN_SECTION
             "Single",
             "Married",
             "Widowed"});
-            this.cbcstatus.Location = new System.Drawing.Point(792, 494);
+            this.cbcstatus.Location = new System.Drawing.Point(756, 474);
             this.cbcstatus.Name = "cbcstatus";
-            this.cbcstatus.Size = new System.Drawing.Size(88, 26);
+            this.cbcstatus.Size = new System.Drawing.Size(127, 26);
             this.cbcstatus.TabIndex = 106;
             // 
             // label96
@@ -560,7 +560,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label96.BackColor = System.Drawing.Color.Transparent;
             this.label96.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label96.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label96.Location = new System.Drawing.Point(742, 492);
+            this.label96.Location = new System.Drawing.Point(707, 472);
             this.label96.Name = "label96";
             this.label96.Size = new System.Drawing.Size(44, 30);
             this.label96.TabIndex = 105;
@@ -578,7 +578,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tcbsname.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcbsname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcbsname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcbsname.Location = new System.Drawing.Point(524, 495);
+            this.tcbsname.Location = new System.Drawing.Point(411, 475);
             this.tcbsname.Name = "tcbsname";
             this.tcbsname.PasswordChar = '\0';
             this.tcbsname.PlaceholderText = "Jr., Sr., III";
@@ -598,12 +598,12 @@ namespace rct_lmis.LOAN_SECTION
             this.tcbmname.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcbmname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcbmname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcbmname.Location = new System.Drawing.Point(375, 495);
+            this.tcbmname.Location = new System.Drawing.Point(302, 475);
             this.tcbmname.Name = "tcbmname";
             this.tcbmname.PasswordChar = '\0';
             this.tcbmname.PlaceholderText = "Middle Name";
             this.tcbmname.SelectedText = "";
-            this.tcbmname.Size = new System.Drawing.Size(140, 25);
+            this.tcbmname.Size = new System.Drawing.Size(103, 25);
             this.tcbmname.TabIndex = 103;
             // 
             // tcbfname
@@ -618,12 +618,12 @@ namespace rct_lmis.LOAN_SECTION
             this.tcbfname.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcbfname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcbfname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcbfname.Location = new System.Drawing.Point(221, 495);
+            this.tcbfname.Location = new System.Drawing.Point(190, 475);
             this.tcbfname.Name = "tcbfname";
             this.tcbfname.PasswordChar = '\0';
             this.tcbfname.PlaceholderText = "First Name";
             this.tcbfname.SelectedText = "";
-            this.tcbfname.Size = new System.Drawing.Size(145, 25);
+            this.tcbfname.Size = new System.Drawing.Size(106, 25);
             this.tcbfname.TabIndex = 102;
             // 
             // tcblname
@@ -638,12 +638,12 @@ namespace rct_lmis.LOAN_SECTION
             this.tcblname.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcblname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tcblname.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcblname.Location = new System.Drawing.Point(62, 495);
+            this.tcblname.Location = new System.Drawing.Point(62, 475);
             this.tcblname.Name = "tcblname";
             this.tcblname.PasswordChar = '\0';
             this.tcblname.PlaceholderText = "Last Name";
             this.tcblname.SelectedText = "";
-            this.tcblname.Size = new System.Drawing.Size(148, 25);
+            this.tcblname.Size = new System.Drawing.Size(120, 25);
             this.tcblname.TabIndex = 101;
             // 
             // label97
@@ -652,7 +652,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label97.BackColor = System.Drawing.Color.Transparent;
             this.label97.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label97.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label97.Location = new System.Drawing.Point(14, 500);
+            this.label97.Location = new System.Drawing.Point(14, 480);
             this.label97.Name = "label97";
             this.label97.Size = new System.Drawing.Size(42, 15);
             this.label97.TabIndex = 100;
@@ -664,7 +664,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label94.BackColor = System.Drawing.Color.Transparent;
             this.label94.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label94.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label94.Location = new System.Drawing.Point(15, 470);
+            this.label94.Location = new System.Drawing.Point(15, 450);
             this.label94.Name = "label94";
             this.label94.Size = new System.Drawing.Size(167, 17);
             this.label94.TabIndex = 99;
@@ -682,7 +682,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tbrspcp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbrspcp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbrspcp.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tbrspcp.Location = new System.Drawing.Point(175, 439);
+            this.tbrspcp.Location = new System.Drawing.Point(580, 376);
             this.tbrspcp.Name = "tbrspcp";
             this.tbrspcp.PasswordChar = '\0';
             this.tbrspcp.PlaceholderText = "";
@@ -696,7 +696,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label92.BackColor = System.Drawing.Color.Transparent;
             this.label92.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label92.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label92.Location = new System.Drawing.Point(17, 444);
+            this.label92.Location = new System.Drawing.Point(486, 381);
             this.label92.Name = "label92";
             this.label92.Size = new System.Drawing.Size(86, 15);
             this.label92.TabIndex = 97;
@@ -789,7 +789,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label90.BackColor = System.Drawing.Color.Transparent;
             this.label90.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label90.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label90.Location = new System.Drawing.Point(488, 345);
+            this.label90.Location = new System.Drawing.Point(486, 345);
             this.label90.Name = "label90";
             this.label90.Size = new System.Drawing.Size(76, 15);
             this.label90.TabIndex = 90;
@@ -853,7 +853,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label24.BackColor = System.Drawing.Color.Transparent;
             this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label24.Location = new System.Drawing.Point(488, 290);
+            this.label24.Location = new System.Drawing.Point(486, 290);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(86, 15);
             this.label24.TabIndex = 86;
@@ -882,7 +882,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label23.Location = new System.Drawing.Point(488, 255);
+            this.label23.Location = new System.Drawing.Point(486, 255);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(76, 15);
             this.label23.TabIndex = 84;

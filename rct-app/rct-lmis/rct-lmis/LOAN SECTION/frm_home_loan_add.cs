@@ -39,6 +39,10 @@ namespace rct_lmis.LOAN_SECTION
             var database = MongoDBConnection.Instance.Database;
             loanRateCollection = database.GetCollection<BsonDocument>("loan_rate");
 
+            dtbrbdate.Value = DateTime.Now;
+            dtbrbdate.Value = DateTime.Now;
+
+
         }
         private static string[] Scopes = { DriveService.Scope.DriveFile };
         private static string ApplicationName = "rct-lmis";
