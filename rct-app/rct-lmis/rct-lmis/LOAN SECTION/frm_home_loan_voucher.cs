@@ -1,8 +1,11 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -18,7 +21,7 @@ namespace rct_lmis.LOAN_SECTION
         {
             InitializeComponent();
             _cashClnNo = cashClnNo;
-            bvoucher.Enabled = false;
+            bvoucheroffice.Enabled = false;
         }
 
         LoadingFunction load = new LoadingFunction();
@@ -397,12 +400,6 @@ namespace rct_lmis.LOAN_SECTION
         }
 
 
-
-
-
-
-
-
         private int GetTotalWeeks(int days)
         {
             int totalWeeks = 0;
@@ -633,6 +630,127 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+        private BsonDocument GetLoanApprovedDetails(string clientNumber)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var approvedCollection = database.GetCollection<BsonDocument>("loan_approved");
+
+            // Filter by ClientNumber
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientNumber);
+            var loanApprovedDocument = approvedCollection.Find(filter).FirstOrDefault();
+
+            if (loanApprovedDocument == null)
+            {
+                throw new Exception("No loan approved details found for this client number.");
+            }
+
+            return loanApprovedDocument;
+        }
+
+
+        private void ExportToExcel(BsonDocument document, BsonDocument loanApprovedDetails, string filePath)
+        {
+            // Construct the full address
+            string fullAddress = $"{loanApprovedDetails["Street"]}, {loanApprovedDetails["Barangay"]}, {loanApprovedDetails["City"]}, {loanApprovedDetails["Province"]}";
+
+            // Get the mobile number
+            string mobileNumber = loanApprovedDetails["CP"].ToString();
+
+            // Set the due date (start payment date)
+            string dueDate = lstartpayment.Text;  // Use the start payment date from the form
+            string amortized = dgvdisburse.Rows[0].Cells[6].Value.ToString();
+            string loanamt = dgvdisburse.Rows[0].Cells[2].Value.ToString();
+            string profee = dgvdisburse.Rows[0].Cells[3].Value.ToString();
+            string loantopay = dgvdisburse.Rows[0].Cells[4].Value.ToString();
+
+            using (ExcelPackage package = new ExcelPackage())
+            {
+                // Add a worksheet to the workbook
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Cash Receiving Voucher");
+
+                // Set paper size to A4
+                worksheet.PrinterSettings.PaperSize = ePaperSize.A4;
+
+                // Insert the image from the Resources folder
+                string imagePath = Path.Combine(System.Windows.Forms.Application.StartupPath, "Resources", "rctheader.jpg");
+                if (File.Exists(imagePath))
+                {
+                    // Add the image to the worksheet
+                    var picture = worksheet.Drawings.AddPicture("HeaderImage", new FileInfo(imagePath));
+                    picture.SetPosition(0, 0, 0, 0);  // Adjust position if needed (row, offset, column, offset)
+                    picture.From.Column = 0;  // Starting column
+                    picture.From.Row = 0;     // Starting row
+                }
+                else
+                {
+                    MessageBox.Show("Image file not found: " + imagePath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Start filling the worksheet from row 6 (after the image)
+                int rowStart = 7;
+
+                rowStart += 2;
+
+                // Add the title "CASH RECEIVING VOUCHER"
+                worksheet.Cells[rowStart, 1, rowStart, 7].Merge = true;  // Merge cells for the title
+                worksheet.Cells[rowStart, 1].Value = "CASH RECEIVING VOUCHER";
+                worksheet.Cells[rowStart, 1].Style.Font.Size = 16;  // Set larger font size for the title
+                worksheet.Cells[rowStart, 1].Style.Font.Bold = true;  // Make it bold
+                worksheet.Cells[rowStart, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;  // Center the text
+                worksheet.Cells[rowStart, 1].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+                rowStart += 2;  // Add some space before entering the details
+
+                // Set all other cells to use Arial font, size 9
+                worksheet.Cells.Style.Font.Name = "Arial";
+                worksheet.Cells.Style.Font.Size = 9;
+
+                // Set the headers and values
+                worksheet.Cells[rowStart, 1].Value = "Name of the Borrower:";
+                worksheet.Cells[rowStart, 2].Value = document["clientName"].ToString();
+
+                worksheet.Cells[rowStart + 1, 1].Value = "Address:";
+                worksheet.Cells[rowStart + 1, 2].Value = fullAddress;  // Use the address from loan_approved
+
+                worksheet.Cells[rowStart + 2, 1].Value = "Mobile:";
+                worksheet.Cells[rowStart + 2, 2].Value = mobileNumber;  // Use the mobile number from loan_approved
+
+                worksheet.Cells[rowStart + 4, 1].Value = "Loan Amount:";
+                worksheet.Cells[rowStart + 4, 2].Value = loanamt;
+
+                worksheet.Cells[rowStart + 5, 1].Value = "Processing Fee:";
+                worksheet.Cells[rowStart + 5, 2].Value = profee;
+
+                worksheet.Cells[rowStart + 6, 1].Value = "Advance Payment (if any):";
+                worksheet.Cells[rowStart + 6, 2].Value = "N/A";  // You can update this if you have advance payment info
+
+                worksheet.Cells[rowStart + 7, 1].Value = "Amount to Receive:";
+                worksheet.Cells[rowStart + 7, 2].Value = loantopay;
+
+                worksheet.Cells[rowStart + 9, 1].Value = "Daily Amortization:";
+                worksheet.Cells[rowStart + 9, 2].Value = amortized;
+
+                worksheet.Cells[rowStart + 10, 1].Value = "Due Date:";
+                worksheet.Cells[rowStart + 10, 2].Value = dueDate;  // Set the Due Date as the Start Payment Date
+
+                rowStart += 2;
+
+                // Add a line for the signature
+                worksheet.Cells[rowStart + 12, 1].Value = "___________________________________";
+                worksheet.Cells[rowStart + 13, 1].Value = "Signature over Printed Name";
+
+                // Auto-fit columns for readability
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // Save the Excel file to the chosen path
+                File.WriteAllBytes(filePath, package.GetAsByteArray());
+
+                MessageBox.Show($"Excel file saved to {filePath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+
 
         private void frm_home_loan_voucher_Load(object sender, EventArgs e)
         {
@@ -689,7 +807,7 @@ namespace rct_lmis.LOAN_SECTION
                     // Show success message
                     MessageBox.Show(this, "Data saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    bvoucher.Enabled = true;
+                    bvoucheroffice.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -698,8 +816,6 @@ namespace rct_lmis.LOAN_SECTION
                 }
             }
         }
-
-
 
         private void dgvdisburse_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -774,6 +890,43 @@ namespace rct_lmis.LOAN_SECTION
         private void bsoa_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void bvoucherclient_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Retrieve the ClientNumber from the form (lclientno label)
+                string clientNumber = lclientno.Text;
+
+                // Fetch the loan approved details based on ClientNumber
+                var loanApprovedDetails = GetLoanApprovedDetails(clientNumber);
+
+                // Assuming that the loan release document has already been created or retrieved
+                var document = CreateLoanReleasedDocument();
+
+                // Show Save File Dialog to choose where to save the Excel file
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Excel Files|*.xlsx";
+                    saveFileDialog.Title = "Save Cash Receiving Voucher";
+                    saveFileDialog.FileName = "Cash_Receiving_Voucher.xlsx";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Export the document data to Excel, passing loanApprovedDetails and file path
+                        ExportToExcel(document, loanApprovedDetails, saveFileDialog.FileName);
+
+                        // Show success message
+                        //MessageBox.Show(this, "Cash Receiving Voucher exported successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle errors
+                MessageBox.Show($"An error occurred while exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

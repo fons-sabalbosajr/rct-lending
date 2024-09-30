@@ -40,7 +40,7 @@
             this.lloanterm = new System.Windows.Forms.Label();
             this.lloaninterest = new System.Windows.Forms.Label();
             this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
-            this.bvoucher = new Guna.UI2.WinForms.Guna2Button();
+            this.bvoucheroffice = new Guna.UI2.WinForms.Guna2Button();
             this.brelease = new Guna.UI2.WinForms.Guna2Button();
             this.bcancel = new Guna.UI2.WinForms.Guna2Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -94,6 +94,7 @@
             this.lnorecord = new System.Windows.Forms.Label();
             this.lendpayment = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.bvoucherclient = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdisburse)).BeginInit();
             this.SuspendLayout();
             // 
@@ -183,23 +184,23 @@
             this.guna2Separator2.Size = new System.Drawing.Size(856, 10);
             this.guna2Separator2.TabIndex = 179;
             // 
-            // bvoucher
+            // bvoucheroffice
             // 
-            this.bvoucher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bvoucher.BorderRadius = 4;
-            this.bvoucher.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bvoucher.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bvoucher.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bvoucher.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bvoucher.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bvoucher.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bvoucher.ForeColor = System.Drawing.Color.White;
-            this.bvoucher.Location = new System.Drawing.Point(18, 518);
-            this.bvoucher.Name = "bvoucher";
-            this.bvoucher.Size = new System.Drawing.Size(185, 31);
-            this.bvoucher.TabIndex = 180;
-            this.bvoucher.Text = "Receiving Voucher Report";
-            this.bvoucher.Click += new System.EventHandler(this.bvoucher_Click);
+            this.bvoucheroffice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bvoucheroffice.BorderRadius = 4;
+            this.bvoucheroffice.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bvoucheroffice.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bvoucheroffice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bvoucheroffice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bvoucheroffice.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bvoucheroffice.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bvoucheroffice.ForeColor = System.Drawing.Color.White;
+            this.bvoucheroffice.Location = new System.Drawing.Point(18, 512);
+            this.bvoucheroffice.Name = "bvoucheroffice";
+            this.bvoucheroffice.Size = new System.Drawing.Size(185, 37);
+            this.bvoucheroffice.TabIndex = 180;
+            this.bvoucheroffice.Text = "Receiving Voucher Report (Office Copy)";
+            this.bvoucheroffice.Click += new System.EventHandler(this.bvoucher_Click);
             // 
             // brelease
             // 
@@ -924,11 +925,30 @@
             this.label12.TabIndex = 234;
             this.label12.Text = "Maturity Date:";
             // 
+            // bvoucherclient
+            // 
+            this.bvoucherclient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bvoucherclient.BorderRadius = 4;
+            this.bvoucherclient.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bvoucherclient.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bvoucherclient.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bvoucherclient.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bvoucherclient.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bvoucherclient.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bvoucherclient.ForeColor = System.Drawing.Color.White;
+            this.bvoucherclient.Location = new System.Drawing.Point(209, 512);
+            this.bvoucherclient.Name = "bvoucherclient";
+            this.bvoucherclient.Size = new System.Drawing.Size(185, 37);
+            this.bvoucherclient.TabIndex = 236;
+            this.bvoucherclient.Text = "Receiving Voucher Report (Client Copy)";
+            this.bvoucherclient.Click += new System.EventHandler(this.bvoucherclient_Click);
+            // 
             // frm_home_loan_voucher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.bvoucherclient);
             this.Controls.Add(this.lendpayment);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lnorecord);
@@ -982,7 +1002,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.bcancel);
             this.Controls.Add(this.brelease);
-            this.Controls.Add(this.bvoucher);
+            this.Controls.Add(this.bvoucheroffice);
             this.Controls.Add(this.guna2Separator2);
             this.Controls.Add(this.lloaninterest);
             this.Controls.Add(this.lloanterm);
@@ -1016,7 +1036,7 @@
         private System.Windows.Forms.Label lloanterm;
         private System.Windows.Forms.Label lloaninterest;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
-        private Guna.UI2.WinForms.Guna2Button bvoucher;
+        private Guna.UI2.WinForms.Guna2Button bvoucheroffice;
         private Guna.UI2.WinForms.Guna2Button brelease;
         private Guna.UI2.WinForms.Guna2Button bcancel;
         private System.Windows.Forms.Label label6;
@@ -1070,5 +1090,6 @@
         private System.Windows.Forms.Label lnorecord;
         private System.Windows.Forms.Label lendpayment;
         private System.Windows.Forms.Label label12;
+        private Guna.UI2.WinForms.Guna2Button bvoucherclient;
     }
 }
