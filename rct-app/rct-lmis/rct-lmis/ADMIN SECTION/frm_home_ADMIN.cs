@@ -68,7 +68,7 @@ namespace rct_lmis
         #region "PANELS"
         private void customUI()
         {
-           
+
             psubdata.Visible = false;
             psubacc.Visible = false;
         }
@@ -137,7 +137,7 @@ namespace rct_lmis
         private void baccounting_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.col);
-            
+
         }
 
         private void bdatabase_Click(object sender, EventArgs e)
@@ -181,14 +181,14 @@ namespace rct_lmis
 
         private void bannouncement_Click(object sender, EventArgs e)
         {
-            frm_ADMIN_annoucement  ann = new frm_ADMIN_annoucement();
+            frm_ADMIN_annoucement ann = new frm_ADMIN_annoucement();
 
             ActivateButton(sender, RGBColors.col);
             load.Show(this);
             Thread.Sleep(1000);
             load.Close();
             ann.ShowDialog();
-            
+
         }
 
         private void bdatadelstaff_Click(object sender, EventArgs e)
@@ -234,6 +234,24 @@ namespace rct_lmis
             load.Show(this);
             Thread.Sleep(1000);
             ChildForm(new frm_home_accounting());
+            load.Close();
+        }
+
+        private void barearoute_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN_routes());
+            load.Close();
+        }
+
+        private void bdatabackup_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.col);
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_ADMIN_rawdata());
             load.Close();
         }
     }

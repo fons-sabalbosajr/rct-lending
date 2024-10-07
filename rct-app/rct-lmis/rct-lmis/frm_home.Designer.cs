@@ -123,7 +123,7 @@ namespace rct_lmis
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(810, 17);
+            this.label1.Location = new System.Drawing.Point(851, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 42;
@@ -148,7 +148,7 @@ namespace rct_lmis
             this.ldate.BackColor = System.Drawing.Color.Transparent;
             this.ldate.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ldate.Location = new System.Drawing.Point(810, 33);
+            this.ldate.Location = new System.Drawing.Point(851, 33);
             this.ldate.Name = "ldate";
             this.ldate.Size = new System.Drawing.Size(36, 16);
             this.ldate.TabIndex = 40;
@@ -558,7 +558,6 @@ namespace rct_lmis
             this.bclient.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bclient.TextOffset = new System.Drawing.Point(20, 0);
             this.toolTip1.SetToolTip(this.bclient, "Clients");
-            this.bclient.Visible = false;
             this.bclient.Click += new System.EventHandler(this.bclient_Click);
             // 
             // bviewapplications

@@ -28,36 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ltitle = new System.Windows.Forms.Label();
             this.pheaders = new System.Windows.Forms.Panel();
-            this.bexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bprint = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.label1 = new System.Windows.Forms.Label();
             this.cbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.bmore = new Guna.UI2.WinForms.Guna2Button();
-            this.luser = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ltotal = new System.Windows.Forms.Label();
-            this.guna2VSeparator3 = new Guna.UI2.WinForms.Guna2VSeparator();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvloanapps = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ltotalloancount = new System.Windows.Forms.Label();
+            this.luser = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.pheaders.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvloanapps)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -84,8 +76,6 @@
             // pheaders
             // 
             this.pheaders.BackColor = System.Drawing.Color.White;
-            this.pheaders.Controls.Add(this.bexport);
-            this.pheaders.Controls.Add(this.bprint);
             this.pheaders.Controls.Add(this.guna2Separator1);
             this.pheaders.Controls.Add(this.label1);
             this.pheaders.Controls.Add(this.cbstatus);
@@ -96,53 +86,11 @@
             this.pheaders.Size = new System.Drawing.Size(1300, 66);
             this.pheaders.TabIndex = 2;
             // 
-            // bexport
-            // 
-            this.bexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bexport.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bexport.BorderRadius = 2;
-            this.bexport.BorderThickness = 1;
-            this.bexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bexport.FillColor = System.Drawing.Color.White;
-            this.bexport.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bexport.ForeColor = System.Drawing.Color.White;
-            this.bexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
-            this.bexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bexport.Location = new System.Drawing.Point(1210, 15);
-            this.bexport.Name = "bexport";
-            this.bexport.Size = new System.Drawing.Size(35, 35);
-            this.bexport.TabIndex = 11;
-            this.bexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // bprint
-            // 
-            this.bprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bprint.BorderRadius = 2;
-            this.bprint.BorderThickness = 1;
-            this.bprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bprint.FillColor = System.Drawing.Color.White;
-            this.bprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bprint.ForeColor = System.Drawing.Color.White;
-            this.bprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bprint.Location = new System.Drawing.Point(1251, 15);
-            this.bprint.Name = "bprint";
-            this.bprint.Size = new System.Drawing.Size(35, 35);
-            this.bprint.TabIndex = 10;
-            this.bprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // guna2Separator1
             // 
             this.guna2Separator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2Separator1.Location = new System.Drawing.Point(6, 56);
+            this.guna2Separator1.Location = new System.Drawing.Point(7, 55);
             this.guna2Separator1.Name = "guna2Separator1";
             this.guna2Separator1.Size = new System.Drawing.Size(1287, 10);
             this.guna2Separator1.TabIndex = 3;
@@ -199,152 +147,7 @@
             this.tsearch.SelectedText = "";
             this.tsearch.Size = new System.Drawing.Size(377, 36);
             this.tsearch.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Controls.Add(this.bmore);
-            this.panel3.Controls.Add(this.luser);
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.ltotal);
-            this.panel3.Controls.Add(this.guna2VSeparator3);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.guna2VSeparator2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 817);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1300, 33);
-            this.panel3.TabIndex = 3;
-            // 
-            // bmore
-            // 
-            this.bmore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bmore.BorderRadius = 2;
-            this.bmore.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bmore.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bmore.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bmore.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bmore.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bmore.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bmore.ForeColor = System.Drawing.Color.White;
-            this.bmore.Image = global::rct_lmis.Properties.Resources.icons8_more_48;
-            this.bmore.Location = new System.Drawing.Point(1103, 7);
-            this.bmore.Name = "bmore";
-            this.bmore.Size = new System.Drawing.Size(30, 20);
-            this.bmore.TabIndex = 0;
-            this.bmore.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // luser
-            // 
-            this.luser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.luser.AutoSize = true;
-            this.luser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.luser.ForeColor = System.Drawing.Color.DimGray;
-            this.luser.Location = new System.Drawing.Point(1208, 10);
-            this.luser.Name = "luser";
-            this.luser.Size = new System.Drawing.Size(78, 15);
-            this.luser.TabIndex = 11;
-            this.luser.Text = "staff/encoder";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(389, 10);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 15);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Denied";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Gold;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(332, 10);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 15);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Pending";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(263, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 15);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Approved";
-            // 
-            // ltotal
-            // 
-            this.ltotal.AutoSize = true;
-            this.ltotal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ltotal.ForeColor = System.Drawing.Color.DimGray;
-            this.ltotal.Location = new System.Drawing.Point(124, 10);
-            this.ltotal.Name = "ltotal";
-            this.ltotal.Size = new System.Drawing.Size(22, 15);
-            this.ltotal.TabIndex = 7;
-            this.ltotal.Text = "---";
-            // 
-            // guna2VSeparator3
-            // 
-            this.guna2VSeparator3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2VSeparator3.Location = new System.Drawing.Point(1133, 9);
-            this.guna2VSeparator3.Name = "guna2VSeparator3";
-            this.guna2VSeparator3.Size = new System.Drawing.Size(10, 17);
-            this.guna2VSeparator3.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(161, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 15);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Loans per Status:";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.DimGray;
-            this.label4.Location = new System.Drawing.Point(1141, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 15);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Active User:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(14, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Total Applications:";
-            // 
-            // guna2VSeparator2
-            // 
-            this.guna2VSeparator2.Location = new System.Drawing.Point(150, 9);
-            this.guna2VSeparator2.Name = "guna2VSeparator2";
-            this.guna2VSeparator2.Size = new System.Drawing.Size(10, 17);
-            this.guna2VSeparator2.TabIndex = 2;
+            this.tsearch.TextChanged += new System.EventHandler(this.tsearch_TextChanged);
             // 
             // lnorecord
             // 
@@ -365,25 +168,25 @@
             this.dgvloanapps.AllowUserToDeleteRows = false;
             this.dgvloanapps.AllowUserToResizeColumns = false;
             this.dgvloanapps.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvloanapps.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvloanapps.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.dgvloanapps.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvloanapps.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvloanapps.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvloanapps.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 8F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvloanapps.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvloanapps.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvloanapps.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvloanapps.Location = new System.Drawing.Point(0, 118);
@@ -420,6 +223,71 @@
             this.dgvloanapps.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvloanapps_CellFormatting);
             this.dgvloanapps.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvloanapps_DataBindingComplete);
             // 
+            // guna2VSeparator2
+            // 
+            this.guna2VSeparator2.Location = new System.Drawing.Point(150, 9);
+            this.guna2VSeparator2.Name = "guna2VSeparator2";
+            this.guna2VSeparator2.Size = new System.Drawing.Size(10, 17);
+            this.guna2VSeparator2.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.DimGray;
+            this.label3.Location = new System.Drawing.Point(14, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 15);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Total Applications:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.DimGray;
+            this.label4.Location = new System.Drawing.Point(163, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 15);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Active User:";
+            // 
+            // ltotalloancount
+            // 
+            this.ltotalloancount.AutoSize = true;
+            this.ltotalloancount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltotalloancount.ForeColor = System.Drawing.Color.DimGray;
+            this.ltotalloancount.Location = new System.Drawing.Point(124, 10);
+            this.ltotalloancount.Name = "ltotalloancount";
+            this.ltotalloancount.Size = new System.Drawing.Size(22, 15);
+            this.ltotalloancount.TabIndex = 7;
+            this.ltotalloancount.Text = "---";
+            // 
+            // luser
+            // 
+            this.luser.AutoSize = true;
+            this.luser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.luser.ForeColor = System.Drawing.Color.DimGray;
+            this.luser.Location = new System.Drawing.Point(230, 10);
+            this.luser.Name = "luser";
+            this.luser.Size = new System.Drawing.Size(78, 15);
+            this.luser.TabIndex = 11;
+            this.luser.Text = "staff/encoder";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.Controls.Add(this.luser);
+            this.panel3.Controls.Add(this.ltotalloancount);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.guna2VSeparator2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 817);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1300, 33);
+            this.panel3.TabIndex = 3;
+            // 
             // frm_home_loan_request
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -442,9 +310,9 @@
             this.panel1.PerformLayout();
             this.pheaders.ResumeLayout(false);
             this.pheaders.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvloanapps)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvloanapps)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,25 +323,17 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label ltitle;
         private System.Windows.Forms.Panel pheaders;
-        private Guna.UI2.WinForms.Guna2Button bexport;
-        private Guna.UI2.WinForms.Guna2Button bprint;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2ComboBox cbstatus;
         private Guna.UI2.WinForms.Guna2TextBox tsearch;
-        private System.Windows.Forms.Panel panel3;
-        private Guna.UI2.WinForms.Guna2Button bmore;
-        private System.Windows.Forms.Label luser;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label ltotal;
-        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator2;
         private System.Windows.Forms.Label lnorecord;
         private Guna.UI2.WinForms.Guna2DataGridView dgvloanapps;
+        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label ltotalloancount;
+        private System.Windows.Forms.Label luser;
+        private System.Windows.Forms.Panel panel3;
     }
 }

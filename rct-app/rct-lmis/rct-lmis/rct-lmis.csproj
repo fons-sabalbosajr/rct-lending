@@ -520,6 +520,24 @@
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_penalty.Designer.cs">
       <DependentUpon>frm_home_ADMIN_penalty.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_rawdata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_rawdata.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_rawdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_rawdata_details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_rawdata_details.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_rawdata_details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_routes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_routes.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_routes.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_signupaccounts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -799,6 +817,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_penalty.resx">
       <DependentUpon>frm_home_ADMIN_penalty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_rawdata.resx">
+      <DependentUpon>frm_home_ADMIN_rawdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_rawdata_details.resx">
+      <DependentUpon>frm_home_ADMIN_rawdata_details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_routes.resx">
+      <DependentUpon>frm_home_ADMIN_routes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_signupaccounts.resx">
       <DependentUpon>frm_home_ADMIN_signupaccounts.cs</DependentUpon>

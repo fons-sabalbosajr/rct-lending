@@ -1149,12 +1149,13 @@
             this.tpaymentstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tpaymentstatus.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.tpaymentstatus.Location = new System.Drawing.Point(734, 88);
+            this.tpaymentstatus.Multiline = true;
             this.tpaymentstatus.Name = "tpaymentstatus";
             this.tpaymentstatus.PasswordChar = '\0';
             this.tpaymentstatus.PlaceholderText = "n/a";
             this.tpaymentstatus.ReadOnly = true;
             this.tpaymentstatus.SelectedText = "";
-            this.tpaymentstatus.Size = new System.Drawing.Size(138, 25);
+            this.tpaymentstatus.Size = new System.Drawing.Size(138, 70);
             this.tpaymentstatus.TabIndex = 149;
             // 
             // label30

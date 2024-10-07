@@ -625,7 +625,7 @@ namespace rct_lmis
         private async void dtdate_ValueChangedAsync(object sender, EventArgs e)
         {
             DateTime selectedDate = dtdate.Value;
-            await LoadLoanDisbursedData(searchQuery: "", selectedCashName: "", selectedDate: selectedDate);
+            //await LoadLoanDisbursedData(searchQuery: "", selectedCashName: "", selectedDate: selectedDate);
         }
     }
 }

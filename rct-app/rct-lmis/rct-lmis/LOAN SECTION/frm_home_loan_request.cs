@@ -15,10 +15,15 @@ namespace rct_lmis.LOAN_SECTION
 {
     public partial class frm_home_loan_request : Form
     {
+
+        private string loggedInUsername;
+
         public frm_home_loan_request()
         {
             InitializeComponent();
             LoadLoanApplicationsData();
+
+            loggedInUsername = UserSession.Instance.CurrentUser;
         }
 
         LoadingFunction load = new LoadingFunction();
@@ -88,10 +93,38 @@ namespace rct_lmis.LOAN_SECTION
                     dataTable.Rows.Add(row);
                 }
 
+                // Apply keyword filtering based on the tsearch.Text textbox value
+                string keyword = tsearch.Text.Trim().ToLower();  // Convert to lowercase for case-insensitive filtering
+
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    // Filter the rows based on the keyword in relevant columns
+                    var filteredRows = dataTable.AsEnumerable()
+                        .Where(row => row["AccountID"].ToString().ToLower().Contains(keyword) ||
+                                      row["LoanType"].ToString().ToLower().Contains(keyword) ||
+                                      row["Principal"].ToString().ToLower().Contains(keyword) ||
+                                      row["Term"].ToString().ToLower().Contains(keyword) ||
+                                      row["Status"].ToString().ToLower().Contains(keyword) ||
+                                      row["FullNameAndAddress"].ToString().ToLower().Contains(keyword) ||
+                                      row["CBCP"].ToString().ToLower().Contains(keyword) ||
+                                      row["Documents"].ToString().ToLower().Contains(keyword));
+
+                    // Create a new DataTable to bind filtered data to the DataGridView
+                    if (filteredRows.Any())
+                    {
+                        dataTable = filteredRows.CopyToDataTable();
+                    }
+                    else
+                    {
+                        // If no matching rows, clear the DataTable
+                        dataTable.Rows.Clear();
+                    }
+                }
+
                 // Bind the DataTable to the DataGridView
                 dgvloanapps.DataSource = dataTable;
 
-                // Set custom header texts
+                // Set custom header texts and other configurations (same as before)
                 dgvloanapps.Columns["AccountID"].HeaderText = "Account ID";
                 dgvloanapps.Columns["LoanType"].HeaderText = "Loan Type";
                 dgvloanapps.Columns["LoanType"].Width = 70;
@@ -129,6 +162,7 @@ namespace rct_lmis.LOAN_SECTION
                     dgvloanapps.Columns["Documents"].SortMode = DataGridViewColumnSortMode.Automatic;
                 }
 
+                // Add the button column for "View Details"
                 if (dgvloanapps.Columns["btnViewDetails"] == null)
                 {
                     DataGridViewButtonColumn viewDetailsButtonColumn = new DataGridViewButtonColumn
@@ -143,21 +177,19 @@ namespace rct_lmis.LOAN_SECTION
                     dgvloanapps.Columns.Add(viewDetailsButtonColumn);
                 }
 
-                // Set width, padding, and font size for the button column to avoid large size
+                // Set width, padding, and font size for the button column
                 var btnColumn = dgvloanapps.Columns["btnViewDetails"];
                 if (btnColumn != null)
                 {
                     btnColumn.Width = 120;
                 }
 
-
-                // Set padding for the button column to avoid large size
+                // Set padding for the button column
                 foreach (DataGridViewRow row in dgvloanapps.Rows)
                 {
                     DataGridViewButtonCell buttonCell = row.Cells["btnViewDetails"] as DataGridViewButtonCell;
                     if (buttonCell != null)
                     {
-                        // Adjust the padding values as needed
                         buttonCell.Style.Padding = new Padding(30, 15, 30, 15);
                         buttonCell.Style.Font = new Font("Arial", 9);
                     }
@@ -172,6 +204,23 @@ namespace rct_lmis.LOAN_SECTION
         }
 
 
+        private void LoadUserInfo(string username)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<BsonDocument>("user_accounts"); // 'user_accounts' is the name of your collection
+
+            var filter = Builders<BsonDocument>.Filter.Eq("Username", username);
+            var user = collection.Find(filter).FirstOrDefault();
+
+            if (user != null)
+            {
+                // Get the full name
+                var fullName = user.GetValue("FullName").AsString;
+
+                // Display the full name
+                luser.Text = fullName;
+            }
+        }
 
         private void CenterAlignColumns(params string[] columnNames)
         {
@@ -187,6 +236,9 @@ namespace rct_lmis.LOAN_SECTION
         private void frm_home_loan_request_Load(object sender, EventArgs e)
         {
             LoadLoanApplicationsData();
+            LoadUserInfo(loggedInUsername);
+
+            ltotalloancount.Text = dgvloanapps.Rows.Count.ToString();
         }
 
         private void dgvloanapps_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -236,6 +288,11 @@ namespace rct_lmis.LOAN_SECTION
         private void frm_home_loan_request_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Hide();
+        }
+
+        private void tsearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadLoanApplicationsData();
         }
     }
 }

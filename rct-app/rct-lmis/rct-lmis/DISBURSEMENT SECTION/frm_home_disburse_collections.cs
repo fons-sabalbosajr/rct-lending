@@ -80,11 +80,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                                   $"Running Balance: {runningBalance}";
 
                 // Payment Information
-                // Payment Information
                 string dateReceived = collection.Contains("DateReceived") ?
                                       collection["DateReceived"].AsBsonDateTime.ToLocalTime().ToString("MM/dd/yyyy") : "";
                 string amountPaid = collection.Contains("ActualCollection") ?
-                                    ((double)collection["ActualCollection"].AsDecimal128).ToString("F2") : "0.00";
+                             ((double)collection["ActualCollection"].AsDecimal128).ToString("F2") : "0.00";
                 string penalty = collection.Contains("CollectedPenalty") ?
                                  ((double)collection["CollectedPenalty"].AsDecimal128).ToString("F2") : "";
                 string paymentMode = collection.Contains("PaymentMode") ?
@@ -139,9 +138,15 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 DateTime paymentStartDate = DateTime.Parse(paymentStartDateStr);
 
                 // Calculate remarks
-                string remarks = paymentStartDate.Date == receivedDate.Date
-                    ? $"Total Days Missed: {(collDate.Date - paymentStartDate.Date).Days} on {paymentStartDate:MM/dd/yyyy}"
-                    : "Payment Completed";
+                string remarks;
+                if (receivedDate.Date == collDate.Date)
+                {
+                    remarks = "Payment Completed";
+                }
+                else
+                {
+                    remarks = $"Total Days Missed: {(collDate.Date - paymentStartDate.Date).Days} on {paymentStartDate:MM/dd/yyyy}";
+                }
 
                 // Add the concatenated information to the DataTable
                 _loanCollectionTable.Rows.Add(clientInfo, loanInfo, paymentInfo, collectionInfo, remarks);
@@ -198,10 +203,27 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 }
             }
 
+            // Apply styling to Remarks
+            foreach (DataGridViewRow row in dgvdata.Rows)
+            {
+                string remarks = row.Cells[4].Value.ToString(); // Assuming the Remarks is in the 5th column
+
+                // Apply styling based on Remarks
+                if (remarks.Contains("Payment Completed"))
+                {
+                    row.Cells[4].Style.ForeColor = Color.Green;
+                    row.Cells[4].Style.Font = new Font(dgvdata.Font, FontStyle.Bold);
+                }
+                else if (remarks.Contains("Total Days Missed"))
+                {
+                    row.Cells[4].Style.ForeColor = Color.Red;
+                    row.Cells[4].Style.Font = new Font(dgvdata.Font, FontStyle.Bold);
+                }
+            }
+
             // Show or hide the 'lnorecord' label depending on the number of rows
             lnorecord.Visible = dgvdata.Rows.Count == 0;
         }
-
 
         private void SearchInDataGrid(string keyword)
         {

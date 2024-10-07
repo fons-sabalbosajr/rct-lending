@@ -36,8 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_collections));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.bexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bprint = new Guna.UI2.WinForms.Guna2Button();
             this.laccountid = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.laccno = new System.Windows.Forms.Label();
@@ -59,8 +57,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel1.Controls.Add(this.bexport);
-            this.panel1.Controls.Add(this.bprint);
             this.panel1.Controls.Add(this.laccountid);
             this.panel1.Controls.Add(this.label27);
             this.panel1.Controls.Add(this.laccno);
@@ -70,48 +66,6 @@
             this.panel1.Size = new System.Drawing.Size(1184, 50);
             this.panel1.TabIndex = 4;
             // 
-            // bexport
-            // 
-            this.bexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bexport.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bexport.BorderRadius = 2;
-            this.bexport.BorderThickness = 1;
-            this.bexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bexport.FillColor = System.Drawing.Color.White;
-            this.bexport.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bexport.ForeColor = System.Drawing.Color.White;
-            this.bexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
-            this.bexport.Location = new System.Drawing.Point(1106, 10);
-            this.bexport.Name = "bexport";
-            this.bexport.Size = new System.Drawing.Size(30, 30);
-            this.bexport.TabIndex = 38;
-            this.bexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bexport, "Export to Excel");
-            // 
-            // bprint
-            // 
-            this.bprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bprint.BorderRadius = 2;
-            this.bprint.BorderThickness = 1;
-            this.bprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bprint.FillColor = System.Drawing.Color.White;
-            this.bprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bprint.ForeColor = System.Drawing.Color.White;
-            this.bprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bprint.Location = new System.Drawing.Point(1142, 10);
-            this.bprint.Name = "bprint";
-            this.bprint.Size = new System.Drawing.Size(30, 30);
-            this.bprint.TabIndex = 37;
-            this.bprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bprint, "Print Table");
-            // 
             // laccountid
             // 
             this.laccountid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -119,7 +73,7 @@
             this.laccountid.BackColor = System.Drawing.Color.Transparent;
             this.laccountid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.laccountid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccountid.Location = new System.Drawing.Point(865, 15);
+            this.laccountid.Location = new System.Drawing.Point(952, 15);
             this.laccountid.Name = "laccountid";
             this.laccountid.Size = new System.Drawing.Size(121, 20);
             this.laccountid.TabIndex = 36;
@@ -132,7 +86,7 @@
             this.label27.BackColor = System.Drawing.Color.Transparent;
             this.label27.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label27.Location = new System.Drawing.Point(776, 16);
+            this.label27.Location = new System.Drawing.Point(863, 16);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(93, 19);
             this.label27.TabIndex = 35;
@@ -392,9 +346,7 @@
         private System.Windows.Forms.Label label27;
         private Guna.UI2.WinForms.Guna2Button bnew;
         private System.Windows.Forms.Label laccno;
-        private Guna.UI2.WinForms.Guna2Button bexport;
         private System.Windows.Forms.ToolTip toolTip1;
-        private Guna.UI2.WinForms.Guna2Button bprint;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lnorecord;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdata;

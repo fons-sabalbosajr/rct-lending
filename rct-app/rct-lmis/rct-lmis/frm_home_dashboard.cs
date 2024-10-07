@@ -22,12 +22,12 @@ namespace rct_lmis
             InitializeClientsView();
             _username = username;
 
-            dgvusersonline.ClearSelection();
-            dgvbulletin.ClearSelection();
+            //dgvusersonline.ClearSelection();
+            //dgvbulletin.ClearSelection();
 
-            dgvclients.ClearSelection();
-            dgvbulletin.ClearSelection();
-            dgvcollectionsnew.ClearSelection();
+            //dgvclients.ClearSelection();
+            //dgvbulletin.ClearSelection();
+            //dgvcollectionsnew.ClearSelection();
         }
 
         private void frm_home_dashboard_Load(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace rct_lmis
             dgvbulletin.Columns["ViewButton"].Width = 50;
 
             dgvbulletin.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            //dgvbulletin.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+            dgvbulletin.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
 
             dgvbulletin.CellFormatting += dgvusersonline_CellFormatting;
             dgvbulletin.DataBindingComplete += dgvusersonline_DataBindingComplete;
@@ -208,18 +208,19 @@ namespace rct_lmis
         private void InitializeClientsView()
         {
             // Clear existing columns if any
-            dgvclients.Columns.Clear();
+            dgvdata_client.Columns.Clear();
+            dgvdata_client.ClearSelection();
 
             // Add columns
-            dgvclients.Columns.Add(new DataGridViewTextBoxColumn { Name = "ClientInfo", HeaderText = "Client Information" });
-            dgvclients.Columns.Add(new DataGridViewTextBoxColumn { Name = "LoanStatus", HeaderText = "Loan Status" });
+            dgvdata_client.Columns.Add(new DataGridViewTextBoxColumn { Name = "ClientInfo", HeaderText = "Client Information" });
+            dgvdata_client.Columns.Add(new DataGridViewTextBoxColumn { Name = "LoanStatus", HeaderText = "Loan Status" });
 
             // Adjust column widths as needed
-            dgvclients.Columns["ClientInfo"].Width = 400;
-            dgvclients.Columns["LoanStatus"].Width = 100;
+            dgvdata_client.Columns["ClientInfo"].Width = 400;
+            dgvdata_client.Columns["LoanStatus"].Width = 100;
 
-            dgvclients.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dgvclients.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+            dgvdata_client.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvdata_client.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
         }
 
         private void PopulateClientsView()
@@ -232,8 +233,7 @@ namespace rct_lmis
                 // Fetch all approved loans
                 var clients = collection.Find(Builders<BsonDocument>.Filter.Empty).ToList();
 
-                // Clear existing rows in the DataGridView
-                dgvclients.Rows.Clear();
+                dgvdata_client.Rows.Clear();
 
                 // Populate DataGridView with client information
                 foreach (var client in clients)
@@ -251,10 +251,9 @@ namespace rct_lmis
                     string loanStatus = client.Contains("LoanStatus") ? client["LoanStatus"].ToString() : "";
 
                     // Add row to the DataGridView
-                    dgvclients.Rows.Add(clientInfo, loanStatus);
+                    dgvdata_client.Rows.Add(clientInfo, loanStatus);
                 }
-                dgvclients.DataBindingComplete += dgvclients_DataBindingComplete;
-
+               
             }
             catch (Exception ex)
             {
@@ -353,10 +352,10 @@ namespace rct_lmis
 
                 // Clear existing rows before loading new data
                 dgvcollectionsnew.Rows.Clear();
-                dgvcollectionsnew.DataBindingComplete += dgvcollectionsnew_DataBindingComplete;
 
-                // Query to get all loan collections
+                // Query to get all loan collections and sort them by CollectionDate (newest to oldest)
                 var loanCollections = collection.Find(Builders<BsonDocument>.Filter.Empty)
+                                                .Sort(Builders<BsonDocument>.Sort.Descending("CollectionDate"))
                                                 .ToList();
 
                 // Populate DataGridView with collection information
@@ -392,9 +391,9 @@ namespace rct_lmis
                     if (collectionDoc.Contains("CollectionDate") && collectionDoc.Contains("DateReceived"))
                     {
                         DateTime collDate = collectionDoc["CollectionDate"].ToUniversalTime();
-                        DateTime receivedDate = DateTime.Parse(collectionDoc["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy"));
+                        DateTime receivedDate = collectionDoc["DateReceived"].ToUniversalTime();
 
-                        // Add logic to determine the status based on your criteria here
+                        // Status based on the collection date and received date comparison
                         collectionStatus = collDate.Date == receivedDate.Date ? "Paid on Time" : "Over Due";
                     }
 
@@ -426,6 +425,7 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading collections: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 
@@ -568,14 +568,14 @@ namespace rct_lmis
             dgvbulletin.ClearSelection();
         }
 
-        private void dgvclients_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dgvclients.ClearSelection();
-        }
-
         private void dgvcollectionsnew_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            dgvcollectionsnew.ClearSelection();
+           dgvcollectionsnew.ClearSelection();
+        }
+
+        private void dgvdata_client_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvdata_client.ClearSelection();
         }
     }
 

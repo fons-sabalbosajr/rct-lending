@@ -19,14 +19,21 @@ namespace rct_lmis.ADMIN_SECTION
     {
 
         private string _currentId;
+        private IMongoDatabase database;
+        private IMongoCollection<BsonDocument> loanCollectorsCollection;
+
         public frm_home_ADMIN_collectors()
         {
             InitializeComponent();
+            database = MongoDBConnection.Instance.Database;
+            loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_area_routes");
+            tidno.Enabled = false;
         }
 
 
         LoadingFunction load = new LoadingFunction();
-       
+
+
         private void DisableElements()
         {
             cbarea.Enabled = false;
@@ -45,7 +52,7 @@ namespace rct_lmis.ADMIN_SECTION
         private void EnableElements()
         {
             cbarea.Enabled = true;
-            tidno.Enabled = true;
+           // tidno.Enabled = true;
             tname.Enabled = true;
             taddress.Enabled = true;
             tcontactno.Enabled = true;
@@ -57,13 +64,13 @@ namespace rct_lmis.ADMIN_SECTION
             buploaddoc.Enabled = true;
         }
 
-        private string GetIncrementId(string areaRoute)
+        private string GetIncrementId()
         {
             var database = MongoDBConnection.Instance.Database;
             var loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
 
-            // Query to find the highest existing ID for the given area route
-            var filter = Builders<BsonDocument>.Filter.Regex("GeneratedIDNumber", new BsonRegularExpression($"^RCT-{areaRoute}-C"));
+            // Update the regex to match 'RCT-COL'
+            var filter = Builders<BsonDocument>.Filter.Regex("GeneratedIDNumber", new BsonRegularExpression("^RCT-COL"));
             var sort = Builders<BsonDocument>.Sort.Descending("GeneratedIDNumber");
 
             // Find the document with the highest ID number
@@ -73,7 +80,12 @@ namespace rct_lmis.ADMIN_SECTION
             {
                 // Extract the current highest ID and increment it
                 string highestId = highestDoc["GeneratedIDNumber"].AsString;
-                int currentNumber = int.Parse(highestId.Substring(highestId.LastIndexOf('C') + 1));
+
+                // Extract the numeric part after 'COL'
+                string numericPart = highestId.Substring(highestId.LastIndexOf("COL") + 3);
+
+                // Convert to integer, increment, and format back to a 4-digit string
+                int currentNumber = int.Parse(numericPart);
                 int nextNumber = currentNumber + 1;
 
                 return nextNumber.ToString("D4"); // Return the ID in the format C0001, C0002, etc.
@@ -85,26 +97,13 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
+
         private void GenerateCollectorID()
         {
-            string selectedArea = cbarea.SelectedItem?.ToString();
-            if (string.IsNullOrEmpty(selectedArea))
-            {
-                return;
-            }
-
-            string areaRoute = GetAreaRouteCode(selectedArea);
-            string incrementId = GetIncrementId(areaRoute);
-            tidno.Text = $"RCT-{areaRoute}-C{incrementId}";
+            string incrementId = GetIncrementId();
+            tidno.Text = $"RCT-COL{incrementId}";
         }
 
-        private string GetAreaRouteCode(string selectedArea)
-        {
-            if (selectedArea == "Area 1") return "AR1";
-            if (selectedArea == "Area 2") return "AR2";
-            if (selectedArea == "Area 3") return "AR3";
-            return string.Empty;
-        }
 
         private void ClearForm()
         {
@@ -118,32 +117,44 @@ namespace rct_lmis.ADMIN_SECTION
             cbempstatus.SelectedIndex = -1;
             dtdateemp.Value = DateTime.Now;
             trole.Text = string.Empty;
-           
-            _currentId = null;
 
+            // Clear the listbox items
+            listarea_routes.Items.Clear();
+
+            // Reset any other fields if needed
+            _currentId = null;
         }
+
 
         private void SaveCollector()
         {
             var database = MongoDBConnection.Instance.Database;
             var loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
 
+            // Create a list to hold the area routes from the listbox
+            var areaRoutesList = new BsonArray();
+
+            foreach (var item in listarea_routes.Items)
+            {
+                areaRoutesList.Add(item.ToString());
+            }
+
             // Create a BsonDocument with the collector's data
             var collectorData = new BsonDocument
-            {
-                { "AreaRoute", cbarea.SelectedItem?.ToString() },
-                { "GeneratedIDNumber", tidno.Text },
-                { "Name", tname.Text },
-                { "Address", taddress.Text },
-                { "ContactNumber", tcontactno.Text },
-                { "AlternateContactNumber", tcontactnoalt.Text },
-                { "EmploymentStatus", cbempstatus.SelectedItem?.ToString() },
-                { "Email", temail.Text },
-                { "EmploymentDate", dtdateemp.Value.ToString("d") },
-                { "Role", trole.Text },
-                { "ReceiptBookNo", trecbookno.Text },
-                { "BankAccount", tbankaccountno.Text }
-            };
+             {
+                 { "GeneratedIDNumber", tidno.Text },
+                 { "Name", tname.Text },
+                 { "Address", taddress.Text },
+                 { "ContactNumber", tcontactno.Text },
+                 { "AlternateContactNumber", tcontactnoalt.Text },
+                 { "EmploymentStatus", cbempstatus.SelectedItem?.ToString() },
+                 { "Email", temail.Text },
+                 { "EmploymentDate", dtdateemp.Value.ToString("d") },
+                 { "Role", trole.Text },
+                 { "ReceiptBookNo", trecbookno.Text },
+                 { "BankAccount", tbankaccountno.Text },
+                 { "AreaRoutes", areaRoutesList } // Add the list of area routes to the document
+             };
 
             var filter = Builders<BsonDocument>.Filter.Eq("GeneratedIDNumber", tidno.Text);
             loanCollectorsCollection.ReplaceOne(filter, collectorData);
@@ -153,25 +164,34 @@ namespace rct_lmis.ADMIN_SECTION
             ClearForm();
         }
 
+
         private void AddCollector()
         {
             var database = MongoDBConnection.Instance.Database;
             var loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
 
+            // Create a list to hold the area routes from the listbox
+            var areaRoutesList = new BsonArray();
+
+            foreach (var item in listarea_routes.Items)
+            {
+                areaRoutesList.Add(item.ToString());
+            }
+
             // Create a BsonDocument with the collector's data
             var collectorData = new BsonDocument
-            {
-                { "AreaRoute", cbarea.SelectedItem?.ToString() },
-                { "GeneratedIDNumber", tidno.Text },
-                { "Name", tname.Text },
-                { "Address", taddress.Text },
-                { "ContactNumber", tcontactno.Text },
-                { "AlternateContactNumber", tcontactnoalt.Text },
-                { "EmploymentStatus", cbempstatus.SelectedItem?.ToString() },
-                { "Email", temail.Text },
-                { "EmploymentDate", dtdateemp.Value.ToString("MM/dd/YYYY") },
-                { "Role", trole.Text }
-            };
+             {
+                 { "GeneratedIDNumber", tidno.Text },
+                 { "Name", tname.Text },
+                 { "Address", taddress.Text },
+                 { "ContactNumber", tcontactno.Text },
+                 { "AlternateContactNumber", tcontactnoalt.Text },
+                 { "EmploymentStatus", cbempstatus.SelectedItem?.ToString() },
+                 { "Email", temail.Text },
+                 { "EmploymentDate", dtdateemp.Value.ToString("MM/dd/yyyy") },
+                 { "Role", trole.Text },
+                 { "AreaRoutes", areaRoutesList } // Add the list of area routes to the document
+             };
 
             loanCollectorsCollection.InsertOne(collectorData);
 
@@ -290,7 +310,10 @@ namespace rct_lmis.ADMIN_SECTION
 
                 foreach (var doc in loanCollectors)
                 {
-                    string areaRoute = doc["AreaRoute"].AsString;
+                    string areaRoute = doc.Contains("AreaRoutes")
+                        ? string.Join("\n", doc["AreaRoutes"].AsBsonArray.Select(a => a.AsString))
+                        : "N/A"; // Combine area routes into a single string or set to "N/A"
+
                     string idNumber = doc["GeneratedIDNumber"].AsString;
                     string name = doc["Name"].AsString;
                     string address = doc["Address"].AsString;
@@ -307,9 +330,8 @@ namespace rct_lmis.ADMIN_SECTION
 
                     dgvdatacollector.Rows.Add(areaRoute, idinfo, contactInfo, employmentStatus);
 
-
                     // Convert the EmploymentDate to DateTime and set the dtdataemp value
-                    if (DateTime.TryParseExact(empdateStr, "mm/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime empdate))
+                    if (DateTime.TryParseExact(empdateStr, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime empdate))
                     {
                         dtdateemp.Value = empdate;
                     }
@@ -320,16 +342,8 @@ namespace rct_lmis.ADMIN_SECTION
                     }
                 }
 
-
                 // Check if the DataGridView is empty and show/hide the label accordingly
-                if (dgvdatacollector.Rows.Count == 0)
-                {
-                    lnorecord.Visible = true; // Show the label if no records
-                }
-                else
-                {
-                    lnorecord.Visible = false; // Hide the label if there are records
-                }
+                lnorecord.Visible = dgvdatacollector.Rows.Count == 0; // Show the label if no records
             }
             catch (Exception ex)
             {
@@ -338,53 +352,40 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
-        private void SetNextCollectorID()
+
+        private void LoadAreaIntoComboBox()
         {
             try
             {
-                var database = MongoDBConnection.Instance.Database;
-                var loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
+                // Fetch all areas from the loan_area_routes collection
+                var documents = loanCollectorsCollection.Find(new BsonDocument()).ToList();
 
-                // Retrieve the highest ID (assuming the ID follows the format "RCT-AR1-CXXXX")
-                var sortFilter = Builders<BsonDocument>.Sort.Descending("GeneratedIDNumber");
-                var lastCollector = loanCollectorsCollection.Find(new BsonDocument()).Sort(sortFilter).FirstOrDefault();
-
-                if (lastCollector != null)
+                // Populate the combo box with the 'Area' field
+                cbarea.Items.Clear(); // Clear any previous items
+                cbarea.Items.Add("--Select Area--"); // Add default item
+                foreach (var document in documents)
                 {
-                    string lastId = lastCollector["GeneratedIDNumber"].AsString;
-
-                    // Extract the numeric part of the ID (assuming the format "RCT-AR1-CXXXX")
-                    string[] parts = lastId.Split('-');
-                    string numericPart = parts[2].Substring(1); // Get the "CXXXX" part and remove the 'C'
-
-                    // Increment the numeric part
-                    int nextIdNumber = int.Parse(numericPart) + 1;
-
-                    // Format the new ID
-                    string nextId = $"{parts[0]}-{parts[1]}-C{nextIdNumber:D4}";
-
-                    // Set the tidno.Text with the new ID
-                    tidno.Text = nextId;
+                    string area = document["Area"].AsString;
+                    cbarea.Items.Add(area); // Add each area to the combo box
                 }
-                else
-                {
-                    // If no records exist, start with the first ID
-                    tidno.Text = "RCT-AR1-C0001"; // Adjust this based on the desired format and area
-                }
+
+                cbarea.SelectedIndex = 0; // Select the default item
             }
             catch (Exception ex)
             {
-                // Handle the exception (e.g., log the error, show a message box)
-                MessageBox.Show($"An error occurred while generating the next ID: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
 
         private void frm_home_ADMIN_collectors_Load(object sender, EventArgs e)
         {
             DisableElements();
             SetupDataGridView(); // Ensure columns are set up
-            LoadDataToDataGridView(); 
+            LoadDataToDataGridView();
+
+            LoadAreaIntoComboBox();
         }
 
         private void buploaddoc_Click(object sender, EventArgs e)
@@ -407,13 +408,25 @@ namespace rct_lmis.ADMIN_SECTION
             load.Close();
             MessageBox.Show(this, "Collector information added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LoadDataToDataGridView();
-            bcreate.Enabled = false;
-            bsave.Enabled = false;
+            badd.Enabled = false;
         }
 
         private void cbarea_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GenerateCollectorID();
+            // Clear the list box when the default selection is active
+            if (cbarea.SelectedItem?.ToString() == "--Select Area--")
+            {
+                listarea_routes.Items.Clear(); // Clear the list box
+            }
+            else
+            {
+                // Add selected area route to the list box
+                string selectedAreaRoute = cbarea.SelectedItem?.ToString();
+                if (!string.IsNullOrEmpty(selectedAreaRoute))
+                {
+                    listarea_routes.Items.Add(selectedAreaRoute);
+                }
+            }
         }
 
         private void bsave_Click(object sender, EventArgs e)
@@ -460,13 +473,14 @@ namespace rct_lmis.ADMIN_SECTION
             dgvdatacollector.ClearSelection();
         }
 
-       
+
 
         private void dgvdatacollector_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             EnableElements();
             bsave.Enabled = true;
             bedit.Enabled = true;
+
             // Check if the click is on a valid row
             if (e.RowIndex >= 0 && e.RowIndex < dgvdatacollector.Rows.Count)
             {
@@ -475,44 +489,53 @@ namespace rct_lmis.ADMIN_SECTION
                 // Load data into textboxes
                 cbarea.SelectedItem = row.Cells["AreaRoute"].Value?.ToString();
 
+                // Clear the listbox before populating it
+                listarea_routes.Items.Clear();
+
+                // Add selected area route to the listbox
+                string selectedAreaRoute = row.Cells["AreaRoute"].Value?.ToString();
+                if (!string.IsNullOrEmpty(selectedAreaRoute))
+                {
+                    listarea_routes.Items.Add(selectedAreaRoute);
+                }
+
                 var contactInfo = row.Cells["ContactInfo"].Value?.ToString();
                 if (!string.IsNullOrEmpty(contactInfo))
                 {
-                    // Assuming contactInfo is formatted as "Name\nAddress\nContact Number\nAlternate Contact Number"
                     var contactLines = contactInfo.Split(new[] { '\n' }, StringSplitOptions.None);
-                    if (contactLines.Length >= 4)
+                    if (contactLines.Length >= 8) // Adjusted to match the expected number of fields
                     {
                         tname.Text = contactLines[0]; // Name
                         taddress.Text = contactLines[1]; // Address
                         tcontactno.Text = contactLines[2]; // Contact Number
                         tcontactnoalt.Text = contactLines[3]; // Alternate Contact Number
-                        temail.Text = contactLines[4];
-                        trole.Text = contactLines[5];
-                        dtdateemp.Text = contactLines[6];
-                        tbankaccountno.Text = contactLines[7];
+                        temail.Text = contactLines[4]; // Email
+                        trole.Text = contactLines[5]; // Role
+                        dtdateemp.Text = contactLines[6]; // Employment Date
+                        tbankaccountno.Text = contactLines[7]; // Bank Account
                     }
                 }
 
                 var idInfo = row.Cells["IDNumber"].Value?.ToString();
                 if (!string.IsNullOrEmpty(idInfo))
                 {
-                    var contactLines = idInfo.Split(new[] { '\n' }, StringSplitOptions.None);
-                    if (contactLines.Length >= 2)
+                    var idLines = idInfo.Split(new[] { '\n' }, StringSplitOptions.None);
+                    if (idLines.Length >= 2)
                     {
-                        tidno.Text = contactLines[0];
-                        trecbookno.Text = contactLines[1];
+                        tidno.Text = idLines[0]; // Generated ID Number
+                        trecbookno.Text = idLines[1]; // Receipt Book Number
                     }
                 }
 
-                // Set other fields from the row
+                // Set employment status
                 cbempstatus.SelectedItem = row.Cells["EmploymentStatus"].Value?.ToString();
 
-                // Pass the IDNumber to the frm_home_ADMIN_collectors_upload form
+                // Pass the IDNumber to the forms for attachments
                 frm_home_ADMIN_collectors_upload.StoredAccountID = tidno.Text;
                 frm_home_ADMIN_collector_attachments.StoredAccountID = tidno.Text;
             }
-            
         }
+
 
         private void bedit_Click(object sender, EventArgs e)
         {
@@ -523,13 +546,39 @@ namespace rct_lmis.ADMIN_SECTION
         private void bcreate_Click(object sender, EventArgs e)
         {
             bcreate.Enabled = true;
-            SetNextCollectorID();
+            cbarea.Enabled = true;
+            bremoveroute.Enabled = true;
+            EnableElements();
+            cbarea.Focus();
+
             ClearForm();
+
+            badd.Enabled = true;
         }
 
         private void brefresh_Click(object sender, EventArgs e)
         {
             LoadDataToDataGridView();
+        }
+
+        private void bremoveroute_Click(object sender, EventArgs e)
+        {
+            // Check if an item is selected in the listarea_routes
+            if (listarea_routes.SelectedItem != null)
+            {
+                // Remove the selected item from the listbox
+                listarea_routes.Items.Remove(listarea_routes.SelectedItem);
+            }
+            else
+            {
+                // Display a message if no item is selected
+                MessageBox.Show("Please select an item to remove.");
+            }
+        }
+
+        private void tname_Enter(object sender, EventArgs e)
+        {
+            GenerateCollectorID();
         }
     }
 }

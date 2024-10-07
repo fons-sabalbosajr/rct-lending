@@ -30,13 +30,14 @@ namespace rct_lmis
         private void InitializeComponent()
         {
             this.pleft = new System.Windows.Forms.Panel();
+            this.baccounting = new Guna.UI2.WinForms.Guna2Button();
             this.bannouncement = new Guna.UI2.WinForms.Guna2Button();
             this.psubdata = new System.Windows.Forms.Panel();
             this.bdeniedloans = new Guna.UI2.WinForms.Guna2Button();
             this.bapprovedloans = new Guna.UI2.WinForms.Guna2Button();
             this.bdatadelstaff = new Guna.UI2.WinForms.Guna2Button();
             this.bdatadelcollector = new Guna.UI2.WinForms.Guna2Button();
-            this.bdatadelclient = new Guna.UI2.WinForms.Guna2Button();
+            this.barearoute = new Guna.UI2.WinForms.Guna2Button();
             this.bdatabackup = new Guna.UI2.WinForms.Guna2Button();
             this.bdatabase = new Guna.UI2.WinForms.Guna2Button();
             this.psubacc = new System.Windows.Forms.Panel();
@@ -45,14 +46,13 @@ namespace rct_lmis
             this.bconfigcollector = new Guna.UI2.WinForms.Guna2Button();
             this.bconfigrate = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pbody = new System.Windows.Forms.Panel();
-            this.baccounting = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.pleft.SuspendLayout();
             this.psubdata.SuspendLayout();
             this.psubacc.SuspendLayout();
@@ -76,6 +76,31 @@ namespace rct_lmis
             this.pleft.Name = "pleft";
             this.pleft.Size = new System.Drawing.Size(194, 800);
             this.pleft.TabIndex = 15;
+            // 
+            // baccounting
+            // 
+            this.baccounting.Animated = true;
+            this.baccounting.BackColor = System.Drawing.Color.Transparent;
+            this.baccounting.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.baccounting.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.baccounting.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.baccounting.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.baccounting.Dock = System.Windows.Forms.DockStyle.Top;
+            this.baccounting.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
+            this.baccounting.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.baccounting.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.baccounting.HoverState.ForeColor = System.Drawing.Color.White;
+            this.baccounting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.baccounting.ImageOffset = new System.Drawing.Point(10, 0);
+            this.baccounting.ImageSize = new System.Drawing.Size(18, 18);
+            this.baccounting.Location = new System.Drawing.Point(0, 537);
+            this.baccounting.Name = "baccounting";
+            this.baccounting.Size = new System.Drawing.Size(194, 45);
+            this.baccounting.TabIndex = 32;
+            this.baccounting.Text = "Accounting";
+            this.baccounting.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.baccounting.TextOffset = new System.Drawing.Point(20, 0);
+            this.baccounting.Click += new System.EventHandler(this.baccounting_Click_1);
             // 
             // bannouncement
             // 
@@ -109,7 +134,7 @@ namespace rct_lmis
             this.psubdata.Controls.Add(this.bapprovedloans);
             this.psubdata.Controls.Add(this.bdatadelstaff);
             this.psubdata.Controls.Add(this.bdatadelcollector);
-            this.psubdata.Controls.Add(this.bdatadelclient);
+            this.psubdata.Controls.Add(this.barearoute);
             this.psubdata.Controls.Add(this.bdatabackup);
             this.psubdata.Dock = System.Windows.Forms.DockStyle.Top;
             this.psubdata.Location = new System.Drawing.Point(0, 271);
@@ -217,29 +242,30 @@ namespace rct_lmis
             this.bdatadelcollector.TextOffset = new System.Drawing.Point(20, 0);
             this.bdatadelcollector.Click += new System.EventHandler(this.bdatadelcollector_Click);
             // 
-            // bdatadelclient
+            // barearoute
             // 
-            this.bdatadelclient.Animated = true;
-            this.bdatadelclient.BackColor = System.Drawing.Color.Transparent;
-            this.bdatadelclient.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bdatadelclient.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bdatadelclient.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bdatadelclient.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bdatadelclient.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bdatadelclient.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
-            this.bdatadelclient.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bdatadelclient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.bdatadelclient.HoverState.ForeColor = System.Drawing.Color.White;
-            this.bdatadelclient.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bdatadelclient.ImageOffset = new System.Drawing.Point(10, 0);
-            this.bdatadelclient.ImageSize = new System.Drawing.Size(15, 15);
-            this.bdatadelclient.Location = new System.Drawing.Point(0, 35);
-            this.bdatadelclient.Name = "bdatadelclient";
-            this.bdatadelclient.Size = new System.Drawing.Size(194, 35);
-            this.bdatadelclient.TabIndex = 18;
-            this.bdatadelclient.Text = "Client Data";
-            this.bdatadelclient.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bdatadelclient.TextOffset = new System.Drawing.Point(20, 0);
+            this.barearoute.Animated = true;
+            this.barearoute.BackColor = System.Drawing.Color.Transparent;
+            this.barearoute.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.barearoute.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.barearoute.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.barearoute.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.barearoute.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barearoute.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
+            this.barearoute.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barearoute.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.barearoute.HoverState.ForeColor = System.Drawing.Color.White;
+            this.barearoute.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.barearoute.ImageOffset = new System.Drawing.Point(10, 0);
+            this.barearoute.ImageSize = new System.Drawing.Size(15, 15);
+            this.barearoute.Location = new System.Drawing.Point(0, 35);
+            this.barearoute.Name = "barearoute";
+            this.barearoute.Size = new System.Drawing.Size(194, 35);
+            this.barearoute.TabIndex = 18;
+            this.barearoute.Text = "Area Routes";
+            this.barearoute.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.barearoute.TextOffset = new System.Drawing.Point(20, 0);
+            this.barearoute.Click += new System.EventHandler(this.barearoute_Click);
             // 
             // bdatabackup
             // 
@@ -261,9 +287,10 @@ namespace rct_lmis
             this.bdatabackup.Name = "bdatabackup";
             this.bdatabackup.Size = new System.Drawing.Size(194, 35);
             this.bdatabackup.TabIndex = 17;
-            this.bdatabackup.Text = "Back up";
+            this.bdatabackup.Text = "Back up (Raw Data)";
             this.bdatabackup.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bdatabackup.TextOffset = new System.Drawing.Point(20, 0);
+            this.bdatabackup.Click += new System.EventHandler(this.bdatabackup_Click);
             // 
             // bdatabase
             // 
@@ -412,6 +439,19 @@ namespace rct_lmis
             this.panel1.Size = new System.Drawing.Size(194, 58);
             this.panel1.TabIndex = 0;
             // 
+            // guna2PictureBox1
+            // 
+            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox1.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
+            this.guna2PictureBox1.ImageRotate = 0F;
+            this.guna2PictureBox1.Location = new System.Drawing.Point(8, 10);
+            this.guna2PictureBox1.Name = "guna2PictureBox1";
+            this.guna2PictureBox1.Size = new System.Drawing.Size(34, 35);
+            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.guna2PictureBox1.TabIndex = 0;
+            this.guna2PictureBox1.TabStop = false;
+            this.guna2PictureBox1.UseTransparentBackground = true;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -468,44 +508,6 @@ namespace rct_lmis
             this.pbody.Size = new System.Drawing.Size(1096, 790);
             this.pbody.TabIndex = 20;
             // 
-            // baccounting
-            // 
-            this.baccounting.Animated = true;
-            this.baccounting.BackColor = System.Drawing.Color.Transparent;
-            this.baccounting.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.baccounting.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.baccounting.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.baccounting.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.baccounting.Dock = System.Windows.Forms.DockStyle.Top;
-            this.baccounting.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(80)))), ((int)(((byte)(100)))));
-            this.baccounting.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.baccounting.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.baccounting.HoverState.ForeColor = System.Drawing.Color.White;
-            this.baccounting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccounting.ImageOffset = new System.Drawing.Point(10, 0);
-            this.baccounting.ImageSize = new System.Drawing.Size(18, 18);
-            this.baccounting.Location = new System.Drawing.Point(0, 537);
-            this.baccounting.Name = "baccounting";
-            this.baccounting.Size = new System.Drawing.Size(194, 45);
-            this.baccounting.TabIndex = 32;
-            this.baccounting.Text = "Accounting";
-            this.baccounting.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.baccounting.TextOffset = new System.Drawing.Point(20, 0);
-            this.baccounting.Click += new System.EventHandler(this.baccounting_Click_1);
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox1.Image = global::rct_lmis.Properties.Resources.icons8_database_administrator_48;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(8, 10);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(34, 35);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
-            this.guna2PictureBox1.UseTransparentBackground = true;
-            // 
             // frm_home_ADMIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,7 +550,7 @@ namespace rct_lmis
         private System.Windows.Forms.Panel psubdata;
         private Guna.UI2.WinForms.Guna2Button bdatadelstaff;
         private Guna.UI2.WinForms.Guna2Button bdatadelcollector;
-        private Guna.UI2.WinForms.Guna2Button bdatadelclient;
+        private Guna.UI2.WinForms.Guna2Button barearoute;
         private Guna.UI2.WinForms.Guna2Button bdatabackup;
         private Guna.UI2.WinForms.Guna2Button bdatabase;
         private System.Windows.Forms.Panel psubacc;

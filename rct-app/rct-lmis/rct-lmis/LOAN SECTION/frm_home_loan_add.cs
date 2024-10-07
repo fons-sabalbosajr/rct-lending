@@ -700,13 +700,6 @@ namespace rct_lmis.LOAN_SECTION
         }
 
 
-        private void bloansave_Click(object sender, EventArgs e)
-        {
-            load.Show(this);
-            Thread.Sleep(2000);
-            load.Close();
-            MessageBox.Show("Update successful!", "Loan Application Amount Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
 
         private void cbsameaddress_CheckedChanged(object sender, EventArgs e)
         {

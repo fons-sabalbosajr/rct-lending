@@ -53,7 +53,7 @@ namespace rct_lmis
                 dataTable.Columns.Add("LoanType");
                 dataTable.Columns.Add("PrincipalAmount");
                 dataTable.Columns.Add("LoanTerm");
-                dataTable.Columns.Add("LoanStatus");
+                dataTable.Columns.Add("LoanProcessStatus");
                 dataTable.Columns.Add("FullNameAndAddress");
                 dataTable.Columns.Add("CBCP");
                 dataTable.Columns.Add("Documents");
@@ -65,12 +65,12 @@ namespace rct_lmis
                     var accountId = approvedDoc.Contains("AccountId") ? approvedDoc["AccountId"].ToString() : string.Empty;
                     row["AccountID"] = accountId;
                     row["LoanType"] = approvedDoc.Contains("LoanType") ? approvedDoc["LoanType"].ToString() : string.Empty;
-                    row["PrincipalAmount"] = approvedDoc.Contains("PrincipalAmount") ? "₱ " + approvedDoc["PrincipalAmount"].ToString() + ".00" : string.Empty;
-                    row["LoanTerm"] = approvedDoc.Contains("LoanTerm") ? approvedDoc["LoanTerm"].ToString() + " month/s" : string.Empty;
+                    row["PrincipalAmount"] = approvedDoc.Contains("LoanAmount") ? approvedDoc["LoanAmount"].ToString() : string.Empty;
+                    row["LoanTerm"] = approvedDoc.Contains("LoanTerm") ? approvedDoc["LoanTerm"].ToString() : string.Empty;
 
                     // Fetch status and documents from the loan_applications collection
                     var applicationDoc = applicationDocuments.FirstOrDefault(doc => doc.Contains("AccountId") && doc["AccountId"].ToString() == accountId);
-                    row["LoanStatus"] = approvedDoc.Contains("LoanStatus") ? approvedDoc["LoanStatus"].ToString() : string.Empty;
+                    row["LoanProcessStatus"] = approvedDoc.Contains("LoanProcessStatus") ? approvedDoc["LoanProcessStatus"].ToString() : string.Empty;
                     row["Documents"] = applicationDoc != null && applicationDoc.Contains("docs") ? applicationDoc["docs"].ToString() : string.Empty;
 
                     // FullName and Address
@@ -115,7 +115,7 @@ namespace rct_lmis
                 dgvdata.Columns["PrincipalAmount"].HeaderText = "Principal Amount";
                 dgvdata.Columns["PrincipalAmount"].Width = 100;
                 dgvdata.Columns["LoanTerm"].HeaderText = "Loan Term";
-                dgvdata.Columns["LoanStatus"].HeaderText = "Loan Status";
+                dgvdata.Columns["LoanProcessStatus"].HeaderText = "Loan Status";
                 dgvdata.Columns["FullNameAndAddress"].HeaderText = "Client Name";
                 dgvdata.Columns["FullNameAndAddress"].Width = 250;
                 dgvdata.Columns["CBCP"].HeaderText = "Contact Number";
@@ -195,7 +195,7 @@ namespace rct_lmis
                 }
 
                 // Show or hide the Disburse button column based on LoanStatus
-                bool shouldShowDisburseColumn = dataTable.AsEnumerable().Any(row => row.Field<string>("LoanStatus").Equals("Application Approved", StringComparison.OrdinalIgnoreCase));
+                bool shouldShowDisburseColumn = dataTable.AsEnumerable().Any(row => row.Field<string>("LoanProcessStatus").Equals("Application Approved", StringComparison.OrdinalIgnoreCase));
                 dgvdata.Columns["btnDisburse"].Visible = shouldShowDisburseColumn;
 
                
@@ -215,14 +215,6 @@ namespace rct_lmis
             return collections.Find(filter).FirstOrDefault();
         }
 
-        private BsonDocument GetLoanRReleaseData(string clientId)
-        {
-            var database = MongoDBConnection.Instance.Database;
-            var collections = database.GetCollection<BsonDocument>("loan_disbursed");
-
-            var filter = Builders<BsonDocument>.Filter.Eq("cashClnNo", clientId);
-            return collections.Find(filter).FirstOrDefault();
-        }
 
         private void CenterAlignColumns(params string[] columnNames)
         {
