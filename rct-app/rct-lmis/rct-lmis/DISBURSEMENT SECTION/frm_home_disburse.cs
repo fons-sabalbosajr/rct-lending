@@ -66,32 +66,30 @@ namespace rct_lmis
                 // Create a base filter (default: no filters, retrieves all documents)
                 var filter = Builders<BsonDocument>.Filter.Empty;
 
-                // Apply search query filter if provided (for LoanIDNo or cashName)
+                // Apply search query filter if provided (for LoanNo or AccountId)
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     var searchFilter = Builders<BsonDocument>.Filter.Or(
-                        Builders<BsonDocument>.Filter.Regex("LoanIDNo", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("cashName", new BsonRegularExpression(searchQuery, "i"))
+                        Builders<BsonDocument>.Filter.Regex("LoanNo", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("AccountId", new BsonRegularExpression(searchQuery, "i"))
                     );
                     filter = Builders<BsonDocument>.Filter.And(filter, searchFilter);
                 }
 
-                // Apply cashName filter from ComboBox selection (excluding '--all payee--')
+                // Apply filters from ComboBox selection and DateTimePicker if applicable (as in original)
                 if (!string.IsNullOrEmpty(selectedCashName) && selectedCashName != "--all payee--")
                 {
-                    var cashNameFilter = Builders<BsonDocument>.Filter.Eq("cashName", selectedCashName);
+                    var cashNameFilter = Builders<BsonDocument>.Filter.Eq("CollectorName", selectedCashName);
                     filter = Builders<BsonDocument>.Filter.And(filter, cashNameFilter);
                 }
 
-                // Apply DisbursementTime filter based on DateTimePicker (if a date is selected)
                 if (selectedDate.HasValue)
                 {
                     var startDate = selectedDate.Value.Date;
                     var endDate = startDate.AddDays(1).AddTicks(-1); // End of the day
-
                     var dateFilter = Builders<BsonDocument>.Filter.And(
-                        Builders<BsonDocument>.Filter.Gte("DisbursementTime", startDate),
-                        Builders<BsonDocument>.Filter.Lte("DisbursementTime", endDate)
+                        Builders<BsonDocument>.Filter.Gte("Date_Encoded", startDate),
+                        Builders<BsonDocument>.Filter.Lte("Date_Encoded", endDate)
                     );
                     filter = Builders<BsonDocument>.Filter.And(filter, dateFilter);
                 }
@@ -99,7 +97,6 @@ namespace rct_lmis
                 // Retrieve data from MongoDB based on the combined filter
                 var loanDisbursedList = await loanDisbursedCollection.Find(filter).ToListAsync();
 
-                // Debugging: Check if data is retrieved
                 if (loanDisbursedList.Count == 0)
                 {
                     MessageBox.Show("No data retrieved from MongoDB.");
@@ -113,106 +110,63 @@ namespace rct_lmis
                 }
                 else
                 {
-                    // Hide the lnorecord label if data is found
                     lnorecord.Visible = false;
                 }
 
                 // Create DataTable to populate DataGridView
                 DataTable loanDisbursedTable = new DataTable();
-                loanDisbursedTable.Columns.Add("Loan ID No");
-                loanDisbursedTable.Columns.Add("Disbursement Reference No.");
+                loanDisbursedTable.Columns.Add("Disbursement No.");
+                loanDisbursedTable.Columns.Add("Account ID");
                 loanDisbursedTable.Columns.Add("Client Info");
                 loanDisbursedTable.Columns.Add("Loan Amount");
-                loanDisbursedTable.Columns.Add("Payment Start Date");
+                loanDisbursedTable.Columns.Add("Loan Status");
                 loanDisbursedTable.Columns.Add("Encoded Details");
 
-                // Fill the DataTable with data from MongoDB
                 foreach (var loan in loanDisbursedList)
                 {
                     DataRow row = loanDisbursedTable.NewRow();
-                    row["Loan ID No"] = loan.Contains("LoanIDNo") ? loan.GetValue("LoanIDNo").ToString() : "N/A";
-                    row["Disbursement Reference No."] = loan.Contains("cashNo") ? loan.GetValue("cashNo").ToString() : "N/A";
 
-                    // Get additional client info from the loan_approved collection
-                    var clientInfo = await GetClientInfo(loan.Contains("cashClnNo") ? loan.GetValue("cashClnNo").ToString() : string.Empty);
+                    // Safely retrieve values from BsonDocument
+                    row["Disbursement No."] = loan.Contains("AccountId") ? loan["AccountId"].AsString : "N/A";
+                    row["Account ID"] = loan.Contains("LoanNo") ? loan["LoanNo"].AsString : "N/A";
 
-                    // Ensure clientInfo is not null and has the required keys
-                    if (clientInfo == null)
-                    {
-                        MessageBox.Show("Client information could not be found.");
-                        continue; // Skip this loan if no client info
-                    }
-
-                    // Prepare client info safely
-                    string clientName = clientInfo.ContainsKey("ClientName") ? clientInfo["ClientName"] : "N/A";
-                    string address = clientInfo.ContainsKey("Address") ? clientInfo["Address"] : "N/A";
-                    string contactNumber = clientInfo.ContainsKey("ContactNumber") ? clientInfo["ContactNumber"] : "N/A";
-                    string loanStatus = clientInfo.ContainsKey("LoanStatus") ? clientInfo["LoanStatus"] : "N/A";
-
-                    // Get DisbursementTime and Encoder safely
-                    DateTime disbursementTime = loan.Contains("DisbursementTime") ? DateTime.Parse(loan.GetValue("DisbursementTime").ToString()) : DateTime.MinValue;
-                    string encoder = loan.Contains("Encoder") ? loan.GetValue("Encoder").ToString() : "N/A";
-
-                    // Display Client Name, Address, CP, and Loan Status in the "Client Info" column
+                    string clientName = $"{loan.GetValue("LastName", "")}, {loan.GetValue("FirstName", "")} {loan.GetValue("MiddleName", "")}";
+                    string address = $"{loan.GetValue("Barangay", "")}, {loan.GetValue("City", "")}, {loan.GetValue("Province", "")}";
                     row["Client Info"] = $"{clientName} \n" +
-                                         $"{address} \n" +
-                                         $"CP: {contactNumber} \n" +
-                                         $"Status: {loanStatus} \n" +
-                                         $"Loan Date Released: {disbursementTime:MM/dd/yyyy hh:mm tt}";
+                                         $"{address}";
+                                        
 
-                    // Get the Mode of Payment safely
-                    string modeOfPayment = loan.Contains("Mode") ? loan.GetValue("Mode").ToString() : "N/A";
-
-                    // Format Loan Amount with Philippine Peso safely
-                    decimal loanAmount = loan.Contains("loanAmt") ? Convert.ToDecimal(loan.GetValue("loanAmt").ToString()) : 0;
-                    decimal amortizedAmt = loan.Contains("amortizedAmt") ? Convert.ToDecimal(loan.GetValue("amortizedAmt").ToString()) : 0;
-                    string loanTerm = loan.Contains("loanTerm") ? loan.GetValue("loanTerm").ToString() : "N/A"; // If it's in loan document
+                    decimal loanAmount = loan.Contains("LoanAmount") ? Convert.ToDecimal(loan["LoanAmount"].AsString.Replace("₱", "").Replace(",", "").Trim()) : 0;
+                    decimal loanAmortization = loan.Contains("LoanAmortization") ? Convert.ToDecimal(loan["LoanAmortization"].AsString.Replace("₱", "").Replace(",", "").Trim()) : 0;
+                    string loanTerm = loan.Contains("LoanTerm") ? loan["LoanTerm"].AsString : "N/A";
 
                     row["Loan Amount"] = $"Loan Amount: ₱ {loanAmount:N2} \n" +
-                                         $"Mode of Payment: {modeOfPayment} \n" +
-                                         $"Loan Term: {loanTerm} months \n" +
-                                         $"Amortization: ₱ {amortizedAmt:N2}";
+                                         $"Loan Term: {loanTerm} \n" +
+                                         $"Amortization: ₱ {loanAmortization:N2}";
 
-                    // Get the Payment Start Date and convert it to DateTime safely
-                    DateTime paymentStartDate = loan.Contains("PaymentStartDate") ? DateTime.Parse(loan.GetValue("PaymentStartDate").ToString()) : DateTime.MinValue;
+                    // Retrieve the date fields and format them safely
+                    DateTime startPaymentDate = loan.Contains("StartPaymentDate") ? DateTime.Parse(loan["StartPaymentDate"].AsString) : DateTime.MinValue;
+                    DateTime maturityDate = loan.Contains("MaturityDate") ? DateTime.Parse(loan["MaturityDate"].AsString) : DateTime.MinValue;
 
-                    // Get the 'days' value for this loan and calculate Maturity Date safely
-                    int days = loan.Contains("days") ? Convert.ToInt32(loan.GetValue("days").ToString()) : 0;
+                    row["Loan Status"] = $"Start Date: {startPaymentDate:MM/dd/yyyy} \n" +
+                                                $"Maturity Date: {maturityDate:MM/dd/yyyy}\n" +
+                                                $"Loan Status: {loan.GetValue("LoanProcessStatus", "N/A")}\n" +
+                                                $"Collector: {loan.GetValue("CollectorName", "N/A")}";
 
-                    // Calculate Maturity Date based on the 'days' value, excluding weekends
-                    DateTime maturityDate = CalculateMaturityDate(paymentStartDate, days);
+                    row["Encoded Details"] = $"Date Encoded: {loan.GetValue("Date_Encoded", "N/A")}";
 
-                    // Format Payment Start Date and Maturity Date for display
-                    row["Payment Start Date"] = $"Start Date: {paymentStartDate:MM/dd/yyyy} \n" +
-                                                 $"Maturity Date: {maturityDate:MM/dd/yyyy}";
-
-                    // Format Date Encoded safely
-                    row["Encoded Details"] = $"Date Encoded: {disbursementTime:MM/dd/yyyy hh:mm tt} \n" +
-                                             $"Encoded by: {encoder}";
 
                     // Add the row to the data table
                     loanDisbursedTable.Rows.Add(row);
                 }
 
-                // Bind the DataTable to the DataGridView
+
+                // Bind DataTable to DataGridView
                 dgvdata.DataSource = loanDisbursedTable;
 
-                // Debugging: Check if DataGridView has rows
-                if (dgvdata.Rows.Count == 0)
-                {
-                    MessageBox.Show("DataTable has no rows.");
-                }
-
-                // Add the "View Details" button to the DataGridView if not already added
                 if (dgvdata.Columns["ViewDetails"] == null)
                 {
                     AddViewDetailsButton();
-                    var btnColumndetails = dgvdata.Columns["Client Info"];
-                    if (btnColumndetails != null)
-                    {
-                        btnColumndetails.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                        btnColumndetails.Width = 200; // Adjust width as needed
-                    }
                 }
             }
             catch (Exception ex)
@@ -220,6 +174,7 @@ namespace rct_lmis
                 MessageBox.Show("Error loading loan disbursement data: " + ex.Message);
             }
         }
+
 
 
 
@@ -305,6 +260,7 @@ namespace rct_lmis
             }
             return clientInfo;
         }
+
         private async Task PopulateComboBoxWithCashNames()
         {
             try
@@ -322,7 +278,7 @@ namespace rct_lmis
                 // Populate the ComboBox with cashName values
                 foreach (var loan in loanDisbursedList)
                 {
-                    var cashName = loan.GetValue("cashName").ToString();
+                    var cashName = loan.GetValue("LoanProcessStatus").ToString();
                     if (!cbstatus.Items.Contains(cashName))
                     {
                         cbstatus.Items.Add(cashName);
@@ -436,22 +392,22 @@ namespace rct_lmis
             if (e.ColumnIndex == dgvdata.Columns["ViewDetails"].Index && e.RowIndex >= 0)
             {
                 // Get the Loan ID No from the clicked row
-                string loanId = dgvdata.Rows[e.RowIndex].Cells["Disbursement Reference No."].Value.ToString();
+                string loanId = dgvdata.Rows[e.RowIndex].Cells["Disbursement No."].Value.ToString();
 
                 // Open the detail form
                 frm_home_disburse_details detailForm = new frm_home_disburse_details(loanId);
-                detailForm.ShowDialog();
+                detailForm.ShowDialog(this);
             }
 
             // Check if the clicked cell is in the "ViewDetails" column
             if (e.ColumnIndex == dgvdata.Columns["ViewCollections"].Index && e.RowIndex >= 0)
             {
                 // Get the Loan ID No from the clicked row
-                string loanId = dgvdata.Rows[e.RowIndex].Cells["Loan ID No"].Value.ToString();
+                string loanId = dgvdata.Rows[e.RowIndex].Cells["Disbursement No."].Value.ToString();
 
                 // Open the detail form
                 frm_home_disburse_collections collections = new frm_home_disburse_collections(loanId);
-                collections.ShowDialog();
+                collections.ShowDialog(this);
             }
         }
 
@@ -498,6 +454,12 @@ namespace rct_lmis
                     FileName = "LoanDisbursements.xlsx" // Default filename
                 };
 
+                if (dgvdata.Rows.Count == 0)
+                {
+                    MessageBox.Show("No records to export.", "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     // Create a new Excel package
@@ -536,20 +498,20 @@ namespace rct_lmis
                         worksheet.Cells[8, 1].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                         worksheet.Cells[8, 1].Style.Font.Size = 12; // Set title font size
 
-                        // Add column headers starting at row 8 (since the image and title occupy rows 0 to 7)
+                        // Add column headers starting at row 9
                         int headerRow = 9;
                         int columnIndex = 1;
 
                         // Define column widths
                         Dictionary<string, double> columnWidths = new Dictionary<string, double>
-                         {
-                             { "Loan ID No", 20 },
-                             { "Disbursement Reference No.", 25 },
-                             { "Client Info", 45 }, 
-                             { "Loan Amount", 25 },
-                             { "Payment Start Date", 25 }, 
-                             { "Encoded Details", 30 }
-                         };
+                 {
+                     { "Loan ID No", 20 },
+                     { "Disbursement Reference No.", 25 },
+                     { "Client Info", 45 },
+                     { "Loan Amount", 25 },
+                     { "Payment Start Date", 25 },
+                     { "Encoded Details", 30 }
+                 };
 
                         for (int i = 0; i < dgvdata.Columns.Count; i++)
                         {
@@ -579,50 +541,30 @@ namespace rct_lmis
                                 // Check if the column is not "View Details" or "View Collections"
                                 if (dgvdata.Columns[j].HeaderText != "Actions" && dgvdata.Columns[j].HeaderText != " ")
                                 {
-                                    var cellValue = dgvdata.Rows[i].Cells[j].Value?.ToString() ?? string.Empty;
-
-                                    // Set cell value
-                                    worksheet.Cells[i + 10, columnIndex].Value = cellValue;
-
-                                    // Enable word wrap for relevant columns
-                                    worksheet.Cells[i + 10, columnIndex].Style.WrapText = true; // Enable word wrap
-
-                                    columnIndex++; // Increment cell index only for relevant columns
+                                    worksheet.Cells[i + 10, columnIndex].Value = dgvdata.Rows[i].Cells[j].Value?.ToString();
+                                    columnIndex++;
                                 }
                             }
                         }
 
-                        // Auto-fit the columns
-                        worksheet.Cells[worksheet.Dimension.Address].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
-
-                        // Add footer
-                        int footerStartRow = dgvdata.Rows.Count + 12; // Set footer start row
-                        worksheet.Cells[footerStartRow, 1].Value = "Prepared by: \n";
-                        worksheet.Cells[footerStartRow + 1, 1].Value = "______________________________________ \n";
-                        worksheet.Cells[footerStartRow + 2, 1].Value = UserSession.Instance.UserName + "\n\n"; // Current user FullName logged in
-
-                        worksheet.Cells[footerStartRow + 4, 1].Value = "Approved by:\n";
-                        worksheet.Cells[footerStartRow + 5, 1].Value = "______________________________________\n";
-                        worksheet.Cells[footerStartRow + 6, 1].Value = "Managing Head"; // Placeholder for the managing head
-
-                        // Save the file to the selected location
+                        // Save the Excel file
                         FileInfo fi = new FileInfo(saveFileDialog.FileName);
                         package.SaveAs(fi);
 
-                        // Notify the user of successful export
-                        MessageBox.Show("Data exported successfully to Excel!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("File exported successfully!", "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error exporting data to Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error exporting to Excel: " + ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
 
-        private async void dtdate_ValueChangedAsync(object sender, EventArgs e)
+
+        private void dtdate_ValueChanged(object sender, EventArgs e)
         {
             DateTime selectedDate = dtdate.Value;
             //await LoadLoanDisbursedData(searchQuery: "", selectedCashName: "", selectedDate: selectedDate);

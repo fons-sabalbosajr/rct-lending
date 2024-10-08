@@ -84,7 +84,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private async Task<LoanDetails> GetLoanDetails(string loanId)
         {
             // Query the loan_disbursed collection to find the details by LoanIDNo
-            var filter = Builders<BsonDocument>.Filter.Eq("cashNo", loanId);
+            var filter = Builders<BsonDocument>.Filter.Eq("AccountId", loanId);
             var loanDisbursed = await _loanDisbursedCollection.Find(filter).FirstOrDefaultAsync();
 
             if (loanDisbursed != null)
@@ -92,9 +92,9 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 // Map the result to LoanDetails object
                 return new LoanDetails
                 {
-                    LoanIDNo = loanDisbursed["LoanIDNo"].AsString,
-                    cashClnNo = loanDisbursed["cashClnNo"].AsString,
-                    cashName = loanDisbursed["cashName"].AsString,
+                    LoanIDNo = loanDisbursed["LoanNo"].AsString,
+                    cashClnNo = loanDisbursed["ClientNo"].AsString,
+                    cashName = loanDisbursed["FirstName"].AsString + " " + loanDisbursed["MiddleName"].AsString + " " +  loanDisbursed["LastName"].AsString,
                 };
             }
 
@@ -104,16 +104,27 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         // Fetch Approved Details (Address, Docs) from loan_approved
         private async Task LoadApprovedDetails(string cashClnNo)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("ClientNumber", tclientno.Text);
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", tclientno.Text); // Search by ClientNo
             var loanApproved = await _loanApprovedCollection.Find(filter).FirstOrDefaultAsync();
 
             if (loanApproved != null)
             {
+              
                 // Display address
                 string address = $"{loanApproved["Barangay"]}, {loanApproved["City"]}, {loanApproved["Province"]}";
-                string contact = $"{loanApproved["CP"]}";
                 tadd.Text = address;
-                tcontact.Text = contact;
+
+                // Display contact info (if available)
+                if (loanApproved.Contains("CP"))
+                {
+                    tcontact.Text = loanApproved["CP"].ToString();
+                }
+                else
+                {
+                    tcontact.Text = "N/A"; // If no contact info is available
+                }
+
+                
 
                 // Check if the "docs" field is present and is a string or array
                 if (loanApproved.Contains("docs") && loanApproved.Contains("doc-link"))
@@ -157,6 +168,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 lnorecordattachment.Text = "Loan approved details not found.";
             }
         }
+
 
 
         private void InitializeDgvdataColumns()

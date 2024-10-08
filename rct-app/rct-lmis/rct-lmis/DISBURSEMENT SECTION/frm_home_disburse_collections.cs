@@ -15,6 +15,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
     public partial class frm_home_disburse_collections : Form
     {
         private string _loanId;
+        
         private IMongoCollection<BsonDocument> _loanDisbursedCollection;
         private IMongoCollection<BsonDocument> _loanVoucherCollection;
         private IMongoCollection<BsonDocument> _loanCollection;
@@ -568,8 +569,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void bnew_Click(object sender, EventArgs e)
         {
-            frm_home_disburse_collections_add addForm = new frm_home_disburse_collections_add(this);
-            addForm.Show();
+
+            string dbid = _loanId;
+            //frm_home_disburse_collections_add addForm = new frm_home_disburse_collections_add(dbid);
+            //addForm.ShowDialog();
         }
 
         private void dgvdata_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -609,4 +612,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
     }
+
+
 }

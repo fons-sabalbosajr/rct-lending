@@ -17,6 +17,7 @@ namespace rct_lmis.ADMIN_SECTION
         private IMongoDatabase database;
         private IMongoCollection<BsonDocument> loanRawdataCollection;
         private IMongoCollection<BsonDocument> loanApprovedCollection;
+        private IMongoCollection<BsonDocument> loanDisburseCollection;
 
         public frm_home_ADMIN_rawdata_details(string loanId, string loanstatus)
         {
@@ -27,6 +28,7 @@ namespace rct_lmis.ADMIN_SECTION
             database = MongoDBConnection.Instance.Database;
             loanRawdataCollection = database.GetCollection<BsonDocument>("loan_rawdata");
             loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
+            loanDisburseCollection = database.GetCollection<BsonDocument>("loan_disbursed");
         }
 
         LoadingFunction load = new LoadingFunction();
@@ -162,14 +164,49 @@ namespace rct_lmis.ADMIN_SECTION
             return "RCT-2024-001";
         }
 
+        private async Task<string> GenerateDisburseIDAsync()
+        {
+            var lastEntry = await loanDisburseCollection.Find(new BsonDocument())
+                .Sort(Builders<BsonDocument>.Sort.Descending("DisbursementId"))
+                .Limit(1)
+                .FirstOrDefaultAsync();
+
+            if (lastEntry != null && lastEntry.Contains("DisbursementId"))
+            {
+                string lastId = lastEntry["DisbursementId"].ToString();
+                int lastNum = int.Parse(lastId.Split('-')[2]);
+                return $"RCT-DB2024-{(lastNum + 1):D3}";
+            }
+
+            return "RCT-2024DB-001";
+        }
+
         // Helper function to generate Loan No
         private string GenerateLoanNo(int loanId)
         {
             return $"RCT-2024-{loanId}";
         }
 
+       
         // Helper function to generate incremental Client No
         private async Task<string> GenerateClientNoAsync()
+        {
+            var lastEntry = await loanApprovedCollection.Find(new BsonDocument())
+                .Sort(Builders<BsonDocument>.Sort.Descending("ClientNo"))
+                .Limit(1)
+                .FirstOrDefaultAsync();
+
+            if (lastEntry != null && lastEntry.Contains("ClientNo"))
+            {
+                string lastClientNo = lastEntry["ClientNo"].ToString();
+                int lastNum = int.Parse(lastClientNo.Split(new[] { "CL" }, StringSplitOptions.None)[1]);
+                return $"RCT-2024-CL{(lastNum + 1):D4}";
+            }
+
+            return "RCT-2024-CL0001";
+        }
+
+        private async Task<string> GenerateClientNoDisburseAsync()
         {
             var lastEntry = await loanApprovedCollection.Find(new BsonDocument())
                 .Sort(Builders<BsonDocument>.Sort.Descending("ClientNo"))
@@ -289,18 +326,120 @@ namespace rct_lmis.ADMIN_SECTION
         }
 
 
+        private async void GenerelDisbursedData()
+        {
+            try
+            {
+                var loanType = "New";  // Assuming a default loan type for now
+                var status = lloanstatus.Text;
+
+                // Generate required IDs
+                string disburseId = await GenerateDisburseIDAsync();
+                int loanId = int.Parse(lloanid.Text);  // Assuming loan ID is stored in lloanid.Text
+                string loanNo = GenerateLoanNo(loanId);
+                string clientNo = await GenerateClientNoDisburseAsync();
+
+                // Split the client's name into Last Name, First Name, and Middle Name
+                string fullName = tclientname.Text.Trim();
+                string lastName = string.Empty;
+                string firstName = string.Empty;
+                string middleName = string.Empty;
+
+                if (fullName.Contains(","))
+                {
+                    // Split by comma for Last Name, First Name Middle Name format
+                    string[] nameParts = fullName.Split(',');
+                    lastName = nameParts[0].Trim();  // Last Name before the comma
+                    string[] firstAndMiddle = nameParts[1].Trim().Split(' ');
+
+                    if (firstAndMiddle.Length > 1)
+                    {
+                        // If there are more than one word in the second part, we assume Middle Name exists
+                        firstName = firstAndMiddle[0].Trim();
+                        middleName = string.Join(" ", firstAndMiddle.Skip(1)).Trim();  // Combine remaining parts as Middle Name
+                    }
+                    else
+                    {
+                        firstName = firstAndMiddle[0].Trim();  // No Middle Name, just First Name
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Client name format is incorrect. Please provide Last Name, First Name Middle Name format.", "Invalid Name Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Split the address into Barangay, City, and Province
+                string fullAddress = taddress.Text.Trim();
+                string barangay = string.Empty;
+                string city = string.Empty;
+                string province = string.Empty;
+
+                if (fullAddress.Contains(","))
+                {
+                    // Split by comma for Barangay, City, Province format
+                    string[] addressParts = fullAddress.Split(',');
+                    barangay = addressParts[0].Trim();  // Barangay before the first comma
+                    city = addressParts.Length > 1 ? addressParts[1].Trim() : string.Empty;  // City between commas
+                    province = addressParts.Length > 2 ? addressParts[2].Trim() : string.Empty;  // Province after the last comma
+                }
+                else
+                {
+                    MessageBox.Show("Address format is incorrect. Please provide Barangay, City, Province format.", "Invalid Address Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Create BsonDocument for the new loan_approved entry
+                var approvedLoanData = new BsonDocument
+                 {
+                     { "AccountId", disburseId },
+                     { "LoanNo", loanNo },
+                     { "ClientNo", clientNo },
+                     { "LoanType", loanType },
+                     { "LoanStatus", status },
+                     { "LastName", lastName },
+                     { "FirstName", firstName },
+                     { "MiddleName", middleName },
+                     { "CollectorName", tcollector.Text },
+                     { "Barangay", barangay },
+                     { "City", city },
+                     { "Province", province },
+                     { "LoanTerm", tloanterm.Text },
+                     { "LoanAmount", tloanamount.Text },
+                     { "LoanAmortization", tloanamt.Text },
+                     { "LoanBalance", tloanbal.Text },
+                     { "Penalty", tloanpenalty.Text },
+                     { "LoanInterest", tloaninterest.Text },
+                     { "PaymentMode", tloanpaymode.Text },
+                     { "StartPaymentDate", tloanstartday.Text },
+                     { "MaturityDate", tloanendday.Text },
+                     { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
+                     { "LoanProcessStatus", "Loan Released" },
+                 };
+
+                // Save to loan_approved collection
+                await loanDisburseCollection.InsertOneAsync(approvedLoanData);
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There was a problem saving the transaction: " + e.Message, "Transaction Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void badd_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to save the transaction?", "Save Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Do you want to import the account?", "Save Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 load.Show(this);
                 Thread.Sleep(100);
                 GenerelSaveData();
+                GenerelDisbursedData();
                 load.Close();
 
 
-                MessageBox.Show("Transaction has been saved successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Transactions has been imported successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

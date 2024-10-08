@@ -63,8 +63,6 @@
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.label11 = new System.Windows.Forms.Label();
             this.tcolpayamt = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cbarea = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbcollector = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dtdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -637,34 +635,6 @@
             this.tcolpayamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tcolpayamt.TextChanged += new System.EventHandler(this.tcolpayamt_TextChanged);
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(206, 294);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(68, 15);
-            this.label12.TabIndex = 109;
-            this.label12.Text = "Area Route:";
-            // 
-            // cbarea
-            // 
-            this.cbarea.BackColor = System.Drawing.Color.Transparent;
-            this.cbarea.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbarea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbarea.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbarea.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbarea.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbarea.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbarea.ItemHeight = 30;
-            this.cbarea.Location = new System.Drawing.Point(280, 283);
-            this.cbarea.Name = "cbarea";
-            this.cbarea.Size = new System.Drawing.Size(130, 36);
-            this.cbarea.TabIndex = 111;
-            this.cbarea.SelectedIndexChanged += new System.EventHandler(this.cbarea_SelectedIndexChanged);
-            // 
             // cbcollector
             // 
             this.cbcollector.BackColor = System.Drawing.Color.Transparent;
@@ -676,10 +646,11 @@
             this.cbcollector.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbcollector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbcollector.ItemHeight = 30;
-            this.cbcollector.Location = new System.Drawing.Point(481, 283);
+            this.cbcollector.Location = new System.Drawing.Point(280, 283);
             this.cbcollector.Name = "cbcollector";
-            this.cbcollector.Size = new System.Drawing.Size(173, 36);
+            this.cbcollector.Size = new System.Drawing.Size(254, 36);
             this.cbcollector.TabIndex = 113;
+            this.cbcollector.SelectedIndexChanged += new System.EventHandler(this.cbcollector_SelectedIndexChanged);
             // 
             // label13
             // 
@@ -687,7 +658,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(420, 294);
+            this.label13.Location = new System.Drawing.Point(219, 294);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(58, 15);
             this.label13.TabIndex = 112;
@@ -994,9 +965,9 @@
             this.cbpaymentmode.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cbpaymentmode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbpaymentmode.ItemHeight = 30;
-            this.cbpaymentmode.Location = new System.Drawing.Point(722, 283);
+            this.cbpaymentmode.Location = new System.Drawing.Point(694, 283);
             this.cbpaymentmode.Name = "cbpaymentmode";
-            this.cbpaymentmode.Size = new System.Drawing.Size(138, 36);
+            this.cbpaymentmode.Size = new System.Drawing.Size(178, 36);
             this.cbpaymentmode.TabIndex = 139;
             this.cbpaymentmode.SelectedIndexChanged += new System.EventHandler(this.cbpaymentmode_SelectedIndexChanged);
             // 
@@ -1006,11 +977,11 @@
             this.label24.BackColor = System.Drawing.Color.Transparent;
             this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label24.Location = new System.Drawing.Point(660, 286);
+            this.label24.Location = new System.Drawing.Point(585, 294);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(54, 30);
+            this.label24.Size = new System.Drawing.Size(91, 15);
             this.label24.TabIndex = 138;
-            this.label24.Text = "Payment\r\nMode:";
+            this.label24.Text = "Payment Mode:";
             // 
             // tcolrefno
             // 
@@ -1238,9 +1209,7 @@
             this.Controls.Add(this.dtdate);
             this.Controls.Add(this.cbcollector);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.cbarea);
             this.Controls.Add(this.tcolpayamt);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.guna2Separator1);
             this.Controls.Add(this.tpayamort);
@@ -1314,8 +1283,6 @@
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private System.Windows.Forms.Label label11;
         private Guna.UI2.WinForms.Guna2TextBox tcolpayamt;
-        private System.Windows.Forms.Label label12;
-        private Guna.UI2.WinForms.Guna2ComboBox cbarea;
         private Guna.UI2.WinForms.Guna2ComboBox cbcollector;
         private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtdate;

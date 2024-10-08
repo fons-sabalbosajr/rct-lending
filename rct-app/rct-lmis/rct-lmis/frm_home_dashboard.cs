@@ -1,4 +1,5 @@
 ﻿using DnsClient.Protocol;
+using DocumentFormat.OpenXml.Wordprocessing;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -172,7 +173,7 @@ namespace rct_lmis
                 foreach (var user in sortedUserData)
                 {
                     string statusText = user.IsLoggedIn ? "Online" : "Offline";
-                    Color statusColor = user.IsLoggedIn ? Color.Green : Color.Gray;
+                    System.Drawing.Color statusColor = user.IsLoggedIn ? System.Drawing.Color.Green : System.Drawing.Color.Gray;
 
                     // Add row to DataGridView
                     int rowIndex = dgvusersonline.Rows.Add(user.Name, statusText);
@@ -238,22 +239,31 @@ namespace rct_lmis
                 // Populate DataGridView with client information
                 foreach (var client in clients)
                 {
-                    string fullName = $"{client["FirstName"]} {client["MiddleName"]} {client["LastName"]}".Trim();
-                    string address = $"{client["Street"]}, {client["Barangay"]}, {client["City"]}, {client["Province"]}".Trim();
-                    string contactNumber = client.Contains("CP") ? client["CP"].ToString() : "";
-                    string loanAmount = client.Contains("PrincipalAmount") ? client["PrincipalAmount"].ToString() : "";
-                    string startPaymentDate = client.Contains("PaymentStartDate") ? client["PaymentStartDate"].ToString() : "";
+                    // Construct the client's full name
+                    string fullName = $"{client["FirstName"]} {(client.Contains("MiddleName") ? client["MiddleName"].ToString() : "")} {client["LastName"]}".Trim();
 
-                    // Merge information into a single string
-                    string clientInfo = $"{fullName}\n{address}\n{contactNumber}\nLoan Amount: {loanAmount}\nStart Payment Date: {startPaymentDate}".Trim();
+                    // Construct the address
+                    string address = $"{(client.Contains("Street") ? client["Street"].ToString() : "")}, " +
+                                     $"{client["Barangay"]}, {client["City"]}, {(client.Contains("Province") ? client["Province"].ToString() : "")}".Trim();
+
+                    // Extract contact number if available
+                    string contactNumber = client.Contains("CP") ? client["CP"].ToString() : "N/A";
+
+                    // Extract and format loan amount
+                    string loanAmount = client.Contains("LoanAmount") ? client["LoanAmount"].ToString() : "N/A";
+
+                    // Extract the start payment date
+                    string startPaymentDate = client.Contains("StartPaymentDate") ? client["StartPaymentDate"].ToString() : "N/A";
+
+                    // Construct client info string
+                    string clientInfo = $"{fullName}\n{address}\nContact Number: {contactNumber}\nLoan Amount: {loanAmount}\nStart Payment Date: {startPaymentDate}".Trim();
 
                     // Get loan status
-                    string loanStatus = client.Contains("LoanStatus") ? client["LoanStatus"].ToString() : "";
+                    string loanStatus = client.Contains("LoanStatus") ? client["LoanStatus"].ToString() : "N/A";
 
                     // Add row to the DataGridView
                     dgvdata_client.Rows.Add(clientInfo, loanStatus);
                 }
-               
             }
             catch (Exception ex)
             {
@@ -261,6 +271,7 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading clients: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void LoadLoanTotal()
         {
@@ -509,11 +520,11 @@ namespace rct_lmis
                     string status = e.Value.ToString();
                     if (status == "Online")
                     {
-                        e.CellStyle.ForeColor = Color.Green;
+                        e.CellStyle.ForeColor = System.Drawing.Color.Green;
                     }
                     else if (status == "Offline")
                     {
-                        e.CellStyle.ForeColor = Color.Gray;
+                        e.CellStyle.ForeColor = System.Drawing.Color.Gray;
                     }
                     e.FormattingApplied = true;
                 }
@@ -559,7 +570,7 @@ namespace rct_lmis
                 cell.Style.Padding = padding;
 
                 // Set font size and style
-                cell.Style.Font = new Font("Segoe UI", 8, FontStyle.Regular); // Adjust font family, size, and style as needed
+                cell.Style.Font = new System.Drawing.Font("Segoe UI", 8, FontStyle.Regular); // Adjust font family, size, and style as needed
             }
         }
 

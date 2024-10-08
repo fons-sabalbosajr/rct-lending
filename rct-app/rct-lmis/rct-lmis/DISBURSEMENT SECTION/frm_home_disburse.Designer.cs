@@ -124,7 +124,7 @@ namespace rct_lmis
             this.cbstatus.ItemHeight = 30;
             this.cbstatus.Items.AddRange(new object[] {
             "--all payee--"});
-            this.cbstatus.Location = new System.Drawing.Point(709, 14);
+            this.cbstatus.Location = new System.Drawing.Point(466, 14);
             this.cbstatus.Name = "cbstatus";
             this.cbstatus.Size = new System.Drawing.Size(186, 36);
             this.cbstatus.StartIndex = 0;
@@ -141,14 +141,15 @@ namespace rct_lmis
             this.dtdate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dtdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtdate.Location = new System.Drawing.Point(480, 14);
+            this.dtdate.Location = new System.Drawing.Point(775, 15);
             this.dtdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtdate.Name = "dtdate";
             this.dtdate.Size = new System.Drawing.Size(141, 36);
             this.dtdate.TabIndex = 6;
             this.dtdate.Value = new System.DateTime(2024, 5, 28, 20, 18, 34, 560);
-            this.dtdate.ValueChanged += new System.EventHandler(this.dtdate_ValueChangedAsync);
+            this.dtdate.Visible = false;
+            this.dtdate.ValueChanged += new System.EventHandler(this.dtdate_ValueChanged);
             // 
             // bexport
             // 
@@ -164,7 +165,7 @@ namespace rct_lmis
             this.bexport.ForeColor = System.Drawing.Color.White;
             this.bexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
             this.bexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bexport.Location = new System.Drawing.Point(901, 15);
+            this.bexport.Location = new System.Drawing.Point(658, 15);
             this.bexport.Name = "bexport";
             this.bexport.Size = new System.Drawing.Size(35, 35);
             this.bexport.TabIndex = 11;
@@ -177,11 +178,12 @@ namespace rct_lmis
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(407, 17);
+            this.label11.Location = new System.Drawing.Point(702, 18);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 30);
             this.label11.TabIndex = 7;
             this.label11.Text = "Search Date\r\nEncoded:";
+            this.label11.Visible = false;
             // 
             // guna2Separator1
             // 
@@ -197,7 +199,7 @@ namespace rct_lmis
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(645, 17);
+            this.label2.Location = new System.Drawing.Point(402, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 30);
             this.label2.TabIndex = 6;

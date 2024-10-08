@@ -107,7 +107,7 @@
             this.laccountid.BackColor = System.Drawing.Color.Transparent;
             this.laccountid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.laccountid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccountid.Location = new System.Drawing.Point(561, 16);
+            this.laccountid.Location = new System.Drawing.Point(611, 15);
             this.laccountid.Name = "laccountid";
             this.laccountid.Size = new System.Drawing.Size(121, 20);
             this.laccountid.TabIndex = 36;
@@ -120,7 +120,7 @@
             this.label27.BackColor = System.Drawing.Color.Transparent;
             this.label27.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label27.Location = new System.Drawing.Point(472, 16);
+            this.label27.Location = new System.Drawing.Point(522, 15);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(93, 19);
             this.label27.TabIndex = 35;
@@ -142,6 +142,7 @@
             this.bsavetransaction.Size = new System.Drawing.Size(82, 31);
             this.bsavetransaction.TabIndex = 31;
             this.bsavetransaction.Text = "Update";
+            this.bsavetransaction.Visible = false;
             // 
             // laccno
             // 
@@ -214,7 +215,7 @@
             // lnorecordattachment
             // 
             this.lnorecordattachment.AutoSize = true;
-            this.lnorecordattachment.BackColor = System.Drawing.Color.Transparent;
+            this.lnorecordattachment.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lnorecordattachment.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnorecordattachment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnorecordattachment.Location = new System.Drawing.Point(360, 258);
@@ -430,7 +431,7 @@
             this.tclientno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tclientno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tclientno.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tclientno.Location = new System.Drawing.Point(419, 17);
+            this.tclientno.Location = new System.Drawing.Point(508, 16);
             this.tclientno.Name = "tclientno";
             this.tclientno.PasswordChar = '\0';
             this.tclientno.PlaceholderText = "";
@@ -444,7 +445,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(350, 21);
+            this.label1.Location = new System.Drawing.Point(439, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 15);
             this.label1.TabIndex = 83;
@@ -462,7 +463,7 @@
             this.tlnno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlnno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tlnno.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tlnno.Location = new System.Drawing.Point(129, 17);
+            this.tlnno.Location = new System.Drawing.Point(74, 16);
             this.tlnno.Name = "tlnno";
             this.tlnno.PasswordChar = '\0';
             this.tlnno.PlaceholderText = "";
@@ -478,9 +479,9 @@
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label15.Location = new System.Drawing.Point(18, 21);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(106, 15);
+            this.label15.Size = new System.Drawing.Size(50, 15);
             this.label15.TabIndex = 53;
-            this.label15.Text = "Loan No. (LN No.):";
+            this.label15.Text = "Loan ID:";
             // 
             // tabPage3
             // 
