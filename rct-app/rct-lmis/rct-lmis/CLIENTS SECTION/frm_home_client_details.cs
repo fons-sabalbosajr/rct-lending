@@ -12,9 +12,12 @@ namespace rct_lmis.CLIENTS_SECTION
 {
     public partial class frm_home_client_details : Form
     {
-        public frm_home_client_details()
+        public frm_home_client_details(string loanId, string clientNo)
         {
             InitializeComponent();
+
+            laccno.Text = loanId;
+            lclientno.Text = clientNo;
         }
 
         LoadingFunction load = new LoadingFunction();

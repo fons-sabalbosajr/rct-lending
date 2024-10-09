@@ -15,17 +15,17 @@ namespace rct_lmis.DISBURSEMENT_SECTION
     public partial class frm_home_disburse_collections : Form
     {
         private string _loanId;
-        
+        private string _clientno;
         private IMongoCollection<BsonDocument> _loanDisbursedCollection;
         private IMongoCollection<BsonDocument> _loanVoucherCollection;
         private IMongoCollection<BsonDocument> _loanCollection;
         private DataTable _loanCollectionTable;
 
-        public frm_home_disburse_collections(string loanId)
+        public frm_home_disburse_collections(string loanId, string clientno)
         {
             InitializeComponent();
             _loanId = loanId;
-
+            _clientno = clientno;
             // MongoDB connection initialization
             var database = MongoDBConnection.Instance.Database;
             _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_collections");
@@ -541,6 +541,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private void frm_home_disburse_collections_Load(object sender, EventArgs e)
         {
             laccountid.Text = _loanId;
+            lclientno.Text = _clientno;
             LoadLoanCollections();
         }
 
@@ -569,10 +570,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void bnew_Click(object sender, EventArgs e)
         {
-
-            string dbid = _loanId;
-            //frm_home_disburse_collections_add addForm = new frm_home_disburse_collections_add(dbid);
-            //addForm.ShowDialog();
+            frm_home_disburse_collections_add addCollectionForm = new frm_home_disburse_collections_add(_loanId);
+            addCollectionForm.ShowDialog(this);
         }
 
         private void dgvdata_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

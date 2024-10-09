@@ -167,13 +167,13 @@ namespace rct_lmis.ADMIN_SECTION
         private async Task<string> GenerateDisburseIDAsync()
         {
             var lastEntry = await loanDisburseCollection.Find(new BsonDocument())
-                .Sort(Builders<BsonDocument>.Sort.Descending("DisbursementId"))
+                .Sort(Builders<BsonDocument>.Sort.Descending("AccountId"))
                 .Limit(1)
                 .FirstOrDefaultAsync();
 
-            if (lastEntry != null && lastEntry.Contains("DisbursementId"))
+            if (lastEntry != null && lastEntry.Contains("AccountId"))
             {
-                string lastId = lastEntry["DisbursementId"].ToString();
+                string lastId = lastEntry["AccountId"].ToString();
                 int lastNum = int.Parse(lastId.Split('-')[2]);
                 return $"RCT-DB2024-{(lastNum + 1):D3}";
             }
@@ -267,7 +267,7 @@ namespace rct_lmis.ADMIN_SECTION
                     return;
                 }
 
-                // Split the address into Barangay, City, and Province
+
                 string fullAddress = taddress.Text.Trim();
                 string barangay = string.Empty;
                 string city = string.Empty;
@@ -281,9 +281,17 @@ namespace rct_lmis.ADMIN_SECTION
                     city = addressParts.Length > 1 ? addressParts[1].Trim() : string.Empty;  // City between commas
                     province = addressParts.Length > 2 ? addressParts[2].Trim() : string.Empty;  // Province after the last comma
                 }
+                else if (fullAddress.Split(' ').Length == 3)
+                {
+                    // Split by spaces if the address has three parts (Barangay, City, Province format)
+                    string[] addressParts = fullAddress.Split(' ');
+                    barangay = addressParts[0].Trim();  // First part is Barangay
+                    city = addressParts[1].Trim();      // Second part is City
+                    province = addressParts[2].Trim();  // Third part is Province
+                }
                 else
                 {
-                    MessageBox.Show("Address format is incorrect. Please provide Barangay, City, Province format.", "Invalid Address Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Address format is incorrect. Please provide either 'Barangay, City, Province' or 'Barangay City Province' format.", "Invalid Address Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -369,7 +377,6 @@ namespace rct_lmis.ADMIN_SECTION
                     return;
                 }
 
-                // Split the address into Barangay, City, and Province
                 string fullAddress = taddress.Text.Trim();
                 string barangay = string.Empty;
                 string city = string.Empty;
@@ -383,9 +390,17 @@ namespace rct_lmis.ADMIN_SECTION
                     city = addressParts.Length > 1 ? addressParts[1].Trim() : string.Empty;  // City between commas
                     province = addressParts.Length > 2 ? addressParts[2].Trim() : string.Empty;  // Province after the last comma
                 }
+                else if (fullAddress.Split(' ').Length == 3)
+                {
+                    // Split by spaces if the address has three parts (Barangay, City, Province format)
+                    string[] addressParts = fullAddress.Split(' ');
+                    barangay = addressParts[0].Trim();  // First part is Barangay
+                    city = addressParts[1].Trim();      // Second part is City
+                    province = addressParts[2].Trim();  // Third part is Province
+                }
                 else
                 {
-                    MessageBox.Show("Address format is incorrect. Please provide Barangay, City, Province format.", "Invalid Address Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Address format is incorrect. Please provide either 'Barangay, City, Province' or 'Barangay City Province' format.", "Invalid Address Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -440,6 +455,7 @@ namespace rct_lmis.ADMIN_SECTION
 
 
                 MessageBox.Show("Transactions has been imported successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
         }
     }

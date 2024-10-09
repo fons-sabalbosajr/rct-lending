@@ -49,6 +49,8 @@
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lclientno = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -57,6 +59,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.lclientno);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.laccountid);
             this.panel1.Controls.Add(this.label27);
             this.panel1.Controls.Add(this.laccno);
@@ -73,7 +77,7 @@
             this.laccountid.BackColor = System.Drawing.Color.Transparent;
             this.laccountid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.laccountid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccountid.Location = new System.Drawing.Point(952, 15);
+            this.laccountid.Location = new System.Drawing.Point(632, 16);
             this.laccountid.Name = "laccountid";
             this.laccountid.Size = new System.Drawing.Size(121, 20);
             this.laccountid.TabIndex = 36;
@@ -311,6 +315,32 @@
             this.dgvdata.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvdata_CellFormatting);
             this.dgvdata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdata_DataBindingComplete);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(561, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 19);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "Client No.:";
+            // 
+            // lclientno
+            // 
+            this.lclientno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lclientno.AutoSize = true;
+            this.lclientno.BackColor = System.Drawing.Color.Transparent;
+            this.lclientno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lclientno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lclientno.Location = new System.Drawing.Point(952, 16);
+            this.lclientno.Name = "lclientno";
+            this.lclientno.Size = new System.Drawing.Size(96, 20);
+            this.lclientno.TabIndex = 38;
+            this.lclientno.Text = "RCT-CL0000";
+            // 
             // frm_home_disburse_collections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,5 +385,7 @@
         private Guna.UI2.WinForms.Guna2TextBox tsearch;
         private Guna.UI2.WinForms.Guna2Button bpayadvance;
         private Guna.UI2.WinForms.Guna2Button bsoa;
+        private System.Windows.Forms.Label lclientno;
+        private System.Windows.Forms.Label label1;
     }
 }

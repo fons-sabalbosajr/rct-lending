@@ -15,6 +15,7 @@ namespace rct_lmis.ADMIN_SECTION
     {
         private IMongoDatabase database;
         private IMongoCollection<BsonDocument> loanRawdataCollection;
+        private IMongoCollection<BsonDocument> loanApprovedCollection;
         private List<BsonDocument> rawDataList;
 
         public frm_home_ADMIN_rawdata()
@@ -22,6 +23,7 @@ namespace rct_lmis.ADMIN_SECTION
             InitializeComponent();
             database = MongoDBConnection.Instance.Database;
             loanRawdataCollection = database.GetCollection<BsonDocument>("loan_rawdata");
+            loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
             rawDataList = new List<BsonDocument>();
         }
 
@@ -48,12 +50,10 @@ namespace rct_lmis.ADMIN_SECTION
             dt.Columns.Add("Total Collection");
             dt.Columns.Add("Loan Status");
             dt.Columns.Add("Loan Status Date Update");
-            dt.Columns.Add("Actions");
 
             foreach (var doc in rawData)
             {
                 DataRow row = dt.NewRow();
-
                 row["Item No."] = doc.GetValue("item_no", "").ToString();
                 row["Collector Info"] = $"{doc.GetValue("collector_name", "")}\n{doc.GetValue("area_route", "")}";
                 row["Client Info"] = $"{doc.GetValue("client_name", "")}\nContact No: {doc.GetValue("contact_no", "")}\nLoan ID: {doc.GetValue("loan_id", "")}";
@@ -103,9 +103,45 @@ namespace rct_lmis.ADMIN_SECTION
             // Add the button column to the DataGridView
             dgvdata.Columns.Add(actionColumn);
 
-            UpdateLoanStatusLabels();
+            // Now, after setting the DataSource, highlight the rows
+            HighlightApprovedLoans();
 
+            UpdateLoanStatusLabels();
         }
+
+        private void HighlightApprovedLoans()
+        {
+            // Retrieve the list of loan_approved documents
+            var approvedLoans = loanApprovedCollection.Find(new BsonDocument()).ToList();
+            var approvedLoanIds = approvedLoans.Select(doc => doc.GetValue("LoanNo", "").ToString().Substring(doc.GetValue("LoanNo", "").ToString().Length - 5)).ToList();
+
+            // Highlight rows that are already in loan_approved collection
+            foreach (DataGridViewRow row in dgvdata.Rows)
+            {
+                string clientInfo = row.Cells["Client Info"].Value.ToString();
+
+                // Extract Loan ID from Client Info safely
+                string[] clientInfoParts = clientInfo.Split('\n');
+                string loanId = clientInfoParts.Length > 2 ? clientInfoParts[2].Split(':')[1].Trim() : string.Empty;
+
+                // Check if loanId is not empty and at least 5 characters long before checking the last 5 digits
+                if (!string.IsNullOrEmpty(loanId) && loanId.Length >= 5)
+                {
+                    string lastFiveDigits = loanId.Substring(loanId.Length - 5);
+
+                    // Log the last 5 digits detected
+                    //Console.WriteLine($"Detected Last 5 Digits: {lastFiveDigits}");
+
+                    // Check if the last 5 digits of the loanId exist in approvedLoanIds
+                    if (approvedLoanIds.Contains(lastFiveDigits))
+                    {
+                        row.DefaultCellStyle.BackColor = Color.LightYellow;  // Set background color to light yellow
+                    }
+                }
+            }
+        }
+
+
 
         private void refreshdata() 
         {

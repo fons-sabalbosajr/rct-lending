@@ -66,17 +66,38 @@ namespace rct_lmis
                 // Create a base filter (default: no filters, retrieves all documents)
                 var filter = Builders<BsonDocument>.Filter.Empty;
 
-                // Apply search query filter if provided (for LoanNo or AccountId)
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     var searchFilter = Builders<BsonDocument>.Filter.Or(
                         Builders<BsonDocument>.Filter.Regex("LoanNo", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("AccountId", new BsonRegularExpression(searchQuery, "i"))
+                        Builders<BsonDocument>.Filter.Regex("AccountId", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("ClientNo", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("LoanType", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("LoanStatus", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("LastName", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("FirstName", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("MiddleName", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("CollectorName", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("Barangay", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("City", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("Province", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("LoanTerm", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("LoanAmount", new BsonRegularExpression(searchQuery.Replace("₱", "").Replace(",", ""), "i")),
+                        Builders<BsonDocument>.Filter.Regex("LoanAmortization", new BsonRegularExpression(searchQuery.Replace("₱", "").Replace(",", ""), "i")),
+                        Builders<BsonDocument>.Filter.Regex("LoanBalance", new BsonRegularExpression(searchQuery.Replace("₱", "").Replace(",", ""), "i")),
+                        Builders<BsonDocument>.Filter.Regex("Penalty", new BsonRegularExpression(searchQuery.Replace("₱", "").Replace(",", ""), "i")),
+                        Builders<BsonDocument>.Filter.Regex("LoanInterest", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("PaymentMode", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("StartPaymentDate", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("MaturityDate", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("Date_Encoded", new BsonRegularExpression(searchQuery, "i")),
+                        Builders<BsonDocument>.Filter.Regex("LoanProcessStatus", new BsonRegularExpression(searchQuery, "i"))
                     );
+
                     filter = Builders<BsonDocument>.Filter.And(filter, searchFilter);
                 }
 
-                // Apply filters from ComboBox selection and DateTimePicker if applicable (as in original)
+                // Apply filters from ComboBox selection and DateTimePicker if applicable
                 if (!string.IsNullOrEmpty(selectedCashName) && selectedCashName != "--all payee--")
                 {
                     var cashNameFilter = Builders<BsonDocument>.Filter.Eq("CollectorName", selectedCashName);
@@ -99,7 +120,6 @@ namespace rct_lmis
 
                 if (loanDisbursedList.Count == 0)
                 {
-                    MessageBox.Show("No data retrieved from MongoDB.");
                     lnorecord.Text = "No records found!";
                     lnorecord.Visible = true;
 
@@ -117,6 +137,7 @@ namespace rct_lmis
                 DataTable loanDisbursedTable = new DataTable();
                 loanDisbursedTable.Columns.Add("Disbursement No.");
                 loanDisbursedTable.Columns.Add("Account ID");
+                loanDisbursedTable.Columns.Add("ClientNo"); // Add ClientNo column
                 loanDisbursedTable.Columns.Add("Client Info");
                 loanDisbursedTable.Columns.Add("Loan Amount");
                 loanDisbursedTable.Columns.Add("Loan Status");
@@ -129,12 +150,12 @@ namespace rct_lmis
                     // Safely retrieve values from BsonDocument
                     row["Disbursement No."] = loan.Contains("AccountId") ? loan["AccountId"].AsString : "N/A";
                     row["Account ID"] = loan.Contains("LoanNo") ? loan["LoanNo"].AsString : "N/A";
+                    row["ClientNo"] = loan.Contains("ClientNo") ? loan["ClientNo"].AsString : "N/A"; // Retrieve ClientNo
 
                     string clientName = $"{loan.GetValue("LastName", "")}, {loan.GetValue("FirstName", "")} {loan.GetValue("MiddleName", "")}";
                     string address = $"{loan.GetValue("Barangay", "")}, {loan.GetValue("City", "")}, {loan.GetValue("Province", "")}";
                     row["Client Info"] = $"{clientName} \n" +
                                          $"{address}";
-                                        
 
                     decimal loanAmount = loan.Contains("LoanAmount") ? Convert.ToDecimal(loan["LoanAmount"].AsString.Replace("₱", "").Replace(",", "").Trim()) : 0;
                     decimal loanAmortization = loan.Contains("LoanAmortization") ? Convert.ToDecimal(loan["LoanAmortization"].AsString.Replace("₱", "").Replace(",", "").Trim()) : 0;
@@ -149,20 +170,21 @@ namespace rct_lmis
                     DateTime maturityDate = loan.Contains("MaturityDate") ? DateTime.Parse(loan["MaturityDate"].AsString) : DateTime.MinValue;
 
                     row["Loan Status"] = $"Start Date: {startPaymentDate:MM/dd/yyyy} \n" +
-                                                $"Maturity Date: {maturityDate:MM/dd/yyyy}\n" +
-                                                $"Loan Status: {loan.GetValue("LoanProcessStatus", "N/A")}\n" +
-                                                $"Collector: {loan.GetValue("CollectorName", "N/A")}";
+                                         $"Maturity Date: {maturityDate:MM/dd/yyyy}\n" +
+                                         $"Loan Status: {loan.GetValue("LoanProcessStatus", "N/A")}\n" +
+                                         $"Collector: {loan.GetValue("CollectorName", "N/A")}";
 
                     row["Encoded Details"] = $"Date Encoded: {loan.GetValue("Date_Encoded", "N/A")}";
-
 
                     // Add the row to the data table
                     loanDisbursedTable.Rows.Add(row);
                 }
 
-
                 // Bind DataTable to DataGridView
                 dgvdata.DataSource = loanDisbursedTable;
+
+                // Call method to adjust button columns after data is loaded
+                AdjustButtonColumns();
 
                 if (dgvdata.Columns["ViewDetails"] == null)
                 {
@@ -176,7 +198,28 @@ namespace rct_lmis
         }
 
 
+        // Add or Adjust button columns display index
+        private void AdjustButtonColumns()
+        {
+            var btnColumndetails = dgvdata.Columns["ViewDetails"];
+            var btnColumnCollections = dgvdata.Columns["ViewCollections"];
 
+            if (btnColumndetails != null)
+            {
+                btnColumndetails.DisplayIndex = dgvdata.ColumnCount - 2; // Position second to last
+                btnColumndetails.Width = 120;
+                btnColumndetails.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                btnColumndetails.DefaultCellStyle.Font = new Font("Segoe UI", 8);
+            }
+
+            if (btnColumnCollections != null)
+            {
+                btnColumnCollections.DisplayIndex = dgvdata.ColumnCount - 1; // Position last
+                btnColumnCollections.Width = 120;
+                btnColumnCollections.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                btnColumnCollections.DefaultCellStyle.Font = new Font("Segoe UI", 8);
+            }
+        }
 
         private void AddViewDetailsButton()
         {
@@ -187,17 +230,9 @@ namespace rct_lmis
                 Text = "View Details",
                 UseColumnTextForButtonValue = true,
                 HeaderText = "Actions",
-                Width = 200 // Adjust width as needed          
+                Width = 120
             };
             dgvdata.Columns.Add(btnDetailsColumn);
-
-            var btnColumndetails = dgvdata.Columns["ViewDetails"];
-            if (btnColumndetails != null)
-            {
-                btnColumndetails.Width = 120;
-                btnColumndetails.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                btnColumndetails.DefaultCellStyle.Font = new Font("Segoe UI", 8);
-            }
 
             // Add the View Collections button
             DataGridViewButtonColumn btnCollectionsColumn = new DataGridViewButtonColumn
@@ -206,18 +241,14 @@ namespace rct_lmis
                 Text = "View Collections",
                 UseColumnTextForButtonValue = true,
                 HeaderText = " ",
-                Width = 120 // Adjust width as needed          
+                Width = 120
             };
             dgvdata.Columns.Add(btnCollectionsColumn);
 
-            var btnColumnCollections = dgvdata.Columns["ViewCollections"];
-            if (btnColumnCollections != null)
-            {
-                btnColumnCollections.Width = 120;
-                btnColumnCollections.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                btnColumnCollections.DefaultCellStyle.Font = new Font("Segoe UI", 8);
-            }
+            // Adjust the columns' display order to ensure buttons are on the right
+            AdjustButtonColumns();
         }
+
 
 
         // Method to get client info from the loan_approved collection
@@ -329,7 +360,7 @@ namespace rct_lmis
 
         private void tsearch_TextChanged(object sender, EventArgs e)
         {
-            // Call LoadLoanDisbursedData with the search query from tsearch.Text
+            
             _ = LoadLoanDisbursedData(tsearch.Text);
         }
 
@@ -394,22 +425,27 @@ namespace rct_lmis
                 // Get the Loan ID No from the clicked row
                 string loanId = dgvdata.Rows[e.RowIndex].Cells["Disbursement No."].Value.ToString();
 
-                // Open the detail form
-                frm_home_disburse_details detailForm = new frm_home_disburse_details(loanId);
+                // Get the ClientNo from the clicked row
+                string clientNo = dgvdata.Rows[e.RowIndex].Cells["ClientNo"].Value.ToString();
+
+                // Open the detail form with both Loan ID and Client No
+                frm_home_disburse_details detailForm = new frm_home_disburse_details(loanId, clientNo);
                 detailForm.ShowDialog(this);
             }
 
-            // Check if the clicked cell is in the "ViewDetails" column
+            // Check if the clicked cell is in the "ViewCollections" column
             if (e.ColumnIndex == dgvdata.Columns["ViewCollections"].Index && e.RowIndex >= 0)
             {
-                // Get the Loan ID No from the clicked row
+                // Get the ClientNo from the clicked row
+                string clientNo = dgvdata.Rows[e.RowIndex].Cells["ClientNo"].Value.ToString();
                 string loanId = dgvdata.Rows[e.RowIndex].Cells["Disbursement No."].Value.ToString();
 
-                // Open the detail form
-                frm_home_disburse_collections collections = new frm_home_disburse_collections(loanId);
-                collections.ShowDialog(this);
+                // Open the collections form with the Client No
+                frm_home_disburse_collections collectionsForm = new frm_home_disburse_collections(clientNo, loanId);
+                collectionsForm.ShowDialog(this);
             }
         }
+
 
         private async void cbstatus_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -64,6 +64,8 @@ namespace rct_lmis.CLIENTS_SECTION
             this.label40 = new System.Windows.Forms.Label();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.label41 = new System.Windows.Forms.Label();
+            this.guna2TextBox24 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.label33 = new System.Windows.Forms.Label();
@@ -74,6 +76,8 @@ namespace rct_lmis.CLIENTS_SECTION
             this.guna2TextBox20 = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2TextBox21 = new Guna.UI2.WinForms.Guna2TextBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.guna2TextBox22 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.label28 = new System.Windows.Forms.Label();
@@ -165,16 +169,10 @@ namespace rct_lmis.CLIENTS_SECTION
             this.guna2TextBox34 = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bcopyaccno = new Guna.UI2.WinForms.Guna2Button();
-            this.lloanstatus = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.laccstatus = new System.Windows.Forms.Label();
+            this.lclientno = new System.Windows.Forms.Label();
             this.laccno = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.guna2TextBox22 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.guna2TextBox24 = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -595,6 +593,38 @@ namespace rct_lmis.CLIENTS_SECTION
             this.label41.TabIndex = 86;
             this.label41.Text = "CO-BORROWER INFORMATION";
             // 
+            // guna2TextBox24
+            // 
+            this.guna2TextBox24.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox24.DefaultText = "";
+            this.guna2TextBox24.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox24.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox24.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox24.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox24.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox24.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2TextBox24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.guna2TextBox24.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox24.Location = new System.Drawing.Point(923, 42);
+            this.guna2TextBox24.Name = "guna2TextBox24";
+            this.guna2TextBox24.PasswordChar = '\0';
+            this.guna2TextBox24.PlaceholderText = "";
+            this.guna2TextBox24.SelectedText = "";
+            this.guna2TextBox24.Size = new System.Drawing.Size(329, 25);
+            this.guna2TextBox24.TabIndex = 85;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.BackColor = System.Drawing.Color.Transparent;
+            this.label34.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label34.Location = new System.Drawing.Point(837, 47);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(74, 15);
+            this.label34.TabIndex = 84;
+            this.label34.Text = "Account No:";
+            // 
             // guna2Button2
             // 
             this.guna2Button2.BorderColor = System.Drawing.Color.Transparent;
@@ -748,6 +778,38 @@ namespace rct_lmis.CLIENTS_SECTION
             this.label31.Size = new System.Drawing.Size(67, 15);
             this.label31.TabIndex = 74;
             this.label31.Text = "First Name:";
+            // 
+            // guna2TextBox22
+            // 
+            this.guna2TextBox22.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox22.DefaultText = "";
+            this.guna2TextBox22.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox22.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox22.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox22.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox22.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox22.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2TextBox22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.guna2TextBox22.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox22.Location = new System.Drawing.Point(923, 74);
+            this.guna2TextBox22.Name = "guna2TextBox22";
+            this.guna2TextBox22.PasswordChar = '\0';
+            this.guna2TextBox22.PlaceholderText = "";
+            this.guna2TextBox22.SelectedText = "";
+            this.guna2TextBox22.Size = new System.Drawing.Size(329, 25);
+            this.guna2TextBox22.TabIndex = 73;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label32.Location = new System.Drawing.Point(837, 79);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(66, 15);
+            this.label32.TabIndex = 72;
+            this.label32.Text = "Last Name:";
             // 
             // guna2VSeparator1
             // 
@@ -2367,9 +2429,7 @@ namespace rct_lmis.CLIENTS_SECTION
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
             this.panel1.Controls.Add(this.bcopyaccno);
-            this.panel1.Controls.Add(this.lloanstatus);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.laccstatus);
+            this.panel1.Controls.Add(this.lclientno);
             this.panel1.Controls.Add(this.laccno);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -2398,41 +2458,17 @@ namespace rct_lmis.CLIENTS_SECTION
             this.bcopyaccno.TabIndex = 25;
             this.bcopyaccno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // lloanstatus
+            // lclientno
             // 
-            this.lloanstatus.AutoSize = true;
-            this.lloanstatus.BackColor = System.Drawing.Color.Transparent;
-            this.lloanstatus.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lloanstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lloanstatus.Location = new System.Drawing.Point(932, 14);
-            this.lloanstatus.Name = "lloanstatus";
-            this.lloanstatus.Size = new System.Drawing.Size(79, 20);
-            this.lloanstatus.TabIndex = 22;
-            this.lloanstatus.Text = "PAST DUE";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label14.Location = new System.Drawing.Point(792, 14);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(138, 19);
-            this.label14.TabIndex = 21;
-            this.label14.Text = "Account Loan Status:";
-            // 
-            // laccstatus
-            // 
-            this.laccstatus.AutoSize = true;
-            this.laccstatus.BackColor = System.Drawing.Color.Transparent;
-            this.laccstatus.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.laccstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccstatus.Location = new System.Drawing.Point(534, 15);
-            this.laccstatus.Name = "laccstatus";
-            this.laccstatus.Size = new System.Drawing.Size(61, 20);
-            this.laccstatus.TabIndex = 20;
-            this.laccstatus.Text = "ACTIVE";
+            this.lclientno.AutoSize = true;
+            this.lclientno.BackColor = System.Drawing.Color.Transparent;
+            this.lclientno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lclientno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lclientno.Location = new System.Drawing.Point(511, 15);
+            this.lclientno.Name = "lclientno";
+            this.lclientno.Size = new System.Drawing.Size(61, 20);
+            this.lclientno.TabIndex = 20;
+            this.lclientno.Text = "ACTIVE";
             // 
             // laccno
             // 
@@ -2440,7 +2476,7 @@ namespace rct_lmis.CLIENTS_SECTION
             this.laccno.BackColor = System.Drawing.Color.Transparent;
             this.laccno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccno.Location = new System.Drawing.Point(152, 14);
+            this.laccno.Location = new System.Drawing.Point(126, 14);
             this.laccno.Name = "laccno";
             this.laccno.Size = new System.Drawing.Size(115, 20);
             this.laccno.TabIndex = 19;
@@ -2454,9 +2490,9 @@ namespace rct_lmis.CLIENTS_SECTION
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(430, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 19);
+            this.label2.Size = new System.Drawing.Size(87, 19);
             this.label2.TabIndex = 16;
-            this.label2.Text = "Account Status:";
+            this.label2.Text = "Account No.:";
             // 
             // label1
             // 
@@ -2466,73 +2502,9 @@ namespace rct_lmis.CLIENTS_SECTION
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(35, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 19);
+            this.label1.Size = new System.Drawing.Size(96, 19);
             this.label1.TabIndex = 15;
-            this.label1.Text = "Account Number:";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label32.Location = new System.Drawing.Point(837, 79);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(66, 15);
-            this.label32.TabIndex = 72;
-            this.label32.Text = "Last Name:";
-            // 
-            // guna2TextBox22
-            // 
-            this.guna2TextBox22.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox22.DefaultText = "";
-            this.guna2TextBox22.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox22.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox22.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox22.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox22.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox22.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2TextBox22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2TextBox22.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox22.Location = new System.Drawing.Point(923, 74);
-            this.guna2TextBox22.Name = "guna2TextBox22";
-            this.guna2TextBox22.PasswordChar = '\0';
-            this.guna2TextBox22.PlaceholderText = "";
-            this.guna2TextBox22.SelectedText = "";
-            this.guna2TextBox22.Size = new System.Drawing.Size(329, 25);
-            this.guna2TextBox22.TabIndex = 73;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.BackColor = System.Drawing.Color.Transparent;
-            this.label34.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label34.Location = new System.Drawing.Point(837, 47);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(74, 15);
-            this.label34.TabIndex = 84;
-            this.label34.Text = "Account No:";
-            // 
-            // guna2TextBox24
-            // 
-            this.guna2TextBox24.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox24.DefaultText = "";
-            this.guna2TextBox24.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox24.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox24.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox24.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox24.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox24.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2TextBox24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2TextBox24.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox24.Location = new System.Drawing.Point(923, 42);
-            this.guna2TextBox24.Name = "guna2TextBox24";
-            this.guna2TextBox24.PasswordChar = '\0';
-            this.guna2TextBox24.PlaceholderText = "";
-            this.guna2TextBox24.SelectedText = "";
-            this.guna2TextBox24.Size = new System.Drawing.Size(329, 25);
-            this.guna2TextBox24.TabIndex = 85;
+            this.label1.Text = "Loan Number:";
             // 
             // frm_home_client_details
             // 
@@ -2663,9 +2635,7 @@ namespace rct_lmis.CLIENTS_SECTION
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel1;
         private Guna.UI2.WinForms.Guna2Button bcopyaccno;
-        private System.Windows.Forms.Label lloanstatus;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label laccstatus;
+        private System.Windows.Forms.Label lclientno;
         private System.Windows.Forms.Label laccno;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

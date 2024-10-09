@@ -26,20 +26,17 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private List<string> _accountIdList;
         private string name;
         private string loggedInUsername;
-        private string _loanId;
+        private string _clientNo;
 
-        private string dbid;
-
-        public frm_home_disburse_collections_add(frm_home_disburse_collections parentForm, string dbid)
+        public frm_home_disburse_collections_add(string clientNo)
         {
             InitializeComponent();
-            _parentForm = parentForm;
             dtdate.Value = DateTime.Now;
             dtcoldate.Value = DateTime.Now;
-
-            this.dbid = dbid;
-
+            _clientNo = clientNo;
             loggedInUsername = UserSession.Instance.CurrentUser;
+
+
             // Initialize MongoDB connection for loan_approved collection
             var database = MongoDBConnection.Instance.Database;
             _loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
@@ -47,17 +44,40 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
             _loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
             _loanAccountCollection = database.GetCollection<BsonDocument>("loan_account_data");
-            // Load AccountId values for autocomplete
-            LoadAccountIdsForAutocomplete();
-
-            // Set up the tlnno TextBox for autocomplete
-            SetupAutocompleteForTlnno();
+           
             LoadPaymentModes();
             
             bsave.Enabled = false;
             bcancel.Enabled = false;
+
+           
         }
 
+        public async  Task LoadClientName(string clientNo)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<BsonDocument>("loan_disbursed");
+
+            // Find the document by ClientNo
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", clientNo);
+            var result = await collection.Find(filter).FirstOrDefaultAsync();
+
+            if (result != null)
+            {
+                // Concatenate the full name
+                string firstName = result["FirstName"].AsString;
+                string middleName = result["MiddleName"].AsString;
+                string lastName = result["LastName"].AsString;
+
+                // Set the tname.Text with full name
+                tname.Text = $"{firstName} {middleName} {lastName}".Trim();
+            }
+            else
+            {
+                // Handle case when no result is found
+                MessageBox.Show("Client not found.");
+            }
+        }
 
         private void ClearAndDisableFields()
         {
@@ -150,143 +170,53 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             return decimal.TryParse(value, out decimal result) ? result : 0;
         }
 
-        private void LoadAccountIdsForAutocomplete()
+
+
+        private async void LoadLoanDisbursedData()
         {
-            // Retrieve the LastName, FirstName, and MiddleName fields from the loan_disbursed collection
-            var borrowers = _loanDisbursedCollection.Find(new BsonDocument())
-                                                     .Project(Builders<BsonDocument>.Projection
-                                                     .Include("LastName")
-                                                     .Include("FirstName")
-                                                     .Include("MiddleName"))
-                                                     .ToList();
+            // Preserve the original full name
+            string fullName = tname.Text.Trim();
 
-            _accountIdList = new List<string>();
-
-            foreach (var doc in borrowers)
-            {
-                // Check if LastName, FirstName, and MiddleName fields exist
-                if (doc.Contains("LastName") && doc.Contains("FirstName") && doc.Contains("MiddleName"))
-                {
-                    string lastName = doc["LastName"].AsString;
-                    string firstName = doc["FirstName"].AsString;
-                    string middleName = doc["MiddleName"].AsString;
-
-                    // Construct the full name
-                    string fullName = $"{lastName}, {firstName} {middleName}";
-
-                    // Add the full name to the list
-                    if (!string.IsNullOrEmpty(fullName))
-                    {
-                        _accountIdList.Add(fullName);
-                    }
-                }
-            }
-        }
-
-
-        private void SetupAutocompleteForTlnno()
-        {
-            AutoCompleteStringCollection accountIdCollection = new AutoCompleteStringCollection();
-            accountIdCollection.AddRange(_accountIdList.ToArray());
-
-            tname.AutoCompleteMode = AutoCompleteMode.Suggest;
-            tname.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            tname.AutoCompleteCustomSource = accountIdCollection;
-        }
-
-        private void LoadLoanApprovedDataByClientNo(string clientNumber)
-        {
             try
             {
-                // Trim the client number to avoid issues with extra spaces
-                clientNumber = clientNumber.Trim();
-
-                // Query to find the document based on the ClientNumber
-                var filter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientNumber);
-
-                // Find the document in the loan_approved collection
-                var loanApproved = _loanApprovedCollection.Find(filter).FirstOrDefault();
-
-                if (loanApproved != null)
+                if (string.IsNullOrEmpty(fullName))
                 {
-                    // Populate textboxes with data from the loan_approved document
-                    tlnno.Text = loanApproved["AccountId"].AsString;
-                    //tclientno.Text = loanApproved["ClientNumber"].AsString;
-
-                    // Full name from FirstName, MiddleName, LastName, SuffixName
-                    string retrievedFullName = $"{loanApproved["FirstName"].AsString} {loanApproved["MiddleName"].AsString} {loanApproved["LastName"].AsString} {loanApproved["SuffixName"].AsString}";
-                    tname.Text = retrievedFullName.Trim(); // Trim to remove any extra spaces
-
-                    // Address from Street, Barangay, City, Province
-                    string fullAddress = $"{loanApproved["Street"].AsString}, {loanApproved["Barangay"].AsString}, {loanApproved["City"].AsString}, {loanApproved["Province"].AsString}";
-                    taddress.Text = fullAddress;
-
-                    tcontact.Text = loanApproved["CP"].AsString;
+                    MessageBox.Show("Please enter a valid full name.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                else
+
+                // Split the full name into first, middle, and last names
+                var nameParts = fullName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (nameParts.Length < 2)
                 {
-                    // Clear text boxes if no data is found
-                    tlnno.Text = string.Empty;
-                    tname.Text = string.Empty;
-                    taddress.Text = string.Empty;
-                    tcontact.Text = string.Empty;
+                    MessageBox.Show("Full name must include at least a first name and a last name.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-            }
-            catch (Exception ex)
-            {
-                // Handle any exceptions
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
-        private void GenerateCollectionNo(string loanId)
-        {
-            // Query to find the latest collection for the loanId
-            var filter = Builders<BsonDocument>.Filter.Eq("LoanIDNo", loanId);
-            var sort = Builders<BsonDocument>.Sort.Descending("CollectionNo");
+                string firstName = nameParts[0];
+                string lastName = nameParts[nameParts.Length - 1];
+                string middleName = nameParts.Length > 2 ? string.Join(" ", nameParts.Skip(1).Take(nameParts.Length - 2)) : "";
 
-            var latestCollection = _loanCollectionsCollection.Find(filter)
-                                                             .Sort(sort)
-                                                             .FirstOrDefault();
+                // Create filter for MongoDB query
+                var filter = Builders<BsonDocument>.Filter.And(
+                    Builders<BsonDocument>.Filter.Eq("FirstName", firstName),
+                    Builders<BsonDocument>.Filter.Eq("LastName", lastName)
+                );
 
-            string newCollectionNo;
+                // Add middle name to filter if it exists
+                if (!string.IsNullOrEmpty(middleName))
+                {
+                    filter = Builders<BsonDocument>.Filter.And(filter, Builders<BsonDocument>.Filter.Eq("MiddleName", middleName));
+                }
 
-            if (latestCollection != null && latestCollection.Contains("CollectionNo"))
-            {
-                // Get the latest CollectionNo (e.g., RCT-LNR1-COL-00001)
-                string latestCollectionNo = latestCollection["CollectionNo"].AsString;
-
-                // Split and increment the last part (the number after "COL-")
-                string[] parts = latestCollectionNo.Split('-');
-                int collectionNumber = int.Parse(parts.Last()); // Get the last part as an integer
-                collectionNumber++; // Increment the collection number
-
-                // Rebuild the new Collection No. e.g., RCT-LNR1-COL-00002
-                newCollectionNo = $"{parts[0]}-{parts[1]}-{parts[2]}-{collectionNumber:D5}";
-            }
-            else
-            {
-                // If there are no previous collections, start from 00001
-                newCollectionNo = $"{loanId}-COL-00001";
-            }
-
-            // Set the generated Collection No to laccountid label
-            laccountid.Text = newCollectionNo;
-        }
-
-        private void LoadLoanDisbursedData(string clientNumber)
-        {
-            try
-            {
-                // Filter by ClientNo field (not cashName) to match the client number
-                var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", clientNumber);
-                var loanDisbursed = _loanDisbursedCollection.Find(filter).FirstOrDefault();
+                // Query the loan_disbursed collection
+                var loanDisbursed = await _loanDisbursedCollection.Find(filter).FirstOrDefaultAsync();
 
                 if (loanDisbursed != null)
                 {
                     try
                     {
-                        // Populate textboxes with data from the correct fields in the sample data
+                        // Populate textboxes with data from the loan_disbursed document
                         tclientno.Text = loanDisbursed.GetValue("ClientNo", "").ToString();
                         tloanid.Text = loanDisbursed.GetValue("LoanNo", "").ToString();
                         tloanamt.Text = loanDisbursed.GetValue("LoanAmount", "").ToString();
@@ -296,6 +226,15 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                         tpayamort.Text = loanDisbursed.GetValue("LoanAmortization", "").ToString();
                         tcolpaid.Text = loanDisbursed.GetValue("LoanAmortization", "").ToString();
                         tcoltotal.Text = loanDisbursed.GetValue("LoanAmortization", "").ToString();
+
+                        // Extract Address and Contact No
+                        string barangay = loanDisbursed.GetValue("Barangay", "").ToString();
+                        string city = loanDisbursed.GetValue("City", "").ToString();
+                        string address = $"{barangay}, {city}"; // Combine Barangay and City
+                        taddress.Text = address; // Assign to Address textbox
+
+                        // Assuming there is a field for Contact No in the loan_disbursed collection
+                        tcontact.Text = loanDisbursed.GetValue("ContactNo", "").ToString();
 
                         // Convert and clean currency values
                         decimal loanAmount = ConvertToDecimal(loanDisbursed.GetValue("LoanAmount", "0").ToString());
@@ -320,6 +259,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                             decimal amortizedAmt = ConvertToDecimal(loanDisbursed.GetValue("LoanAmortization", "0").ToString());
                             decimal previousPrincipalBalance = GetLatestPrincipalBalance(loanDisbursed.GetValue("LoanNo", "").ToString());
 
+                            // Update payment status based on actual collection
                             if (actualCollection >= amortizedAmt)
                             {
                                 tpaymentstatus.Text = $"Payment Completed ({dateReceived:MM/dd/yyyy})";
@@ -348,7 +288,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 }
                 else
                 {
-                    MessageBox.Show($"No loan disbursed data found for ClientNo: {clientNumber}", "Data Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"No loan disbursed data found for the name: {fullName}", "Data Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -357,6 +297,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 Console.WriteLine($"Exception in LoadLoanDisbursedData: {ex}");
             }
         }
+
 
 
         private BsonDocument GetLatestPayment(string loanId)
@@ -503,11 +444,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     return;
                 }
 
-                // Log the input value for debugging
-                Console.WriteLine($"laccountid.Text: '{laccountid.Text.Trim()}'");
+                clientnotest.Text = _clientNo;
 
                 // Get the AccountId from the loan_approved collection based on laccountid.Text
-                var filterApproved = Builders<BsonDocument>.Filter.Eq("AccountId", _loanId);
+                var filterApproved = Builders<BsonDocument>.Filter.Eq("ClientNo", clientnotest.Text); // Use _loanId here
                 var loanApproved = _loanApprovedCollection.Find(filterApproved).FirstOrDefault();
 
                 if (loanApproved != null)
@@ -515,18 +455,18 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     Console.WriteLine($"Found loanApproved: {loanApproved.ToJson()}"); // Log the found document
 
                     // Extracting the base AccountId
-                    string accountId = loanApproved["AccountId"].ToString();
+                    string accountId = loanApproved["ClientNo"].ToString();
 
                     // Find the last collection for this AccountId in loan_collections
-                    var filterCollections = Builders<BsonDocument>.Filter.Regex("AccountId", new BsonRegularExpression($"^{accountId}-COL-"));
-                    var sort = Builders<BsonDocument>.Sort.Descending("AccountId");
+                    var filterCollections = Builders<BsonDocument>.Filter.Regex("ClientNo", new BsonRegularExpression($"^{accountId}-COL-"));
+                    var sort = Builders<BsonDocument>.Sort.Descending("ClientNo");
                     var lastCollection = _loanCollectionsCollection.Find(filterCollections).Sort(sort).FirstOrDefault();
 
                     // Extract and increment the collection number
                     int collectionNumber = 1; // Default if no collections exist yet
                     if (lastCollection != null)
                     {
-                        string lastCollectionId = lastCollection["AccountId"].ToString();
+                        string lastCollectionId = lastCollection["ClientNo"].ToString();
                         string lastNumberStr = lastCollectionId.Substring(lastCollectionId.LastIndexOf("-COL-") + 5);
 
                         // Try to parse the last collection number
@@ -572,14 +512,14 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
 
 
+
         private bool SaveLoanCollectionData()
         {
             try
             {
                 // Perform validation on required fields
                 if (string.IsNullOrWhiteSpace(tloanid.Text) || string.IsNullOrWhiteSpace(tname.Text) ||
-                    string.IsNullOrWhiteSpace(tclientno.Text) || string.IsNullOrWhiteSpace(tlnno.Text) ||
-                    string.IsNullOrWhiteSpace(tloanbal.Text) || string.IsNullOrWhiteSpace(tcolpayamt.Text))
+                string.IsNullOrWhiteSpace(tloanbal.Text) || string.IsNullOrWhiteSpace(tcolpayamt.Text))
                 {
                     MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
@@ -652,11 +592,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 // Create a new BsonDocument to store the form data
                 var loanCollectionDocument = new BsonDocument
                 {
-                    { "AccountId", laccountid.Text.Trim() },
+                    { "ClientNo", laccountid.Text.Trim() },
                     { "LoanID", loanIdNo },
                     { "Name", tname.Text.Trim() },
                     { "ClientNumber", tclientno.Text.Trim() },
-                    { "LoanNumber", tlnno.Text.Trim() },
                     { "Address", taddress.Text.Trim() },
                     { "Contact", tcontact.Text.Trim() },
                     { "LoanAmount", loanAmount },
@@ -697,7 +636,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                           { "LoanID", loanIdNo },
                           { "Name", tname.Text.Trim() },
                           { "ClientNumber", tclientno.Text.Trim() },
-                          { "LoanNumber", tlnno.Text.Trim() },
                           { "Address", taddress.Text.Trim() },
                           { "Contact", tcontact.Text.Trim() },
                           { "LoanAmount", loanAmount },
@@ -873,10 +811,16 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         }
 
 
-        private void frm_home_disburse_collections_add_Load(object sender, EventArgs e)
+        private async void frm_home_disburse_collections_add_LoadAsync(object sender, EventArgs e)
         {
             GenerateCollectionId();
             LoadUserInfo(loggedInUsername);
+
+            string clientNo = clientnotest.Text;
+            await LoadClientName(clientNo);
+
+
+            LoadLoanDisbursedData();
         }
 
         private void bcopyaccno_Click(object sender, EventArgs e)
@@ -886,13 +830,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             MessageBox.Show("The account number has been copied to your clipboard.", "Copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void tclientno_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(tclientno.Text.Trim()))
-            {
-                LoadLoanApprovedDataByClientNo(tclientno.Text.Trim());
-            }
-        }
+     
 
         private void cbarea_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -997,21 +935,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void tname_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tname.Text))
-            {
-                ClearAndDisableFields();
-
-                tclientno.Text = string.Empty;
-                tname.Text = string.Empty;
-                taddress.Text = string.Empty;
-                tcontact.Text = string.Empty;
-
-            }
-            else 
-            {
-                LoadLoanDisbursedData(tname.Text);
-                
-            }
+            
         }
 
         private void bsave_Click(object sender, EventArgs e)
@@ -1065,7 +989,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 tloanid.Text = "";
                 tname.Text = "";
                 tclientno.Text = "";
-                tlnno.Text = "";
                 taddress.Text = "";
                 tcontact.Text = "";
                 tloanamt.Text = "";

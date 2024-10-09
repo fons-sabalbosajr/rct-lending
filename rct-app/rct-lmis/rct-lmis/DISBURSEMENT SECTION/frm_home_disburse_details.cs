@@ -19,6 +19,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
     public partial class frm_home_disburse_details : Form
     {
         private string _loanId;
+        private string clientNo;
         private IMongoCollection<BsonDocument> _loanDisbursedCollection;
         private IMongoCollection<BsonDocument> _loanApprovedCollection;
         private IMongoCollection<BsonDocument> _loanReleaseVoucherCollection;
@@ -33,11 +34,11 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private static string ImagesFolderId = "1e8QCXl7eYLHjNORQjw3pz1U6AASOuZjE";
         private List<string> filePaths = new List<string>();
 
-        public frm_home_disburse_details(string loanId)
+        public frm_home_disburse_details(string loanId, string clientNo)
         {
             InitializeComponent();
             _loanId = loanId;
-
+            this.clientNo = clientNo;
             // Initialize the MongoDB collections
             var database = MongoDBConnection.Instance.Database;
             _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
