@@ -237,6 +237,20 @@ namespace rct_lmis.ADMIN_SECTION
                 string loanNo = GenerateLoanNo(loanId);
                 string clientNo = await GenerateClientNoAsync();
 
+                // Check if a record with the same LoanNo or ClientNo already exists in the collection
+                var filter = Builders<BsonDocument>.Filter.Or(
+                    Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo),
+                    Builders<BsonDocument>.Filter.Eq("ClientNo", clientNo)
+                );
+
+                var existingLoan = await loanApprovedCollection.Find(filter).FirstOrDefaultAsync();
+                if (existingLoan != null)
+                {
+                    // Record with the same LoanNo or ClientNo already exists
+                    MessageBox.Show("A loan with the same LoanNo or ClientNo already exists in the system.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;  // Stop the process here
+                }
+
                 // Split the client's name into Last Name, First Name, and Middle Name
                 string fullName = tclientname.Text.Trim();
                 string lastName = string.Empty;
@@ -266,7 +280,6 @@ namespace rct_lmis.ADMIN_SECTION
                     MessageBox.Show("Client name format is incorrect. Please provide Last Name, First Name Middle Name format.", "Invalid Name Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
 
                 string fullAddress = taddress.Text.Trim();
                 string barangay = string.Empty;
@@ -326,13 +339,13 @@ namespace rct_lmis.ADMIN_SECTION
                 // Save to loan_approved collection
                 await loanApprovedCollection.InsertOneAsync(approvedLoanData);
 
+                MessageBox.Show("Loan data has been saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception e)
             {
                 MessageBox.Show("There was a problem saving the transaction: " + e.Message, "Transaction Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private async void GenerelDisbursedData()
         {
@@ -347,7 +360,19 @@ namespace rct_lmis.ADMIN_SECTION
                 string loanNo = GenerateLoanNo(loanId);
                 string clientNo = await GenerateClientNoDisburseAsync();
 
-                // Split the client's name into Last Name, First Name, and Middle Name
+                // Check if the loan already exists in the loanDisburseCollection
+                var existingDisburse = await loanDisburseCollection.Find(new BsonDocument
+                 {
+                     { "LoanNo", loanNo },
+                     { "ClientNo", clientNo }
+                 }).FirstOrDefaultAsync();
+
+                if (existingDisburse != null)
+                {
+                    MessageBox.Show("A disbursement with this Loan Number or Client Number already exists.", "Duplicate Disbursement", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Stop further execution
+                }
+
                 string fullName = tclientname.Text.Trim();
                 string lastName = string.Empty;
                 string firstName = string.Empty;
@@ -355,20 +380,18 @@ namespace rct_lmis.ADMIN_SECTION
 
                 if (fullName.Contains(","))
                 {
-                    // Split by comma for Last Name, First Name Middle Name format
                     string[] nameParts = fullName.Split(',');
-                    lastName = nameParts[0].Trim();  // Last Name before the comma
+                    lastName = nameParts[0].Trim();
                     string[] firstAndMiddle = nameParts[1].Trim().Split(' ');
 
                     if (firstAndMiddle.Length > 1)
                     {
-                        // If there are more than one word in the second part, we assume Middle Name exists
                         firstName = firstAndMiddle[0].Trim();
-                        middleName = string.Join(" ", firstAndMiddle.Skip(1)).Trim();  // Combine remaining parts as Middle Name
+                        middleName = string.Join(" ", firstAndMiddle.Skip(1)).Trim();
                     }
                     else
                     {
-                        firstName = firstAndMiddle[0].Trim();  // No Middle Name, just First Name
+                        firstName = firstAndMiddle[0].Trim();
                     }
                 }
                 else
@@ -384,19 +407,17 @@ namespace rct_lmis.ADMIN_SECTION
 
                 if (fullAddress.Contains(","))
                 {
-                    // Split by comma for Barangay, City, Province format
                     string[] addressParts = fullAddress.Split(',');
-                    barangay = addressParts[0].Trim();  // Barangay before the first comma
-                    city = addressParts.Length > 1 ? addressParts[1].Trim() : string.Empty;  // City between commas
-                    province = addressParts.Length > 2 ? addressParts[2].Trim() : string.Empty;  // Province after the last comma
+                    barangay = addressParts[0].Trim();
+                    city = addressParts.Length > 1 ? addressParts[1].Trim() : string.Empty;
+                    province = addressParts.Length > 2 ? addressParts[2].Trim() : string.Empty;
                 }
                 else if (fullAddress.Split(' ').Length == 3)
                 {
-                    // Split by spaces if the address has three parts (Barangay, City, Province format)
                     string[] addressParts = fullAddress.Split(' ');
-                    barangay = addressParts[0].Trim();  // First part is Barangay
-                    city = addressParts[1].Trim();      // Second part is City
-                    province = addressParts[2].Trim();  // Third part is Province
+                    barangay = addressParts[0].Trim();
+                    city = addressParts[1].Trim();
+                    province = addressParts[2].Trim();
                 }
                 else
                 {
@@ -404,7 +425,6 @@ namespace rct_lmis.ADMIN_SECTION
                     return;
                 }
 
-                // Create BsonDocument for the new loan_approved entry
                 var approvedLoanData = new BsonDocument
                  {
                      { "AccountId", disburseId },
@@ -429,17 +449,76 @@ namespace rct_lmis.ADMIN_SECTION
                      { "StartPaymentDate", tloanstartday.Text },
                      { "MaturityDate", tloanendday.Text },
                      { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
-                     { "LoanProcessStatus", "Loan Released" },
+                     { "LoanProcessStatus", "Loan Released" }
                  };
 
-                // Save to loan_approved collection
                 await loanDisburseCollection.InsertOneAsync(approvedLoanData);
-
             }
             catch (Exception e)
             {
                 MessageBox.Show("There was a problem saving the transaction: " + e.Message, "Transaction Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private async void DeleteLoanDataAsync()
+        {
+            try
+            {
+                // Get the item number to be deleted
+                int itemNo = int.Parse(litemno.Text.Trim());
+
+                if (itemNo == 0)
+                {
+                    MessageBox.Show("Please provide a valid Item No to delete.", "Invalid Item No", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Confirm the deletion with the user
+                var confirmResult = MessageBox.Show("Are you sure you want to delete this loan data?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // Create a filter to match the item_no in the loan_rawdata collection
+                    var filter = Builders<BsonDocument>.Filter.Eq("item_no", itemNo);
+
+                    // Delete the loan data document from loan_rawdata collection
+                    var deleteResult = await loanRawdataCollection.DeleteOneAsync(filter);
+
+                    if (deleteResult.DeletedCount > 0)
+                    {
+                        MessageBox.Show("Loan data deleted successfully.", "Delete Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Optionally, clear the fields after successful deletion
+                        ClearLoanDataFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Loan data not found or could not be deleted.", "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was a problem deleting the loan data: " + ex.Message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Helper method to clear fields after deletion
+        private void ClearLoanDataFields()
+        {
+            lloanid.Text = string.Empty;
+            tclientname.Text = string.Empty;
+            taddress.Text = string.Empty;
+            tloanterm.Text = string.Empty;
+            tloanamount.Text = string.Empty;
+            tloanamt.Text = string.Empty;
+            tloanbal.Text = string.Empty;
+            tloanpenalty.Text = string.Empty;
+            tloaninterest.Text = string.Empty;
+            tloanpaymode.Text = string.Empty;
+            tloanstartday.Text = string.Empty;
+            tloanendday.Text = string.Empty;
+            tcollector.Text = string.Empty;
         }
 
 
@@ -455,6 +534,18 @@ namespace rct_lmis.ADMIN_SECTION
 
 
                 MessageBox.Show("Transactions has been imported successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+        }
+
+        private void bdelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to delete the account?", "Save Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                load.Show(this);
+                Thread.Sleep(100);
+                load.Close();
+                DeleteLoanDataAsync();
                 this.Close();
             }
         }

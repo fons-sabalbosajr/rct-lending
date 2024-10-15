@@ -40,7 +40,7 @@ namespace rct_lmis.ADMIN_SECTION
             rawDataList = rawData;
 
             DataTable dt = new DataTable();
-            dt.Columns.Add("Item No.");
+            dt.Columns.Add("Item No.", typeof(int));  // Ensure this is of type int for correct sorting
             dt.Columns.Add("Collector Info");
             dt.Columns.Add("Client Info");
             dt.Columns.Add("Loan Term Info");
@@ -54,7 +54,12 @@ namespace rct_lmis.ADMIN_SECTION
             foreach (var doc in rawData)
             {
                 DataRow row = dt.NewRow();
-                row["Item No."] = doc.GetValue("item_no", "").ToString();
+
+                // Parse item_no as integer for sorting purposes
+                int itemNo;
+                bool isItemNoNumeric = int.TryParse(doc.GetValue("item_no", "0").ToString(), out itemNo);
+                row["Item No."] = isItemNoNumeric ? itemNo : 0;  // Default to 0 if the parsing fails
+
                 row["Collector Info"] = $"{doc.GetValue("collector_name", "")}\n{doc.GetValue("area_route", "")}";
                 row["Client Info"] = $"{doc.GetValue("client_name", "")}\nContact No: {doc.GetValue("contact_no", "")}\nLoan ID: {doc.GetValue("loan_id", "")}";
                 row["Loan Term Info"] = $"{doc.GetValue("loan_term", "")} months\n{doc.GetValue("payment_mode", "")}";
@@ -78,7 +83,12 @@ namespace rct_lmis.ADMIN_SECTION
                 dt.Rows.Add(row);
             }
 
-            dgvdata.DataSource = dt;
+            // Sort the DataTable by "Item No." as integer values
+            DataView dv = dt.DefaultView;
+            dv.Sort = "Item No. ASC";  // Sorting by numeric value now
+            DataTable sortedDt = dv.ToTable();
+
+            dgvdata.DataSource = sortedDt;
 
             // Center align the Item No column
             dgvdata.Columns["Item No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -140,8 +150,6 @@ namespace rct_lmis.ADMIN_SECTION
                 }
             }
         }
-
-
 
         private void refreshdata() 
         {

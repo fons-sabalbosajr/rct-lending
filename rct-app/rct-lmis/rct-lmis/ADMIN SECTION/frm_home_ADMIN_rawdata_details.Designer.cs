@@ -125,6 +125,7 @@
             this.bdelete.Size = new System.Drawing.Size(92, 31);
             this.bdelete.TabIndex = 142;
             this.bdelete.Text = "Delete";
+            this.bdelete.Click += new System.EventHandler(this.bdelete_Click);
             // 
             // label2
             // 
