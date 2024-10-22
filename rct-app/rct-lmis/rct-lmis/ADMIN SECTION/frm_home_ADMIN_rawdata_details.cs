@@ -354,7 +354,7 @@ namespace rct_lmis.ADMIN_SECTION
                 // Save to loan_approved collection
                 await loanApprovedCollection.InsertOneAsync(approvedLoanData);
 
-                MessageBox.Show("Loan data has been saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Loan data has been saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception e)
             {
@@ -574,7 +574,7 @@ namespace rct_lmis.ADMIN_SECTION
                 load.Close();
 
 
-                MessageBox.Show("Transactions has been imported successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Transactions has been imported successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
         }
