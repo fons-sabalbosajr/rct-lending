@@ -30,9 +30,6 @@ namespace rct_lmis.LOAN_SECTION
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,6 +39,9 @@ namespace rct_lmis.LOAN_SECTION
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_loan_new));
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -66,10 +66,8 @@ namespace rct_lmis.LOAN_SECTION
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dgvdataamt = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.bamtexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bamtprint = new Guna.UI2.WinForms.Guna2Button();
             this.cbamtmo = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tamtsearch = new Guna.UI2.WinForms.Guna2TextBox();
@@ -79,7 +77,6 @@ namespace rct_lmis.LOAN_SECTION
             this.cbdisenc = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.bdisexport = new Guna.UI2.WinForms.Guna2Button();
-            this.bdisprint = new Guna.UI2.WinForms.Guna2Button();
             this.cbdismo = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tdissearch = new Guna.UI2.WinForms.Guna2TextBox();
@@ -96,7 +93,6 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dgvuploads = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.bviewfile = new Guna.UI2.WinForms.Guna2Button();
             this.baddfile = new Guna.UI2.WinForms.Guna2Button();
             this.tfilesearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -146,10 +142,13 @@ namespace rct_lmis.LOAN_SECTION
             this.laccno = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.lnorecorddis = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.dgvdataamort = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvdataamt)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdatadis)).BeginInit();
@@ -162,6 +161,7 @@ namespace rct_lmis.LOAN_SECTION
             this.panel6.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdataamort)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2TabControl1
@@ -525,76 +525,21 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dgvdataamt);
+            this.tabPage2.Controls.Add(this.lnorecorddis);
+            this.tabPage2.Controls.Add(this.dgvdataamort);
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Location = new System.Drawing.Point(184, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(896, 553);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Amortization/Penalty";
+            this.tabPage2.Text = "Disbursement";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // dgvdataamt
-            // 
-            this.dgvdataamt.AllowUserToAddRows = false;
-            this.dgvdataamt.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvdataamt.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdataamt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvdataamt.ColumnHeadersHeight = 4;
-            this.dgvdataamt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvdataamt.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvdataamt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvdataamt.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvdataamt.Location = new System.Drawing.Point(3, 53);
-            this.dgvdataamt.Name = "dgvdataamt";
-            this.dgvdataamt.ReadOnly = true;
-            this.dgvdataamt.RowHeadersVisible = false;
-            this.dgvdataamt.Size = new System.Drawing.Size(890, 497);
-            this.dgvdataamt.TabIndex = 3;
-            this.dgvdataamt.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
-            this.dgvdataamt.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvdataamt.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvdataamt.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvdataamt.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvdataamt.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvdataamt.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dgvdataamt.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvdataamt.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.White;
-            this.dgvdataamt.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvdataamt.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvdataamt.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.Black;
-            this.dgvdataamt.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvdataamt.ThemeStyle.HeaderStyle.Height = 4;
-            this.dgvdataamt.ThemeStyle.ReadOnly = true;
-            this.dgvdataamt.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvdataamt.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvdataamt.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvdataamt.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.dgvdataamt.ThemeStyle.RowsStyle.Height = 22;
-            this.dgvdataamt.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            this.dgvdataamt.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Controls.Add(this.bamtexport);
-            this.panel2.Controls.Add(this.bamtprint);
             this.panel2.Controls.Add(this.cbamtmo);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.tamtsearch);
@@ -619,34 +564,12 @@ namespace rct_lmis.LOAN_SECTION
             this.bamtexport.ForeColor = System.Drawing.Color.White;
             this.bamtexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
             this.bamtexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bamtexport.Location = new System.Drawing.Point(808, 8);
+            this.bamtexport.Location = new System.Drawing.Point(850, 8);
             this.bamtexport.Name = "bamtexport";
             this.bamtexport.Size = new System.Drawing.Size(35, 35);
             this.bamtexport.TabIndex = 13;
             this.bamtexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.bamtexport, "Export to Excel");
-            // 
-            // bamtprint
-            // 
-            this.bamtprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bamtprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bamtprint.BorderRadius = 2;
-            this.bamtprint.BorderThickness = 1;
-            this.bamtprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bamtprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bamtprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bamtprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bamtprint.FillColor = System.Drawing.Color.White;
-            this.bamtprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bamtprint.ForeColor = System.Drawing.Color.White;
-            this.bamtprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bamtprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bamtprint.Location = new System.Drawing.Point(848, 8);
-            this.bamtprint.Name = "bamtprint";
-            this.bamtprint.Size = new System.Drawing.Size(35, 35);
-            this.bamtprint.TabIndex = 12;
-            this.bamtprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bamtprint, "Print Table");
             // 
             // cbamtmo
             // 
@@ -663,7 +586,7 @@ namespace rct_lmis.LOAN_SECTION
             "--all--"});
             this.cbamtmo.Location = new System.Drawing.Point(649, 7);
             this.cbamtmo.Name = "cbamtmo";
-            this.cbamtmo.Size = new System.Drawing.Size(152, 36);
+            this.cbamtmo.Size = new System.Drawing.Size(195, 36);
             this.cbamtmo.StartIndex = 0;
             this.cbamtmo.TabIndex = 10;
             this.cbamtmo.TextOffset = new System.Drawing.Point(10, 0);
@@ -704,13 +627,14 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.dgvdatadis);
             this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Location = new System.Drawing.Point(184, 4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(896, 553);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Disbursements";
+            this.tabPage3.Text = "Collection History";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // dgvdatadis
@@ -774,7 +698,6 @@ namespace rct_lmis.LOAN_SECTION
             this.panel3.Controls.Add(this.cbdisenc);
             this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.bdisexport);
-            this.panel3.Controls.Add(this.bdisprint);
             this.panel3.Controls.Add(this.cbdismo);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.tdissearch);
@@ -832,34 +755,12 @@ namespace rct_lmis.LOAN_SECTION
             this.bdisexport.ForeColor = System.Drawing.Color.White;
             this.bdisexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
             this.bdisexport.ImageSize = new System.Drawing.Size(28, 28);
-            this.bdisexport.Location = new System.Drawing.Point(814, 8);
+            this.bdisexport.Location = new System.Drawing.Point(853, 9);
             this.bdisexport.Name = "bdisexport";
             this.bdisexport.Size = new System.Drawing.Size(35, 35);
             this.bdisexport.TabIndex = 13;
             this.bdisexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.bdisexport, "Export to Excel");
-            // 
-            // bdisprint
-            // 
-            this.bdisprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bdisprint.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bdisprint.BorderRadius = 2;
-            this.bdisprint.BorderThickness = 1;
-            this.bdisprint.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bdisprint.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bdisprint.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bdisprint.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bdisprint.FillColor = System.Drawing.Color.White;
-            this.bdisprint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bdisprint.ForeColor = System.Drawing.Color.White;
-            this.bdisprint.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.bdisprint.ImageSize = new System.Drawing.Size(28, 28);
-            this.bdisprint.Location = new System.Drawing.Point(854, 8);
-            this.bdisprint.Name = "bdisprint";
-            this.bdisprint.Size = new System.Drawing.Size(35, 35);
-            this.bdisprint.TabIndex = 12;
-            this.bdisprint.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bdisprint, "Print Table");
             // 
             // cbdismo
             // 
@@ -876,7 +777,7 @@ namespace rct_lmis.LOAN_SECTION
             "--all--"});
             this.cbdismo.Location = new System.Drawing.Point(655, 7);
             this.cbdismo.Name = "cbdismo";
-            this.cbdismo.Size = new System.Drawing.Size(152, 36);
+            this.cbdismo.Size = new System.Drawing.Size(192, 36);
             this.cbdismo.StartIndex = 0;
             this.cbdismo.TabIndex = 10;
             this.cbdismo.TextOffset = new System.Drawing.Point(10, 0);
@@ -1130,6 +1031,7 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label38);
             this.tabPage6.Controls.Add(this.dgvuploads);
             this.tabPage6.Controls.Add(this.panel6);
             this.tabPage6.Location = new System.Drawing.Point(184, 4);
@@ -1200,7 +1102,6 @@ namespace rct_lmis.LOAN_SECTION
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel6.Controls.Add(this.bviewfile);
             this.panel6.Controls.Add(this.baddfile);
             this.panel6.Controls.Add(this.tfilesearch);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1208,28 +1109,6 @@ namespace rct_lmis.LOAN_SECTION
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(896, 50);
             this.panel6.TabIndex = 8;
-            // 
-            // bviewfile
-            // 
-            this.bviewfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bviewfile.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bviewfile.BorderRadius = 2;
-            this.bviewfile.BorderThickness = 1;
-            this.bviewfile.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bviewfile.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bviewfile.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bviewfile.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bviewfile.FillColor = System.Drawing.Color.White;
-            this.bviewfile.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bviewfile.ForeColor = System.Drawing.Color.White;
-            this.bviewfile.Image = global::rct_lmis.Properties.Resources.icons8_view_file_48;
-            this.bviewfile.ImageSize = new System.Drawing.Size(28, 28);
-            this.bviewfile.Location = new System.Drawing.Point(814, 8);
-            this.bviewfile.Name = "bviewfile";
-            this.bviewfile.Size = new System.Drawing.Size(35, 35);
-            this.bviewfile.TabIndex = 13;
-            this.bviewfile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.bviewfile, "Export to Excel");
             // 
             // baddfile
             // 
@@ -1642,6 +1521,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bgendemandfinal.TabIndex = 35;
             this.bgendemandfinal.Text = "Generate";
             this.toolTip1.SetToolTip(this.bgendemandfinal, "Add Loan Transaction");
+            this.bgendemandfinal.Click += new System.EventHandler(this.bgendemandfinal_Click);
             // 
             // bgendemandinit
             // 
@@ -1660,6 +1540,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bgendemandinit.TabIndex = 34;
             this.bgendemandinit.Text = "Generate";
             this.toolTip1.SetToolTip(this.bgendemandinit, "Add Loan Transaction");
+            this.bgendemandinit.Click += new System.EventHandler(this.bgendemandinit_Click);
             // 
             // bgenremind
             // 
@@ -1678,6 +1559,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bgenremind.TabIndex = 33;
             this.bgenremind.Text = "Generate";
             this.toolTip1.SetToolTip(this.bgenremind, "Add Loan Transaction");
+            this.bgenremind.Click += new System.EventHandler(this.bgenremind_Click);
             // 
             // bgenledger
             // 
@@ -1696,6 +1578,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bgenledger.TabIndex = 32;
             this.bgenledger.Text = "Generate";
             this.toolTip1.SetToolTip(this.bgenledger, "Add Loan Transaction");
+            this.bgenledger.Click += new System.EventHandler(this.bgenledger_Click);
             // 
             // bgenSOA
             // 
@@ -1714,6 +1597,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bgenSOA.TabIndex = 31;
             this.bgenSOA.Text = "Generate";
             this.toolTip1.SetToolTip(this.bgenSOA, "Add Loan Transaction");
+            this.bgenSOA.Click += new System.EventHandler(this.bgenSOA_Click);
             // 
             // bgemamt
             // 
@@ -1732,6 +1616,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bgemamt.TabIndex = 30;
             this.bgemamt.Text = "Generate";
             this.toolTip1.SetToolTip(this.bgemamt, "Add Loan Transaction");
+            this.bgemamt.Click += new System.EventHandler(this.bgemamt_Click);
             // 
             // label27
             // 
@@ -2004,6 +1889,103 @@ namespace rct_lmis.LOAN_SECTION
             this.label1.TabIndex = 15;
             this.label1.Text = "Account Number:";
             // 
+            // label19
+            // 
+            this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.DimGray;
+            this.label19.Location = new System.Drawing.Point(376, 100);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(148, 15);
+            this.label19.TabIndex = 16;
+            this.label19.Text = "no collection record found";
+            // 
+            // lnorecorddis
+            // 
+            this.lnorecorddis.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lnorecorddis.AutoSize = true;
+            this.lnorecorddis.BackColor = System.Drawing.Color.Transparent;
+            this.lnorecorddis.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnorecorddis.ForeColor = System.Drawing.Color.DimGray;
+            this.lnorecorddis.Location = new System.Drawing.Point(366, 113);
+            this.lnorecorddis.Name = "lnorecorddis";
+            this.lnorecorddis.Size = new System.Drawing.Size(148, 15);
+            this.lnorecorddis.TabIndex = 17;
+            this.lnorecorddis.Text = "no collection record found";
+            // 
+            // label38
+            // 
+            this.label38.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label38.AutoSize = true;
+            this.label38.BackColor = System.Drawing.Color.Transparent;
+            this.label38.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.ForeColor = System.Drawing.Color.DimGray;
+            this.label38.Location = new System.Drawing.Point(376, 100);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(148, 15);
+            this.label38.TabIndex = 18;
+            this.label38.Text = "no collection record found";
+            // 
+            // dgvdataamort
+            // 
+            this.dgvdataamort.AllowUserToAddRows = false;
+            this.dgvdataamort.AllowUserToDeleteRows = false;
+            this.dgvdataamort.AllowUserToResizeColumns = false;
+            this.dgvdataamort.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvdataamort.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdataamort.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvdataamort.ColumnHeadersHeight = 30;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdataamort.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvdataamort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvdataamort.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvdataamort.Location = new System.Drawing.Point(3, 53);
+            this.dgvdataamort.Name = "dgvdataamort";
+            this.dgvdataamort.ReadOnly = true;
+            this.dgvdataamort.RowHeadersVisible = false;
+            this.dgvdataamort.RowTemplate.Height = 70;
+            this.dgvdataamort.Size = new System.Drawing.Size(890, 497);
+            this.dgvdataamort.TabIndex = 19;
+            this.dgvdataamort.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvdataamort.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvdataamort.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvdataamort.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.dgvdataamort.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvdataamort.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvdataamort.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvdataamort.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvdataamort.ThemeStyle.HeaderStyle.Height = 30;
+            this.dgvdataamort.ThemeStyle.ReadOnly = true;
+            this.dgvdataamort.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvdataamort.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvdataamort.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvdataamort.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvdataamort.ThemeStyle.RowsStyle.Height = 70;
+            this.dgvdataamort.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvdataamort.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvdataamort.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdataamort_DataBindingComplete);
+            // 
             // frm_home_loan_new
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2023,10 +2005,11 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvdataamt)).EndInit();
+            this.tabPage2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdatadis)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -2035,12 +2018,14 @@ namespace rct_lmis.LOAN_SECTION
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdatacr)).EndInit();
             this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvuploads)).EndInit();
             this.panel6.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdataamort)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2082,19 +2067,16 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.Label laccno;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvdataamt;
         private System.Windows.Forms.Panel panel2;
         private Guna.UI2.WinForms.Guna2TextBox tamtsearch;
         private Guna.UI2.WinForms.Guna2ComboBox cbamtmo;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2Button bamtexport;
-        private Guna.UI2.WinForms.Guna2Button bamtprint;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdatadis;
         private System.Windows.Forms.Panel panel3;
         private Guna.UI2.WinForms.Guna2ComboBox cbdisenc;
         private System.Windows.Forms.Label label16;
         private Guna.UI2.WinForms.Guna2Button bdisexport;
-        private Guna.UI2.WinForms.Guna2Button bdisprint;
         private Guna.UI2.WinForms.Guna2ComboBox cbdismo;
         private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2TextBox tdissearch;
@@ -2108,7 +2090,6 @@ namespace rct_lmis.LOAN_SECTION
         private Guna.UI2.WinForms.Guna2TextBox bcrsearch;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdatacr;
         private System.Windows.Forms.Panel panel6;
-        private Guna.UI2.WinForms.Guna2Button bviewfile;
         private Guna.UI2.WinForms.Guna2Button baddfile;
         private Guna.UI2.WinForms.Guna2TextBox tfilesearch;
         private Guna.UI2.WinForms.Guna2DataGridView dgvuploads;
@@ -2150,5 +2131,9 @@ namespace rct_lmis.LOAN_SECTION
         private Guna.UI2.WinForms.Guna2TextBox treploanpenalty;
         private Guna.UI2.WinForms.Guna2TextBox treploanbalance;
         private Guna.UI2.WinForms.Guna2Button bcopyaccno;
+        private System.Windows.Forms.Label lnorecorddis;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label38;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvdataamort;
     }
 }

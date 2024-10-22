@@ -29,8 +29,8 @@
     <ProductName>RCT-LMIS %28Lending Management Information System%29</ProductName>
     <PublisherName>ACS Micro IT Solutions Co.</PublisherName>
     <SuiteName>RACATOM Corporation</SuiteName>
-    <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
-    <ApplicationRevision>8</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.0.9</MinimumRequiredVersion>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

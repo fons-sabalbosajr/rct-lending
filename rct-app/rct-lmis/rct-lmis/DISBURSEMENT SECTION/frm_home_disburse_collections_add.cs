@@ -136,8 +136,12 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 // Loop through the collectors and add their names to cbcollector
                 foreach (var collector in collectors)
                 {
-                    string collectorName = collector.GetValue("Name").AsString;
-                    cbcollector.Items.Add(collectorName);
+                    // Ensure that the collector has a Name field
+                    if (collector.Contains("Name") && collector["Name"] != BsonNull.Value)
+                    {
+                        string collectorName = collector.GetValue("Name").AsString;
+                        cbcollector.Items.Add(collectorName);
+                    }
                 }
             }
             catch (Exception ex)
@@ -145,6 +149,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 MessageBox.Show("An error occurred while loading collectors: " + ex.Message);
             }
         }
+
 
 
         private void LoadPaymentModes()
@@ -819,7 +824,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             string clientNo = clientnotest.Text;
             await LoadClientName(clientNo);
 
-
+            LoadCollectors();
             LoadLoanDisbursedData();
         }
 
@@ -830,12 +835,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             MessageBox.Show("The account number has been copied to your clipboard.", "Copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-     
-
-        private void cbarea_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadCollectors();
-        }
 
         private void cbpaymentmode_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1039,7 +1038,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void cbcollector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadCollectors();
+           
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using MongoDB.Bson;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using MailKit.Security;
+using MimeKit;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using rct_lmis.SIGNUP_LOGIN;
@@ -161,6 +164,87 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
+        private async Task SendApprovalEmail(string name, string email, string systemID, string username, string password)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("RCT LMIS", "no-reply@rct-lmis.com"));
+            message.To.Add(new MailboxAddress(name, email));
+            message.Subject = "Account Approved: RCT LMIS Credentials";
+
+            // Create the email body
+            var bodyBuilder = new BodyBuilder
+            {
+                HtmlBody = $@"
+            <div style='font-family: Arial, sans-serif; color: #333;'>
+                <h2 style='color: #333;'>Account Approval</h2>
+                <p>Dear User,</p>
+                <p>Your account has been approved! Below are your credentials to access the <strong>RCT LMIS</strong> platform:</p>
+                
+                <table style='width: 100%; border-collapse: collapse; margin-top: 20px;'>
+                    <tr>
+                        <td style='padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9;'><strong>System ID:</strong></td>
+                        <td style='padding: 10px; border: 1px solid #ddd;'>{systemID}</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9;'><strong>Username:</strong></td>
+                        <td style='padding: 10px; border: 1px solid #ddd;'>{username}</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9;'><strong>Password:</strong></td>
+                        <td style='padding: 10px; border: 1px solid #ddd;'>{password}</td>
+                    </tr>
+                </table>
+                
+                <p style='margin-top: 20px;'>Please log in using the credentials provided above.</p>
+                <p>If you have any questions or encounter any issues, feel free to contact support.</p>
+                <p>Sincerely,</p>
+                <p><strong>RCT LMIS Support Team</strong></p>
+            </div>",
+
+                TextBody = $@"
+            Account Approval
+
+            Dear User,
+
+            Your account has been approved! Below are your credentials to access the RCT LMIS platform:
+
+            System ID: {systemID}
+            Username: {username}
+            Password: {password}
+
+            Please log in using the credentials provided above.
+
+            If you have any questions or encounter any issues, feel free to contact support.
+
+            Sincerely,
+            RCT LMIS Support Team
+        "
+            };
+
+            message.Body = bodyBuilder.ToMessageBody();
+
+            try
+            {
+                using (var client = new MailKit.Net.Smtp.SmtpClient())
+                {
+                    // Set the SMTP server
+                    client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+
+                    // Authenticate using your email and app password
+                    client.Authenticate("racatom.lmis@gmail.com", "gngcbsarkosbifvq"); // Replace with your actual app password
+
+                    await client.SendAsync(message);
+                    client.Disconnect(true);
+                }
+                //MessageBox.Show("Approval email sent successfully.", "Email Sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error sending approval email: {ex.Message}", "Email Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void dgvdataload() 
         {
             if (dgvdata.SelectedRows.Count > 0)
@@ -228,6 +312,10 @@ namespace rct_lmis.ADMIN_SECTION
 
                     // Save user data to MongoDB
                     await SaveUserDataToMongoDB(systemID, name, position, email, username, password, designation, photo);
+
+                    // Send approval email to the user
+                    await SendApprovalEmail(name, email, systemID, username, password);
+
                 }
                 catch (Exception ex)
                 {

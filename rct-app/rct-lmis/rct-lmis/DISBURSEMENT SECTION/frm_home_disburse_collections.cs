@@ -45,6 +45,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 _loanCollectionTable.Columns.Add("Payment Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Collection Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Remarks", typeof(string));
+                // Add a column for PaymentStartDate
+                _loanCollectionTable.Columns.Add("PaymentStartDate", typeof(DateTime));
             }
 
             // Clear existing rows before loading new data
@@ -84,7 +86,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 string dateReceived = collection.Contains("DateReceived") ?
                                       collection["DateReceived"].AsBsonDateTime.ToLocalTime().ToString("MM/dd/yyyy") : "";
                 string amountPaid = collection.Contains("ActualCollection") ?
-                             ((double)collection["ActualCollection"].AsDecimal128).ToString("F2") : "0.00";
+                                    ((double)collection["ActualCollection"].AsDecimal128).ToString("F2") : "0.00";
                 string penalty = collection.Contains("CollectedPenalty") ?
                                  ((double)collection["CollectedPenalty"].AsDecimal128).ToString("F2") : "";
                 string paymentMode = collection.Contains("PaymentMode") ?
@@ -150,11 +152,16 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 }
 
                 // Add the concatenated information to the DataTable
-                _loanCollectionTable.Rows.Add(clientInfo, loanInfo, paymentInfo, collectionInfo, remarks);
+                _loanCollectionTable.Rows.Add(clientInfo, loanInfo, paymentInfo, collectionInfo, remarks, paymentStartDate);
             }
 
-            // Bind data to DataGridView
-            dgvdata.DataSource = _loanCollectionTable;
+            // Sort the DataTable by PaymentStartDate (recent to oldest)
+            DataView view = _loanCollectionTable.DefaultView;
+            view.Sort = "PaymentStartDate DESC"; // Sort in descending order
+            DataTable sortedTable = view.ToTable(); // Create a new DataTable with sorted data
+
+            // Bind sorted data to DataGridView
+            dgvdata.DataSource = sortedTable;
 
             // Set columns to fill the whole row
             dgvdata.Columns["Client Information"].Width = 300;
@@ -203,28 +210,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     row.Cells[3].Style.Font = new Font(dgvdata.Font, FontStyle.Bold);
                 }
             }
-
-            // Apply styling to Remarks
-            foreach (DataGridViewRow row in dgvdata.Rows)
-            {
-                string remarks = row.Cells[4].Value.ToString(); // Assuming the Remarks is in the 5th column
-
-                // Apply styling based on Remarks
-                if (remarks.Contains("Payment Completed"))
-                {
-                    row.Cells[4].Style.ForeColor = Color.Green;
-                    row.Cells[4].Style.Font = new Font(dgvdata.Font, FontStyle.Bold);
-                }
-                else if (remarks.Contains("Total Days Missed"))
-                {
-                    row.Cells[4].Style.ForeColor = Color.Red;
-                    row.Cells[4].Style.Font = new Font(dgvdata.Font, FontStyle.Bold);
-                }
-            }
-
-            // Show or hide the 'lnorecord' label depending on the number of rows
-            lnorecord.Visible = dgvdata.Rows.Count == 0;
         }
+
 
         private void SearchInDataGrid(string keyword)
         {
@@ -610,7 +597,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 MessageBox.Show("Statement of Account generation canceled.");
             }
         }
+
+        private void bpayadvance_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-
-
 }

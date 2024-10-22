@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -47,7 +48,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
             // Load details
             LoadDetails();
-
+   
             //for uploading
             InitializeDataGridView();
             InitializeMongoDBUpload();
@@ -67,13 +68,66 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 // Populate the textboxes with the loan details
                 if (loanDetails != null)
                 {
-                    tlnno.Text = loanDetails.LoanIDNo;
-                    tclientno.Text = loanDetails.cashClnNo;
-                    tname.Text = loanDetails.cashName;
+                    tlnno.Text = !string.IsNullOrEmpty(loanDetails.LoanIDNo) ? loanDetails.LoanIDNo : "n/a";
+                    tclientno.Text = !string.IsNullOrEmpty(loanDetails.cashClnNo) ? loanDetails.cashClnNo : "n/a";
+                    tname.Text = !string.IsNullOrEmpty(loanDetails.cashName) ? loanDetails.cashName : "n/a";
+
+                    // Populate additional details
+                    tloantype.Text = !string.IsNullOrEmpty(loanDetails.LoanType) ? loanDetails.LoanType : "n/a";
+                    tloanstatus.Text = !string.IsNullOrEmpty(loanDetails.LoanStatus) ? loanDetails.LoanStatus : "n/a";
+                    tloanamount.Text = !string.IsNullOrEmpty(loanDetails.LoanAmount) ? loanDetails.LoanAmount : "0.00";
+                    tloanprincipal.Text = !string.IsNullOrEmpty(loanDetails.LoanPrincipal) ? loanDetails.LoanPrincipal : "0.00";  // Loan Principal added
+                    tloanbalance.Text = !string.IsNullOrEmpty(loanDetails.LoanBalance) ? loanDetails.LoanBalance : "0.00";
+                    tloanamort.Text = !string.IsNullOrEmpty(loanDetails.LoanAmortization) ? loanDetails.LoanAmortization : "0.00";
+                    tloanpenalty.Text = !string.IsNullOrEmpty(loanDetails.Penalty) ? loanDetails.Penalty : "0.00";
+                    tloanpaymode.Text = !string.IsNullOrEmpty(loanDetails.PaymentMode) ? loanDetails.PaymentMode : "n/a";
+                    tloancollector.Text = !string.IsNullOrEmpty(loanDetails.CollectorName) ? loanDetails.CollectorName : "n/a";
+
+                    // Populate Loan Term
+                    tloanterm.Text = !string.IsNullOrEmpty(loanDetails.LoanTerm) ? loanDetails.LoanTerm : "n/a";
+
+                    // Calculate and display the interest (LoanAmount * LoanInterest)
+                    decimal loanAmount;
+                    decimal loanInterestPercentage;
+                    if (decimal.TryParse(loanDetails.LoanAmount.Replace("₱", "").Replace(",", ""), out loanAmount) &&
+                        decimal.TryParse(loanDetails.LoanInterest.Replace("%", "").Trim(), out loanInterestPercentage))
+                    {
+                        decimal loanInterestAmount = loanAmount * (loanInterestPercentage / 100);
+                        tloaninterest.Text = loanInterestAmount.ToString("0.00");
+                    }
+                    else
+                    {
+                        tloaninterest.Text = "0.00";  // Fallback in case of parsing errors
+                    }
+
+                    // Set the StartPaymentDate and MaturityDate fields
+                    DateTime startDate;
+                    if (DateTime.TryParse(loanDetails.StartPaymentDate, out startDate))
+                    {
+                        dtstartpay.Value = startDate;
+                    }
+                    else
+                    {
+                        dtstartpay.Value = DateTime.Now;  // Default value if parsing fails
+                    }
+
+                    DateTime maturityDate;
+                    if (DateTime.TryParse(loanDetails.MaturityDate, out maturityDate))
+                    {
+                        dtendpay.Value = maturityDate;
+                    }
+                    else
+                    {
+                        dtendpay.Value = DateTime.Now;  // Default value if parsing fails
+                    }
 
                     // Fetch additional details from loan_approved based on cashClnNo
                     await LoadApprovedDetails(loanDetails.cashClnNo);
                     await LoadVoucherDetailsAsync();
+                }
+                else
+                {
+                    MessageBox.Show("No loan details found.");
                 }
             }
             catch (Exception ex)
@@ -82,25 +136,57 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
+
         private async Task<LoanDetails> GetLoanDetails(string loanId)
         {
-            // Query the loan_disbursed collection to find the details by LoanIDNo
+            // Query the loan_disbursed collection to find the details by AccountId
             var filter = Builders<BsonDocument>.Filter.Eq("AccountId", loanId);
             var loanDisbursed = await _loanDisbursedCollection.Find(filter).FirstOrDefaultAsync();
 
             if (loanDisbursed != null)
             {
+                // Parse the start and maturity dates
+                DateTime startDate, maturityDate;
+                bool hasValidStartDate = DateTime.TryParse(loanDisbursed.GetValue("StartPaymentDate", "").ToString(), out startDate);
+                bool hasValidMaturityDate = DateTime.TryParse(loanDisbursed.GetValue("MaturityDate", "").ToString(), out maturityDate);
+
+                // Calculate the loan term in months if LoanTerm is "0 months"
+                string loanTerm = loanDisbursed.GetValue("LoanTerm", "0 months").ToString();
+                if (loanTerm == "0 months" && hasValidStartDate && hasValidMaturityDate)
+                {
+                    int monthsDifference = ((maturityDate.Year - startDate.Year) * 12) + maturityDate.Month - startDate.Month;
+                    loanTerm = $"{monthsDifference} months";
+                }
+
                 // Map the result to LoanDetails object
                 return new LoanDetails
                 {
-                    LoanIDNo = loanDisbursed["LoanNo"].AsString,
-                    cashClnNo = loanDisbursed["ClientNo"].AsString,
-                    cashName = loanDisbursed["FirstName"].AsString + " " + loanDisbursed["MiddleName"].AsString + " " +  loanDisbursed["LastName"].AsString,
+                    LoanIDNo = loanDisbursed.GetValue("LoanNo", "n/a").ToString(),
+                    cashClnNo = loanDisbursed.GetValue("ClientNo", "n/a").ToString(),
+                    cashName = loanDisbursed.GetValue("FirstName", "").ToString() + " " +
+                               loanDisbursed.GetValue("MiddleName", "").ToString() + " " +
+                               loanDisbursed.GetValue("LastName", "").ToString(),
+                    LoanType = loanDisbursed.GetValue("LoanType", "n/a").ToString(),
+                    LoanStatus = loanDisbursed.GetValue("LoanStatus", "n/a").ToString(),
+                    LoanAmount = loanDisbursed.GetValue("LoanAmount", "0.00").ToString(),
+                    LoanPrincipal = loanDisbursed.GetValue("PrincipalAmount", "0.00").ToString(),  // LoanPrincipal added
+                    LoanBalance = loanDisbursed.GetValue("LoanBalance", "0.00").ToString(),
+                    LoanAmortization = loanDisbursed.GetValue("LoanAmortization", "0.00").ToString(),
+                    Penalty = loanDisbursed.GetValue("Penalty", "0.00").ToString(),
+                    LoanInterest = loanDisbursed.GetValue("LoanInterest", "0.00").ToString(),
+                    PaymentMode = loanDisbursed.GetValue("PaymentMode", "n/a").ToString(),
+                    CollectorName = loanDisbursed.GetValue("CollectorName", "n/a").ToString(),
+                    StartPaymentDate = hasValidStartDate ? startDate.ToString("MM/dd/yyyy") : "n/a",
+                    MaturityDate = hasValidMaturityDate ? maturityDate.ToString("MM/dd/yyyy") : "n/a",
+                    LoanTerm = loanTerm  // Use calculated or existing LoanTerm
                 };
             }
 
             return null;
         }
+
+
+
 
         // Fetch Approved Details (Address, Docs) from loan_approved
         private async Task LoadApprovedDetails(string cashClnNo)
@@ -240,6 +326,76 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 MessageBox.Show($"Error loading voucher details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private async Task<bool> UpdateLoanDetailsAsync(string loanID)
+        {
+            try
+            {
+                // Check if the loan exists before updating
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", tlnno.Text);
+                var existingLoan = await _loanDisbursedCollection.Find(filter).FirstOrDefaultAsync();
+
+                if (existingLoan == null)
+                {
+                    MessageBox.Show("No loan found with the provided Loan ID.");
+                    return false;
+                }
+
+                // Calculate loan principal, which could be entered or derived.
+                decimal loanAmount;
+                decimal.TryParse(tloanamount.Text.Replace("₱", "").Replace(",", ""), out loanAmount);
+
+                decimal loanInterestPercentage;
+                decimal.TryParse(tloaninterest.Text.Replace("₱", "").Replace(",", ""), out loanInterestPercentage);
+
+                // Assuming Principal is the Loan Amount minus any interest
+                decimal loanPrincipal = loanAmount - loanInterestPercentage;
+
+                // Create an update definition with the new values from the textboxes
+                var update = Builders<BsonDocument>.Update
+                    .Set("LoanType", tloantype.Text)
+                    .Set("LoanStatus", tloanstatus.Text)
+                    .Set("LoanAmount", tloanamount.Text)
+                    .Set("LoanBalance", tloanbalance.Text)
+                    .Set("LoanAmortization", tloanamort.Text)
+                    .Set("Penalty", tloanpenalty.Text)
+                    .Set("LoanInterest", tloaninterest.Text)
+                    .Set("PaymentMode", tloanpaymode.Text)
+                    .Set("CollectorName", tloancollector.Text)
+                    .Set("LoanTerm", tloanterm.Text)
+                    //.Set("PrincipalAmount", loanPrincipal.ToString("₱#,##0.00"))
+                    .Set("PrincipalAmount", tloanprincipal.Text)  // Updating Loan Principal
+                    .Set("StartPaymentDate", dtstartpay.Value.ToString("MM/dd/yyyy"))
+                    .Set("MaturityDate", dtendpay.Value.ToString("MM/dd/yyyy"))
+                    .Set("LoanProcessStatus", "Loan Updated")
+                    .Set("Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy"));
+
+                // Execute the update operation
+                var result = await _loanDisbursedCollection.UpdateOneAsync(filter, update);
+
+                // Log the result of the update
+                if (result.ModifiedCount > 0)
+                {
+                    //MessageBox.Show("Loan details updated successfully.");
+
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("No changes were made. The loan details are the same as before.");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating loan details: " + ex.Message);
+                return false;
+            }
+        }
+
+
+
+
 
         private void frm_home_disburse_details_Load(object sender, EventArgs e)
         {
@@ -701,6 +857,38 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 }
             }
         }
+
+        private async void bsaveloan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validate if necessary fields are filled
+                if (string.IsNullOrEmpty(tlnno.Text) || string.IsNullOrEmpty(tloanamount.Text))
+                {
+                    MessageBox.Show("Loan Number and Loan Amount are required fields.");
+                    return;
+                }
+
+                // Call the update function
+                bool isUpdated = await UpdateLoanDetailsAsync(tlnno.Text);
+
+                // Notify the user of the result
+                if (isUpdated)
+                {
+                    MessageBox.Show("Loan details updated successfully.");
+                    LoadDetails();
+                }
+                else
+                {
+                    MessageBox.Show("No changes were made to the loan details.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving loan details: " + ex.Message);
+            }
+        }
+
     }
 
     // Define the LoanDetails class to hold the loan information
@@ -709,8 +897,19 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         public string LoanIDNo { get; set; }
         public string cashClnNo { get; set; }
         public string cashName { get; set; }
-        public string Address { get; set; }
-        public string CP { get; set; }
-        public string Doc { get; set; } // The document link
+        public string LoanType { get; set; }
+        public string LoanStatus { get; set; }
+        public string LoanAmount { get; set; }
+        public string LoanPrincipal { get; set; }
+        public string LoanBalance { get; set; }
+        public string LoanAmortization { get; set; }
+        public string Penalty { get; set; }
+        public string LoanInterest { get; set; }
+        public string PaymentMode { get; set; }
+        public string CollectorName { get; set; }
+        public string StartPaymentDate { get; set; }
+        public string MaturityDate { get; set; }
+        public string LoanTerm { get; set; }  // Add LoanTerm
     }
+
 }

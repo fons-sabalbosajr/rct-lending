@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace rct_lmis.LOAN_SECTION
         {
             InitializeComponent();
             InitializeDataGridView();
+            
         }
 
         private async void frm_home_loan_new_Load(object sender, EventArgs e)
@@ -60,6 +62,18 @@ namespace rct_lmis.LOAN_SECTION
            
         }
 
+        private DataTable CreateLoanDataTable()
+        {
+            DataTable table = new DataTable();
+
+            // Define columns
+            table.Columns.Add("Loan ID", typeof(string));
+            table.Columns.Add("Loan Details", typeof(string));
+            table.Columns.Add("Amortization", typeof(string));
+            table.Columns.Add("Repayment", typeof(string));
+
+            return table;
+        }
 
         private void ConfigureDataGridView()
         {
@@ -72,7 +86,6 @@ namespace rct_lmis.LOAN_SECTION
             // Optional: Adjust column width to fit the content
             dgvuploads.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
-
 
         private void LoadDocsIntoDataGridView(string[] docsArray, string[] docLinksArray)
         {
@@ -102,13 +115,10 @@ namespace rct_lmis.LOAN_SECTION
             ConfigureDataGridView();
         }
 
-
-
-
         private async Task LoadLoanDetailsAsync()
         {
             string accountId = laccno.Text;
-
+            lnorecorddis.Visible = false;
             try
             {
                 var database = MongoDBConnection.Instance.Database;
@@ -119,29 +129,22 @@ namespace rct_lmis.LOAN_SECTION
 
                 if (document != null)
                 {
-                    taccname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")} {document.GetValue("SuffixName", "")}".Trim();
-                    taccaddress.Text = document.GetValue("Street", "").ToString();
+                    // Client Info
+                    taccname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")}".Trim();
+                    trepname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")}".Trim();
+                    trepaddress.Text = $"{document.GetValue("Barangay", "")}, {document.GetValue("City", "")}, {document.GetValue("Province", "")}".Trim(); // Complete address
+                    taccaddress.Text = $"{document.GetValue("Barangay", "")}, {document.GetValue("City", "")}, {document.GetValue("Province", "")}".Trim(); // Complete address
                     taccbrgy.Text = document.GetValue("Barangay", "").ToString();
                     tacctown.Text = document.GetValue("City", "").ToString();
                     taccprov.Text = document.GetValue("Province", "").ToString();
-
-                    if (document.TryGetValue("RBLate", out BsonValue rbLateValue) && rbLateValue.IsBsonDateTime)
-                    {
-                        DateTime rbLateDate = rbLateValue.ToUniversalTime();
-                        taddbirth.Text = rbLateDate.ToString("MM/dd/yyyy");
-                    }
-                    else
-                    {
-                        taddbirth.Text = string.Empty;
-                    }
-
-                    tacccontactno.Text = document.GetValue("CP", "").ToString();
+                    tacccontactno.Text = document.GetValue("ContactNumber", "").ToString();
                     taccemail.Text = document.GetValue("Email", "").ToString();
 
-                    string loanStatus = document.GetValue("LoanStatus", "Not Available").ToString();
+                    // Loan Info
+                    string loanStatus = document.GetValue("LoanProcessStatus", "Not Available").ToString();
                     laccstatus.Text = loanStatus;
 
-                    // Update lloanstatus based on LoanStatus value
+                    // Update lloanstatus based on LoanProcessStatus value
                     if (loanStatus == "For Releasing Loan Disbursement")
                     {
                         lloanstatus.Text = "FOR DISBURSEMENT";
@@ -155,12 +158,22 @@ namespace rct_lmis.LOAN_SECTION
                         lloanstatus.Text = "UNKNOWN STATUS"; // Default case
                     }
 
-                    // Populate additional fields
-                    trepname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")} {document.GetValue("SuffixName", "")}".Trim();
-                    trepaddress.Text = $"{document.GetValue("Street", "")} , {document.GetValue("Barangay", "")} , {document.GetValue("City", "")} , {document.GetValue("Province", "")}".Trim();
-                    trepcontact.Text = document.GetValue("CP", "").ToString(); // Example field, adjust if necessary
+                    // Additional Info
+                    trepname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")}".Trim();
+                    trepaddress.Text = $"{document.GetValue("Barangay", "")}, {document.GetValue("City", "")}, {document.GetValue("Province", "")}".Trim();
+                    trepcontact.Text = document.GetValue("ContactNumber", "").ToString();
 
-                    // Load docs into DataGridView
+                    // Loan details
+                    laccno.Text = document.GetValue("LoanNo", "").ToString();
+                    trepcurrloan.Text = document.GetValue("LoanAmount", "").ToString();
+                    treploanbalance.Text = document.GetValue("LoanBalance", "").ToString();
+                    treploanpenalty.Text = document.GetValue("Penalty", "").ToString();
+                    trepcollector.Text = document.GetValue("CollectorName", "").ToString();
+
+                    // Loan Dates
+                    treprepaydate.Text = document.GetValue("StartPaymentDate", "").ToString();
+                  
+                    // Loading document info into DataGridView (if applicable)
                     if (document.TryGetValue("docs", out BsonValue docsValue) && document.TryGetValue("doc-link", out BsonValue docLinksValue))
                     {
                         if (docsValue.IsBsonArray && docLinksValue.IsBsonArray)
@@ -177,8 +190,20 @@ namespace rct_lmis.LOAN_SECTION
                     }
                     else
                     {
-                        MessageBox.Show("Document data is missing or incorrect.");
+                        //MessageBox.Show("Document data is missing or incorrect.");
                     }
+
+                    // Count the number of rows (documents) for the AccountId and set it in treploantotal.Text
+                    long loanCount = await collection.CountDocumentsAsync(filter);
+                    treploantotal.Text = loanCount.ToString();
+
+                    // Step 1: Add columns first
+                    CreateLoanDataTable();
+
+                 
+                    // Step 2: Load loan details into DataGridView
+                    await LoadLoanDetailsToDataGridViewAsync(accountId);
+
                 }
                 else
                 {
@@ -190,6 +215,69 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show($"Error loading loan details: {ex.Message}");
             }
         }
+
+
+
+        private async Task LoadLoanDetailsToDataGridViewAsync(string accountId)
+        {
+            try
+            {
+                // Step 1: Setup DataTable and bind it to DataGridView
+                DataTable loanDataTable = CreateLoanDataTable();
+                dgvdataamort.DataSource = loanDataTable;
+
+                // Access the MongoDB database and fetch loan details
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_approved");
+
+                var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                var documents = await collection.Find(filter).ToListAsync();
+
+                if (documents.Count > 0)
+                {
+                    // Loop through all documents and add rows to the DataTable
+                    foreach (var document in documents)
+                    {
+                        DataRow row = loanDataTable.NewRow();
+
+                        // Populate row with MongoDB data
+                        row["Loan ID"] = document.GetValue("LoanNo", "").ToString();
+
+                        // Loan details: LoanAmount, LoanBalance, LoanTerm, LoanInterest
+                        row["Loan Details"] = $"Amount: {document.GetValue("LoanAmount", "0.00")}\n" +
+                                              $"Balance: {document.GetValue("LoanBalance", "0.00")}\n" +
+                                              $"Term: {document.GetValue("LoanTerm", "0")}\n" +
+                                              $"Interest: {document.GetValue("LoanInterest", "0%")}";
+
+                        // Amortization: LoanAmortization, MissedDays, Penalty
+                        string missedDays = "0"; // Placeholder, calculate missed days if necessary
+                        row["Amortization"] = $"Amortization: {document.GetValue("LoanAmortization", "0.00")}\n" +
+                                              $"Missed: {missedDays} days\n" +
+                                              $"Penalty: {document.GetValue("Penalty", "0.00")}";
+
+                        // Repayment: PaymentMode, StartPaymentDate, MaturityDate
+                        row["Repayment"] = $"Mode: {document.GetValue("PaymentMode", "")}\n" +
+                                           $"Start: {document.GetValue("StartPaymentDate", "")}\n" +
+                                           $"Maturity: {document.GetValue("MaturityDate", "")}";
+
+                        // Add the row to the DataTable
+                        loanDataTable.Rows.Add(row);
+                    }
+
+                    // Update the total count of loans in treploantotal.Text
+                    treploantotal.Text = documents.Count.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("No loan details found for the specified Account ID.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading loan details: {ex.Message}");
+            }
+        }
+
 
 
 
@@ -242,6 +330,41 @@ namespace rct_lmis.LOAN_SECTION
 
             // Show a message box to notify the user
             MessageBox.Show("The account number has been copied to your clipboard.", "Copied", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void bgemamt_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This function is not yet available. Please wait for further updates", "Feature not yet available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void bgenSOA_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This function is not yet available. Please wait for further updates", "Feature not yet available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void bgenledger_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This function is not yet available. Please wait for further updates", "Feature not yet available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void bgenremind_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This function is not yet available. Please wait for further updates", "Feature not yet available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void bgendemandinit_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This function is not yet available. Please wait for further updates", "Feature not yet available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void bgendemandfinal_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This function is not yet available. Please wait for further updates", "Feature not yet available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dgvdataamort_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvdataamort.ClearSelection();
         }
     }
 }

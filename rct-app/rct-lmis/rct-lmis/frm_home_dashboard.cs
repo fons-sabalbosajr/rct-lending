@@ -231,8 +231,11 @@ namespace rct_lmis
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_approved");
 
-                // Fetch all approved loans
-                var clients = collection.Find(Builders<BsonDocument>.Filter.Empty).ToList();
+                // Fetch the most recent top 4 approved loans sorted by StartPaymentDate
+                var clients = collection.Find(Builders<BsonDocument>.Filter.Empty)
+                                        .Sort(Builders<BsonDocument>.Sort.Descending("StartPaymentDate"))
+                                        .Limit(4) // Limit to the top 4 clients
+                                        .ToList();
 
                 dgvdata_client.Rows.Clear();
 
@@ -271,6 +274,7 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading clients: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void LoadLoanTotal()

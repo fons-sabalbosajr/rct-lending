@@ -328,6 +328,8 @@ namespace rct_lmis
             // 
             this.dgvdata.AllowUserToAddRows = false;
             this.dgvdata.AllowUserToDeleteRows = false;
+            this.dgvdata.AllowUserToResizeColumns = false;
+            this.dgvdata.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;

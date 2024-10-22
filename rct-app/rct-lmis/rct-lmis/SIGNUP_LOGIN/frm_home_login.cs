@@ -19,7 +19,7 @@ namespace rct_lmis
                ApplicationDeployment.CurrentDeployment.CurrentVersion :
                Assembly.GetExecutingAssembly().GetName().Version;
 
-            lversion.Text = "ver." + ver.Major + "." + ver.Minor + "." + ver.Build;
+            lversion.Text = "ver." + ver.Major + "." + ver.Minor + "." + ver.Build + "." + ver.Revision;
 
             ///auto complete
             tuser.Focus();

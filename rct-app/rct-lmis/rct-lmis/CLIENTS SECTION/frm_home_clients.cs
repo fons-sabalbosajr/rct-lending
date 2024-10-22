@@ -19,6 +19,7 @@ namespace rct_lmis
     {
         private IMongoDatabase database;
         private IMongoCollection<BsonDocument> loanApprovedCollection;
+        private IMongoCollection<BsonDocument> loanCollectorsCollection;
         private List<BsonDocument> rawDataList;
 
 
@@ -28,6 +29,7 @@ namespace rct_lmis
             database = MongoDBConnection.Instance.Database;
            
             loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
+            loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
             rawDataList = new List<BsonDocument>();
         }
 
@@ -36,6 +38,10 @@ namespace rct_lmis
         private void LoadDataToDataGridView()
         {
             lnorecord.Visible = false;
+
+            // Fetch all collectors into a list for keyword matching
+            var collectors = loanCollectorsCollection.Find(new BsonDocument()).ToList();
+
             var rawData = loanApprovedCollection.Find(new BsonDocument()).ToList();
             rawDataList = rawData;
 
@@ -63,19 +69,36 @@ namespace rct_lmis
                 string address = $"{doc.GetValue("Barangay", "")}, {doc.GetValue("City", "")}, {doc.GetValue("Province", "")}".Trim();
                 row["Client Info"] = $"{doc.GetValue("FirstName", "")} {doc.GetValue("MiddleName", "")} {doc.GetValue("LastName", "")}\nClient No.: {doc.GetValue("ClientNo", "")}\nLoan ID: {doc.GetValue("LoanNo", "")}\nAddress: {address}";
 
+                // Get the collector name from the loan_approved document
+                string collectorNameFromLoan = doc.GetValue("CollectorName", "").ToString().Trim();
+
+                // Find a matching collector based on a keyword in the collector's name
+                var matchingCollector = collectors.FirstOrDefault(c =>
+                    c.GetValue("Name", "").ToString().Trim().IndexOf(collectorNameFromLoan, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                if (matchingCollector != null)
+                {
+                    // Display the collector name from the loan_collectors collection
+                    row["Collector Info"] = matchingCollector.GetValue("Name", "Unknown Collector").ToString();
+                }
+                else
+                {
+                    // If not found, display "Unknown Collector"
+                    row["Collector Info"] = "Unknown Collector";
+                }
+
                 // Populate other fields
-                row["Collector Info"] = $"{doc.GetValue("CollectorName", "")}";
                 row["Loan Term Info"] = $"{doc.GetValue("LoanTerm", "")}\n{doc.GetValue("PaymentMode", "")}";
-                row["Loan Amount Info"] = $"Amount: ₱{ConvertToDecimal(doc.GetValue("LoanAmount", "0").ToString().Replace("₱", "").Trim()):N2}\nBalance: ₱{ConvertToDecimal(doc.GetValue("LoanBalance", "0").ToString().Replace("₱", "").Trim()):N2}";
-                row["Amortization Info"] = $"Amortization: ₱{ConvertToDecimal(doc.GetValue("LoanAmortization", "0").ToString().Replace("₱", "").Trim()):N2}" +
-                    $"\nDue: ₱{ConvertToDecimal(doc.GetValue("AmortizationDue", "0").ToString().Replace("₱", "").Trim()):N2}" +
-                    $"\nMissed Days: {doc.GetValue("missed_day", "0")} days";
+                row["Loan Amount Info"] = $"Amount: {doc.GetValue("LoanAmount", "").ToString()}\nBalance: {doc.GetValue("LoanBalance", "").ToString()}";
+                row["Amortization Info"] = $"Amortization: {doc.GetValue("LoanAmortization", "").ToString()}" +
+                    $"\nDue: {doc.GetValue("LoanAmortization", "").ToString()}" + // Assuming you mean LoanAmortization here
+                    $"\nMissed Days: {doc.GetValue("missed_day", "0")} days"; // Ensure that this field exists
 
                 // Safely handle conversion of Penalty
                 bool isPenaltyNumeric = decimal.TryParse(doc.GetValue("Penalty", "0").ToString().Replace("₱", "").Trim(), out decimal penaltyValue);
                 row["Penalty"] = isPenaltyNumeric ? $"₱{penaltyValue:N2}" : "₱0.00";
 
-                // Safely handle conversion of Total Collection
+                // Safely handle conversion of Total Collection (if applicable)
                 bool isTotalCollectionNumeric = decimal.TryParse(doc.GetValue("TotalCollection", "0").ToString().Replace("₱", "").Trim(), out decimal totalCollectionValue);
                 row["Total Collection"] = isTotalCollectionNumeric ? $"₱{totalCollectionValue:N2}" : "₱0.00";
 
@@ -119,6 +142,8 @@ namespace rct_lmis
 
             UpdateLoanStatusLabels();
         }
+
+
 
 
         private void HighlightApprovedLoans()
@@ -430,6 +455,7 @@ namespace rct_lmis
 
         private void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+           
             // Check if the click was on the Actions column
             if (e.ColumnIndex == dgvdata.Columns["Actions"].Index && e.RowIndex >= 0)
             {
@@ -440,18 +466,17 @@ namespace rct_lmis
                 // Extract the Loan ID (assuming it's the second line)
                 string loanId = clientInfoLines[2].Replace("Loan ID: ", "").Trim(); // Extract the Loan ID from the second line
 
-                // Extract the ClientNo (if you have set it to the DataTable before)
-                string clientNo = dgvdata.Rows[e.RowIndex].Cells["ClientNo"].Value.ToString(); // Adjust column name if needed
+                // Extract the ClientNo
+                string clientNo = dgvdata.Rows[e.RowIndex].Cells["ClientNo"].Value.ToString(); // Get the Client No cell
 
                 // Open the LoanDetailsForm and pass data
                 frm_home_client_details detailsForm = new frm_home_client_details(loanId, clientNo);
-                detailsForm.ShowDialog();
+                detailsForm.ShowDialog(); // Show the details form as a dialog
             }
         }
 
         private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void dgvdata_DataBindingComplete_1(object sender, DataGridViewBindingCompleteEventArgs e)

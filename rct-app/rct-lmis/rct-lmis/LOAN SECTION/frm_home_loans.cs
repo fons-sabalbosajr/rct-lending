@@ -64,7 +64,7 @@ namespace rct_lmis
                     DataRow row = dataTable.NewRow();
                     var accountId = approvedDoc.Contains("AccountId") ? approvedDoc["AccountId"].ToString() : string.Empty;
                     row["AccountID"] = accountId;
-                    row["LoanType"] = approvedDoc.Contains("LoanType") ? approvedDoc["LoanType"].ToString() : string.Empty;
+                    row["LoanType"] = approvedDoc.Contains("LoanStatus") ? approvedDoc["LoanStatus"].ToString() : string.Empty;
                     row["PrincipalAmount"] = approvedDoc.Contains("LoanAmount") ? approvedDoc["LoanAmount"].ToString() : string.Empty;
                     row["LoanTerm"] = approvedDoc.Contains("LoanTerm") ? approvedDoc["LoanTerm"].ToString() : string.Empty;
 
@@ -298,8 +298,8 @@ namespace rct_lmis
 
                     load.Show(this);
                     Thread.Sleep(500);
-                    loanDetailsForm.Show(this);
                     load.Close();
+                    loanDetailsForm.ShowDialog();
                 }
                 else if (dgvdata.Columns[e.ColumnIndex].Name == "btnDisburse")
                 {

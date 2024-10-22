@@ -133,6 +133,12 @@ namespace rct_lmis
                     lnorecord.Visible = false;
                 }
 
+                // Sort the list by StartPaymentDate
+                var sortedLoanDisbursedList = loanDisbursedList
+                    .Where(loan => loan.Contains("StartPaymentDate"))
+                    .OrderByDescending(loan => DateTime.Parse(loan["StartPaymentDate"].AsString))
+                    .ToList();
+
                 // Create DataTable to populate DataGridView
                 DataTable loanDisbursedTable = new DataTable();
                 loanDisbursedTable.Columns.Add("Disbursement No.");
@@ -143,7 +149,7 @@ namespace rct_lmis
                 loanDisbursedTable.Columns.Add("Loan Status");
                 loanDisbursedTable.Columns.Add("Encoded Details");
 
-                foreach (var loan in loanDisbursedList)
+                foreach (var loan in sortedLoanDisbursedList)
                 {
                     DataRow row = loanDisbursedTable.NewRow();
 
@@ -155,7 +161,7 @@ namespace rct_lmis
                     string clientName = $"{loan.GetValue("LastName", "")}, {loan.GetValue("FirstName", "")} {loan.GetValue("MiddleName", "")}";
                     string address = $"{loan.GetValue("Barangay", "")}, {loan.GetValue("City", "")}, {loan.GetValue("Province", "")}";
                     row["Client Info"] = $"{clientName} \n" +
-                                         $"{address}";
+                                          $"{address}";
 
                     decimal loanAmount = loan.Contains("LoanAmount") ? Convert.ToDecimal(loan["LoanAmount"].AsString.Replace("₱", "").Replace(",", "").Trim()) : 0;
                     decimal loanAmortization = loan.Contains("LoanAmortization") ? Convert.ToDecimal(loan["LoanAmortization"].AsString.Replace("₱", "").Replace(",", "").Trim()) : 0;
@@ -163,7 +169,8 @@ namespace rct_lmis
 
                     row["Loan Amount"] = $"Loan Amount: ₱ {loanAmount:N2} \n" +
                                          $"Loan Term: {loanTerm} \n" +
-                                         $"Amortization: ₱ {loanAmortization:N2}";
+                                         $"Amortization: ₱ {loanAmortization:N2}\n" +
+                                         $"Payment Mode: {loan.GetValue("PaymentMode", "N/A")}";
 
                     // Retrieve the date fields and format them safely
                     DateTime startPaymentDate = loan.Contains("StartPaymentDate") ? DateTime.Parse(loan["StartPaymentDate"].AsString) : DateTime.MinValue;
@@ -196,6 +203,7 @@ namespace rct_lmis
                 MessageBox.Show("Error loading loan disbursement data: " + ex.Message);
             }
         }
+
 
 
         // Add or Adjust button columns display index

@@ -388,21 +388,34 @@ namespace rct_lmis.ADMIN_SECTION
             dgvdata.ClearSelection();
         }
 
-        private void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvdata.Columns["Actions"].Index)
             {
                 // Get the selected row data
                 DataGridViewRow selectedRow = dgvdata.Rows[e.RowIndex];
 
-                // Retrieve the loan_id, client_name, or other relevant data
-                string loanId = selectedRow.Cells["Item No."].Value.ToString();  // Example: Get the Item No.
-                string loanstatus = selectedRow.Cells["Loan Status"].Value.ToString();  // Example: Get the Client Info
+                // Retrieve the LoanNo and LoanStatus from the selected row
+                string loanNo = selectedRow.Cells["Item No."].Value.ToString();  // Assuming Item No. corresponds to LoanNo
+                string loanStatus = selectedRow.Cells["Loan Status"].Value.ToString();  // Get Loan Status
 
-                // Open the new form and pass the relevant data
-                frm_home_ADMIN_rawdata_details loanDetailsForm = new frm_home_ADMIN_rawdata_details(loanId, loanstatus);
-                loanDetailsForm.ShowDialog();  // Show the new form
+                // Check if the data already exists in the loan_approved collection
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo); // Assuming LoanNo is stored as a string
+
+                var existingData = await loanApprovedCollection.Find(filter).FirstOrDefaultAsync();
+
+                if (existingData == null) // If no existing data is found
+                {
+                    // Open the new form and pass the relevant data
+                    frm_home_ADMIN_rawdata_details loanDetailsForm = new frm_home_ADMIN_rawdata_details(loanNo, loanStatus);
+                    loanDetailsForm.ShowDialog();  // Show the new form
+                }
+                else
+                {
+                    MessageBox.Show("This loan record already exists in the loan_approved collection.", "Record Exists", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
+
     }
 }

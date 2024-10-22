@@ -36,6 +36,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_collections));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lclientno = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.laccountid = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.laccno = new System.Windows.Forms.Label();
@@ -49,8 +51,6 @@
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lclientno = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -69,6 +69,32 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1184, 50);
             this.panel1.TabIndex = 4;
+            // 
+            // lclientno
+            // 
+            this.lclientno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lclientno.AutoSize = true;
+            this.lclientno.BackColor = System.Drawing.Color.Transparent;
+            this.lclientno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lclientno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lclientno.Location = new System.Drawing.Point(952, 16);
+            this.lclientno.Name = "lclientno";
+            this.lclientno.Size = new System.Drawing.Size(96, 20);
+            this.lclientno.TabIndex = 38;
+            this.lclientno.Text = "RCT-CL0000";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(561, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 19);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "Client No.:";
             // 
             // laccountid
             // 
@@ -125,6 +151,8 @@
             this.bpayadvance.TabIndex = 39;
             this.bpayadvance.Text = "Advance Payment";
             this.toolTip1.SetToolTip(this.bpayadvance, "Generate Advance Payment");
+            this.bpayadvance.Visible = false;
+            this.bpayadvance.Click += new System.EventHandler(this.bpayadvance_Click);
             // 
             // bnew
             // 
@@ -314,32 +342,6 @@
             this.dgvdata.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellContentClick);
             this.dgvdata.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvdata_CellFormatting);
             this.dgvdata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdata_DataBindingComplete);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(561, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 19);
-            this.label1.TabIndex = 37;
-            this.label1.Text = "Client No.:";
-            // 
-            // lclientno
-            // 
-            this.lclientno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lclientno.AutoSize = true;
-            this.lclientno.BackColor = System.Drawing.Color.Transparent;
-            this.lclientno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lclientno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lclientno.Location = new System.Drawing.Point(952, 16);
-            this.lclientno.Name = "lclientno";
-            this.lclientno.Size = new System.Drawing.Size(96, 20);
-            this.lclientno.TabIndex = 38;
-            this.lclientno.Text = "RCT-CL0000";
             // 
             // frm_home_disburse_collections
             // 
