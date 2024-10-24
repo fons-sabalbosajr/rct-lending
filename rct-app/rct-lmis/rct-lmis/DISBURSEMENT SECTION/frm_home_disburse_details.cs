@@ -869,26 +869,33 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     return;
                 }
 
-                // Call the update function
+                // Call the update function asynchronously
                 bool isUpdated = await UpdateLoanDetailsAsync(tlnno.Text);
 
                 // Notify the user of the result
                 if (isUpdated)
                 {
-                    MessageBox.Show("Loan details updated successfully.");
-                    LoadDetails();
+                    MessageBox.Show("Loan details updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDetails();  // Ensure LoadDetails() doesn't block the UI
                 }
                 else
                 {
-                    MessageBox.Show("No changes were made to the loan details.");
+                    MessageBox.Show("No changes were made to the loan details.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving loan details: " + ex.Message);
+                
+                // Notify user about the error
+                MessageBox.Show("Error saving loan details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+
+        private void bsavegeninfo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     // Define the LoanDetails class to hold the loan information

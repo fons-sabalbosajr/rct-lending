@@ -185,6 +185,7 @@
             this.bcancel.Size = new System.Drawing.Size(109, 31);
             this.bcancel.TabIndex = 39;
             this.bcancel.Text = "Cancel";
+            this.bcancel.Click += new System.EventHandler(this.bcancel_Click);
             // 
             // frm_ADMIN_annoucement
             // 

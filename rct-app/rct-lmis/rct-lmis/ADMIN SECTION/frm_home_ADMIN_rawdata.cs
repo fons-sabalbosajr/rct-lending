@@ -40,7 +40,7 @@ namespace rct_lmis.ADMIN_SECTION
             rawDataList = rawData;
 
             DataTable dt = new DataTable();
-            dt.Columns.Add("Item No.", typeof(int));  // Ensure this is of type int for correct sorting
+            dt.Columns.Add("Item No.", typeof(int));
             dt.Columns.Add("Collector Info");
             dt.Columns.Add("Client Info");
             dt.Columns.Add("Loan Term Info");
@@ -55,69 +55,88 @@ namespace rct_lmis.ADMIN_SECTION
             {
                 DataRow row = dt.NewRow();
 
-                // Parse item_no as integer for sorting purposes
-                int itemNo;
-                bool isItemNoNumeric = int.TryParse(doc.GetValue("item_no", "0").ToString(), out itemNo);
-                row["Item No."] = isItemNoNumeric ? itemNo : 0;  // Default to 0 if the parsing fails
+                // Parse item_no as integer
+                row["Item No."] = doc.GetValue("item_no", 0).ToInt32();
 
-                row["Collector Info"] = $"{doc.GetValue("collector_name", "")}\n{doc.GetValue("area_route", "")}";
-                row["Client Info"] = $"{doc.GetValue("client_name", "")}\nContact No: {doc.GetValue("contact_no", "")}\nLoan ID: {doc.GetValue("loan_id", "")}";
-                row["Loan Term Info"] = $"{doc.GetValue("loan_term", "")} months\n{doc.GetValue("payment_mode", "")}";
-                row["Loan Amount Info"] = $"Amount: {Convert.ToDouble(doc.GetValue("loan_amount", 0)):N2}\nBalance: {Convert.ToDouble(doc.GetValue("loan_balance", 0)):N2}";
-                row["Amortization Info"] = $"Amortization: {Convert.ToDouble(doc.GetValue("loan_amortization", 0)):N2}" +
-                    $"\nDue: {Convert.ToDouble(doc.GetValue("amortization_due", 0)):N2}" +
-                    $"\nMissed Days: {doc.GetValue("missed_day", "")} days";
+                // Trim spaces and concatenate collector info
+                row["Collector Info"] = $"{doc.GetValue("collector_name", "").ToString().Trim()}\n{doc.GetValue("area_route", "").ToString().Trim()}";
 
-                // Safely handle conversion of Penalty
-                bool isPenaltyNumeric = double.TryParse(doc.GetValue("penalty", 0).ToString(), out double penaltyValue);
-                row["Penalty"] = isPenaltyNumeric ? penaltyValue.ToString("N2") : "0.00";
+                // Trim spaces and format client info
+                row["Client Info"] = $"{doc.GetValue("client_name", "").ToString().Trim()}\nContact No: {doc.GetValue("contact_no", "").ToString().Trim()}\nLoan ID: {doc.GetValue("loan_id", 0)}";
 
-                // Safely handle conversion of Total Collection
-                bool isTotalCollectionNumeric = double.TryParse(doc.GetValue("total_collection", 0).ToString(), out double totalCollectionValue);
-                row["Total Collection"] = isTotalCollectionNumeric ? totalCollectionValue.ToString("N2") : "0.00";
+                // Trim spaces and format loan term info
+                row["Loan Term Info"] = $"{doc.GetValue("loan_term", 0)} months\n{doc.GetValue("payment_mode", "").ToString().Trim()}";
 
-                string loanStatus = doc.GetValue("loan_status", "").ToString();
-                row["Loan Status"] = loanStatus;
-                row["Loan Status Date Update"] = doc.GetValue("loan_status_date_updated", "").ToString();
+                // Safely convert loan amount and balance, trimming spaces
+                double loanAmount = ConvertToDouble(doc.GetValue("loan_amount", 0));
+                double loanBalance = ConvertToDouble(doc.GetValue("loan_balance", 0));
+                row["Loan Amount Info"] = $"Amount: {loanAmount:N2}\nBalance: {loanBalance:N2}";
+
+                // Format amortization info, safely converting values
+                double loanAmortization = ConvertToDouble(doc.GetValue("loan_amortization", 0));
+                double amortizationDue = ConvertToDouble(doc.GetValue("amortization_due", 0));
+                int missedDays = doc.GetValue("missed_day", 0).ToInt32();
+                row["Amortization Info"] = $"Amortization: {loanAmortization:N2}\nDue: {amortizationDue:N2}\nMissed Days: {missedDays} days";
+
+                // Safely handle Penalty conversion, trimming spaces
+                row["Penalty"] = ConvertToDouble(doc.GetValue("penalty", 0)).ToString("N2");
+
+                // Safely handle Total Collection conversion, trimming spaces
+                row["Total Collection"] = ConvertToDouble(doc.GetValue("total_collection", 0)).ToString("N2");
+
+                // Trim spaces for loan status and update date
+                row["Loan Status"] = doc.GetValue("loan_status", "").ToString().Trim();
+                row["Loan Status Date Update"] = doc.GetValue("loan_status_date_updated", "").ToString().Trim();
 
                 dt.Rows.Add(row);
             }
 
-            // Sort the DataTable by "Item No." as integer values
+            // Sort the DataTable by "Item No."
             DataView dv = dt.DefaultView;
-            dv.Sort = "Item No. ASC";  // Sorting by numeric value now
+            dv.Sort = "Item No. ASC";
             DataTable sortedDt = dv.ToTable();
 
             dgvdata.DataSource = sortedDt;
 
-            // Center align the Item No column
+            // Center align specific columns
             dgvdata.Columns["Item No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvdata.Columns["Loan Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvdata.Columns["Loan Status Date Update"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Adjust Client Info width
+            // Adjust widths
             dgvdata.Columns["Client Info"].Width = 200;
             dgvdata.Columns["Item No."].Width = 80;
             dgvdata.Columns["Loan Amount Info"].Width = 150;
             dgvdata.Columns["Amortization Info"].Width = 150;
 
-            // Add the button column explicitly with padding
+            // Add button column
             DataGridViewButtonColumn actionColumn = new DataGridViewButtonColumn();
             actionColumn.Name = "Actions";
             actionColumn.HeaderText = "Actions";
-            actionColumn.Text = "View";  // Set the button text
-            actionColumn.UseColumnTextForButtonValue = true;  // Ensure the button shows the text
+            actionColumn.Text = "View";
+            actionColumn.UseColumnTextForButtonValue = true;
             actionColumn.FlatStyle = FlatStyle.Standard;
             actionColumn.DefaultCellStyle.Padding = new Padding(30, 15, 20, 15);
 
-            // Add the button column to the DataGridView
             dgvdata.Columns.Add(actionColumn);
 
-            // Now, after setting the DataSource, highlight the rows
+            // Highlight rows and update labels
             HighlightApprovedLoans();
-
             UpdateLoanStatusLabels();
         }
+
+        private double ConvertToDouble(object value)
+        {
+            if (value == null) return 0.0;
+            string strValue = value.ToString().Trim().Replace(",", "");
+            if (double.TryParse(strValue, out double result))
+            {
+                return result;
+            }
+            return 0.0;
+        }
+
+
 
         private void HighlightApprovedLoans()
         {

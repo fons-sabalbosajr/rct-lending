@@ -39,8 +39,7 @@ namespace rct_lmis
             this.ltitle = new System.Windows.Forms.Label();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.pheaders = new System.Windows.Forms.Panel();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.bexport = new Guna.UI2.WinForms.Guna2Button();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -137,8 +136,7 @@ namespace rct_lmis
             // pheaders
             // 
             this.pheaders.BackColor = System.Drawing.Color.White;
-            this.pheaders.Controls.Add(this.guna2Button2);
-            this.pheaders.Controls.Add(this.guna2Button1);
+            this.pheaders.Controls.Add(this.bexport);
             this.pheaders.Controls.Add(this.guna2Separator1);
             this.pheaders.Controls.Add(this.tsearch);
             this.pheaders.Dock = System.Windows.Forms.DockStyle.Top;
@@ -147,47 +145,26 @@ namespace rct_lmis
             this.pheaders.Size = new System.Drawing.Size(1300, 66);
             this.pheaders.TabIndex = 3;
             // 
-            // guna2Button2
+            // bexport
             // 
-            this.guna2Button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2Button2.BorderColor = System.Drawing.Color.Gainsboro;
-            this.guna2Button2.BorderRadius = 2;
-            this.guna2Button2.BorderThickness = 1;
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.FillColor = System.Drawing.Color.White;
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Image = global::rct_lmis.Properties.Resources.icons8_print_48;
-            this.guna2Button2.ImageSize = new System.Drawing.Size(28, 28);
-            this.guna2Button2.Location = new System.Drawing.Point(1251, 15);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(35, 35);
-            this.guna2Button2.TabIndex = 34;
-            this.guna2Button2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // guna2Button1
-            // 
-            this.guna2Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2Button1.BorderColor = System.Drawing.Color.Gainsboro;
-            this.guna2Button1.BorderRadius = 2;
-            this.guna2Button1.BorderThickness = 1;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.White;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
-            this.guna2Button1.ImageSize = new System.Drawing.Size(28, 28);
-            this.guna2Button1.Location = new System.Drawing.Point(1210, 15);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(35, 35);
-            this.guna2Button1.TabIndex = 33;
-            this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.bexport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bexport.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bexport.BorderRadius = 2;
+            this.bexport.BorderThickness = 1;
+            this.bexport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bexport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bexport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bexport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bexport.FillColor = System.Drawing.Color.White;
+            this.bexport.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bexport.ForeColor = System.Drawing.Color.White;
+            this.bexport.Image = global::rct_lmis.Properties.Resources.icons8_export_excel_48;
+            this.bexport.ImageSize = new System.Drawing.Size(28, 28);
+            this.bexport.Location = new System.Drawing.Point(1250, 15);
+            this.bexport.Name = "bexport";
+            this.bexport.Size = new System.Drawing.Size(35, 35);
+            this.bexport.TabIndex = 33;
+            this.bexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tsearch
             // 
@@ -427,8 +404,7 @@ namespace rct_lmis
         private System.Windows.Forms.Label ltitle;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private System.Windows.Forms.Panel pheaders;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button bexport;
         private Guna.UI2.WinForms.Guna2TextBox tsearch;
         private System.Windows.Forms.Label lnorecord;
         private System.Windows.Forms.Panel panel4;

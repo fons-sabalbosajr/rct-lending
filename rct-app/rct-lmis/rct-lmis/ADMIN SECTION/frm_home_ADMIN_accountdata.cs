@@ -387,7 +387,7 @@ namespace rct_lmis.ADMIN_SECTION
             dgvdata.ClearSelection();
         }
 
-        private void bloansave_Click(object sender, EventArgs e)
+        private async void bloansave_Click(object sender, EventArgs e)
         {
             try
             {
@@ -397,31 +397,53 @@ namespace rct_lmis.ADMIN_SECTION
                     return;
                 }
 
-                var database = MongoDBConnection.Instance.Database;
-                var loanAccountTitlesCollection = database.GetCollection<BsonDocument>("loan_account_titles");
-
-                // Create a filter to locate the document by its _id
-                var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(selectedDocumentId));
-
-                // Create an update definition with the new values from the textboxes
-                var update = Builders<BsonDocument>.Update
-                    .Set("AccountId", taccno.Text)
-                    .Set("Account Group", taccgrp.Text)
-                    .Set("Account Code", tacccode.Text)
-                    .Set("Account Group Code", taccgrpcode.Text)
-                    .Set("Account Name", taccname.Text);
-
-                // Perform the update operation
-                var result = loanAccountTitlesCollection.UpdateOne(filter, update);
-
-                if (result.ModifiedCount > 0)
+                // Show a loading message
+                using (var loadingForm = new Form())
                 {
-                    MessageBox.Show("Record updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDataToDataGridView(); // Refresh the data in the DataGridView
-                }
-                else
-                {
-                    MessageBox.Show("No record was updated. Please check the data.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    loadingForm.Text = "Updating...";
+                    loadingForm.StartPosition = FormStartPosition.CenterParent;
+                    loadingForm.Size = new Size(200, 100);
+                    loadingForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                    loadingForm.ControlBox = false; // Disable close button
+
+                    Label loadingLabel = new Label()
+                    {
+                        Text = "Updating record, please wait...",
+                        Dock = DockStyle.Fill,
+                        TextAlign = ContentAlignment.MiddleCenter
+                    };
+                    loadingForm.Controls.Add(loadingLabel);
+                    loadingForm.Show(this); // Show loading form as a modal dialog
+
+                    // Perform the update operation asynchronously
+                    var database = MongoDBConnection.Instance.Database;
+                    var loanAccountTitlesCollection = database.GetCollection<BsonDocument>("loan_account_titles");
+
+                    // Create a filter to locate the document by its _id
+                    var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(selectedDocumentId));
+
+                    // Create an update definition with the new values from the textboxes
+                    var update = Builders<BsonDocument>.Update
+                        .Set("AccountId", taccno.Text)
+                        .Set("Account Group", taccgrp.Text)
+                        .Set("Account Code", tacccode.Text)
+                        .Set("Account Group Code", taccgrpcode.Text)
+                        .Set("Account Name", taccname.Text);
+
+                    // Perform the update operation
+                    var result = await Task.Run(() => loanAccountTitlesCollection.UpdateOne(filter, update));
+
+                    loadingForm.Close(); // Close the loading form
+
+                    if (result.ModifiedCount > 0)
+                    {
+                        MessageBox.Show("Record updated successfully!", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadDataToDataGridView(); // Refresh the data in the DataGridView
+                    }
+                    else
+                    {
+                        MessageBox.Show("No record was updated. Please check the data.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
             catch (Exception ex)
@@ -429,14 +451,15 @@ namespace rct_lmis.ADMIN_SECTION
                 MessageBox.Show($"Error updating record: {ex.Message}", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-      
+
+
 
         private void tsearch_TextChanged(object sender, EventArgs e)
         {
             LoadFilteredData(tsearch.Text);
         }
 
-        private void bdel_Click(object sender, EventArgs e)
+        private async void bdel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -446,27 +469,48 @@ namespace rct_lmis.ADMIN_SECTION
                     return;
                 }
 
-                var database = MongoDBConnection.Instance.Database;
-                var loanAccountTitlesCollection = database.GetCollection<BsonDocument>("loan_account_titles");
-
-                // Create a filter to locate the document by its _id
-                var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(selectedDocumentId));
-
                 // Confirm delete action
                 var confirmation = MessageBox.Show("Are you sure you want to delete this record?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (confirmation == DialogResult.Yes)
                 {
-                    // Perform the delete operation
-                    var result = loanAccountTitlesCollection.DeleteOne(filter);
+                    // Show a loading message
+                    using (var loadingForm = new Form())
+                    {
+                        loadingForm.Text = "Deleting...";
+                        loadingForm.StartPosition = FormStartPosition.CenterParent;
+                        loadingForm.Size = new Size(200, 100);
+                        loadingForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                        loadingForm.ControlBox = false; // Disable close button
 
-                    if (result.DeletedCount > 0)
-                    {
-                        MessageBox.Show("Record deleted successfully!", "Delete Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadDataToDataGridView(); // Refresh the data in the DataGridView
-                    }
-                    else
-                    {
-                        MessageBox.Show("No record was deleted. Please check the data.", "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Label loadingLabel = new Label()
+                        {
+                            Text = "Deleting record, please wait...",
+                            Dock = DockStyle.Fill,
+                            TextAlign = ContentAlignment.MiddleCenter
+                        };
+                        loadingForm.Controls.Add(loadingLabel);
+                        loadingForm.Show(this); // Show loading form as a modal dialog
+
+                        var database = MongoDBConnection.Instance.Database;
+                        var loanAccountTitlesCollection = database.GetCollection<BsonDocument>("loan_account_titles");
+
+                        // Create a filter to locate the document by its _id
+                        var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(selectedDocumentId));
+
+                        // Perform the delete operation asynchronously
+                        var result = await Task.Run(() => loanAccountTitlesCollection.DeleteOne(filter));
+
+                        loadingForm.Close(); // Close the loading form
+
+                        if (result.DeletedCount > 0)
+                        {
+                            MessageBox.Show("Record deleted successfully!", "Delete Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadDataToDataGridView(); // Refresh the data in the DataGridView
+                        }
+                        else
+                        {
+                            MessageBox.Show("No record was deleted. Please check the data.", "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
             }
@@ -475,6 +519,7 @@ namespace rct_lmis.ADMIN_SECTION
                 MessageBox.Show($"Error deleting record: {ex.Message}", "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -495,7 +540,7 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
-        private void bupload_Click(object sender, EventArgs e)
+        private async void bupload_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -503,19 +548,25 @@ namespace rct_lmis.ADMIN_SECTION
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string filePath = openFileDialog.FileName;
-                    DataTable dataTable = ReadFile(filePath);
 
                     // Optional: Show loading screen
                     load.Show(this);
-                    Thread.Sleep(1000);
-                    SaveDataToMongoDB(dataTable);
+
+                    // Run file reading and MongoDB saving on a background thread
+                    DataTable dataTable = await Task.Run(() => ReadFile(filePath));
+                    await Task.Run(() => SaveDataToMongoDB(dataTable));
+
+                    // Load data into DataGridView on the UI thread
                     LoadDataToDataGridView();
+
                     load.Close();
 
+                    // Show the success message without blocking the UI
                     MessageBox.Show("Data uploaded successfully!");
                 }
             }
         }
+
 
 
 

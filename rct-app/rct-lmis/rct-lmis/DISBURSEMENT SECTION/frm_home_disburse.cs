@@ -71,27 +71,10 @@ namespace rct_lmis
                     var searchFilter = Builders<BsonDocument>.Filter.Or(
                         Builders<BsonDocument>.Filter.Regex("LoanNo", new BsonRegularExpression(searchQuery, "i")),
                         Builders<BsonDocument>.Filter.Regex("AccountId", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("ClientNo", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("LoanType", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("LoanStatus", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("LastName", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("FirstName", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("MiddleName", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("CollectorName", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("Barangay", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("City", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("Province", new BsonRegularExpression(searchQuery, "i")),
+                        // Add more filters here based on the fields
                         Builders<BsonDocument>.Filter.Regex("LoanTerm", new BsonRegularExpression(searchQuery, "i")),
                         Builders<BsonDocument>.Filter.Regex("LoanAmount", new BsonRegularExpression(searchQuery.Replace("₱", "").Replace(",", ""), "i")),
-                        Builders<BsonDocument>.Filter.Regex("LoanAmortization", new BsonRegularExpression(searchQuery.Replace("₱", "").Replace(",", ""), "i")),
-                        Builders<BsonDocument>.Filter.Regex("LoanBalance", new BsonRegularExpression(searchQuery.Replace("₱", "").Replace(",", ""), "i")),
-                        Builders<BsonDocument>.Filter.Regex("Penalty", new BsonRegularExpression(searchQuery.Replace("₱", "").Replace(",", ""), "i")),
-                        Builders<BsonDocument>.Filter.Regex("LoanInterest", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("PaymentMode", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("StartPaymentDate", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("MaturityDate", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("Date_Encoded", new BsonRegularExpression(searchQuery, "i")),
-                        Builders<BsonDocument>.Filter.Regex("LoanProcessStatus", new BsonRegularExpression(searchQuery, "i"))
+                        Builders<BsonDocument>.Filter.Regex("LoanAmortization", new BsonRegularExpression(searchQuery.Replace("₱", "").Replace(",", ""), "i"))
                     );
 
                     filter = Builders<BsonDocument>.Filter.And(filter, searchFilter);
@@ -136,7 +119,15 @@ namespace rct_lmis
                 // Sort the list by StartPaymentDate
                 var sortedLoanDisbursedList = loanDisbursedList
                     .Where(loan => loan.Contains("StartPaymentDate"))
-                    .OrderByDescending(loan => DateTime.Parse(loan["StartPaymentDate"].AsString))
+                    .OrderByDescending(loan =>
+                    {
+                        // Safely parse dates with error handling
+                        if (DateTime.TryParse(loan["StartPaymentDate"].AsString, out DateTime startDate))
+                        {
+                            return startDate;
+                        }
+                        return DateTime.MinValue; // Return a default value if parsing fails
+                    })
                     .ToList();
 
                 // Create DataTable to populate DataGridView
@@ -163,18 +154,24 @@ namespace rct_lmis
                     row["Client Info"] = $"{clientName} \n" +
                                           $"{address}";
 
-                    decimal loanAmount = loan.Contains("LoanAmount") ? Convert.ToDecimal(loan["LoanAmount"].AsString.Replace("₱", "").Replace(",", "").Trim()) : 0;
-                    decimal loanAmortization = loan.Contains("LoanAmortization") ? Convert.ToDecimal(loan["LoanAmortization"].AsString.Replace("₱", "").Replace(",", "").Trim()) : 0;
-                    string loanTerm = loan.Contains("LoanTerm") ? loan["LoanTerm"].AsString : "N/A";
+                    // Safely convert to decimal for loan amounts and amortization
+                    decimal loanAmount;
+                    decimal.TryParse(loan.GetValue("LoanAmount", "0").AsString.Replace("₱", "").Replace(",", ""), out loanAmount);
+
+                    decimal loanAmortization;
+                    decimal.TryParse(loan.GetValue("LoanAmortization", "0").AsString.Replace("₱", "").Replace(",", ""), out loanAmortization);
 
                     row["Loan Amount"] = $"Loan Amount: ₱ {loanAmount:N2} \n" +
-                                         $"Loan Term: {loanTerm} \n" +
+                                         $"Loan Term: {loan.GetValue("LoanTerm", "N/A")} \n" +
                                          $"Amortization: ₱ {loanAmortization:N2}\n" +
                                          $"Payment Mode: {loan.GetValue("PaymentMode", "N/A")}";
 
-                    // Retrieve the date fields and format them safely
-                    DateTime startPaymentDate = loan.Contains("StartPaymentDate") ? DateTime.Parse(loan["StartPaymentDate"].AsString) : DateTime.MinValue;
-                    DateTime maturityDate = loan.Contains("MaturityDate") ? DateTime.Parse(loan["MaturityDate"].AsString) : DateTime.MinValue;
+                    // Safely retrieve and format the date fields
+                    DateTime startPaymentDate;
+                    DateTime.TryParse(loan.GetValue("StartPaymentDate", DateTime.MinValue.ToString()).AsString, out startPaymentDate);
+
+                    DateTime maturityDate;
+                    DateTime.TryParse(loan.GetValue("MaturityDate", DateTime.MinValue.ToString()).AsString, out maturityDate);
 
                     row["Loan Status"] = $"Start Date: {startPaymentDate:MM/dd/yyyy} \n" +
                                          $"Maturity Date: {maturityDate:MM/dd/yyyy}\n" +
@@ -198,11 +195,20 @@ namespace rct_lmis
                     AddViewDetailsButton();
                 }
             }
+            catch (FormatException ex)
+            {
+                MessageBox.Show($"Date format error: {ex.Message}", "Date Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (MongoException ex)
+            {
+                MessageBox.Show($"Database error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading loan disbursement data: " + ex.Message);
+                MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 

@@ -243,7 +243,7 @@ namespace rct_lmis.CLIENTS_SECTION
             LoadLoanHistory();
         }
 
-        private void bsaveall_Click(object sender, EventArgs e)
+        private async void bsaveall_Click(object sender, EventArgs e)
         {
             // Validate input before proceeding
             if (string.IsNullOrWhiteSpace(tclastname.Text) ||
@@ -258,10 +258,8 @@ namespace rct_lmis.CLIENTS_SECTION
             var database = MongoDBConnection.Instance.Database;
             var loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
 
-            // Find the loan document matching the Loan ID and Client No
-            var filter = Builders<BsonDocument>.Filter.And(
-                Builders<BsonDocument>.Filter.Eq("LoanNo", laccno.Text)
-            );
+            // Find the loan document matching the Loan ID
+            var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", laccno.Text);
 
             // Create an update definition for the fields you want to update
             var update = Builders<BsonDocument>.Update
@@ -287,19 +285,21 @@ namespace rct_lmis.CLIENTS_SECTION
                 .Set("SpouseFirstName", tspousefname.Text)
                 .Set("SpouseMiddleName", tspousemname.Text);
 
-            // Update the document in MongoDB
-            var result = loanApprovedCollection.UpdateOne(filter, update);
+            // Run the update operation asynchronously
+            var result = await loanApprovedCollection.UpdateOneAsync(filter, update);
 
+            // Check if any documents were modified
             if (result.ModifiedCount > 0)
             {
                 MessageBox.Show("Data updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadLoanData();
+                LoadLoanData(); // Ensure this method is non-blocking
             }
             else
             {
                 MessageBox.Show("No changes were made or document not found.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void cbsameborrow_CheckedChanged(object sender, EventArgs e)
         {

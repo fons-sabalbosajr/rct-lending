@@ -563,30 +563,36 @@ namespace rct_lmis.ADMIN_SECTION
         }
 
 
-        private void badd_Click(object sender, EventArgs e)
+        private async void badd_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to import the account?", "Save Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(this, "Do you want to import the account?", "Save Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                load.Show(this);
-                Thread.Sleep(100);
-                GenerelSaveData();
-                GenerelDisbursedData();
-                load.Close();
+                // Run the data-saving tasks asynchronously
+                await Task.Run(() =>
+                {
+                    GenerelSaveData();
+                    GenerelDisbursedData();
+                });
 
-
-                MessageBox.Show(this, "Transactions has been imported successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Transactions have been imported successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
         }
 
-        private void bdelete_Click(object sender, EventArgs e)
+
+        private async void bdelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to delete the account?", "Save Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(this, "Do you want to delete the account?", "Save Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                // Show a loading indicator if needed (or just use a MessageBox to indicate progress)
                 load.Show(this);
-                Thread.Sleep(100);
+
+                // Run the delete operation asynchronously
+                await Task.Run(() => DeleteLoanDataAsync());
+
                 load.Close();
-                DeleteLoanDataAsync();
+
+                MessageBox.Show(this, "Account has been deleted successfully!", "Transaction Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
         }

@@ -39,19 +39,18 @@ namespace rct_lmis.ADMIN_SECTION
                 MessageBox.Show("Both title and content are required.");
                 return;
             }
-
+            // Save the announcement data asynchronously
             await SaveAnnouncementData(title, content);
-
-            load.Show(this);
-            await Task.Delay(1000); // Use Task.Delay instead of Thread.Sleep for async methods
-            load.Close();
 
             MessageBox.Show(this, "Announcement posted successfully.");
 
+            // Clear the input fields
             tTitle.Clear();
             tContent.Clear();
+
             this.Close();
         }
+
 
         private async Task SaveAnnouncementData(string title, string content)
         {
@@ -66,6 +65,11 @@ namespace rct_lmis.ADMIN_SECTION
             };
 
             await collection.InsertOneAsync(announcement);
+        }
+
+        private void bcancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
     public class AnnouncementEventArgs : EventArgs
