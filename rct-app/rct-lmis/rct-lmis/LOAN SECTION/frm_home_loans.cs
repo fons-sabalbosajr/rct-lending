@@ -351,5 +351,16 @@ namespace rct_lmis
                 }
             }
         }
+
+        private void baddloanex_Click(object sender, EventArgs e)
+        {
+            frm_home_loan_addex addex = new frm_home_loan_addex();
+
+            load.Show(this);
+            Thread.Sleep(500);
+            load.Close();
+            addex.ShowDialog();
+
+        }
     }
 }

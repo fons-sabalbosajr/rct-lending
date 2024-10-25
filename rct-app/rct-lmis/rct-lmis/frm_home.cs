@@ -60,7 +60,7 @@ namespace rct_lmis
             loggedInUsername = username;
             _username = username;
 
-            ldate.Text = DateTime.Now.ToString("f");
+            ldate.Text = DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt");
         }
 
         #region "DISPLAY CUSTOM"

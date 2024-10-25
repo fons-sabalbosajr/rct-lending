@@ -34,6 +34,7 @@ namespace rct_lmis
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.baddloanex = new Guna.UI2.WinForms.Guna2Button();
             this.baddnew = new Guna.UI2.WinForms.Guna2Button();
             this.ltitle = new System.Windows.Forms.Label();
             this.pbot = new System.Windows.Forms.Panel();
@@ -53,7 +54,6 @@ namespace rct_lmis
             this.cbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.pbot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -64,7 +64,7 @@ namespace rct_lmis
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.panel1.Controls.Add(this.guna2Button1);
+            this.panel1.Controls.Add(this.baddloanex);
             this.panel1.Controls.Add(this.baddnew);
             this.panel1.Controls.Add(this.ltitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -72,6 +72,25 @@ namespace rct_lmis
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1300, 52);
             this.panel1.TabIndex = 0;
+            // 
+            // baddloanex
+            // 
+            this.baddloanex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.baddloanex.BorderRadius = 4;
+            this.baddloanex.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.baddloanex.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.baddloanex.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.baddloanex.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.baddloanex.FillColor = System.Drawing.Color.SeaGreen;
+            this.baddloanex.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.baddloanex.ForeColor = System.Drawing.Color.White;
+            this.baddloanex.Location = new System.Drawing.Point(1062, 5);
+            this.baddloanex.Name = "baddloanex";
+            this.baddloanex.Size = new System.Drawing.Size(224, 41);
+            this.baddloanex.TabIndex = 15;
+            this.baddloanex.Text = "ADD EXISTING TRANSACTION";
+            this.toolTip1.SetToolTip(this.baddloanex, "Add Loan Transaction");
+            this.baddloanex.Click += new System.EventHandler(this.baddloanex_Click);
             // 
             // baddnew
             // 
@@ -378,24 +397,6 @@ namespace rct_lmis
             this.tsearch.TabIndex = 1;
             this.toolTip1.SetToolTip(this.tsearch, "Search Keyword");
             // 
-            // guna2Button1
-            // 
-            this.guna2Button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2Button1.BorderRadius = 4;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.SeaGreen;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(1062, 5);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(224, 41);
-            this.guna2Button1.TabIndex = 15;
-            this.guna2Button1.Text = "ADD EXISITING TRANSACTION";
-            this.toolTip1.SetToolTip(this.guna2Button1, "Add Loan Transaction");
-            // 
             // frm_home_loans
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -444,6 +445,6 @@ namespace rct_lmis
         private System.Windows.Forms.Label lnorecord;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdata;
         private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button baddloanex;
     }
 }

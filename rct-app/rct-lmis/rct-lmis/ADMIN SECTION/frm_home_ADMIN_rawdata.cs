@@ -32,98 +32,199 @@ namespace rct_lmis.ADMIN_SECTION
         private void frm_home_ADMIN_rawdata_Load(object sender, EventArgs e)
         {
             LoadDataToDataGridView();
+            PopulateLoanStatusComboBox();
         }
 
-        private void LoadDataToDataGridView()
+        private void PopulateLoanStatusComboBox()
         {
-            var rawData = loanRawdataCollection.Find(new BsonDocument()).ToList();
-            rawDataList = rawData;
+            // Assuming loanRawdataCollection is your MongoDB collection for loan data
+            var loanStatuses = loanRawdataCollection.Distinct<string>("loan_status", new BsonDocument()).ToList();
 
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Item No.", typeof(int));
-            dt.Columns.Add("Collector Info");
-            dt.Columns.Add("Client Info");
-            dt.Columns.Add("Loan Term Info");
-            dt.Columns.Add("Loan Amount Info");
-            dt.Columns.Add("Amortization Info");
-            dt.Columns.Add("Penalty");
-            dt.Columns.Add("Total Collection");
-            dt.Columns.Add("Loan Status");
-            dt.Columns.Add("Loan Status Date Update");
+            // Clear the ComboBox before populating
+            cbloanstatus.Items.Clear();
 
-            foreach (var doc in rawData)
+            // Add "Show All" option
+            cbloanstatus.Items.Add("Show All");
+
+            // Add the loan status values to the ComboBox
+            foreach (var status in loanStatuses)
             {
-                DataRow row = dt.NewRow();
-
-                // Parse item_no as integer
-                row["Item No."] = doc.GetValue("item_no", 0).ToInt32();
-
-                // Trim spaces and concatenate collector info
-                row["Collector Info"] = $"{doc.GetValue("collector_name", "").ToString().Trim()}\n{doc.GetValue("area_route", "").ToString().Trim()}";
-
-                // Trim spaces and format client info
-                row["Client Info"] = $"{doc.GetValue("client_name", "").ToString().Trim()}\nContact No: {doc.GetValue("contact_no", "").ToString().Trim()}\nLoan ID: {doc.GetValue("loan_id", 0)}";
-
-                // Trim spaces and format loan term info
-                row["Loan Term Info"] = $"{doc.GetValue("loan_term", 0)} months\n{doc.GetValue("payment_mode", "").ToString().Trim()}";
-
-                // Safely convert loan amount and balance, trimming spaces
-                double loanAmount = ConvertToDouble(doc.GetValue("loan_amount", 0));
-                double loanBalance = ConvertToDouble(doc.GetValue("loan_balance", 0));
-                row["Loan Amount Info"] = $"Amount: {loanAmount:N2}\nBalance: {loanBalance:N2}";
-
-                // Format amortization info, safely converting values
-                double loanAmortization = ConvertToDouble(doc.GetValue("loan_amortization", 0));
-                double amortizationDue = ConvertToDouble(doc.GetValue("amortization_due", 0));
-                int missedDays = doc.GetValue("missed_day", 0).ToInt32();
-                row["Amortization Info"] = $"Amortization: {loanAmortization:N2}\nDue: {amortizationDue:N2}\nMissed Days: {missedDays} days";
-
-                // Safely handle Penalty conversion, trimming spaces
-                row["Penalty"] = ConvertToDouble(doc.GetValue("penalty", 0)).ToString("N2");
-
-                // Safely handle Total Collection conversion, trimming spaces
-                row["Total Collection"] = ConvertToDouble(doc.GetValue("total_collection", 0)).ToString("N2");
-
-                // Trim spaces for loan status and update date
-                row["Loan Status"] = doc.GetValue("loan_status", "").ToString().Trim();
-                row["Loan Status Date Update"] = doc.GetValue("loan_status_date_updated", "").ToString().Trim();
-
-                dt.Rows.Add(row);
+                cbloanstatus.Items.Add(status);
             }
 
-            // Sort the DataTable by "Item No."
-            DataView dv = dt.DefaultView;
-            dv.Sort = "Item No. ASC";
-            DataTable sortedDt = dv.ToTable();
+            // Set default selected item to "Show All"
+            cbloanstatus.SelectedIndex = 0;
+        }
 
-            dgvdata.DataSource = sortedDt;
 
-            // Center align specific columns
+
+        private async void LoadDataToDataGridView(string loanStatusFilter = null)
+        {
+            try
+            {
+                // MongoDB connection
+                var database = MongoDBConnection.Instance.Database;
+                var loanRawdataCollection = database.GetCollection<BsonDocument>("loan_rawdata");
+
+                // Define a filter for loan status if provided
+                FilterDefinition<BsonDocument> filter;
+                if (!string.IsNullOrEmpty(loanStatusFilter))
+                {
+                    filter = Builders<BsonDocument>.Filter.Eq("loan_status", loanStatusFilter);
+                }
+                else
+                {
+                    filter = new BsonDocument(); // No filter, load all data
+                }
+
+                // Retrieve loan data based on the filter
+                var rawData = await loanRawdataCollection.Find(filter).ToListAsync();
+                rawDataList = rawData; // Store the raw data
+
+                // Populate the DataGridView as before...
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Item No.", typeof(int));
+                dt.Columns.Add("Collector Info");
+                dt.Columns.Add("Client Info");
+                dt.Columns.Add("Loan Term Info");
+                dt.Columns.Add("Loan Amount Info");
+                dt.Columns.Add("Amortization Info");
+                dt.Columns.Add("Penalty");
+                dt.Columns.Add("Total Collection");
+                dt.Columns.Add("Loan Status");
+                dt.Columns.Add("Loan Status Date Update");
+
+                foreach (var doc in rawData)
+                {
+                    DataRow row = dt.NewRow();
+
+                    // Populate the rows as before...
+                    row["Item No."] = doc.GetValue("item_no", 0).ToInt32();
+                    row["Collector Info"] = $"{doc.GetValue("collector_name", "").ToString().Trim()}\n{doc.GetValue("area_route", "").ToString().Trim()}";
+                    row["Client Info"] = $"{doc.GetValue("client_name", "").ToString().Trim()}\nContact No: {doc.GetValue("contact_no", "").ToString().Trim()}\nLoan ID: {doc.GetValue("loan_id", 0)}";
+                    row["Loan Term Info"] = $"{doc.GetValue("loan_term", 0)} months\n{doc.GetValue("payment_mode", "").ToString().Trim()}";
+                    double loanAmount = ConvertToDouble(doc.GetValue("loan_amount", 0));
+                    double loanBalance = ConvertToDouble(doc.GetValue("loan_balance", 0));
+                    row["Loan Amount Info"] = $"Amount: {loanAmount:N2}\nBalance: {loanBalance:N2}";
+                    double loanAmortization = ConvertToDouble(doc.GetValue("loan_amortization", 0));
+                    double amortizationDue = ConvertToDouble(doc.GetValue("amortization_due", 0));
+                    int missedDays = doc.GetValue("missed_day", 0).ToInt32();
+                    row["Amortization Info"] = $"Amortization: {loanAmortization:N2}\nDue: {amortizationDue:N2}\nMissed Days: {missedDays} days";
+                    row["Penalty"] = ConvertToDouble(doc.GetValue("penalty", 0)).ToString("N2");
+                    row["Total Collection"] = ConvertToDouble(doc.GetValue("total_collection", 0)).ToString("N2");
+                    row["Loan Status"] = doc.GetValue("loan_status", "").ToString().Trim();
+                    row["Loan Status Date Update"] = doc.GetValue("loan_status_date_updated", "").ToString().Trim();
+
+                    dt.Rows.Add(row);
+                }
+
+                // Sort the DataTable by "Item No."
+                DataView dv = dt.DefaultView;
+                dv.Sort = "Item No. ASC";
+                DataTable sortedDt = dv.ToTable();
+
+                dgvdata.DataSource = sortedDt;
+
+                // Center align specific columns
+                dgvdata.Columns["Item No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvdata.Columns["Loan Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvdata.Columns["Loan Status Date Update"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Adjust widths
+                dgvdata.Columns["Client Info"].Width = 200;
+                dgvdata.Columns["Item No."].Width = 80;
+                dgvdata.Columns["Loan Amount Info"].Width = 150;
+                dgvdata.Columns["Amortization Info"].Width = 150;
+
+                // Add button column if not already added
+                if (!dgvdata.Columns.Contains("Actions"))
+                {
+                    DataGridViewButtonColumn actionColumn = new DataGridViewButtonColumn
+                    {
+                        Name = "Actions",
+                        HeaderText = "Actions",
+                        Text = "View",
+                        UseColumnTextForButtonValue = true,
+                        FlatStyle = FlatStyle.Standard,
+                        DefaultCellStyle = { Padding = new Padding(30, 15, 20, 15) }
+                    };
+                    dgvdata.Columns.Add(actionColumn);
+                }
+
+                // Highlight rows and update labels
+                HighlightApprovedLoans();
+                UpdateLoanStatusLabels();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading data: " + ex.Message);
+            }
+        }
+
+
+        private void ApplySearchFilter(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                // If no keyword is provided, reset to the full data
+                LoadDataToDataGridView(); // Reloads the full dataset
+                return;
+            }
+
+            // Create a new DataTable to hold the filtered results
+            DataTable filteredTable = new DataTable();
+            filteredTable.Columns.Add("Item No.", typeof(int));
+            filteredTable.Columns.Add("Collector Info");
+            filteredTable.Columns.Add("Client Info");
+            filteredTable.Columns.Add("Loan Term Info");
+            filteredTable.Columns.Add("Loan Amount Info");
+            filteredTable.Columns.Add("Amortization Info");
+            filteredTable.Columns.Add("Penalty");
+            filteredTable.Columns.Add("Total Collection");
+            filteredTable.Columns.Add("Loan Status");
+            filteredTable.Columns.Add("Loan Status Date Update");
+
+            // Loop through the rawDataList (which is a List<BsonDocument>)
+            foreach (var doc in rawDataList)
+            {
+                // Get the necessary fields and combine them for filtering
+                string collectorInfo = $"{doc.GetValue("collector_name", "").ToString().Trim()} {doc.GetValue("area_route", "").ToString().Trim()}".ToLower();
+                string clientInfo = $"{doc.GetValue("client_name", "").ToString().Trim()} Contact No: {doc.GetValue("contact_no", "").ToString().Trim()} Loan ID: {doc.GetValue("loan_id", 0)}".ToLower();
+                string loanStatus = doc.GetValue("loan_status", "").ToString().Trim().ToLower();
+                string loanAmountInfo = $"Amount: {ConvertToDouble(doc.GetValue("loan_amount", 0)):N2} Balance: {ConvertToDouble(doc.GetValue("loan_balance", 0)):N2}".ToLower();
+
+                // Combine all fields into a single string for keyword search
+                string combinedText = $"{collectorInfo} {clientInfo} {loanStatus} {loanAmountInfo}";
+
+                // Check if the keyword exists in the combined text
+                if (combinedText.Contains(keyword.ToLower()))
+                {
+                    // If it matches, create a new row for the filtered data
+                    DataRow row = filteredTable.NewRow();
+                    row["Item No."] = doc.GetValue("item_no", 0).ToInt32();
+                    row["Collector Info"] = collectorInfo;
+                    row["Client Info"] = clientInfo;
+                    row["Loan Term Info"] = $"{doc.GetValue("loan_term", 0)} months\n{doc.GetValue("payment_mode", "").ToString().Trim()}";
+                    row["Loan Amount Info"] = loanAmountInfo;
+                    row["Amortization Info"] = $"Amortization: {ConvertToDouble(doc.GetValue("loan_amortization", 0)):N2}\nDue: {ConvertToDouble(doc.GetValue("amortization_due", 0)):N2}\nMissed Days: {doc.GetValue("missed_day", 0)} days";
+                    row["Penalty"] = ConvertToDouble(doc.GetValue("penalty", 0)).ToString("N2");
+                    row["Total Collection"] = ConvertToDouble(doc.GetValue("total_collection", 0)).ToString("N2");
+                    row["Loan Status"] = loanStatus;
+                    row["Loan Status Date Update"] = doc.GetValue("loan_status_date_updated", "").ToString().Trim();
+
+                    filteredTable.Rows.Add(row);
+                }
+            }
+
+            // Set the filtered data as the new DataSource
+            dgvdata.DataSource = filteredTable;
+
+            // Reapply styling and column settings if needed
             dgvdata.Columns["Item No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvdata.Columns["Loan Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvdata.Columns["Loan Status Date Update"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            // Adjust widths
-            dgvdata.Columns["Client Info"].Width = 200;
-            dgvdata.Columns["Item No."].Width = 80;
-            dgvdata.Columns["Loan Amount Info"].Width = 150;
-            dgvdata.Columns["Amortization Info"].Width = 150;
-
-            // Add button column
-            DataGridViewButtonColumn actionColumn = new DataGridViewButtonColumn();
-            actionColumn.Name = "Actions";
-            actionColumn.HeaderText = "Actions";
-            actionColumn.Text = "View";
-            actionColumn.UseColumnTextForButtonValue = true;
-            actionColumn.FlatStyle = FlatStyle.Standard;
-            actionColumn.DefaultCellStyle.Padding = new Padding(30, 15, 20, 15);
-
-            dgvdata.Columns.Add(actionColumn);
-
-            // Highlight rows and update labels
-            HighlightApprovedLoans();
-            UpdateLoanStatusLabels();
         }
+
 
         private double ConvertToDouble(object value)
         {
@@ -170,7 +271,7 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
-        private void refreshdata() 
+        private void refreshdata()
         {
             var rawData = loanRawdataCollection.Find(new BsonDocument()).ToList();
             rawDataList = rawData;
@@ -186,7 +287,6 @@ namespace rct_lmis.ADMIN_SECTION
             dt.Columns.Add("Total Collection");
             dt.Columns.Add("Loan Status");
             dt.Columns.Add("Loan Status Date Update");
-            dt.Columns.Add("Actions");
 
             foreach (var doc in rawData)
             {
@@ -196,18 +296,56 @@ namespace rct_lmis.ADMIN_SECTION
                 row["Collector Info"] = $"{doc.GetValue("collector_name", "")}\n{doc.GetValue("area_route", "")}";
                 row["Client Info"] = $"{doc.GetValue("client_name", "")}\nContact No: {doc.GetValue("contact_no", "")}\nLoan ID: {doc.GetValue("loan_id", "")}";
                 row["Loan Term Info"] = $"{doc.GetValue("loan_term", "")} months\n{doc.GetValue("payment_mode", "")}";
-                row["Loan Amount Info"] = $"Amount: {Convert.ToDouble(doc.GetValue("loan_amount", 0)):N2}\nBalance: {Convert.ToDouble(doc.GetValue("loan_balance", 0)):N2}";
-                row["Amortization Info"] = $"Amortization: {Convert.ToDouble(doc.GetValue("loan_amortization", 0)):N2}" +
-                  $"\nDue: {Convert.ToDouble(doc.GetValue("amortization_due", 0)):N2}" +
-                  $"\nMissed Days: {doc.GetValue("missed_day", "")} days";
+
+                // Safely handle conversion of Loan Amount
+                double loanAmount = 0;
+                if (!double.TryParse(doc.GetValue("loan_amount", "").ToString(), out loanAmount))
+                {
+                    loanAmount = 0;  // Default to 0 if parsing fails
+                }
+
+                // Safely handle conversion of Loan Balance
+                double loanBalance = 0;
+                if (!double.TryParse(doc.GetValue("loan_balance", "").ToString(), out loanBalance))
+                {
+                    loanBalance = 0;  // Default to 0 if parsing fails
+                }
+
+                row["Loan Amount Info"] = $"Amount: {loanAmount:N2}\nBalance: {loanBalance:N2}";
+
+                // Safely handle conversion of Amortization Due
+                double amortizationDue = 0;
+                if (!double.TryParse(doc.GetValue("amortization_due", "").ToString(), out amortizationDue))
+                {
+                    amortizationDue = 0;  // Default to 0 if parsing fails
+                }
+
+                // Safely handle conversion of Loan Amortization
+                double loanAmortization = 0;
+                if (!double.TryParse(doc.GetValue("loan_amortization", "").ToString(), out loanAmortization))
+                {
+                    loanAmortization = 0;  // Default to 0 if parsing fails
+                }
+
+                row["Amortization Info"] = $"Amortization: {loanAmortization:N2}" +
+                    $"\nDue: {amortizationDue:N2}" +
+                    $"\nMissed Days: {doc.GetValue("missed_day", "")} days";
 
                 // Safely handle conversion of Penalty
-                bool isPenaltyNumeric = double.TryParse(doc.GetValue("penalty", 0).ToString(), out double penaltyValue);
-                row["Penalty"] = isPenaltyNumeric ? penaltyValue.ToString("N2") : "0.00";
+                double penaltyValue = 0;
+                if (!double.TryParse(doc.GetValue("penalty", "").ToString(), out penaltyValue))
+                {
+                    penaltyValue = 0;  // Default to 0 if parsing fails
+                }
+                row["Penalty"] = penaltyValue.ToString("N2");
 
                 // Safely handle conversion of Total Collection
-                bool isTotalCollectionNumeric = double.TryParse(doc.GetValue("total_collection", 0).ToString(), out double totalCollectionValue);
-                row["Total Collection"] = isTotalCollectionNumeric ? totalCollectionValue.ToString("N2") : "0.00";
+                double totalCollectionValue = 0;
+                if (!double.TryParse(doc.GetValue("total_collection", "").ToString(), out totalCollectionValue))
+                {
+                    totalCollectionValue = 0;  // Default to 0 if parsing fails
+                }
+                row["Total Collection"] = totalCollectionValue.ToString("N2");
 
                 string loanStatus = doc.GetValue("loan_status", "").ToString();
                 row["Loan Status"] = loanStatus;
@@ -229,12 +367,16 @@ namespace rct_lmis.ADMIN_SECTION
             dgvdata.Columns["Loan Amount Info"].Width = 150;
             dgvdata.Columns["Amortization Info"].Width = 150;
 
+            // Update Loan Status Labels
             UpdateLoanStatusLabels();
         }
 
 
+
+
         private void UpdateLoanStatusLabels()
         {
+            // Count only the visible rows after filtering
             int totalRows = dgvdata.Rows.Count;
             int updatedCount = 0;
             int arrearsCount = 0;
@@ -243,44 +385,50 @@ namespace rct_lmis.ADMIN_SECTION
 
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                string loanStatus = row.Cells["Loan Status"].Value.ToString();
-
-                switch (loanStatus)
+                // Check if the row is not new and is visible
+                if (!row.IsNewRow && row.Visible)
                 {
-                    case "UPDATED":
-                        updatedCount++;
-                        break;
-                    case "ARREARS":
-                        arrearsCount++;
-                        break;
-                    case "LITIGATION":
-                        litigationCount++;
-                        break;
-                    case "DORMANT":
-                        dormantCount++;
-                        break;
+                    string loanStatus = row.Cells["Loan Status"].Value?.ToString() ?? "";
+
+                    // Increment counters based on loan status
+                    switch (loanStatus.ToUpper())  // Ensure case insensitivity
+                    {
+                        case "UPDATED":
+                            updatedCount++;
+                            break;
+                        case "ARREARS":
+                            arrearsCount++;
+                            break;
+                        case "LITIGATION":
+                            litigationCount++;
+                            break;
+                        case "DORMANT":
+                            dormantCount++;
+                            break;
+                    }
                 }
             }
 
-            // Set the text and background color of the labels
-            laccounttotal.Text = $"{totalRows}";
+            // Update the label texts and background colors
+            laccounttotal.Text = $"Total: {totalRows}";
 
             // UPDATED status
             lstatusupdated.Text = $"UPDATED: {updatedCount}";
-            lstatusupdated.BackColor = Color.Green; // Green background for UPDATED
+            lstatusupdated.BackColor = updatedCount > 0 ? Color.Green : Color.LightGray;  // Green or Gray if count is 0
 
             // ARREARS status
             lstatusarrears.Text = $"ARREARS: {arrearsCount}";
-            lstatusarrears.BackColor = Color.Yellow; // Yellow background for ARREARS
+            lstatusarrears.BackColor = arrearsCount > 0 ? Color.Yellow : Color.LightGray;  // Yellow or Gray if count is 0
 
             // LITIGATION status
             lstatuslitigation.Text = $"LITIGATION: {litigationCount}";
-            lstatuslitigation.BackColor = Color.Orange; // Orange background for LITIGATION
+            lstatuslitigation.BackColor = litigationCount > 0 ? Color.Orange : Color.LightGray;  // Orange or Gray if count is 0
 
             // DORMANT status
             lstatusdormant.Text = $"DORMANT: {dormantCount}";
-            lstatusdormant.BackColor = Color.Gray; // Gray background for DORMANT
+            lstatusdormant.BackColor = dormantCount > 0 ? Color.Gray : Color.LightGray;  // Gray or LightGray if count is 0
         }
+
 
 
 
@@ -436,5 +584,27 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
+        private void tsearch_TextChanged_1(object sender, EventArgs e)
+        {
+            ApplySearchFilter(tsearch.Text.Trim());
+        }
+
+        private void cbloanstatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected loan status from the ComboBox
+            string selectedLoanStatus = cbloanstatus.SelectedItem?.ToString();
+
+            // Check if "Show All" is selected
+            if (selectedLoanStatus == "Show All")
+            {
+                // Load all data without filtering
+                LoadDataToDataGridView();
+            }
+            else
+            {
+                // Load filtered data based on selected loan status
+                LoadDataToDataGridView(selectedLoanStatus);
+            }
+        }
     }
 }
