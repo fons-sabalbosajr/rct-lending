@@ -16,6 +16,8 @@ namespace rct_lmis.ADMIN_SECTION
         private IMongoDatabase database;
         private IMongoCollection<BsonDocument> loanRawdataCollection;
         private IMongoCollection<BsonDocument> loanApprovedCollection;
+        private IMongoCollection<BsonDocument> loanCollectorsCollection;
+
         private List<BsonDocument> rawDataList;
 
         public frm_home_ADMIN_rawdata()
@@ -24,6 +26,7 @@ namespace rct_lmis.ADMIN_SECTION
             database = MongoDBConnection.Instance.Database;
             loanRawdataCollection = database.GetCollection<BsonDocument>("loan_rawdata");
             loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
+            loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_approved");
             rawDataList = new List<BsonDocument>();
         }
 
@@ -65,23 +68,21 @@ namespace rct_lmis.ADMIN_SECTION
                 // MongoDB connection
                 var database = MongoDBConnection.Instance.Database;
                 var loanRawdataCollection = database.GetCollection<BsonDocument>("loan_rawdata");
+                var loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
+
+                // Fetch all collectors into a list for keyword matching
+                var collectors = await loanCollectorsCollection.Find(new BsonDocument()).ToListAsync();
 
                 // Define a filter for loan status if provided
-                FilterDefinition<BsonDocument> filter;
-                if (!string.IsNullOrEmpty(loanStatusFilter))
-                {
-                    filter = Builders<BsonDocument>.Filter.Eq("loan_status", loanStatusFilter);
-                }
-                else
-                {
-                    filter = new BsonDocument(); // No filter, load all data
-                }
+                FilterDefinition<BsonDocument> filter = string.IsNullOrEmpty(loanStatusFilter)
+                    ? new BsonDocument()
+                    : Builders<BsonDocument>.Filter.Eq("loan_status", loanStatusFilter);
 
                 // Retrieve loan data based on the filter
                 var rawData = await loanRawdataCollection.Find(filter).ToListAsync();
-                rawDataList = rawData; // Store the raw data
+                rawDataList = rawData;
 
-                // Populate the DataGridView as before...
+                // Populate DataTable with data
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Item No.", typeof(int));
                 dt.Columns.Add("Collector Info");
@@ -94,22 +95,29 @@ namespace rct_lmis.ADMIN_SECTION
                 dt.Columns.Add("Loan Status");
                 dt.Columns.Add("Loan Status Date Update");
 
+                int itemNoCounter = 1;
                 foreach (var doc in rawData)
                 {
                     DataRow row = dt.NewRow();
+                    row["Item No."] = itemNoCounter++;
 
-                    // Populate the rows as before...
-                    row["Item No."] = doc.GetValue("item_no", 0).ToInt32();
-                    row["Collector Info"] = $"{doc.GetValue("collector_name", "").ToString().Trim()}\n{doc.GetValue("area_route", "").ToString().Trim()}";
+                    // Get the collector name from loan_rawdata document
+                    string collectorNameFromLoan = doc.GetValue("collector_name", "").ToString().Trim();
+
+                    // Try to find a matching collector based on a keyword in the collector's name
+                    var matchingCollector = collectors.FirstOrDefault(c =>
+                        c.GetValue("Name", "").ToString().Trim().IndexOf(collectorNameFromLoan, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                    // Display the matched collector's name or fallback to the original collector name if no match is found
+                    row["Collector Info"] = matchingCollector != null
+                        ? matchingCollector.GetValue("Name", "Unknown Collector").ToString()
+                        : collectorNameFromLoan;
+
+                    // Populate other fields
                     row["Client Info"] = $"{doc.GetValue("client_name", "").ToString().Trim()}\nContact No: {doc.GetValue("contact_no", "").ToString().Trim()}\nLoan ID: {doc.GetValue("loan_id", 0)}";
                     row["Loan Term Info"] = $"{doc.GetValue("loan_term", 0)} months\n{doc.GetValue("payment_mode", "").ToString().Trim()}";
-                    double loanAmount = ConvertToDouble(doc.GetValue("loan_amount", 0));
-                    double loanBalance = ConvertToDouble(doc.GetValue("loan_balance", 0));
-                    row["Loan Amount Info"] = $"Amount: {loanAmount:N2}\nBalance: {loanBalance:N2}";
-                    double loanAmortization = ConvertToDouble(doc.GetValue("loan_amortization", 0));
-                    double amortizationDue = ConvertToDouble(doc.GetValue("amortization_due", 0));
-                    int missedDays = doc.GetValue("missed_day", 0).ToInt32();
-                    row["Amortization Info"] = $"Amortization: {loanAmortization:N2}\nDue: {amortizationDue:N2}\nMissed Days: {missedDays} days";
+                    row["Loan Amount Info"] = $"Amount: {ConvertToDouble(doc.GetValue("loan_amount", 0)):N2}\nBalance: {ConvertToDouble(doc.GetValue("loan_balance", 0)):N2}";
+                    row["Amortization Info"] = $"Amortization: {ConvertToDouble(doc.GetValue("loan_amortization", 0)):N2}\nDue: {ConvertToDouble(doc.GetValue("amortization_due", 0)):N2}\nMissed Days: {doc.GetValue("missed_day", 0).ToInt32()} days";
                     row["Penalty"] = ConvertToDouble(doc.GetValue("penalty", 0)).ToString("N2");
                     row["Total Collection"] = ConvertToDouble(doc.GetValue("total_collection", 0)).ToString("N2");
                     row["Loan Status"] = doc.GetValue("loan_status", "").ToString().Trim();
@@ -162,6 +170,7 @@ namespace rct_lmis.ADMIN_SECTION
         }
 
 
+
         private void ApplySearchFilter(string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
@@ -170,6 +179,8 @@ namespace rct_lmis.ADMIN_SECTION
                 LoadDataToDataGridView(); // Reloads the full dataset
                 return;
             }
+
+            var collectors = loanCollectorsCollection.Find(new BsonDocument()).ToList();
 
             // Create a new DataTable to hold the filtered results
             DataTable filteredTable = new DataTable();
@@ -189,6 +200,8 @@ namespace rct_lmis.ADMIN_SECTION
             {
                 // Get the necessary fields and combine them for filtering
                 string collectorInfo = $"{doc.GetValue("collector_name", "").ToString().Trim()} {doc.GetValue("area_route", "").ToString().Trim()}".ToLower();
+
+
                 string clientInfo = $"{doc.GetValue("client_name", "").ToString().Trim()} Contact No: {doc.GetValue("contact_no", "").ToString().Trim()} Loan ID: {doc.GetValue("loan_id", 0)}".ToLower();
                 string loanStatus = doc.GetValue("loan_status", "").ToString().Trim().ToLower();
                 string loanAmountInfo = $"Amount: {ConvertToDouble(doc.GetValue("loan_amount", 0)):N2} Balance: {ConvertToDouble(doc.GetValue("loan_balance", 0)):N2}".ToLower();
@@ -381,6 +394,7 @@ namespace rct_lmis.ADMIN_SECTION
             int updatedCount = 0;
             int arrearsCount = 0;
             int litigationCount = 0;
+            int pastdueCount = 0;
             int dormantCount = 0;
 
             foreach (DataGridViewRow row in dgvdata.Rows)
@@ -399,6 +413,9 @@ namespace rct_lmis.ADMIN_SECTION
                         case "ARREARS":
                             arrearsCount++;
                             break;
+                        case "PAST DUE":
+                            pastdueCount++;
+                            break;
                         case "LITIGATION":
                             litigationCount++;
                             break;
@@ -410,15 +427,21 @@ namespace rct_lmis.ADMIN_SECTION
             }
 
             // Update the label texts and background colors
-            laccounttotal.Text = $"Total: {totalRows}";
+            laccounttotal.Text = $"{totalRows}";
 
             // UPDATED status
             lstatusupdated.Text = $"UPDATED: {updatedCount}";
             lstatusupdated.BackColor = updatedCount > 0 ? Color.Green : Color.LightGray;  // Green or Gray if count is 0
+            lstatusupdated.ForeColor = Color.White;
 
             // ARREARS status
             lstatusarrears.Text = $"ARREARS: {arrearsCount}";
             lstatusarrears.BackColor = arrearsCount > 0 ? Color.Yellow : Color.LightGray;  // Yellow or Gray if count is 0
+
+            // PAST DUE status
+            lstatuspastdue.Text = $"PAST DUE: {pastdueCount}";
+            lstatuspastdue.BackColor = pastdueCount > 0 ? Color.Khaki : Color.LightGray;  // Yellow or Gray if count is 0
+
 
             // LITIGATION status
             lstatuslitigation.Text = $"LITIGATION: {litigationCount}";
@@ -427,6 +450,8 @@ namespace rct_lmis.ADMIN_SECTION
             // DORMANT status
             lstatusdormant.Text = $"DORMANT: {dormantCount}";
             lstatusdormant.BackColor = dormantCount > 0 ? Color.Gray : Color.LightGray;  // Gray or LightGray if count is 0
+            lstatusdormant.ForeColor = Color.White;
+
         }
 
 
@@ -526,6 +551,10 @@ namespace rct_lmis.ADMIN_SECTION
                         break;
                     case "ARREARS":
                         e.CellStyle.BackColor = Color.Yellow;
+                        e.CellStyle.ForeColor = Color.Black;
+                        break;
+                    case "PAST DUE":
+                        e.CellStyle.BackColor = Color.Khaki;
                         e.CellStyle.ForeColor = Color.Black;
                         break;
                     case "LITIGATION":
