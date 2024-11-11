@@ -437,7 +437,7 @@ namespace rct_lmis
 
         private void ttime_Tick(object sender, EventArgs e)
         {
-            ldate.Text = DateTime.Now.ToString("f");
+            ldate.Text = DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt");
         }
     }
 

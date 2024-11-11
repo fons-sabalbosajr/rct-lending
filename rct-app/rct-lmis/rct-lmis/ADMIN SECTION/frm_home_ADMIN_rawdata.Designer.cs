@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +39,8 @@
             this.brefresh = new Guna.UI2.WinForms.Guna2CircleButton();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbloanstatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.laccounttotal = new System.Windows.Forms.Label();
@@ -49,8 +51,7 @@
             this.lstatusupdated = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbloanstatus = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lstatuspastdue = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -157,42 +158,69 @@
             this.panel3.Size = new System.Drawing.Size(1200, 52);
             this.panel3.TabIndex = 14;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(334, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 15);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Loan Status:";
+            // 
+            // cbloanstatus
+            // 
+            this.cbloanstatus.BackColor = System.Drawing.Color.Transparent;
+            this.cbloanstatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbloanstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbloanstatus.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbloanstatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbloanstatus.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbloanstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbloanstatus.ItemHeight = 30;
+            this.cbloanstatus.Location = new System.Drawing.Point(411, 7);
+            this.cbloanstatus.Name = "cbloanstatus";
+            this.cbloanstatus.Size = new System.Drawing.Size(158, 36);
+            this.cbloanstatus.TabIndex = 10;
+            this.cbloanstatus.SelectedIndexChanged += new System.EventHandler(this.cbloanstatus_SelectedIndexChanged);
+            // 
             // dgvdata
             // 
             this.dgvdata.AllowUserToAddRows = false;
             this.dgvdata.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvdata.ColumnHeadersHeight = 40;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvdata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvdata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.Location = new System.Drawing.Point(0, 104);
             this.dgvdata.Name = "dgvdata";
             this.dgvdata.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvdata.RowHeadersVisible = false;
             this.dgvdata.RowHeadersWidth = 60;
             this.dgvdata.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -228,6 +256,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel4.Controls.Add(this.lstatuspastdue);
             this.panel4.Controls.Add(this.laccounttotal);
             this.panel4.Controls.Add(this.guna2VSeparator1);
             this.panel4.Controls.Add(this.lstatusdormant);
@@ -265,7 +294,7 @@
             this.lstatusdormant.AutoSize = true;
             this.lstatusdormant.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstatusdormant.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lstatusdormant.Location = new System.Drawing.Point(513, 7);
+            this.lstatusdormant.Location = new System.Drawing.Point(606, 7);
             this.lstatusdormant.Name = "lstatusdormant";
             this.lstatusdormant.Size = new System.Drawing.Size(91, 15);
             this.lstatusdormant.TabIndex = 12;
@@ -276,7 +305,7 @@
             this.lstatuslitigation.AutoSize = true;
             this.lstatuslitigation.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstatuslitigation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lstatuslitigation.Location = new System.Drawing.Point(415, 7);
+            this.lstatuslitigation.Location = new System.Drawing.Point(508, 7);
             this.lstatuslitigation.Name = "lstatuslitigation";
             this.lstatuslitigation.Size = new System.Drawing.Size(92, 15);
             this.lstatuslitigation.TabIndex = 11;
@@ -287,7 +316,7 @@
             this.lstatusarrears.AutoSize = true;
             this.lstatusarrears.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstatusarrears.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lstatusarrears.Location = new System.Drawing.Point(327, 7);
+            this.lstatusarrears.Location = new System.Drawing.Point(420, 7);
             this.lstatusarrears.Name = "lstatusarrears";
             this.lstatusarrears.Size = new System.Drawing.Size(82, 15);
             this.lstatusarrears.TabIndex = 10;
@@ -326,32 +355,16 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Total Accounts:";
             // 
-            // cbloanstatus
+            // lstatuspastdue
             // 
-            this.cbloanstatus.BackColor = System.Drawing.Color.Transparent;
-            this.cbloanstatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbloanstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbloanstatus.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbloanstatus.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbloanstatus.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cbloanstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbloanstatus.ItemHeight = 30;
-            this.cbloanstatus.Location = new System.Drawing.Point(411, 7);
-            this.cbloanstatus.Name = "cbloanstatus";
-            this.cbloanstatus.Size = new System.Drawing.Size(158, 36);
-            this.cbloanstatus.TabIndex = 10;
-            this.cbloanstatus.SelectedIndexChanged += new System.EventHandler(this.cbloanstatus_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(334, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 15);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Loan Status:";
+            this.lstatuspastdue.AutoSize = true;
+            this.lstatuspastdue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstatuspastdue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lstatuspastdue.Location = new System.Drawing.Point(326, 7);
+            this.lstatuspastdue.Name = "lstatuspastdue";
+            this.lstatuspastdue.Size = new System.Drawing.Size(87, 15);
+            this.lstatuspastdue.TabIndex = 19;
+            this.lstatuspastdue.Text = "PAST DUE (100)";
             // 
             // frm_home_ADMIN_rawdata
             // 
@@ -401,5 +414,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private Guna.UI2.WinForms.Guna2ComboBox cbloanstatus;
+        private System.Windows.Forms.Label lstatuspastdue;
     }
 }
