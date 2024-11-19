@@ -18,14 +18,13 @@
     <PublishUrl>C:\Users\FONS\Dropbox\lmis\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>https://www.dropbox.com/scl/fo/btoyub77866ts3lt93s53/AAF614hbx6JLCDe618jDHEs%3frlkey=9daeh63gy9vu2yl5pqh8kowk9&amp;st=xavd7jwj&amp;dl=0/</UpdateUrl>
     <ProductName>RCT-LMIS %28Lending Management Information System%29</ProductName>
     <PublisherName>ACS Micro IT Solutions Co.</PublisherName>
     <SuiteName>RACATOM Corporation</SuiteName>
