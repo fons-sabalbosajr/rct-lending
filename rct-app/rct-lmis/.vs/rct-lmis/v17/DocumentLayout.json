@@ -1,22 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\",
+  "WorkspaceRootPath": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\clients section\\frm_home_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\clients section\\frm_home_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|rct-lmis||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\admin section\\frm_home_admin_rawdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\admin section\\frm_home_admin_rawdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\clients section\\frm_home_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\clients section\\frm_home_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\admin section\\frm_home_admin_rawdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\admin section\\frm_home_admin_rawdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|e:\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|cc4014f5-b18d-439c-9352-f99d984cca85"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +16,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,53 +24,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frm_home_ADMIN_rawdata.cs",
-              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "RelativeToolTip": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAewD8AAABQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T08:04:14.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frm_home_ADMIN_rawdata.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs [Design]",
-              "RelativeToolTip": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T07:47:36.692Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frm_home_clients.cs",
-              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "RelativeToolTip": "rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "ViewState": "AgIAAIIBAAAAAAAAAIAwwJsBAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T06:47:12.789Z",
+              "Title": "rct-lmis",
+              "DocumentMoniker": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\rct-lmis.csproj",
+              "RelativeDocumentMoniker": "rct-lmis\\rct-lmis.csproj",
+              "ToolTip": "E:\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\rct-lmis.csproj",
+              "RelativeToolTip": "rct-lmis\\rct-lmis.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-11T01:27:07.59Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frm_home_clients.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs [Design]",
-              "RelativeToolTip": "rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T06:47:10.541Z",
-              "EditorCaption": " [Design]"
             }
           ]
         }
