@@ -1,5 +1,7 @@
 ﻿using DnsClient.Protocol;
 using DocumentFormat.OpenXml.Wordprocessing;
+using LiveCharts.Wpf;
+using LiveCharts;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -23,12 +25,26 @@ namespace rct_lmis
             InitializeClientsView();
             _username = username;
 
-            //dgvusersonline.ClearSelection();
-            //dgvbulletin.ClearSelection();
 
-            //dgvclients.ClearSelection();
-            //dgvbulletin.ClearSelection();
-            //dgvcollectionsnew.ClearSelection();
+            tdues.Interval = 24 * 60 * 60 * 1000;
+            tdues.Start();
+
+            
+            dgvdata_client.ClearSelection();
+            dgvcollectionsnew.ClearSelection();
+
+
+            // Initialize DataGridView Columns
+            InitializeDataGridViewColumns();
+            InitializePendingLoansColumns();
+        }
+
+        private void InitializeDataGridViewColumns()
+        {
+            // Add columns to the DataGridView programmatically
+            dgvupcomingpayments.Columns.Add("LoanClient", "Loan No - Client Name");
+            dgvupcomingpayments.Columns.Add("AmountDueDueDate", "Amount Due - Due Date");
+            dgvupcomingpayments.Columns.Add("Description", "Description");
         }
 
         private void frm_home_dashboard_Load(object sender, EventArgs e)
@@ -42,14 +58,121 @@ namespace rct_lmis
             LoadClientTotal();
             PopulateClientsView();
 
-            //LoadLoanTotal();
-            //PopulatePendingLoansView();
+            CountUpdatedLoans();
+            PopulatePendingLoansView();
 
             LoadCollectionTotal();
             PopulateCollectionsView();
 
-            //LoadDueLoanTotal();
-            //PopulateUpcomingPaymentsView();
+            LoadDueLoanTotal();
+            PopulateUpcomingPaymentsView();
+
+            PopulateLoanGrowthChart();
+
+        }
+
+        private void PopulateLoanGrowthChart()
+        {
+            try
+            {
+                // Initialize MongoDB connection
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_disbursed");
+
+                // Fetch all loan data
+                var loans = collection.Find(Builders<BsonDocument>.Filter.Empty).ToList();
+
+                // Aggregate loan amounts by month (using Date_Encoded)
+                var monthlyLoanData = loans
+                    .Where(loan => loan.Contains("Date_Encoded") && !string.IsNullOrEmpty(loan["Date_Encoded"].ToString()))
+                    .GroupBy(loan =>
+                    {
+                        var date = DateTime.Parse(loan["Date_Encoded"].ToString());
+                        return new DateTime(date.Year, date.Month, 1); // Group by Year-Month
+                    })
+                    .Select(group => new
+                    {
+                        Month = group.Key,
+                        TotalLoanAmount = group.Sum(loan =>
+                        {
+                            var amountStr = loan.Contains("LoanAmount") ? loan["LoanAmount"].ToString() : "₱0.00";
+                            return decimal.TryParse(amountStr.Replace("₱", "").Replace(",", ""), out decimal loanAmount)
+                                ? loanAmount
+                                : 0;
+                        })
+                    })
+                    .OrderBy(data => data.Month) // Ensure the data is sorted by month
+                    .ToList();
+
+                // Prepare data for the Cartesian chart
+                var months = monthlyLoanData.Select(data => data.Month.ToString("MMM yyyy")).ToList();
+                var loanAmounts = monthlyLoanData.Select(data => (double)data.TotalLoanAmount).ToList();
+
+                // Bind data to the Cartesian chart
+                chloangrowth.Series.Clear();
+                chloangrowth.Series.Add(new LineSeries
+                {
+                    Title = "Loan Growth",
+                    Values = new ChartValues<double>(loanAmounts),
+                    PointGeometry = DefaultGeometries.Circle,
+                    PointGeometrySize = 10
+                });
+
+                // Configure chart labels
+                chloangrowth.AxisX.Clear();
+                chloangrowth.AxisX.Add(new Axis
+                {
+                    Title = "Month",
+                    Labels = months
+                });
+
+                chloangrowth.AxisY.Clear();
+                chloangrowth.AxisY.Add(new Axis
+                {
+                    Title = "Loan Amount (₱)",
+                    LabelFormatter = value => $"₱{value:N2}"
+                });
+
+                chloangrowth.LegendLocation = LegendLocation.Right;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error populating loan growth chart: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void InitializePendingLoansColumns()
+        {
+            // Clear any existing columns
+            dgvpendingloans.Columns.Clear();
+
+            // Add columns with word wrapping enabled
+            var loanInfoColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "LoanAccountInfo",
+                HeaderText = "Loan Account Info",
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    WrapMode = DataGridViewTriState.True
+                }
+            };
+
+            var remarksColumn = new DataGridViewTextBoxColumn
+            {
+                Name = "Remarks",
+                HeaderText = "Remarks",
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    WrapMode = DataGridViewTriState.True
+                }
+            };
+
+            // Add columns to the DataGridView
+            dgvpendingloans.Columns.Add(loanInfoColumn);
+            dgvpendingloans.Columns.Add(remarksColumn);
+
+            // Enable row auto-sizing
+            //dgvpendingloans.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
         private void InitializeDataGridView()
@@ -277,56 +400,121 @@ namespace rct_lmis
 
 
 
-        private void LoadLoanTotal()
+        private void CountUpdatedLoans()
         {
             try
             {
+                // Get the MongoDB database and collection
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_disbursed");
 
-                // Get the total count of documents in the loan_disbursed collection
-                var totalCount = collection.CountDocuments(Builders<BsonDocument>.Filter.Empty);
+                // Define the filter to find documents where LoanStatus is UPDATED
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanStatus", "UPDATED");
 
-                // Display the total count in the lloantotal label
-                lloantotal.Text = totalCount.ToString();
+                // Count the number of documents matching the filter
+                long updatedLoanCount = collection.CountDocuments(filter);
+
+                // Update the loan.Text with the count of UPDATED loans
+                lloantotal.Text = updatedLoanCount.ToString();
             }
             catch (Exception ex)
             {
-                // Handle exceptions
-                MessageBox.Show($"Error loading loan total: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Handle any errors that occur
+                MessageBox.Show($"Error counting UPDATED loans: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void PopulatePendingLoansView()
         {
             try
             {
-                var database = MongoDBConnection.Instance.Database;
-                var collection = database.GetCollection<BsonDocument>("loan_application");
+                // Initialize the columns first
+                InitializePendingLoansColumns();
 
-                // Fetch pending loan applications
-                var pendingLoans = collection.Find(Builders<BsonDocument>.Filter.Eq("LoanStatus", "Pending")) // Assuming LoanStatus indicates if it's pending
-                                             .SortByDescending(a => a["ApplicationDate"]) // Sort by application date
-                                             .ToList();
+                // Hide the label if no pending loans exist
+                lnorecordpending.Visible = false;
+
+                // Get the MongoDB database and collection
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_disbursed");
+
+                // Fetch all documents from the loan_disbursed collection
+                var pendingLoans = collection.Find(Builders<BsonDocument>.Filter.Empty).ToList();
+
+                // List to hold the pending loan data temporarily
+                List<LoanPaymentDetails> pendingLoanDetailsList = new List<LoanPaymentDetails>();
+
+                // Loop through each loan to detect missing data and prepare it for display
+                foreach (var loan in pendingLoans)
+                {
+                    // Retrieve Loan No and Client Name
+                    string loanNo = loan.Contains("LoanNo") ? loan["LoanNo"].ToString() : "N/A";
+                    string clientName = loan.Contains("FirstName") && loan.Contains("LastName")
+                        ? $"{loan["FirstName"]} {loan["LastName"]}"
+                        : "N/A";
+
+                    // If either LoanNo or ClientName is "N/A", skip this loan
+                    if (loanNo == "N/A" || clientName == "N/A")
+                        continue;
+
+                    // Merged Loan No and Client Name with newline for separation
+                    string mergedLoanClient = $"{loanNo}\n{clientName}";
+
+                    // Dynamically check for missing fields
+                    List<string> missingFields = new List<string>();
+
+                    foreach (var field in new[] { "PaymentMode", "StartPaymentDate", "MaturityDate", "Penalty", "LoanInterest" })
+                    {
+                        if (!loan.Contains(field) || string.IsNullOrEmpty(loan[field]?.ToString()))
+                        {
+                            missingFields.Add(field.Replace("PaymentMode", "Payment Mode")
+                                                   .Replace("StartPaymentDate", "Start Payment Date")
+                                                   .Replace("MaturityDate", "Maturity Date")
+                                                   .Replace("Penalty", "Penalty")
+                                                   .Replace("LoanInterest", "Loan Interest"));
+                        }
+                    }
+
+                    // If no fields are missing, skip this loan
+                    if (missingFields.Count == 0)
+                        continue;
+
+                    // Prepare a description with missing fields
+                    string description = "Missing:\n" + string.Join("\n- ", missingFields);
+
+                    // Add to pending loan details
+                    pendingLoanDetailsList.Add(new LoanPaymentDetails
+                    {
+                        LoanClient = mergedLoanClient,
+                        Description = description // Dynamic description indicating missing data
+                    });
+                }
+
+                // Sort the pending loans by LoanNo
+                pendingLoanDetailsList = pendingLoanDetailsList
+                    .OrderBy(loan => loan.LoanClient)
+                    .ToList();
 
                 // Clear existing rows in the DataGridView
                 dgvpendingloans.Rows.Clear();
 
-                // Populate DataGridView with pending loan information
-                foreach (var loan in pendingLoans)
+                // Add sorted rows to the DataGridView
+                foreach (var loanDetail in pendingLoanDetailsList)
                 {
-                    string fullName = $"{loan["FirstName"]} {loan["MiddleName"]} {loan["LastName"]} {loan["SuffixName"]}".Trim();
-                    string applicationDate = loan.Contains("ApplicationDate") ? loan["ApplicationDate"].ToString() : "";
-
-                    // Add row to the DataGridView
-                    dgvpendingloans.Rows.Add(fullName, applicationDate);
+                    dgvpendingloans.Rows.Add(loanDetail.LoanClient, loanDetail.Description);
                 }
+
+                // Show label if no pending loans are found
+                lnorecordpending.Visible = pendingLoanDetailsList.Count == 0;
             }
             catch (Exception ex)
             {
-                // Handle exceptions
+                // Handle any exceptions
                 MessageBox.Show($"Error loading pending loans: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void LoadCollectionTotal()
         {
@@ -442,8 +630,6 @@ namespace rct_lmis
         }
 
 
-
-
         private void LoadDueLoanTotal()
         {
             try
@@ -457,17 +643,45 @@ namespace rct_lmis
                 // Fetch all documents from the loan_disbursed collection
                 var dueLoans = collection.Find(Builders<BsonDocument>.Filter.Empty).ToList();
 
-                // Count how many PaymentStartDate entries are due today or in the future
+                // Count how many loans are due today or in the future
                 int dueCount = dueLoans.Count(loan =>
                 {
-                    if (loan.Contains("PaymentStartDate") && DateTime.TryParse(loan["PaymentStartDate"].ToString(), out DateTime paymentStartDate))
+                    if (loan.Contains("StartPaymentDate") && DateTime.TryParse(loan["StartPaymentDate"].ToString(), out DateTime startPaymentDate))
                     {
-                        return paymentStartDate.Date >= today; // Check if the payment date is today or in the future
+                        string paymentMode = loan.Contains("PaymentMode") ? loan["PaymentMode"].AsString.ToUpper() : string.Empty;
+
+                        DateTime dueDate = DateTime.MinValue;
+
+                        // Calculate the due date based on PaymentMode
+                        switch (paymentMode)
+                        {
+                            case "DAILY":
+                                // Daily payments are due today
+                                dueDate = startPaymentDate;
+                                break;
+                            case "WEEKLY":
+                                // Weekly payments are due 3 days before the start payment date
+                                dueDate = startPaymentDate.AddDays(-3);
+                                break;
+                            case "SEMI-MONTHLY":
+                                // Semi-monthly payments are due 1 week before the start payment date
+                                dueDate = startPaymentDate.AddDays(-7);
+                                break;
+                            case "MONTHLY":
+                                // Monthly payments are due 15 days before the start payment date
+                                dueDate = startPaymentDate.AddDays(-15);
+                                break;
+                            default:
+                                break;
+                        }
+
+                        // Check if the loan is due today or in the future
+                        return dueDate <= today;
                     }
                     return false;
                 });
 
-                // Display the due count in the ldueloantotal label
+                // Display the due count in the label
                 ldueloantotal.Text = dueCount.ToString();
             }
             catch (Exception ex)
@@ -481,30 +695,122 @@ namespace rct_lmis
         {
             try
             {
+                lnorecordpay.Visible = false;
                 var database = MongoDBConnection.Instance.Database;
-                var collection = database.GetCollection<BsonDocument>("loan_collections");
+                var collection = database.GetCollection<BsonDocument>("loan_disbursed");
 
-                // Get upcoming payments sorted by the collection date (since no "NextPaymentDate" is in the sample data)
-                var upcomingPayments = collection.Find(Builders<BsonDocument>.Filter.Empty)
-                                                 .SortBy(c => c["CollectionDate"]) // Using CollectionDate for sorting
-                                                 .ToList();
+                // Get today's date for comparison
+                DateTime today = DateTime.Today;
+
+                // Fetch all documents from the loan_disbursed collection
+                var dueLoans = collection.Find(Builders<BsonDocument>.Filter.Empty).ToList();
+
+                // List to hold the loan data temporarily
+                List<LoanPaymentDetails> loanDetailsList = new List<LoanPaymentDetails>();
+
+                // Populate the loanDetailsList with loan data
+                foreach (var loan in dueLoans)
+                {
+                    // Retrieve Loan No and Client Name
+                    string loanNo = loan.Contains("LoanNo") ? loan["LoanNo"].ToString() : "N/A";
+                    string clientName = loan.Contains("FirstName") && loan.Contains("LastName")
+                        ? $"{loan["FirstName"]} {loan["LastName"]}"
+                        : "N/A";
+
+                    // If either LoanNo or ClientName is "N/A", skip this loan
+                    if (loanNo == "N/A" || clientName == "N/A")
+                        continue;
+
+                    // Use newline to separate Loan No and Client Name in the same cell
+                    string mergedLoanClient = $"{loanNo}\n{clientName}";
+
+                    // Calculate the Due Date based on the PaymentMode
+                    DateTime? dueDate = null;
+                    string paymentMode = loan.Contains("PaymentMode") ? loan["PaymentMode"].ToString() : string.Empty;
+
+                    if (loan.Contains("StartPaymentDate") && DateTime.TryParse(loan["StartPaymentDate"].ToString(), out DateTime startPaymentDate))
+                    {
+                        switch (paymentMode.ToUpper())
+                        {
+                            case "DAILY":
+                                dueDate = startPaymentDate.AddDays(1);
+                                break;
+                            case "WEEKLY":
+                                dueDate = startPaymentDate.AddDays(3); // 3 days before
+                                break;
+                            case "SEMI-MONTHLY":
+                                dueDate = startPaymentDate.AddDays(7); // 7 days before
+                                break;
+                            case "MONTHLY":
+                                dueDate = startPaymentDate.AddDays(15); // 15 days before
+                                break;
+                        }
+                    }
+
+                    // If the dueDate is not available, skip this loan
+                    if (!dueDate.HasValue)
+                        continue;
+
+                    // Prepare the merged Amount Due and Due Date
+                    string amountDue = loan.Contains("LoanAmortization") ? loan["LoanAmortization"].ToString() : "N/A";
+                    string dueDateStr = dueDate.HasValue ? dueDate.Value.ToString("MM/dd/yyyy") : "N/A";
+
+                    // If either AmountDue or DueDate is "N/A", skip this loan
+                    if (amountDue == "N/A" || dueDateStr == "N/A")
+                        continue;
+
+                    // Calculate the number of days due
+                    string dueDays = "N/A";
+                    int daysDifference = 0;
+                    if (dueDate.HasValue)
+                    {
+                        daysDifference = (today - dueDate.Value).Days;
+
+                        // If the due date is in the future
+                        if (daysDifference < 0)
+                        {
+                            dueDays = $"{Math.Abs(daysDifference)} days until due";
+                        }
+                        // If the due date is in the past
+                        else if (daysDifference > 0)
+                        {
+                            dueDays = $"{daysDifference} days overdue";
+                        }
+                        // If the due date is today
+                        else
+                        {
+                            dueDays = "Due today";
+                        }
+                    }
+
+                    // Use newline to separate Amount Due and Due Date in the same cell
+                    string mergedAmountDueDate = $"{amountDue}\n{dueDateStr}";
+
+                    // Description: merged with due days calculation
+                    string description = $"Client is {dueDays}";
+
+                    // Add the loan details to the list
+                    loanDetailsList.Add(new LoanPaymentDetails
+                    {
+                        LoanClient = mergedLoanClient,
+                        AmountDueDueDate = mergedAmountDueDate,
+                        Description = description,
+                        DueDays = daysDifference
+                    });
+                }
+
+                // Sort the loanDetailsList by DueDays (recent overdue and due today first)
+                loanDetailsList = loanDetailsList
+                    .OrderBy(loan => loan.DueDays)
+                    .ToList();
 
                 // Clear existing rows in the DataGridView
                 dgvupcomingpayments.Rows.Clear();
 
-                // Populate DataGridView with upcoming payment information
-                foreach (var payment in upcomingPayments)
+                // Add sorted rows to the DataGridView
+                foreach (var loanDetail in loanDetailsList)
                 {
-                    // Retrieve data from BsonDocument and handle missing fields
-                    string loanId = payment.Contains("LoanID") ? payment["LoanID"].AsString : "N/A";
-                    string amountDue = payment.Contains("LoantoPay") ? payment["LoantoPay"].ToString() : "0.00"; // Adjust field name
-                    string collectionDate = payment.Contains("CollectionDate")
-                                            ? payment["CollectionDate"].ToLocalTime().ToString("yyyy-MM-dd")
-                                            : "N/A";
-                    string collector = payment.Contains("Collector") ? payment["Collector"].AsString : "Unknown"; // Adjust field name
-
-                    // Add row to the DataGridView
-                    dgvupcomingpayments.Rows.Add(loanId, amountDue, collectionDate, collector);
+                    dgvupcomingpayments.Rows.Add(loanDetail.LoanClient, loanDetail.AmountDueDueDate, loanDetail.Description);
                 }
             }
             catch (Exception ex)
@@ -513,6 +819,8 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading upcoming payments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
 
         private void dgvusersonline_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -580,17 +888,27 @@ namespace rct_lmis
 
         private void dgvbulletin_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            dgvbulletin.ClearSelection();
+            //dgvbulletin.ClearSelection();
         }
 
         private void dgvcollectionsnew_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-           dgvcollectionsnew.ClearSelection();
+           //dgvcollectionsnew.ClearSelection();
         }
 
         private void dgvdata_client_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            dgvdata_client.ClearSelection();
+            //dgvdata_client.ClearSelection();
+        }
+
+        private void dgvupcomingpayments_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            //dgvupcomingpayments.ClearSelection();
+        }
+
+        private void tdues_Tick(object sender, EventArgs e)
+        {
+            PopulateUpcomingPaymentsView();
         }
     }
 
@@ -611,4 +929,13 @@ namespace rct_lmis
         public DateTime LoginTime { get; set; }
         public DateTime? LogoutTime { get; set; } // Changed to nullable to allow for null values
     }
+
+    public class LoanPaymentDetails
+    {
+        public string LoanClient { get; set; }
+        public string AmountDueDueDate { get; set; }
+        public string Description { get; set; }
+        public int DueDays { get; set; } // Used for sorting
+    }
+
 }

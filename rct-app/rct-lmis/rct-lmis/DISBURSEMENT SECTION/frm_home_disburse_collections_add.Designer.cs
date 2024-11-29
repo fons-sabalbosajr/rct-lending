@@ -716,7 +716,6 @@
             this.tprincipaldue.Name = "tprincipaldue";
             this.tprincipaldue.PasswordChar = '\0';
             this.tprincipaldue.PlaceholderText = "0.00";
-            this.tprincipaldue.ReadOnly = true;
             this.tprincipaldue.SelectedText = "";
             this.tprincipaldue.Size = new System.Drawing.Size(138, 25);
             this.tprincipaldue.TabIndex = 120;
@@ -830,7 +829,6 @@
             this.tcolinterest.Name = "tcolinterest";
             this.tcolinterest.PasswordChar = '\0';
             this.tcolinterest.PlaceholderText = "0.00";
-            this.tcolinterest.ReadOnly = true;
             this.tcolinterest.SelectedText = "";
             this.tcolinterest.Size = new System.Drawing.Size(138, 25);
             this.tcolinterest.TabIndex = 132;
@@ -851,7 +849,6 @@
             this.tcolpenalty.Name = "tcolpenalty";
             this.tcolpenalty.PasswordChar = '\0';
             this.tcolpenalty.PlaceholderText = "0.00";
-            this.tcolpenalty.ReadOnly = true;
             this.tcolpenalty.SelectedText = "";
             this.tcolpenalty.Size = new System.Drawing.Size(138, 25);
             this.tcolpenalty.TabIndex = 133;
@@ -872,7 +869,6 @@
             this.tcoltotal.Name = "tcoltotal";
             this.tcoltotal.PasswordChar = '\0';
             this.tcoltotal.PlaceholderText = "0.00";
-            this.tcoltotal.ReadOnly = true;
             this.tcoltotal.SelectedText = "";
             this.tcoltotal.Size = new System.Drawing.Size(138, 25);
             this.tcoltotal.TabIndex = 134;
@@ -893,7 +889,6 @@
             this.tcolpaid.Name = "tcolpaid";
             this.tcolpaid.PasswordChar = '\0';
             this.tcolpaid.PlaceholderText = "0.00";
-            this.tcolpaid.ReadOnly = true;
             this.tcolpaid.SelectedText = "";
             this.tcolpaid.Size = new System.Drawing.Size(138, 25);
             this.tcolpaid.TabIndex = 135;
@@ -914,7 +909,6 @@
             this.tcolactual.Name = "tcolactual";
             this.tcolactual.PasswordChar = '\0';
             this.tcolactual.PlaceholderText = "0.00";
-            this.tcolactual.ReadOnly = true;
             this.tcolactual.SelectedText = "";
             this.tcolactual.Size = new System.Drawing.Size(138, 25);
             this.tcolactual.TabIndex = 137;

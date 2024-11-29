@@ -22,6 +22,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private IMongoCollection<BsonDocument> _loanDisbursedCollection;
         private IMongoCollection<BsonDocument> _loanCollectorsCollection;
         private IMongoCollection<BsonDocument> _loanAccountCollection;
+        private IMongoCollection<BsonDocument> _loanRemainingBalance;
         private frm_home_disburse_collections _parentForm;
         private List<string> _accountIdList;
         private string name;
@@ -44,13 +45,12 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
             _loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
             _loanAccountCollection = database.GetCollection<BsonDocument>("loan_account_data");
-           
+            _loanRemainingBalance = database.GetCollection<BsonDocument>("loan_remaining_balance");
+
             LoadPaymentModes();
             
             bsave.Enabled = false;
             bcancel.Enabled = false;
-
-           
         }
 
         public async  Task LoadClientName(string clientNo)
@@ -457,7 +457,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 if (loanApproved != null)
                 {
-                    Console.WriteLine($"Found loanApproved: {loanApproved.ToJson()}"); // Log the found document
+                    //Console.WriteLine($"Found loanApproved: {loanApproved.ToJson()}"); // Log the found document
 
                     // Extracting the base AccountId
                     string accountId = loanApproved["ClientNo"].ToString();
@@ -512,9 +512,28 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
+        private void SaveRemainingBalance(decimal principalBalance, string loanIdNo, decimal loanAmount, int loanTerm, decimal amortizedAmt)
+        {
+            try
+            {
+                var remainingBalanceDocument = new BsonDocument
+                 {
+                     { "LoanID", loanIdNo },
+                     { "RemainingPrincipalBalance", principalBalance },
+                     { "LoanAmount", loanAmount },
+                     { "LoanTerm", loanTerm },
+                     { "Amortization", amortizedAmt },
+                     { "LastUpdated", DateTime.Now }
+                 };
 
-
-
+                // Insert the remaining balance document into the existing _loanRemainingBalance collection
+                _loanRemainingBalance.InsertOne(remainingBalanceDocument);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to save remaining balance: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
 
@@ -524,7 +543,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             {
                 // Perform validation on required fields
                 if (string.IsNullOrWhiteSpace(tloanid.Text) || string.IsNullOrWhiteSpace(tname.Text) ||
-                string.IsNullOrWhiteSpace(tloanbal.Text) || string.IsNullOrWhiteSpace(tcolpayamt.Text))
+                    string.IsNullOrWhiteSpace(tloanbal.Text) || string.IsNullOrWhiteSpace(tcolpayamt.Text))
                 {
                     MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
@@ -541,51 +560,57 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 decimal loanAmount = ParseCurrency(tloanamt.Text);
                 decimal collectionPaymentAmount = ParseCurrency(tcolpayamt.Text);
 
-                // Get loan interest rate from loan_disbursed collection
-                var loanIdNo = tloanid.Text.Trim();
+                // Get loan information from loan_disbursed collection
+                string loanIdNo = tloanid.Text.Trim();
                 var loanInfo = GetLoanDisbursementInfo(loanIdNo);
 
                 if (loanInfo == null)
                 {
-                    MessageBox.Show("Loan information not found for the given Loan ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Loan disbursement not found for Loan ID: {loanIdNo}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
-                // Retrieve the loan interest rate
-                decimal loanInterestRate = decimal.Parse(loanInfo["loanInterest"].ToString().Replace("%", "").Trim()) / 100; // Convert to decimal
+                // Safely retrieve loan interest rate and term
+                decimal loanInterestRate = 0;
+                int loanTerm = 0;
 
-                int loanTerm = int.Parse(loanInfo["loanTerm"].ToString()); // Loan Term in months
+                if (loanInfo.TryGetValue("LoanInterest", out var loanInterest))
+                {
+                    loanInterestRate = decimal.Parse(loanInterest.ToString().Replace("%", "").Trim()) / 100; // Convert to decimal
+                }
+                else
+                {
+                    MessageBox.Show($"Loan Interest not found for Loan ID: {loanIdNo}. Defaulting to 0%.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                if (loanInfo.TryGetValue("LoanTerm", out var term))
+                {
+                    // Parse Loan Term in days (or months depending on your logic)
+                    loanTerm = int.Parse(term.ToString().Split(' ')[0]);
+                }
+                else
+                {
+                    MessageBox.Show($"Loan Term not found for Loan ID: {loanIdNo}. Defaulting to 0 days.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
                 // Calculate Total Loan to Pay
-                decimal totalLoanToPay = loanAmount + (loanAmount * loanInterestRate * loanTerm);
+                decimal totalLoanToPay = loanAmount + (loanAmount * loanInterestRate);
 
                 // Retrieve the latest RunningBalance and previous balance for this loan from loan_collections
                 decimal previousRunningBalance = GetLatestRunningBalance(loanIdNo);
-                decimal previousPrincipalBalance = GetLatestPrincipalBalance(loanIdNo);
 
-                // Calculate interest due
-                decimal dailyInterestDue = ParseCurrency(tcolinterest.Text);
-                decimal amortizedAmt = ParseCurrency(tpayamort.Text);
+                // Calculate Amortization components (principal and interest)
+                decimal dailyAmortization = totalLoanToPay / loanTerm; // Total amortization per day
+                decimal amortizationInterest = (loanAmount * loanInterestRate) / loanTerm; // Daily interest
+                decimal amortizationPrincipal = dailyAmortization - amortizationInterest; // Daily principal
 
-                // Calculate total due including previous balance
-                decimal totalDue = amortizedAmt + previousPrincipalBalance;
+                // Allocate payment to interest and principal based on ActualPayment
+                decimal allocatedInterest = Math.Min(collectionPaymentAmount, amortizationInterest);
+                decimal remainingPayment = collectionPaymentAmount - allocatedInterest;
+                decimal allocatedPrincipal = Math.Min(remainingPayment, amortizationPrincipal);
 
-                // Allocate payment to the outstanding balance first
-                decimal allocatedToBalance = Math.Min(collectionPaymentAmount, previousPrincipalBalance);
-                decimal remainingPayment = collectionPaymentAmount - allocatedToBalance;
-
-                // Allocate payment to interest next
-                decimal allocatedInterest = Math.Min(remainingPayment, dailyInterestDue);
-                remainingPayment -= allocatedInterest;
-
-                // Allocate remaining payment to principal
-                decimal allocatedPrincipal = remainingPayment;
-
-                // Calculate the new running balance (previous running balance - allocated principal)
+                // Update balances
                 decimal runningBalance = previousRunningBalance - collectionPaymentAmount;
-
-                // Calculate the new principal balance
-                decimal principalBalance = totalDue - collectionPaymentAmount;
 
                 // Ensure the ActualCollection does not exceed the TotalLoanToPay
                 if (collectionPaymentAmount > totalLoanToPay)
@@ -596,93 +621,59 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 // Create a new BsonDocument to store the form data
                 var loanCollectionDocument = new BsonDocument
-                {
-                    { "ClientNo", laccountid.Text.Trim() },
-                    { "LoanID", loanIdNo },
-                    { "Name", tname.Text.Trim() },
-                    { "ClientNumber", tclientno.Text.Trim() },
-                    { "Address", taddress.Text.Trim() },
-                    { "Contact", tcontact.Text.Trim() },
-                    { "LoanAmount", loanAmount },
-                    { "LoanTerm", loanTerm },
-                    { "PaymentStartDate", loanInfo["PaymentStartDate"].ToString() },
-                    { "PaymentMaturityDate", tpaymature.Text.Trim() },
-                    { "PaymentsMode", tpaymode.Text.Trim() },
-                    { "Amortization", amortizedAmt },
-                    { "PaymentStatus", tpaymentstatus.Text.Trim() },
-                    { "CollectionDate", dtdate.Value },
-                    { "Collector", cbcollector.SelectedItem?.ToString() ?? string.Empty },
-                    { "PaymentMode", cbpaymentmode.SelectedItem?.ToString() ?? string.Empty },
-                    { "PrincipalDue", ParseCurrency(tprincipaldue.Text) + previousPrincipalBalance },
-                    { "CollectedInterest", allocatedInterest },
-                    { "CollectedPenalty", ParseCurrency(tcolpenalty.Text) },
-                    { "TotalCollected", collectionPaymentAmount + previousPrincipalBalance },
-                    { "ActualCollection", Math.Min(collectionPaymentAmount, totalLoanToPay) }, // Ensure ActualCollection does not exceed TotalLoanToPay
-                    { "CollectionReferenceNo", tcolrefno.Text.Trim() },
-                    { "DateReceived", dtdate.Value },
-                    { "CollectionPayment", collectionPaymentAmount },
-                    { "RunningBalance", runningBalance }, // Corrected calculation
-                    { "TotalLoanToPay", totalLoanToPay },
-                    { "Bank", tcolbank.Text.Trim() },
-                    { "Branch", tcolbranch.Text.Trim() },
-                    { "InterestPaid", dailyInterestDue }, // Corrected InterestPaid
-                    { "PrincipalPaid", allocatedPrincipal },
-                    { "PrincipalBalance", principalBalance }
-                };
+                  {
+                      { "ClientNo", laccountid.Text.Trim() },
+                      { "LoanID", loanIdNo },
+                      { "Name", tname.Text.Trim() },
+                      { "ClientNumber", tclientno.Text.Trim() },
+                      { "Address", taddress.Text.Trim() },
+                      { "Contact", tcontact.Text.Trim() },
+                      { "LoanAmount", loanAmount },
+                      { "LoanTerm", loanTerm },
+                      { "PaymentStartDate", loanInfo.GetValue("PaymentStartDate", string.Empty).ToString() },
+                      { "PaymentMaturityDate", tpaymature.Text.Trim() },
+                      { "PaymentsMode", tpaymode.Text.Trim() },
+                      { "Amortization", dailyAmortization },
+                      { "AmortizationPrincipal", amortizationPrincipal },
+                      { "AmortizationInterest", amortizationInterest },
+                      { "PaymentStatus", tpaymentstatus.Text.Trim() },
+                      { "CollectionDate", dtdate.Value },
+                      { "Collector", cbcollector.SelectedItem?.ToString() ?? string.Empty },
+                      { "PaymentMode", cbpaymentmode.SelectedItem?.ToString() ?? string.Empty },
+                      { "PrincipalDue", allocatedPrincipal },
+                      { "CollectedInterest", allocatedInterest },
+                      { "TotalCollected", collectionPaymentAmount },
+                      { "ActualCollection", Math.Min(collectionPaymentAmount, totalLoanToPay) },
+                      { "CollectionReferenceNo", tcolrefno.Text.Trim() },
+                      { "DateReceived", dtdate.Value },
+                      { "CollectionPayment", collectionPaymentAmount },
+                      { "RunningBalance", runningBalance },
+                      { "TotalLoanToPay", totalLoanToPay },
+                      { "Bank", tcolbank.Text.Trim() },
+                      { "Branch", tcolbranch.Text.Trim() },
+                      { "InterestPaid", allocatedInterest },
+                      { "PrincipalPaid", allocatedPrincipal },
+                      { "PrincipalBalance", totalLoanToPay - collectionPaymentAmount }
+                  };
 
                 _loanCollectionsCollection.InsertOne(loanCollectionDocument);
 
-                // If there is still a principal balance, save the remaining balance
-                if (principalBalance > 0)
+                // Save remaining balance if applicable
+                if ((totalLoanToPay - collectionPaymentAmount) > 0)
                 {
-                    var remainingBalanceDocument = new BsonDocument
-                      {
-                          { "AccountId", laccountid.Text.Trim() },
-                          { "LoanID", loanIdNo },
-                          { "Name", tname.Text.Trim() },
-                          { "ClientNumber", tclientno.Text.Trim() },
-                          { "Address", taddress.Text.Trim() },
-                          { "Contact", tcontact.Text.Trim() },
-                          { "LoanAmount", loanAmount },
-                          { "LoanTerm", loanTerm },
-                          { "PaymentStartDate", loanInfo["PaymentStartDate"].ToString() },
-                          { "PaymentMaturityDate", tpaymature.Text.Trim() },
-                          { "PaymentsMode", tpaymode.Text.Trim() },
-                          { "Amortization", amortizedAmt },
-                          { "PaymentStatus", tpaymentstatus.Text.Trim() },
-                          { "CollectionDate", dtdate.Value },
-                         
-                          { "Collector", cbcollector.SelectedItem?.ToString() ?? string.Empty },
-                          { "PaymentMode", cbpaymentmode.SelectedItem?.ToString() ?? string.Empty },
-                          { "PrincipalDue", ParseCurrency(tprincipaldue.Text) + previousPrincipalBalance },
-                          { "CollectedInterest", allocatedInterest },
-                          { "CollectedPenalty", ParseCurrency(tcolpenalty.Text) },
-                          { "TotalCollected", collectionPaymentAmount + previousPrincipalBalance },
-                          { "ActualCollection", Math.Min(collectionPaymentAmount, totalLoanToPay) }, // Ensure ActualCollection does not exceed TotalLoanToPay
-                          { "CollectionReferenceNo", tcolrefno.Text.Trim() },
-                          { "DateReceived", dtdate.Value },
-                          { "CollectionPayment", collectionPaymentAmount },
-                          { "RunningBalance", runningBalance }, // Corrected calculation
-                          { "TotalLoanToPay", totalLoanToPay },
-                          { "Bank", tcolbank.Text.Trim() },
-                          { "Branch", tcolbranch.Text.Trim() },
-                          { "InterestPaid", dailyInterestDue }, // Corrected InterestPaid
-                          { "PrincipalPaid", allocatedPrincipal },
-                          { "PrincipalBalance", principalBalance }
-                      };
-
-                    _loanCollectionsCollection.InsertOne(remainingBalanceDocument);
+                    SaveRemainingBalance(totalLoanToPay - collectionPaymentAmount, loanIdNo, loanAmount, loanTerm, dailyAmortization);
                 }
 
                 return true;
             }
             catch (Exception ex)
             {
-                // Handle exceptions
                 MessageBox.Show($"An error occurred while saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
+
+
 
 
         // Function to retrieve loan information from the loan_disbursed collection
@@ -693,7 +684,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_disbursed");
 
-                var filter = Builders<BsonDocument>.Filter.Eq("LoanIDNo", loanIdNo);
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanIdNo);
                 var loanDisbursed = collection.Find(filter).FirstOrDefault();
 
                 if (loanDisbursed != null)
