@@ -19,11 +19,12 @@ namespace rct_lmis.ADMIN_SECTION
         private IMongoCollection<BsonDocument> loanApprovedCollection;
         private IMongoCollection<BsonDocument> loanDisburseCollection;
 
-        public frm_home_ADMIN_rawdata_details(string loanId, string loanstatus)
+        public frm_home_ADMIN_rawdata_details(string loanId, string loanstatus, string itemno)
         {
             InitializeComponent();
-            litemno.Text = loanId;  // Assuming loanId is the same as item_no in this case
+            lloanid.Text = loanId;  // Assuming loanId is the same as item_no in this case
             lloanstatus.Text = loanstatus;
+            litemno.Text = itemno;
 
             database = MongoDBConnection.Instance.Database;
             loanRawdataCollection = database.GetCollection<BsonDocument>("loan_rawdata");
@@ -76,61 +77,53 @@ namespace rct_lmis.ADMIN_SECTION
 
         private async Task LoadLoanDataAsync()
         {
-            // Convert item_no from string to integer for the query
-            int itemNo = int.Parse(litemno.Text);
-
-            // Query MongoDB for the document that matches the item_no in loan_rawdata
-            var filter = Builders<BsonDocument>.Filter.Eq("item_no", itemNo);
-            var loanData = await loanRawdataCollection.Find(filter).FirstOrDefaultAsync();
-
-            if (loanData != null)
+            try
             {
-                // Populate labels and textboxes with data from the loanData document
-                lloanid.Text = loanData["loan_id"].ToString();
-                tclientname.Text = loanData["client_name"].ToString();
-                taddress.Text = loanData["address"].ToString();
-
-                // Format loan term as "x months"
-                tloanterm.Text = $"{loanData["loan_term"]} months";
-
-                // Format monetary fields with PHP sign and two decimals
-                tloanamount.Text = FormatAsCurrency(loanData["loan_amount"].ToDecimal());
-                tloanamt.Text = FormatAsCurrency(loanData["loan_amortization"].ToDecimal());
-                tloanbal.Text = FormatAsCurrency(loanData["loan_balance"].ToDecimal());
-                tloanpenalty.Text = loanData.Contains("penalty") ? FormatAsCurrency(loanData["penalty"].ToDecimal()) : "₱0.00";
-
-                // Format interest as percentage
-                tloaninterest.Text = loanData.Contains("loan_interest") ? $"{loanData["loan_interest"].ToDecimal():P2}" : "0%";
-
-                // Format payment mode
-                tloanpaymode.Text = loanData["payment_mode"].ToString();
-
-                // Format date fields to MM/dd/yyyy
-                tloanstartday.Text = FormatDate(loanData["start_payment_date"].ToString());
-                tloanendday.Text = FormatDate(loanData["maturity_date"].ToString());
-
-                // Fetch collector name from loan_collectors collection
-                string collectorName = loanData["collector_name"].ToString();
-                var collectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
-                var collectorFilter = Builders<BsonDocument>.Filter.Eq("collector_name", collectorName);
-                var collectorData = await collectorsCollection.Find(collectorFilter).FirstOrDefaultAsync();
-
-                if (collectorData != null)
+                // Convert Loan ID from TextBox to an integer
+                if (int.TryParse(lloanid.Text, out int loanId))
                 {
-                    // Populate tcollector with the name from loan_collectors
-                    tcollector.Text = collectorData["Name"].ToString();
+                    // Query MongoDB for the document that matches the loan_id
+                    var filter = Builders<BsonDocument>.Filter.Eq("loan_id", loanId);
+                    var loanData = await loanRawdataCollection.Find(filter).FirstOrDefaultAsync();
+
+                    if (loanData != null)
+                    {
+                        tclientname.Text = loanData["client_name"].ToString();
+                        taddress.Text = loanData["address"].ToString();
+                        tloanterm.Text = $"{loanData["loan_term"]} months";
+                        tloanamount.Text = FormatAsCurrency(loanData["loan_amount"].ToDecimal());
+                        tloanamt.Text = FormatAsCurrency(loanData["loan_amortization"].ToDecimal());
+                        tloanbal.Text = FormatAsCurrency(loanData["loan_balance"].ToDecimal());
+                        tloanpenalty.Text = loanData.Contains("penalty") ? FormatAsCurrency(loanData["penalty"].ToDecimal()) : "₱0.00";
+                        tloaninterest.Text = loanData.Contains("loan_interest") ? $"{loanData["loan_interest"].ToDecimal():P2}" : "0%";
+                        tloanpaymode.Text = loanData["payment_mode"].ToString();
+                        tloanstartday.Text = FormatDate(loanData["start_payment_date"].ToString());
+                        tloanendday.Text = FormatDate(loanData["maturity_date"].ToString());
+
+                        string collectorName = loanData["collector_name"].ToString();
+                        var collectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
+                        var collectorFilter = Builders<BsonDocument>.Filter.Eq("collector_name", collectorName);
+                        var collectorData = await collectorsCollection.Find(collectorFilter).FirstOrDefaultAsync();
+
+                        tcollector.Text = collectorData != null ? collectorData["Name"].ToString() : collectorName;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Loan data not found for the given Loan ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    // If no matching collector is found, display the original collector name
-                    tcollector.Text = collectorName;
+                    MessageBox.Show("Invalid Loan ID. Please enter a numeric value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Loan data not found for the given Item No.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
 
         // Helper method to format decimal values as Philippine Peso

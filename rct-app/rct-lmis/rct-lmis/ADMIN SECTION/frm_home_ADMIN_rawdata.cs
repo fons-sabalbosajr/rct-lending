@@ -85,6 +85,7 @@ namespace rct_lmis.ADMIN_SECTION
                 // Populate DataTable with data
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Item No.", typeof(int));
+                dt.Columns.Add("Loan ID", typeof(string));
                 dt.Columns.Add("Collector Info");
                 dt.Columns.Add("Client Info");
                 dt.Columns.Add("Loan Term Info");
@@ -100,6 +101,7 @@ namespace rct_lmis.ADMIN_SECTION
                 {
                     DataRow row = dt.NewRow();
                     row["Item No."] = itemNoCounter++;
+                    row["Loan ID"] = doc.GetValue("loan_id", "").ToString().Trim();
 
                     // Get the collector name from loan_rawdata document
                     string collectorNameFromLoan = doc.GetValue("collector_name", "").ToString().Trim();
@@ -135,12 +137,14 @@ namespace rct_lmis.ADMIN_SECTION
 
                 // Center align specific columns
                 dgvdata.Columns["Item No."].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvdata.Columns["Loan ID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvdata.Columns["Loan Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvdata.Columns["Loan Status Date Update"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Adjust widths
                 dgvdata.Columns["Client Info"].Width = 200;
                 dgvdata.Columns["Item No."].Width = 80;
+                dgvdata.Columns["Loan ID"].Width = 150;
                 dgvdata.Columns["Loan Amount Info"].Width = 150;
                 dgvdata.Columns["Amortization Info"].Width = 150;
 
@@ -168,6 +172,7 @@ namespace rct_lmis.ADMIN_SECTION
                 MessageBox.Show("Error loading data: " + ex.Message);
             }
         }
+
 
 
 
@@ -602,20 +607,20 @@ namespace rct_lmis.ADMIN_SECTION
                 // Get the selected row data
                 DataGridViewRow selectedRow = dgvdata.Rows[e.RowIndex];
 
-                // Retrieve the LoanNo and LoanStatus from the selected row
-                string loanNo = selectedRow.Cells["Item No."].Value.ToString();  // Assuming Item No. corresponds to LoanNo
-                string loanStatus = selectedRow.Cells["Loan Status"].Value.ToString();  // Get Loan Status
+                // Retrieve the Loan ID and Loan Status from the selected row
+                string itemno = selectedRow.Cells["Item No."].Value.ToString();
+                string loanId = selectedRow.Cells["Loan ID"].Value.ToString();
+                string loanStatus = selectedRow.Cells["Loan Status"].Value.ToString();
 
                 // Check if the data already exists in the loan_approved collection
-                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo); // Assuming LoanNo is stored as a string
-
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanId);
                 var existingData = await loanApprovedCollection.Find(filter).FirstOrDefaultAsync();
 
-                if (existingData == null) // If no existing data is found
+                if (existingData == null)
                 {
                     // Open the new form and pass the relevant data
-                    frm_home_ADMIN_rawdata_details loanDetailsForm = new frm_home_ADMIN_rawdata_details(loanNo, loanStatus);
-                    loanDetailsForm.ShowDialog();  // Show the new form
+                    frm_home_ADMIN_rawdata_details loanDetailsForm = new frm_home_ADMIN_rawdata_details(loanId, loanStatus, itemno);
+                    loanDetailsForm.ShowDialog();
                 }
                 else
                 {
