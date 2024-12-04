@@ -150,8 +150,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
-
-
         private void LoadPaymentModes()
         {
             // Clear any existing items
@@ -168,14 +166,16 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             cbpaymentmode.SelectedIndex = 0;
         }
 
-        private decimal ConvertToDecimal(string value)
+        private decimal ConvertToDecimal(string input)
         {
-            // Remove currency symbols and commas
-            value = value.Replace("₱", "").Replace(",", "").Trim();
-            return decimal.TryParse(value, out decimal result) ? result : 0;
+            if (string.IsNullOrEmpty(input)) return 0;
+            input = input.Replace("₱", "").Replace(",", "").Trim();
+            if (decimal.TryParse(input, out decimal result))
+            {
+                return result;
+            }
+            return 0; // Return 0 if conversion fails
         }
-
-
 
         private async void LoadLoanDisbursedData()
         {
@@ -227,6 +227,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                         tloanamt.Text = loanDisbursed.GetValue("LoanAmount", "").ToString();
                         tterm.Text = loanDisbursed.GetValue("LoanTerm", "").ToString();
                         tpaystart.Text = loanDisbursed.GetValue("StartPaymentDate", "").ToString();
+                        //tpaymature.Text = loanDisbursed.GetValue("MaturityDate", "").ToString();
                         tpaymode.Text = loanDisbursed.GetValue("PaymentMode", "").ToString();
                         tpayamort.Text = loanDisbursed.GetValue("LoanAmortization", "").ToString();
                         tcolpaid.Text = loanDisbursed.GetValue("LoanAmortization", "").ToString();
@@ -282,9 +283,9 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                             tpaymentstatus.Text = "No payments made yet";
                         }
 
-                        // Automatically compute interest, maturity date, and balance
-                        ComputeInterestAndMaturity();
+                      
                         ComputeLoanBalance();
+
                     }
                     catch (Exception ex)
                     {
@@ -304,7 +305,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         }
 
 
-
         private BsonDocument GetLatestPayment(string loanId)
         {
             var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanId); // Use "LoanNo" field as per the sample data
@@ -312,129 +312,124 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             return _loanCollectionsCollection.Find(filter).Sort(sort).FirstOrDefault();
         }
 
-
-        private void ComputeInterestAndMaturity()
-        {
-            try
-            {
-                if (int.TryParse(tterm.Text.Split(' ')[0], out int loanTermInMonths)) // Handle 'months' part in term
-                {
-                    // Calculate maturity date based on the start date and term in months
-                    DateTime startDate = DateTime.Parse(tpaystart.Text); // Payment start date from the textbox
-                    int totalDays = ConvertMonthsToDays(loanTermInMonths);
-
-                    DateTime maturityDate = CalculateMaturityDate(startDate, totalDays);
-
-                    // Display Maturity Date in MM/dd/yyyy format
-                    tpaymature.Text = maturityDate.ToString("MM/dd/yyyy");
-                }
-                else
-                {
-                    tpaymature.Text = "n/a";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error computing interest or maturity date: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private int ConvertMonthsToDays(int months)
-        {
-            // Assume 30 days per month
-            return months * 30;
-        }
-
-
-        private DateTime CalculateMaturityDate(DateTime startDate, int days)
-        {
-            DateTime currentDate = startDate;
-            int addedDays = 0;
-
-            while (addedDays < days)
-            {
-                currentDate = currentDate.AddDays(1);
-
-                // Skip weekends (Saturday and Sunday)
-                if (currentDate.DayOfWeek != DayOfWeek.Saturday && currentDate.DayOfWeek != DayOfWeek.Sunday)
-                {
-                    addedDays++;
-                }
-            }
-
-            return currentDate;
-        }
-
         private void ComputeLoanBalance()
         {
             try
             {
-                // Ensure Loan ID is populated
                 if (string.IsNullOrEmpty(tloanid.Text))
                 {
                     MessageBox.Show("Loan ID is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Retrieve the loan disbursed data based on LoanNo
-                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", tloanid.Text); // Use "LoanNo" from sample data
-                var loanDisbursed = _loanDisbursedCollection.Find(filter).FirstOrDefault();
-
-                if (loanDisbursed != null)
+                if (string.IsNullOrEmpty(tpaystart.Text))
                 {
-                    try
+                    MessageBox.Show("Start Payment Date is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Parse Start Payment Date
+                DateTime startPaymentDate;
+                if (!DateTime.TryParse(tpaystart.Text, out startPaymentDate))
+                {
+                    MessageBox.Show("Start Payment Date format is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                DateTime currentDate = DateTime.Now; // Today's Date
+
+                // Loan Amount
+                decimal loanAmount;
+                if (!decimal.TryParse(tloanamt.Text.Replace("₱", "").Replace(",", ""), out loanAmount))
+                {
+                    MessageBox.Show("Loan Amount format is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Loan Term (in months) - Get from the loan data and convert to days
+                string loanTerm = tterm.Text; // e.g. "4 months"
+                int termInDays = 0;
+
+                // Convert loan term from months to days (assuming 30 days in a month)
+                if (loanTerm.Contains("month"))
+                {
+                    int months;
+                    if (int.TryParse(loanTerm.Split(' ')[0], out months))
                     {
-                        // Parse values from the loan_disbursed collection with default values if not present
-                        decimal cashAmt = ConvertToDecimal(loanDisbursed.GetValue("LoanAmount", "0").ToString().Replace("₱", "").Replace(",", ""));
-                        decimal loanInterest = decimal.Parse(loanDisbursed.GetValue("LoanInterest", "0").ToString().TrimEnd('%'));
-                        decimal loanTerm = decimal.Parse(loanDisbursed.GetValue("LoanTerm", "0").ToString().Split(' ')[0]); // Remove 'months'
-
-                        // Convert loanInterest to percentage
-                        decimal interestRate = loanInterest / 100;
-                        decimal interestAmount = cashAmt * interestRate * loanTerm;
-
-                        // Retrieve latest collections records
-                        var collectionFilter = Builders<BsonDocument>.Filter.Eq("LoanNo", tloanid.Text); // Use "LoanNo"
-                        var collections = _loanCollectionsCollection
-                            .Find(collectionFilter)
-                            .Sort(Builders<BsonDocument>.Sort.Descending("CollectionDate"))
-                            .ToList();
-
-                        // Check if any collections exist
-                        if (collections.Count > 0)
-                        {
-                            // Get the latest running balance from the most recent collection
-                            decimal runningBalance = ConvertToDecimal(collections.First().GetValue("RunningBalance", "0").ToString());
-                            tloanbal.Text = runningBalance.ToString("C", new CultureInfo("en-PH"));
-                        }
-                        else
-                        {
-                            // If no collections, compute initial balance
-                            decimal runningBalance = cashAmt + interestAmount;
-                            tloanbal.Text = runningBalance.ToString("C", new CultureInfo("en-PH"));
-                        }
-
-                        // Calculate total paid
-                        decimal totalPaid = collections.Sum(c => ConvertToDecimal(c.GetValue("CollectionPayment", "0").ToString()));
-                        // You can add logic to display totalPaid if needed
+                        termInDays = months * 20; // 30 days per month
                     }
-                    catch (FormatException fex)
+                    else
                     {
-                        MessageBox.Show($"Error parsing loan details: {fex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Term format is invalid. Please enter a valid term (e.g., '4 months').", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                 }
                 else
                 {
-                    tloanbal.Text = "₱0.00"; // Set balance to 0 if no loan data is found
+                    MessageBox.Show("Invalid term format. Please enter term in months.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+
+                // Calculate the Maturity Date
+                DateTime maturityDate = startPaymentDate.AddDays(termInDays);
+
+                // Update the UI with the Maturity Date
+                tpaymature.Text = maturityDate.ToString("MM/dd/yyyy");
+
+                // Amortization (daily) - Get from tamort.Text
+                decimal amortization;
+                if (!decimal.TryParse(tpayamort.Text.Replace("₱", "").Replace(",", ""), out amortization))
+                if (!decimal.TryParse(tpayamort.Text.Replace("₱", "").Replace(",", ""), out amortization))
+                {
+                    MessageBox.Show("Amortization format is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Calculate missed days (excluding Sundays)
+                int totalMissedDays = 0;
+                for (DateTime date = startPaymentDate; date < currentDate; date = date.AddDays(1))
+                {
+                    if (date.DayOfWeek != DayOfWeek.Sunday)
+                    {
+                        totalMissedDays++;
+                    }
+                }
+
+                if (totalMissedDays == 0)
+                {
+                    tcolpenalty.Text = "₱0.00"; // No penalty if no missed days
+                    tprincipaldue.Text = "₱0.00";
+                    tcolinterest.Text = "₱0.00";
+                    tcoltotal.Text = "₱0.00";
+                    return;
+                }
+
+                // Principal Due = Amortization * Missed Days
+                decimal principalDue = amortization * totalMissedDays;
+
+                // Interest (assuming daily interest is calculated like amortization)
+                decimal interest = amortization * totalMissedDays;
+
+                // Penalty Calculation - Applying 3% penalty on total amortization missed
+                decimal penalty = (principalDue + interest) * 0.03m;
+
+                // Total Amortization = Principal Due + Interest + Penalty
+                decimal totalAmortization = principalDue + interest + penalty;
+
+                // Update the UI with the calculated values
+                tcolpenalty.Text = penalty.ToString("C", new CultureInfo("en-PH"));
+                tprincipaldue.Text = principalDue.ToString("C", new CultureInfo("en-PH"));
+                tcolinterest.Text = interest.ToString("C", new CultureInfo("en-PH"));
+                tcoltotal.Text = totalAmortization.ToString("C", new CultureInfo("en-PH"));
+
+                // Set Loan Balance in the UI
+                tloanbal.Text = loanAmount.ToString("C", new CultureInfo("en-PH"));
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error computing loan balance: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
 
 

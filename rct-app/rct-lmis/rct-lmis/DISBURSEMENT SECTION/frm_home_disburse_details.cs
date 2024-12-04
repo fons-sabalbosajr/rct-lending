@@ -59,48 +59,48 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             try
             {
-                // Display Loan ID No on the label
                 laccountid.Text = _loanId;
 
-                // Fetch loan details based on Loan ID
                 LoanDetails loanDetails = await GetLoanDetails(laccountid.Text);
 
-                // Populate the textboxes with the loan details
                 if (loanDetails != null)
                 {
                     tlnno.Text = !string.IsNullOrEmpty(loanDetails.LoanIDNo) ? loanDetails.LoanIDNo : "n/a";
                     tclientno.Text = !string.IsNullOrEmpty(loanDetails.cashClnNo) ? loanDetails.cashClnNo : "n/a";
                     tname.Text = !string.IsNullOrEmpty(loanDetails.cashName) ? loanDetails.cashName : "n/a";
 
-                    // Populate additional details
                     tloantype.Text = !string.IsNullOrEmpty(loanDetails.LoanType) ? loanDetails.LoanType : "n/a";
                     tloanstatus.Text = !string.IsNullOrEmpty(loanDetails.LoanStatus) ? loanDetails.LoanStatus : "n/a";
                     tloanamount.Text = !string.IsNullOrEmpty(loanDetails.LoanAmount) ? loanDetails.LoanAmount : "0.00";
-                    tloanprincipal.Text = !string.IsNullOrEmpty(loanDetails.LoanPrincipal) ? loanDetails.LoanPrincipal : "0.00";  // Loan Principal added
+                    tloanprincipal.Text = !string.IsNullOrEmpty(loanDetails.LoanPrincipal) ? loanDetails.LoanPrincipal : "0.00";
                     tloanbalance.Text = !string.IsNullOrEmpty(loanDetails.LoanBalance) ? loanDetails.LoanBalance : "0.00";
                     tloanamort.Text = !string.IsNullOrEmpty(loanDetails.LoanAmortization) ? loanDetails.LoanAmortization : "0.00";
                     tloanpenalty.Text = !string.IsNullOrEmpty(loanDetails.Penalty) ? loanDetails.Penalty : "0.00";
                     tloanpaymode.Text = !string.IsNullOrEmpty(loanDetails.PaymentMode) ? loanDetails.PaymentMode : "n/a";
                     tloancollector.Text = !string.IsNullOrEmpty(loanDetails.CollectorName) ? loanDetails.CollectorName : "n/a";
 
-                    // Populate Loan Term
                     tloanterm.Text = !string.IsNullOrEmpty(loanDetails.LoanTerm) ? loanDetails.LoanTerm : "n/a";
 
-                    // Calculate and display the interest (LoanAmount * LoanInterest)
+                    // Fixed interest calculation with Philippine Peso sign
                     decimal loanAmount;
-                    decimal loanInterestPercentage;
+                    decimal loanPrincipal;
                     if (decimal.TryParse(loanDetails.LoanAmount.Replace("₱", "").Replace(",", ""), out loanAmount) &&
-                        decimal.TryParse(loanDetails.LoanInterest.Replace("%", "").Trim(), out loanInterestPercentage))
+                        decimal.TryParse(loanDetails.LoanPrincipal.Replace("₱", "").Replace(",", ""), out loanPrincipal))
                     {
-                        decimal loanInterestAmount = loanAmount * (loanInterestPercentage / 100);
-                        tloaninterest.Text = loanInterestAmount.ToString("0.00");
+                        decimal loanInterestAmount = loanAmount - loanPrincipal;
+                        decimal loanInterestPercentage = loanPrincipal > 0 ? (loanInterestAmount / loanPrincipal) * 100 : 0;
+
+                        tloaninterest.Text = $"₱{loanInterestAmount.ToString("N2")}";
+                        tloanprincipal.Text = $"₱{loanPrincipal.ToString("N2")}";
+                        
                     }
                     else
                     {
-                        tloaninterest.Text = "0.00";  // Fallback in case of parsing errors
+                        tloaninterest.Text = "₱0.00";
+                        tloanprincipal.Text = "₱0.00";
                     }
 
-                    // Set the StartPaymentDate and MaturityDate fields
+
                     DateTime startDate;
                     if (DateTime.TryParse(loanDetails.StartPaymentDate, out startDate))
                     {
@@ -108,7 +108,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     }
                     else
                     {
-                        dtstartpay.Value = DateTime.Now;  // Default value if parsing fails
+                        dtstartpay.Value = DateTime.Now;
                     }
 
                     DateTime maturityDate;
@@ -118,10 +118,9 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     }
                     else
                     {
-                        dtendpay.Value = DateTime.Now;  // Default value if parsing fails
+                        dtendpay.Value = DateTime.Now;
                     }
 
-                    // Fetch additional details from loan_approved based on cashClnNo
                     await LoadApprovedDetails(loanDetails.cashClnNo);
                     await LoadVoucherDetailsAsync();
                 }
@@ -135,6 +134,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 _ = MessageBox.Show("Error loading loan details: " + ex.Message);
             }
         }
+
 
 
         private async Task<LoanDetails> GetLoanDetails(string loanId)
