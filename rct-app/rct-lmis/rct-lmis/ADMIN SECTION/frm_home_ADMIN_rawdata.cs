@@ -61,26 +61,61 @@ namespace rct_lmis.ADMIN_SECTION
 
 
 
-        private async void LoadDataToDataGridView(string loanStatusFilter = null)
+        private async void LoadDataToDataGridView(string loanStatusFilter = null, bool filterUnimported = false)
         {
             try
             {
                 // MongoDB connection
                 var database = MongoDBConnection.Instance.Database;
                 var loanRawdataCollection = database.GetCollection<BsonDocument>("loan_rawdata");
-                var loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
+                var loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved"); // Connect to loan_approved collection
 
                 // Fetch all collectors into a list for keyword matching
                 var collectors = await loanCollectorsCollection.Find(new BsonDocument()).ToListAsync();
 
                 // Define a filter for loan status if provided
-                FilterDefinition<BsonDocument> filter = string.IsNullOrEmpty(loanStatusFilter)
-                    ? new BsonDocument()
-                    : Builders<BsonDocument>.Filter.Eq("loan_status", loanStatusFilter);
+                FilterDefinition<BsonDocument> filter = new BsonDocument();
 
-                // Retrieve loan data based on the filter
+                if (!string.IsNullOrEmpty(loanStatusFilter))
+                {
+                    filter = Builders<BsonDocument>.Filter.Eq("loan_status", loanStatusFilter);
+                }
+
+                // If filtering for unsaved data, apply the necessary filter
+                if (filterUnimported)
+                {
+                    // Fetch LoanNos from loan_approved and extract numeric part
+                    var approvedLoans = await loanApprovedCollection.Find(new BsonDocument())
+                        .Project(Builders<BsonDocument>.Projection.Include("LoanNo"))
+                        .ToListAsync();
+
+                    var approvedLoanIdsSet = new HashSet<int>(
+                        approvedLoans.Select(doc =>
+                        {
+                            var loanNo = doc.GetValue("LoanNo", "").ToString();
+                            if (loanNo.StartsWith("RCT-2024-"))
+                            {
+                                return int.Parse(loanNo.Substring(8)); // Extract numeric part
+                    }
+                            return -1; // Invalid value if format is wrong
+                }).Where(id => id != -1) // Filter out invalid values
+                    );
+
+                    // Apply filter: Get records from loan_rawdata where loan_id is not in approvedLoanIdsSet
+                    filter &= Builders<BsonDocument>.Filter.Nin("loan_id", approvedLoanIdsSet);
+                }
+
+                // Fetch the loan data with the applied filter
                 var rawData = await loanRawdataCollection.Find(filter).ToListAsync();
                 rawDataList = rawData;
+
+                // Define the custom sort order for Loan Status
+                var loanStatusOrder = new List<string> { "UPDATED", "PAST DUE", "ARREARS", "LITIGATION", "DORMANT" };
+
+                // Sort the rawData list based on the custom order of Loan Status
+                var sortedRawData = rawData.OrderBy(doc =>
+                    loanStatusOrder.IndexOf(doc.GetValue("loan_status", "").ToString().Trim())
+                ).ToList();
 
                 // Populate DataTable with data
                 DataTable dt = new DataTable();
@@ -97,25 +132,12 @@ namespace rct_lmis.ADMIN_SECTION
                 dt.Columns.Add("Loan Status Date Update");
 
                 int itemNoCounter = 1;
-                foreach (var doc in rawData)
+                foreach (var doc in sortedRawData)
                 {
                     DataRow row = dt.NewRow();
                     row["Item No."] = itemNoCounter++;
                     row["Loan ID"] = doc.GetValue("loan_id", "").ToString().Trim();
-
-                    // Get the collector name from loan_rawdata document
-                    string collectorNameFromLoan = doc.GetValue("collector_name", "").ToString().Trim();
-
-                    // Try to find a matching collector based on a keyword in the collector's name
-                    var matchingCollector = collectors.FirstOrDefault(c =>
-                        c.GetValue("Name", "").ToString().Trim().IndexOf(collectorNameFromLoan, StringComparison.OrdinalIgnoreCase) >= 0);
-
-                    // Display the matched collector's name or fallback to the original collector name if no match is found
-                    row["Collector Info"] = matchingCollector != null
-                        ? matchingCollector.GetValue("Name", "Unknown Collector").ToString()
-                        : collectorNameFromLoan;
-
-                    // Populate other fields
+                    row["Collector Info"] = doc.GetValue("collector_name", "").ToString().Trim();
                     row["Client Info"] = $"{doc.GetValue("client_name", "").ToString().Trim()}\nContact No: {doc.GetValue("contact_no", "").ToString().Trim()}\nLoan ID: {doc.GetValue("loan_id", 0)}";
                     row["Loan Term Info"] = $"{doc.GetValue("loan_term", 0)} months\n{doc.GetValue("payment_mode", "").ToString().Trim()}";
                     row["Loan Amount Info"] = $"Amount: {ConvertToDouble(doc.GetValue("loan_amount", 0)):N2}\nBalance: {ConvertToDouble(doc.GetValue("loan_balance", 0)):N2}";
@@ -133,6 +155,7 @@ namespace rct_lmis.ADMIN_SECTION
                 dv.Sort = "Item No. ASC";
                 DataTable sortedDt = dv.ToTable();
 
+                // Set DataSource and prevent invisible row error
                 dgvdata.DataSource = sortedDt;
 
                 // Center align specific columns
@@ -172,8 +195,6 @@ namespace rct_lmis.ADMIN_SECTION
                 MessageBox.Show("Error loading data: " + ex.Message);
             }
         }
-
-
 
 
         private void ApplySearchFilter(string keyword)
@@ -257,43 +278,66 @@ namespace rct_lmis.ADMIN_SECTION
 
 
 
-        private void HighlightApprovedLoans()
+        private async void HighlightApprovedLoans()
         {
-            // Retrieve the list of loan_approved documents
-            var approvedLoans = loanApprovedCollection.Find(new BsonDocument()).ToList();
-
-            // Extract the last 1 to 5 digits from LoanNo in loan_approved
-            var approvedLoanIds = approvedLoans.Select(doc =>
+            try
             {
-                string loanNo = doc.GetValue("LoanNo", "").ToString();
-                // Extract the last 1 to 5 digits dynamically
-                return loanNo.Length >= 1 ? loanNo.Substring(Math.Max(loanNo.Length - 4, 0)) : string.Empty;
-            }).ToList();
+                // MongoDB connection
+                var database = MongoDBConnection.Instance.Database;
+                var loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
 
-            // Highlight rows that are already in loan_approved collection
-            foreach (DataGridViewRow row in dgvdata.Rows)
-            {
-                string clientInfo = row.Cells["Client Info"].Value?.ToString();
+                // Retrieve all loans from loan_approved collection
+                var approvedLoans = await loanApprovedCollection.Find(new BsonDocument()).ToListAsync();
 
-                if (!string.IsNullOrEmpty(clientInfo))
+                // Create a list of LoanNos from the loan_approved collection
+                var approvedLoanNos = approvedLoans.Select(doc => doc.GetValue("LoanNo", "").ToString().Trim()).ToList();
+
+                // Highlight rows in the DataGridView
+                foreach (DataGridViewRow row in dgvdata.Rows)
                 {
-                    // Extract Loan ID from Client Info safely
-                    string[] clientInfoParts = clientInfo.Split('\n');
-                    string loanId = clientInfoParts.Length > 2 ? clientInfoParts[2].Split(':')[1].Trim() : string.Empty;
+                    string clientInfo = row.Cells["Client Info"].Value?.ToString();
 
-                    // Ensure loanId is not empty
-                    if (!string.IsNullOrEmpty(loanId))
+                    if (!string.IsNullOrEmpty(clientInfo))
                     {
-                        // Extract the last 1 to 5 digits dynamically
-                        string lastDigits = loanId.Length >= 1 ? loanId.Substring(Math.Max(loanId.Length - 4, 0)) : string.Empty;
+                        // Extract Loan ID from Client Info safely
+                        string[] clientInfoParts = clientInfo.Split('\n');
+                        string loanId = clientInfoParts.Length > 2 ? clientInfoParts[2].Split(':')[1].Trim() : string.Empty;
 
-                        // Check if the last 1 to 5 digits of the loanId exist in approvedLoanIds
-                        if (approvedLoanIds.Contains(lastDigits))
+                        if (!string.IsNullOrEmpty(loanId))
                         {
-                            row.DefaultCellStyle.BackColor = Color.LightYellow; // Set background color to light yellow
+                            // Check if the LoanNo exists in the loan_approved collection
+                            bool isLoanInApproved = approvedLoanNos.Any(loan => loan.Contains(loanId.ToString()));
+
+                            if (isLoanInApproved)
+                            {
+                                // Match the last digits of the loanId with LoanNo (last 1 to 5 digits)
+                                for (int length = 1; length <= 5; length++)
+                                {
+                                    if (loanId.Length >= length)
+                                    {
+                                        string lastDigits = loanId.Substring(loanId.Length - length);
+
+                                        // Highlight row if a match is found
+                                        if (approvedLoanNos.Any(approvedLoan => approvedLoan.EndsWith(lastDigits)))
+                                        {
+                                            row.DefaultCellStyle.BackColor = Color.LightYellow; // Highlight row
+                                            break; // Stop further checks for this row
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                // If not in loan_approved, don't highlight the row
+                                row.DefaultCellStyle.BackColor = Color.White; // No highlight
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error highlighting approved loans: " + ex.Message);
             }
         }
 
@@ -650,6 +694,32 @@ namespace rct_lmis.ADMIN_SECTION
                 // Load filtered data based on selected loan status
                 LoadDataToDataGridView(selectedLoanStatus);
             }
+        }
+
+        private void trefreshHL_Tick(object sender, EventArgs e)
+        {
+            HighlightApprovedLoans();
+        }
+
+        private void linfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("Unimported Data refers to the records that haven't been successfully added to the system yet. These records may need attention before they can be processed or included in the main list of loans.",
+                "What is Unimported Data?", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+
+
+        private async void cbunimported_CheckedChanged(object sender, EventArgs e)
+        {
+            // Check if the checkbox is checked
+            bool filterUnimported = cbunimported.Checked;
+
+            // Reload the data with the appropriate filter
+            string loanStatusFilter = null;  // You can specify the loan status filter if needed
+
+            // Load the data with the filter for unsaved (unimported) data
+            LoadDataToDataGridView(loanStatusFilter, filterUnimported);
         }
     }
 }

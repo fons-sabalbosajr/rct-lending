@@ -96,12 +96,14 @@
             this.bamtfull = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dtcoldate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.brefresh = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.brefresh);
             this.panel1.Controls.Add(this.bcopyaccno);
             this.panel1.Controls.Add(this.laccountid);
             this.panel1.Controls.Add(this.label27);
@@ -748,7 +750,6 @@
             this.tloanbal.Name = "tloanbal";
             this.tloanbal.PasswordChar = '\0';
             this.tloanbal.PlaceholderText = "0.00";
-            this.tloanbal.ReadOnly = true;
             this.tloanbal.SelectedText = "";
             this.tloanbal.Size = new System.Drawing.Size(138, 25);
             this.tloanbal.TabIndex = 122;
@@ -1140,6 +1141,26 @@
             this.dtcoldate.TabIndex = 151;
             this.dtcoldate.Value = new System.DateTime(2024, 9, 8, 0, 0, 0, 0);
             // 
+            // brefresh
+            // 
+            this.brefresh.BorderColor = System.Drawing.Color.Gainsboro;
+            this.brefresh.BorderRadius = 2;
+            this.brefresh.BorderThickness = 1;
+            this.brefresh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.brefresh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.brefresh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.brefresh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.brefresh.FillColor = System.Drawing.Color.White;
+            this.brefresh.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.brefresh.ForeColor = System.Drawing.Color.White;
+            this.brefresh.Image = global::rct_lmis.Properties.Resources.icons8_refresh_48;
+            this.brefresh.Location = new System.Drawing.Point(156, 12);
+            this.brefresh.Name = "brefresh";
+            this.brefresh.Size = new System.Drawing.Size(25, 25);
+            this.brefresh.TabIndex = 151;
+            this.brefresh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.brefresh.Click += new System.EventHandler(this.brefresh_Click);
+            // 
             // frm_home_disburse_collections_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1290,5 +1311,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtcoldate;
         private System.Windows.Forms.Label clientnotest;
+        private Guna.UI2.WinForms.Guna2Button brefresh;
     }
 }

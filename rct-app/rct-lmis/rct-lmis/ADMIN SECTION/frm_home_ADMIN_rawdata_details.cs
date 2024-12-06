@@ -88,19 +88,108 @@ namespace rct_lmis.ADMIN_SECTION
 
                     if (loanData != null)
                     {
-                        tclientname.Text = loanData["client_name"].ToString();
-                        taddress.Text = loanData["address"].ToString();
-                        tloanterm.Text = $"{loanData["loan_term"]} months";
-                        tloanamount.Text = FormatAsCurrency(loanData["loan_amount"].ToDecimal());
-                        tloanamt.Text = FormatAsCurrency(loanData["loan_amortization"].ToDecimal());
-                        tloanbal.Text = FormatAsCurrency(loanData["loan_balance"].ToDecimal());
-                        tloanpenalty.Text = loanData.Contains("penalty") ? FormatAsCurrency(loanData["penalty"].ToDecimal()) : "₱0.00";
-                        tloaninterest.Text = loanData.Contains("loan_interest") ? $"{loanData["loan_interest"].ToDecimal():P2}" : "0%";
-                        tloanpaymode.Text = loanData["payment_mode"].ToString();
-                        tloanstartday.Text = FormatDate(loanData["start_payment_date"].ToString());
-                        tloanendday.Text = FormatDate(loanData["maturity_date"].ToString());
+                        // Use try-catch for fields that might be missing
+                        try
+                        {
+                            tclientname.Text = loanData.Contains("client_name") ? loanData["client_name"].ToString() : "N/A";
+                        }
+                        catch
+                        {
+                            tclientname.Text = "N/A";  // Default value if field is missing
+                        }
 
-                        string collectorName = loanData["collector_name"].ToString();
+                        try
+                        {
+                            taddress.Text = loanData.Contains("address") ? loanData["address"].ToString() : "N/A";
+                        }
+                        catch
+                        {
+                            taddress.Text = "N/A";  // Default value if field is missing
+                        }
+
+                        try
+                        {
+                            tloanterm.Text = loanData.Contains("loan_term") ? $"{loanData["loan_term"]} months" : "N/A";
+                        }
+                        catch
+                        {
+                            tloanterm.Text = "N/A";  // Default value if field is missing
+                        }
+
+                        try
+                        {
+                            tloanamount.Text = loanData.Contains("loan_amount") ? FormatAsCurrency(loanData["loan_amount"].ToDecimal()) : "₱0.00";
+                        }
+                        catch
+                        {
+                            tloanamount.Text = "₱0.00";  // Default value if field is missing
+                        }
+
+                        try
+                        {
+                            tloanamt.Text = loanData.Contains("loan_amortization") ? FormatAsCurrency(loanData["loan_amortization"].ToDecimal()) : "₱0.00";
+                        }
+                        catch
+                        {
+                            tloanamt.Text = "₱0.00";  // Default value if field is missing
+                        }
+
+                        try
+                        {
+                            tloanbal.Text = loanData.Contains("loan_balance") ? FormatAsCurrency(loanData["loan_balance"].ToDecimal()) : "₱0.00";
+                        }
+                        catch
+                        {
+                            tloanbal.Text = "₱0.00";  // Default value if field is missing
+                        }
+
+                        try
+                        {
+                            tloanpenalty.Text = loanData.Contains("penalty") ? FormatAsCurrency(loanData["penalty"].ToDecimal()) : "₱0.00";
+                        }
+                        catch
+                        {
+                            tloanpenalty.Text = "₱0.00";  // Default value if field is missing
+                        }
+
+                        try
+                        {
+                            tloaninterest.Text = loanData.Contains("loan_interest") ? $"{loanData["loan_interest"].ToDecimal():P2}" : "0%";
+                        }
+                        catch
+                        {
+                            tloaninterest.Text = "0%";  // Default value if field is missing
+                        }
+
+                        try
+                        {
+                            tloanpaymode.Text = loanData.Contains("payment_mode") ? loanData["payment_mode"].ToString() : "N/A";
+                        }
+                        catch
+                        {
+                            tloanpaymode.Text = "N/A";  // Default value if field is missing
+                        }
+
+                        try
+                        {
+                            tloanstartday.Text = loanData.Contains("start_payment_date") ? FormatDate(loanData["start_payment_date"].ToString()) : "N/A";
+                        }
+                        catch
+                        {
+                            tloanstartday.Text = "N/A";  // Default value if field is missing
+                        }
+
+                        try
+                        {
+                            tloanendday.Text = loanData.Contains("maturity_date") ? FormatDate(loanData["maturity_date"].ToString()) : "N/A";
+                        }
+                        catch
+                        {
+                            tloanendday.Text = "N/A";  // Default value if field is missing
+                        }
+
+                        // Safely load collector name
+                        string collectorName = loanData.Contains("collector_name") ? loanData["collector_name"].ToString() : "N/A";
                         var collectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
                         var collectorFilter = Builders<BsonDocument>.Filter.Eq("collector_name", collectorName);
                         var collectorData = await collectorsCollection.Find(collectorFilter).FirstOrDefaultAsync();
@@ -122,6 +211,7 @@ namespace rct_lmis.ADMIN_SECTION
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 
@@ -217,7 +307,7 @@ namespace rct_lmis.ADMIN_SECTION
         }
 
         // General Save Data function to save data to loan_approved collection
-        private async void GenerelSaveData()
+        private async Task<bool> GenerelSaveData()
         {
             try
             {
@@ -239,9 +329,8 @@ namespace rct_lmis.ADMIN_SECTION
                 var existingLoan = await loanApprovedCollection.Find(filter).FirstOrDefaultAsync();
                 if (existingLoan != null)
                 {
-                    // Record with the same LoanNo or ClientNo already exists
                     MessageBox.Show("A loan with the same LoanNo or ClientNo already exists in the system.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;  // Stop the process here
+                    return false; // Indicate failure
                 }
 
                 // Split the client's name into Last Name, First Name, and Middle Name
@@ -250,7 +339,6 @@ namespace rct_lmis.ADMIN_SECTION
                 string firstName = string.Empty;
                 string middleName = string.Empty;
 
-                // Remove extra spaces and handle potential formatting issues
                 if (fullName.Contains(","))
                 {
                     string[] nameParts = fullName.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -272,14 +360,12 @@ namespace rct_lmis.ADMIN_SECTION
                     }
                     else
                     {
-                        MessageBox.Show("Client name format is incorrect. Please provide Last Name, First Name Middle Name format.", "Invalid Name Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        throw new FormatException("Client name format is incorrect. Please provide 'Last Name, First Name Middle Name' format.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Client name format is incorrect. Please provide Last Name, First Name Middle Name format.", "Invalid Name Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new FormatException("Client name format is incorrect. Please provide 'Last Name, First Name Middle Name' format.");
                 }
 
                 string fullAddress = taddress.Text.Trim();
@@ -287,76 +373,60 @@ namespace rct_lmis.ADMIN_SECTION
                 string city = string.Empty;
                 string province = string.Empty;
 
-                string[] addressParts = fullAddress.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-                // Handle address formats
-                if (fullAddress.Contains(","))
+                if (!string.IsNullOrEmpty(fullAddress))
                 {
-                    // Existing logic for comma-separated values
-                    addressParts = fullAddress.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    barangay = addressParts[0].Trim();
+                    string[] addressParts = fullAddress.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    barangay = addressParts.Length > 0 ? addressParts[0].Trim() : string.Empty;
                     city = addressParts.Length > 1 ? addressParts[1].Trim() : string.Empty;
                     province = addressParts.Length > 2 ? addressParts[2].Trim() : string.Empty;
-                }
-                else if (addressParts.Length >= 2)
-                {
-                    // Assuming last part is the province if there are at least 2 parts
-                    barangay = addressParts[0].Trim();
-                    city = addressParts[1].Trim();
-
-                    // If there are more than 2 parts, the remaining are considered part of the province
-                    if (addressParts.Length > 2)
-                    {
-                        province = string.Join(" ", addressParts.Skip(2)).Trim();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Address format is incorrect. Please provide either 'Barangay, City' or 'Barangay City Province' format.", "Invalid Address Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
 
                 // Create BsonDocument for the new loan_approved entry
                 var approvedLoanData = new BsonDocument
-                  {
-                      { "AccountId", accountId },
-                      { "LoanNo", loanNo },
-                      { "ClientNo", clientNo },
-                      { "LoanType", loanType },
-                      { "LoanStatus", status },
-                      { "LastName", lastName },
-                      { "FirstName", firstName },
-                      { "MiddleName", middleName },
-                      { "CollectorName", tcollector.Text },
-                      { "Barangay", barangay },
-                      { "City", city },
-                      { "Province", province },
-                      { "LoanTerm", tloanterm.Text },
-                      { "LoanAmount", tloanamount.Text },
-                      { "LoanAmortization", tloanamt.Text },
-                      { "LoanBalance", tloanbal.Text },
-                      { "Penalty", tloanpenalty.Text },
-                      { "LoanInterest", tloaninterest.Text },
-                      { "PaymentMode", tloanpaymode.Text },
-                      { "StartPaymentDate", tloanstartday.Text },
-                      { "MaturityDate", tloanendday.Text },
-                      { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
-                      { "LoanProcessStatus", "Loan Released" },
-                  };
+                {
+                    { "AccountId", accountId },
+                    { "LoanNo", loanNo },
+                    { "ClientNo", clientNo },
+                    { "LoanType", loanType },
+                    { "LoanStatus", status },
+                    { "LastName", lastName },
+                    { "FirstName", firstName },
+                    { "MiddleName", middleName },
+                    { "CollectorName", tcollector.Text },
+                    { "Barangay", barangay },
+                    { "City", city },
+                    { "Province", province },
+                    { "LoanTerm", tloanterm.Text },
+                    { "LoanAmount", tloanamount.Text },
+                    { "LoanAmortization", tloanamt.Text },
+                    { "LoanBalance", tloanbal.Text },
+                    { "Penalty", tloanpenalty.Text },
+                    { "LoanInterest", tloaninterest.Text },
+                    { "PaymentMode", tloanpaymode.Text },
+                    { "StartPaymentDate", tloanstartday.Text },
+                    { "MaturityDate", tloanendday.Text },
+                    { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
+                    { "LoanProcessStatus", "Loan Released" }
+                };
 
-                // Save to loan_approved collection
                 await loanApprovedCollection.InsertOneAsync(approvedLoanData);
-
-                //MessageBox.Show("Loan data has been saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            catch (FormatException fe)
+            {
+                MessageBox.Show(fe.Message, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             catch (Exception e)
             {
                 MessageBox.Show("There was a problem saving the transaction: " + e.Message, "Transaction Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false; // Indicate failure
             }
         }
 
 
-        private async void GenerelDisbursedData()
+        private async Task<bool>GenerelDisbursedData()
         {
             try
             {
@@ -370,16 +440,16 @@ namespace rct_lmis.ADMIN_SECTION
                 string clientNo = await GenerateClientNoDisburseAsync();
 
                 // Check if the loan already exists in the loanDisburseCollection
-                var existingDisburse = await loanDisburseCollection.Find(new BsonDocument
-                 {
-                     { "LoanNo", loanNo },
-                     { "ClientNo", clientNo }
-                 }).FirstOrDefaultAsync();
+                var filter = Builders<BsonDocument>.Filter.Or(
+                    Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo),
+                    Builders<BsonDocument>.Filter.Eq("ClientNo", clientNo)
+                );
 
+                var existingDisburse = await loanDisburseCollection.Find(filter).FirstOrDefaultAsync();
                 if (existingDisburse != null)
                 {
                     MessageBox.Show("A disbursement with this Loan Number or Client Number already exists.", "Duplicate Disbursement", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Stop further execution
+                    return false; // Indicate failure
                 }
 
                 // Split the client's name into Last Name, First Name, and Middle Name
@@ -388,7 +458,6 @@ namespace rct_lmis.ADMIN_SECTION
                 string firstName = string.Empty;
                 string middleName = string.Empty;
 
-                // Remove extra spaces and handle potential formatting issues
                 if (fullName.Contains(","))
                 {
                     string[] nameParts = fullName.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -410,14 +479,12 @@ namespace rct_lmis.ADMIN_SECTION
                     }
                     else
                     {
-                        MessageBox.Show("Client name format is incorrect. Please provide Last Name, First Name Middle Name format.", "Invalid Name Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        throw new FormatException("Client name format is incorrect. Please provide 'Last Name, First Name Middle Name' format.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Client name format is incorrect. Please provide Last Name, First Name Middle Name format.", "Invalid Name Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new FormatException("Client name format is incorrect. Please provide 'Last Name, First Name Middle Name' format.");
                 }
 
                 string fullAddress = taddress.Text.Trim();
@@ -425,71 +492,55 @@ namespace rct_lmis.ADMIN_SECTION
                 string city = string.Empty;
                 string province = string.Empty;
 
-                string[] addressParts = fullAddress.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-                // Handle address formats
-                if (fullAddress.Contains(","))
+                if (!string.IsNullOrEmpty(fullAddress))
                 {
-                    // Existing logic for comma-separated values
-                    addressParts = fullAddress.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    barangay = addressParts[0].Trim();
+                    string[] addressParts = fullAddress.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    barangay = addressParts.Length > 0 ? addressParts[0].Trim() : string.Empty;
                     city = addressParts.Length > 1 ? addressParts[1].Trim() : string.Empty;
                     province = addressParts.Length > 2 ? addressParts[2].Trim() : string.Empty;
-                }
-                else if (addressParts.Length >= 2)
-                {
-                    // Assuming last part is the province if there are at least 2 parts
-                    barangay = addressParts[0].Trim();
-                    city = addressParts[1].Trim();
-
-                    // If there are more than 2 parts, the remaining are considered part of the province
-                    if (addressParts.Length > 2)
-                    {
-                        province = string.Join(" ", addressParts.Skip(2)).Trim();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Address format is incorrect. Please provide either 'Barangay, City' or 'Barangay City Province' format.", "Invalid Address Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
 
                 // Create BsonDocument for the new loan_disburse entry
                 var approvedLoanData = new BsonDocument
-                 {
-                     { "AccountId", disburseId },
-                     { "LoanNo", loanNo },
-                     { "ClientNo", clientNo },
-                     { "LoanType", loanType },
-                     { "LoanStatus", status },
-                     { "LastName", lastName },
-                     { "FirstName", firstName },
-                     { "MiddleName", middleName },
-                     { "CollectorName", tcollector.Text },
-                     { "Barangay", barangay },
-                     { "City", city },
-                     { "Province", province },
-                     { "LoanTerm", tloanterm.Text },
-                     { "LoanAmount", tloanamount.Text },
-                     { "LoanAmortization", tloanamt.Text },
-                     { "LoanBalance", tloanbal.Text },
-                     { "Penalty", tloanpenalty.Text },
-                     { "LoanInterest", tloaninterest.Text },
-                     { "PaymentMode", tloanpaymode.Text },
-                     { "StartPaymentDate", tloanstartday.Text },
-                     { "MaturityDate", tloanendday.Text },
-                     { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
-                     { "LoanProcessStatus", "Loan Released" }
-                 };
+                {
+                    { "AccountId", disburseId },
+                    { "LoanNo", loanNo },
+                    { "ClientNo", clientNo },
+                    { "LoanType", loanType },
+                    { "LoanStatus", status },
+                    { "LastName", lastName },
+                    { "FirstName", firstName },
+                    { "MiddleName", middleName },
+                    { "CollectorName", tcollector.Text },
+                    { "Barangay", barangay },
+                    { "City", city },
+                    { "Province", province },
+                    { "LoanTerm", tloanterm.Text },
+                    { "LoanAmount", tloanamount.Text },
+                    { "LoanAmortization", tloanamt.Text },
+                    { "LoanBalance", tloanbal.Text },
+                    { "Penalty", tloanpenalty.Text },
+                    { "LoanInterest", tloaninterest.Text },
+                    { "PaymentMode", tloanpaymode.Text },
+                    { "StartPaymentDate", tloanstartday.Text },
+                    { "MaturityDate", tloanendday.Text },
+                    { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
+                    { "LoanProcessStatus", "Loan Released" }
+                };
 
-                // Save to loanDisburseCollection
                 await loanDisburseCollection.InsertOneAsync(approvedLoanData);
-
-                //MessageBox.Show("Disbursement data has been saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            catch (FormatException fe)
+            {
+                MessageBox.Show(fe.Message, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             catch (Exception e)
             {
-                MessageBox.Show("There was a problem saving the transaction: " + e.Message, "Transaction Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There was a problem saving the disbursement transaction: " + e.Message, "Transaction Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false; // Indicate failure
             }
         }
 
@@ -560,17 +611,29 @@ namespace rct_lmis.ADMIN_SECTION
         {
             if (MessageBox.Show(this, "Do you want to import the account?", "Save Transaction", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                bool isSaveSuccessful = false;
+                bool isDisburseSuccessful = false;
+
                 // Run the data-saving tasks asynchronously
-                await Task.Run(() =>
+                await Task.Run(async () =>
                 {
-                    GenerelSaveData();
-                    GenerelDisbursedData();
+                    isSaveSuccessful = await GenerelSaveData();
+                    if (isSaveSuccessful)
+                    {
+                        isDisburseSuccessful = await GenerelDisbursedData();
+                    }
                 });
 
-                MessageBox.Show(this, "Transactions have been imported successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                // Show success message only if both operations succeed
+                if (isSaveSuccessful && isDisburseSuccessful)
+                {
+                    MessageBox.Show(this, "Transactions have been imported successfully!", "Transaction Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
         }
+
+
 
 
         private async void bdelete_Click(object sender, EventArgs e)

@@ -361,6 +361,7 @@ namespace rct_lmis
                                         .ToList();
 
                 dgvdata_client.Rows.Clear();
+                dgvdata_client.ClearSelection();
 
                 // Populate DataGridView with client information
                 foreach (var client in clients)
@@ -497,6 +498,7 @@ namespace rct_lmis
 
                 // Clear existing rows in the DataGridView
                 dgvpendingloans.Rows.Clear();
+                dgvpendingloans.ClearSelection();
 
                 // Add sorted rows to the DataGridView
                 foreach (var loanDetail in pendingLoanDetailsList)
@@ -555,6 +557,7 @@ namespace rct_lmis
 
                 // Clear existing rows before loading new data
                 dgvcollectionsnew.Rows.Clear();
+                dgvcollectionsnew.ClearSelection();
 
                 // Query to get all loan collections and sort them by CollectionDate (newest to oldest)
                 var loanCollections = collection.Find(Builders<BsonDocument>.Filter.Empty)
@@ -806,6 +809,7 @@ namespace rct_lmis
 
                 // Clear existing rows in the DataGridView
                 dgvupcomingpayments.Rows.Clear();
+                dgvupcomingpayments.ClearSelection();
 
                 // Add sorted rows to the DataGridView
                 foreach (var loanDetail in loanDetailsList)
@@ -819,9 +823,6 @@ namespace rct_lmis
                 MessageBox.Show($"Error loading upcoming payments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
 
         private void dgvusersonline_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
