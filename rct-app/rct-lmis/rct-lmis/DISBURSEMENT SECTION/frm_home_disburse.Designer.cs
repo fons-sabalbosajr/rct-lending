@@ -123,7 +123,7 @@ namespace rct_lmis
             this.cbstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbstatus.ItemHeight = 30;
             this.cbstatus.Items.AddRange(new object[] {
-            "--all payee--"});
+            "--all status--"});
             this.cbstatus.Location = new System.Drawing.Point(466, 14);
             this.cbstatus.Name = "cbstatus";
             this.cbstatus.Size = new System.Drawing.Size(186, 36);
@@ -260,7 +260,7 @@ namespace rct_lmis
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvdata.DefaultCellStyle = dataGridViewCellStyle3;
@@ -282,7 +282,7 @@ namespace rct_lmis
             dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvdata.RowTemplate.Height = 80;
+            this.dgvdata.RowTemplate.Height = 70;
             this.dgvdata.Size = new System.Drawing.Size(1300, 582);
             this.dgvdata.TabIndex = 10;
             this.dgvdata.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
@@ -304,8 +304,8 @@ namespace rct_lmis
             this.dgvdata.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvdata.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvdata.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.dgvdata.ThemeStyle.RowsStyle.Height = 80;
-            this.dgvdata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            this.dgvdata.ThemeStyle.RowsStyle.Height = 70;
+            this.dgvdata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
             this.dgvdata.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellClick);
             this.dgvdata.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvdata_CellFormatting);

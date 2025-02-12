@@ -51,9 +51,16 @@
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.lnorecord = new System.Windows.Forms.Label();
             this.dgvdata = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lgenbal = new System.Windows.Forms.Label();
+            this.lpenaltytotal = new System.Windows.Forms.Label();
+            this.ltotalamtpaid = new System.Windows.Forms.Label();
+            this.ltotalpayments = new System.Windows.Forms.Label();
+            this.bconfig = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -145,7 +152,7 @@
             this.bpayadvance.FillColor = System.Drawing.Color.SteelBlue;
             this.bpayadvance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bpayadvance.ForeColor = System.Drawing.Color.White;
-            this.bpayadvance.Location = new System.Drawing.Point(785, 11);
+            this.bpayadvance.Location = new System.Drawing.Point(748, 12);
             this.bpayadvance.Name = "bpayadvance";
             this.bpayadvance.Size = new System.Drawing.Size(141, 30);
             this.bpayadvance.TabIndex = 39;
@@ -165,7 +172,7 @@
             this.bnew.FillColor = System.Drawing.Color.SeaGreen;
             this.bnew.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnew.ForeColor = System.Drawing.Color.White;
-            this.bnew.Location = new System.Drawing.Point(932, 11);
+            this.bnew.Location = new System.Drawing.Point(895, 12);
             this.bnew.Name = "bnew";
             this.bnew.Size = new System.Drawing.Size(141, 30);
             this.bnew.TabIndex = 31;
@@ -184,7 +191,7 @@
             this.bsoa.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.bsoa.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bsoa.ForeColor = System.Drawing.Color.White;
-            this.bsoa.Location = new System.Drawing.Point(1079, 11);
+            this.bsoa.Location = new System.Drawing.Point(1042, 11);
             this.bsoa.Name = "bsoa";
             this.bsoa.Size = new System.Drawing.Size(93, 31);
             this.bsoa.TabIndex = 184;
@@ -195,6 +202,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.bconfig);
             this.panel2.Controls.Add(this.bpayadvance);
             this.panel2.Controls.Add(this.bsoa);
             this.panel2.Controls.Add(this.dtdate);
@@ -292,7 +300,7 @@
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvdata.DefaultCellStyle = dataGridViewCellStyle3;
@@ -300,7 +308,6 @@
             this.dgvdata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.Location = new System.Drawing.Point(0, 105);
             this.dgvdata.Name = "dgvdata";
-            this.dgvdata.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -314,8 +321,8 @@
             dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvdata.RowTemplate.Height = 100;
-            this.dgvdata.Size = new System.Drawing.Size(1184, 556);
+            this.dgvdata.RowTemplate.Height = 75;
+            this.dgvdata.Size = new System.Drawing.Size(1184, 522);
             this.dgvdata.TabIndex = 12;
             this.dgvdata.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
             this.dgvdata.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -331,25 +338,107 @@
             this.dgvdata.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvdata.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvdata.ThemeStyle.HeaderStyle.Height = 30;
-            this.dgvdata.ThemeStyle.ReadOnly = true;
+            this.dgvdata.ThemeStyle.ReadOnly = false;
             this.dgvdata.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvdata.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvdata.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvdata.ThemeStyle.RowsStyle.Height = 100;
-            this.dgvdata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            this.dgvdata.ThemeStyle.RowsStyle.Height = 75;
+            this.dgvdata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
             this.dgvdata.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellContentClick);
+            this.dgvdata.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdata_CellEndEdit);
             this.dgvdata.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvdata_CellFormatting);
             this.dgvdata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdata_DataBindingComplete);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel3.Controls.Add(this.lgenbal);
+            this.panel3.Controls.Add(this.lpenaltytotal);
+            this.panel3.Controls.Add(this.ltotalamtpaid);
+            this.panel3.Controls.Add(this.ltotalpayments);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 627);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1184, 34);
+            this.panel3.TabIndex = 14;
+            // 
+            // lgenbal
+            // 
+            this.lgenbal.AutoSize = true;
+            this.lgenbal.BackColor = System.Drawing.Color.Transparent;
+            this.lgenbal.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lgenbal.ForeColor = System.Drawing.Color.Black;
+            this.lgenbal.Location = new System.Drawing.Point(459, 10);
+            this.lgenbal.Name = "lgenbal";
+            this.lgenbal.Size = new System.Drawing.Size(86, 13);
+            this.lgenbal.TabIndex = 188;
+            this.lgenbal.Text = "General Balance:";
+            // 
+            // lpenaltytotal
+            // 
+            this.lpenaltytotal.AutoSize = true;
+            this.lpenaltytotal.BackColor = System.Drawing.Color.Transparent;
+            this.lpenaltytotal.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lpenaltytotal.ForeColor = System.Drawing.Color.Black;
+            this.lpenaltytotal.Location = new System.Drawing.Point(760, 10);
+            this.lpenaltytotal.Name = "lpenaltytotal";
+            this.lpenaltytotal.Size = new System.Drawing.Size(44, 13);
+            this.lpenaltytotal.TabIndex = 187;
+            this.lpenaltytotal.Text = "Penalty:";
+            // 
+            // ltotalamtpaid
+            // 
+            this.ltotalamtpaid.AutoSize = true;
+            this.ltotalamtpaid.BackColor = System.Drawing.Color.Transparent;
+            this.ltotalamtpaid.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltotalamtpaid.ForeColor = System.Drawing.Color.Black;
+            this.ltotalamtpaid.Location = new System.Drawing.Point(227, 10);
+            this.ltotalamtpaid.Name = "ltotalamtpaid";
+            this.ltotalamtpaid.Size = new System.Drawing.Size(99, 13);
+            this.ltotalamtpaid.TabIndex = 186;
+            this.ltotalamtpaid.Text = "Total Amount Paid:";
+            // 
+            // ltotalpayments
+            // 
+            this.ltotalpayments.AutoSize = true;
+            this.ltotalpayments.BackColor = System.Drawing.Color.Transparent;
+            this.ltotalpayments.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltotalpayments.ForeColor = System.Drawing.Color.Black;
+            this.ltotalpayments.Location = new System.Drawing.Point(12, 10);
+            this.ltotalpayments.Name = "ltotalpayments";
+            this.ltotalpayments.Size = new System.Drawing.Size(111, 13);
+            this.ltotalpayments.TabIndex = 185;
+            this.ltotalpayments.Text = "Total Payments Made:";
+            // 
+            // bconfig
+            // 
+            this.bconfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bconfig.BorderRadius = 3;
+            this.bconfig.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bconfig.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bconfig.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bconfig.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bconfig.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bconfig.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bconfig.ForeColor = System.Drawing.Color.White;
+            this.bconfig.Image = global::rct_lmis.Properties.Resources.icons8_utilities_60;
+            this.bconfig.Location = new System.Drawing.Point(1141, 12);
+            this.bconfig.Name = "bconfig";
+            this.bconfig.Size = new System.Drawing.Size(31, 30);
+            this.bconfig.TabIndex = 185;
+            this.toolTip1.SetToolTip(this.bconfig, "Collection Configuration");
+            this.bconfig.Click += new System.EventHandler(this.bconfig_Click);
             // 
             // frm_home_disburse_collections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 661);
-            this.Controls.Add(this.lnorecord);
             this.Controls.Add(this.dgvdata);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.lnorecord);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -366,6 +455,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -374,7 +465,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label laccountid;
         private System.Windows.Forms.Label label27;
         private Guna.UI2.WinForms.Guna2Button bnew;
         private System.Windows.Forms.Label laccno;
@@ -389,5 +479,12 @@
         private Guna.UI2.WinForms.Guna2Button bsoa;
         private System.Windows.Forms.Label lclientno;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label ltotalpayments;
+        private System.Windows.Forms.Label lgenbal;
+        private System.Windows.Forms.Label lpenaltytotal;
+        private System.Windows.Forms.Label ltotalamtpaid;
+        public System.Windows.Forms.Label laccountid;
+        private Guna.UI2.WinForms.Guna2Button bconfig;
     }
 }

@@ -30,7 +30,7 @@
     <PublisherName>ACS Micro IT Solutions Co.</PublisherName>
     <SuiteName>RACATOM Corporation</SuiteName>
     <MinimumRequiredVersion>1.0.0.16</MinimumRequiredVersion>
-    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationRevision>32</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -254,6 +254,7 @@
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.1\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
     </Reference>
@@ -484,6 +485,12 @@
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_aploans.Designer.cs">
       <DependentUpon>frm_home_ADMIN_aploans.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectconfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectconfig.Designer.cs">
+      <DependentUpon>frm_home_ADMIN_collectconfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_collectors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -550,6 +557,12 @@
     <Compile Include="ADMIN SECTION\frm_home_ADMIN_useraccounts.Designer.cs">
       <DependentUpon>frm_home_ADMIN_useraccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ZProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMIN SECTION\frm_home_ZProgress.Designer.cs">
+      <DependentUpon>frm_home_ZProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="CLIENTS SECTION\frm_home_client_details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -579,6 +592,12 @@
     </Compile>
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_details.Designer.cs">
       <DependentUpon>frm_home_disburse_details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_details_edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_details_edit.Designer.cs">
+      <DependentUpon>frm_home_disburse_details_edit.cs</DependentUpon>
     </Compile>
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.cs">
       <SubType>Form</SubType>
@@ -806,6 +825,9 @@
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_aploans.resx">
       <DependentUpon>frm_home_ADMIN_aploans.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_collectconfig.resx">
+      <DependentUpon>frm_home_ADMIN_collectconfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_collectors.resx">
       <DependentUpon>frm_home_ADMIN_collectors.cs</DependentUpon>
     </EmbeddedResource>
@@ -839,6 +861,9 @@
     <EmbeddedResource Include="ADMIN SECTION\frm_home_ADMIN_useraccounts.resx">
       <DependentUpon>frm_home_ADMIN_useraccounts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADMIN SECTION\frm_home_ZProgress.resx">
+      <DependentUpon>frm_home_ZProgress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CLIENTS SECTION\frm_home_client_details.resx">
       <DependentUpon>frm_home_client_details.cs</DependentUpon>
     </EmbeddedResource>
@@ -856,6 +881,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_details.resx">
       <DependentUpon>frm_home_disburse_details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_details_edit.resx">
+      <DependentUpon>frm_home_disburse_details_edit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.resx">
       <DependentUpon>frm_home_disburse_editCV.cs</DependentUpon>
@@ -945,7 +973,9 @@
     </EmbeddedResource>
     <None Include="docs\cash voucher.pdf" />
     <None Include="docs\receiving_voucher.pdf" />
-    <None Include="google_drive_credentials.json" />
+    <Content Include="google_drive_credentials.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="libmongocrypt.dylib" />
     <None Include="libmongocrypt.so" />
     <None Include="packages.config" />
@@ -959,6 +989,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="tessdata\eng.traineddata" />
+    <Content Include="rct-credentials.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

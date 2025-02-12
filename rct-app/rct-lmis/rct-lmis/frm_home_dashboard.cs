@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace rct_lmis
 {
@@ -546,91 +547,127 @@ namespace rct_lmis
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_collections");
 
-                // Ensure the DataGridView has the necessary columns
-                if (dgvcollectionsnew.Columns.Count == 0)
-                {
-                    dgvcollectionsnew.Columns.Add("ClientInfo", "Client Information");
-                    dgvcollectionsnew.Columns.Add("LoanAmount", "Loan Amount");
-                    dgvcollectionsnew.Columns.Add("AmountPaid", "Amount Paid");
-                    dgvcollectionsnew.Columns.Add("CollectorInfo", "Collection Information");
-                }
-
-                // Clear existing rows before loading new data
+                // ✅ Clear DataGridView before loading new data
                 dgvcollectionsnew.Rows.Clear();
-                dgvcollectionsnew.ClearSelection();
+                dgvcollectionsnew.Columns.Clear();
 
-                // Query to get all loan collections and sort them by CollectionDate (newest to oldest)
-                var loanCollections = collection.Find(Builders<BsonDocument>.Filter.Empty)
-                                                .Sort(Builders<BsonDocument>.Sort.Descending("CollectionDate"))
+                // ✅ Define necessary columns
+                dgvcollectionsnew.Columns.Add("ClientInfo", "Client Information");
+                dgvcollectionsnew.Columns.Add("LoanAmount", "Loan Amount");
+                dgvcollectionsnew.Columns.Add("AmountPaid", "Amount Paid");
+                dgvcollectionsnew.Columns.Add("CollectorInfo", "Collection Information");
+
+                // ✅ Query: Fetch the most recent loan collections (Sorted by CollectionDate descending)
+                var filter = Builders<BsonDocument>.Filter.Empty;
+                var sort = Builders<BsonDocument>.Sort.Descending("CollectionDate");
+                var projection = Builders<BsonDocument>.Projection
+                    .Include("CollectionDate")
+                    .Include("ClientNo")
+                    .Include("Name")
+                    .Include("LoanAmount")
+                    .Include("ActualCollection")
+                    .Include("Collector")
+                    .Include("Area")
+                    .Include("DateReceived");
+
+                var loanCollections = collection.Find(filter)
+                                                .Sort(sort)
+                                                .Project(projection)
+                                                .Limit(50) // ✅ Load only the most recent 50 collections
                                                 .ToList();
 
-                // Populate DataGridView with collection information
-                foreach (var collectionDoc in loanCollections)
+                foreach (var doc in loanCollections)
                 {
-                    // Client Information
-                    string collectionDate = collectionDoc.Contains("CollectionDate") ?
-                        collectionDoc["CollectionDate"].ToUniversalTime().ToString("yyyy-MM-dd") : "";
-                    string accountId = collectionDoc.Contains("AccountId") ?
-                        collectionDoc["AccountId"].AsString : "";
-                    string name = collectionDoc.Contains("Name") ?
-                        collectionDoc["Name"].AsString : "";
+                    // ✅ Extract Fields Safely
+                    string collectionDate = ExtractDateString(doc, "CollectionDate", "MM/dd/yyyy");
+                    string accountId = doc.Contains("ClientNo") ? doc["ClientNo"].ToString() : "N/A";
+                    string name = doc.Contains("Name") ? doc["Name"].ToString() : "Unknown";
+                    string loanAmount = doc.Contains("LoanAmount") ? FormatCurrency(doc["LoanAmount"]) : "₱0.00";
+                    string amountPaid = doc.Contains("ActualCollection") ? FormatCurrency(doc["ActualCollection"]) : "₱0.00";
+                    string collector = doc.Contains("Collector") ? doc["Collector"].ToString() : "N/A";
+                    string area = doc.Contains("Area") ? doc["Area"].ToString() : "N/A";
 
-                    // Concatenate Client Information fields into a single string with new lines
+                    // ✅ Determine Collection Status
+                    string collectionStatus = DetermineCollectionStatus(doc);
+
+                    // ✅ Concatenate Data for Display
                     string clientInfo = $"Col. Date: {collectionDate}\nCol. No.: {accountId}\nName: {name}";
+                    string collectionInfo = $"Collector: {collector}\nArea Route: {area}\nStatus: {collectionStatus}";
 
-                    // Loan Information
-                    string loanAmount = collectionDoc.Contains("LoanAmount") ?
-                        ((double)collectionDoc["LoanAmount"].AsDecimal128).ToString("F2") : "0.00";
-
-                    // Payment Information (optional, can be omitted if not needed)
-                    string amountPaid = collectionDoc.Contains("ActualCollection") ?
-                        ((double)collectionDoc["ActualCollection"].AsDecimal128).ToString("F2") : "0.00";
-
-                    // Collection Information
-                    string collector = collectionDoc.Contains("Collector") ?
-                        collectionDoc["Collector"].AsString : "";
-                    string area = collectionDoc.Contains("Area") ?
-                        collectionDoc["Area"].AsString : "";
-
-                    // Determine Collection Status
-                    string collectionStatus = "Over Due"; // Default status
-                    if (collectionDoc.Contains("CollectionDate") && collectionDoc.Contains("DateReceived"))
-                    {
-                        DateTime collDate = collectionDoc["CollectionDate"].ToUniversalTime();
-                        DateTime receivedDate = collectionDoc["DateReceived"].ToUniversalTime();
-
-                        // Status based on the collection date and received date comparison
-                        collectionStatus = collDate.Date == receivedDate.Date ? "Paid on Time" : "Over Due";
-                    }
-
-                    // Concatenate Collection Information fields into a single string with new lines
-                    string collectionInfo = $"Collector: {collector}\nArea Route: {area}\nCollection Status: {collectionStatus}";
-
-                    // Add the concatenated information to the DataGridView
+                    // ✅ Add Row to DataGridView
                     dgvcollectionsnew.Rows.Add(clientInfo, loanAmount, amountPaid, collectionInfo);
                 }
 
-                // Enable word wrapping for the DataGridView
+                // ✅ Format DataGridView (Enable Wrapping & Set Column Widths)
                 foreach (DataGridViewColumn column in dgvcollectionsnew.Columns)
                 {
                     column.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 }
-
-                // Set column widths and other properties if needed
-                dgvcollectionsnew.Columns[0].Width = 300; // Client Information
-                dgvcollectionsnew.Columns[1].Width = 200; // Loan Amount
-                dgvcollectionsnew.Columns[2].Width = 200; // Amount Paid
-                dgvcollectionsnew.Columns[3].Width = 200; // Collection Information
-
-                // Adjust row heights to fit content
                 dgvcollectionsnew.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
             }
             catch (Exception ex)
             {
-                // Handle exceptions
                 MessageBox.Show($"Error loading collections: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // ✅ Extract & Format Date (Handles Different BSON Types)
+        private string ExtractDateString(BsonDocument doc, string fieldName, string format)
+        {
+            if (!doc.Contains(fieldName)) return "N/A";
+
+            var bsonValue = doc[fieldName];
+            try
+            {
+                if (bsonValue.BsonType == BsonType.DateTime)
+                {
+                    return bsonValue.ToUniversalTime().ToString(format);
+                }
+                else if (bsonValue.BsonType == BsonType.String)
+                {
+                    return DateTime.ParseExact(bsonValue.AsString, "M/d/yyyy", CultureInfo.InvariantCulture).ToString(format);
+                }
+            }
+            catch { return "Invalid Date"; }
+
+            return "N/A";
+        }
+
+        // ✅ Format Currency Values
+        private string FormatCurrency(BsonValue value)
+        {
+            return value.IsNumeric ? $"₱{value.ToDecimal():N2}" : "₱0.00";
+        }
+
+        // ✅ Determine Collection Status
+        private string DetermineCollectionStatus(BsonDocument doc)
+        {
+            if (!doc.Contains("CollectionDate") || !doc.Contains("DateReceived")) return "Over Due";
+
+            try
+            {
+                DateTime collectionDate = ExtractDate(doc, "CollectionDate");
+                DateTime dateReceived = ExtractDate(doc, "DateReceived");
+
+                return collectionDate.Date == dateReceived.Date ? "Paid on Time" : "Over Due";
+            }
+            catch { return "Invalid Date"; }
+        }
+
+        // ✅ Extract Date with Safe Parsing
+        private DateTime ExtractDate(BsonDocument doc, string fieldName)
+        {
+            var bsonValue = doc[fieldName];
+
+            if (bsonValue.BsonType == BsonType.DateTime)
+                return bsonValue.ToUniversalTime();
+
+            if (bsonValue.BsonType == BsonType.String)
+                return DateTime.ParseExact(bsonValue.AsString, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+
+            throw new Exception($"Unsupported data type for {fieldName}");
+        }
+
 
 
         private void LoadDueLoanTotal()

@@ -30,9 +30,9 @@ namespace rct_lmis
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.baddloanex = new Guna.UI2.WinForms.Guna2Button();
             this.baddnew = new Guna.UI2.WinForms.Guna2Button();
@@ -54,6 +54,13 @@ namespace rct_lmis
             this.cbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
+            this.lstatuspastdue = new System.Windows.Forms.Label();
+            this.lstatusdormant = new System.Windows.Forms.Label();
+            this.lstatuslitigation = new System.Windows.Forms.Label();
+            this.lstatusarrears = new System.Windows.Forms.Label();
+            this.lstatusupdated = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.pbot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -153,25 +160,25 @@ namespace rct_lmis
             // 
             this.dgvdata.AllowUserToAddRows = false;
             this.dgvdata.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvdata.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvdata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvdata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.Location = new System.Drawing.Point(0, 66);
@@ -210,6 +217,13 @@ namespace rct_lmis
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.Controls.Add(this.lstatuspastdue);
+            this.panel3.Controls.Add(this.lstatusdormant);
+            this.panel3.Controls.Add(this.lstatuslitigation);
+            this.panel3.Controls.Add(this.lstatusarrears);
+            this.panel3.Controls.Add(this.lstatusupdated);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.guna2VSeparator1);
             this.panel3.Controls.Add(this.luser);
             this.panel3.Controls.Add(this.ltotalloancount);
             this.panel3.Controls.Add(this.label4);
@@ -362,20 +376,13 @@ namespace rct_lmis
             this.cbstatus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cbstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbstatus.ItemHeight = 30;
-            this.cbstatus.Items.AddRange(new object[] {
-            "--all status--",
-            "Active",
-            "Due",
-            "For Collection",
-            "Critical",
-            "For Legal Process"});
             this.cbstatus.Location = new System.Drawing.Point(449, 15);
             this.cbstatus.Name = "cbstatus";
             this.cbstatus.Size = new System.Drawing.Size(186, 36);
-            this.cbstatus.StartIndex = 0;
             this.cbstatus.TabIndex = 3;
             this.cbstatus.TextOffset = new System.Drawing.Point(10, 0);
             this.toolTip1.SetToolTip(this.cbstatus, "Select Status");
+            this.cbstatus.SelectedIndexChanged += new System.EventHandler(this.cbstatus_SelectedIndexChanged);
             // 
             // tsearch
             // 
@@ -397,6 +404,80 @@ namespace rct_lmis
             this.tsearch.Size = new System.Drawing.Size(377, 36);
             this.tsearch.TabIndex = 1;
             this.toolTip1.SetToolTip(this.tsearch, "Search Keyword");
+            this.tsearch.TextChanged += new System.EventHandler(this.tsearch_TextChanged);
+            // 
+            // guna2VSeparator1
+            // 
+            this.guna2VSeparator1.Location = new System.Drawing.Point(444, 8);
+            this.guna2VSeparator1.Name = "guna2VSeparator1";
+            this.guna2VSeparator1.Size = new System.Drawing.Size(10, 17);
+            this.guna2VSeparator1.TabIndex = 13;
+            // 
+            // lstatuspastdue
+            // 
+            this.lstatuspastdue.AutoSize = true;
+            this.lstatuspastdue.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstatuspastdue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lstatuspastdue.Location = new System.Drawing.Point(620, 9);
+            this.lstatuspastdue.Name = "lstatuspastdue";
+            this.lstatuspastdue.Size = new System.Drawing.Size(87, 15);
+            this.lstatuspastdue.TabIndex = 25;
+            this.lstatuspastdue.Text = "PAST DUE (100)";
+            // 
+            // lstatusdormant
+            // 
+            this.lstatusdormant.AutoSize = true;
+            this.lstatusdormant.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstatusdormant.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lstatusdormant.Location = new System.Drawing.Point(900, 9);
+            this.lstatusdormant.Name = "lstatusdormant";
+            this.lstatusdormant.Size = new System.Drawing.Size(91, 15);
+            this.lstatusdormant.TabIndex = 24;
+            this.lstatusdormant.Text = "DORMANT(100)";
+            // 
+            // lstatuslitigation
+            // 
+            this.lstatuslitigation.AutoSize = true;
+            this.lstatuslitigation.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstatuslitigation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lstatuslitigation.Location = new System.Drawing.Point(802, 9);
+            this.lstatuslitigation.Name = "lstatuslitigation";
+            this.lstatuslitigation.Size = new System.Drawing.Size(92, 15);
+            this.lstatuslitigation.TabIndex = 23;
+            this.lstatuslitigation.Text = "LIGITATION(100)";
+            // 
+            // lstatusarrears
+            // 
+            this.lstatusarrears.AutoSize = true;
+            this.lstatusarrears.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstatusarrears.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lstatusarrears.Location = new System.Drawing.Point(714, 9);
+            this.lstatusarrears.Name = "lstatusarrears";
+            this.lstatusarrears.Size = new System.Drawing.Size(82, 15);
+            this.lstatusarrears.TabIndex = 22;
+            this.lstatusarrears.Text = "ARREARS(100)";
+            // 
+            // lstatusupdated
+            // 
+            this.lstatusupdated.AutoSize = true;
+            this.lstatusupdated.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstatusupdated.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lstatusupdated.Location = new System.Drawing.Point(532, 9);
+            this.lstatusupdated.Name = "lstatusupdated";
+            this.lstatusupdated.Size = new System.Drawing.Size(83, 15);
+            this.lstatusupdated.TabIndex = 21;
+            this.lstatusupdated.Text = "UPDATED(100)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(455, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 15);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Loan Status:";
             // 
             // frm_home_loans
             // 
@@ -447,5 +528,12 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2DataGridView dgvdata;
         private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator2;
         private Guna.UI2.WinForms.Guna2Button baddloanex;
+        private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator1;
+        private System.Windows.Forms.Label lstatuspastdue;
+        private System.Windows.Forms.Label lstatusdormant;
+        private System.Windows.Forms.Label lstatuslitigation;
+        private System.Windows.Forms.Label lstatusarrears;
+        private System.Windows.Forms.Label lstatusupdated;
+        private System.Windows.Forms.Label label2;
     }
 }

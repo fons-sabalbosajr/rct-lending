@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.Xml;
 using System.Text;
@@ -15,9 +16,17 @@ namespace rct_lmis.ACCOUNTING
 {
     public partial class frm_home_accounting : Form
     {
+        private IMongoCollection<BsonDocument> loanDisbursedCollection;
+        private IMongoCollection<BsonDocument> loanApprovedCollection;
+        private string loggedInUsername;
+
+
         public frm_home_accounting()
         {
             InitializeComponent();
+            var database = MongoDBConnection.Instance.Database;
+            loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
+            loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
 
             LoadAccountGroups();
             InitializeLoansView();
@@ -25,6 +34,8 @@ namespace rct_lmis.ACCOUNTING
         }
 
         LoadingFunction load = new LoadingFunction();
+
+
 
         private void LoadAccountGroups()
         {
@@ -253,10 +264,109 @@ namespace rct_lmis.ACCOUNTING
             }
         }
 
+       private async void LoadAccountingData()
+{
+    try
+    {
+        var database = MongoDBConnection.Instance.Database;
+        // Query to get all the records from the loan_accounting_collection
+        var accountingCollection = database.GetCollection<BsonDocument>("loan_accounting_collection");
+
+        // Get all documents from the collection
+        var accountingData = await accountingCollection.Find(new BsonDocument()).ToListAsync();
+
+        // Convert the data into a DataTable for DataGridView binding
+        DataTable dt = new DataTable();
+
+        // Add the necessary columns to the DataTable
+        dt.Columns.Add("ClientNo", typeof(string));
+        dt.Columns.Add("LoanID", typeof(string));
+        dt.Columns.Add("CollectionDate", typeof(DateTime));
+        dt.Columns.Add("Collector", typeof(string));
+        dt.Columns.Add("PaymentMode", typeof(string));
+
+        // Add Accounting terms columns
+        dt.Columns.Add("LoansReceivableCredit", typeof(decimal));
+        dt.Columns.Add("CashDebit", typeof(decimal));
+        dt.Columns.Add("InterestReceivableCredit", typeof(decimal));
+        dt.Columns.Add("PrincipalDebit", typeof(decimal));
+        dt.Columns.Add("InterestIncomeCredit", typeof(decimal));
+        dt.Columns.Add("LoansReceivableDebit", typeof(decimal));
+
+        // Initialize variables to calculate totals
+        decimal totalDebit = 0.0m;
+        decimal totalCredit = 0.0m;
+        decimal netProfit = 0.0m;
+
+        // Initialize a flag to ensure LoansReceivableCredit is only counted once
+        bool loansReceivableCreditIncluded = false;
+
+        // Populate the DataTable with the data from the collection
+        foreach (var accountingRecord in accountingData)
+        {
+            DataRow row = dt.NewRow();
+
+            row["ClientNo"] = accountingRecord.GetValue("ClientNo").AsString;
+            row["LoanID"] = accountingRecord.GetValue("LoanID").AsString;
+            row["CollectionDate"] = accountingRecord.GetValue("CollectionDate").ToUniversalTime();
+            row["Collector"] = accountingRecord.GetValue("Collector").AsString;
+            row["PaymentMode"] = accountingRecord.GetValue("PaymentMode").AsString;
+
+            // Add the accounting terms (credits and debits) to the DataTable
+            decimal loansReceivableCredit = accountingRecord.GetValue("LoansReceivableCredit").ToDecimal();
+            decimal cashDebit = accountingRecord.GetValue("CashDebit").ToDecimal(); // This is the principal payment
+            decimal interestReceivableCredit = accountingRecord.GetValue("InterestReceivableCredit").ToDecimal();
+            decimal interestIncomeCredit = accountingRecord.GetValue("InterestIncomeCredit").ToDecimal();
+            decimal loansReceivableDebit = accountingRecord.GetValue("LoansReceivableDebit").ToDecimal();
+
+            // Only include LoansReceivableCredit once
+            if (!loansReceivableCreditIncluded)
+            {
+                row["LoansReceivableCredit"] = loansReceivableCredit;
+                totalCredit += loansReceivableCredit;
+                loansReceivableCreditIncluded = true;
+            }
+            else
+            {
+                row["LoansReceivableCredit"] = 0.0m; // If already counted, set to 0 for this row
+            }
+
+            row["CashDebit"] = cashDebit;
+            row["InterestReceivableCredit"] = interestReceivableCredit;
+            row["PrincipalDebit"] = 0.0m; // Do not count Principal Debit again
+            row["InterestIncomeCredit"] = interestIncomeCredit;
+            row["LoansReceivableDebit"] = loansReceivableDebit;
+
+            // Add the accounting values to the totals for this row
+            totalDebit += cashDebit + loansReceivableDebit; // Add Cash Debit and Loans Receivable Debit
+            totalCredit += interestReceivableCredit + interestIncomeCredit; // Add Interest Receivable and Interest Income Credit
+
+            // Calculate the net profit (Profit = PrincipalDebit - InterestIncomeCredit)
+            netProfit += cashDebit - interestIncomeCredit;
+
+            dt.Rows.Add(row);
+        }
+
+        // Bind the DataTable to the DataGridView
+        dgvdatacol.DataSource = dt;
+
+        // Format the totals for Philippine Pesos and display them in the labels
+        var phCulture = new CultureInfo("en-PH");
+        lnetprofit.Text = $"{netProfit.ToString("C", phCulture)}";
+        ltotaldebit.Text = $"{totalDebit.ToString("C", phCulture)}";
+        ltotalcredit.Text = $"{totalCredit.ToString("C", phCulture)}";
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Error loading accounting data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+}
+
 
         private void frm_home_accounting_Load(object sender, EventArgs e)
         {
             PopulateLoansView();
+            LoadAccountingData();
         }
 
         private void tsearchloan_TextChanged(object sender, EventArgs e)
@@ -272,6 +382,11 @@ namespace rct_lmis.ACCOUNTING
         private void cbaccounttitle_SelectedIndexChanged(object sender, EventArgs e)
         {
             FilterAccountTitles();
+        }
+
+        private void dgvdatacol_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvdatacol.ClearSelection();
         }
     }
 }

@@ -1,7 +1,13 @@
-﻿using MongoDB.Bson;
+﻿using ClosedXML.Excel;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using rct_lmis.DISBURSEMENT_SECTION;
 using System;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,17 +18,22 @@ namespace rct_lmis.LOAN_SECTION
     {
         public string AccountID { get; set; }
 
+        private DataTable _loanCollectionTable;
+
         public frm_home_loan_new()
         {
             InitializeComponent();
             InitializeDataGridView();
-            
+
+            // Initialize DataTable for binding to DataGridView
+            _loanCollectionTable = new DataTable();
         }
 
         private async void frm_home_loan_new_Load(object sender, EventArgs e)
         {
             laccno.Text = $"{AccountID}";
             await LoadLoanDetailsAsync();
+            await LoadLoanCollectionsAsync();
         }
 
         private void InitializeDataGridView()
@@ -139,6 +150,7 @@ namespace rct_lmis.LOAN_SECTION
                     taccprov.Text = document.GetValue("Province", "").ToString();
                     tacccontactno.Text = document.GetValue("ContactNumber", "").ToString();
                     taccemail.Text = document.GetValue("Email", "").ToString();
+                    lclientno.Text = document.GetValue("ClientNo", "").ToString();
 
                     // Loan Info
                     string loanStatus = document.GetValue("LoanProcessStatus", "Not Available").ToString();
@@ -216,8 +228,6 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-
-
         private async Task LoadLoanDetailsToDataGridViewAsync(string accountId)
         {
             try
@@ -278,7 +288,303 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+        private async Task LoadLoanCollectionsAsync()
+        {
+            string clientNo = lclientno.Text; // Retrieve ClientNo
 
+            // Initialize the connection to the database
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<BsonDocument>("loan_collections"); // The collection for loan collections
+
+            // Create a filter to search based on ClientNo
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", clientNo);
+
+            // Fetch the loan collections for the specific client
+            var loanCollections = await collection.Find(filter).ToListAsync(); // Fetch the data
+
+            // Ensure the _loanCollectionTable is initialized
+            if (_loanCollectionTable.Columns.Count == 0)
+            {
+                _loanCollectionTable.Columns.Add("Client Information", typeof(string));
+                _loanCollectionTable.Columns.Add("Loan Information", typeof(string));
+                _loanCollectionTable.Columns.Add("Payment Information", typeof(string));
+                _loanCollectionTable.Columns.Add("Collection Information", typeof(string));
+                _loanCollectionTable.Columns.Add("Remarks", typeof(string));
+                _loanCollectionTable.Columns.Add("CollectionDateTemp", typeof(DateTime)); // Add temporary column for sorting
+            }
+
+            // Clear existing rows before loading new data
+            _loanCollectionTable.Rows.Clear();
+            dgvdatadis.DataSource = null; // Clear existing data source
+
+            double totalAmountPaid = 0;
+            double totalPenalty = 0;
+            double totalLoanAmount = 0;
+            double runningBalance = 0;  // Initialize running balance for calculations
+
+            foreach (var collectionRecord in loanCollections)
+            {
+                // Client Information
+                DateTime? collectionDate = collectionRecord.Contains("CollectionDate") ? collectionRecord["CollectionDate"].ToUniversalTime() : (DateTime?)null;
+                string collectionDateStr = collectionDate.HasValue ? collectionDate.Value.ToString("MM/dd/yyyy") : "";
+
+                string clientNumber = collectionRecord.Contains("ClientNo") ? collectionRecord["ClientNo"].AsString : "";
+                string name = collectionRecord.Contains("Name") ? collectionRecord["Name"].AsString : "";
+
+                string clientInfo = $"Col. Date: {collectionDateStr}\n" +
+                                     $"Client No.: {clientNo}\n" +
+                                     $"Name: {name}";
+
+                // Loan Information
+                double loanAmount = collectionRecord.Contains("LoanAmount") ? (double)collectionRecord["LoanAmount"].AsDecimal128 : 0.00;
+                totalLoanAmount = loanAmount;  // Store loan amount to compute general balance later
+
+                string amortization = collectionRecord.Contains("Amortization") ? ((double)collectionRecord["Amortization"].AsDecimal128).ToString("F2") : "0.00";
+
+                // Calculate Running Balance as Loan Amount - Total Amount Paid
+                double amountPaid = collectionRecord.Contains("ActualCollection") ? (double)collectionRecord["ActualCollection"].AsDecimal128 : 0.00;
+                runningBalance = loanAmount - totalAmountPaid; // Running balance: Loan Amount - Total Amount Paid
+
+                string runningBalanceStr = runningBalance <= 0 ? "Settled" : runningBalance.ToString("F2"); // Check if balance is zero or negative
+
+                string loanInfo = $"Loan Amount: {loanAmount:F2}\n" +
+                                  $"Amortization: {amortization}\n" +
+                                  $"Running Balance: {runningBalanceStr}";
+
+                // Payment Information
+                string dateReceived = collectionRecord.Contains("DateReceived") ? collectionRecord["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy") : "";  // Fix to DateReceived field
+
+                totalAmountPaid += amountPaid;  // Add amount paid to total payments
+
+                string penalty = collectionRecord.Contains("CollectedPenalty") ? ((double)collectionRecord["CollectedPenalty"].AsDecimal128).ToString("F2") : "";
+                string paymentMode = collectionRecord.Contains("PaymentMode") ? collectionRecord["PaymentMode"].AsString : "";
+
+                string paymentInfo = $"Date Received: {dateReceived}\n" +
+                                     $"Amount Paid: {amountPaid:F2}\n" +
+                                     $"Penalty: {penalty}\n" +
+                                     $"Payment Mode: {paymentMode}";
+
+                // Collection Information
+                string collector = collectionRecord.Contains("Collector") ? collectionRecord["Collector"].AsString : "";
+                string area = collectionRecord.Contains("Address") ? collectionRecord["Address"].AsString : "";
+
+                string collectionInfo = $"Collector: {collector}\n" +
+                                        $"Address: {area}";
+
+                // Remarks: Always Include Excess Amount Paid, Even if Settled
+                string remarks = "";
+                double excessAmount = totalAmountPaid - totalLoanAmount; // Calculate excess amount paid over total loan amount
+
+                if (runningBalance <= 0)
+                {
+                    // Loan is fully paid
+                    if (excessAmount > 0)
+                    {
+                        remarks = $"Loan is fully paid.\nExcess amount paid: {excessAmount:F2}";
+                        lgenbal.Text = $"Excess payment: {excessAmount:F2}";  // Display excess payment in the UI
+                    }
+                    else
+                    {
+                        remarks = "Loan is fully paid";
+                        lgenbal.Text = "0.00";
+                    }
+                }
+                else
+                {
+                    // Loan still has a remaining balance
+                    remarks = $"Remaining Balance: {runningBalance:F2}";
+                    lgenbal.Text = $"Remaining Balance: {runningBalance:F2}";
+                    // Also add the excess amount if it exists in an installment
+                    if (excessAmount > 0)
+                    {
+                        remarks += $"\nExcess Amount Paid: {excessAmount:F2}";
+                        lgenbal.Text += $"\nExcess Amount Paid: {excessAmount:F2}";
+                    }
+                }
+
+                // Add data to DataTable, including CollectionDateTemp for sorting
+                _loanCollectionTable.Rows.Add(clientInfo, loanInfo, paymentInfo, collectionInfo, remarks, collectionDate.HasValue ? (object)collectionDate.Value : DBNull.Value);
+            }
+
+            ltotalpayments.Text = "Total Payment Collection: " + loanCollections.Count.ToString();
+
+            // Total Amount Paid Calculation
+            double totalAmountPaidFromCollections = 0;
+            foreach (DataGridViewRow row in dgvdatadis.Rows)
+            {
+                double amountPaid = Convert.ToDouble(row.Cells["AmountPaidColumn"].Value); // Replace with actual column name
+                totalAmountPaidFromCollections += amountPaid;
+            }
+            ltotalamtpaid.Text = "Total Amount Paid: " + (totalAmountPaid + totalAmountPaidFromCollections).ToString("F2");
+
+            // Remaining Balance (General Balance)
+            double totalLoanAmountFromCollections = 0;
+            foreach (DataGridViewRow row in dgvdatadis.Rows)
+            {
+                double loanAmount = Convert.ToDouble(row.Cells["LoanAmountColumn"].Value); // Replace with actual column name
+                totalLoanAmountFromCollections += loanAmount;
+            }
+
+            // Penalty Calculation
+            double totalPenaltyFromCollections = 0;
+            foreach (DataGridViewRow row in dgvdatadis.Rows)
+            {
+                double penalty = Convert.ToDouble(row.Cells["PenaltyColumn"].Value); // Replace with actual column name
+                totalPenaltyFromCollections += penalty;
+            }
+            lpenaltytotal.Text = "Generated Penalty: " + (totalPenalty + totalPenaltyFromCollections).ToString("F2");
+
+            // Sort the DataTable by CollectionDateTemp in descending order
+            DataView view = _loanCollectionTable.DefaultView;
+            view.Sort = "CollectionDateTemp ASC";  // Sort by CollectionDateTemp in descending order
+            DataTable sortedTable = view.ToTable();
+
+            // Bind sorted data to DataGridView
+            dgvdatadis.DataSource = sortedTable;
+
+            // Enable word wrapping for DataGridView cells
+            foreach (DataGridViewColumn col in dgvdatadis.Columns)
+            {
+                col.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            }
+
+            // Auto-size row height based on content
+            foreach (DataGridViewRow row in dgvdatadis.Rows)
+            {
+                row.Height = Math.Max(row.Height, 30); // Adjust height based on content
+            }
+
+            // Hide the temporary CollectionDateTemp column after sorting
+            dgvdatadis.Columns["CollectionDateTemp"].Visible = false;
+        }
+
+        // Filter rows in DataGridView based on tdissearch.Text
+        private void FilterDataGridView()
+        {
+            string filterText = tdissearch.Text.Trim().ToLower();
+
+            // Apply filtering logic
+            (dgvdatadis.DataSource as DataTable).DefaultView.RowFilter = string.Join(" OR ", dgvdatadis.Columns.Cast<DataGridViewColumn>()
+                .Where(col => col.Visible)
+                .Select(col => $"[{col.HeaderText}] LIKE '%{filterText}%'"));
+        }
+
+        private void ExportToExcel()
+        {
+            if (dgvdatadis.Rows.Count == 0)
+            {
+                MessageBox.Show("No data available to export.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                using (SaveFileDialog sfd = new SaveFileDialog())
+                {
+                    sfd.Filter = "Excel Files (*.xlsx)|*.xlsx";
+
+                    string clientNo = dgvdatadis.Rows[0].Cells["ClientNo"].Value?.ToString() ?? "LoanCollectionsReport";
+                    sfd.FileName = $"{clientNo}_LoanCollectionsReport.xlsx";
+
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        using (var package = new ExcelPackage())
+                        {
+                            var worksheet = package.Workbook.Worksheets.Add("Loan Collections");
+
+                            int rowIndex = 1;
+
+                            // Add Primary Details
+                            AddDetail(worksheet, ref rowIndex, "Client Name:", "ClientName");
+                            AddDetail(worksheet, ref rowIndex, "Client Number:", lclientno.Text);
+                            AddDetail(worksheet, ref rowIndex, "Loan Amount:", "LoanAmount", true);
+                            AddDetail(worksheet, ref rowIndex, "Loan Term:", "LoanTerm");
+                            AddDetail(worksheet, ref rowIndex, "Start Date:", "StartDate", false, true);
+                            AddDetail(worksheet, ref rowIndex, "Maturity Date:", "MaturityDate", false, true);
+
+                            rowIndex += 2; // Space before summary
+
+                            // Add Summary
+                            worksheet.Cells[rowIndex, 1].Value = "Summary of Loan Account";
+                            worksheet.Cells[rowIndex, 1].Style.Font.Size = 14;
+                            worksheet.Cells[rowIndex, 1].Style.Font.Bold = true;
+                            rowIndex++;
+
+                            AddDetail(worksheet, ref rowIndex, "Total Amount Paid:", "TotalPaid", true);
+                            AddDetail(worksheet, ref rowIndex, "Remaining Balance:", "RemainingBalance", true);
+
+                            rowIndex += 2; // Space before table
+
+                            // Add Table Headers
+                            for (int col = 0; col < dgvdatadis.Columns.Count; col++)
+                            {
+                                var cell = worksheet.Cells[rowIndex, col + 1];
+                                cell.Value = dgvdatadis.Columns[col].HeaderText;
+                                cell.Style.Font.Bold = true;
+                                cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                                cell.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                                cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                                cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                cell.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                            }
+                            rowIndex++;
+
+                            // Add Data Rows
+                            for (int row = 0; row < dgvdatadis.Rows.Count; row++)
+                            {
+                                for (int col = 0; col < dgvdatadis.Columns.Count; col++)
+                                {
+                                    object cellValue = dgvdatadis.Rows[row].Cells[col].Value ?? "";
+                                    var cell = worksheet.Cells[rowIndex + row, col + 1];
+                                    cell.Value = cellValue.ToString();
+                                    cell.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                                    cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                                    cell.Style.WrapText = true;
+                                }
+                            }
+
+                            // Auto-fit columns
+                            worksheet.Cells.AutoFitColumns();
+
+                            // Save the Excel file
+                            File.WriteAllBytes(sfd.FileName, package.GetAsByteArray());
+                            MessageBox.Show("Data exported successfully!", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void AddDetail(ExcelWorksheet worksheet, ref int rowIndex, string label, string columnName, bool isCurrency = false, bool isDate = false)
+        {
+            worksheet.Cells[rowIndex, 1].Value = label;
+            var cellValue = dgvdatadis.Rows[0].Cells[columnName]?.Value?.ToString() ?? "N/A";
+
+            if (isCurrency && decimal.TryParse(cellValue, out decimal currencyValue))
+            {
+                worksheet.Cells[rowIndex, 2].Value = currencyValue;
+                worksheet.Cells[rowIndex, 2].Style.Numberformat.Format = "₱#,##0.00"; // PHP Currency Format
+            }
+            else if (isDate && DateTime.TryParse(cellValue, out DateTime dateValue))
+            {
+                worksheet.Cells[rowIndex, 2].Value = dateValue;
+                worksheet.Cells[rowIndex, 2].Style.Numberformat.Format = "MM/dd/yyyy"; // Date Format
+            }
+            else
+            {
+                worksheet.Cells[rowIndex, 2].Value = cellValue;
+            }
+
+            worksheet.Cells[rowIndex, 1, rowIndex, 2].Style.Font.Bold = true;
+            rowIndex++;
+        }
 
 
         private void dgvuploads_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -365,6 +671,39 @@ namespace rct_lmis.LOAN_SECTION
         private void dgvdataamort_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvdataamort.ClearSelection();
+        }
+
+        private void tdissearch_TextChanged(object sender, EventArgs e)
+        {
+            FilterDataGridView();
+        }
+
+        private async void bdisexport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Assuming clientno is coming from lclientno.Text
+                string clientno = lclientno.Text.Trim();
+
+                if (!string.IsNullOrEmpty(clientno))
+                {
+                    string savePath = "path_to_save\\SOA_" + clientno + ".xlsx"; // Customize the save path as required
+
+                    // Now you only need to pass the clientno
+                    frm_home_disburse_collections frmDisburseCollections = new frm_home_disburse_collections(clientno);
+
+                    // Call GenerateSOA from frm_home_disburse_collections
+                    await frmDisburseCollections.GenerateSOA(clientno, savePath);
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid Client Number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -232,11 +232,6 @@ namespace rct_lmis.CLIENTS_SECTION
                 dgvloan.CurrentCell = dgvloan.Rows[0].Cells[0];
             }
         }
-
-
-
-
-
         private void frm_home_client_details_Load(object sender, EventArgs e)
         {
             LoadLoanData();

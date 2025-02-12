@@ -56,7 +56,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         LoadingFunction load = new LoadingFunction();
 
-        public async  Task LoadClientName(string clientNo)
+        public async Task LoadClientName(string clientNo)
         {
             var database = MongoDBConnection.Instance.Database;
             var collection = database.GetCollection<BsonDocument>("loan_disbursed");
@@ -81,6 +81,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 MessageBox.Show("Client not found.");
             }
         }
+
 
         private void ClearAndDisableFields()
         {
@@ -268,6 +269,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         }
 
 
+
         private DateTime CalculateMaturityDate(DateTime startDate, int weekdaysToAdd)
         {
             DateTime currentDate = startDate;
@@ -358,28 +360,26 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             try
             {
-                // Ensure the laccountid.Text is not empty
-                if (string.IsNullOrEmpty(laccountid.Text))
+                // Ensure the ClientNo is not empty
+                if (string.IsNullOrEmpty(clientnotest.Text))
                 {
-                    MessageBox.Show("Account ID is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("ClientNo is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                clientnotest.Text = _clientNo;
+                clientnotest.Text = _clientNo;  // Assume _clientNo has the ClientNo of the user
 
-                // Get the AccountId from the loan_approved collection based on laccountid.Text
-                var filterApproved = Builders<BsonDocument>.Filter.Eq("ClientNo", clientnotest.Text); // Use _loanId here
+                // Get the ClientNo from the loan_approved collection based on clientnotest.Text
+                var filterApproved = Builders<BsonDocument>.Filter.Eq("ClientNo", clientnotest.Text);
                 var loanApproved = _loanApprovedCollection.Find(filterApproved).FirstOrDefault();
 
                 if (loanApproved != null)
                 {
-                    //Console.WriteLine($"Found loanApproved: {loanApproved.ToJson()}"); // Log the found document
+                    // Extracting the base ClientNo
+                    string clientNo = loanApproved["ClientNo"].ToString();
 
-                    // Extracting the base AccountId
-                    string accountId = loanApproved["ClientNo"].ToString();
-
-                    // Find the last collection for this AccountId in loan_collections
-                    var filterCollections = Builders<BsonDocument>.Filter.Regex("ClientNo", new BsonRegularExpression($"^{accountId}-COL-"));
+                    // Find the last collection for this ClientNo in loan_collections
+                    var filterCollections = Builders<BsonDocument>.Filter.Regex("ClientNo", new BsonRegularExpression($"^{clientNo}-COL-"));
                     var sort = Builders<BsonDocument>.Sort.Descending("ClientNo");
                     var lastCollection = _loanCollectionsCollection.Find(filterCollections).Sort(sort).FirstOrDefault();
 
@@ -403,15 +403,15 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     }
 
                     // Format the new CollectionId
-                    string newCollectionId = $"{accountId}-COL-{collectionNumber:D4}"; // Ensures the number is formatted to four digits
+                    string newCollectionId = $"{clientNo}-COL-{collectionNumber:D4}"; // Ensures the number is formatted to four digits
 
                     // Assign the new CollectionId to the laccountid label
                     laccountid.Text = newCollectionId; // Update the label with the new ID
                 }
                 else
                 {
-                    MessageBox.Show("Account ID not found in loan_approved.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Console.WriteLine("AccountId not found in loan_approved.");
+                    MessageBox.Show("ClientNo not found in loan_approved.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Console.WriteLine("ClientNo not found in loan_approved.");
                 }
             }
             catch (FormatException ex)
@@ -427,6 +427,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void SaveRemainingBalance(decimal principalBalance, string loanIdNo, decimal loanAmount, int loanTerm, decimal amortizedAmt)
         {
@@ -954,6 +955,11 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             Thread.Sleep(1000);
             LoadLoanDisbursedData();
             load.Close();
+        }
+
+        private void tpayamort_TextChanged(object sender, EventArgs e)
+        {
+            tcolpaid.Text = this.tpayamort.Text;
         }
     }
 }

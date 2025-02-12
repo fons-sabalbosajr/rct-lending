@@ -42,16 +42,16 @@ namespace rct_lmis.ACCOUNTING
             this.ltitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.ltotalcredit = new System.Windows.Forms.Label();
             this.guna2CirclePictureBox3 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.ltotaldebit = new System.Windows.Forms.Label();
             this.guna2CirclePictureBox2 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lnetprofit = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabaccounting = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -66,7 +66,7 @@ namespace rct_lmis.ACCOUNTING
             this.tsearchloan = new Guna.UI2.WinForms.Guna2TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
-            this.guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.dgvdatacol = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -87,7 +87,7 @@ namespace rct_lmis.ACCOUNTING
             ((System.ComponentModel.ISupportInitialize)(this.dgvloans)).BeginInit();
             this.guna2Panel3.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdatacol)).BeginInit();
             this.guna2Panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,23 +194,23 @@ namespace rct_lmis.ACCOUNTING
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.White;
             this.guna2Panel2.BorderRadius = 7;
-            this.guna2Panel2.Controls.Add(this.label6);
-            this.guna2Panel2.Controls.Add(this.guna2CirclePictureBox3);
+            this.guna2Panel2.Controls.Add(this.ltotalcredit);
+            this.guna2Panel2.Controls.Add(this.guna2CirclePictureBox2);
             this.guna2Panel2.Controls.Add(this.label3);
             this.guna2Panel2.Location = new System.Drawing.Point(665, 15);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(304, 100);
             this.guna2Panel2.TabIndex = 3;
             // 
-            // label6
+            // ltotalcredit
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(23, 46);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 25);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "0.00";
+            this.ltotalcredit.AutoSize = true;
+            this.ltotalcredit.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltotalcredit.Location = new System.Drawing.Point(23, 46);
+            this.ltotalcredit.Name = "ltotalcredit";
+            this.ltotalcredit.Size = new System.Drawing.Size(106, 25);
+            this.ltotalcredit.TabIndex = 3;
+            this.ltotalcredit.Text = "total credit";
             // 
             // guna2CirclePictureBox3
             // 
@@ -219,7 +219,7 @@ namespace rct_lmis.ACCOUNTING
             this.guna2CirclePictureBox3.FillColor = System.Drawing.Color.Gray;
             this.guna2CirclePictureBox3.Image = global::rct_lmis.Properties.Resources.icons8_plus_48;
             this.guna2CirclePictureBox3.ImageRotate = 0F;
-            this.guna2CirclePictureBox3.Location = new System.Drawing.Point(257, 15);
+            this.guna2CirclePictureBox3.Location = new System.Drawing.Point(243, 15);
             this.guna2CirclePictureBox3.Name = "guna2CirclePictureBox3";
             this.guna2CirclePictureBox3.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.guna2CirclePictureBox3.Size = new System.Drawing.Size(30, 30);
@@ -243,23 +243,23 @@ namespace rct_lmis.ACCOUNTING
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.White;
             this.guna2Panel1.BorderRadius = 7;
-            this.guna2Panel1.Controls.Add(this.label5);
-            this.guna2Panel1.Controls.Add(this.guna2CirclePictureBox2);
+            this.guna2Panel1.Controls.Add(this.ltotaldebit);
             this.guna2Panel1.Controls.Add(this.label2);
+            this.guna2Panel1.Controls.Add(this.guna2CirclePictureBox3);
             this.guna2Panel1.Location = new System.Drawing.Point(343, 15);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(304, 100);
             this.guna2Panel1.TabIndex = 2;
             // 
-            // label5
+            // ltotaldebit
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(22, 46);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 25);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "0.00";
+            this.ltotaldebit.AutoSize = true;
+            this.ltotaldebit.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ltotaldebit.Location = new System.Drawing.Point(22, 46);
+            this.ltotaldebit.Name = "ltotaldebit";
+            this.ltotaldebit.Size = new System.Drawing.Size(101, 25);
+            this.ltotaldebit.TabIndex = 2;
+            this.ltotaldebit.Text = "total debit";
             // 
             // guna2CirclePictureBox2
             // 
@@ -267,7 +267,7 @@ namespace rct_lmis.ACCOUNTING
             this.guna2CirclePictureBox2.FillColor = System.Drawing.Color.Gray;
             this.guna2CirclePictureBox2.Image = global::rct_lmis.Properties.Resources.icons8_minus_48;
             this.guna2CirclePictureBox2.ImageRotate = 0F;
-            this.guna2CirclePictureBox2.Location = new System.Drawing.Point(257, 15);
+            this.guna2CirclePictureBox2.Location = new System.Drawing.Point(256, 15);
             this.guna2CirclePictureBox2.Name = "guna2CirclePictureBox2";
             this.guna2CirclePictureBox2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.guna2CirclePictureBox2.Size = new System.Drawing.Size(30, 30);
@@ -292,7 +292,7 @@ namespace rct_lmis.ACCOUNTING
             this.guna2Panel4.BackColor = System.Drawing.Color.White;
             this.guna2Panel4.BorderRadius = 7;
             this.guna2Panel4.Controls.Add(this.guna2CirclePictureBox1);
-            this.guna2Panel4.Controls.Add(this.label4);
+            this.guna2Panel4.Controls.Add(this.lnetprofit);
             this.guna2Panel4.Controls.Add(this.label1);
             this.guna2Panel4.Location = new System.Drawing.Point(21, 15);
             this.guna2Panel4.Name = "guna2Panel4";
@@ -314,15 +314,15 @@ namespace rct_lmis.ACCOUNTING
             this.guna2CirclePictureBox1.TabStop = false;
             this.guna2CirclePictureBox1.UseTransparentBackground = true;
             // 
-            // label4
+            // lnetprofit
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 46);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 25);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "0.00";
+            this.lnetprofit.AutoSize = true;
+            this.lnetprofit.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnetprofit.Location = new System.Drawing.Point(21, 46);
+            this.lnetprofit.Name = "lnetprofit";
+            this.lnetprofit.Size = new System.Drawing.Size(112, 25);
+            this.lnetprofit.TabIndex = 1;
+            this.lnetprofit.Text = "net amount";
             // 
             // label1
             // 
@@ -561,7 +561,7 @@ namespace rct_lmis.ACCOUNTING
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.guna2DataGridView1);
+            this.tabPage2.Controls.Add(this.dgvdatacol);
             this.tabPage2.Controls.Add(this.guna2Panel5);
             this.tabPage2.Location = new System.Drawing.Point(4, 44);
             this.tabPage2.Name = "tabPage2";
@@ -582,25 +582,26 @@ namespace rct_lmis.ACCOUNTING
             this.label10.Size = new System.Drawing.Size(122, 13);
             this.label10.TabIndex = 15;
             this.label10.Text = "no transactions found";
+            this.label10.Visible = false;
             // 
-            // guna2DataGridView1
+            // dgvdatacol
             // 
-            this.guna2DataGridView1.AllowUserToAddRows = false;
-            this.guna2DataGridView1.AllowUserToDeleteRows = false;
-            this.guna2DataGridView1.AllowUserToResizeColumns = false;
-            this.guna2DataGridView1.AllowUserToResizeRows = false;
+            this.dgvdatacol.AllowUserToAddRows = false;
+            this.dgvdatacol.AllowUserToDeleteRows = false;
+            this.dgvdatacol.AllowUserToResizeColumns = false;
+            this.dgvdatacol.AllowUserToResizeRows = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvdatacol.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.guna2DataGridView1.ColumnHeadersHeight = 20;
-            this.guna2DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvdatacol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvdatacol.ColumnHeadersHeight = 30;
+            this.dgvdatacol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -608,36 +609,37 @@ namespace rct_lmis.ACCOUNTING
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
-            this.guna2DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.guna2DataGridView1.Location = new System.Drawing.Point(3, 61);
-            this.guna2DataGridView1.Name = "guna2DataGridView1";
-            this.guna2DataGridView1.ReadOnly = true;
-            this.guna2DataGridView1.RowHeadersVisible = false;
-            this.guna2DataGridView1.Size = new System.Drawing.Size(1286, 406);
-            this.guna2DataGridView1.TabIndex = 15;
-            this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.guna2DataGridView1.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.guna2DataGridView1.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.guna2DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 20;
-            this.guna2DataGridView1.ThemeStyle.ReadOnly = true;
-            this.guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.guna2DataGridView1.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2DataGridView1.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.guna2DataGridView1.ThemeStyle.RowsStyle.Height = 22;
-            this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvdatacol.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvdatacol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvdatacol.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvdatacol.Location = new System.Drawing.Point(3, 61);
+            this.dgvdatacol.Name = "dgvdatacol";
+            this.dgvdatacol.ReadOnly = true;
+            this.dgvdatacol.RowHeadersVisible = false;
+            this.dgvdatacol.Size = new System.Drawing.Size(1286, 406);
+            this.dgvdatacol.TabIndex = 15;
+            this.dgvdatacol.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvdatacol.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvdatacol.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvdatacol.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvdatacol.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvdatacol.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvdatacol.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvdatacol.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.Silver;
+            this.dgvdatacol.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvdatacol.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvdatacol.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvdatacol.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvdatacol.ThemeStyle.HeaderStyle.Height = 30;
+            this.dgvdatacol.ThemeStyle.ReadOnly = true;
+            this.dgvdatacol.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvdatacol.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvdatacol.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvdatacol.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvdatacol.ThemeStyle.RowsStyle.Height = 22;
+            this.dgvdatacol.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvdatacol.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvdatacol.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdatacol_DataBindingComplete);
             // 
             // guna2Panel5
             // 
@@ -766,7 +768,7 @@ namespace rct_lmis.ACCOUNTING
             this.guna2Panel3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdatacol)).EndInit();
             this.guna2Panel5.ResumeLayout(false);
             this.guna2Panel5.PerformLayout();
             this.ResumeLayout(false);
@@ -787,12 +789,12 @@ namespace rct_lmis.ACCOUNTING
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lnetprofit;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox2;
         private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label ltotalcredit;
+        private System.Windows.Forms.Label ltotaldebit;
         private Guna.UI2.WinForms.Guna2DataGridView dgvloans;
         private Guna.UI2.WinForms.Guna2Button bexport;
         private Guna.UI2.WinForms.Guna2Button bprint;
@@ -806,7 +808,7 @@ namespace rct_lmis.ACCOUNTING
         private Guna.UI2.WinForms.Guna2TextBox tsearchloan;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label10;
-        private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvdatacol;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;

@@ -459,10 +459,6 @@ namespace rct_lmis.LOAN_SECTION
             document["PaymentDetails"] = paymentDetails;
         }
 
-
-
-
-
         private void ClearUIFields()
         {
             // Clear the UI fields as needed

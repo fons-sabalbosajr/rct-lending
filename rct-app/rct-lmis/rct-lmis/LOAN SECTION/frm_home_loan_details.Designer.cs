@@ -30,6 +30,9 @@ namespace rct_lmis.LOAN_SECTION
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -39,9 +42,6 @@ namespace rct_lmis.LOAN_SECTION
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_loan_new));
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -66,6 +66,8 @@ namespace rct_lmis.LOAN_SECTION
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lnorecorddis = new System.Windows.Forms.Label();
+            this.dgvdataamort = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.bamtexport = new Guna.UI2.WinForms.Guna2Button();
             this.cbamtmo = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -73,12 +75,14 @@ namespace rct_lmis.LOAN_SECTION
             this.tamtsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgvdatadis = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lpenaltytotal = new System.Windows.Forms.Label();
+            this.lgenbal = new System.Windows.Forms.Label();
+            this.ltotalpayments = new System.Windows.Forms.Label();
+            this.ltotalamtpaid = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.cbdisenc = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.bdisexport = new Guna.UI2.WinForms.Guna2Button();
-            this.cbdismo = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.tdissearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -91,6 +95,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bcrsearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvdatacr = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label38 = new System.Windows.Forms.Label();
             this.dgvuploads = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.baddfile = new Guna.UI2.WinForms.Guna2Button();
@@ -136,22 +141,22 @@ namespace rct_lmis.LOAN_SECTION
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.bcopyaccno = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lclientno = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.lloanstatus = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.laccstatus = new System.Windows.Forms.Label();
             this.laccno = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.lnorecorddis = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.dgvdataamort = new Guna.UI2.WinForms.Guna2DataGridView();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdataamort)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdatadis)).BeginInit();
+            this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -161,7 +166,6 @@ namespace rct_lmis.LOAN_SECTION
             this.panel6.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvdataamort)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2TabControl1
@@ -536,6 +540,77 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage2.Text = "Disbursement";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lnorecorddis
+            // 
+            this.lnorecorddis.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lnorecorddis.AutoSize = true;
+            this.lnorecorddis.BackColor = System.Drawing.Color.Transparent;
+            this.lnorecorddis.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnorecorddis.ForeColor = System.Drawing.Color.DimGray;
+            this.lnorecorddis.Location = new System.Drawing.Point(366, 113);
+            this.lnorecorddis.Name = "lnorecorddis";
+            this.lnorecorddis.Size = new System.Drawing.Size(148, 15);
+            this.lnorecorddis.TabIndex = 17;
+            this.lnorecorddis.Text = "no collection record found";
+            // 
+            // dgvdataamort
+            // 
+            this.dgvdataamort.AllowUserToAddRows = false;
+            this.dgvdataamort.AllowUserToDeleteRows = false;
+            this.dgvdataamort.AllowUserToResizeColumns = false;
+            this.dgvdataamort.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvdataamort.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdataamort.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvdataamort.ColumnHeadersHeight = 30;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdataamort.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvdataamort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvdataamort.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvdataamort.Location = new System.Drawing.Point(3, 53);
+            this.dgvdataamort.Name = "dgvdataamort";
+            this.dgvdataamort.ReadOnly = true;
+            this.dgvdataamort.RowHeadersVisible = false;
+            this.dgvdataamort.RowTemplate.Height = 70;
+            this.dgvdataamort.Size = new System.Drawing.Size(890, 497);
+            this.dgvdataamort.TabIndex = 19;
+            this.dgvdataamort.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvdataamort.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvdataamort.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvdataamort.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.dgvdataamort.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvdataamort.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvdataamort.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvdataamort.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvdataamort.ThemeStyle.HeaderStyle.Height = 30;
+            this.dgvdataamort.ThemeStyle.ReadOnly = true;
+            this.dgvdataamort.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvdataamort.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvdataamort.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvdataamort.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvdataamort.ThemeStyle.RowsStyle.Height = 70;
+            this.dgvdataamort.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvdataamort.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvdataamort.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdataamort_DataBindingComplete);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -627,8 +702,9 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.dgvdatadis);
+            this.tabPage3.Controls.Add(this.panel5);
+            this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Location = new System.Drawing.Point(184, 4);
             this.tabPage3.Name = "tabPage3";
@@ -643,20 +719,19 @@ namespace rct_lmis.LOAN_SECTION
             this.dgvdatadis.AllowUserToDeleteRows = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             this.dgvdatadis.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvdatadis.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvdatadis.ColumnHeadersHeight = 4;
-            this.dgvdatadis.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvdatadis.ColumnHeadersHeight = 25;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -667,7 +742,8 @@ namespace rct_lmis.LOAN_SECTION
             this.dgvdatadis.Name = "dgvdatadis";
             this.dgvdatadis.ReadOnly = true;
             this.dgvdatadis.RowHeadersVisible = false;
-            this.dgvdatadis.Size = new System.Drawing.Size(896, 503);
+            this.dgvdatadis.RowTemplate.Height = 70;
+            this.dgvdatadis.Size = new System.Drawing.Size(896, 472);
             this.dgvdatadis.TabIndex = 5;
             this.dgvdatadis.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
             this.dgvdatadis.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -677,68 +753,109 @@ namespace rct_lmis.LOAN_SECTION
             this.dgvdatadis.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.dgvdatadis.ThemeStyle.BackColor = System.Drawing.Color.White;
             this.dgvdatadis.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvdatadis.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.White;
+            this.dgvdatadis.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.dgvdatadis.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvdatadis.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvdatadis.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.Black;
-            this.dgvdatadis.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dgvdatadis.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvdatadis.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvdatadis.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvdatadis.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvdatadis.ThemeStyle.HeaderStyle.Height = 25;
             this.dgvdatadis.ThemeStyle.ReadOnly = true;
             this.dgvdatadis.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdatadis.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvdatadis.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvdatadis.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.dgvdatadis.ThemeStyle.RowsStyle.Height = 22;
+            this.dgvdatadis.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvdatadis.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvdatadis.ThemeStyle.RowsStyle.Height = 70;
             this.dgvdatadis.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
             this.dgvdatadis.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.panel5.Controls.Add(this.lpenaltytotal);
+            this.panel5.Controls.Add(this.lgenbal);
+            this.panel5.Controls.Add(this.ltotalpayments);
+            this.panel5.Controls.Add(this.ltotalamtpaid);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 522);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(896, 31);
+            this.panel5.TabIndex = 17;
+            // 
+            // lpenaltytotal
+            // 
+            this.lpenaltytotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lpenaltytotal.AutoSize = true;
+            this.lpenaltytotal.BackColor = System.Drawing.Color.Transparent;
+            this.lpenaltytotal.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lpenaltytotal.ForeColor = System.Drawing.Color.White;
+            this.lpenaltytotal.Location = new System.Drawing.Point(694, 9);
+            this.lpenaltytotal.Name = "lpenaltytotal";
+            this.lpenaltytotal.Size = new System.Drawing.Size(45, 13);
+            this.lpenaltytotal.TabIndex = 16;
+            this.lpenaltytotal.Text = "penalty";
+            // 
+            // lgenbal
+            // 
+            this.lgenbal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lgenbal.AutoSize = true;
+            this.lgenbal.BackColor = System.Drawing.Color.Transparent;
+            this.lgenbal.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lgenbal.ForeColor = System.Drawing.Color.White;
+            this.lgenbal.Location = new System.Drawing.Point(496, 9);
+            this.lgenbal.Name = "lgenbal";
+            this.lgenbal.Size = new System.Drawing.Size(65, 13);
+            this.lgenbal.TabIndex = 15;
+            this.lgenbal.Text = "general bal";
+            // 
+            // ltotalpayments
+            // 
+            this.ltotalpayments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ltotalpayments.AutoSize = true;
+            this.ltotalpayments.BackColor = System.Drawing.Color.Transparent;
+            this.ltotalpayments.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.ltotalpayments.ForeColor = System.Drawing.Color.White;
+            this.ltotalpayments.Location = new System.Drawing.Point(9, 8);
+            this.ltotalpayments.Name = "ltotalpayments";
+            this.ltotalpayments.Size = new System.Drawing.Size(83, 13);
+            this.ltotalpayments.TabIndex = 14;
+            this.ltotalpayments.Text = "total payments";
+            // 
+            // ltotalamtpaid
+            // 
+            this.ltotalamtpaid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ltotalamtpaid.AutoSize = true;
+            this.ltotalamtpaid.BackColor = System.Drawing.Color.Transparent;
+            this.ltotalamtpaid.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.ltotalamtpaid.ForeColor = System.Drawing.Color.White;
+            this.ltotalamtpaid.Location = new System.Drawing.Point(244, 9);
+            this.ltotalamtpaid.Name = "ltotalamtpaid";
+            this.ltotalamtpaid.Size = new System.Drawing.Size(54, 13);
+            this.ltotalamtpaid.TabIndex = 9;
+            this.ltotalamtpaid.Text = "totalpaid";
+            // 
+            // label19
+            // 
+            this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.DimGray;
+            this.label19.Location = new System.Drawing.Point(376, 100);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(148, 15);
+            this.label19.TabIndex = 16;
+            this.label19.Text = "no collection record found";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Controls.Add(this.cbdisenc);
-            this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.bdisexport);
-            this.panel3.Controls.Add(this.cbdismo);
-            this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.tdissearch);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(896, 50);
             this.panel3.TabIndex = 6;
-            // 
-            // cbdisenc
-            // 
-            this.cbdisenc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbdisenc.BackColor = System.Drawing.Color.Transparent;
-            this.cbdisenc.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbdisenc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbdisenc.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbdisenc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbdisenc.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbdisenc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbdisenc.ItemHeight = 30;
-            this.cbdisenc.Items.AddRange(new object[] {
-            "--all--"});
-            this.cbdisenc.Location = new System.Drawing.Point(406, 7);
-            this.cbdisenc.Name = "cbdisenc";
-            this.cbdisenc.Size = new System.Drawing.Size(152, 36);
-            this.cbdisenc.StartIndex = 0;
-            this.cbdisenc.TabIndex = 15;
-            this.cbdisenc.TextOffset = new System.Drawing.Point(10, 0);
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.DimGray;
-            this.label16.Location = new System.Drawing.Point(347, 18);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(53, 15);
-            this.label16.TabIndex = 14;
-            this.label16.Text = "Encoder:";
             // 
             // bdisexport
             // 
@@ -761,39 +878,8 @@ namespace rct_lmis.LOAN_SECTION
             this.bdisexport.TabIndex = 13;
             this.bdisexport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.bdisexport, "Export to Excel");
-            // 
-            // cbdismo
-            // 
-            this.cbdismo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbdismo.BackColor = System.Drawing.Color.Transparent;
-            this.cbdismo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbdismo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbdismo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbdismo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbdismo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbdismo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbdismo.ItemHeight = 30;
-            this.cbdismo.Items.AddRange(new object[] {
-            "--all--"});
-            this.cbdismo.Location = new System.Drawing.Point(655, 7);
-            this.cbdismo.Name = "cbdismo";
-            this.cbdismo.Size = new System.Drawing.Size(192, 36);
-            this.cbdismo.StartIndex = 0;
-            this.cbdismo.TabIndex = 10;
-            this.cbdismo.TextOffset = new System.Drawing.Point(10, 0);
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.DimGray;
-            this.label13.Location = new System.Drawing.Point(565, 18);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(84, 15);
-            this.label13.TabIndex = 9;
-            this.label13.Text = "Search Month:";
+            this.bdisexport.Visible = false;
+            this.bdisexport.Click += new System.EventHandler(this.bdisexport_Click);
             // 
             // tdissearch
             // 
@@ -813,8 +899,9 @@ namespace rct_lmis.LOAN_SECTION
             this.tdissearch.PasswordChar = '\0';
             this.tdissearch.PlaceholderText = "search any keyword...";
             this.tdissearch.SelectedText = "";
-            this.tdissearch.Size = new System.Drawing.Size(311, 36);
+            this.tdissearch.Size = new System.Drawing.Size(408, 36);
             this.tdissearch.TabIndex = 2;
+            this.tdissearch.TextChanged += new System.EventHandler(this.tdissearch_TextChanged);
             // 
             // tabPage4
             // 
@@ -1040,6 +1127,19 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Documents";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // label38
+            // 
+            this.label38.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label38.AutoSize = true;
+            this.label38.BackColor = System.Drawing.Color.Transparent;
+            this.label38.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.ForeColor = System.Drawing.Color.DimGray;
+            this.label38.Location = new System.Drawing.Point(376, 100);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(148, 15);
+            this.label38.TabIndex = 18;
+            this.label38.Text = "no collection record found";
             // 
             // dgvuploads
             // 
@@ -1802,6 +1902,8 @@ namespace rct_lmis.LOAN_SECTION
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.lclientno);
+            this.panel1.Controls.Add(this.label39);
             this.panel1.Controls.Add(this.bcopyaccno);
             this.panel1.Controls.Add(this.lloanstatus);
             this.panel1.Controls.Add(this.label14);
@@ -1815,6 +1917,30 @@ namespace rct_lmis.LOAN_SECTION
             this.panel1.Size = new System.Drawing.Size(1084, 50);
             this.panel1.TabIndex = 1;
             // 
+            // lclientno
+            // 
+            this.lclientno.AutoSize = true;
+            this.lclientno.BackColor = System.Drawing.Color.Transparent;
+            this.lclientno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lclientno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lclientno.Location = new System.Drawing.Point(344, 15);
+            this.lclientno.Name = "lclientno";
+            this.lclientno.Size = new System.Drawing.Size(47, 15);
+            this.lclientno.TabIndex = 27;
+            this.lclientno.Text = "ACTIVE";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.Transparent;
+            this.label39.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label39.Location = new System.Drawing.Point(283, 15);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(63, 15);
+            this.label39.TabIndex = 26;
+            this.label39.Text = "Client No.:";
+            // 
             // lloanstatus
             // 
             this.lloanstatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1822,7 +1948,7 @@ namespace rct_lmis.LOAN_SECTION
             this.lloanstatus.BackColor = System.Drawing.Color.Transparent;
             this.lloanstatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lloanstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lloanstatus.Location = new System.Drawing.Point(844, 15);
+            this.lloanstatus.Location = new System.Drawing.Point(872, 15);
             this.lloanstatus.Name = "lloanstatus";
             this.lloanstatus.Size = new System.Drawing.Size(62, 15);
             this.lloanstatus.TabIndex = 22;
@@ -1835,7 +1961,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label14.Location = new System.Drawing.Point(722, 14);
+            this.label14.Location = new System.Drawing.Point(756, 15);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(119, 15);
             this.label14.TabIndex = 21;
@@ -1847,7 +1973,7 @@ namespace rct_lmis.LOAN_SECTION
             this.laccstatus.BackColor = System.Drawing.Color.Transparent;
             this.laccstatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.laccstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccstatus.Location = new System.Drawing.Point(501, 16);
+            this.laccstatus.Location = new System.Drawing.Point(588, 15);
             this.laccstatus.Name = "laccstatus";
             this.laccstatus.Size = new System.Drawing.Size(47, 15);
             this.laccstatus.TabIndex = 20;
@@ -1859,7 +1985,7 @@ namespace rct_lmis.LOAN_SECTION
             this.laccno.BackColor = System.Drawing.Color.Transparent;
             this.laccno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccno.Location = new System.Drawing.Point(138, 15);
+            this.laccno.Location = new System.Drawing.Point(136, 15);
             this.laccno.Name = "laccno";
             this.laccno.Size = new System.Drawing.Size(90, 15);
             this.laccno.TabIndex = 19;
@@ -1871,7 +1997,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(408, 15);
+            this.label2.Location = new System.Drawing.Point(501, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 15);
             this.label2.TabIndex = 16;
@@ -1888,103 +2014,6 @@ namespace rct_lmis.LOAN_SECTION
             this.label1.Size = new System.Drawing.Size(102, 15);
             this.label1.TabIndex = 15;
             this.label1.Text = "Account Number:";
-            // 
-            // label19
-            // 
-            this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.DimGray;
-            this.label19.Location = new System.Drawing.Point(376, 100);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(148, 15);
-            this.label19.TabIndex = 16;
-            this.label19.Text = "no collection record found";
-            // 
-            // lnorecorddis
-            // 
-            this.lnorecorddis.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lnorecorddis.AutoSize = true;
-            this.lnorecorddis.BackColor = System.Drawing.Color.Transparent;
-            this.lnorecorddis.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnorecorddis.ForeColor = System.Drawing.Color.DimGray;
-            this.lnorecorddis.Location = new System.Drawing.Point(366, 113);
-            this.lnorecorddis.Name = "lnorecorddis";
-            this.lnorecorddis.Size = new System.Drawing.Size(148, 15);
-            this.lnorecorddis.TabIndex = 17;
-            this.lnorecorddis.Text = "no collection record found";
-            // 
-            // label38
-            // 
-            this.label38.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label38.AutoSize = true;
-            this.label38.BackColor = System.Drawing.Color.Transparent;
-            this.label38.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.ForeColor = System.Drawing.Color.DimGray;
-            this.label38.Location = new System.Drawing.Point(376, 100);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(148, 15);
-            this.label38.TabIndex = 18;
-            this.label38.Text = "no collection record found";
-            // 
-            // dgvdataamort
-            // 
-            this.dgvdataamort.AllowUserToAddRows = false;
-            this.dgvdataamort.AllowUserToDeleteRows = false;
-            this.dgvdataamort.AllowUserToResizeColumns = false;
-            this.dgvdataamort.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvdataamort.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdataamort.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvdataamort.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdataamort.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvdataamort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvdataamort.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvdataamort.Location = new System.Drawing.Point(3, 53);
-            this.dgvdataamort.Name = "dgvdataamort";
-            this.dgvdataamort.ReadOnly = true;
-            this.dgvdataamort.RowHeadersVisible = false;
-            this.dgvdataamort.RowTemplate.Height = 70;
-            this.dgvdataamort.Size = new System.Drawing.Size(890, 497);
-            this.dgvdataamort.TabIndex = 19;
-            this.dgvdataamort.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
-            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvdataamort.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvdataamort.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dgvdataamort.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvdataamort.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.dgvdataamort.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvdataamort.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvdataamort.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvdataamort.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvdataamort.ThemeStyle.HeaderStyle.Height = 30;
-            this.dgvdataamort.ThemeStyle.ReadOnly = true;
-            this.dgvdataamort.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvdataamort.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvdataamort.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvdataamort.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvdataamort.ThemeStyle.RowsStyle.Height = 70;
-            this.dgvdataamort.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvdataamort.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvdataamort.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvdataamort_DataBindingComplete);
             // 
             // frm_home_loan_new
             // 
@@ -2006,13 +2035,15 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvdataamort)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdatadis)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -2025,7 +2056,6 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage7.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvdataamort)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2074,11 +2104,7 @@ namespace rct_lmis.LOAN_SECTION
         private Guna.UI2.WinForms.Guna2Button bamtexport;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdatadis;
         private System.Windows.Forms.Panel panel3;
-        private Guna.UI2.WinForms.Guna2ComboBox cbdisenc;
-        private System.Windows.Forms.Label label16;
         private Guna.UI2.WinForms.Guna2Button bdisexport;
-        private Guna.UI2.WinForms.Guna2ComboBox cbdismo;
-        private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2TextBox tdissearch;
         private System.Windows.Forms.Panel panel4;
         private Guna.UI2.WinForms.Guna2ComboBox cbrenc;
@@ -2135,5 +2161,12 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label38;
         private Guna.UI2.WinForms.Guna2DataGridView dgvdataamort;
+        private System.Windows.Forms.Label lclientno;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label ltotalpayments;
+        private System.Windows.Forms.Label ltotalamtpaid;
+        private System.Windows.Forms.Label lgenbal;
+        private System.Windows.Forms.Label lpenaltytotal;
     }
 }

@@ -862,7 +862,7 @@ namespace rct_lmis
             this.lnorecordpending.BackColor = System.Drawing.Color.White;
             this.lnorecordpending.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnorecordpending.ForeColor = System.Drawing.Color.DarkGray;
-            this.lnorecordpending.Location = new System.Drawing.Point(55, 44);
+            this.lnorecordpending.Location = new System.Drawing.Point(52, 51);
             this.lnorecordpending.Name = "lnorecordpending";
             this.lnorecordpending.Size = new System.Drawing.Size(177, 17);
             this.lnorecordpending.TabIndex = 16;
@@ -892,7 +892,7 @@ namespace rct_lmis
             dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvpendingloans.DefaultCellStyle = dataGridViewCellStyle20;
@@ -925,7 +925,7 @@ namespace rct_lmis
             this.dgvpendingloans.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvpendingloans.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvpendingloans.ThemeStyle.RowsStyle.Height = 70;
-            this.dgvpendingloans.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            this.dgvpendingloans.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.White;
             this.dgvpendingloans.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
             // label15

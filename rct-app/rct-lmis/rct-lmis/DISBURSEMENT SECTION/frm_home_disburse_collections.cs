@@ -9,6 +9,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.IO;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace rct_lmis.DISBURSEMENT_SECTION
 {
@@ -20,6 +21,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private IMongoCollection<BsonDocument> _loanVoucherCollection;
         private IMongoCollection<BsonDocument> _loanCollection;
         private DataTable _loanCollectionTable;
+        private string clientno;
+        private ContextMenuStrip contextMenuStrip;
 
         public frm_home_disburse_collections(string loanId, string clientno)
         {
@@ -32,6 +35,78 @@ namespace rct_lmis.DISBURSEMENT_SECTION
            
             // Initialize DataTable for binding to DataGridView
             _loanCollectionTable = new DataTable();
+
+            // Create context menu strip
+            contextMenuStrip = new ContextMenuStrip();
+
+            // Create "Delete Row" menu item
+            var deleteRowMenuItem = new ToolStripMenuItem("Delete Row");
+            deleteRowMenuItem.Click += DeleteRowMenuItem_Click;
+
+            // Add menu item to context menu
+            contextMenuStrip.Items.Add(deleteRowMenuItem);
+
+            // Assign the context menu to DataGridView
+            dgvdata.ContextMenuStrip = contextMenuStrip;
+        }
+
+        public frm_home_disburse_collections(string clientno)
+        {
+            _clientno = clientno;
+        }
+
+        private void DeleteRowMenuItem_Click(object sender, EventArgs e)
+        {
+            // Get the selected row index
+            int selectedRowIndex = dgvdata.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = dgvdata.Rows[selectedRowIndex];
+
+            // Get the client number (or unique identifier) from the selected row
+            string clientNo = selectedRow.Cells["Client Information"].Value.ToString();
+
+            // Ask for confirmation before deleting
+            var result = MessageBox.Show("Are you sure you want to delete this row?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                // Call the method to delete the data from MongoDB
+                DeleteLoanCollectionData(clientNo);
+
+                // Remove the row from the DataGridView
+                dgvdata.Rows.RemoveAt(selectedRowIndex);
+
+                // Reload the data in DataGridView after deleting
+                LoadLoanCollections();
+            }
+            else
+            {
+                MessageBox.Show("Deletion canceled.");
+            }
+        }
+
+        private void DeleteLoanCollectionData(string clientNo)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", clientNo);
+
+            try
+            {
+                // Delete the document from MongoDB
+                var deleteResult = _loanDisbursedCollection.DeleteOne(filter);
+
+                // Check if the delete was successful
+                if (deleteResult.DeletedCount > 0)
+                {
+                    MessageBox.Show("Record deleted successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("No record found to delete.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting record: {ex.Message}");
+            }
         }
 
         public void LoadLoanCollections()
@@ -39,178 +114,153 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             // Ensure the _loanCollectionTable is initialized with the correct columns
             if (_loanCollectionTable.Columns.Count == 0)
             {
-                // Add columns for each category: Client, Loan, Payment, Collection Information, and Remarks
                 _loanCollectionTable.Columns.Add("Client Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Loan Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Payment Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Collection Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Remarks", typeof(string));
-                // Add a column for PaymentStartDate
-                _loanCollectionTable.Columns.Add("PaymentStartDate", typeof(DateTime));
+                _loanCollectionTable.Columns.Add("CollectionDateTemp", typeof(DateTime)); // Add temporary column for sorting
             }
 
             // Clear existing rows before loading new data
             _loanCollectionTable.Rows.Clear();
             dgvdata.DataSource = null; // Clear existing data source
 
-            // Query to get the loan collections based on LoanID
-            var filter = Builders<BsonDocument>.Filter.Eq("LoanID", _loanId);
+            double totalAmountPaid = 0;
+            double totalLoanAmount = 0;
+            double runningBalance = 0;  // Initialize running balance for calculations
+            double totalPenalty = 0; // Initialize total penalty calculation
+
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", laccountid.Text);
             var loanCollections = _loanDisbursedCollection.Find(filter).ToList();
+            _loanCollectionTable.Rows.Clear();
 
             foreach (var collection in loanCollections)
             {
                 // Client Information
-                string collectionDate = collection.Contains("CollectionDate") ? collection["CollectionDate"].ToUniversalTime().ToString("yyyy-MM-dd") : "";
-                string accountId = collection.Contains("AccountId") ? collection["AccountId"].AsString : "";
+                DateTime? collectionDate = collection.Contains("CollectionDate") ? collection["CollectionDate"].ToUniversalTime() : (DateTime?)null;
+                string collectionDateStr = collectionDate.HasValue ? collectionDate.Value.ToString("MM/dd/yyyy") : "";
+
+                string clientNo = collection.Contains("ClientNo") ? collection["ClientNo"].AsString : "";
                 string name = collection.Contains("Name") ? collection["Name"].AsString : "";
 
-                // Concatenate Client Information fields into a single string
-                string clientInfo = $"Col. Date: {collectionDate}\n" +
-                                    $"Col. No.: {accountId}\n" +
-                                    $"Name: {name}";
+                string clientInfo = $"Col. Date: {collectionDateStr}\n" +
+                                     $"Client No.: {clientNo}\n" +
+                                     $"Name: {name}";
 
                 // Loan Information
-                string loanAmount = collection.Contains("LoanAmount") ? ((double)collection["LoanAmount"].AsDecimal128).ToString("F2") : "0.00";
-                string paymentsMode = collection.Contains("PaymentsMode") ? collection["PaymentsMode"].AsString : "";
-                string loanToPay = collection.Contains("TotalLoanToPay") ? ((double)collection["TotalLoanToPay"].AsDecimal128).ToString("F2") : "0.00";
-                string amortization = collection.Contains("Amortization") ? ((double)collection["Amortization"].AsDecimal128).ToString("F2") : "0.00";
-                string runningBalance = collection.Contains("RunningBalance") ? ((double)collection["RunningBalance"].AsDecimal128).ToString("F2") : "0.00";
+                double loanAmount = collection.Contains("LoanAmount") ? (double)collection["LoanAmount"].ToDouble() : 0.00;
+                totalLoanAmount = loanAmount;  // Store loan amount to compute general balance later
 
-                // Concatenate Loan Information fields into a single string
-                string loanInfo = $"Loan Amount: {loanAmount}\n" +
-                                  $"Loan to Pay: {loanToPay}\n" +
+                string amortization = collection.Contains("Amortization") ? ((double)collection["Amortization"].AsDecimal128).ToString("F2") : "0.00";
+
+                // Calculate Running Balance as Loan Amount - Total Amount Paid
+                double amountPaid = collection.Contains("ActualCollection") ? (double)collection["ActualCollection"].AsDecimal128 : 0.00;
+                totalAmountPaid += amountPaid; // Accumulate total amount paid
+                runningBalance = loanAmount - totalAmountPaid; // Running balance: Loan Amount - Total Amount Paid
+
+                string runningBalanceStr = runningBalance <= 0 ? "Settled" : runningBalance.ToString("F2"); // Check if balance is zero or negative
+
+                string loanInfo = $"Loan Amount: {loanAmount:F2}\n" +
                                   $"Amortization: {amortization}\n" +
-                                  $"Running Balance: {runningBalance}";
+                                  $"Running Balance: {runningBalanceStr}";
 
                 // Payment Information
-                string dateReceived = collection.Contains("DateReceived") ?
-                                      collection["DateReceived"].AsBsonDateTime.ToLocalTime().ToString("MM/dd/yyyy") : "";
-                string amountPaid = collection.Contains("ActualCollection") ?
-                                    ((double)collection["ActualCollection"].AsDecimal128).ToString("F2") : "0.00";
-                string penalty = collection.Contains("CollectedPenalty") ?
-                                 ((double)collection["CollectedPenalty"].AsDecimal128).ToString("F2") : "";
-                string paymentMode = collection.Contains("PaymentMode") ?
-                                     collection["PaymentMode"].AsString : "";
+                string dateReceived = collection.Contains("DateReceived") ? collection["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy") : "";  // Fix to DateReceived field
 
-                // Concatenate Payment Information fields into a single string
+                string penalty = collection.Contains("CollectedPenalty") ? ((double)collection["CollectedPenalty"].AsDecimal128).ToString("F2") : "";
+                totalPenalty += string.IsNullOrEmpty(penalty) ? 0.00 : Convert.ToDouble(penalty); // Add to total penalty if present
+
+                string paymentMode = collection.Contains("PaymentMode") ? collection["PaymentMode"].AsString : "";
+
                 string paymentInfo = $"Date Received: {dateReceived}\n" +
-                                     $"Amount Paid: {amountPaid}\n" +
+                                     $"Amount Paid: {amountPaid:F2}\n" +
                                      $"Penalty: {penalty}\n" +
                                      $"Payment Mode: {paymentMode}";
 
                 // Collection Information
                 string collector = collection.Contains("Collector") ? collection["Collector"].AsString : "";
-                string area = collection.Contains("Area") ? collection["Area"].AsString : "";
+                string area = collection.Contains("Address") ? collection["Address"].AsString : "";
 
-                // Determine Collection Status
-                string collectionStatus;
-                DateTime collDate = collection["CollectionDate"].ToUniversalTime();
-                DateTime receivedDate = DateTime.Parse(dateReceived);
-
-                if (paymentsMode == "DAILY")
-                {
-                    // Compare dates (ignore time)
-                    collectionStatus = collDate.Date == receivedDate.Date ? "Paid on Time" : "Over Due";
-                }
-                else if (paymentsMode == "WEEKLY")
-                {
-                    collectionStatus = (collDate.Date >= receivedDate.Date && collDate.Date < receivedDate.Date.AddDays(7)) ? "Paid on Time" : "Over Due";
-                }
-                else if (paymentsMode == "SEMI-MONTHLY")
-                {
-                    DateTime firstPaymentDue = new DateTime(collDate.Year, collDate.Month, 1);
-                    DateTime secondPaymentDue = new DateTime(collDate.Year, collDate.Month, 15);
-                    collectionStatus = (receivedDate.Date == firstPaymentDue.Date || receivedDate.Date == secondPaymentDue.Date) ? "Paid on Time" : "Over Due";
-                }
-                else if (paymentsMode == "MONTHLY")
-                {
-                    collectionStatus = collDate.Date == receivedDate.Date ? "Paid on Time" : "Over Due";
-                }
-                else
-                {
-                    collectionStatus = "Over Due";
-                }
-
-                // Concatenate Collection Information fields into a single string
                 string collectionInfo = $"Collector: {collector}\n" +
-                                        $"Area Route: {area}\n" +
-                                        $"Collection Status: {collectionStatus}";
+                                        $"Address: {area}";
 
-                // Remarks Logic
-                string paymentStartDateStr = collection.Contains("PaymentStartDate") ? collection["PaymentStartDate"].AsString : "";
-                DateTime paymentStartDate = DateTime.Parse(paymentStartDateStr);
+                // Remarks: Always Include Excess Amount Paid, Even if Settled
+                string remarks = "";
+                double excessAmount = totalAmountPaid - totalLoanAmount; // Calculate excess amount paid over total loan amount
 
-                // Calculate remarks
-                string remarks;
-                if (receivedDate.Date == collDate.Date)
+                if (runningBalance <= 0)
                 {
-                    remarks = "Payment Completed";
+                    // Loan is fully paid
+                    if (excessAmount > 0)
+                    {
+                        remarks = $"Loan is fully paid.\nExcess amount paid: {excessAmount:F2}";
+                        lgenbal.Text = $"Excess payment: {excessAmount:F2}";  // Display excess payment in the UI
+                    }
+                    else
+                    {
+                        remarks = "Loan is fully paid";
+                        lgenbal.Text = "0.00";
+                    }
                 }
                 else
                 {
-                    remarks = $"Total Days Missed: {(collDate.Date - paymentStartDate.Date).Days} on {paymentStartDate:MM/dd/yyyy}";
+                    // Loan still has a remaining balance
+                    remarks = $"Remaining Balance: {runningBalance:F2}";
+                    lgenbal.Text = $"Remaining Balance: {runningBalance:F2}";
+                    // Also add the excess amount if it exists in an installment
+                    if (excessAmount > 0)
+                    {
+                        remarks += $"\nExcess Amount Paid: {excessAmount:F2}";
+                        lgenbal.Text += $"\nExcess Amount Paid: {excessAmount:F2}";
+                    }
                 }
 
-                // Add the concatenated information to the DataTable
-                _loanCollectionTable.Rows.Add(clientInfo, loanInfo, paymentInfo, collectionInfo, remarks, paymentStartDate);
+                // Add data to DataTable, including CollectionDateTemp for sorting
+                DataRow row = _loanCollectionTable.NewRow();
+                row["Client Information"] = clientInfo;
+                row["Loan Information"] = loanInfo;
+                row["Payment Information"] = paymentInfo;
+                row["Collection Information"] = collectionInfo;
+                row["Remarks"] = remarks;
+                row["CollectionDateTemp"] = collectionDate.HasValue ? (object)collectionDate.Value : DBNull.Value;
+
+                _loanCollectionTable.Rows.Add(row);
             }
 
-            // Sort the DataTable by PaymentStartDate (recent to oldest)
-            DataView view = _loanCollectionTable.DefaultView;
-            view.Sort = "PaymentStartDate DESC"; // Sort in descending order
-            DataTable sortedTable = view.ToTable(); // Create a new DataTable with sorted data
+            // Total Payments Text (Count total rows in dgvdata)
+            ltotalpayments.Text = "Total Payment Collection: " + dgvdata.Rows.Count.ToString();
 
-            // Bind sorted data to DataGridView
+            // Total Amount Paid Calculation
+            ltotalamtpaid.Text = "Total Amount Paid: " + totalAmountPaid.ToString("F2");
+
+            // Penalty Calculation (If no penalties, display 0.00)
+            lpenaltytotal.Text = "Generated Penalty: " + totalPenalty.ToString("F2");
+
+            // After all rows are added, now bind the DataTable to DataGridView
+            dgvdata.DataSource = _loanCollectionTable;
+
+            // Sort the DataTable by CollectionDateTemp in descending order
+            DataView view = _loanCollectionTable.DefaultView;
+            view.Sort = "CollectionDateTemp ASC";  // Sort by CollectionDateTemp in ascending order
+            DataTable sortedTable = view.ToTable();
             dgvdata.DataSource = sortedTable;
 
-            // Set columns to fill the whole row
-            dgvdata.Columns["Client Information"].Width = 300;
-            dgvdata.Columns["Payment Information"].Width = 300;
-            dgvdata.Columns["Collection Information"].Width = 200;
-            dgvdata.Columns["Remarks"].Width = 200;
-            dgvdata.Columns["Loan Information"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            // Check if the button column is already added to avoid duplicates
-            if (!dgvdata.Columns.Contains("ViewDetails"))
+            // Highlight rows with excess payment after binding
+            for (int i = 0; i < dgvdata.Rows.Count; i++)
             {
-                // Add the button column directly to DataGridView, not the DataTable
-                DataGridViewButtonColumn viewDetailsButton = new DataGridViewButtonColumn();
-                viewDetailsButton.Name = "ViewDetails";
-                viewDetailsButton.HeaderText = "View Details";
-                viewDetailsButton.Text = "View Details";
-                viewDetailsButton.UseColumnTextForButtonValue = true; // Display text on the button
-                viewDetailsButton.FlatStyle = FlatStyle.Standard; // Optional: style for button
-                dgvdata.Columns.Add(viewDetailsButton);
-            }
-
-            // Move the View Details button column to the end
-            dgvdata.Columns["ViewDetails"].DisplayIndex = dgvdata.Columns.Count - 1;
-
-            // Change the style of the Collection Status in the Collection Information
-            foreach (DataGridViewRow row in dgvdata.Rows)
-            {
-                string collectionInfo = row.Cells[3].Value.ToString(); // Assuming the Collection Information is in the 4th column
-                string[] collectionInfoParts = collectionInfo.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                string statusLine = collectionInfoParts.Last(); // Get the last line for status
-                string collectorLine = collectionInfoParts[0]; // Get the collector information
-                string areaLine = collectionInfoParts[1]; // Get the area information
-
-                // Set the base text for the Collection Information
-                row.Cells[3].Value = $"{collectorLine}\n{areaLine}\n{statusLine}";
-
-                // Apply styling based on Collection Status
-                if (statusLine.Contains("Paid on Time"))
+                // Get the Remarks or another column to check if excess payment exists
+                var remarks = dgvdata.Rows[i].Cells["Remarks"].Value.ToString();
+                if (remarks.Contains("Excess amount paid"))
                 {
-                    row.Cells[3].Style.ForeColor = Color.Green;
-                    row.Cells[3].Style.Font = new Font(dgvdata.Font, FontStyle.Bold);
-                }
-                else if (statusLine.Contains("Over Due"))
-                {
-                    row.Cells[3].Style.ForeColor = Color.Red;
-                    row.Cells[3].Style.Font = new Font(dgvdata.Font, FontStyle.Bold);
+                    dgvdata.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
                 }
             }
+
+            // Hide the temporary CollectionDateTemp column after sorting
+            dgvdata.Columns["CollectionDateTemp"].Visible = false;
         }
+
 
 
         private void SearchInDataGrid(string keyword)
@@ -247,255 +297,233 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
-        private void GenerateSOA()
+        public async Task GenerateSOA(string tloanno, string savePath)
         {
             try
             {
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-                var database = MongoDBConnection.Instance.Database;
-                _loanCollection = database.GetCollection<BsonDocument>("loan_collections");
-                var loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
-                var loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
-
-                string loanId = laccountid.Text; // The LoanID
-                string borrowerName = "";
-                string clientID = "";
-                string address = "";
-                string contactNo = "";
-                double loanAmount = 0.0;
-                string interestRate = "";
-                double loanTerm = 0.0;
-                string days = "";
-                double loantopay = 0.0;
-
-                // Fetch loan disbursement details using LoanIDNo
-                var disbursementFilter = Builders<BsonDocument>.Filter.Eq("LoanIDNo", loanId);
-                var loanDisbursement = loanDisbursedCollection.Find(disbursementFilter).FirstOrDefault();
-
-                if (loanDisbursement == null)
+                using (ExcelPackage package = new ExcelPackage())
                 {
-                    MessageBox.Show("Loan disbursement record not found.");
-                    return;
-                }
+                    var worksheet = package.Workbook.Worksheets.Add("Statement of Account-" + tloanno);
 
-                // Extract client ID and loan amount from loan disbursement collection
-                borrowerName = loanDisbursement.Contains("cashName") ? loanDisbursement["cashName"].AsString : "Unknown Name";
-                clientID = loanDisbursement.Contains("cashClnNo") ? loanDisbursement["cashClnNo"].AsString : "Unknown ClientID";
-                loanAmount = loanDisbursement.Contains("loanAmt") ? loanDisbursement["loanAmt"].ToDouble() : 0.0;
-                interestRate = loanDisbursement.Contains("loanInterest") ? loanDisbursement["loanInterest"].AsString : "N/A";
-                loantopay = loanDisbursement.Contains("loanAmt") ? loanDisbursement["loanAmt"].ToDouble() : 0.0;
+                    // Set up initial worksheet formatting
+                    worksheet.Cells.Style.Font.Name = "Aptos Narrow";
+                    worksheet.Cells.Style.Font.Size = 10;
 
-                // Safely parse loanTerm
-                loanTerm = loanDisbursement.Contains("loanTerm") ? loanDisbursement["loanTerm"].ToDouble() : 0.0;
-                days = loanDisbursement.Contains("days") ? loanDisbursement["days"].AsString : "0";
+                    // Set up column width similar to DataGridView
+                    worksheet.Column(1).Width = 20;  // Collection Date
+                    worksheet.Column(2).Width = 15;  // LoanID
+                    worksheet.Column(3).Width = 30;  // Name
+                    worksheet.Column(4).Width = 15;  // Amount to Pay
+                    worksheet.Column(5).Width = 15;  // Amount Paid
+                    worksheet.Column(6).Width = 15;  // Remaining Balance
+                    worksheet.Column(7).Width = 15;  // Amount Settled
+                    worksheet.Column(8).Width = 30;  // Remarks
+                    worksheet.Column(9).Width = 20;  // Collector
 
-                // Now, fetch address and contact number from loan approved collection using cashClnNo
-                var approvedFilter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientID);
-                var loanApproved = loanApprovedCollection.Find(approvedFilter).FirstOrDefault();
+                    // Set up cell borders similar to DataGridView
+                    var headerRange = worksheet.Cells["A11:I11"];
+                    headerRange.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                    headerRange.Style.Font.Bold = true;
 
-                if (loanApproved == null)
-                {
-                    MessageBox.Show("Loan approved record not found.");
-                    return;
-                }
+                    Console.WriteLine($"Querying for LoanID: {tloanno}");
 
-                // Extract address and contact number from loan approved collection
-                address = $"{loanApproved["Street"]}, {loanApproved["Barangay"]}, {loanApproved["City"]}, {loanApproved["Province"]}";
-                contactNo = loanApproved.Contains("CP") ? loanApproved["CP"].AsString : "Unknown Contact";
+                    // Fetch loan details
+                    var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", tloanno);
+                    var loanDetails = await _loanDisbursedCollection.Find(filter).FirstOrDefaultAsync();
 
-                // Create Excel package
-                using (var package = new ExcelPackage())
-                {
-                    var worksheet = package.Workbook.Worksheets.Add($"SOA-{borrowerName}");
-
-                    // Set the worksheet to A4 size
-                    worksheet.PrinterSettings.PaperSize = ePaperSize.A4;
-                    worksheet.PrinterSettings.FitToPage = true;
-
-                    // Format the top part of the worksheet
-                    worksheet.Cells["A7"].Value = "STATEMENT OF ACCOUNT";
-                    worksheet.Cells["A7"].Style.Font.Bold = true;
-                    worksheet.Cells["A7"].Style.Font.Size = 12; // Make title larger
-                    worksheet.Cells["A8"].Value = $"as of {DateTime.Now:MMMM dd, yyyy}";
-
-                    // Loan and Borrower Information
-                    worksheet.Cells["A10"].Value = "Account ID:";
-                    worksheet.Cells["B10"].Value = loanId;
-                    worksheet.Cells["A11"].Value = "ClientID:";
-                    worksheet.Cells["B11"].Value = clientID;
-                    worksheet.Cells["A12"].Value = "Name:";
-                    worksheet.Cells["B12"].Value = borrowerName;
-                    worksheet.Cells["A13"].Value = "Address:";
-                    worksheet.Cells["B13"].Value = address;
-                    worksheet.Cells["C13"].Value = "Contact No:";
-                    worksheet.Cells["D13"].Value = contactNo;
-
-                    worksheet.Cells["B10:E13"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells["A8:E13"].Style.Font.SetFromFont("Arial", 9);
-
-                    // Loan Information
-                    worksheet.Cells["A15"].Value = "LOAN INFORMATION";
-                    worksheet.Cells["A15"].Style.Font.Bold = true;
-
-                    worksheet.Cells["A16"].Value = "Loan Amount:";
-                    worksheet.Cells["B16"].Value = loanAmount;
-                    worksheet.Cells["C16"].Value = "Interest Rate:";
-                    worksheet.Cells["D16"].Value = interestRate;
-                    worksheet.Cells["A17"].Value = "Loan Term:";
-                    worksheet.Cells["B17"].Value = $"{loanTerm} months"; // Display term with 'months'
-                    worksheet.Cells["A18"].Value = "No. of Days:";
-                    worksheet.Cells["B18"].Value = $"{days} days";
-                    worksheet.Cells["A19"].Value = "Amount to Pay:";
-                    worksheet.Cells["B19"].Value = loantopay;
-
-                    // Date Released
-                    worksheet.Cells["C17"].Value = "Date Released:";
-                    worksheet.Cells["D17"].Value = loanDisbursement.Contains("cashDate") && DateTime.TryParse(loanDisbursement["cashDate"].AsString, out var cashDate)
-                        ? cashDate.ToString("MM/dd/yyyy")
-                        : "N/A";
-
-                    // Maturity Date
-                    // Fetch the PaymentMaturityDate from loan_collections collection
-                    var maturityDateFilter = Builders<BsonDocument>.Filter.Eq("LoanID", loanId);
-                    var loanCollectionMaturity = _loanCollection.Find(maturityDateFilter).FirstOrDefault();
-
-                    // Extract the PaymentMaturityDate from the loan_collections collection
-                    worksheet.Cells["C19"].Value = "Payment Maturity Date:";
-                    worksheet.Cells["D19"].Value = loanCollectionMaturity.Contains("PaymentMaturityDate") && DateTime.TryParse(loanCollectionMaturity["PaymentMaturityDate"].AsString, out var paymentMaturityDate)
-                       ? paymentMaturityDate.ToString("MM/dd/yyyy")
-                       : "N/A";
-
-                    worksheet.Cells["A20"].Value = "Amortization:";
-                    worksheet.Cells["B20"].Value = GetDoubleValue(loanDisbursement, "amortizedAmt");
-                    worksheet.Cells["C20"].Value = "Payment Mode:";
-                    worksheet.Cells["D20"].Value = loanDisbursement.Contains("Mode") ? loanDisbursement["Mode"].ToString() : "N/A";
-                    worksheet.Cells["C18"].Value = "Payment Start Date:";
-                    worksheet.Cells["D18"].Value = loanDisbursement.Contains("PaymentStartDate") && DateTime.TryParse(loanDisbursement["PaymentStartDate"].AsString, out var paymentStartDate)
-                        ? paymentStartDate.ToString("MM/dd/yyyy")
-                        : "N/A";
-
-                    worksheet.Cells["B16:B21"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells["E16"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    worksheet.Cells["A15"].Style.Font.Bold = true;
-                    worksheet.Cells["A15"].Style.Font.Size = 12;
-                    worksheet.Cells["A16:E21"].Style.Font.SetFromFont("Arial", 9);
-
-                    // Collection details headers
-                    worksheet.Cells["A23"].Value = "COLLECTION DETAILS";
-                    worksheet.Cells["A23"].Style.Font.Bold = true;
-                    worksheet.Cells["A23"].Style.Font.Size = 12;
-
-                    worksheet.Cells["A24"].Value = "Transaction Date";
-                    worksheet.Cells["B24"].Value = "Amort. Amount";
-                    worksheet.Cells["C24"].Value = "Running Amort. Due";
-                    worksheet.Cells["D24"].Value = "Credit";
-                    worksheet.Cells["E24"].Value = "Running Credit";
-                    worksheet.Cells["F24"].Value = "Status";
-                    worksheet.Cells["G24"].Value = "Missed Day?";
-                    worksheet.Cells["H24"].Value = "Deficiency/Overpaid";
-                    worksheet.Cells["I24"].Value = "Missed Day Amort. Amount";
-
-                    // Set header styles
-                    worksheet.Cells["A24:I24"].Style.Font.Bold = true;
-                    worksheet.Cells["A24:I24"].Style.Font.Size = 9;
-                    worksheet.Cells["A24:I24"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    worksheet.Cells["A25:I1000"].Style.Font.SetFromFont("Arial", 9);
-
-                    double runningPrincipalDue = 0;
-
-                    int row = 25;
-                    var collectionFilter = Builders<BsonDocument>.Filter.Eq("LoanID", loanId);
-                    var loanCollections = _loanCollection.Find(collectionFilter).ToList();
-                    foreach (var collection in loanCollections)
+                    if (loanDetails != null)
                     {
-                        string collectionDate = collection.Contains("CollectionDate") && collection["CollectionDate"].IsBsonDateTime
-                                                ? collection["CollectionDate"].AsDateTime.ToUniversalTime().ToString("MM/dd/yyyy")
-                                                : "";
+                        try
+                        {
+                            Console.WriteLine($"Found LoanID: {loanDetails["ClientNo"]}");
 
-                        double amortization = GetDoubleValue(collection, "Amortization");
-                        double amountPaid = GetDoubleValue(collection, "ActualCollection");
-                        double runningBalance = GetDoubleValue(collection, "RunningBalance");
-                        string status = collection.Contains("PaymentStatus") ? collection["PaymentStatus"].ToString() : "N/A";
+                            // Fetching values based on provided data structure
+                            string loanClient = GetStringValue(loanDetails, "Name");
+                            decimal loantopay = GetDecimalValue(loanDetails, "TotalLoanToPay");
+                            decimal remainingBalance = loantopay;
+                            decimal totalSettled = 0; // Amount settled so far
+                            string paymentStartDate = GetFormattedDate(loanDetails, "PaymentStartDate");  // Added Payment Start Date
+                            string maturityDate = GetFormattedDate(loanDetails, "PaymentMaturityDate");
 
-                        // Correctly check DateReceived
-                        string missedDay = (collection.Contains("DateReceived") && collection["DateReceived"].IsBsonDateTime &&
-                                            collection["CollectionDate"].AsDateTime.ToUniversalTime().Date >
-                                            collection["DateReceived"].AsDateTime.ToUniversalTime().Date) ? "Y" : "N";
+                            // Add loan information to worksheet
+                            worksheet.Cells["A1"].Value = "Statement of Account";
+                            worksheet.Cells["A1"].Style.Font.Bold = true;
+                            worksheet.Cells["A1"].Style.Font.Size = 11;
 
-                        // Calculate Deficiency/Overpaid or Excess Payment
-                        double excessPayment = amountPaid - amortization;
+                            worksheet.Cells["A3"].Value = "Client Name:";
+                            worksheet.Cells["B3"].Value = loanClient;
 
-                        // Update runningPrincipalDue by adding the current AmountPaid
-                        runningPrincipalDue += amountPaid;
+                            worksheet.Cells["A4"].Value = "Client No:";
+                            worksheet.Cells["B4"].Value = tloanno;
 
-                        worksheet.Cells[row, 1].Value = collectionDate;
-                        worksheet.Cells[row, 2].Value = amortization;
-                        worksheet.Cells[row, 3].Value = runningPrincipalDue;
-                        worksheet.Cells[row, 4].Value = amountPaid;
-                        worksheet.Cells[row, 5].Value = runningBalance;
-                        worksheet.Cells[row, 6].Value = status;
-                        worksheet.Cells[row, 7].Value = missedDay;
-                        worksheet.Cells[row, 8].Value = excessPayment;
-                        worksheet.Cells[row, 9].Value = missedDay == "Y" ? amortization : 0;
+                            worksheet.Cells["A5"].Value = "Loan Payable:";
+                            worksheet.Cells["B5"].Value = loantopay.ToString("₱#,##0.00");
 
-                        // Format cells
-                        worksheet.Cells[row, 2].Style.Numberformat.Format = "#,##0.00";
-                        worksheet.Cells[row, 3].Style.Numberformat.Format = "#,##0.00";
-                        worksheet.Cells[row, 4].Style.Numberformat.Format = "#,##0.00";
-                        worksheet.Cells[row, 5].Style.Numberformat.Format = "#,##0.00";
-                        worksheet.Cells[row, 8].Style.Numberformat.Format = "#,##0.00"; // Excess Payment
-                        worksheet.Cells[row, 9].Style.Numberformat.Format = "#,##0.00"; // Missed Day Amortization
+                            worksheet.Cells["A6"].Value = "Payment Start Date:";  // Added Payment Start Date
+                            worksheet.Cells["B6"].Value = paymentStartDate;
 
-                        row++;
-                    }
+                            worksheet.Cells["A7"].Value = "Maturity Date:";
+                            worksheet.Cells["B7"].Value = maturityDate;
 
-                    // Center the image in Column B
-                    string imagePath = Path.Combine(Application.StartupPath, "Resources", "rctheader.jpg");
-                    if (File.Exists(imagePath))
-                    {
-                        var picture = worksheet.Drawings.AddPicture("HeaderImage", imagePath);
-                        picture.SetPosition(0, 0, 0, 0);
-                        picture.From.Column = 1;
-                        picture.From.Row = 0;
+                            // Add headers for Payment History
+                            worksheet.Cells["A11"].Value = "Collection Date";
+                            worksheet.Cells["B11"].Value = "ClientNo";
+                            worksheet.Cells["C11"].Value = "Name";
+                            worksheet.Cells["D11"].Value = "Amount to Pay";
+                            worksheet.Cells["E11"].Value = "Amount Paid";
+                            worksheet.Cells["F11"].Value = "Remaining Balance";
+                            worksheet.Cells["G11"].Value = "Amount Settled";
+                            worksheet.Cells["H11"].Value = "Remarks";
+                            worksheet.Cells["I11"].Value = "Collector";
+                            worksheet.Cells["A11:I11"].Style.Font.Bold = true;
+                            worksheet.Cells["A11:I11"].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+
+                            int row = 12;
+                            decimal totalPaid = 0;
+
+                            // Fetch collections for this loan
+                            var collectionFilter = Builders<BsonDocument>.Filter.Eq("ClientNo", tloanno);
+                            var loanCollections = await _loanDisbursedCollection.Find(collectionFilter).ToListAsync();
+
+                            foreach (var collection in loanCollections)
+                            {
+                                DateTime paymentDate = GetDateValue(collection, "CollectionDate");
+                                decimal amountPaid = GetDecimalValue(collection, "TotalCollected");
+                                string remarks = GetStringValue(collection, "Remarks");
+                                string collector = GetStringValue(collection, "Collector");
+
+                                totalPaid += amountPaid;
+
+                                // Update remaining balance
+                                remainingBalance -= amountPaid;
+
+                                // Update the cumulative "Amount Settled"
+                                totalSettled += amountPaid;
+
+                                // Check if Amount Settled exceeds Amount to Pay
+                                string settledStatus = totalSettled > loantopay
+                                    ? $"Payment Exceeded: {totalSettled - loantopay:₱#,##0.00}"
+                                    : totalSettled.ToString("₱#,##0.00");
+
+                                worksheet.Cells[$"A{row}"].Value = paymentDate.ToString("MM/dd/yyyy");
+                                worksheet.Cells[$"B{row}"].Value = tloanno; // LoanID
+                                worksheet.Cells[$"C{row}"].Value = loanClient; // Name
+                                worksheet.Cells[$"D{row}"].Value = loantopay.ToString("₱#,##0.00"); // Amount to Pay
+                                worksheet.Cells[$"E{row}"].Value = amountPaid.ToString("₱#,##0.00"); // Amount Paid
+                                worksheet.Cells[$"F{row}"].Value = remainingBalance <= 0 ? "Settled/No Balance" : remainingBalance.ToString("₱#,##0.00"); // Remaining Balance
+                                worksheet.Cells[$"G{row}"].Value = settledStatus; // Amount Settled
+
+                                // Apply font color change for excess payment (Amount Paid cell)
+                                if (remainingBalance <= 0)
+                                {
+                                    // Make "Amount Paid" red if there's an overpayment
+                                    worksheet.Cells[$"E{row}"].Style.Font.Color.SetColor(System.Drawing.Color.Red);
+                                    worksheet.Cells[$"F{row}"].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+                                    worksheet.Cells[$"G{row}"].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+                                }
+
+                                worksheet.Cells[$"H{row}"].Value = remarks; // Remarks
+                                worksheet.Cells[$"I{row}"].Value = collector; // Collector
+
+                                // Apply style like DataGridView (e.g., borders, fonts)
+                                worksheet.Cells[$"A{row}:I{row}"].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                                worksheet.Cells[$"A{row}:I{row}"].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+
+                                row++;
+                            }
+
+                            // Display total payments
+                            worksheet.Cells[$"A{row}:B{row}"].Style.Font.Bold = true;
+                            worksheet.Cells[$"A{row}:B{row}"].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+
+                            row += 2;
+
+                            // Check for overpayment
+                            decimal excessAmount = totalPaid - loantopay;
+                            string balanceStatus = excessAmount > 0
+                                ? $"Overpaid by {excessAmount:₱#,##0.00}"
+                                : $"Balance Remaining: {(loantopay - totalPaid):₱#,##0.00}";
+
+                            worksheet.Cells[$"A{row}"].Value = "Loan Balance Status:";
+                            worksheet.Cells[$"B{row}"].Value = balanceStatus;
+                            worksheet.Cells[$"B{row}"].Style.Font.Bold = true;
+
+                            if (excessAmount > 0)
+                            {
+                                worksheet.Cells[$"B{row}"].Style.Font.Color.SetColor(System.Drawing.Color.Red);
+                            }
+                            else 
+                            {
+                                worksheet.Cells[$"B{row}"].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+                            }
+
+                            worksheet.Cells.AutoFitColumns();
+
+                            // Save the file
+                            FileInfo fileInfo = new FileInfo(savePath);
+                            await package.SaveAsAsync(fileInfo);
+                            MessageBox.Show("SOA generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            // Detailed exception handling for data retrieval or formatting errors
+                            MessageBox.Show($"An error occurred while processing loan details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Console.WriteLine("Loan details not found.");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Image file not found: " + imagePath);
-                    }
-
-                    // Set column widths
-                    worksheet.Cells.AutoFitColumns();
-
-                    // Adjusting the worksheet cells
-                    worksheet.Cells["A1:I" + row].AutoFitColumns(); // Adjust columns
-
-                    // Enable Word Wrap for all cells
-                    worksheet.Cells.Style.WrapText = true;
-
-
-                    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-                    {
-                        saveFileDialog.Filter = "Excel Files|*.xlsx"; // Set the file type filter
-                        saveFileDialog.Title = "Save an Excel File"; // Set the title of the dialog
-                        saveFileDialog.FileName = $"Statement_of_Account_{borrowerName}.xlsx"; // Default file name
-
-                        // Show the dialog and check if the user clicked Save
-                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            // Save the Excel package to the specified file
-                            FileInfo excelFile = new FileInfo(saveFileDialog.FileName);
-                            package.SaveAs(excelFile);
-
-                            MessageBox.Show($"Statement of Account for {borrowerName} has been generated at {saveFileDialog.FileName}");
-                        }
+                        // If loanDetails is null
+                        MessageBox.Show("Loan details not found for the given loan number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message + ex.StackTrace}");
+                // Generic error handling for the entire process
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+
+        // Helper Methods
+        private string GetStringValue(BsonDocument document, string key)
+        {
+            return document.Contains(key) ? document[key].AsString : string.Empty;
+        }
+
+        public DateTime GetDateValue(BsonDocument document, string fieldName)
+        {
+            var fieldValue = document[fieldName];
+
+            if (fieldValue.IsBsonDateTime)
+            {
+                return fieldValue.ToUniversalTime();  // If the field is a BsonDateTime, use it directly
+            }
+            else if (fieldValue.BsonType == BsonType.String)
+            {
+                // If the field is a string, attempt to parse it into DateTime
+                if (DateTime.TryParse(fieldValue.ToString(), out DateTime dateValue))
+                {
+                    return dateValue.ToUniversalTime();
+                }
+                else
+                {
+                    throw new InvalidCastException($"Invalid date format in field '{fieldName}'.");
+                }
+            }
+            else
+            {
+                throw new InvalidCastException($"Field '{fieldName}' is not a valid DateTime.");
+            }
+        }
+
+        private string GetFormattedDate(BsonDocument document, string key)
+        {
+            return document.Contains(key) ? document[key].ToUniversalTime().ToString("MM/dd/yyyy") : "N/A";
         }
 
 
@@ -524,12 +552,100 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             return 0.0;
         }
 
+        private decimal GetDecimalValue(BsonDocument document, string field)
+        {
+            if (document.Contains(field) && document[field] != BsonNull.Value)
+            {
+                // Safely extract and return the decimal value
+                return document[field].ToDecimal();
+            }
+            else
+            {
+                // Return 0 if the field is missing or null
+                return 0;
+            }
+        }
+
+        private void UpdateLoanCollectionData(string clientNo, string columnName, string editedValue)
+        {
+            // Ask for user confirmation before proceeding
+            var result = MessageBox.Show("Are you sure you want to update this record?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", clientNo);
+                var update = Builders<BsonDocument>.Update.Set(columnName, editedValue); // Update the field
+
+                try
+                {
+                    // Update the document in MongoDB
+                    var updateResult = _loanDisbursedCollection.UpdateOne(filter, update);
+
+                    // Check if the update was successful
+                    if (updateResult.ModifiedCount > 0)
+                    {
+                        MessageBox.Show("Record updated successfully.");
+
+                        // Reload the data in DataGridView after the update
+                        LoadLoanCollections(); // This will refresh the DataGridView
+                    }
+                    else
+                    {
+                        MessageBox.Show("No record found to update.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error updating record: {ex.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Update canceled.");
+            }
+        }
+
 
         private void frm_home_disburse_collections_Load(object sender, EventArgs e)
         {
             laccountid.Text = _loanId;
             lclientno.Text = _clientno;
             LoadLoanCollections();
+
+
+            // Step 1: Retrieve the loan collection data
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", laccountid.Text);
+            var loanCollections = _loanDisbursedCollection.Find(filter).ToList();
+
+            double totalAmountPaid = 0;
+            double totalLoanAmount = 0;
+            double excessAmount = 0;
+
+            // Step 2: Calculate total paid amount and excess amount
+            foreach (var collection in loanCollections)
+            {
+                double loanAmount = collection.Contains("LoanAmount") ? (double)collection["LoanAmount"].ToDouble() : 0.00;
+                totalLoanAmount = loanAmount;  // Store loan amount to compute general balance later
+
+                double amountPaid = collection.Contains("ActualCollection") ? (double)collection["ActualCollection"].AsDecimal128 : 0.00;
+                totalAmountPaid += amountPaid;  // Add amount paid to total payments
+
+                // Calculate excess amount
+                excessAmount = totalAmountPaid - totalLoanAmount;
+            }
+
+            // Step 3: Check if there is an overpayment
+            if (excessAmount > 0)
+            {
+              
+                // Show an overpayment warning if detected
+                MessageBox.Show($"This loan account has an overpayment of ₱{excessAmount:F2}. Please review the payment history for adjustments.",
+                                "Overpayment Detected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                bnew.Enabled = true;
+            }
         }
 
         private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -557,9 +673,43 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void bnew_Click(object sender, EventArgs e)
         {
-            frm_home_disburse_collections_add addCollectionForm = new frm_home_disburse_collections_add(_loanId);
-            addCollectionForm.ShowDialog(this);
+            // Step 1: Retrieve the loan collection data
+            var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", laccountid.Text);
+            var loanCollections = _loanDisbursedCollection.Find(filter).ToList();
+
+            double totalAmountPaid = 0;
+            double totalLoanAmount = 0;
+            double excessAmount = 0;
+
+            // Step 2: Calculate total paid amount and excess amount
+            foreach (var collection in loanCollections)
+            {
+                double loanAmount = collection.Contains("LoanAmount") ? (double)collection["LoanAmount"].AsDecimal128 : 0.00;
+                totalLoanAmount = loanAmount;  // Store loan amount to compute general balance later
+
+                double amountPaid = collection.Contains("ActualCollection") ? (double)collection["ActualCollection"].AsDecimal128 : 0.00;
+                totalAmountPaid += amountPaid;  // Add amount paid to total payments
+
+                // Calculate excess amount
+                excessAmount = totalAmountPaid - totalLoanAmount;
+            }
+
+            // Step 3: Check if there is an overpayment
+            if (excessAmount > 0)
+            {
+                // Show an overpayment warning if detected
+                MessageBox.Show($"This loan account has an overpayment of ₱{excessAmount:F2}. Please review the payment history for adjustments.",
+                                "Overpayment Detected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // Step 4: No overpayment, proceed to open the add collection form
+                frm_home_disburse_collections_add addCollectionForm = new frm_home_disburse_collections_add(_loanId);
+                addCollectionForm.ShowDialog(this);
+            }
         }
+
+
 
         private void dgvdata_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -578,19 +728,40 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
-        private void bsoa_Click(object sender, EventArgs e)
+        private async void bsoa_Click(object sender, EventArgs e)
         {
-            // Show a confirmation dialog before generating the SOA
+            // Get the Loan Number from your input field
+            string tloanno = laccountid.Text.Trim(); // Replace tloannoTextbox with your actual Loan No textbox name
+
+            if (string.IsNullOrEmpty(tloanno))
+            {
+                MessageBox.Show("Please enter a valid Loan Number before generating the SOA.",
+                                "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop execution if the Loan No is missing
+            }
+
+            // Prompt the user for confirmation
             DialogResult result = MessageBox.Show(
                 "Are you sure you want to generate the Statement of Account?",
                 "Confirm Generation",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
-            // If the user clicks 'Yes', proceed to generate the SOA
             if (result == DialogResult.Yes)
             {
-                GenerateSOA(); // Call the method to generate the SOA
+                // Let the user select a location to save the file
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Excel Files|*.xlsx";
+                    saveFileDialog.Title = "Save Statement of Account";
+                    saveFileDialog.FileName = $"SOA_{tloanno}.xlsx"; // Default filename
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string savePath = saveFileDialog.FileName;
+                        await GenerateSOA(tloanno, savePath); // Call the GenerateSOA method with parameters
+                    }
+                }
             }
             else
             {
@@ -598,7 +769,31 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
+
         private void bpayadvance_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvdata_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Get the edited row's data
+            int rowIndex = e.RowIndex;
+            if (rowIndex >= 0)
+            {
+                // Retrieve the edited value from the DataGridView cell
+                string columnName = dgvdata.Columns[e.ColumnIndex].Name;
+                var editedValue = dgvdata.Rows[rowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                // Find the ClientNo (or another unique identifier) for the record
+                string clientNo = dgvdata.Rows[rowIndex].Cells["Client Information"].Value.ToString();
+
+                // Call Update function
+                UpdateLoanCollectionData(clientNo, columnName, editedValue);
+            }
+        }
+
+        private void bconfig_Click(object sender, EventArgs e)
         {
 
         }

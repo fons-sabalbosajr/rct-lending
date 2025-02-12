@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_collections_add));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.brefresh = new Guna.UI2.WinForms.Guna2Button();
             this.bcopyaccno = new Guna.UI2.WinForms.Guna2Button();
             this.laccountid = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -96,7 +97,6 @@
             this.bamtfull = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dtcoldate = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.brefresh = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,6 +113,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(884, 47);
             this.panel1.TabIndex = 4;
+            // 
+            // brefresh
+            // 
+            this.brefresh.BorderColor = System.Drawing.Color.Gainsboro;
+            this.brefresh.BorderRadius = 2;
+            this.brefresh.BorderThickness = 1;
+            this.brefresh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.brefresh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.brefresh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.brefresh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.brefresh.FillColor = System.Drawing.Color.White;
+            this.brefresh.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.brefresh.ForeColor = System.Drawing.Color.White;
+            this.brefresh.Image = global::rct_lmis.Properties.Resources.icons8_refresh_48;
+            this.brefresh.Location = new System.Drawing.Point(156, 12);
+            this.brefresh.Name = "brefresh";
+            this.brefresh.Size = new System.Drawing.Size(25, 25);
+            this.brefresh.TabIndex = 151;
+            this.brefresh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.brefresh.Visible = false;
+            this.brefresh.Click += new System.EventHandler(this.brefresh_Click);
             // 
             // bcopyaccno
             // 
@@ -558,6 +579,7 @@
             this.tpayamort.SelectedText = "";
             this.tpayamort.Size = new System.Drawing.Size(138, 25);
             this.tpayamort.TabIndex = 106;
+            this.tpayamort.TextChanged += new System.EventHandler(this.tpayamort_TextChanged);
             // 
             // label10
             // 
@@ -1140,26 +1162,6 @@
             this.dtcoldate.Size = new System.Drawing.Size(138, 36);
             this.dtcoldate.TabIndex = 151;
             this.dtcoldate.Value = new System.DateTime(2024, 9, 8, 0, 0, 0, 0);
-            // 
-            // brefresh
-            // 
-            this.brefresh.BorderColor = System.Drawing.Color.Gainsboro;
-            this.brefresh.BorderRadius = 2;
-            this.brefresh.BorderThickness = 1;
-            this.brefresh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.brefresh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.brefresh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.brefresh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.brefresh.FillColor = System.Drawing.Color.White;
-            this.brefresh.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.brefresh.ForeColor = System.Drawing.Color.White;
-            this.brefresh.Image = global::rct_lmis.Properties.Resources.icons8_refresh_48;
-            this.brefresh.Location = new System.Drawing.Point(156, 12);
-            this.brefresh.Name = "brefresh";
-            this.brefresh.Size = new System.Drawing.Size(25, 25);
-            this.brefresh.TabIndex = 151;
-            this.brefresh.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.brefresh.Click += new System.EventHandler(this.brefresh_Click);
             // 
             // frm_home_disburse_collections_add
             // 

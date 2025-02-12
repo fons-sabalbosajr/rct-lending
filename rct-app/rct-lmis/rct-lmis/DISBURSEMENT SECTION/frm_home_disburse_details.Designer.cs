@@ -33,14 +33,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_details));
             this.panel1 = new System.Windows.Forms.Panel();
             this.laccountid = new System.Windows.Forms.Label();
@@ -66,31 +71,8 @@
             this.tlnno = new Guna.UI2.WinForms.Guna2TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tloanterm = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
-            this.tloancollector = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.dtendpay = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.dtstartpay = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.tloanpaymode = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.linterestpercent = new System.Windows.Forms.Label();
-            this.tloanpenalty = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tloanamort = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tloanbalance = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tloaninterest = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tloanprincipal = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.tloanamount = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.tloanstatus = new Guna.UI2.WinForms.Guna2TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tloantype = new Guna.UI2.WinForms.Guna2TextBox();
@@ -108,6 +90,9 @@
             this.lnofile = new System.Windows.Forms.Label();
             this.dgvattach = new Guna.UI2.WinForms.Guna2DataGridView();
             this.label6 = new System.Windows.Forms.Label();
+            this.dgvloancurrent = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.bdelete = new Guna.UI2.WinForms.Guna2Button();
+            this.badd = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -117,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvattach)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvloancurrent)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -180,11 +166,11 @@
             this.bsaveloan.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.bsaveloan.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bsaveloan.ForeColor = System.Drawing.Color.White;
-            this.bsaveloan.Location = new System.Drawing.Point(709, 397);
+            this.bsaveloan.Location = new System.Drawing.Point(639, 406);
             this.bsaveloan.Name = "bsaveloan";
             this.bsaveloan.Size = new System.Drawing.Size(82, 31);
             this.bsaveloan.TabIndex = 31;
-            this.bsaveloan.Text = "Update";
+            this.bsaveloan.Text = "Edit";
             this.bsaveloan.Click += new System.EventHandler(this.bsaveloan_Click);
             // 
             // guna2TabControl1
@@ -537,32 +523,12 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.tloanterm);
-            this.tabPage4.Controls.Add(this.label17);
+            this.tabPage4.Controls.Add(this.badd);
+            this.tabPage4.Controls.Add(this.bdelete);
+            this.tabPage4.Controls.Add(this.dgvloancurrent);
             this.tabPage4.Controls.Add(this.guna2Separator3);
-            this.tabPage4.Controls.Add(this.tloancollector);
             this.tabPage4.Controls.Add(this.bsaveloan);
-            this.tabPage4.Controls.Add(this.label21);
-            this.tabPage4.Controls.Add(this.dtendpay);
-            this.tabPage4.Controls.Add(this.dtstartpay);
-            this.tabPage4.Controls.Add(this.label20);
-            this.tabPage4.Controls.Add(this.label19);
-            this.tabPage4.Controls.Add(this.tloanpaymode);
-            this.tabPage4.Controls.Add(this.label18);
-            this.tabPage4.Controls.Add(this.linterestpercent);
-            this.tabPage4.Controls.Add(this.tloanpenalty);
-            this.tabPage4.Controls.Add(this.label13);
-            this.tabPage4.Controls.Add(this.tloanamort);
-            this.tabPage4.Controls.Add(this.label14);
-            this.tabPage4.Controls.Add(this.tloanbalance);
-            this.tabPage4.Controls.Add(this.label16);
-            this.tabPage4.Controls.Add(this.tloaninterest);
-            this.tabPage4.Controls.Add(this.label12);
-            this.tabPage4.Controls.Add(this.tloanprincipal);
-            this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.label10);
-            this.tabPage4.Controls.Add(this.tloanamount);
-            this.tabPage4.Controls.Add(this.label9);
             this.tabPage4.Controls.Add(this.tloanstatus);
             this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Controls.Add(this.tloantype);
@@ -574,38 +540,6 @@
             this.tabPage4.Text = "Loan Information";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tloanterm
-            // 
-            this.tloanterm.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tloanterm.DefaultText = "";
-            this.tloanterm.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tloanterm.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tloanterm.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanterm.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanterm.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanterm.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tloanterm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tloanterm.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanterm.Location = new System.Drawing.Point(133, 312);
-            this.tloanterm.Name = "tloanterm";
-            this.tloanterm.PasswordChar = '\0';
-            this.tloanterm.PlaceholderText = "";
-            this.tloanterm.SelectedText = "";
-            this.tloanterm.Size = new System.Drawing.Size(163, 25);
-            this.tloanterm.TabIndex = 111;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label17.Location = new System.Drawing.Point(22, 316);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(85, 15);
-            this.label17.TabIndex = 110;
-            this.label17.Text = "Loan Duration:";
-            // 
             // guna2Separator3
             // 
             this.guna2Separator3.Location = new System.Drawing.Point(18, 55);
@@ -613,338 +547,17 @@
             this.guna2Separator3.Size = new System.Drawing.Size(791, 10);
             this.guna2Separator3.TabIndex = 109;
             // 
-            // tloancollector
-            // 
-            this.tloancollector.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tloancollector.DefaultText = "";
-            this.tloancollector.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tloancollector.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tloancollector.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloancollector.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloancollector.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloancollector.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tloancollector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tloancollector.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloancollector.Location = new System.Drawing.Point(133, 277);
-            this.tloancollector.Name = "tloancollector";
-            this.tloancollector.PasswordChar = '\0';
-            this.tloancollector.PlaceholderText = "";
-            this.tloancollector.SelectedText = "";
-            this.tloancollector.Size = new System.Drawing.Size(163, 25);
-            this.tloancollector.TabIndex = 108;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label21.Location = new System.Drawing.Point(22, 281);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(58, 15);
-            this.label21.TabIndex = 107;
-            this.label21.Text = "Collector:";
-            // 
-            // dtendpay
-            // 
-            this.dtendpay.Checked = true;
-            this.dtendpay.FillColor = System.Drawing.Color.White;
-            this.dtendpay.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtendpay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtendpay.Location = new System.Drawing.Point(451, 277);
-            this.dtendpay.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtendpay.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtendpay.Name = "dtendpay";
-            this.dtendpay.Size = new System.Drawing.Size(163, 25);
-            this.dtendpay.TabIndex = 106;
-            this.dtendpay.Value = new System.DateTime(2024, 10, 21, 20, 7, 19, 440);
-            // 
-            // dtstartpay
-            // 
-            this.dtstartpay.Checked = true;
-            this.dtstartpay.FillColor = System.Drawing.Color.White;
-            this.dtstartpay.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtstartpay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtstartpay.Location = new System.Drawing.Point(451, 241);
-            this.dtstartpay.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtstartpay.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtstartpay.Name = "dtstartpay";
-            this.dtstartpay.Size = new System.Drawing.Size(163, 25);
-            this.dtstartpay.TabIndex = 105;
-            this.dtstartpay.Value = new System.DateTime(2024, 10, 21, 20, 7, 19, 440);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label20.Location = new System.Drawing.Point(326, 282);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(82, 15);
-            this.label20.TabIndex = 104;
-            this.label20.Text = "Maturity Date:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label19.Location = new System.Drawing.Point(326, 246);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(111, 15);
-            this.label19.TabIndex = 102;
-            this.label19.Text = "Start Payment Date:";
-            // 
-            // tloanpaymode
-            // 
-            this.tloanpaymode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tloanpaymode.DefaultText = "";
-            this.tloanpaymode.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tloanpaymode.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tloanpaymode.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanpaymode.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanpaymode.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanpaymode.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tloanpaymode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tloanpaymode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanpaymode.Location = new System.Drawing.Point(133, 241);
-            this.tloanpaymode.Name = "tloanpaymode";
-            this.tloanpaymode.PasswordChar = '\0';
-            this.tloanpaymode.PlaceholderText = "";
-            this.tloanpaymode.SelectedText = "";
-            this.tloanpaymode.Size = new System.Drawing.Size(163, 25);
-            this.tloanpaymode.TabIndex = 101;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label18.Location = new System.Drawing.Point(22, 245);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(91, 15);
-            this.label18.TabIndex = 100;
-            this.label18.Text = "Payment Mode:";
-            // 
-            // linterestpercent
-            // 
-            this.linterestpercent.AutoSize = true;
-            this.linterestpercent.BackColor = System.Drawing.Color.Transparent;
-            this.linterestpercent.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linterestpercent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.linterestpercent.Location = new System.Drawing.Point(22, 194);
-            this.linterestpercent.Name = "linterestpercent";
-            this.linterestpercent.Size = new System.Drawing.Size(24, 15);
-            this.linterestpercent.TabIndex = 99;
-            this.linterestpercent.Text = "n%";
-            this.linterestpercent.Visible = false;
-            // 
-            // tloanpenalty
-            // 
-            this.tloanpenalty.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tloanpenalty.DefaultText = "";
-            this.tloanpenalty.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tloanpenalty.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tloanpenalty.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanpenalty.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanpenalty.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanpenalty.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tloanpenalty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tloanpenalty.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanpenalty.Location = new System.Drawing.Point(451, 175);
-            this.tloanpenalty.Name = "tloanpenalty";
-            this.tloanpenalty.PasswordChar = '\0';
-            this.tloanpenalty.PlaceholderText = "";
-            this.tloanpenalty.SelectedText = "";
-            this.tloanpenalty.Size = new System.Drawing.Size(114, 25);
-            this.tloanpenalty.TabIndex = 98;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(326, 179);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 15);
-            this.label13.TabIndex = 97;
-            this.label13.Text = "Penalty:";
-            // 
-            // tloanamort
-            // 
-            this.tloanamort.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tloanamort.DefaultText = "";
-            this.tloanamort.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tloanamort.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tloanamort.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanamort.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanamort.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanamort.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tloanamort.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tloanamort.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanamort.Location = new System.Drawing.Point(451, 142);
-            this.tloanamort.Name = "tloanamort";
-            this.tloanamort.PasswordChar = '\0';
-            this.tloanamort.PlaceholderText = "";
-            this.tloanamort.SelectedText = "";
-            this.tloanamort.Size = new System.Drawing.Size(114, 25);
-            this.tloanamort.TabIndex = 96;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label14.Location = new System.Drawing.Point(326, 146);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(77, 15);
-            this.label14.TabIndex = 95;
-            this.label14.Text = "Amortization:";
-            // 
-            // tloanbalance
-            // 
-            this.tloanbalance.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tloanbalance.DefaultText = "";
-            this.tloanbalance.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tloanbalance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tloanbalance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanbalance.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanbalance.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanbalance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tloanbalance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tloanbalance.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanbalance.Location = new System.Drawing.Point(451, 110);
-            this.tloanbalance.Name = "tloanbalance";
-            this.tloanbalance.PasswordChar = '\0';
-            this.tloanbalance.PlaceholderText = "";
-            this.tloanbalance.SelectedText = "";
-            this.tloanbalance.Size = new System.Drawing.Size(174, 25);
-            this.tloanbalance.TabIndex = 94;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label16.Location = new System.Drawing.Point(326, 114);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(51, 15);
-            this.label16.TabIndex = 93;
-            this.label16.Text = "Balance:";
-            // 
-            // tloaninterest
-            // 
-            this.tloaninterest.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tloaninterest.DefaultText = "";
-            this.tloaninterest.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tloaninterest.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tloaninterest.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloaninterest.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloaninterest.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloaninterest.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tloaninterest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tloaninterest.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloaninterest.Location = new System.Drawing.Point(108, 175);
-            this.tloaninterest.Name = "tloaninterest";
-            this.tloaninterest.PasswordChar = '\0';
-            this.tloaninterest.PlaceholderText = "";
-            this.tloaninterest.SelectedText = "";
-            this.tloaninterest.Size = new System.Drawing.Size(114, 25);
-            this.tloaninterest.TabIndex = 92;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(22, 179);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(49, 15);
-            this.label12.TabIndex = 91;
-            this.label12.Text = "Interest:";
-            // 
-            // tloanprincipal
-            // 
-            this.tloanprincipal.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tloanprincipal.DefaultText = "";
-            this.tloanprincipal.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tloanprincipal.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tloanprincipal.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanprincipal.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanprincipal.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanprincipal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tloanprincipal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tloanprincipal.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanprincipal.Location = new System.Drawing.Point(108, 142);
-            this.tloanprincipal.Name = "tloanprincipal";
-            this.tloanprincipal.PasswordChar = '\0';
-            this.tloanprincipal.PlaceholderText = "";
-            this.tloanprincipal.SelectedText = "";
-            this.tloanprincipal.Size = new System.Drawing.Size(114, 25);
-            this.tloanprincipal.TabIndex = 90;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label11.Location = new System.Drawing.Point(22, 146);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 15);
-            this.label11.TabIndex = 89;
-            this.label11.Text = "Principal:";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(22, 74);
+            this.label10.Location = new System.Drawing.Point(15, 68);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(132, 20);
+            this.label10.Size = new System.Drawing.Size(189, 20);
             this.label10.TabIndex = 37;
-            this.label10.Text = "Loan Information";
-            // 
-            // tloanamount
-            // 
-            this.tloanamount.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tloanamount.DefaultText = "";
-            this.tloanamount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tloanamount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tloanamount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanamount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tloanamount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanamount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tloanamount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tloanamount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanamount.Location = new System.Drawing.Point(108, 110);
-            this.tloanamount.Name = "tloanamount";
-            this.tloanamount.PasswordChar = '\0';
-            this.tloanamount.PlaceholderText = "";
-            this.tloanamount.SelectedText = "";
-            this.tloanamount.Size = new System.Drawing.Size(174, 25);
-            this.tloanamount.TabIndex = 88;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(22, 114);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(83, 15);
-            this.label9.TabIndex = 87;
-            this.label9.Text = "Loan Amount:";
+            this.label10.Text = "Current Loan Information";
             // 
             // tloanstatus
             // 
@@ -1041,43 +654,43 @@
             this.dgvdata.AllowUserToDeleteRows = false;
             this.dgvdata.AllowUserToResizeColumns = false;
             this.dgvdata.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            this.dgvdata.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvdata.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvdata.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvdata.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvdata.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdata.Location = new System.Drawing.Point(0, 0);
             this.dgvdata.Name = "dgvdata";
             this.dgvdata.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvdata.RowHeadersVisible = false;
             this.dgvdata.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle15.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvdata.RowTemplate.Height = 50;
             this.dgvdata.Size = new System.Drawing.Size(824, 458);
             this.dgvdata.TabIndex = 11;
@@ -1229,27 +842,27 @@
             this.dgvattach.AllowUserToDeleteRows = false;
             this.dgvattach.AllowUserToResizeColumns = false;
             this.dgvattach.AllowUserToResizeRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            this.dgvattach.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            this.dgvattach.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvattach.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvattach.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvattach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvattach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvattach.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvattach.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvattach.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgvattach.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvattach.Location = new System.Drawing.Point(12, 73);
             this.dgvattach.Name = "dgvattach";
@@ -1294,6 +907,112 @@
             this.label6.TabIndex = 73;
             this.label6.Text = "Upload Requirements";
             // 
+            // dgvloancurrent
+            // 
+            this.dgvloancurrent.AllowUserToAddRows = false;
+            this.dgvloancurrent.AllowUserToDeleteRows = false;
+            this.dgvloancurrent.AllowUserToResizeColumns = false;
+            this.dgvloancurrent.AllowUserToResizeRows = false;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            this.dgvloancurrent.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvloancurrent.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvloancurrent.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvloancurrent.ColumnHeadersHeight = 30;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvloancurrent.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvloancurrent.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvloancurrent.Location = new System.Drawing.Point(18, 97);
+            this.dgvloancurrent.Name = "dgvloancurrent";
+            this.dgvloancurrent.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvloancurrent.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvloancurrent.RowHeadersVisible = false;
+            this.dgvloancurrent.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvloancurrent.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvloancurrent.RowTemplate.Height = 70;
+            this.dgvloancurrent.Size = new System.Drawing.Size(791, 294);
+            this.dgvloancurrent.TabIndex = 110;
+            this.dgvloancurrent.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
+            this.dgvloancurrent.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvloancurrent.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvloancurrent.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvloancurrent.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvloancurrent.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvloancurrent.ThemeStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvloancurrent.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvloancurrent.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.dgvloancurrent.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvloancurrent.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvloancurrent.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvloancurrent.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvloancurrent.ThemeStyle.HeaderStyle.Height = 30;
+            this.dgvloancurrent.ThemeStyle.ReadOnly = true;
+            this.dgvloancurrent.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
+            this.dgvloancurrent.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvloancurrent.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvloancurrent.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgvloancurrent.ThemeStyle.RowsStyle.Height = 70;
+            this.dgvloancurrent.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
+            this.dgvloancurrent.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvloancurrent.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvloancurrent_CellContentDoubleClick);
+            this.dgvloancurrent.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvloancurrent_DataBindingComplete);
+            // 
+            // bdelete
+            // 
+            this.bdelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bdelete.BorderRadius = 4;
+            this.bdelete.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bdelete.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bdelete.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bdelete.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bdelete.FillColor = System.Drawing.Color.Brown;
+            this.bdelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bdelete.ForeColor = System.Drawing.Color.White;
+            this.bdelete.Location = new System.Drawing.Point(727, 406);
+            this.bdelete.Name = "bdelete";
+            this.bdelete.Size = new System.Drawing.Size(82, 31);
+            this.bdelete.TabIndex = 111;
+            this.bdelete.Text = "Delete";
+            // 
+            // badd
+            // 
+            this.badd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.badd.BorderRadius = 4;
+            this.badd.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.badd.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.badd.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.badd.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.badd.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.badd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.badd.ForeColor = System.Drawing.Color.White;
+            this.badd.Location = new System.Drawing.Point(541, 406);
+            this.badd.Name = "badd";
+            this.badd.Size = new System.Drawing.Size(92, 31);
+            this.badd.TabIndex = 112;
+            this.badd.Text = "Add New";
+            this.badd.Click += new System.EventHandler(this.badd_Click);
+            // 
             // frm_home_disburse_details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1324,6 +1043,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvattach)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvloancurrent)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1368,33 +1088,13 @@
         private System.Windows.Forms.TabPage tabPage4;
         private Guna.UI2.WinForms.Guna2TextBox tloantype;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label linterestpercent;
-        private Guna.UI2.WinForms.Guna2TextBox tloanpenalty;
-        private System.Windows.Forms.Label label13;
-        private Guna.UI2.WinForms.Guna2TextBox tloanamort;
-        private System.Windows.Forms.Label label14;
-        private Guna.UI2.WinForms.Guna2TextBox tloanbalance;
-        private System.Windows.Forms.Label label16;
-        private Guna.UI2.WinForms.Guna2TextBox tloaninterest;
-        private System.Windows.Forms.Label label12;
-        private Guna.UI2.WinForms.Guna2TextBox tloanprincipal;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private Guna.UI2.WinForms.Guna2TextBox tloanamount;
-        private System.Windows.Forms.Label label9;
         private Guna.UI2.WinForms.Guna2TextBox tloanstatus;
         private System.Windows.Forms.Label label8;
-        private Guna.UI2.WinForms.Guna2TextBox tloancollector;
-        private System.Windows.Forms.Label label21;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtendpay;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtstartpay;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private Guna.UI2.WinForms.Guna2TextBox tloanpaymode;
-        private System.Windows.Forms.Label label18;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
         private Guna.UI2.WinForms.Guna2Button bsavegeninfo;
-        private Guna.UI2.WinForms.Guna2TextBox tloanterm;
-        private System.Windows.Forms.Label label17;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvloancurrent;
+        private Guna.UI2.WinForms.Guna2Button bdelete;
+        private Guna.UI2.WinForms.Guna2Button badd;
     }
 }

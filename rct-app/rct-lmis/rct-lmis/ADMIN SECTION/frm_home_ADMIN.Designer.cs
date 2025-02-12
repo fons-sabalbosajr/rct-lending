@@ -53,6 +53,7 @@ namespace rct_lmis
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pbody = new System.Windows.Forms.Panel();
+            this.bcollectconfig = new Guna.UI2.WinForms.Guna2Button();
             this.pleft.SuspendLayout();
             this.psubdata.SuspendLayout();
             this.psubacc.SuspendLayout();
@@ -93,7 +94,7 @@ namespace rct_lmis
             this.baccounting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.baccounting.ImageOffset = new System.Drawing.Point(10, 0);
             this.baccounting.ImageSize = new System.Drawing.Size(18, 18);
-            this.baccounting.Location = new System.Drawing.Point(0, 537);
+            this.baccounting.Location = new System.Drawing.Point(0, 568);
             this.baccounting.Name = "baccounting";
             this.baccounting.Size = new System.Drawing.Size(194, 45);
             this.baccounting.TabIndex = 32;
@@ -118,7 +119,7 @@ namespace rct_lmis
             this.bannouncement.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.bannouncement.ImageOffset = new System.Drawing.Point(10, 0);
             this.bannouncement.ImageSize = new System.Drawing.Size(18, 18);
-            this.bannouncement.Location = new System.Drawing.Point(0, 492);
+            this.bannouncement.Location = new System.Drawing.Point(0, 523);
             this.bannouncement.Name = "bannouncement";
             this.bannouncement.Size = new System.Drawing.Size(194, 45);
             this.bannouncement.TabIndex = 31;
@@ -130,6 +131,7 @@ namespace rct_lmis
             // psubdata
             // 
             this.psubdata.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
+            this.psubdata.Controls.Add(this.bcollectconfig);
             this.psubdata.Controls.Add(this.bdeniedloans);
             this.psubdata.Controls.Add(this.bapprovedloans);
             this.psubdata.Controls.Add(this.bdatadelstaff);
@@ -139,7 +141,7 @@ namespace rct_lmis
             this.psubdata.Dock = System.Windows.Forms.DockStyle.Top;
             this.psubdata.Location = new System.Drawing.Point(0, 271);
             this.psubdata.Name = "psubdata";
-            this.psubdata.Size = new System.Drawing.Size(194, 221);
+            this.psubdata.Size = new System.Drawing.Size(194, 252);
             this.psubdata.TabIndex = 30;
             // 
             // bdeniedloans
@@ -508,6 +510,31 @@ namespace rct_lmis
             this.pbody.Size = new System.Drawing.Size(1096, 790);
             this.pbody.TabIndex = 20;
             // 
+            // bcollectconfig
+            // 
+            this.bcollectconfig.Animated = true;
+            this.bcollectconfig.BackColor = System.Drawing.Color.Transparent;
+            this.bcollectconfig.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bcollectconfig.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bcollectconfig.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bcollectconfig.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bcollectconfig.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bcollectconfig.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(96)))), ((int)(((byte)(114)))));
+            this.bcollectconfig.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bcollectconfig.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.bcollectconfig.HoverState.ForeColor = System.Drawing.Color.White;
+            this.bcollectconfig.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bcollectconfig.ImageOffset = new System.Drawing.Point(10, 0);
+            this.bcollectconfig.ImageSize = new System.Drawing.Size(15, 15);
+            this.bcollectconfig.Location = new System.Drawing.Point(0, 210);
+            this.bcollectconfig.Name = "bcollectconfig";
+            this.bcollectconfig.Size = new System.Drawing.Size(194, 35);
+            this.bcollectconfig.TabIndex = 23;
+            this.bcollectconfig.Text = "Collection Config (beta)";
+            this.bcollectconfig.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bcollectconfig.TextOffset = new System.Drawing.Point(20, 0);
+            this.bcollectconfig.Click += new System.EventHandler(this.bcollectconfig_Click);
+            // 
             // frm_home_ADMIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -560,5 +587,6 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2Button bdeniedloans;
         private Guna.UI2.WinForms.Guna2Button bapprovedloans;
         private Guna.UI2.WinForms.Guna2Button baccounting;
+        private Guna.UI2.WinForms.Guna2Button bcollectconfig;
     }
 }

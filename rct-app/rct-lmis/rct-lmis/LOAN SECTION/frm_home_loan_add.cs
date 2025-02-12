@@ -98,28 +98,25 @@ namespace rct_lmis.LOAN_SECTION
             var collection = database.GetCollection<Application>("loan_application");
         }
 
-        private async void InitializeGoogleDrive()
+        private void InitializeGoogleDrive()
         {
             try
             {
-                UserCredential credential;
-                using (var stream = new FileStream("google_drive_credentials.json", FileMode.Open, FileAccess.Read))
+                GoogleCredential credential;
+                using (var stream = new FileStream("rct-credentials.json", FileMode.Open, FileAccess.Read))
                 {
-                    var clientSecrets = GoogleClientSecrets.Load(stream).Secrets;
-                    credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                        clientSecrets,
-                        Scopes,
-                        "user",
-                        CancellationToken.None,
-                        new FileDataStore("token.json", true));
+                    credential = GoogleCredential.FromStream(stream)
+                        .CreateScoped(DriveService.ScopeConstants.Drive);
                 }
 
                 // Create Drive API service
                 service = new DriveService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
-                    ApplicationName = ApplicationName,
+                    ApplicationName = "Your Application Name",
                 });
+
+                //MessageBox.Show("Google Drive Initialized Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

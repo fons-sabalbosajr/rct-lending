@@ -120,8 +120,15 @@ namespace rct_lmis.LOAN_SECTION
                 throw new ArgumentException($"ID does not start with the expected prefix: {prefix}");
             }
 
-            // Extract the numeric part from the ID
+            // Extract the numeric part from the ID by removing the prefix
             string numericPart = id.Substring(prefix.Length);
+
+            // Special handling for AccountId format: strip non-numeric characters if needed
+            if (numericPart.Contains("-"))
+            {
+                numericPart = numericPart.Split('-')[1];  // For example, "RCT-2024DB-977" becomes "977"
+            }
+
             if (int.TryParse(numericPart, out int increment))
             {
                 // Increment and format with leading zeros
@@ -135,14 +142,13 @@ namespace rct_lmis.LOAN_SECTION
         private async Task SetLatestAccountAndClientIdsAsync()
         {
             // Set the appropriate prefixes
-            string accountPrefix = "RCT-DB2024-"; // Adjust as necessary
+            string accountPrefix = "RCT-2024DB-"; // Adjust as necessary
             string clientPrefix = "RCT-2024-CL"; // Adjust as necessary
 
             // Retrieve and set latest AccountId and ClientNo
             taccountid.Text = await GetLatestIncrementedFieldAsync("AccountId", accountPrefix, 3) ?? "No AccountId found";
             tclientno.Text = await GetLatestIncrementedFieldAsync("ClientNo", clientPrefix, 4) ?? "No ClientNo found"; // Specify leading zero count for ClientNo
         }
-
 
         private async Task<List<string>> GetDistinctCollectorNamesAsync()
         {
