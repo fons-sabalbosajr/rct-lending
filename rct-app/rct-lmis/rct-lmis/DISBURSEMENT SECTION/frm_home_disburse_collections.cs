@@ -120,6 +120,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 _loanCollectionTable.Columns.Add("Collection Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Remarks", typeof(string));
                 _loanCollectionTable.Columns.Add("CollectionDateTemp", typeof(DateTime)); // Add temporary column for sorting
+                _loanCollectionTable.Columns.Add("BalanceTemp", typeof(double)); // Add column for sorting by balance
             }
 
             // Clear existing rows before loading new data
@@ -166,7 +167,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                                   $"Running Balance: {runningBalanceStr}";
 
                 // Payment Information
-                string dateReceived = collection.Contains("DateReceived") ? collection["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy") : "";  // Fix to DateReceived field
+                string dateReceived = collection.Contains("DateReceived") ? collection["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy") : "";
 
                 string penalty = collection.Contains("CollectedPenalty") ? ((double)collection["CollectedPenalty"].AsDecimal128).ToString("F2") : "";
                 totalPenalty += string.IsNullOrEmpty(penalty) ? 0.00 : Convert.ToDouble(penalty); // Add to total penalty if present
@@ -191,11 +192,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 if (runningBalance <= 0)
                 {
-                    // Loan is fully paid
                     if (excessAmount > 0)
                     {
                         remarks = $"Loan is fully paid.\nExcess amount paid: {excessAmount:F2}";
-                        lgenbal.Text = $"Excess payment: {excessAmount:F2}";  // Display excess payment in the UI
+                        lgenbal.Text = $"Excess payment: {excessAmount:F2}";
                     }
                     else
                     {
@@ -205,10 +205,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 }
                 else
                 {
-                    // Loan still has a remaining balance
                     remarks = $"Remaining Balance: {runningBalance:F2}";
                     lgenbal.Text = $"Remaining Balance: {runningBalance:F2}";
-                    // Also add the excess amount if it exists in an installment
                     if (excessAmount > 0)
                     {
                         remarks += $"\nExcess Amount Paid: {excessAmount:F2}";
@@ -216,7 +214,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     }
                 }
 
-                // Add data to DataTable, including CollectionDateTemp for sorting
+                // Extract balance value for sorting
+                double balanceValue = runningBalance > 0 ? runningBalance : 0;
+
+                // Add data to DataTable, including CollectionDateTemp and BalanceTemp for sorting
                 DataRow row = _loanCollectionTable.NewRow();
                 row["Client Information"] = clientInfo;
                 row["Loan Information"] = loanInfo;
@@ -224,32 +225,30 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 row["Collection Information"] = collectionInfo;
                 row["Remarks"] = remarks;
                 row["CollectionDateTemp"] = collectionDate.HasValue ? (object)collectionDate.Value : DBNull.Value;
+                row["BalanceTemp"] = balanceValue;
 
                 _loanCollectionTable.Rows.Add(row);
             }
 
-            // Total Payments Text (Count total rows in dgvdata)
-            ltotalpayments.Text = "Total Payment Collection: " + dgvdata.Rows.Count.ToString();
-
+          
             // Total Amount Paid Calculation
             ltotalamtpaid.Text = "Total Amount Paid: " + totalAmountPaid.ToString("F2");
 
             // Penalty Calculation (If no penalties, display 0.00)
             lpenaltytotal.Text = "Generated Penalty: " + totalPenalty.ToString("F2");
 
-            // After all rows are added, now bind the DataTable to DataGridView
-            dgvdata.DataSource = _loanCollectionTable;
-
-            // Sort the DataTable by CollectionDateTemp in descending order
+            // Sort DataTable by BalanceTemp in descending order, then CollectionDateTemp in ascending order
             DataView view = _loanCollectionTable.DefaultView;
-            view.Sort = "CollectionDateTemp ASC";  // Sort by CollectionDateTemp in ascending order
+            view.Sort = "BalanceTemp DESC, CollectionDateTemp ASC";
             DataTable sortedTable = view.ToTable();
             dgvdata.DataSource = sortedTable;
+
+            // Total Payments Text (Count total rows in dgvdata)
+            ltotalpayments.Text = "Total Payment Collection: " + dgvdata.Rows.Count.ToString();
 
             // Highlight rows with excess payment after binding
             for (int i = 0; i < dgvdata.Rows.Count; i++)
             {
-                // Get the Remarks or another column to check if excess payment exists
                 var remarks = dgvdata.Rows[i].Cells["Remarks"].Value.ToString();
                 if (remarks.Contains("Excess amount paid"))
                 {
@@ -257,10 +256,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 }
             }
 
-            // Hide the temporary CollectionDateTemp column after sorting
+            // Hide the temporary sorting columns
+            dgvdata.Columns["BalanceTemp"].Visible = false;
             dgvdata.Columns["CollectionDateTemp"].Visible = false;
         }
-
 
 
         private void SearchInDataGrid(string keyword)
@@ -795,7 +794,12 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void bconfig_Click(object sender, EventArgs e)
         {
+            string clientNo = laccountid.Text;
+            string loanId = laccountid.Text;
 
+            
+            frm_home_disburse_loan_config loanConfigForm = new frm_home_disburse_loan_config(clientNo, loanId);
+            loanConfigForm.ShowDialog(); 
         }
     }
 }

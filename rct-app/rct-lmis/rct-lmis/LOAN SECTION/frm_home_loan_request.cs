@@ -42,52 +42,72 @@ namespace rct_lmis.LOAN_SECTION
                 // Create a DataTable to hold the data
                 DataTable dataTable = new DataTable();
 
-                // Define the columns to display
+                // Define the merged columns
                 dataTable.Columns.Add("AccountID");
-                dataTable.Columns.Add("LoanType");
-                dataTable.Columns.Add("Principal");
-                dataTable.Columns.Add("Term");
-                dataTable.Columns.Add("Status");
-                dataTable.Columns.Add("FullNameAndAddress");
-                dataTable.Columns.Add("CBCP");
-                dataTable.Columns.Add("Documents");
+                dataTable.Columns.Add("LoanDetails");
+                dataTable.Columns.Add("ClientDetails");
+                dataTable.Columns.Add("LoanStatus");
+                dataTable.Columns.Add("OtherDetails");
+                dataTable.Columns.Add("UploadedDocuments");
 
                 // Add rows to the DataTable
                 foreach (var doc in documents)
                 {
                     DataRow row = dataTable.NewRow();
-                    row["AccountID"] = doc.Contains("AccountId") ? doc["AccountId"].ToString() : string.Empty;
-                    row["LoanType"] = doc.Contains("LoanType") ? doc["LoanType"].ToString() : string.Empty;
-                    row["Principal"] = doc.Contains("Principal") ? "₱ " + doc["Principal"].ToString() + ".00" : string.Empty;
-                    row["Term"] = doc.Contains("Term") ? doc["Term"].ToString() + " month/s" : string.Empty;
-                    row["Status"] = doc.Contains("LoanStatus") ? doc["LoanStatus"].ToString() : string.Empty;
 
-                    string firstName = doc.Contains("FirstName") ? doc["FirstName"].ToString() : string.Empty;
-                    string middleName = doc.Contains("MiddleName") ? doc["MiddleName"].ToString() : string.Empty;
-                    string lastName = doc.Contains("LastName") ? doc["LastName"].ToString() : string.Empty;
-                    string suffixName = doc.Contains("SuffixName") ? doc["SuffixName"].ToString() : string.Empty;
-                    string fullName = $"{firstName} {middleName} {lastName} {suffixName}";
+                    // Account Info
+                    row["AccountID"] = doc.Contains("AccountId") ? doc["AccountId"].ToString().Replace("Account ID: ", "") : string.Empty;
 
-                    string street = doc.Contains("Street") ? doc["Street"].ToString() : string.Empty;
-                    string barangay = doc.Contains("Barangay") ? doc["Barangay"].ToString() : string.Empty;
-                    string city = doc.Contains("City") ? doc["City"].ToString() : string.Empty;
-                    string province = doc.Contains("Province") ? doc["Province"].ToString() : string.Empty;
-                    string address = $"{street}\n{barangay}\n{city}\n{province}";
+                    // Loan Details: Merge LoanBalance, LoanCycle, LoanTerms, PreviousLoan, PaymentAmount, etc.
+                    string loanBalance = doc.Contains("LoanBalance") ? "₱ " + doc["LoanBalance"].ToString() + ".00" : string.Empty;
+                    string loanCycle = doc.Contains("LoanCycle") ? doc["LoanCycle"].ToString() : string.Empty;
+                    string loanTerms = doc.Contains("LoanTerms") ? doc["LoanTerms"].ToString() + " months" : string.Empty;
+                    string previousLoan = doc.Contains("PreviousLoan") ? doc["PreviousLoan"].ToString() : string.Empty;
+                    string paymentAmount = doc.Contains("PaymentAmount") ? "₱ " + doc["PaymentAmount"].ToString() : string.Empty;
+                    string paymentMode = doc.Contains("PaymentMode") ? doc["PaymentMode"].ToString() : string.Empty;
+                    string renewalStatus = doc.Contains("RenewalStatus") ? doc["RenewalStatus"].ToString() : string.Empty;
 
-                    // Concatenate full name and address with line breaks
-                    row["FullNameAndAddress"] = $"{fullName}\n{address}";
+                    row["LoanDetails"] = $"Balance: {loanBalance}\nCycle: {loanCycle} month(s)\nTerms: {loanTerms}\nPrevious Loan: {previousLoan}\nPayment Amount: {paymentAmount}\nPayment Mode: {paymentMode}\nRenewal Status: {renewalStatus}";
 
-                    row["CBCP"] = doc.Contains("CBCP") ? doc["CBCP"].ToString() : string.Empty;
+                    // Client Details: Merge ClientName, CloseLoanDate, DateEvaluated, and Amendments
+                    string clientName = doc.Contains("ClientName") ? doc["ClientName"].ToString() : string.Empty;
+                    string closeLoanDate = doc.Contains("CloseLoanDate") ? doc["CloseLoanDate"].ToString() : string.Empty;
+                    string dateEvaluated = doc.Contains("DateEvaluated") ? doc["DateEvaluated"].ToString() : string.Empty;
+                    string daysMissed = doc.Contains("DaysMissed") ? doc["DaysMissed"].ToString() : string.Empty;
 
-                    // Split the documents into separate lines based on the comma separator
-                    if (doc.Contains("docs"))
+                    string amendments = $"Amended From - Applicant: {doc["AmendedFromApplicant"]}\n" +
+                                        $"Amended From - Borrower: {doc["AmendedFromBorrower"]}\n" +
+                                        $"Amended From - Maker: {doc["AmendedFromMaker"]}\n" +
+                                        $"Amended To - Applicant: {doc["AmendedToApplicant"]}\n" +
+                                        $"Amended To - Borrower: {doc["AmendedToBorrower"]}\n" +
+                                        $"Amended To - Maker: {doc["AmendedToMaker"]}";
+
+                    row["ClientDetails"] = $"Client: {clientName}\nClose Loan Date: {closeLoanDate}\nDate Evaluated: {dateEvaluated}\nDays Missed: {daysMissed}\n\n{amendments}";
+
+                    // Loan Status: Combine ORNumber, ReleaseSchedule, Remarks, Savings
+                    string orNumber = doc.Contains("ORNumber") ? doc["ORNumber"].ToString() : string.Empty;
+                    string releaseSchedule = doc.Contains("ReleaseSchedule") ? doc["ReleaseSchedule"].ToString() : string.Empty;
+                    string remarks = doc.Contains("Remarks") ? doc["Remarks"].ToString() : string.Empty;
+                    string savings = doc.Contains("Savings") ? doc["Savings"].ToString() : string.Empty;
+
+                    row["LoanStatus"] = $"OR Number: {orNumber}\nRelease Schedule: {releaseSchedule}\nRemarks: {remarks}\nSavings: {savings}";
+
+                    // Other Details: Combine SimilarApplicant, SimilarBorrower, SimilarMaker
+                    bool similarApplicant = doc.Contains("SimilarApplicant") ? Convert.ToBoolean(doc["SimilarApplicant"]) : false;
+                    bool similarBorrower = doc.Contains("SimilarBorrower") ? Convert.ToBoolean(doc["SimilarBorrower"]) : false;
+                    bool similarMaker = doc.Contains("SimilarMaker") ? Convert.ToBoolean(doc["SimilarMaker"]) : false;
+
+                    row["OtherDetails"] = $"Similar Applicant: {similarApplicant}\nSimilar Borrower: {similarBorrower}\nSimilar Maker: {similarMaker}";
+
+                    // Documents: Merge document names
+                    if (doc.Contains("UploadedDocs"))
                     {
-                        var documentsList = doc["docs"].ToString().Split(',');
-                        row["Documents"] = string.Join("\n", documentsList);
+                        var documentsList = doc["UploadedDocs"].AsBsonArray.Select(d => d["file_name"].ToString());
+                        row["UploadedDocuments"] = string.Join("\n", documentsList);
                     }
                     else
                     {
-                        row["Documents"] = string.Empty;
+                        row["UploadedDocuments"] = string.Empty;
                     }
 
                     dataTable.Rows.Add(row);
@@ -101,13 +121,11 @@ namespace rct_lmis.LOAN_SECTION
                     // Filter the rows based on the keyword in relevant columns
                     var filteredRows = dataTable.AsEnumerable()
                         .Where(row => row["AccountID"].ToString().ToLower().Contains(keyword) ||
-                                      row["LoanType"].ToString().ToLower().Contains(keyword) ||
-                                      row["Principal"].ToString().ToLower().Contains(keyword) ||
-                                      row["Term"].ToString().ToLower().Contains(keyword) ||
-                                      row["Status"].ToString().ToLower().Contains(keyword) ||
-                                      row["FullNameAndAddress"].ToString().ToLower().Contains(keyword) ||
-                                      row["CBCP"].ToString().ToLower().Contains(keyword) ||
-                                      row["Documents"].ToString().ToLower().Contains(keyword));
+                                      row["LoanDetails"].ToString().ToLower().Contains(keyword) ||
+                                      row["ClientDetails"].ToString().ToLower().Contains(keyword) ||
+                                      row["LoanStatus"].ToString().ToLower().Contains(keyword) ||
+                                      row["OtherDetails"].ToString().ToLower().Contains(keyword) ||
+                                      row["UploadedDocuments"].ToString().ToLower().Contains(keyword));
 
                     // Create a new DataTable to bind filtered data to the DataGridView
                     if (filteredRows.Any())
@@ -124,42 +142,52 @@ namespace rct_lmis.LOAN_SECTION
                 // Bind the DataTable to the DataGridView
                 dgvloanapps.DataSource = dataTable;
 
-                // Set custom header texts and other configurations (same as before)
+                // Set custom header texts and other configurations (merged columns)
                 dgvloanapps.Columns["AccountID"].HeaderText = "Account ID";
-                dgvloanapps.Columns["LoanType"].HeaderText = "Loan Type";
-                dgvloanapps.Columns["LoanType"].Width = 70;
-                dgvloanapps.Columns["Principal"].HeaderText = "Principal Amount";
-                dgvloanapps.Columns["Principal"].Width = 100;
-                dgvloanapps.Columns["Term"].HeaderText = "Loan Term";
-                dgvloanapps.Columns["Status"].HeaderText = "Application Status";
-                dgvloanapps.Columns["FullNameAndAddress"].HeaderText = "Client Name";
-                dgvloanapps.Columns["FullNameAndAddress"].Width = 250;
-                dgvloanapps.Columns["CBCP"].HeaderText = "Contact Number";
-                dgvloanapps.Columns["Documents"].HeaderText = "Attached Documents";
-                dgvloanapps.Columns["Documents"].Width = 275;
+                dgvloanapps.Columns["LoanDetails"].HeaderText = "Loan Details";
+                dgvloanapps.Columns["ClientDetails"].HeaderText = "Client Details";
+                dgvloanapps.Columns["LoanStatus"].HeaderText = "Loan Status";
+                dgvloanapps.Columns["OtherDetails"].HeaderText = "Other Details";
+                dgvloanapps.Columns["UploadedDocuments"].HeaderText = "Uploaded Documents";
+
+                // Set widths of the columns
+                dgvloanapps.Columns["LoanDetails"].Width = 200;
+                dgvloanapps.Columns["ClientDetails"].Width = 250;
+                dgvloanapps.Columns["LoanStatus"].Width = 200;
+                dgvloanapps.Columns["OtherDetails"].Width = 180;
+                dgvloanapps.Columns["UploadedDocuments"].Width = 275;
+
+                // Align all columns to the left and add padding
+                foreach (DataGridViewColumn column in dgvloanapps.Columns)
+                {
+                    column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                    column.DefaultCellStyle.Padding = new Padding(5, 0, 0, 0); // Set left padding
+                }
+
+
 
                 // Set font size and style for the entire DataGridView
                 dgvloanapps.DefaultCellStyle.Font = new Font("Arial", 9);
                 dgvloanapps.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 9, FontStyle.Bold);
 
                 // Center align specific columns
-                CenterAlignColumns("AccountID", "LoanType", "Principal", "Term", "CBCP");
+                CenterAlignColumns("AccountID", "LoanDetails", "LoanStatus");
 
                 lnorecord.Visible = dgvloanapps.Rows.Count == 0;
 
-                // Configure the DataGridView for the FullNameAndAddress column
-                if (dgvloanapps.Columns["FullNameAndAddress"] != null)
+                // Configure the DataGridView for the merged ClientDetails column
+                if (dgvloanapps.Columns["ClientDetails"] != null)
                 {
-                    dgvloanapps.Columns["FullNameAndAddress"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                    dgvloanapps.Columns["FullNameAndAddress"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvloanapps.Columns["ClientDetails"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    dgvloanapps.Columns["ClientDetails"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
 
-                // Configure the Documents column to be a link type
-                if (dgvloanapps.Columns["Documents"] != null)
+                // Configure the UploadedDocuments column to be a link type
+                if (dgvloanapps.Columns["UploadedDocuments"] != null)
                 {
-                    dgvloanapps.Columns["Documents"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                    dgvloanapps.Columns["Documents"].ReadOnly = true;
-                    dgvloanapps.Columns["Documents"].SortMode = DataGridViewColumnSortMode.Automatic;
+                    dgvloanapps.Columns["UploadedDocuments"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    dgvloanapps.Columns["UploadedDocuments"].ReadOnly = true;
+                    dgvloanapps.Columns["UploadedDocuments"].SortMode = DataGridViewColumnSortMode.Automatic;
                 }
 
                 // Add the button column for "View Details"
@@ -202,6 +230,8 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show("Error loading loan applications data. Please check the console for details.");
             }
         }
+
+
 
 
         private void LoadUserInfo(string username)

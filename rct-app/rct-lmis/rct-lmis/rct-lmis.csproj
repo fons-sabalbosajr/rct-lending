@@ -605,11 +605,23 @@
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.Designer.cs">
       <DependentUpon>frm_home_disburse_editCV.cs</DependentUpon>
     </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_loan_config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_loan_config.Designer.cs">
+      <DependentUpon>frm_home_disburse_loan_config.cs</DependentUpon>
+    </Compile>
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_remarks.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_remarks.Designer.cs">
       <DependentUpon>frm_home_disburse_remarks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_progress_popup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_progress_popup.Designer.cs">
+      <DependentUpon>frm_progress_popup.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_home.cs">
       <SubType>Form</SubType>
@@ -671,6 +683,12 @@
     </Compile>
     <Compile Include="JOURNAL SECTION\frm_home_journals_new.Designer.cs">
       <DependentUpon>frm_home_journals_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LOAN SECTION\frm_home_addnew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOAN SECTION\frm_home_addnew.Designer.cs">
+      <DependentUpon>frm_home_addnew.cs</DependentUpon>
     </Compile>
     <Compile Include="LOAN SECTION\frm_home_loand_req_details.cs">
       <SubType>Form</SubType>
@@ -888,8 +906,14 @@
     <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_editCV.resx">
       <DependentUpon>frm_home_disburse_editCV.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_loan_config.resx">
+      <DependentUpon>frm_home_disburse_loan_config.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_remarks.resx">
       <DependentUpon>frm_home_disburse_remarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_progress_popup.resx">
+      <DependentUpon>frm_progress_popup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_home.resx">
       <DependentUpon>frm_home.cs</DependentUpon>
@@ -911,6 +935,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="JOURNAL SECTION\frm_home_journals_new.resx">
       <DependentUpon>frm_home_journals_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOAN SECTION\frm_home_addnew.resx">
+      <DependentUpon>frm_home_addnew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOAN SECTION\frm_home_loand_req_details.resx">
       <DependentUpon>frm_home_loand_req_details.cs</DependentUpon>

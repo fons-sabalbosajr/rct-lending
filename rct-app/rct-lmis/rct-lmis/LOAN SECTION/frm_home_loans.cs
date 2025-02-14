@@ -28,7 +28,7 @@ namespace rct_lmis
 
         LoadingFunction load = new LoadingFunction();
         frm_home_loan_new flnew = new frm_home_loan_new();
-        frm_home_loan_add fladd = new frm_home_loan_add();
+        frm_home_addnew fladd = new frm_home_addnew();
 
      
         private void LoadApprovedLoansData(string loanStatusFilter = "--All Status--")
