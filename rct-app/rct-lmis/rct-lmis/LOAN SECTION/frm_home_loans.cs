@@ -28,9 +28,10 @@ namespace rct_lmis
 
         LoadingFunction load = new LoadingFunction();
         frm_home_loan_new flnew = new frm_home_loan_new();
-        frm_home_addnew fladd = new frm_home_addnew();
+      
 
-     
+
+
         private void LoadApprovedLoansData(string loanStatusFilter = "--All Status--")
         {
             try
@@ -301,11 +302,14 @@ namespace rct_lmis
 
         private void baddnew_Click(object sender, EventArgs e)
         {
+            frm_home_addnew fladd = new frm_home_addnew();
             load.Show(this);
             Thread.Sleep(500);
-            fladd.Show(this);
+           
             load.Close();
+            fladd.ShowDialog();
         }
+
 
         private void frm_home_loans_Load(object sender, EventArgs e)
         {

@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ltitle = new System.Windows.Forms.Label();
             this.pheaders = new System.Windows.Forms.Panel();
@@ -186,7 +185,7 @@
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvloanapps.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvloanapps.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvloanapps.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
@@ -194,8 +193,7 @@
             this.dgvloanapps.Name = "dgvloanapps";
             this.dgvloanapps.ReadOnly = true;
             this.dgvloanapps.RowHeadersVisible = false;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvloanapps.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvloanapps.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvloanapps.RowTemplate.Height = 100;
             this.dgvloanapps.Size = new System.Drawing.Size(1300, 699);
             this.dgvloanapps.TabIndex = 6;
@@ -222,7 +220,6 @@
             this.dgvloanapps.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
             this.dgvloanapps.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvloanapps.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvloanapps_CellClick);
-            this.dgvloanapps.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvloanapps_CellContentClick);
             this.dgvloanapps.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvloanapps_CellFormatting);
             this.dgvloanapps.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvloanapps_DataBindingComplete);
             // 

@@ -27,6 +27,8 @@ namespace rct_lmis
 {
     public partial class frm_home : Form
     {
+
+
         int pwidth;
         bool isShow;
         private Form currChildForm;
@@ -57,6 +59,7 @@ namespace rct_lmis
             pleft.Controls.Add(leftpanel);
 
             ttime.Start();
+            tnotif.Start();
             loggedInUsername = username;
             _username = username;
 
@@ -295,6 +298,38 @@ namespace rct_lmis
             });
         }
 
+        private void LoadTotalApplications() 
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var loanAppCollection = database.GetCollection<BsonDocument>("loan_application");
+
+            // Fetch all loan applications
+            var documents = loanAppCollection.Find(new BsonDocument()).ToList();
+
+            // Set the pending loan count
+            lcountpending.Text = documents.Count.ToString();
+
+            try
+            {
+                // Fetch all loan applications
+                var count = loanAppCollection.CountDocuments(new BsonDocument());
+
+                // Update UI thread safely
+                if (lcountpending.InvokeRequired)
+                {
+                    lcountpending.Invoke((MethodInvoker)delegate { lcountpending.Text = count.ToString(); });
+                }
+                else
+                {
+                    lcountpending.Text = count.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading total applications: " + ex.Message);
+            }
+        }
+
 
         private void LoadDashboard()
         {
@@ -311,6 +346,7 @@ namespace rct_lmis
         private void frm_home_Load(object sender, EventArgs e)
         {
             LoadUserInfo(loggedInUsername);
+            LoadTotalApplications();
             LoadDashboard();
             LoadTotalAnnouncements();
         }
@@ -439,6 +475,28 @@ namespace rct_lmis
         {
             ldate.Text = DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt");
         }
+
+        public void UpdatePendingCountLabel(string count)
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)(() => lcountpending.Text = count));
+            }
+            else
+            {
+                lcountpending.Text = count;
+            }
+        }
+
+        private void bnotif_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tnotif_Tick(object sender, EventArgs e)
+        {
+            LoadTotalApplications();
+        }
     }
 
     public class Announcement
@@ -450,4 +508,6 @@ namespace rct_lmis
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime PostedDate { get; set; }
     }
+
+
 }

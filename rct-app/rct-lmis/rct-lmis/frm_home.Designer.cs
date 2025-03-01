@@ -83,6 +83,7 @@ namespace rct_lmis
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ttime = new System.Windows.Forms.Timer(this.components);
+            this.tnotif = new System.Windows.Forms.Timer(this.components);
             this.paneltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -267,6 +268,7 @@ namespace rct_lmis
             this.bnotif.Size = new System.Drawing.Size(27, 27);
             this.bnotif.TabIndex = 35;
             this.toolTip1.SetToolTip(this.bnotif, "Notifications");
+            this.bnotif.Click += new System.EventHandler(this.bnotif_Click);
             // 
             // pblogo
             // 
@@ -971,6 +973,12 @@ namespace rct_lmis
             this.ttime.Interval = 60000;
             this.ttime.Tick += new System.EventHandler(this.ttime_Tick);
             // 
+            // tnotif
+            // 
+            this.tnotif.Enabled = true;
+            this.tnotif.Interval = 500;
+            this.tnotif.Tick += new System.EventHandler(this.tnotif_Tick);
+            // 
             // frm_home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1056,5 +1064,6 @@ namespace rct_lmis
         private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2Button bviewapplications;
         private System.Windows.Forms.Timer ttime;
+        private System.Windows.Forms.Timer tnotif;
     }
 }

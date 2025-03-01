@@ -46,9 +46,9 @@ namespace rct_lmis.LOAN_SECTION
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.statusLabel = new System.Windows.Forms.Label();
+            this.lstatus = new System.Windows.Forms.Label();
             this.bsubmit = new Guna.UI2.WinForms.Guna2Button();
-            this.mainProgressBar = new Guna.UI2.WinForms.Guna2ProgressBar();
+            this.pbloading = new Guna.UI2.WinForms.Guna2ProgressBar();
             this.lfilesready = new System.Windows.Forms.Label();
             this.lnofile = new System.Windows.Forms.Label();
             this.dgvuploads = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -59,6 +59,9 @@ namespace rct_lmis.LOAN_SECTION
             this.lloanno = new System.Windows.Forms.Label();
             this.laccno = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.trclose = new System.Windows.Forms.DateTimePicker();
+            this.tramtpaid = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
             this.lverowner = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.lveruser = new System.Windows.Forms.Label();
@@ -133,9 +136,6 @@ namespace rct_lmis.LOAN_SECTION
             this.lloannorenew = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tramtpaid = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.trclose = new System.Windows.Forms.DateTimePicker();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -187,9 +187,9 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage1.Controls.Add(this.guna2Separator2);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.panel4);
-            this.tabPage1.Controls.Add(this.statusLabel);
+            this.tabPage1.Controls.Add(this.lstatus);
             this.tabPage1.Controls.Add(this.bsubmit);
-            this.tabPage1.Controls.Add(this.mainProgressBar);
+            this.tabPage1.Controls.Add(this.pbloading);
             this.tabPage1.Controls.Add(this.lfilesready);
             this.tabPage1.Controls.Add(this.lnofile);
             this.tabPage1.Controls.Add(this.dgvuploads);
@@ -287,15 +287,15 @@ namespace rct_lmis.LOAN_SECTION
             this.label3.TabIndex = 90;
             this.label3.Text = "VERFICATION FORM (RENEWAL)";
             // 
-            // statusLabel
+            // lstatus
             // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(19, 614);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(62, 13);
-            this.statusLabel.TabIndex = 80;
-            this.statusLabel.Text = "uploading...";
-            this.statusLabel.Visible = false;
+            this.lstatus.AutoSize = true;
+            this.lstatus.Location = new System.Drawing.Point(19, 614);
+            this.lstatus.Name = "lstatus";
+            this.lstatus.Size = new System.Drawing.Size(62, 13);
+            this.lstatus.TabIndex = 80;
+            this.lstatus.Text = "uploading...";
+            this.lstatus.Visible = false;
             // 
             // bsubmit
             // 
@@ -315,15 +315,15 @@ namespace rct_lmis.LOAN_SECTION
             this.bsubmit.Text = "Submit Application";
             this.bsubmit.Click += new System.EventHandler(this.bsubmit_ClickAsync);
             // 
-            // mainProgressBar
+            // pbloading
             // 
-            this.mainProgressBar.Location = new System.Drawing.Point(19, 594);
-            this.mainProgressBar.Name = "mainProgressBar";
-            this.mainProgressBar.Size = new System.Drawing.Size(986, 14);
-            this.mainProgressBar.TabIndex = 78;
-            this.mainProgressBar.Text = "guna2ProgressBar1";
-            this.mainProgressBar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.mainProgressBar.Visible = false;
+            this.pbloading.Location = new System.Drawing.Point(19, 594);
+            this.pbloading.Name = "pbloading";
+            this.pbloading.Size = new System.Drawing.Size(986, 14);
+            this.pbloading.TabIndex = 78;
+            this.pbloading.Text = "guna2ProgressBar1";
+            this.pbloading.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.pbloading.Visible = false;
             // 
             // lfilesready
             // 
@@ -574,6 +574,35 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Renewal Loan";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // trclose
+            // 
+            this.trclose.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trclose.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.trclose.Location = new System.Drawing.Point(373, 265);
+            this.trclose.Name = "trclose";
+            this.trclose.Size = new System.Drawing.Size(153, 23);
+            this.trclose.TabIndex = 152;
+            // 
+            // tramtpaid
+            // 
+            this.tramtpaid.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tramtpaid.Location = new System.Drawing.Point(593, 332);
+            this.tramtpaid.Name = "tramtpaid";
+            this.tramtpaid.Size = new System.Drawing.Size(109, 25);
+            this.tramtpaid.TabIndex = 151;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.BackColor = System.Drawing.Color.Transparent;
+            this.label38.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label38.Location = new System.Drawing.Point(515, 337);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(80, 15);
+            this.label38.TabIndex = 150;
+            this.label38.Text = "Amount Paid:";
             // 
             // lverowner
             // 
@@ -1011,11 +1040,11 @@ namespace rct_lmis.LOAN_SECTION
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label18.Location = new System.Drawing.Point(17, 270);
+            this.label18.Location = new System.Drawing.Point(16, 263);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(85, 15);
+            this.label18.Size = new System.Drawing.Size(61, 30);
             this.label18.TabIndex = 107;
-            this.label18.Text = "Status of Loan:";
+            this.label18.Text = "Status of\r\nPast Loan:";
             // 
             // dtrdateeval
             // 
@@ -1436,35 +1465,6 @@ namespace rct_lmis.LOAN_SECTION
             this.label8.TabIndex = 89;
             this.label8.Text = "Note: Fill Up the Verification Form first before uploading files.";
             // 
-            // tramtpaid
-            // 
-            this.tramtpaid.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tramtpaid.Location = new System.Drawing.Point(593, 332);
-            this.tramtpaid.Name = "tramtpaid";
-            this.tramtpaid.Size = new System.Drawing.Size(109, 25);
-            this.tramtpaid.TabIndex = 151;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.BackColor = System.Drawing.Color.Transparent;
-            this.label38.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label38.Location = new System.Drawing.Point(515, 337);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(80, 15);
-            this.label38.TabIndex = 150;
-            this.label38.Text = "Amount Paid:";
-            // 
-            // trclose
-            // 
-            this.trclose.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trclose.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.trclose.Location = new System.Drawing.Point(373, 265);
-            this.trclose.Name = "trclose";
-            this.trclose.Size = new System.Drawing.Size(153, 23);
-            this.trclose.TabIndex = 152;
-            // 
             // frm_home_addnew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1509,7 +1509,7 @@ namespace rct_lmis.LOAN_SECTION
         private Guna.UI2.WinForms.Guna2Button bclear;
         private Guna.UI2.WinForms.Guna2Button baddfile;
         private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2ProgressBar mainProgressBar;
+        private Guna.UI2.WinForms.Guna2ProgressBar pbloading;
         private System.Windows.Forms.Label lfilesready;
         private System.Windows.Forms.Label lnofile;
         private Guna.UI2.WinForms.Guna2DataGridView dgvuploads;
@@ -1525,7 +1525,7 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.Label lloanno;
         private Guna.UI2.WinForms.Guna2Button bsubmit;
         private System.Windows.Forms.Label lloannorenew;
-        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Label lstatus;
         private System.Windows.Forms.Label lrstatusupload;
         private Guna.UI2.WinForms.Guna2Button brenewsubmit;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
