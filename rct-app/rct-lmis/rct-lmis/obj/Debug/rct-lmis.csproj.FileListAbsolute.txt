@@ -498,7 +498,6 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt-BR\Micr
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_ADMIN_annoucement.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_ADMIN.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
@@ -1639,3 +1638,4 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.L
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_loan_config.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_progress_popup.resources
 E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_addnew.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache

@@ -92,7 +92,6 @@
             this.bdeny.Size = new System.Drawing.Size(280, 31);
             this.bdeny.TabIndex = 32;
             this.bdeny.Text = "DENY";
-            this.bdeny.Visible = false;
             this.bdeny.Click += new System.EventHandler(this.bdeny_Click);
             // 
             // bapproved
@@ -111,7 +110,6 @@
             this.bapproved.Size = new System.Drawing.Size(280, 31);
             this.bapproved.TabIndex = 31;
             this.bapproved.Text = "APPROVE";
-            this.bapproved.Visible = false;
             this.bapproved.Click += new System.EventHandler(this.bapproved_Click);
             // 
             // dgvdisapproved

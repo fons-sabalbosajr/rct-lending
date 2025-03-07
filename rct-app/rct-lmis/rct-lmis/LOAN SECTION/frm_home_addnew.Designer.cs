@@ -38,6 +38,14 @@ namespace rct_lmis.LOAN_SECTION
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_addnew));
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbcollectors = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.rtloandesc = new System.Windows.Forms.RichTextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.tloannewamt = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.dtci = new System.Windows.Forms.DateTimePicker();
+            this.cbCInvest = new System.Windows.Forms.CheckBox();
+            this.label39 = new System.Windows.Forms.Label();
             this.tnaddress = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tnclientname = new System.Windows.Forms.TextBox();
@@ -59,6 +67,14 @@ namespace rct_lmis.LOAN_SECTION
             this.lloanno = new System.Windows.Forms.Label();
             this.laccno = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label43 = new System.Windows.Forms.Label();
             this.trclose = new System.Windows.Forms.DateTimePicker();
             this.tramtpaid = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
@@ -180,6 +196,14 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cbcollectors);
+            this.tabPage1.Controls.Add(this.rtloandesc);
+            this.tabPage1.Controls.Add(this.label42);
+            this.tabPage1.Controls.Add(this.tloannewamt);
+            this.tabPage1.Controls.Add(this.label41);
+            this.tabPage1.Controls.Add(this.dtci);
+            this.tabPage1.Controls.Add(this.cbCInvest);
+            this.tabPage1.Controls.Add(this.label39);
             this.tabPage1.Controls.Add(this.tnaddress);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.tnclientname);
@@ -205,11 +229,101 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage1.Text = "New Loan";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // cbcollectors
+            // 
+            this.cbcollectors.BackColor = System.Drawing.Color.Transparent;
+            this.cbcollectors.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbcollectors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbcollectors.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcollectors.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcollectors.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbcollectors.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbcollectors.ItemHeight = 30;
+            this.cbcollectors.Location = new System.Drawing.Point(115, 266);
+            this.cbcollectors.Name = "cbcollectors";
+            this.cbcollectors.Size = new System.Drawing.Size(217, 36);
+            this.cbcollectors.TabIndex = 136;
+            // 
+            // rtloandesc
+            // 
+            this.rtloandesc.Location = new System.Drawing.Point(697, 212);
+            this.rtloandesc.Name = "rtloandesc";
+            this.rtloandesc.Size = new System.Drawing.Size(289, 84);
+            this.rtloandesc.TabIndex = 135;
+            this.rtloandesc.Text = "";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.BackColor = System.Drawing.Color.Transparent;
+            this.label42.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label42.Location = new System.Drawing.Point(582, 214);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(101, 30);
+            this.label42.TabIndex = 134;
+            this.label42.Text = "Loan Description/\r\nRemarks:";
+            // 
+            // tloannewamt
+            // 
+            this.tloannewamt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tloannewamt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.tloannewamt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tloannewamt.Location = new System.Drawing.Point(697, 169);
+            this.tloannewamt.Name = "tloannewamt";
+            this.tloannewamt.Size = new System.Drawing.Size(188, 25);
+            this.tloannewamt.TabIndex = 133;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.BackColor = System.Drawing.Color.Transparent;
+            this.label41.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label41.Location = new System.Drawing.Point(582, 174);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(105, 15);
+            this.label41.TabIndex = 132;
+            this.label41.Text = "Amount Applying:";
+            // 
+            // dtci
+            // 
+            this.dtci.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtci.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtci.Location = new System.Drawing.Point(754, 127);
+            this.dtci.Name = "dtci";
+            this.dtci.Size = new System.Drawing.Size(131, 23);
+            this.dtci.TabIndex = 131;
+            // 
+            // cbCInvest
+            // 
+            this.cbCInvest.AutoSize = true;
+            this.cbCInvest.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCInvest.Location = new System.Drawing.Point(589, 130);
+            this.cbCInvest.Name = "cbCInvest";
+            this.cbCInvest.Size = new System.Drawing.Size(159, 19);
+            this.cbCInvest.TabIndex = 130;
+            this.cbCInvest.Text = "Credit Investigation Date:";
+            this.cbCInvest.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.Transparent;
+            this.label39.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label39.Location = new System.Drawing.Point(26, 272);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(63, 30);
+            this.label39.TabIndex = 106;
+            this.label39.Text = "Collector\r\nIn-Charge:";
+            // 
             // tnaddress
             // 
+            this.tnaddress.AutoWordSelection = true;
             this.tnaddress.Location = new System.Drawing.Point(115, 167);
             this.tnaddress.Name = "tnaddress";
-            this.tnaddress.Size = new System.Drawing.Size(465, 84);
+            this.tnaddress.Size = new System.Drawing.Size(422, 84);
             this.tnaddress.TabIndex = 105;
             this.tnaddress.Text = "";
             // 
@@ -232,7 +346,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tnclientname.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tnclientname.Location = new System.Drawing.Point(115, 126);
             this.tnclientname.Name = "tnclientname";
-            this.tnclientname.Size = new System.Drawing.Size(465, 25);
+            this.tnclientname.Size = new System.Drawing.Size(422, 25);
             this.tnclientname.TabIndex = 103;
             // 
             // label6
@@ -249,7 +363,7 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // guna2Separator2
             // 
-            this.guna2Separator2.Location = new System.Drawing.Point(19, 253);
+            this.guna2Separator2.Location = new System.Drawing.Point(19, 320);
             this.guna2Separator2.Name = "guna2Separator2";
             this.guna2Separator2.Size = new System.Drawing.Size(986, 10);
             this.guna2Separator2.TabIndex = 94;
@@ -281,16 +395,16 @@ namespace rct_lmis.LOAN_SECTION
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(369, 3);
+            this.label3.Location = new System.Drawing.Point(346, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(240, 20);
+            this.label3.Size = new System.Drawing.Size(306, 20);
             this.label3.TabIndex = 90;
-            this.label3.Text = "VERFICATION FORM (RENEWAL)";
+            this.label3.Text = "VERFICATION FORM (NEW APPLICATION)";
             // 
             // lstatus
             // 
             this.lstatus.AutoSize = true;
-            this.lstatus.Location = new System.Drawing.Point(19, 614);
+            this.lstatus.Location = new System.Drawing.Point(19, 681);
             this.lstatus.Name = "lstatus";
             this.lstatus.Size = new System.Drawing.Size(62, 13);
             this.lstatus.TabIndex = 80;
@@ -308,7 +422,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bsubmit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
             this.bsubmit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bsubmit.ForeColor = System.Drawing.Color.White;
-            this.bsubmit.Location = new System.Drawing.Point(825, 647);
+            this.bsubmit.Location = new System.Drawing.Point(825, 714);
             this.bsubmit.Name = "bsubmit";
             this.bsubmit.Size = new System.Drawing.Size(180, 31);
             this.bsubmit.TabIndex = 79;
@@ -317,7 +431,7 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // pbloading
             // 
-            this.pbloading.Location = new System.Drawing.Point(19, 594);
+            this.pbloading.Location = new System.Drawing.Point(19, 661);
             this.pbloading.Name = "pbloading";
             this.pbloading.Size = new System.Drawing.Size(986, 14);
             this.pbloading.TabIndex = 78;
@@ -331,7 +445,7 @@ namespace rct_lmis.LOAN_SECTION
             this.lfilesready.BackColor = System.Drawing.Color.Transparent;
             this.lfilesready.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lfilesready.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lfilesready.Location = new System.Drawing.Point(301, 611);
+            this.lfilesready.Location = new System.Drawing.Point(301, 678);
             this.lfilesready.Name = "lfilesready";
             this.lfilesready.Size = new System.Drawing.Size(390, 19);
             this.lfilesready.TabIndex = 77;
@@ -344,7 +458,7 @@ namespace rct_lmis.LOAN_SECTION
             this.lnofile.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lnofile.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lnofile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnofile.Location = new System.Drawing.Point(469, 403);
+            this.lnofile.Location = new System.Drawing.Point(469, 470);
             this.lnofile.Name = "lnofile";
             this.lnofile.Size = new System.Drawing.Size(89, 19);
             this.lnofile.TabIndex = 75;
@@ -378,7 +492,7 @@ namespace rct_lmis.LOAN_SECTION
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvuploads.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvuploads.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvuploads.Location = new System.Drawing.Point(19, 295);
+            this.dgvuploads.Location = new System.Drawing.Point(19, 362);
             this.dgvuploads.Name = "dgvuploads";
             this.dgvuploads.ReadOnly = true;
             this.dgvuploads.RowHeadersVisible = false;
@@ -420,7 +534,7 @@ namespace rct_lmis.LOAN_SECTION
             this.bclear.FillColor = System.Drawing.Color.Maroon;
             this.bclear.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bclear.ForeColor = System.Drawing.Color.White;
-            this.bclear.Location = new System.Drawing.Point(145, 647);
+            this.bclear.Location = new System.Drawing.Point(145, 714);
             this.bclear.Name = "bclear";
             this.bclear.Size = new System.Drawing.Size(90, 31);
             this.bclear.TabIndex = 74;
@@ -438,7 +552,7 @@ namespace rct_lmis.LOAN_SECTION
             this.baddfile.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.baddfile.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.baddfile.ForeColor = System.Drawing.Color.White;
-            this.baddfile.Location = new System.Drawing.Point(18, 647);
+            this.baddfile.Location = new System.Drawing.Point(18, 714);
             this.baddfile.Name = "baddfile";
             this.baddfile.Size = new System.Drawing.Size(112, 31);
             this.baddfile.TabIndex = 73;
@@ -451,7 +565,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(19, 269);
+            this.label1.Location = new System.Drawing.Point(19, 336);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(141, 17);
             this.label1.TabIndex = 72;
@@ -494,6 +608,14 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.richTextBox1);
+            this.tabPage2.Controls.Add(this.label45);
+            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.label44);
+            this.tabPage2.Controls.Add(this.dateTimePicker1);
+            this.tabPage2.Controls.Add(this.checkBox1);
+            this.tabPage2.Controls.Add(this.guna2ComboBox1);
+            this.tabPage2.Controls.Add(this.label43);
             this.tabPage2.Controls.Add(this.trclose);
             this.tabPage2.Controls.Add(this.tramtpaid);
             this.tabPage2.Controls.Add(this.label38);
@@ -575,6 +697,95 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage2.Text = "Renewal Loan";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(581, 493);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(289, 48);
+            this.richTextBox1.TabIndex = 160;
+            this.richTextBox1.Text = "";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.BackColor = System.Drawing.Color.Transparent;
+            this.label45.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label45.Location = new System.Drawing.Point(466, 495);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(101, 30);
+            this.label45.TabIndex = 159;
+            this.label45.Text = "Loan Description/\r\nRemarks:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(797, 455);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(188, 25);
+            this.textBox1.TabIndex = 158;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.BackColor = System.Drawing.Color.Transparent;
+            this.label44.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label44.Location = new System.Drawing.Point(682, 460);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(105, 15);
+            this.label44.TabIndex = 157;
+            this.label44.Text = "Amount Applying:";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(854, 426);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(131, 23);
+            this.dateTimePicker1.TabIndex = 156;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(679, 430);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(159, 19);
+            this.checkBox1.TabIndex = 155;
+            this.checkBox1.Text = "Credit Investigation Date:";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // guna2ComboBox1
+            // 
+            this.guna2ComboBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.guna2ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.guna2ComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2ComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2ComboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.guna2ComboBox1.ItemHeight = 30;
+            this.guna2ComboBox1.Location = new System.Drawing.Point(768, 384);
+            this.guna2ComboBox1.Name = "guna2ComboBox1";
+            this.guna2ComboBox1.Size = new System.Drawing.Size(217, 36);
+            this.guna2ComboBox1.TabIndex = 154;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.BackColor = System.Drawing.Color.Transparent;
+            this.label43.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label43.Location = new System.Drawing.Point(679, 390);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(63, 30);
+            this.label43.TabIndex = 153;
+            this.label43.Text = "Collector\r\nIn-Charge:";
+            // 
             // trclose
             // 
             this.trclose.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -610,7 +821,7 @@ namespace rct_lmis.LOAN_SECTION
             this.lverowner.BackColor = System.Drawing.Color.Transparent;
             this.lverowner.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lverowner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lverowner.Location = new System.Drawing.Point(859, 544);
+            this.lverowner.Location = new System.Drawing.Point(859, 555);
             this.lverowner.Name = "lverowner";
             this.lverowner.Size = new System.Drawing.Size(81, 15);
             this.lverowner.TabIndex = 149;
@@ -622,7 +833,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label40.BackColor = System.Drawing.Color.Transparent;
             this.label40.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label40.Location = new System.Drawing.Point(780, 544);
+            this.label40.Location = new System.Drawing.Point(780, 555);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(73, 15);
             this.label40.TabIndex = 148;
@@ -634,7 +845,7 @@ namespace rct_lmis.LOAN_SECTION
             this.lveruser.BackColor = System.Drawing.Color.Transparent;
             this.lveruser.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lveruser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lveruser.Location = new System.Drawing.Point(611, 544);
+            this.lveruser.Location = new System.Drawing.Point(611, 555);
             this.lveruser.Name = "lveruser";
             this.lveruser.Size = new System.Drawing.Size(70, 15);
             this.lveruser.TabIndex = 147;
@@ -646,7 +857,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label37.BackColor = System.Drawing.Color.Transparent;
             this.label37.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label37.Location = new System.Drawing.Point(532, 544);
+            this.label37.Location = new System.Drawing.Point(532, 555);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(73, 15);
             this.label37.TabIndex = 146;
@@ -655,7 +866,7 @@ namespace rct_lmis.LOAN_SECTION
             // trremarks
             // 
             this.trremarks.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trremarks.Location = new System.Drawing.Point(179, 534);
+            this.trremarks.Location = new System.Drawing.Point(179, 527);
             this.trremarks.Name = "trremarks";
             this.trremarks.Size = new System.Drawing.Size(260, 25);
             this.trremarks.TabIndex = 145;
@@ -666,7 +877,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label36.BackColor = System.Drawing.Color.Transparent;
             this.label36.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label36.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label36.Location = new System.Drawing.Point(23, 537);
+            this.label36.Location = new System.Drawing.Point(23, 530);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(70, 17);
             this.label36.TabIndex = 144;
@@ -675,7 +886,7 @@ namespace rct_lmis.LOAN_SECTION
             // trreleasesched
             // 
             this.trreleasesched.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trreleasesched.Location = new System.Drawing.Point(179, 498);
+            this.trreleasesched.Location = new System.Drawing.Point(179, 494);
             this.trreleasesched.Name = "trreleasesched";
             this.trreleasesched.Size = new System.Drawing.Size(260, 25);
             this.trreleasesched.TabIndex = 143;
@@ -686,7 +897,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label35.BackColor = System.Drawing.Color.Transparent;
             this.label35.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label35.Location = new System.Drawing.Point(23, 501);
+            this.label35.Location = new System.Drawing.Point(23, 497);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(150, 17);
             this.label35.TabIndex = 142;
@@ -698,7 +909,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label34.BackColor = System.Drawing.Color.Transparent;
             this.label34.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label34.Location = new System.Drawing.Point(527, 454);
+            this.label34.Location = new System.Drawing.Point(440, 455);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(21, 17);
             this.label34.TabIndex = 141;
@@ -710,7 +921,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label33.BackColor = System.Drawing.Color.Transparent;
             this.label33.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label33.Location = new System.Drawing.Point(527, 426);
+            this.label33.Location = new System.Drawing.Point(440, 427);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(21, 17);
             this.label33.TabIndex = 140;
@@ -722,7 +933,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label32.BackColor = System.Drawing.Color.Transparent;
             this.label32.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label32.Location = new System.Drawing.Point(527, 397);
+            this.label32.Location = new System.Drawing.Point(440, 398);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(21, 17);
             this.label32.TabIndex = 139;
@@ -731,25 +942,25 @@ namespace rct_lmis.LOAN_SECTION
             // tramendtomaker
             // 
             this.tramendtomaker.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tramendtomaker.Location = new System.Drawing.Point(559, 452);
+            this.tramendtomaker.Location = new System.Drawing.Point(472, 453);
             this.tramendtomaker.Name = "tramendtomaker";
-            this.tramendtomaker.Size = new System.Drawing.Size(260, 25);
+            this.tramendtomaker.Size = new System.Drawing.Size(173, 25);
             this.tramendtomaker.TabIndex = 138;
             // 
             // tramendtoborrower
             // 
             this.tramendtoborrower.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tramendtoborrower.Location = new System.Drawing.Point(559, 422);
+            this.tramendtoborrower.Location = new System.Drawing.Point(472, 423);
             this.tramendtoborrower.Name = "tramendtoborrower";
-            this.tramendtoborrower.Size = new System.Drawing.Size(260, 25);
+            this.tramendtoborrower.Size = new System.Drawing.Size(173, 25);
             this.tramendtoborrower.TabIndex = 137;
             // 
             // tramendtoapplicant
             // 
             this.tramendtoapplicant.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tramendtoapplicant.Location = new System.Drawing.Point(559, 392);
+            this.tramendtoapplicant.Location = new System.Drawing.Point(472, 393);
             this.tramendtoapplicant.Name = "tramendtoapplicant";
-            this.tramendtoapplicant.Size = new System.Drawing.Size(260, 25);
+            this.tramendtoapplicant.Size = new System.Drawing.Size(173, 25);
             this.tramendtoapplicant.TabIndex = 136;
             // 
             // tramendfrommaker
@@ -757,7 +968,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tramendfrommaker.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tramendfrommaker.Location = new System.Drawing.Point(258, 453);
             this.tramendfrommaker.Name = "tramendfrommaker";
-            this.tramendfrommaker.Size = new System.Drawing.Size(260, 25);
+            this.tramendfrommaker.Size = new System.Drawing.Size(167, 25);
             this.tramendfrommaker.TabIndex = 135;
             // 
             // tramendfromborrower
@@ -765,7 +976,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tramendfromborrower.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tramendfromborrower.Location = new System.Drawing.Point(258, 423);
             this.tramendfromborrower.Name = "tramendfromborrower";
-            this.tramendfromborrower.Size = new System.Drawing.Size(260, 25);
+            this.tramendfromborrower.Size = new System.Drawing.Size(167, 25);
             this.tramendfromborrower.TabIndex = 134;
             // 
             // tramendfromapplicant
@@ -773,7 +984,7 @@ namespace rct_lmis.LOAN_SECTION
             this.tramendfromapplicant.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tramendfromapplicant.Location = new System.Drawing.Point(258, 393);
             this.tramendfromapplicant.Name = "tramendfromapplicant";
-            this.tramendfromapplicant.Size = new System.Drawing.Size(260, 25);
+            this.tramendfromapplicant.Size = new System.Drawing.Size(167, 25);
             this.tramendfromapplicant.TabIndex = 133;
             // 
             // label31
@@ -782,7 +993,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label31.BackColor = System.Drawing.Color.Transparent;
             this.label31.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label31.Location = new System.Drawing.Point(464, 367);
+            this.label31.Location = new System.Drawing.Point(370, 367);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(148, 17);
             this.label31.TabIndex = 132;
@@ -1028,7 +1239,9 @@ namespace rct_lmis.LOAN_SECTION
             this.cbrstatus.Items.AddRange(new object[] {
             "UDPATED",
             "ARREARS",
-            "PAST DUE"});
+            "PAST DUE",
+            "LITIGATION",
+            "DORMANT"});
             this.cbrstatus.Location = new System.Drawing.Point(105, 266);
             this.cbrstatus.Name = "cbrstatus";
             this.cbrstatus.Size = new System.Drawing.Size(171, 23);
@@ -1097,6 +1310,7 @@ namespace rct_lmis.LOAN_SECTION
             this.trclientname.Size = new System.Drawing.Size(465, 25);
             this.trclientname.TabIndex = 101;
             this.trclientname.TextChanged += new System.EventHandler(this.trclientname_TextChanged);
+            this.trclientname.MouseLeave += new System.EventHandler(this.trclientname_MouseLeave);
             // 
             // label17
             // 
@@ -1242,7 +1456,7 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // guna2Separator1
             // 
-            this.guna2Separator1.Location = new System.Drawing.Point(19, 576);
+            this.guna2Separator1.Location = new System.Drawing.Point(19, 583);
             this.guna2Separator1.Name = "guna2Separator1";
             this.guna2Separator1.Size = new System.Drawing.Size(986, 10);
             this.guna2Separator1.TabIndex = 90;
@@ -1601,5 +1815,21 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.TextBox tramtpaid;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.DateTimePicker trclose;
+        private System.Windows.Forms.RichTextBox rtloandesc;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TextBox tloannewamt;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.DateTimePicker dtci;
+        private System.Windows.Forms.CheckBox cbCInvest;
+        private System.Windows.Forms.Label label39;
+        private Guna.UI2.WinForms.Guna2ComboBox cbcollectors;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label44;
     }
 }

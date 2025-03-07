@@ -298,30 +298,29 @@ namespace rct_lmis
             });
         }
 
-        private void LoadTotalApplications() 
+        private void LoadTotalApplications()
         {
             var database = MongoDBConnection.Instance.Database;
             var loanAppCollection = database.GetCollection<BsonDocument>("loan_application");
 
-            // Fetch all loan applications
-            var documents = loanAppCollection.Find(new BsonDocument()).ToList();
-
-            // Set the pending loan count
-            lcountpending.Text = documents.Count.ToString();
-
             try
             {
-                // Fetch all loan applications
-                var count = loanAppCollection.CountDocuments(new BsonDocument());
+                // Fetch total count of loan applications
+                long count = loanAppCollection.CountDocuments(new BsonDocument());
 
                 // Update UI thread safely
                 if (lcountpending.InvokeRequired)
                 {
-                    lcountpending.Invoke((MethodInvoker)delegate { lcountpending.Text = count.ToString(); });
+                    lcountpending.Invoke((MethodInvoker)delegate
+                    {
+                        lcountpending.Text = count.ToString();
+                        lcountpending.Visible = count > 0; // Hide label if count is 0, show otherwise
+                    });
                 }
                 else
                 {
                     lcountpending.Text = count.ToString();
+                    lcountpending.Visible = count > 0; // Hide label if count is 0, show otherwise
                 }
             }
             catch (Exception ex)
@@ -329,6 +328,7 @@ namespace rct_lmis
                 Console.WriteLine("Error loading total applications: " + ex.Message);
             }
         }
+
 
 
         private void LoadDashboard()

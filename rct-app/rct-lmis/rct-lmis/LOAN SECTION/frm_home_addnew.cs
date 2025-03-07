@@ -268,20 +268,33 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-
         private void LoadClientNames()
         {
             try
             {
-                var clientNames = loanApprovedCollection.Find(new BsonDocument())
-                                  .Project(Builders<BsonDocument>.Projection.Include("FirstName").Include("LastName"))
-                                  .ToList();
+                var clientDocuments = loanApprovedCollection.Find(new BsonDocument())
+                    .Project(Builders<BsonDocument>.Projection
+                        .Include("FirstName")
+                        .Include("MiddleName")
+                        .Include("LastName")
+                        .Include("LoanStatus")
+                        .Include("PaymentMode")
+                        .Include("LoanBalance"))
+                    .ToList();
 
                 AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
 
-                foreach (var client in clientNames)
+                foreach (var client in clientDocuments)
                 {
-                    string fullName = $"{client["FirstName"]} {client["LastName"]}";
+                    string firstName = client.Contains("FirstName") ? client["FirstName"].AsString.Trim() : "";
+                    string middleName = client.Contains("MiddleName") ? client["MiddleName"].AsString.Trim() : "";
+                    string lastName = client.Contains("LastName") ? client["LastName"].AsString.Trim() : "";
+
+                    // Ensure no extra spaces when MiddleName is missing
+                    string fullName = string.IsNullOrWhiteSpace(middleName)
+                        ? $"{firstName} {lastName}"  // No middle name case
+                        : $"{firstName} {middleName} {lastName}"; // With middle name
+
                     autoCompleteCollection.Add(fullName);
                 }
 
@@ -295,16 +308,22 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-        private void GenerateRenewalLoanID()
+
+        private void LoadLoanDetails(string fullName)
         {
             try
             {
-                string[] names = trclientname.Text.Split(' ');
-                if (names.Length < 2) return;
+                // Ensure fullName matches "Last, First Middle" format
+                string[] nameParts = fullName.Split(',');
+                if (nameParts.Length < 2) return;  // Invalid format, exit
 
-                string firstName = names[0];
-                string lastName = names[1];
+                string lastName = nameParts[0].Trim();
+                string[] firstMiddle = nameParts[1].Trim().Split(' ');
 
+                string firstName = firstMiddle[0]; // First Name
+                string middleName = firstMiddle.Length > 1 ? firstMiddle[1] : ""; // Middle Name (optional)
+
+                // Create MongoDB filter
                 var filter = Builders<BsonDocument>.Filter.And(
                     Builders<BsonDocument>.Filter.Eq("FirstName", firstName),
                     Builders<BsonDocument>.Filter.Eq("LastName", lastName)
@@ -314,10 +333,92 @@ namespace rct_lmis.LOAN_SECTION
 
                 if (clientRecord != null)
                 {
-                    string accountId = clientRecord["AccountId"].AsString; // Example: "RCT-2024DB-001"
-                    string baseRenewalId = accountId + "-R"; // Append "-R" (e.g., "RCT-2024DB-001-R")
+                    // ✅ Populate Fields
+                    trpaymentmode.Text = clientRecord.Contains("PaymentMode") ? clientRecord["PaymentMode"].AsString : "";
+                    trloanbal.Text = clientRecord.Contains("LoanBalance") ? clientRecord["LoanBalance"].AsString : "";
+                    trprevloan.Text = clientRecord.Contains("LoanAmount") ? clientRecord["LoanAmount"].AsString : "";
 
-                    // Find latest renewal matching this pattern
+                    // ✅ Match LoanStatus in ComboBox
+                    string loanStatus = clientRecord.Contains("LoanStatus") ? clientRecord["LoanStatus"].AsString : "";
+                    int index = cbrstatus.Items.IndexOf(loanStatus);
+                    cbrstatus.SelectedIndex = index >= 0 ? index : -1; // Set only if found
+                }
+                else
+                {
+                    MessageBox.Show("Client data not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading loan details: " + ex.Message);
+            }
+        }
+
+
+
+        private void LoadClientNamesNew()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var loanAppCollection = database.GetCollection<BsonDocument>("loan_application");
+
+                // Fetch client names
+                var clientDocuments = loanAppCollection.Find(new BsonDocument()).ToList();
+                AutoCompleteStringCollection clientNames = new AutoCompleteStringCollection();
+
+                foreach (var doc in clientDocuments)
+                {
+                    string firstName = doc.Contains("FirstName") ? doc["FirstName"].AsString : "";
+                    string middleName = doc.Contains("MiddleName") ? doc["MiddleName"].AsString : "";
+                    string lastName = doc.Contains("LastName") ? doc["LastName"].AsString : "";
+
+                    // Format: "Last, First Middle" (e.g., BALDERAMA, VERNA SISON)
+                    string fullName = $"{lastName}, {firstName} {middleName}".Trim();
+                    clientNames.Add(fullName);
+                }
+
+                // Apply autocomplete settings to the textbox
+                tnclientname.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                tnclientname.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                tnclientname.AutoCompleteCustomSource = clientNames;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading client names: " + ex.Message);
+            }
+        }
+
+
+        private void GenerateRenewalLoanID()
+        {
+            try
+            {
+                // Ensure input is not empty
+                if (string.IsNullOrWhiteSpace(trclientname.Text)) return;
+
+                // Split client name correctly
+                string[] nameParts = trclientname.Text.Trim().Split(' ');
+                if (nameParts.Length < 2) return;
+
+                string firstName = nameParts[0];
+                string lastName = nameParts[nameParts.Length - 1]; // Last part is assumed to be LastName
+
+                var filter = Builders<BsonDocument>.Filter.And(
+                    Builders<BsonDocument>.Filter.Regex("FirstName", new BsonRegularExpression($"^{firstName}", "i")),
+                    Builders<BsonDocument>.Filter.Regex("LastName", new BsonRegularExpression($"^{lastName}", "i"))
+                );
+
+                var clientRecord = loanApprovedCollection.Find(filter).FirstOrDefault();
+
+                if (clientRecord != null)
+                {
+                    string accountId = clientRecord.Contains("AccountId") ? clientRecord["AccountId"].AsString : "";
+                    if (string.IsNullOrEmpty(accountId)) return;
+
+                    string baseRenewalId = accountId + "-R"; // e.g., "RCT-2024DB-001-R"
+
+                    // Find latest renewal that starts with the baseRenewalId
                     var renewalFilter = Builders<BsonDocument>.Filter.Regex("LoanNo", new BsonRegularExpression("^" + baseRenewalId));
                     var latestRenewal = loanApprovedCollection
                         .Find(renewalFilter)
@@ -326,13 +427,12 @@ namespace rct_lmis.LOAN_SECTION
 
                     int nextNumber = 1; // Default renewal number if no previous record exists
 
-                    if (latestRenewal != null)
+                    if (latestRenewal != null && latestRenewal.Contains("LoanNo"))
                     {
                         string latestLoanNo = latestRenewal["LoanNo"].AsString;
-                        string[] parts = latestLoanNo.Split('R'); // Splitting at 'R'
+                        Match match = Regex.Match(latestLoanNo, @"-R(\d+)$");
 
-                        // Extract last renewal number if it exists
-                        if (parts.Length > 1 && int.TryParse(parts[1], out int lastNumber))
+                        if (match.Success && int.TryParse(match.Groups[1].Value, out int lastNumber))
                         {
                             nextNumber = lastNumber + 1;
                         }
@@ -341,6 +441,10 @@ namespace rct_lmis.LOAN_SECTION
                     string newRenewalId = $"{baseRenewalId}{nextNumber}"; // e.g., "RCT-2024DB-001-R1"
                     lloannorenew.Text = "Account ID: " + newRenewalId;
                 }
+                else
+                {
+                    lloannorenew.Text = "Account ID: Not Found";
+                }
             }
             catch (Exception ex)
             {
@@ -348,14 +452,38 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+        private void LoadCollectors()
+        {
+            try
+            {
+                var loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
 
+                var filter = Builders<BsonDocument>.Filter.Empty; // Get all documents
+                var collectors = loanCollectorsCollection.Find(filter).ToList();
 
+                cbcollectors.Items.Clear(); // Clear existing items before adding new ones
+
+                foreach (var collector in collectors)
+                {
+                    if (collector.Contains("Name"))
+                    {
+                        string name = collector["Name"].AsString;
+                        cbcollectors.Items.Add(name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading collectors: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         LoadingFunction load = new LoadingFunction();
         private void frm_home_addnew_Load(object sender, EventArgs e)
         {
             LoadClientNames();
-
+            LoadCollectors();
+            LoadClientNamesNew();
             lfilesready.Visible = false;
         }
 
@@ -523,6 +651,26 @@ namespace rct_lmis.LOAN_SECTION
                 // Get the full name of the current user
                 string currentUser = LoadCurrentUserFullName();
 
+                // Get the selected collector
+                string selectedCollector = cbcollectors.SelectedItem?.ToString() ?? "N/A";
+
+                // Get Credit Investigation status
+                string ciStatus = cbCInvest.Checked ? "✔️" : "❌";
+
+                // Get CI Date
+                DateTime ciDate = dtci.Value;
+
+                // Get Loan Amount (ensure it's a valid decimal)
+                decimal loanAmount;
+                if (!decimal.TryParse(tloannewamt.Text, out loanAmount))
+                {
+                    MessageBox.Show("Invalid Loan Amount!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Get Loan Description
+                string loanDescription = rtloandesc.Text.Trim();
+
                 // Generate the next Account ID and remove "Account ID: " prefix
                 string rawAccountId = await GenerateNextAccountId();
                 string cleanAccountId = rawAccountId.Replace("Account ID: ", ""); // Remove the prefix
@@ -602,6 +750,11 @@ namespace rct_lmis.LOAN_SECTION
                     .Set("Status", "NEW") // Set status as "NEW"
                     .Set("LoanStatus", "FOR VERIFICATION AND APPROVAL") // Loan status
                     .Set("EncodedBy", currentUser) // Store full name of the user
+                    .Set("CollectionInCharge", selectedCollector) // Save selected collector
+                    .Set("CI", ciStatus) // Save Credit Investigation status
+                    .Set("CIDate", ciDate) // Save CI Date
+                    .Set("LoanAmount", loanAmount) // Save Loan Amount
+                    .Set("LoanDescription", loanDescription) // Save Loan Description
                     .Set("UploadedDocs", uploadedFiles); // Store all uploaded files
 
                 await collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true });
@@ -613,6 +766,11 @@ namespace rct_lmis.LOAN_SECTION
                 filePaths.Clear();
                 tnclientname.Text = string.Empty;
                 tnaddress.Text = string.Empty;
+                cbcollectors.SelectedIndex = -1; // Reset collectors dropdown
+                cbCInvest.Checked = false; // Uncheck checkbox
+                dtci.Value = DateTime.Today; // Reset CI Date to today
+                tloannewamt.Text = string.Empty; // Clear loan amount
+                rtloandesc.Text = string.Empty; // Clear loan description
                 dgvuploads.Invoke((MethodInvoker)(() => dgvuploads.Rows.Clear()));
 
                 // Update status label
@@ -694,18 +852,25 @@ namespace rct_lmis.LOAN_SECTION
 
         private void trclientname_TextChanged(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(trclientname.Text))
             {
+                // Clear fields if no name is selected
+                trpaymentmode.Text = string.Empty;
+                cbrstatus.SelectedIndex = -1;
+                trloanbal.Text = string.Empty;
                 lloannorenew.Text = string.Empty;
                 lloannorenew.Visible = false;
-                brenewclear.Enabled = false; // Disable the button when empty
+                brenewclear.Enabled = false; // Disable button when empty
+                trprevloan.Text = string.Empty;
             }
             else
             {
                 lloannorenew.Visible = true;
                 brenewclear.Enabled = true;
                 GenerateRenewalLoanID();
+
+                // Fetch and populate loan details
+                LoadLoanDetails(trclientname.Text);
             }
         }
 
@@ -927,6 +1092,19 @@ namespace rct_lmis.LOAN_SECTION
                         }
                     }
                 }
+            }
+        }
+
+        private void trclientname_MouseLeave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(trclientname.Text))
+            {
+                lloannorenew.Visible = true;
+                brenewclear.Enabled = true;
+                GenerateRenewalLoanID();
+
+                // Fetch and populate loan details only after name is confirmed
+                LoadLoanDetails(trclientname.Text);
             }
         }
     }
