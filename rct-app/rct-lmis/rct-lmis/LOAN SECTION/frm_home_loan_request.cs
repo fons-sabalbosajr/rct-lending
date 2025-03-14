@@ -28,7 +28,7 @@ namespace rct_lmis.LOAN_SECTION
 
         LoadingFunction load = new LoadingFunction();
 
-        private void LoadLoanApplicationsData()
+        public void LoadLoanApplicationsData()
         {
             try
             {
@@ -50,13 +50,21 @@ namespace rct_lmis.LOAN_SECTION
 
                     // Loan Details
                     string loanDetails = string.Empty;
-                    AppendDetail(ref loanDetails, "Balance", doc, "LoanBalance", "₱ {0}.00");
-                    AppendDetail(ref loanDetails, "Cycle", doc, "LoanCycle", "{0} month(s)");
-                    AppendDetail(ref loanDetails, "Terms", doc, "LoanTerms", "{0} months");
-                    AppendDetail(ref loanDetails, "Previous Loan", doc, "PreviousLoan");
-                    AppendDetail(ref loanDetails, "Payment Amount", doc, "PaymentAmount", "₱ {0}");
-                    AppendDetail(ref loanDetails, "Payment Mode", doc, "PaymentMode");
-                    row["LoanDetails"] = loanDetails;
+                    AppendDetail(ref loanDetails, "", doc, "LoanBalance", "₱ {0}.00");
+                    AppendDetail(ref loanDetails, "", doc, "LoanCycle", "{0} month(s)");
+                    AppendDetail(ref loanDetails, "", doc, "LoanTerms", "{0} months");
+                    AppendDetail(ref loanDetails, "", doc, "PreviousLoan");
+                    AppendDetail(ref loanDetails, "", doc, "PaymentAmount", "₱ {0}");
+                    AppendDetail(ref loanDetails, "", doc, "PaymentMode");
+                    AppendDetail(ref loanDetails, "", doc, "LoanDescription", "{0}");
+
+                    // Add Remarks if available
+                    if (doc.Contains("Remarks"))
+                    {
+                        AppendDetail(ref loanDetails, "", doc, "Remarks");
+                    }
+
+                    row["LoanDetails"] = loanDetails.Replace(":", "");
 
                     // Client Details
                     string clientDetails = string.Empty;
@@ -76,7 +84,7 @@ namespace rct_lmis.LOAN_SECTION
                         var documentsList = doc["UploadedDocs"].AsBsonArray
                             .Select(d => d["file_name"].ToString())
                             .ToList();
-                        row["UploadedDocuments"] = string.Join(", ", documentsList);
+                        row["UploadedDocuments"] = string.Join("\n", documentsList);
                     }
                     else
                     {
@@ -90,11 +98,44 @@ namespace rct_lmis.LOAN_SECTION
                 // Assign the DataTable to DataGridView
                 dgvloanapps.DataSource = dataTable;
                 dgvloanapps.Columns["AccountID"].HeaderText = "Account ID";
+                dgvloanapps.Columns["AccountID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
                 dgvloanapps.Columns["LoanDetails"].HeaderText = "Loan Details";
+                dgvloanapps.Columns["LoanDetails"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
                 dgvloanapps.Columns["ClientDetails"].HeaderText = "Client Details";
                 dgvloanapps.Columns["LoanStatus"].HeaderText = "Loan Status";
+                dgvloanapps.Columns["LoanStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
                 dgvloanapps.Columns["UploadedDocuments"].HeaderText = "Uploaded Documents";
+                dgvloanapps.Columns["UploadedDocuments"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvloanapps.Columns["UploadedDocuments"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+                if (dgvloanapps.Rows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in dgvloanapps.Rows)
+                    {
+                        if (row.Cells["LoanStatus"].Value != null)
+                        {
+                            string status = row.Cells["LoanStatus"].Value.ToString().Trim().ToUpper(); // Normalize text
+
+                            if (status == "FOR VERIFICATION AND APPROVAL")
+                            {
+                                row.Cells["LoanStatus"].Style.BackColor = Color.Yellow;
+                            }
+                            else if (status == "LOAN APPROVED")  // Match exact value
+                            {
+                                row.Cells["LoanStatus"].Style.BackColor = Color.LightGreen;
+                            }
+                            else if (status == "LOAN DENIED")  // Match exact value
+                            {
+                                row.Cells["LoanStatus"].Style.BackColor = Color.Red;
+                            }
+                        }
+                    }
+
+                    dgvloanapps.Refresh(); // Force UI update
+                }
 
                 // Ensure Action Button is only added once
                 if (!dgvloanapps.Columns.Contains("btnViewDetails"))
@@ -107,7 +148,7 @@ namespace rct_lmis.LOAN_SECTION
                         UseColumnTextForButtonValue = true,
                         FlatStyle = FlatStyle.Standard,
                     };
-                    btnViewDetails.DefaultCellStyle.Padding = new Padding(100, 35, 100, 35);
+                    btnViewDetails.DefaultCellStyle.Padding = new Padding(80, 35, 80, 35);
                     dgvloanapps.Columns.Add(btnViewDetails);
                 }
             }
@@ -117,6 +158,7 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show("Error loading loan applications data. Please check the console for details.");
             }
         }
+
 
 
         private void AppendDetail(ref string details, string label, BsonDocument doc, string field, string format = "{0}")
@@ -158,11 +200,41 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+        private void LoadLoanStatusComboBox()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var loanAppCollection = database.GetCollection<BsonDocument>("loan_application");
+
+                // Get distinct loan statuses
+                var loanStatuses = loanAppCollection
+                    .Distinct<string>("LoanStatus", new BsonDocument())
+                    .ToList();
+
+                // Clear existing items and add new ones
+                cbstatus.Items.Clear();
+                cbstatus.Items.AddRange(loanStatuses.ToArray());
+
+                // Optional: Set default selection
+                if (cbstatus.Items.Count > 0)
+                {
+                    cbstatus.SelectedIndex = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading loan statuses: " + ex.Message);
+                MessageBox.Show("Error loading loan statuses. Please check the console for details.");
+            }
+        }
+
+
         private void frm_home_loan_request_Load(object sender, EventArgs e)
         {
             LoadLoanApplicationsData();
             LoadUserInfo(loggedInUsername);
-
+            LoadLoanStatusComboBox();
             ltotalloancount.Text = dgvloanapps.Rows.Count.ToString();
         }
 
@@ -184,7 +256,7 @@ namespace rct_lmis.LOAN_SECTION
                     load.Show(this);
                     Thread.Sleep(1000);
                     load.Close();
-                    req.Show();
+                    req.Show(this);
                 }
                 else
                 {
@@ -225,7 +297,32 @@ namespace rct_lmis.LOAN_SECTION
 
         private void tsearch_TextChanged(object sender, EventArgs e)
         {
-            LoadLoanApplicationsData();
+            string searchText = tsearch.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                (dgvloanapps.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+                return;
+            }
+
+            // Split input into keywords
+            string[] keywords = searchText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            // Build the filter query
+            List<string> filters = new List<string>();
+            foreach (string keyword in keywords)
+            {
+                string filter = string.Format(
+                    "CONVERT(AccountID, 'System.String') LIKE '%{0}%' " +
+                    "OR CONVERT(LoanDetails, 'System.String') LIKE '%{0}%' " +
+                    "OR CONVERT(ClientDetails, 'System.String') LIKE '%{0}%' " +
+                    "OR CONVERT(LoanStatus, 'System.String') LIKE '%{0}%'",
+                    keyword
+                );
+                filters.Add(filter);
+            }
+
+            // Apply the combined filter
+            (dgvloanapps.DataSource as DataTable).DefaultView.RowFilter = string.Join(" AND ", filters);
         }
     }
 }

@@ -123,7 +123,7 @@
             "Denied"});
             this.cbstatus.Location = new System.Drawing.Point(446, 14);
             this.cbstatus.Name = "cbstatus";
-            this.cbstatus.Size = new System.Drawing.Size(186, 36);
+            this.cbstatus.Size = new System.Drawing.Size(274, 36);
             this.cbstatus.StartIndex = 0;
             this.cbstatus.TabIndex = 3;
             this.cbstatus.TextOffset = new System.Drawing.Point(10, 0);

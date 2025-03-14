@@ -40,7 +40,6 @@
             this.lloanterm = new System.Windows.Forms.Label();
             this.lloaninterest = new System.Windows.Forms.Label();
             this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
-            this.bvoucheroffice = new Guna.UI2.WinForms.Guna2Button();
             this.brelease = new Guna.UI2.WinForms.Guna2Button();
             this.bcancel = new Guna.UI2.WinForms.Guna2Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,22 +47,10 @@
             this.label49 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.lloantype = new System.Windows.Forms.Label();
             this.lloanmode = new System.Windows.Forms.Label();
             this.lloanprocessfee = new System.Windows.Forms.Label();
-            this.lloannotarialrate = new System.Windows.Forms.Label();
-            this.lloaninsurancerate = new System.Windows.Forms.Label();
-            this.lloanannotationrate = new System.Windows.Forms.Label();
-            this.ldocrate = new System.Windows.Forms.Label();
-            this.lloanmisc = new System.Windows.Forms.Label();
-            this.lloanVAT = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
             this.lstartpayment = new System.Windows.Forms.Label();
@@ -95,6 +82,8 @@
             this.lendpayment = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.bvoucherclient = new Guna.UI2.WinForms.Guna2Button();
+            this.btest = new System.Windows.Forms.Button();
+            this.lcurruser = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdisburse)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,24 +173,6 @@
             this.guna2Separator2.Size = new System.Drawing.Size(856, 10);
             this.guna2Separator2.TabIndex = 179;
             // 
-            // bvoucheroffice
-            // 
-            this.bvoucheroffice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bvoucheroffice.BorderRadius = 4;
-            this.bvoucheroffice.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bvoucheroffice.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bvoucheroffice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bvoucheroffice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bvoucheroffice.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bvoucheroffice.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bvoucheroffice.ForeColor = System.Drawing.Color.White;
-            this.bvoucheroffice.Location = new System.Drawing.Point(18, 512);
-            this.bvoucheroffice.Name = "bvoucheroffice";
-            this.bvoucheroffice.Size = new System.Drawing.Size(185, 37);
-            this.bvoucheroffice.TabIndex = 180;
-            this.bvoucheroffice.Text = "Receiving Voucher Report (Office Copy)";
-            this.bvoucheroffice.Click += new System.EventHandler(this.bvoucher_Click);
-            // 
             // brelease
             // 
             this.brelease.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -268,7 +239,7 @@
             this.label49.BackColor = System.Drawing.Color.Transparent;
             this.label49.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label49.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label49.Location = new System.Drawing.Point(301, 77);
+            this.label49.Location = new System.Drawing.Point(67, 156);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(63, 15);
             this.label49.TabIndex = 187;
@@ -292,83 +263,11 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(323, 103);
+            this.label8.Location = new System.Drawing.Point(330, 77);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 15);
             this.label8.TabIndex = 188;
             this.label8.Text = "Mode:";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.BackColor = System.Drawing.Color.Transparent;
-            this.label47.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label47.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label47.Location = new System.Drawing.Point(724, 130);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(60, 15);
-            this.label47.TabIndex = 195;
-            this.label47.Text = "Doc. Rate:";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.BackColor = System.Drawing.Color.Transparent;
-            this.label44.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label44.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label44.Location = new System.Drawing.Point(720, 103);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(64, 15);
-            this.label44.TabIndex = 194;
-            this.label44.Text = "Misc. Rate:";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.BackColor = System.Drawing.Color.Transparent;
-            this.label43.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label43.Location = new System.Drawing.Point(729, 77);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(55, 15);
-            this.label43.TabIndex = 193;
-            this.label43.Text = "VAT Rate:";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.BackColor = System.Drawing.Color.Transparent;
-            this.label41.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label41.Location = new System.Drawing.Point(491, 130);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(96, 15);
-            this.label41.TabIndex = 192;
-            this.label41.Text = "Annotation Rate:";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.BackColor = System.Drawing.Color.Transparent;
-            this.label37.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label37.Location = new System.Drawing.Point(500, 103);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(87, 15);
-            this.label37.TabIndex = 191;
-            this.label37.Text = "Insurance Rate:";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.BackColor = System.Drawing.Color.Transparent;
-            this.label35.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label35.Location = new System.Drawing.Point(509, 77);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(78, 15);
-            this.label35.TabIndex = 190;
-            this.label35.Text = "Notarial Rate:";
             // 
             // label34
             // 
@@ -376,7 +275,7 @@
             this.label34.BackColor = System.Drawing.Color.Transparent;
             this.label34.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label34.Location = new System.Drawing.Point(276, 130);
+            this.label34.Location = new System.Drawing.Point(515, 130);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(88, 15);
             this.label34.TabIndex = 189;
@@ -388,7 +287,7 @@
             this.lloantype.BackColor = System.Drawing.Color.Transparent;
             this.lloantype.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lloantype.ForeColor = System.Drawing.Color.Black;
-            this.lloantype.Location = new System.Drawing.Point(370, 77);
+            this.lloantype.Location = new System.Drawing.Point(136, 156);
             this.lloantype.Name = "lloantype";
             this.lloantype.Size = new System.Drawing.Size(58, 15);
             this.lloantype.TabIndex = 196;
@@ -400,7 +299,7 @@
             this.lloanmode.BackColor = System.Drawing.Color.Transparent;
             this.lloanmode.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lloanmode.ForeColor = System.Drawing.Color.Black;
-            this.lloanmode.Location = new System.Drawing.Point(370, 103);
+            this.lloanmode.Location = new System.Drawing.Point(377, 77);
             this.lloanmode.Name = "lloanmode";
             this.lloanmode.Size = new System.Drawing.Size(58, 15);
             this.lloanmode.TabIndex = 197;
@@ -412,83 +311,11 @@
             this.lloanprocessfee.BackColor = System.Drawing.Color.Transparent;
             this.lloanprocessfee.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lloanprocessfee.ForeColor = System.Drawing.Color.Black;
-            this.lloanprocessfee.Location = new System.Drawing.Point(370, 130);
+            this.lloanprocessfee.Location = new System.Drawing.Point(627, 130);
             this.lloanprocessfee.Name = "lloanprocessfee";
             this.lloanprocessfee.Size = new System.Drawing.Size(58, 15);
             this.lloanprocessfee.TabIndex = 198;
             this.lloanprocessfee.Text = "loan term";
-            // 
-            // lloannotarialrate
-            // 
-            this.lloannotarialrate.AutoSize = true;
-            this.lloannotarialrate.BackColor = System.Drawing.Color.Transparent;
-            this.lloannotarialrate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lloannotarialrate.ForeColor = System.Drawing.Color.Black;
-            this.lloannotarialrate.Location = new System.Drawing.Point(593, 77);
-            this.lloannotarialrate.Name = "lloannotarialrate";
-            this.lloannotarialrate.Size = new System.Drawing.Size(58, 15);
-            this.lloannotarialrate.TabIndex = 199;
-            this.lloannotarialrate.Text = "loan term";
-            // 
-            // lloaninsurancerate
-            // 
-            this.lloaninsurancerate.AutoSize = true;
-            this.lloaninsurancerate.BackColor = System.Drawing.Color.Transparent;
-            this.lloaninsurancerate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lloaninsurancerate.ForeColor = System.Drawing.Color.Black;
-            this.lloaninsurancerate.Location = new System.Drawing.Point(593, 103);
-            this.lloaninsurancerate.Name = "lloaninsurancerate";
-            this.lloaninsurancerate.Size = new System.Drawing.Size(58, 15);
-            this.lloaninsurancerate.TabIndex = 200;
-            this.lloaninsurancerate.Text = "loan term";
-            // 
-            // lloanannotationrate
-            // 
-            this.lloanannotationrate.AutoSize = true;
-            this.lloanannotationrate.BackColor = System.Drawing.Color.Transparent;
-            this.lloanannotationrate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lloanannotationrate.ForeColor = System.Drawing.Color.Black;
-            this.lloanannotationrate.Location = new System.Drawing.Point(593, 130);
-            this.lloanannotationrate.Name = "lloanannotationrate";
-            this.lloanannotationrate.Size = new System.Drawing.Size(58, 15);
-            this.lloanannotationrate.TabIndex = 201;
-            this.lloanannotationrate.Text = "loan term";
-            // 
-            // ldocrate
-            // 
-            this.ldocrate.AutoSize = true;
-            this.ldocrate.BackColor = System.Drawing.Color.Transparent;
-            this.ldocrate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ldocrate.ForeColor = System.Drawing.Color.Black;
-            this.ldocrate.Location = new System.Drawing.Point(794, 130);
-            this.ldocrate.Name = "ldocrate";
-            this.ldocrate.Size = new System.Drawing.Size(58, 15);
-            this.ldocrate.TabIndex = 204;
-            this.ldocrate.Text = "loan term";
-            // 
-            // lloanmisc
-            // 
-            this.lloanmisc.AutoSize = true;
-            this.lloanmisc.BackColor = System.Drawing.Color.Transparent;
-            this.lloanmisc.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lloanmisc.ForeColor = System.Drawing.Color.Black;
-            this.lloanmisc.Location = new System.Drawing.Point(794, 103);
-            this.lloanmisc.Name = "lloanmisc";
-            this.lloanmisc.Size = new System.Drawing.Size(58, 15);
-            this.lloanmisc.TabIndex = 203;
-            this.lloanmisc.Text = "loan term";
-            // 
-            // lloanVAT
-            // 
-            this.lloanVAT.AutoSize = true;
-            this.lloanVAT.BackColor = System.Drawing.Color.Transparent;
-            this.lloanVAT.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lloanVAT.ForeColor = System.Drawing.Color.Black;
-            this.lloanVAT.Location = new System.Drawing.Point(794, 77);
-            this.lloanVAT.Name = "lloanVAT";
-            this.lloanVAT.Size = new System.Drawing.Size(58, 15);
-            this.lloanVAT.TabIndex = 202;
-            this.lloanVAT.Text = "loan term";
             // 
             // label18
             // 
@@ -496,7 +323,7 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label18.Location = new System.Drawing.Point(19, 179);
+            this.label18.Location = new System.Drawing.Point(515, 77);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(111, 15);
             this.label18.TabIndex = 205;
@@ -504,7 +331,7 @@
             // 
             // guna2Separator3
             // 
-            this.guna2Separator3.Location = new System.Drawing.Point(16, 197);
+            this.guna2Separator3.Location = new System.Drawing.Point(16, 170);
             this.guna2Separator3.Name = "guna2Separator3";
             this.guna2Separator3.Size = new System.Drawing.Size(856, 10);
             this.guna2Separator3.TabIndex = 206;
@@ -515,7 +342,7 @@
             this.lstartpayment.BackColor = System.Drawing.Color.Transparent;
             this.lstartpayment.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstartpayment.ForeColor = System.Drawing.Color.Black;
-            this.lstartpayment.Location = new System.Drawing.Point(136, 179);
+            this.lstartpayment.Location = new System.Drawing.Point(627, 77);
             this.lstartpayment.Name = "lstartpayment";
             this.lstartpayment.Size = new System.Drawing.Size(58, 15);
             this.lstartpayment.TabIndex = 207;
@@ -527,7 +354,7 @@
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label20.Location = new System.Drawing.Point(273, 156);
+            this.label20.Location = new System.Drawing.Point(280, 130);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(91, 15);
             this.label20.TabIndex = 208;
@@ -539,7 +366,7 @@
             this.lpaymentmode.BackColor = System.Drawing.Color.Transparent;
             this.lpaymentmode.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lpaymentmode.ForeColor = System.Drawing.Color.Black;
-            this.lpaymentmode.Location = new System.Drawing.Point(370, 156);
+            this.lpaymentmode.Location = new System.Drawing.Point(377, 130);
             this.lpaymentmode.Name = "lpaymentmode";
             this.lpaymentmode.Size = new System.Drawing.Size(58, 15);
             this.lpaymentmode.TabIndex = 209;
@@ -555,14 +382,14 @@
             this.dgvdisburse.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvdisburse.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvdisburse.ColumnHeadersHeight = 20;
+            this.dgvdisburse.ColumnHeadersHeight = 30;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -572,12 +399,12 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvdisburse.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvdisburse.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
-            this.dgvdisburse.Location = new System.Drawing.Point(16, 213);
+            this.dgvdisburse.Location = new System.Drawing.Point(16, 184);
             this.dgvdisburse.Name = "dgvdisburse";
             this.dgvdisburse.ReadOnly = true;
             this.dgvdisburse.RowHeadersVisible = false;
             this.dgvdisburse.RowTemplate.Height = 35;
-            this.dgvdisburse.Size = new System.Drawing.Size(856, 119);
+            this.dgvdisburse.Size = new System.Drawing.Size(856, 157);
             this.dgvdisburse.TabIndex = 210;
             this.dgvdisburse.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.White;
             this.dgvdisburse.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -589,10 +416,10 @@
             this.dgvdisburse.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdisburse.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.dgvdisburse.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvdisburse.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvdisburse.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvdisburse.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvdisburse.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvdisburse.ThemeStyle.HeaderStyle.Height = 20;
+            this.dgvdisburse.ThemeStyle.HeaderStyle.Height = 30;
             this.dgvdisburse.ThemeStyle.ReadOnly = true;
             this.dgvdisburse.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             this.dgvdisburse.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -605,7 +432,7 @@
             // 
             // guna2Separator4
             // 
-            this.guna2Separator4.Location = new System.Drawing.Point(16, 338);
+            this.guna2Separator4.Location = new System.Drawing.Point(16, 344);
             this.guna2Separator4.Name = "guna2Separator4";
             this.guna2Separator4.Size = new System.Drawing.Size(856, 10);
             this.guna2Separator4.TabIndex = 211;
@@ -870,7 +697,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(13, 156);
+            this.label9.Location = new System.Drawing.Point(254, 103);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(116, 15);
             this.label9.TabIndex = 232;
@@ -882,7 +709,7 @@
             this.lamotperiod.BackColor = System.Drawing.Color.Transparent;
             this.lamotperiod.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lamotperiod.ForeColor = System.Drawing.Color.Black;
-            this.lamotperiod.Location = new System.Drawing.Point(136, 156);
+            this.lamotperiod.Location = new System.Drawing.Point(377, 103);
             this.lamotperiod.Name = "lamotperiod";
             this.lamotperiod.Size = new System.Drawing.Size(72, 15);
             this.lamotperiod.TabIndex = 231;
@@ -894,7 +721,7 @@
             this.lnorecord.BackColor = System.Drawing.Color.White;
             this.lnorecord.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lnorecord.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnorecord.Location = new System.Drawing.Point(377, 236);
+            this.lnorecord.Location = new System.Drawing.Point(377, 226);
             this.lnorecord.Name = "lnorecord";
             this.lnorecord.Size = new System.Drawing.Size(82, 15);
             this.lnorecord.TabIndex = 233;
@@ -907,7 +734,7 @@
             this.lendpayment.BackColor = System.Drawing.Color.Transparent;
             this.lendpayment.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lendpayment.ForeColor = System.Drawing.Color.Black;
-            this.lendpayment.Location = new System.Drawing.Point(370, 179);
+            this.lendpayment.Location = new System.Drawing.Point(627, 103);
             this.lendpayment.Name = "lendpayment";
             this.lendpayment.Size = new System.Drawing.Size(69, 15);
             this.lendpayment.TabIndex = 235;
@@ -919,7 +746,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(253, 179);
+            this.label12.Location = new System.Drawing.Point(515, 103);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(82, 15);
             this.label12.TabIndex = 234;
@@ -936,18 +763,44 @@
             this.bvoucherclient.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.bvoucherclient.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bvoucherclient.ForeColor = System.Drawing.Color.White;
-            this.bvoucherclient.Location = new System.Drawing.Point(209, 512);
+            this.bvoucherclient.Location = new System.Drawing.Point(21, 514);
             this.bvoucherclient.Name = "bvoucherclient";
-            this.bvoucherclient.Size = new System.Drawing.Size(185, 37);
+            this.bvoucherclient.Size = new System.Drawing.Size(130, 37);
             this.bvoucherclient.TabIndex = 236;
-            this.bvoucherclient.Text = "Receiving Voucher Report (Client Copy)";
+            this.bvoucherclient.Text = "Print Cash Voucher";
             this.bvoucherclient.Click += new System.EventHandler(this.bvoucherclient_Click);
+            // 
+            // btest
+            // 
+            this.btest.Location = new System.Drawing.Point(454, 9);
+            this.btest.Name = "btest";
+            this.btest.Size = new System.Drawing.Size(47, 23);
+            this.btest.TabIndex = 237;
+            this.btest.Text = "Test";
+            this.btest.UseVisualStyleBackColor = true;
+            this.btest.Visible = false;
+            this.btest.Click += new System.EventHandler(this.btest_Click);
+            // 
+            // lcurruser
+            // 
+            this.lcurruser.AutoSize = true;
+            this.lcurruser.BackColor = System.Drawing.Color.Transparent;
+            this.lcurruser.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lcurruser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lcurruser.Location = new System.Drawing.Point(139, 356);
+            this.lcurruser.Name = "lcurruser";
+            this.lcurruser.Size = new System.Drawing.Size(69, 13);
+            this.lcurruser.TabIndex = 238;
+            this.lcurruser.Text = "current user";
+            this.lcurruser.Visible = false;
             // 
             // frm_home_loan_voucher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.lcurruser);
+            this.Controls.Add(this.btest);
             this.Controls.Add(this.bvoucherclient);
             this.Controls.Add(this.lendpayment);
             this.Controls.Add(this.label12);
@@ -979,21 +832,9 @@
             this.Controls.Add(this.lstartpayment);
             this.Controls.Add(this.guna2Separator3);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.ldocrate);
-            this.Controls.Add(this.lloanmisc);
-            this.Controls.Add(this.lloanVAT);
-            this.Controls.Add(this.lloanannotationrate);
-            this.Controls.Add(this.lloaninsurancerate);
-            this.Controls.Add(this.lloannotarialrate);
             this.Controls.Add(this.lloanprocessfee);
             this.Controls.Add(this.lloanmode);
             this.Controls.Add(this.lloantype);
-            this.Controls.Add(this.label47);
-            this.Controls.Add(this.label44);
-            this.Controls.Add(this.label43);
-            this.Controls.Add(this.label41);
-            this.Controls.Add(this.label37);
-            this.Controls.Add(this.label35);
             this.Controls.Add(this.label34);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label49);
@@ -1002,7 +843,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.bcancel);
             this.Controls.Add(this.brelease);
-            this.Controls.Add(this.bvoucheroffice);
             this.Controls.Add(this.guna2Separator2);
             this.Controls.Add(this.lloaninterest);
             this.Controls.Add(this.lloanterm);
@@ -1036,7 +876,6 @@
         private System.Windows.Forms.Label lloanterm;
         private System.Windows.Forms.Label lloaninterest;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
-        private Guna.UI2.WinForms.Guna2Button bvoucheroffice;
         private Guna.UI2.WinForms.Guna2Button brelease;
         private Guna.UI2.WinForms.Guna2Button bcancel;
         private System.Windows.Forms.Label label6;
@@ -1044,22 +883,10 @@
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label lloantype;
         private System.Windows.Forms.Label lloanmode;
         private System.Windows.Forms.Label lloanprocessfee;
-        private System.Windows.Forms.Label lloannotarialrate;
-        private System.Windows.Forms.Label lloaninsurancerate;
-        private System.Windows.Forms.Label lloanannotationrate;
-        private System.Windows.Forms.Label ldocrate;
-        private System.Windows.Forms.Label lloanmisc;
-        private System.Windows.Forms.Label lloanVAT;
         private System.Windows.Forms.Label label18;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
         private System.Windows.Forms.Label lstartpayment;
@@ -1091,5 +918,7 @@
         private System.Windows.Forms.Label lendpayment;
         private System.Windows.Forms.Label label12;
         private Guna.UI2.WinForms.Guna2Button bvoucherclient;
+        private System.Windows.Forms.Button btest;
+        private System.Windows.Forms.Label lcurruser;
     }
 }

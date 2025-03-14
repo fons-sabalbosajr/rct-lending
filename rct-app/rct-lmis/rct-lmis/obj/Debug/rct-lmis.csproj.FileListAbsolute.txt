@@ -1,240 +1,6 @@
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_splashscreen.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.Properties.Resources.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.z_loadingform.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.GenerateResource.cache
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CoreCompileInputs.cache
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.config
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AxShockwaveFlashObjects.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportSource.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Shared.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Windows.Forms.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Guna.UI2.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Logging.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessControl.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ValueTuple.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Logging.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessControl.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ValueTuple.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.xml
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.CrystalReports.Engine.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.ReportSource.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.Shared.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.Windows.Forms.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt-BR\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CopyComplete
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home.resources
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home.resources
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_signup.resources
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_splashscreen.resources
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.Properties.Resources.resources
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.z_loadingform.resources
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.GenerateResource.cache
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CoreCompileInputs.cache
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
-C:\Users\Supremo\Documents\GitHub\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_signup.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_loans.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_new.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_ADMIN.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_add.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_payments.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.PAYMENTS_SECTION.frm_home_payment_details.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_safekeeping.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_details.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_new.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.application
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_details.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_clients.resources
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe.manifest
-D:\Other Projects\LENDING SYSTEM\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\google_drive_credentials.json
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-credentials.json
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tessdata\eng.traineddata
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\leptonica-1.82.0.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\tesseract50.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\leptonica-1.82.0.dll
@@ -243,7 +9,6 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\lepton
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\tesseract53.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\leptonica-1.83.1.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\tesseract53.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tessdata\eng.traineddata
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\mongocrypt.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.config
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
@@ -256,14 +21,21 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AxShockwav
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.Report.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportSource.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Shared.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Windows.Forms.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.Interfaces.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.System.Drawing.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.dll
@@ -271,6 +43,7 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Api
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Guna.UI2.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Irony.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.dll
@@ -287,6 +60,7 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.dll
@@ -294,17 +68,22 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Dr
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Libmongocrypt.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SharpCompress.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ComponentModel.Annotations.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.dll
@@ -321,6 +100,7 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Val
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Tesseract.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\TesseractOCR.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\XLParser.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ZstdSharp.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.pdb
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.xml
@@ -329,11 +109,15 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Sec
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.xml
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.xml
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.xml
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.pdb
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.pdb
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.xml
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.pdb
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.pdb
@@ -367,6 +151,7 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.xml
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.pdb
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.xml
@@ -375,7 +160,10 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bs
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.xml
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.pdb
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.xml
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.xml
@@ -385,6 +173,9 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Dia
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.xml
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.xml
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.pdb
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.xml
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.xml
@@ -498,16 +289,36 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt-BR\Micr
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ACCOUNTING.frm_home_accounting.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_ADMIN_annoucement.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_ADMIN.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_accountdata.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_aploans.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectconfig.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors_upload.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collector_attachments.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_dnloans.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata_details.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_routes.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_signupaccounts.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_useraccounts.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ZProgress.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_details.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_new.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_disburse.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections_add.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details_edit.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_editCV.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_loan_config.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_remarks.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_progress_popup.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_clients.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_dashboard.resources
@@ -515,10 +326,14 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.f
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_test_upload.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_journals.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.JOURNAL_SECTION.frm_home_journals_new.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_addnew.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loand_req_details.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_loans.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_addex.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_disburse.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamt_pass.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_request.resources
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_voucher.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_signup.resources
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_splashscreen.resources
@@ -538,1104 +353,4 @@ D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.a
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CopyComplete
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
 D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_accountdata.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_aploans.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors_upload.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collector_attachments.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_dnloans.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections_add.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_voucher.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tessdata\eng.traineddata
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\leptonica-1.82.0.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\tesseract50.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\leptonica-1.82.0.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\tesseract50.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\leptonica-1.83.1.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\tesseract53.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\leptonica-1.83.1.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\tesseract53.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\mongocrypt.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.config
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.application
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AxShockwaveFlashObjects.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportSource.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Shared.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Windows.Forms.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Guna.UI2.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Logging.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Libmongocrypt.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SharpCompress.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessControl.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ValueTuple.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Tesseract.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\TesseractOCR.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ZstdSharp.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll.config
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Logging.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll.config
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessControl.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ValueTuple.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\TesseractOCR.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.CrystalReports.Engine.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.ReportSource.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.Shared.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.Windows.Forms.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt-BR\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_ADMIN_annoucement.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_ADMIN.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_accountdata.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_aploans.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors_upload.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collector_attachments.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_dnloans.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_signupaccounts.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_useraccounts.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_details.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_new.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_disburse.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections_add.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_editCV.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_clients.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_dashboard.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_test_ocr.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_test_upload.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_journals.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.JOURNAL_SECTION.frm_home_journals_new.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loand_req_details.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_loans.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_disburse.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_request.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_voucher.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_signup.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_splashscreen.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_add.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_new.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_payments.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.PAYMENTS_SECTION.frm_home_payment_details.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.Properties.Resources.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_safekeeping.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_details.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_new.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.z_loadingform.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.GenerateResource.cache
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CoreCompileInputs.cache
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe.manifest
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.Up2Date
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\leptonica-1.82.0.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\tesseract50.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\leptonica-1.82.0.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\tesseract50.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\leptonica-1.83.1.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\tesseract53.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\leptonica-1.83.1.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\tesseract53.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tessdata\eng.traineddata
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\mongocrypt.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.config
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.application
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AxShockwaveFlashObjects.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportSource.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Shared.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Windows.Forms.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Guna.UI2.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Logging.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Libmongocrypt.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SharpCompress.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessControl.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ValueTuple.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Tesseract.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\TesseractOCR.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ZstdSharp.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll.config
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Logging.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll.config
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessControl.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ValueTuple.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\TesseractOCR.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.Shared.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt-BR\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_ADMIN_annoucement.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_ADMIN.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_accountdata.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_aploans.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors_upload.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collector_attachments.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_dnloans.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_signupaccounts.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_useraccounts.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_details.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_new.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_disburse.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections_add.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_editCV.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_clients.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_dashboard.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_test_ocr.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_test_upload.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_journals.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.JOURNAL_SECTION.frm_home_journals_new.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loand_req_details.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_loans.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_disburse.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_request.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_voucher.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_signup.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_splashscreen.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_add.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_new.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_payments.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.PAYMENTS_SECTION.frm_home_payment_details.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.Properties.Resources.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_safekeeping.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_details.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_new.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.z_loadingform.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.GenerateResource.cache
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CoreCompileInputs.cache
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe.manifest
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CopyComplete
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamt_pass.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ACCOUNTING.frm_home_accounting.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ACCOUNTING.frm_home_accounting.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamt_pass.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.Interfaces.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.System.Drawing.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ComponentModel.Annotations.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.Interfaces.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.System.Drawing.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ComponentModel.Annotations.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_remarks.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_remarks.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.Report.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Irony.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\XLParser.dll
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.pdb
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.xml
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_routes.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata_details.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_addex.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ACCOUNTING.frm_home_accounting.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_ADMIN_annoucement.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_ADMIN.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_accountdata.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_aploans.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectors_upload.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collector_attachments.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_dnloans.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_loanrates.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_penalty.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata_details.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_routes.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_signupaccounts.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_useraccounts.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_details.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.CLIENTS_SECTION.frm_home_client_new.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_disburse.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_collections_add.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_editCV.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_remarks.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_clients.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_dashboard.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_test_ocr.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_test_upload.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_journals.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.JOURNAL_SECTION.frm_home_journals_new.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loand_req_details.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_loans.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_addex.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_disburse.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamt_pass.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_request.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_voucher.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_login.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_signup.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_splashscreen.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_add.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_new.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_payments.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.PAYMENTS_SECTION.frm_home_payment_details.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.Properties.Resources.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_safekeeping.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_details.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.SAFEKEEPING_SECTION.frm_home_safekeeping_new.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.z_loadingform.resources
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.GenerateResource.cache
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.CoreCompileInputs.cache
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\leptonica-1.82.0.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\tesseract50.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\leptonica-1.82.0.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\tesseract50.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\leptonica-1.83.1.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x86\tesseract53.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\leptonica-1.83.1.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\x64\tesseract53.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tessdata\eng.traineddata
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\mongocrypt.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.config
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe.manifest
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.application
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.exe
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-lmis.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AxShockwaveFlashObjects.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.Report.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.ReportSource.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Shared.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\CrystalDecisions.Windows.Forms.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.Interfaces.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.System.Drawing.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Guna.UI2.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Irony.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Logging.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Libmongocrypt.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SharpCompress.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ComponentModel.Annotations.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessControl.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ValueTuple.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Tesseract.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\TesseractOCR.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\XLParser.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ZstdSharp.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.Core.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\AWSSDK.SecurityToken.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Core.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Azure.Identity.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\BouncyCastle.Cryptography.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DnsClient.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelDataReader.DataSet.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Auth.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Core.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Drive.v3.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Oauth2.v2.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Google.Apis.Sheets.v4.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.WinForms.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\LiveCharts.Wpf.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\log4net.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MailKit.dll.config
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Data.SqlClient.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Identity.Client.Extensions.Msal.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Logging.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IdentityModel.Tokens.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.Win32.Registry.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MimeKit.dll.config
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Bson.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.Core.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MongoDB.Driver.GridFS.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Snappier.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Buffers.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ClientModel.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.CodeDom.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Configuration.ConfigurationManager.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Diagnostics.DiagnosticSource.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Formats.Asn1.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.FileSystem.AccessControl.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.pdb
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Memory.Data.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.AccessControl.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Cryptography.ProtectedData.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Permissions.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Security.Principal.Windows.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encoding.CodePages.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Encodings.Web.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Text.Json.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ValueTuple.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\TesseractOCR.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\VisualReactiveWinForms.xml
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.ReportSource.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.Shared.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\cs\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\da\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\en\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fi\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\hu\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nb-NO\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\nl\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pl\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sk\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\sv\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\th\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\tr\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHS\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-CHT\CrystalDecisions.Windows.Forms.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\de\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\es\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\fr\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\it\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ja\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ko\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\pt-BR\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.exe.manifest
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.application
-C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.Up2Date
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.Report.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Irony.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\XLParser.dll
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.pdb
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.xml
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata_details.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_routes.resources
-C:\Users\Wenster\Desktop\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_addex.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.Report.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.Interfaces.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.System.Drawing.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Irony.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.ComponentModel.Annotations.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\XLParser.dll
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ClosedXML.xml
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\DocumentFormat.OpenXml.xml
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\EPPlus.xml
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\ExcelNumberFormat.xml
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.pdb
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\MoreLinq.xml
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\SixLabors.Fonts.xml
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.IO.Packaging.xml
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.pdb
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\System.Linq.Dynamic.Core.xml
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ACCOUNTING.frm_home_accounting.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_rawdata_details.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_routes.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_remarks.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_addex.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_loan_editamt_pass.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\google_drive_credentials.json
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-credentials.json
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectconfig.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ZProgress.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details_edit.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\google_drive_credentials.json
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\bin\Debug\rct-credentials.json
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ADMIN_collectconfig.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.ADMIN_SECTION.frm_home_ZProgress.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_details_edit.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_loan_config.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_progress_popup.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_addnew.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_home_disburse_loan_config.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.DISBURSEMENT_SECTION.frm_progress_popup.resources
-E:\RCT\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.LOAN_SECTION.frm_home_addnew.resources
-D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct-lmis.csproj.AssemblyReference.cache
+D:\RCT_Lending_System\rct-lending\rct-app\rct-lmis\rct-lmis\obj\Debug\rct_lmis.frm_home_notification.resources

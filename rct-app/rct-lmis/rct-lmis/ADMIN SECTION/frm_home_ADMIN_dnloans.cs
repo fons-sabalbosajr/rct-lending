@@ -15,76 +15,45 @@ namespace rct_lmis.ADMIN_SECTION
 {
     public partial class frm_home_ADMIN_dnloans : Form
     {
+
+        private string loggedInUsername;
+
+
         public frm_home_ADMIN_dnloans()
         {
             InitializeComponent();
+            dtdateDenied.Value = DateTime.Today;
+            loggedInUsername = UserSession.Instance.CurrentUser;
         }
 
         private void SetupDataGridView()
         {
-            // Add columns
-            dgvloandata.Columns.Add("ClientNumber", "Client Number");
-            dgvloandata.Columns.Add("Name", "Name");
-            dgvloandata.Columns.Add("Address", "Address");
-            dgvloandata.Columns.Add("LoanType", "Loan Type");
-            dgvloandata.Columns.Add("DenialDate", "Date Denied");
-            dgvloandata.Columns.Add("LoanStatus", "Loan Status");
-            dgvloandata.Columns.Add("Docs", "Documents");
-            dgvloandata.Columns.Add("Countdown", "Days Left");
+            dgvloandata.Columns.Clear(); // Clear any existing columns to avoid duplication
 
-            // Add padding to "View Details" button column
+            dgvloandata.Columns.Add("ClientInfo", "Client Details");
+            dgvloandata.Columns.Add("LoanDetails", "Loan Details");
+            dgvloandata.Columns.Add("LoanStatusDetails", "Loan Status");
+            dgvloandata.Columns.Add("Countdown", "Auto Remove");
+
             var viewDetailsColumn = new DataGridViewButtonColumn
             {
                 Name = "ViewDetails",
                 HeaderText = "View Details",
                 Text = "View Details",
                 UseColumnTextForButtonValue = true,
-                Width = 120,
-                DefaultCellStyle = { Padding = new Padding(10) }
+                Width = 50 // Adjust width as needed
             };
+
             dgvloandata.Columns.Add(viewDetailsColumn);
-        }
 
-        private void LoadStatusData()
-        {
-            try
-            {
-                var database = MongoDBConnection.Instance.Database;
-                var loanDeniedCollection = database.GetCollection<BsonDocument>("loan_denied");
+            // ✅ Set left and right padding for the "View Details" button
+            dgvloandata.Columns["ViewDetails"].DefaultCellStyle.Padding = new Padding(100, 5, 100, 5);
 
-                // Define the aggregation pipeline
-                var pipeline = new BsonDocument[]
-                {
-            new BsonDocument("$group", new BsonDocument
-            {
-                { "_id", "$LoanStatus" }  // Group by LoanStatus to get unique values
-            }),
-            new BsonDocument("$sort", new BsonDocument("_id", 1))  // Optional: Sort the results
-                };
+            // Ensure proper row height adjustment for multi-line content
+            dgvloandata.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvloandata.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-                // Execute the aggregation
-                var results = loanDeniedCollection.Aggregate<BsonDocument>(pipeline).ToList();
-
-                // Extract unique statuses from the aggregation results
-                var statuses = results.Select(doc => doc["_id"].AsString).ToList();
-
-                // Bind statuses to the ComboBox
-                cbstatus.Items.Clear();
-                if (statuses.Count > 0)
-                {
-                    cbstatus.Items.AddRange(statuses.ToArray());
-                    cbstatus.SelectedIndex = 0;
-                }
-                else
-                {
-                    cbstatus.Items.Add("No data");
-                    cbstatus.SelectedIndex = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading status data: " + ex.Message);
-            }
+            dgvloandata.Columns["Countdown"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
 
@@ -92,14 +61,14 @@ namespace rct_lmis.ADMIN_SECTION
         {
             try
             {
+                DeleteExpiredLoans();
                 var database = MongoDBConnection.Instance.Database;
                 var loanDeniedCollection = database.GetCollection<BsonDocument>("loan_denied");
 
-                // Filter the loans by the selected status
+                // Apply filtering for loan status
                 var filter = Builders<BsonDocument>.Filter.Eq("LoanStatus", status);
-                var deniedLoans = loanDeniedCollection.Find(filter).ToList();
 
-                // Bind the filtered data to dgvloandata
+                var deniedLoans = loanDeniedCollection.Find(filter).ToList();
                 BindDeniedLoansToDataGridView(deniedLoans);
             }
             catch (Exception ex)
@@ -108,25 +77,19 @@ namespace rct_lmis.ADMIN_SECTION
             }
         }
 
-
-
-
         private void FilterLoansByDate(DateTime selectedDate)
         {
             try
             {
+                DeleteExpiredLoans();
                 var database = MongoDBConnection.Instance.Database;
                 var loanDeniedCollection = database.GetCollection<BsonDocument>("loan_denied");
-
-                // Convert the selected date to the start and end of the day
                 var startOfDay = selectedDate.Date;
                 var endOfDay = startOfDay.AddDays(1).AddTicks(-1);
 
-                // Create a filter for the DenialDate range
-                var filter = Builders<BsonDocument>.Filter.Gte("DenialDate", startOfDay) &
-                             Builders<BsonDocument>.Filter.Lte("DenialDate", endOfDay);
+                var filter = Builders<BsonDocument>.Filter.Gte("DeniedDate", startOfDay) &
+                             Builders<BsonDocument>.Filter.Lte("DeniedDate", endOfDay);
 
-                // Add status filter if a status is selected
                 if (cbstatus.SelectedItem != null)
                 {
                     var statusFilter = Builders<BsonDocument>.Filter.Eq("LoanStatus", cbstatus.SelectedItem.ToString());
@@ -135,57 +98,12 @@ namespace rct_lmis.ADMIN_SECTION
 
                 var deniedLoans = loanDeniedCollection.Find(filter).ToList();
 
-                // Clear existing rows
-                dgvloandata.Rows.Clear();
-
-                // Populate the DataGridView with filtered data
-                foreach (var loan in deniedLoans)
+                if (dgvloandata.Columns.Count == 0)
                 {
-                    var name = $"{loan.GetValue("FirstName", "")} {loan.GetValue("LastName", "")}";
-                    var address = $"{loan.GetValue("Street", "")}, {loan.GetValue("Barangay", "")}, {loan.GetValue("City", "")}, {loan.GetValue("Province", "")}";
-
-                    // Format docs to be a single line
-                    var docs = loan.GetValue("docs", "").ToString().Replace("\n", " ").Replace("\r", " ").Trim();
-
-                    // Convert DenialDate to DateTime and then to MM/dd/yyyy format
-                    var denialDate = loan.GetValue("DenialDate", BsonNull.Value);
-                    var formattedDate = denialDate == BsonNull.Value ? "" : ((DateTime)denialDate).ToString("MM/dd/yyyy");
-
-                    // Calculate the countdown for deletion
-                    var daysLeft = ((DateTime)denialDate).AddDays(30) - DateTime.Now;
-                    var countdown = daysLeft.TotalDays > 0 ? $"{(int)daysLeft.TotalDays} days left" : "Expired";
-
-                    dgvloandata.Rows.Add(
-                        loan.GetValue("ClientNumber", ""),
-                        name,
-                        address,
-                        loan.GetValue("LoanType", ""),
-                        formattedDate,
-                        loan.GetValue("LoanStatus", ""),
-                        docs,
-                        countdown
-                    );
+                    SetupDataGridView();
                 }
 
-                // Align columns
-                dgvloandata.Columns["ClientNumber"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvloandata.Columns["Name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvloandata.Columns["LoanType"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvloandata.Columns["LoanStatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvloandata.Columns["Countdown"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                dgvloandata.Columns["Address"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                dgvloandata.Columns["Docs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
-                // Enable word wrapping
-                dgvloandata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dgvloandata.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                dgvloandata.Columns["Address"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                dgvloandata.Columns["Docs"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-
-                // Adjust column widths
-                dgvloandata.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dgvloandata.Columns["LoanType"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                BindDeniedLoansToDataGridView(deniedLoans);
             }
             catch (Exception ex)
             {
@@ -197,65 +115,91 @@ namespace rct_lmis.ADMIN_SECTION
         {
             try
             {
+                DeleteExpiredLoans();
                 var database = MongoDBConnection.Instance.Database;
                 var loanDeniedCollection = database.GetCollection<BsonDocument>("loan_denied");
-
-                // Retrieve all documents
                 var deniedLoans = loanDeniedCollection.Find(Builders<BsonDocument>.Filter.Empty).ToList();
-
-                // Bind the data to dgvloandata
                 BindDeniedLoansToDataGridView(deniedLoans);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading all denied loans: " + ex.Message);
+                MessageBox.Show("Error loading denied loans: " + ex.Message);
+            }
+        }
+
+        private void DeleteExpiredLoans()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var loanDeniedCollection = database.GetCollection<BsonDocument>("loan_denied");
+                var expirationThreshold = DateTime.UtcNow.AddDays(-30);
+                var filter = Builders<BsonDocument>.Filter.Lt("DeniedDate", expirationThreshold);
+                var result = loanDeniedCollection.DeleteMany(filter);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting expired loans: " + ex.Message);
             }
         }
 
         private void BindDeniedLoansToDataGridView(List<BsonDocument> deniedLoans)
         {
-            if (deniedLoans.Count > 0)
-            {
-                dgvloandata.DataSource = deniedLoans.Select(loan =>
-                {
-                    var denialDateValue = loan.GetValue("DenialDate", null);
-                    var denialDate = denialDateValue.IsBsonDateTime ? denialDateValue.AsDateTime.ToUniversalTime() : DateTime.MinValue;
+            dgvloandata.Rows.Clear();
 
-                    return new
-                    {
-                        AccountId = loan.GetValue("AccountId", "").AsString,
-                        ClientNumber = loan.GetValue("ClientNumber", "").AsString,
-                        FullName = $"{loan.GetValue("FirstName", "")} {loan.GetValue("MiddleName", "")} {loan.GetValue("LastName", "")}",
-                        LoanType = loan.GetValue("LoanType", "").AsString,
-                        LoanStatus = loan.GetValue("LoanStatus", "").AsString,
-                        DenialDate = denialDate.ToString("MM/dd/yyyy"),
-                        Countdown = CalculateCountdown(denialDate)
-                    };
-                }).ToList();
+            // Enable multi-line text
+            dgvloandata.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgvloandata.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-                dgvloandata.Visible = true;
-                lnorecord.Visible = false;
-            }
-            else
+            foreach (var loan in deniedLoans)
             {
-                dgvloandata.Visible = false;
-                lnorecord.Visible = true;
+                string clientInfo = $"Name: {loan.GetValue("ClientName", "").AsString}\r\n" +
+                                    $"Address: {loan.GetValue("Address", "").AsString}";
+
+                string loanDetails = $"Loan Amount: {loan.GetValue("LoanAmount", "").AsString}\r\n" +
+                                     $"Description: {loan.GetValue("LoanDescription", "").AsString}";
+
+                string loanStatusDetails = $"Status: {loan.GetValue("LoanStatus", "").AsString}\r\n" +
+                                           $"Denied Date: {(loan.Contains("DeniedDate") ? loan["DeniedDate"].ToUniversalTime().ToString("MM/dd/yyyy") : "N/A")}\r\n" +
+                                           $"Denied By: {loan.GetValue("DeniedBy", "N/A").AsString}";
+
+                string countdown = loan.Contains("DeniedDate") ? CalculateCountdown(loan["DeniedDate"].ToUniversalTime()) : "Unknown";
+
+                dgvloandata.Rows.Add(clientInfo, loanDetails, loanStatusDetails, countdown, "View Details");
             }
         }
 
         private string CalculateCountdown(DateTime denialDate)
         {
             var expirationDate = denialDate.AddDays(30);
-            var remainingDays = (expirationDate - DateTime.Now).Days;
+            var remainingDays = (expirationDate - DateTime.UtcNow).Days;
             return remainingDays >= 0 ? $"{remainingDays} days remaining" : "Expired";
         }
 
+        private void LoadUserInfo(string username)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<BsonDocument>("user_accounts"); // 'user_accounts' is the name of your collection
+
+            var filter = Builders<BsonDocument>.Filter.Eq("Username", username);
+            var user = collection.Find(filter).FirstOrDefault();
+
+            if (user != null)
+            {
+                // Get the full name and split to get the first name
+                var fullName = user.GetValue("FullName").AsString;
+
+                // Set the first name
+                luser.Text = fullName;
+            }
+        }
 
         private void frm_home_ADMIN_dnloans_Load(object sender, EventArgs e)
         {
-           //LoadStatusData();
             SetupDataGridView();
-            FilterLoansByDate(dtdateDenied.Value.Date);
+            LoadAllDeniedLoans();
+            //FilterLoansByDate(dtdateDenied.Value.Date);
+            LoadUserInfo(loggedInUsername);
         }
 
         private void dtdateDenied_ValueChanged(object sender, EventArgs e)
@@ -287,5 +231,80 @@ namespace rct_lmis.ADMIN_SECTION
         {
             dgvloandata.ClearSelection();
         }
+
+        private void brevert_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to revert the loan account and restore it to pending applications?",
+                "Restore Account", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (dgvloandata.SelectedRows.Count == 0)
+                    {
+                        MessageBox.Show("Please select a loan to revert.");
+                        return;
+                    }
+
+                    var selectedRow = dgvloandata.SelectedRows[0];
+
+                    // Extract Client Name to search for the loan
+                    string clientInfo = selectedRow.Cells["ClientInfo"].Value.ToString();
+                    string clientName = clientInfo.Split('\n')[0].Replace("Name: ", "").Trim();
+
+                    var database = MongoDBConnection.Instance.Database;
+                    var loanDeniedCollection = database.GetCollection<BsonDocument>("loan_denied");
+                    var loanApplicationsCollection = database.GetCollection<BsonDocument>("loan_application");
+
+                    // Find the loan document in loan_denied using ClientName
+                    var filter = Builders<BsonDocument>.Filter.Eq("ClientName", clientName);
+                    var deniedLoan = loanDeniedCollection.Find(filter).FirstOrDefault();
+
+                    if (deniedLoan == null)
+                    {
+                        MessageBox.Show("Error: Loan not found in denied loans.");
+                        return;
+                    }
+
+                    // Extract Denied Date before removing it
+                    string deniedDate = deniedLoan.Contains("DeniedDate")
+                        ? deniedLoan["DeniedDate"].ToUniversalTime().ToString("MM/dd/yyyy")
+                        : "Unknown";
+
+                    // Find the existing loan in loan_application
+                    var existingLoanFilter = Builders<BsonDocument>.Filter.Eq("ClientName", clientName);
+                    var existingLoan = loanApplicationsCollection.Find(existingLoanFilter).FirstOrDefault();
+
+                    if (existingLoan == null)
+                    {
+                        MessageBox.Show("Error: Loan account not found in loan applications.");
+                        return;
+                    }
+
+                    // Prepare update fields
+                    var updateDefinition = Builders<BsonDocument>.Update
+                        .Set("LoanStatus", "LOAN APPROVED")
+                        .Set("ApprovalDate", DateTime.UtcNow) // Set the current date and time
+                        .Set("ApprovedBy", luser.Text) // Replace with actual logged-in user
+                        .Set("Remarks", $"Previously denied on {deniedDate}.");
+
+                    // Apply the update to loan_application
+                    loanApplicationsCollection.UpdateOne(existingLoanFilter, updateDefinition);
+
+                    // Remove from loan_denied collection
+                    loanDeniedCollection.DeleteOne(filter);
+
+                    // Refresh DataGridView
+                    LoadAllDeniedLoans();
+
+                    MessageBox.Show($"Loan for {clientName} has been successfully restored and updated.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error reverting loan: " + ex.Message);
+                }
+            }
+        }
+
+
     }
 }

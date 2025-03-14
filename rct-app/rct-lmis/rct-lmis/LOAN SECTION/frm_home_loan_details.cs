@@ -129,7 +129,7 @@ namespace rct_lmis.LOAN_SECTION
         private async Task LoadLoanDetailsAsync()
         {
             string accountId = laccno.Text;
-            lnorecorddis.Visible = false;
+            
             try
             {
                 var database = MongoDBConnection.Instance.Database;
@@ -214,7 +214,7 @@ namespace rct_lmis.LOAN_SECTION
 
                  
                     // Step 2: Load loan details into DataGridView
-                    await LoadLoanDetailsToDataGridViewAsync(accountId);
+                    await LoadLoanDetailsToDataGridViewAsync();
 
                 }
                 else
@@ -228,65 +228,81 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-        private async Task LoadLoanDetailsToDataGridViewAsync(string accountId)
+        private async Task LoadLoanDetailsToDataGridViewAsync()
         {
             try
             {
+                // Validate if laccno.Text is not empty
+                string loanNo = laccno.Text.Trim();
+                if (string.IsNullOrEmpty(loanNo))
+                {
+                    MessageBox.Show("Please enter a Loan Number.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Step 1: Setup DataTable and bind it to DataGridView
                 DataTable loanDataTable = CreateLoanDataTable();
                 dgvdataamort.DataSource = loanDataTable;
 
-                // Access the MongoDB database and fetch loan details
+                // Access the MongoDB database and fetch loan details from loan_disbursed
                 var database = MongoDBConnection.Instance.Database;
-                var collection = database.GetCollection<BsonDocument>("loan_approved");
+                var collection = database.GetCollection<BsonDocument>("loan_disbursed");
 
-                var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                // Filter by LoanNo from laccno.Text
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo);
                 var documents = await collection.Find(filter).ToListAsync();
 
-                if (documents.Count > 0)
+                if (documents != null && documents.Count > 0)
                 {
-                    // Loop through all documents and add rows to the DataTable
+                    lnorecorddis.Visible = false;
                     foreach (var document in documents)
                     {
                         DataRow row = loanDataTable.NewRow();
 
-                        // Populate row with MongoDB data
+                        // Loan ID
                         row["Loan ID"] = document.GetValue("LoanNo", "").ToString();
 
-                        // Loan details: LoanAmount, LoanBalance, LoanTerm, LoanInterest
-                        row["Loan Details"] = $"Amount: {document.GetValue("LoanAmount", "0.00")}\n" +
-                                              $"Balance: {document.GetValue("LoanBalance", "0.00")}\n" +
-                                              $"Term: {document.GetValue("LoanTerm", "0")}\n" +
-                                              $"Interest: {document.GetValue("LoanInterest", "0%")}";
+                        // Loan Details: LoanAmount, LoanBalance, LoanTerm, LoanInterest
+                        row["Loan Details"] = $"Amount: {document.GetValue("LoanAmount", "₱0.00")}\n" +
+                                              $"Balance: {document.GetValue("LoanBalance", "₱0.00")}\n" +
+                                              $"Term: {document.GetValue("LoanTerm", "N/A")}\n" +
+                                              $"Interest: {document.GetValue("LoanInterest", "₱0.00")}";
 
                         // Amortization: LoanAmortization, MissedDays, Penalty
-                        string missedDays = "0"; // Placeholder, calculate missed days if necessary
-                        row["Amortization"] = $"Amortization: {document.GetValue("LoanAmortization", "0.00")}\n" +
+                        string missedDays = "0"; // Placeholder, calculate if needed
+                        row["Amortization"] = $"Amortization: {document.GetValue("LoanAmortization", "₱0.00")}\n" +
                                               $"Missed: {missedDays} days\n" +
-                                              $"Penalty: {document.GetValue("Penalty", "0.00")}";
+                                              $"Penalty: {document.GetValue("Penalty", "₱0.00")}";
 
                         // Repayment: PaymentMode, StartPaymentDate, MaturityDate
-                        row["Repayment"] = $"Mode: {document.GetValue("PaymentMode", "")}\n" +
-                                           $"Start: {document.GetValue("StartPaymentDate", "")}\n" +
-                                           $"Maturity: {document.GetValue("MaturityDate", "")}";
+                        row["Repayment"] = $"Mode: {document.GetValue("PaymentMode", "N/A")}\n" +
+                                           $"Start: {document.GetValue("StartPaymentDate", "N/A")}\n" +
+                                           $"Maturity: {document.GetValue("MaturityDate", "N/A")}";
 
-                        // Add the row to the DataTable
+                        // Add row to the DataTable
                         loanDataTable.Rows.Add(row);
                     }
 
-                    // Update the total count of loans in treploantotal.Text
+                    // Update total loan count
                     treploantotal.Text = documents.Count.ToString();
                 }
                 else
                 {
-                    MessageBox.Show("No loan details found for the specified Account ID.");
+                    // No records found for the LoanNo, clear the DataGridView
+                    loanDataTable.Clear();
+                    dgvdataamort.DataSource = loanDataTable;
+                    treploantotal.Text = "0";
+                    lnorecorddis.Visible = true;
+                    //MessageBox.Show($"No loan details found for Loan No: {loanNo}", "Loan Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading loan details: {ex.Message}");
+                MessageBox.Show($"Error loading loan details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private async Task LoadLoanCollectionsAsync()
         {

@@ -18,7 +18,10 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OfficeOpenXml;
+using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using OfficeOpenXml.Style;
 
 namespace rct_lmis.LOAN_SECTION
 {
@@ -47,6 +50,9 @@ namespace rct_lmis.LOAN_SECTION
             InitializeGoogleDrive();
 
             LoadNextAccountId();
+            bsubmit.Enabled = false;
+            lfilesready.Visible = false;
+            bclear.Enabled = false;
         }
         private static string[] Scopes = { DriveService.Scope.DriveFile };
         private static string ApplicationName = "rct-lmis";
@@ -229,16 +235,28 @@ namespace rct_lmis.LOAN_SECTION
             try
             {
                 var database = MongoDBConnection.Instance.Database;
-                var collection = database.GetCollection<BsonDocument>("loan_approved");
 
+                // Collections
+                var loanApplicationCollection = database.GetCollection<BsonDocument>("loan_application");
+                var loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
+
+                // Sort by AccountId in descending order to get the last record
                 var sort = Builders<BsonDocument>.Sort.Descending("AccountId");
-                var lastLoanApplication = collection.Find(new BsonDocument()).Sort(sort).FirstOrDefault();
+
+                // Check loan_application collection first
+                var lastLoanApplication = loanApplicationCollection.Find(new BsonDocument()).Sort(sort).FirstOrDefault();
 
                 string nextAccountId;
 
+                if (lastLoanApplication == null)
+                {
+                    // If loan_application is empty, check loan_approved
+                    lastLoanApplication = loanApprovedCollection.Find(new BsonDocument()).Sort(sort).FirstOrDefault();
+                }
+
                 if (lastLoanApplication != null)
                 {
-                    var lastAccountId = lastLoanApplication.GetValue("AccountId", "").AsString;
+                    var lastAccountId = lastLoanApplication.GetValue("AccountId", "").AsString.Replace("Account ID: ", "");
 
                     var parts = lastAccountId.Split('-');
                     if (parts.Length == 3 && int.TryParse(parts[2], out int numericPart))
@@ -248,18 +266,17 @@ namespace rct_lmis.LOAN_SECTION
                     }
                     else
                     {
-                        // Fallback if parsing fails
                         throw new FormatException("Invalid AccountId format.");
                     }
                 }
                 else
                 {
-                    // If there are no documents, start with the first AccountId
+                    // If both collections are empty, start fresh
                     nextAccountId = "RCT-2024-0001";
                 }
 
-                // Set the new AccountId to the label
-                lloanno.Text = "Account ID: " + nextAccountId;
+                // Set the new AccountId to the label (without "Account ID: ")
+                lloanno.Text = nextAccountId;
             }
             catch (Exception ex)
             {
@@ -308,7 +325,6 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-
         private void LoadLoanDetails(string fullName)
         {
             try
@@ -333,12 +349,12 @@ namespace rct_lmis.LOAN_SECTION
 
                 if (clientRecord != null)
                 {
-                    // ✅ Populate Fields
+                    //Populate Fields
                     trpaymentmode.Text = clientRecord.Contains("PaymentMode") ? clientRecord["PaymentMode"].AsString : "";
                     trloanbal.Text = clientRecord.Contains("LoanBalance") ? clientRecord["LoanBalance"].AsString : "";
                     trprevloan.Text = clientRecord.Contains("LoanAmount") ? clientRecord["LoanAmount"].AsString : "";
 
-                    // ✅ Match LoanStatus in ComboBox
+                    // Match LoanStatus in ComboBox
                     string loanStatus = clientRecord.Contains("LoanStatus") ? clientRecord["LoanStatus"].AsString : "";
                     int index = cbrstatus.Items.IndexOf(loanStatus);
                     cbrstatus.SelectedIndex = index >= 0 ? index : -1; // Set only if found
@@ -353,8 +369,6 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show("Error loading loan details: " + ex.Message);
             }
         }
-
-
 
         private void LoadClientNamesNew()
         {
@@ -388,7 +402,6 @@ namespace rct_lmis.LOAN_SECTION
                 Console.WriteLine("Error loading client names: " + ex.Message);
             }
         }
-
 
         private void GenerateRenewalLoanID()
         {
@@ -462,6 +475,7 @@ namespace rct_lmis.LOAN_SECTION
                 var collectors = loanCollectorsCollection.Find(filter).ToList();
 
                 cbcollectors.Items.Clear(); // Clear existing items before adding new ones
+                cbcollectorincharge.Items.Clear();
 
                 foreach (var collector in collectors)
                 {
@@ -469,6 +483,7 @@ namespace rct_lmis.LOAN_SECTION
                     {
                         string name = collector["Name"].AsString;
                         cbcollectors.Items.Add(name);
+                        cbcollectorincharge.Items.Add(name);
                     }
                 }
             }
@@ -478,13 +493,32 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+        private void LoadUserInfo(string username)
+        {
+            var database = MongoDBConnection.Instance.Database;
+            var collection = database.GetCollection<BsonDocument>("user_accounts"); // 'user_accounts' is the name of your collection
+
+            var filter = Builders<BsonDocument>.Filter.Eq("Username", username);
+            var user = collection.Find(filter).FirstOrDefault();
+
+            if (user != null)
+            {
+                // Get the full name and split to get the first name
+                var fullName = user.GetValue("FullName").AsString;
+
+                // Set the first name
+                lveruser.Text = fullName;
+            }
+        }
+
+
         LoadingFunction load = new LoadingFunction();
         private void frm_home_addnew_Load(object sender, EventArgs e)
         {
             LoadClientNames();
             LoadCollectors();
             LoadClientNamesNew();
-            lfilesready.Visible = false;
+            LoadUserInfo(loggedInUsername);
         }
 
         private void baddfile_Click(object sender, EventArgs e)
@@ -506,6 +540,8 @@ namespace rct_lmis.LOAN_SECTION
                     dgvuploads.Rows.Add(Path.GetFileName(fileName), fileSizeString, "Ready to Upload", "Action");
                     lnofile.Visible = false;
                     lfilesready.Visible = true;
+                    bclear.Enabled = true;
+                    bsubmit.Enabled = true;
                 }
             }
         }
@@ -517,6 +553,7 @@ namespace rct_lmis.LOAN_SECTION
             lfilesready.Visible = false;
             lnofile.Visible = true;
             bclear.Enabled = false;
+            bsubmit.Enabled = false;
         }
 
         private void dgvuploads_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -639,8 +676,7 @@ namespace rct_lmis.LOAN_SECTION
                     MessageBox.Show("Please select files to upload.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                // Ensure progress bar and status label are visible
+                this.Cursor = Cursors.WaitCursor;
                 pbloading.Visible = true;
                 pbloading.Maximum = filePaths.Count;
                 pbloading.Value = 0;
@@ -648,40 +684,31 @@ namespace rct_lmis.LOAN_SECTION
                 lstatus.Text = "Initializing upload...";
                 lstatus.ForeColor = Color.Black;
 
-                // Get the full name of the current user
                 string currentUser = LoadCurrentUserFullName();
-
-                // Get the selected collector
                 string selectedCollector = cbcollectors.SelectedItem?.ToString() ?? "N/A";
-
-                // Get Credit Investigation status
                 string ciStatus = cbCInvest.Checked ? "✔️" : "❌";
-
-                // Get CI Date
                 DateTime ciDate = dtci.Value;
 
-                // Get Loan Amount (ensure it's a valid decimal)
-                decimal loanAmount;
-                if (!decimal.TryParse(tloannewamt.Text, out loanAmount))
+                if (!decimal.TryParse(tloannewamt.Text, out decimal loanAmount))
                 {
                     MessageBox.Show("Invalid Loan Amount!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Get Loan Description
                 string loanDescription = rtloandesc.Text.Trim();
-
-                // Generate the next Account ID and remove "Account ID: " prefix
                 string rawAccountId = await GenerateNextAccountId();
-                string cleanAccountId = rawAccountId.Replace("Account ID: ", ""); // Remove the prefix
+                string cleanAccountId = rawAccountId.Replace("Account ID: ", "");
 
-                // Collections to hold file details
+                // **Hardcoded Routed User Details (Owner)**
+                string routedUserFullName = "Ralph Daag";
+                string routedUserPosition = "Administrator";
+                string routedUserDesignation = "Owner";
+
                 List<BsonDocument> uploadedFiles = new List<BsonDocument>();
 
                 for (int i = 0; i < filePaths.Count; i++)
                 {
                     string filePath = filePaths[i];
-
                     if (string.IsNullOrEmpty(filePath))
                     {
                         MessageBox.Show("Please fill in all fields and select a file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -692,23 +719,19 @@ namespace rct_lmis.LOAN_SECTION
                     string destinationFolderId = GetDestinationFolderId(mimeType);
                     string originalFileName = Path.GetFileName(filePath);
 
-                    // Update status in DataGridView
                     dgvuploads.Invoke((MethodInvoker)(() =>
                     {
                         if (i < dgvuploads.Rows.Count)
                             dgvuploads.Rows[i].Cells["Status"].Value = "Uploading...";
                     }));
 
-                    // Update status label
                     lstatus.Invoke((MethodInvoker)(() =>
                     {
                         lstatus.Text = $"Uploading file {i + 1} of {filePaths.Count}...";
                     }));
 
-                    // Upload file to Google Drive
                     string fileId = await UploadFileToDrive(filePath, destinationFolderId);
 
-                    // Update status in DataGridView
                     dgvuploads.Invoke((MethodInvoker)(() =>
                     {
                         if (i < dgvuploads.Rows.Count)
@@ -717,13 +740,11 @@ namespace rct_lmis.LOAN_SECTION
                         }
                     }));
 
-                    // Update progress bar
                     pbloading.Invoke((MethodInvoker)(() =>
                     {
                         pbloading.Value = i + 1;
                     }));
 
-                    // Save file details for MongoDB
                     if (fileId != null)
                     {
                         string fileLink = $"https://drive.google.com/file/d/{fileId}/view?usp=sharing";
@@ -737,62 +758,70 @@ namespace rct_lmis.LOAN_SECTION
                     }
                 }
 
-                // Save data to MongoDB (loan_application collection)
+                // Save data to MongoDB
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_application");
 
                 var filter = Builders<BsonDocument>.Filter.Eq("AccountId", cleanAccountId);
                 var update = Builders<BsonDocument>.Update
-                    .Set("AccountId", cleanAccountId) // Save cleaned Account ID
+                    .Set("AccountId", lloanno.Text.Replace("Account ID: ", ""))
                     .Set("ClientName", tnclientname.Text)
                     .Set("Address", tnaddress.Text)
-                    .Set("ApplicationDate", DateTime.UtcNow) // Store current date & time
-                    .Set("Status", "NEW") // Set status as "NEW"
-                    .Set("LoanStatus", "FOR VERIFICATION AND APPROVAL") // Loan status
-                    .Set("EncodedBy", currentUser) // Store full name of the user
-                    .Set("CollectionInCharge", selectedCollector) // Save selected collector
-                    .Set("CI", ciStatus) // Save Credit Investigation status
-                    .Set("CIDate", ciDate) // Save CI Date
-                    .Set("LoanAmount", loanAmount) // Save Loan Amount
-                    .Set("LoanDescription", loanDescription) // Save Loan Description
-                    .Set("UploadedDocs", uploadedFiles); // Store all uploaded files
+                    .Set("ApplicationDate", DateTime.UtcNow)
+                    .Set("Status", "NEW")
+                    .Set("LoanStatus", "FOR VERIFICATION AND APPROVAL")
+                    .Set("EncodedBy", currentUser)
+                    .Set("CollectionInCharge", selectedCollector)
+                    .Set("CI", ciStatus)
+                    .Set("CIDate", ciDate)
+                    .Set("LoanAmount", loanAmount)
+                    .Set("LoanDescription", loanDescription)
+                    .Set("UploadedDocs", uploadedFiles)
+
+                    // **Hardcoded Routed User (Always Ralph Daag)**
+                    .Set("RoutedTo", new BsonDocument
+                    {
+                         { "FullName", routedUserFullName },
+                         { "Position", routedUserPosition },
+                         { "Designation", routedUserDesignation }
+                    });
 
                 await collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true });
 
-                // Update Account ID field with the next available ID
                 lloanno.Text = await GenerateNextAccountIdApp();
 
-                // Clear form fields after successful upload
                 filePaths.Clear();
                 tnclientname.Text = string.Empty;
                 tnaddress.Text = string.Empty;
-                cbcollectors.SelectedIndex = -1; // Reset collectors dropdown
-                cbCInvest.Checked = false; // Uncheck checkbox
-                dtci.Value = DateTime.Today; // Reset CI Date to today
-                tloannewamt.Text = string.Empty; // Clear loan amount
-                rtloandesc.Text = string.Empty; // Clear loan description
+                cbcollectors.SelectedIndex = -1;
+                cbCInvest.Checked = false;
+                dtci.Value = DateTime.Today;
+                tloannewamt.Text = string.Empty;
+                rtloandesc.Text = string.Empty;
                 dgvuploads.Invoke((MethodInvoker)(() => dgvuploads.Rows.Clear()));
 
-                // Update status label
                 lstatus.Invoke((MethodInvoker)(() =>
                 {
                     lstatus.Text = "Upload completed!";
                     lstatus.ForeColor = Color.Green;
                 }));
 
-                // Hide progress bar after upload
                 pbloading.Invoke((MethodInvoker)(() =>
                 {
                     pbloading.Visible = false;
                 }));
 
                 MessageBox.Show(this, "Data and files uploaded successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lstatus.Text = "";
+                lstatus.Visible = false;
+                this.Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error uploading files and saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void frm_home_addnew_FormClosing(object sender, FormClosingEventArgs e)
@@ -1002,6 +1031,18 @@ namespace rct_lmis.LOAN_SECTION
                     }
                 }
 
+                // Hardcoded Routed User (Always Ralph Daag)
+                string routedUserFullName = "Ralph Daag";
+                string routedUserPosition = "Administrator";
+                string routedUserDesignation = "Owner";
+
+                // Additional fields
+                string collectorInCharge = cbcollectorincharge.SelectedItem?.ToString() ?? "";
+                bool creditInvestigation = cbCIrenew.Checked;
+                string creditInvestigationDate = dtcirenew.Value.ToString("MM/dd/yyyy");
+                string renewAmount = trenewamt.Text;
+                string renewLoanDescription = rtloandescrenew.Text;
+
                 // Save data to MongoDB (loan_application collection)
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_application");
@@ -1038,7 +1079,18 @@ namespace rct_lmis.LOAN_SECTION
                     .Set("ReleaseSchedule", trreleasesched.Text)
                     .Set("Remarks", trremarks.Text)
                     .Set("UploadedDocs", uploadedFiles)
-                    .Set("ApplicationStatus", "PENDING RENEWAL LOAN APPLICATION"); // Default status
+                    .Set("ApplicationStatus", "PENDING RENEWAL LOAN APPLICATION") // Default status
+                    .Set("RoutedTo", new BsonDocument
+                    {
+                        { "FullName", routedUserFullName },
+                        { "Position", routedUserPosition },
+                        { "Designation", routedUserDesignation }
+                    })
+                    .Set("CollectorInCharge", collectorInCharge)
+                    .Set("CreditInvestigation", creditInvestigation)
+                    .Set("CreditInvestigationDate", creditInvestigationDate)
+                    .Set("RenewAmount", renewAmount)
+                    .Set("RenewLoanDescription", renewLoanDescription);
 
                 await collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true });
 
@@ -1058,6 +1110,7 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show($"Error uploading files and saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void dgvruploads_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1102,9 +1155,102 @@ namespace rct_lmis.LOAN_SECTION
                 lloannorenew.Visible = true;
                 brenewclear.Enabled = true;
                 GenerateRenewalLoanID();
-
-                // Fetch and populate loan details only after name is confirmed
                 LoadLoanDetails(trclientname.Text);
+            }
+        }
+
+        private void brenewprint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                // Prompt user to select a save location
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel files (*.xlsx)|*.xlsx",
+                    Title = "Save Verification Sheet",
+                    FileName = $"Verification_Sheet_{DateTime.Now:yyyyMMdd}.xlsx" // Dynamic filename
+                };
+
+                if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    return; // User canceled
+
+                string savePath = saveFileDialog.FileName;
+
+                string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "docs", "verification_sheet.xlsx");
+                //MessageBox.Show($"Trying to access: {templatePath}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                FileInfo templateFile = new FileInfo(templatePath);
+                FileInfo saveFile = new FileInfo(savePath);
+
+                using (ExcelPackage package = new ExcelPackage(templateFile))
+                {
+                    int sheetCount = package.Workbook.Worksheets.Count;
+                    //MessageBox.Show($"Total Sheets Found: {sheetCount}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (sheetCount == 0)
+                    {
+                        MessageBox.Show("❌ No sheets found in the Excel file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    ExcelWorksheet sheet = package.Workbook.Worksheets[0]; // First sheet
+
+                    // Populate form fields dynamically
+                    sheet.Cells["L4"].Value = trsavings.Text;
+                    sheet.Cells["D5"].Value = trclientname.Text;
+                    sheet.Cells["D6"].Value = trprevloan.Text;
+                    sheet.Cells["H6"].Value = trpaymentmode.Text;
+                    sheet.Cells["J6"].Value = trterms.Text;
+                    sheet.Cells["L6"].Value = trcycle.Text;
+                    sheet.Cells["D7"].Value = dtrdateeval.Value.ToString("MM/dd/yyyy");
+                    sheet.Cells["H9"].Value = trclose.Value.ToString("MM/dd/yyyy");
+                    sheet.Cells["J9"].Value = trdaysmissed.Text;
+                    sheet.Cells["L9"].Value = trpayment.Text;
+                    sheet.Cells["D10"].Value = trloanbal.Text;
+                    sheet.Cells["F10"].Value = trrebates.Text;
+                    sheet.Cells["F11"].Value = trorno.Text;
+                    sheet.Cells["K11"].Value = trpaymentdelay.Text;
+
+                    // Signature Verification
+                    sheet.Cells["D15"].Value = cbsimilarapplicant.Checked ? "✓" : "";
+                    sheet.Cells["D16"].Value = cbsimilarborrower.Checked ? "✓" : "";
+                    sheet.Cells["D17"].Value = cbsimilarmaker.Checked ? "✓" : "";
+
+                    sheet.Cells["G15"].Value = tramendfromapplicant.Text;
+                    sheet.Cells["J15"].Value = tramendtoapplicant.Text;
+                    sheet.Cells["G16"].Value = tramendfromborrower.Text;
+                    sheet.Cells["J16"].Value = tramendtoborrower.Text;
+                    sheet.Cells["G17"].Value = tramendfrommaker.Text;
+                    sheet.Cells["J17"].Value = tramendtomaker.Text;
+
+                    // Additional fields
+                    sheet.Cells["D9"].Value = cbrstatus.SelectedItem?.ToString() ?? "";
+                    //sheet.Cells["G11"].Value = cbCIrenew.Checked ? "✓" : "";
+                    //sheet.Cells["H11"].Value = dtcirenew.Value.ToString("MM/dd/yyyy");
+                    //sheet.Cells["H12"].Value = trenewamt.Text;
+
+                    sheet.Cells["E20"].Value = trreleasesched.Text;
+                    sheet.Cells["C21"].Value = trremarks.Text;
+                    //sheet.Cells["G16"].Value = rtloandescrenew.Text;
+
+                    // Prepared & Approved By
+                    sheet.Cells["D23"].Value = lveruser.Text;
+                    sheet.Cells["I23"].Value = lverowner.Text;
+
+                    // Save the updated Excel file
+                    package.SaveAs(saveFile);
+                }
+
+                // Open the saved file
+                Process.Start(new ProcessStartInfo(savePath) { UseShellExecute = true });
+
+                MessageBox.Show("Verification Sheet generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating verification sheet: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

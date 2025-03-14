@@ -38,6 +38,7 @@ namespace rct_lmis
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home));
             this.paneltop = new System.Windows.Forms.Panel();
+            this.lnotif = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ldate = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@ namespace rct_lmis
             this.bnotif = new Guna.UI2.WinForms.Guna2CircleButton();
             this.pblogo = new System.Windows.Forms.PictureBox();
             this.lfname = new System.Windows.Forms.Label();
+            this.bloannotif = new Guna.UI2.WinForms.Guna2CircleButton();
             this.pleft = new Guna.UI2.WinForms.Guna2Panel();
             this.blogout = new Guna.UI2.WinForms.Guna2Button();
             this.badmin = new Guna.UI2.WinForms.Guna2Button();
@@ -100,6 +102,7 @@ namespace rct_lmis
             // 
             this.paneltop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.paneltop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.paneltop.Controls.Add(this.lnotif);
             this.paneltop.Controls.Add(this.label1);
             this.paneltop.Controls.Add(this.label2);
             this.paneltop.Controls.Add(this.ldate);
@@ -111,11 +114,28 @@ namespace rct_lmis
             this.paneltop.Controls.Add(this.bnotif);
             this.paneltop.Controls.Add(this.pblogo);
             this.paneltop.Controls.Add(this.lfname);
+            this.paneltop.Controls.Add(this.bloannotif);
             this.paneltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.paneltop.Location = new System.Drawing.Point(0, 0);
             this.paneltop.Name = "paneltop";
             this.paneltop.Size = new System.Drawing.Size(1284, 70);
             this.paneltop.TabIndex = 2;
+            // 
+            // lnotif
+            // 
+            this.lnotif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnotif.AutoEllipsis = true;
+            this.lnotif.AutoSize = true;
+            this.lnotif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lnotif.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lnotif.ForeColor = System.Drawing.Color.White;
+            this.lnotif.Location = new System.Drawing.Point(1024, 22);
+            this.lnotif.Margin = new System.Windows.Forms.Padding(0);
+            this.lnotif.Name = "lnotif";
+            this.lnotif.Size = new System.Drawing.Size(13, 13);
+            this.lnotif.TabIndex = 44;
+            this.lnotif.Text = "1";
+            this.lnotif.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -151,7 +171,7 @@ namespace rct_lmis
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.ldate.Location = new System.Drawing.Point(840, 33);
             this.ldate.Name = "ldate";
-            this.ldate.Size = new System.Drawing.Size(36, 16);
+            this.ldate.Size = new System.Drawing.Size(37, 16);
             this.ldate.TabIndex = 40;
             this.ldate.Text = "Date";
             this.ldate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -198,7 +218,7 @@ namespace rct_lmis
             this.lcountpending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lcountpending.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lcountpending.ForeColor = System.Drawing.Color.White;
-            this.lcountpending.Location = new System.Drawing.Point(1105, 22);
+            this.lcountpending.Location = new System.Drawing.Point(1104, 22);
             this.lcountpending.Margin = new System.Windows.Forms.Padding(0);
             this.lcountpending.Name = "lcountpending";
             this.lcountpending.Size = new System.Drawing.Size(13, 13);
@@ -261,7 +281,7 @@ namespace rct_lmis
             this.bnotif.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bnotif.Image = global::rct_lmis.Properties.Resources.icons8_bell_60;
             this.bnotif.ImageSize = new System.Drawing.Size(25, 25);
-            this.bnotif.Location = new System.Drawing.Point(1105, 23);
+            this.bnotif.Location = new System.Drawing.Point(1027, 23);
             this.bnotif.Name = "bnotif";
             this.bnotif.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bnotif.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -289,10 +309,35 @@ namespace rct_lmis
             this.lfname.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lfname.Location = new System.Drawing.Point(1191, 31);
             this.lfname.Name = "lfname";
-            this.lfname.Size = new System.Drawing.Size(34, 16);
+            this.lfname.Size = new System.Drawing.Size(35, 16);
             this.lfname.TabIndex = 2;
             this.lfname.Text = "User";
             this.lfname.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // bloannotif
+            // 
+            this.bloannotif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bloannotif.Animated = true;
+            this.bloannotif.BackColor = System.Drawing.Color.Transparent;
+            this.bloannotif.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bloannotif.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bloannotif.DisabledState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bloannotif.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bloannotif.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.bloannotif.FillColor = System.Drawing.Color.Transparent;
+            this.bloannotif.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bloannotif.ForeColor = System.Drawing.Color.White;
+            this.bloannotif.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bloannotif.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bloannotif.Image = global::rct_lmis.Properties.Resources.loan;
+            this.bloannotif.Location = new System.Drawing.Point(1107, 23);
+            this.bloannotif.Name = "bloannotif";
+            this.bloannotif.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bloannotif.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.bloannotif.Size = new System.Drawing.Size(27, 27);
+            this.bloannotif.TabIndex = 43;
+            this.toolTip1.SetToolTip(this.bloannotif, "Loan Transactions");
+            this.bloannotif.Click += new System.EventHandler(this.bloannotif_Click);
             // 
             // pleft
             // 
@@ -1065,5 +1110,7 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2Button bviewapplications;
         private System.Windows.Forms.Timer ttime;
         private System.Windows.Forms.Timer tnotif;
+        private Guna.UI2.WinForms.Guna2CircleButton bloannotif;
+        private System.Windows.Forms.Label lnotif;
     }
 }

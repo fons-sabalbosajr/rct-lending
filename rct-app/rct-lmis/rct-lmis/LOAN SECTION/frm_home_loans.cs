@@ -443,10 +443,8 @@ namespace rct_lmis
                             }
                             else
                             {
-                                frm_home_loan_disburse fdis = new frm_home_loan_disburse
-                                {
-                                    AccountID = accountId // Pass the AccountID
-                                };
+                                // ✅ Pass AccountID properly
+                                frm_home_loan_disburse fdis = new frm_home_loan_disburse(accountId);
 
                                 ShowLoadingIndicator();
                                 fdis.Show(this);

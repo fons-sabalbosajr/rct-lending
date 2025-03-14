@@ -653,6 +653,12 @@
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse.Designer.cs">
       <DependentUpon>frm_home_disburse.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_home_notification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_home_notification.Designer.cs">
+      <DependentUpon>frm_home_notification.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_test_ocr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -924,6 +930,9 @@
     <EmbeddedResource Include="frm_home_dashboard.resx">
       <DependentUpon>frm_home_dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_home_notification.resx">
+      <DependentUpon>frm_home_notification.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_test_ocr.resx">
       <DependentUpon>frm_test_ocr.cs</DependentUpon>
     </EmbeddedResource>
@@ -1003,6 +1012,7 @@
     <Content Include="google_drive_credentials.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="docs\verification_sheet.xlsx" />
     <None Include="libmongocrypt.dylib" />
     <None Include="libmongocrypt.so" />
     <None Include="packages.config" />
@@ -1165,6 +1175,7 @@
     <None Include="Resources\icons8-coin-wallet-48.png" />
     <None Include="Resources\icons8-minus-48.png" />
     <None Include="Resources\icons8-plus-48.png" />
+    <None Include="Resources\loan.png" />
     <Content Include="tessdata\eng.traineddata">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

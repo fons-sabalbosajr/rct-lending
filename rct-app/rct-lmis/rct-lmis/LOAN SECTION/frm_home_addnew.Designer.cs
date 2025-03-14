@@ -67,13 +67,13 @@ namespace rct_lmis.LOAN_SECTION
             this.lloanno = new System.Windows.Forms.Label();
             this.laccno = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtloandescrenew = new System.Windows.Forms.RichTextBox();
             this.label45 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.trenewamt = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.dtcirenew = new System.Windows.Forms.DateTimePicker();
+            this.cbCIrenew = new System.Windows.Forms.CheckBox();
+            this.cbcollectorincharge = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label43 = new System.Windows.Forms.Label();
             this.trclose = new System.Windows.Forms.DateTimePicker();
             this.tramtpaid = new System.Windows.Forms.TextBox();
@@ -450,7 +450,6 @@ namespace rct_lmis.LOAN_SECTION
             this.lfilesready.Size = new System.Drawing.Size(390, 19);
             this.lfilesready.TabIndex = 77;
             this.lfilesready.Text = "your files are ready for uploading. please wait for the approval.";
-            this.lfilesready.Visible = false;
             // 
             // lnofile
             // 
@@ -588,11 +587,11 @@ namespace rct_lmis.LOAN_SECTION
             this.lloanno.BackColor = System.Drawing.Color.Transparent;
             this.lloanno.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lloanno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lloanno.Location = new System.Drawing.Point(787, 15);
+            this.lloanno.Location = new System.Drawing.Point(867, 15);
             this.lloanno.Name = "lloanno";
-            this.lloanno.Size = new System.Drawing.Size(64, 20);
+            this.lloanno.Size = new System.Drawing.Size(133, 20);
             this.lloanno.TabIndex = 20;
-            this.lloanno.Text = "loan No";
+            this.lloanno.Text = "RCT-2024DB-001";
             // 
             // laccno
             // 
@@ -608,13 +607,13 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.richTextBox1);
+            this.tabPage2.Controls.Add(this.rtloandescrenew);
             this.tabPage2.Controls.Add(this.label45);
-            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.trenewamt);
             this.tabPage2.Controls.Add(this.label44);
-            this.tabPage2.Controls.Add(this.dateTimePicker1);
-            this.tabPage2.Controls.Add(this.checkBox1);
-            this.tabPage2.Controls.Add(this.guna2ComboBox1);
+            this.tabPage2.Controls.Add(this.dtcirenew);
+            this.tabPage2.Controls.Add(this.cbCIrenew);
+            this.tabPage2.Controls.Add(this.cbcollectorincharge);
             this.tabPage2.Controls.Add(this.label43);
             this.tabPage2.Controls.Add(this.trclose);
             this.tabPage2.Controls.Add(this.tramtpaid);
@@ -697,13 +696,13 @@ namespace rct_lmis.LOAN_SECTION
             this.tabPage2.Text = "Renewal Loan";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // rtloandescrenew
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(581, 493);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(289, 48);
-            this.richTextBox1.TabIndex = 160;
-            this.richTextBox1.Text = "";
+            this.rtloandescrenew.Location = new System.Drawing.Point(581, 493);
+            this.rtloandescrenew.Name = "rtloandescrenew";
+            this.rtloandescrenew.Size = new System.Drawing.Size(404, 48);
+            this.rtloandescrenew.TabIndex = 160;
+            this.rtloandescrenew.Text = "";
             // 
             // label45
             // 
@@ -717,15 +716,15 @@ namespace rct_lmis.LOAN_SECTION
             this.label45.TabIndex = 159;
             this.label45.Text = "Loan Description/\r\nRemarks:";
             // 
-            // textBox1
+            // trenewamt
             // 
-            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(797, 455);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 25);
-            this.textBox1.TabIndex = 158;
+            this.trenewamt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.trenewamt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.trenewamt.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trenewamt.Location = new System.Drawing.Point(797, 455);
+            this.trenewamt.Name = "trenewamt";
+            this.trenewamt.Size = new System.Drawing.Size(188, 25);
+            this.trenewamt.TabIndex = 158;
             // 
             // label44
             // 
@@ -739,40 +738,40 @@ namespace rct_lmis.LOAN_SECTION
             this.label44.TabIndex = 157;
             this.label44.Text = "Amount Applying:";
             // 
-            // dateTimePicker1
+            // dtcirenew
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(854, 426);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(131, 23);
-            this.dateTimePicker1.TabIndex = 156;
+            this.dtcirenew.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtcirenew.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtcirenew.Location = new System.Drawing.Point(854, 427);
+            this.dtcirenew.Name = "dtcirenew";
+            this.dtcirenew.Size = new System.Drawing.Size(131, 23);
+            this.dtcirenew.TabIndex = 156;
             // 
-            // checkBox1
+            // cbCIrenew
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(679, 430);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(159, 19);
-            this.checkBox1.TabIndex = 155;
-            this.checkBox1.Text = "Credit Investigation Date:";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbCIrenew.AutoSize = true;
+            this.cbCIrenew.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCIrenew.Location = new System.Drawing.Point(679, 429);
+            this.cbCIrenew.Name = "cbCIrenew";
+            this.cbCIrenew.Size = new System.Drawing.Size(159, 19);
+            this.cbCIrenew.TabIndex = 155;
+            this.cbCIrenew.Text = "Credit Investigation Date:";
+            this.cbCIrenew.UseVisualStyleBackColor = true;
             // 
-            // guna2ComboBox1
+            // cbcollectorincharge
             // 
-            this.guna2ComboBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.guna2ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guna2ComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.guna2ComboBox1.ItemHeight = 30;
-            this.guna2ComboBox1.Location = new System.Drawing.Point(768, 384);
-            this.guna2ComboBox1.Name = "guna2ComboBox1";
-            this.guna2ComboBox1.Size = new System.Drawing.Size(217, 36);
-            this.guna2ComboBox1.TabIndex = 154;
+            this.cbcollectorincharge.BackColor = System.Drawing.Color.Transparent;
+            this.cbcollectorincharge.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbcollectorincharge.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbcollectorincharge.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcollectorincharge.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcollectorincharge.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cbcollectorincharge.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbcollectorincharge.ItemHeight = 30;
+            this.cbcollectorincharge.Location = new System.Drawing.Point(768, 384);
+            this.cbcollectorincharge.Name = "cbcollectorincharge";
+            this.cbcollectorincharge.Size = new System.Drawing.Size(217, 36);
+            this.cbcollectorincharge.TabIndex = 154;
             // 
             // label43
             // 
@@ -823,9 +822,9 @@ namespace rct_lmis.LOAN_SECTION
             this.lverowner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lverowner.Location = new System.Drawing.Point(859, 555);
             this.lverowner.Name = "lverowner";
-            this.lverowner.Size = new System.Drawing.Size(81, 15);
+            this.lverowner.Size = new System.Drawing.Size(88, 15);
             this.lverowner.TabIndex = 149;
-            this.lverowner.Text = "current owner";
+            this.lverowner.Text = "Mr. Ralph Daag";
             // 
             // label40
             // 
@@ -835,9 +834,9 @@ namespace rct_lmis.LOAN_SECTION
             this.label40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label40.Location = new System.Drawing.Point(780, 555);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(73, 15);
+            this.label40.Size = new System.Drawing.Size(78, 15);
             this.label40.TabIndex = 148;
-            this.label40.Text = "Prepared by:";
+            this.label40.Text = "Approved by:";
             // 
             // lveruser
             // 
@@ -1286,6 +1285,13 @@ namespace rct_lmis.LOAN_SECTION
             // 
             // trpaymentmode
             // 
+            this.trpaymentmode.AutoCompleteCustomSource.AddRange(new string[] {
+            "DAILY",
+            "WEEKLY",
+            "BI-MONTHLY",
+            "MONTHLY"});
+            this.trpaymentmode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.trpaymentmode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.trpaymentmode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trpaymentmode.Location = new System.Drawing.Point(399, 201);
             this.trpaymentmode.Name = "trpaymentmode";
@@ -1432,6 +1438,7 @@ namespace rct_lmis.LOAN_SECTION
             this.brenewprint.Size = new System.Drawing.Size(180, 31);
             this.brenewprint.TabIndex = 92;
             this.brenewprint.Text = "Print Verification Sheet";
+            this.brenewprint.Click += new System.EventHandler(this.brenewprint_Click);
             // 
             // panel3
             // 
@@ -1823,13 +1830,13 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.CheckBox cbCInvest;
         private System.Windows.Forms.Label label39;
         private Guna.UI2.WinForms.Guna2ComboBox cbcollectors;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
+        private System.Windows.Forms.DateTimePicker dtcirenew;
+        private System.Windows.Forms.CheckBox cbCIrenew;
+        private Guna.UI2.WinForms.Guna2ComboBox cbcollectorincharge;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtloandescrenew;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox trenewamt;
         private System.Windows.Forms.Label label44;
     }
 }

@@ -27,8 +27,6 @@ namespace rct_lmis
 {
     public partial class frm_home : Form
     {
-
-
         int pwidth;
         bool isShow;
         private Form currChildForm;
@@ -220,8 +218,6 @@ namespace rct_lmis
 
             if (user != null)
             {
-
-
                 // Get the full name and split to get the first name
                 var fullName = user.GetValue("FullName").AsString;
                 var firstName = fullName.Split(' ')[0]; // Split by space and take the first part
@@ -490,12 +486,52 @@ namespace rct_lmis
 
         private void bnotif_Click(object sender, EventArgs e)
         {
+            frm_home_notification notiForm = new frm_home_notification();
 
+            // Convert button location to coordinates relative to frm_home
+            Point buttonFormPos = bnotif.Location; // Position relative to frm_home
+
+            // Calculate position below the button
+            int x = this.Left + buttonFormPos.X; // frm_home's Left + button's X
+            int y = this.Top + buttonFormPos.Y + bnotif.Height + 35; // Adjusted spacing
+
+            // Get screen width
+            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+
+            // Default notification form size
+            int notiWidth = 265;
+            int notiHeight = 500;
+
+            // Adjust width if it exceeds the right edge of the screen
+            if (x + notiWidth > screenWidth)
+            {
+                x = screenWidth - notiWidth; // Align to right screen edge
+                if (x < 0) x = 0; // Ensure it doesn't go off-screen
+            }
+
+            // Set notification form size
+            notiForm.Size = new Size(notiWidth, notiHeight);
+
+            // Set the notification form's location
+            notiForm.StartPosition = FormStartPosition.Manual;
+            notiForm.Location = new Point(x, y);
+
+            // Show notification form
+            notiForm.ShowDialog();
         }
+
 
         private void tnotif_Tick(object sender, EventArgs e)
         {
             LoadTotalApplications();
+        }
+
+        private void bloannotif_Click(object sender, EventArgs e)
+        {
+            load.Show(this);
+            Thread.Sleep(1000);
+            ChildForm(new frm_home_loan_request());
+            load.Close();
         }
     }
 

@@ -32,19 +32,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.bhelp = new Guna.UI2.WinForms.Guna2CircleButton();
             this.ltitle = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.dgvloandata = new Guna.UI2.WinForms.Guna2DataGridView();
             this.pnavtop = new System.Windows.Forms.Panel();
+            this.brevert = new Guna.UI2.WinForms.Guna2Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dtdateDenied = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.bexport = new Guna.UI2.WinForms.Guna2Button();
             this.cbstatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.bdelforever = new Guna.UI2.WinForms.Guna2Button();
             this.lnorecord = new System.Windows.Forms.Label();
+            this.luser = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvloandata)).BeginInit();
             this.pnavtop.SuspendLayout();
@@ -53,6 +54,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel1.Controls.Add(this.luser);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.bhelp);
             this.panel1.Controls.Add(this.ltitle);
@@ -61,6 +63,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1200, 52);
             this.panel1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Maroon;
+            this.label1.Location = new System.Drawing.Point(738, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(419, 30);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Note: All \"Denied Loans\" will be deleted in 30 days. Please back up your data\r\nby" +
+    " clicking the \"Export to Excel\"button. Click the \"?\" button for more information" +
+    ".";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // bhelp
             // 
@@ -94,21 +111,6 @@
             this.ltitle.TabIndex = 2;
             this.ltitle.Text = "DENIED LOANS";
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Maroon;
-            this.label1.Location = new System.Drawing.Point(738, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(419, 30);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Note: All \"Denied Loans\" will be deleted in 30 days. Please back up your data\r\nby" +
-    " clicking the \"Export to Excel\"button. Click the \"?\" button for more information" +
-    ".";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // dgvloandata
             // 
             this.dgvloandata.AllowUserToAddRows = false;
@@ -130,7 +132,7 @@
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(248)))), ((int)(((byte)(249)))));
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvloandata.DefaultCellStyle = dataGridViewCellStyle6;
@@ -163,13 +165,13 @@
             this.dgvloandata.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvloandata.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvloandata.ThemeStyle.RowsStyle.Height = 70;
-            this.dgvloandata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            this.dgvloandata.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
             this.dgvloandata.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvloandata.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvloandata_DataBindingComplete);
             // 
             // pnavtop
             // 
-            this.pnavtop.Controls.Add(this.bdelforever);
+            this.pnavtop.Controls.Add(this.brevert);
             this.pnavtop.Controls.Add(this.label2);
             this.pnavtop.Controls.Add(this.dtdateDenied);
             this.pnavtop.Controls.Add(this.label3);
@@ -181,6 +183,27 @@
             this.pnavtop.Name = "pnavtop";
             this.pnavtop.Size = new System.Drawing.Size(1200, 63);
             this.pnavtop.TabIndex = 7;
+            // 
+            // brevert
+            // 
+            this.brevert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.brevert.BorderColor = System.Drawing.Color.Gainsboro;
+            this.brevert.BorderRadius = 2;
+            this.brevert.BorderThickness = 1;
+            this.brevert.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.brevert.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.brevert.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.brevert.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.brevert.FillColor = System.Drawing.Color.White;
+            this.brevert.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.brevert.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.brevert.ImageSize = new System.Drawing.Size(28, 28);
+            this.brevert.Location = new System.Drawing.Point(1028, 13);
+            this.brevert.Name = "brevert";
+            this.brevert.Size = new System.Drawing.Size(117, 35);
+            this.brevert.TabIndex = 133;
+            this.brevert.Text = "Revert Account";
+            this.brevert.Click += new System.EventHandler(this.brevert_Click);
             // 
             // label2
             // 
@@ -280,26 +303,6 @@
             this.tsearch.Size = new System.Drawing.Size(303, 36);
             this.tsearch.TabIndex = 9;
             // 
-            // bdelforever
-            // 
-            this.bdelforever.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bdelforever.BorderColor = System.Drawing.Color.Gainsboro;
-            this.bdelforever.BorderRadius = 2;
-            this.bdelforever.BorderThickness = 1;
-            this.bdelforever.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bdelforever.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bdelforever.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bdelforever.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bdelforever.FillColor = System.Drawing.Color.White;
-            this.bdelforever.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bdelforever.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.bdelforever.ImageSize = new System.Drawing.Size(28, 28);
-            this.bdelforever.Location = new System.Drawing.Point(1028, 13);
-            this.bdelforever.Name = "bdelforever";
-            this.bdelforever.Size = new System.Drawing.Size(117, 35);
-            this.bdelforever.TabIndex = 133;
-            this.bdelforever.Text = "Delete Forever";
-            // 
             // lnorecord
             // 
             this.lnorecord.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -314,6 +317,21 @@
             this.lnorecord.Text = "---no record found---";
             this.lnorecord.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.lnorecord.Visible = false;
+            // 
+            // luser
+            // 
+            this.luser.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.luser.AutoSize = true;
+            this.luser.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.luser.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.luser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.luser.Location = new System.Drawing.Point(215, 21);
+            this.luser.Name = "luser";
+            this.luser.Size = new System.Drawing.Size(32, 15);
+            this.luser.TabIndex = 135;
+            this.luser.Text = "luser";
+            this.luser.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.luser.Visible = false;
             // 
             // frm_home_ADMIN_dnloans
             // 
@@ -353,7 +371,8 @@
         private Guna.UI2.WinForms.Guna2Button bexport;
         private Guna.UI2.WinForms.Guna2ComboBox cbstatus;
         private Guna.UI2.WinForms.Guna2TextBox tsearch;
-        private Guna.UI2.WinForms.Guna2Button bdelforever;
+        private Guna.UI2.WinForms.Guna2Button brevert;
         private System.Windows.Forms.Label lnorecord;
+        private System.Windows.Forms.Label luser;
     }
 }
