@@ -1117,7 +1117,6 @@
             this.tpaymentstatus.Name = "tpaymentstatus";
             this.tpaymentstatus.PasswordChar = '\0';
             this.tpaymentstatus.PlaceholderText = "n/a";
-            this.tpaymentstatus.ReadOnly = true;
             this.tpaymentstatus.SelectedText = "";
             this.tpaymentstatus.Size = new System.Drawing.Size(138, 70);
             this.tpaymentstatus.TabIndex = 149;

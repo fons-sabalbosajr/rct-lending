@@ -30,8 +30,8 @@
     <PublisherName>ACS Micro IT Solutions Co.</PublisherName>
     <SuiteName>RACATOM Corporation</SuiteName>
     <MinimumRequiredVersion>1.0.0.16</MinimumRequiredVersion>
-    <ApplicationRevision>32</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>33</ApplicationRevision>
+    <ApplicationVersion>1.0.0.33</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

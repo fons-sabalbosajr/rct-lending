@@ -269,13 +269,13 @@ namespace rct_lmis.LOAN_SECTION
                 double amountToPay = Math.Floor(correctedAmortizedAmt * amortizationPeriod);
 
                 // Debugging logs
-                Console.WriteLine($"Loan Amount: {loanAmount}");
-                Console.WriteLine($"Total Loan with Interest: {totalLoanWithInterest}");
-                Console.WriteLine($"Amortized Amount: {correctedAmortizedAmt}");
-                Console.WriteLine($"Loan Term: {loanTerm} months");
-                Console.WriteLine($"Payment Mode: {loanMode}");
-                Console.WriteLine($"Amortization Period: {amortizationPeriod}");
-                Console.WriteLine($"Corrected Amount To Pay: {amountToPay}");
+                //Console.WriteLine($"Loan Amount: {loanAmount}");
+                //Console.WriteLine($"Total Loan with Interest: {totalLoanWithInterest}");
+                //Console.WriteLine($"Amortized Amount: {correctedAmortizedAmt}");
+                //Console.WriteLine($"Loan Term: {loanTerm} months");
+                //Console.WriteLine($"Payment Mode: {loanMode}");
+                //Console.WriteLine($"Amortization Period: {amortizationPeriod}");
+                //Console.WriteLine($"Corrected Amount To Pay: {amountToPay}");
 
 
                 ComputeEndPaymentDate();
@@ -619,14 +619,58 @@ namespace rct_lmis.LOAN_SECTION
             return $"RCT-CV{nextNumber:D5}";
         }
 
-        private void SaveAccountingEntries(BsonDocument loanReleasedDocument)
+        private void SaveAccountingEntries(string loanNo)
         {
             var database = MongoDBConnection.Instance.Database;
+            var disburseCollection = database.GetCollection<BsonDocument>("loan_disbursed");
             var accountCollection = database.GetCollection<BsonDocument>("loan_account_data");
 
-            double loanAmount = loanReleasedDocument.GetValue("loanAmt", 0.0).ToDouble();
-            double processingFee = loanReleasedDocument.GetValue("cashProFee", 0.0).ToDouble();
-            double disbursedAmount = loanAmount - processingFee;
+            // ✅ Fetch the loan disbursement details based on LoanNo
+            var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanLNno.Text);
+            var loanDisburseDocument = disburseCollection.Find(filter).FirstOrDefault();
+
+            if (loanDisburseDocument == null)
+            {
+                MessageBox.Show($"Loan disbursement record not found for LoanNo: {loanNo}!",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string paymentMethod = loanDisburseDocument.GetValue("PaymentMethod", "").ToString().ToUpper();
+            double loanAmount = ConvertToDouble(loanDisburseDocument.GetValue("PrincipalAmount", "0"));
+            double processingFee = 0.0;
+            double disbursedAmount = 0.0;
+            string accountTitleDisbursement = "";
+
+            switch (paymentMethod)
+            {
+                case "DISBURSE CASH":
+                case "CASH":
+                    processingFee = ConvertToDouble(loanDisburseDocument.GetValue("cashProFee", "0"));
+                    disbursedAmount = ConvertToDouble(loanDisburseDocument.GetValue("cashPoAmt", "0"));
+                    accountTitleDisbursement = "A100-1"; // ✅ Cash Account
+                    break;
+
+                case "DISBURSE ONLINE":
+                case "ONLINE":
+                    processingFee = ConvertToDouble(loanDisburseDocument.GetValue("onlineProFee", "0"));
+                    disbursedAmount = ConvertToDouble(loanDisburseDocument.GetValue("onlinePoAmt", "0"));
+                    accountTitleDisbursement = "A100-2"; // ✅ Online Payment Account
+                    break;
+
+                case "DISBURSE BANK TRANSFER":
+                case "BANK TRANSFER":
+                case "BANK":
+                    processingFee = ConvertToDouble(loanDisburseDocument.GetValue("bankProFee", "0"));
+                    disbursedAmount = ConvertToDouble(loanDisburseDocument.GetValue("bankAmt", "0"));
+                    accountTitleDisbursement = "A100-3"; // ✅ Bank Transfer Account
+                    break;
+
+                default:
+                    MessageBox.Show($"Invalid Payment Method detected: '{paymentMethod}'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
+
 
             // ✅ Batch insert for efficiency
             var entries = new List<BsonDocument>
@@ -636,7 +680,7 @@ namespace rct_lmis.LOAN_SECTION
                      { "AccountTitle", "A120-1" },
                      { "Debit", loanAmount },
                      { "Credit", 0 },
-                     { "Reference", loanReleasedDocument.GetValue("LoanIDNo", "").ToString() },
+                     { "Reference", loanNo },
                      { "Date", DateTime.Now }
                  },
                  new BsonDocument
@@ -644,15 +688,15 @@ namespace rct_lmis.LOAN_SECTION
                      { "AccountTitle", "I400-2" },
                      { "Debit", 0 },
                      { "Credit", processingFee },
-                     { "Reference", loanReleasedDocument.GetValue("LoanIDNo", "").ToString() },
+                     { "Reference", loanNo },
                      { "Date", DateTime.Now }
                  },
                  new BsonDocument
                  {
-                     { "AccountTitle", "A100-4" },
+                     { "AccountTitle", accountTitleDisbursement },
                      { "Debit", 0 },
                      { "Credit", disbursedAmount },
-                     { "Reference", loanReleasedDocument.GetValue("LoanIDNo", "").ToString() },
+                     { "Reference", loanNo },
                      { "Date", DateTime.Now }
                  },
                  new BsonDocument
@@ -660,7 +704,7 @@ namespace rct_lmis.LOAN_SECTION
                      { "AccountTitle", "A120-2" },
                      { "Debit", 0 },
                      { "Credit", 0 }, // Assuming interest is tracked later
-                     { "Reference", loanReleasedDocument.GetValue("LoanIDNo", "").ToString() },
+                     { "Reference", loanNo },
                      { "Date", DateTime.Now }
                  },
                  new BsonDocument
@@ -668,12 +712,34 @@ namespace rct_lmis.LOAN_SECTION
                      { "AccountTitle", "L200-9" },
                      { "Debit", 0 },
                      { "Credit", 0 }, // Assuming unearned income tracking
-                     { "Reference", loanReleasedDocument.GetValue("LoanIDNo", "").ToString() },
+                     { "Reference", loanNo },
                      { "Date", DateTime.Now }
                  }
              };
 
-            accountCollection.InsertMany(entries);
+            if (entries.Count > 0)
+            {
+                try
+                {
+                    accountCollection.InsertMany(entries);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error inserting accounting entries: {ex.Message}",
+                                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No accounting entries generated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // ✅ Helper Function to Convert MongoDB Values to Double
+        private double ConvertToDouble(BsonValue value)
+        {
+            string strValue = value.ToString().Replace("₱", "").Replace(",", "").Trim();
+            return double.TryParse(strValue, out double result) ? result : 0.0;
         }
 
         private void UpdateLoanApprovedCollection(double principalAmount, int loanTerm)
@@ -713,31 +779,97 @@ namespace rct_lmis.LOAN_SECTION
                 var database = MongoDBConnection.Instance.Database;
                 var disbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
 
-                // Ensure combo box and text field are not empty
+                // ✅ Ensure collector details are available
                 string collectorName = cbcollector.Text.Trim();
                 string collectorId = tidno.Text.Trim();
 
                 if (string.IsNullOrEmpty(collectorName) || string.IsNullOrEmpty(collectorId))
                 {
                     MessageBox.Show("Collector Name or ID is missing. Please select a collector before proceeding.",
-                        "Missing Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    "Missing Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                var filter = Builders<BsonDocument>.Filter.Eq("LoanIDNo", loanReleasedDocument.GetValue("LoanIDNo", "").ToString());
+                // ✅ Extract LoanNo safely
+                string loanNo = loanLNno.Text.Trim();
+                if (string.IsNullOrEmpty(loanNo))
+                {
+                    MessageBox.Show("Loan number is missing. Cannot proceed with update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // ✅ Ensure MongoDB is storing the same LoanNo
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo);
+                var existingLoan = disbursedCollection.Find(filter).FirstOrDefault();
+
+                if (existingLoan == null)
+                {
+                    MessageBox.Show($"Loan disbursement record not found for LoanNo: '{loanNo}'",
+                                    "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // ✅ Extract LoanTerm and LoanMode safely
+                string loanTermStr = loanReleasedDocument.GetValue("LoanTerm", "0").ToString();
+                int loanTerm = int.Parse(new string(loanTermStr.Where(char.IsDigit).ToArray())); // Extract digits only
+
+                string loanMode = loanReleasedDocument.GetValue("PaymentMode", "").ToString().ToUpper().Trim();
+
+                double loanAmount = loanReleasedDocument.GetValue("LoanAmount", 0.0).ToDouble();
+                double interestRate = 0.05; // 5% interest
+
+                // ✅ Calculate amortization period
+                int amortizationPeriod = 0;
+                switch (loanMode)
+                {
+                    case "WEEKLY":
+                        amortizationPeriod = loanTerm * 4;
+                        break;
+                    case "DAILY":
+                        amortizationPeriod = loanTerm * 20; // 20 days per month
+                        break;
+                    case "SEMI-MONTHLY":
+                        amortizationPeriod = loanTerm * 2;
+                        break;
+                    case "MONTHLY":
+                        amortizationPeriod = loanTerm;
+                        break;
+                    default:
+                        MessageBox.Show($"Invalid Payment Mode: '{loanMode}'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                }
+
+                // ✅ Compute total loan with interest
+                double totalLoanWithInterest = loanAmount * (1 + interestRate);
+
+                // ✅ Compute correct amortized amount per period
+                double correctedAmortizedAmt = totalLoanWithInterest / amortizationPeriod;
+
+                // ✅ Compute the correct total amount to pay (using Math.Floor)
+                double totalLoanAmountToPay = Math.Floor(correctedAmortizedAmt * amortizationPeriod);
+
+                // ✅ Debugging (optional - remove after testing)
+                MessageBox.Show($"DEBUG:\nLoanTerm: {loanTerm}\nLoanMode: {loanMode}\nLoanAmount: {loanAmount}\n" +
+                                $"AmortizationPeriod: {amortizationPeriod}\nTotalLoanWithInterest: {totalLoanWithInterest}\n" +
+                                $"CorrectedAmortizedAmt: {correctedAmortizedAmt}\nTotalLoanAmountToPay: {totalLoanAmountToPay}",
+                                "Debug Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // ✅ Calculate Maturity Date
+                DateTime releaseDate = DateTime.Now;
+                DateTime maturityDate = releaseDate.AddMonths(loanTerm);
+
                 var update = Builders<BsonDocument>.Update
-                    .Set("LoanStatus", "UPDATED")  // Fixed Loan Status
-                    .Set("CollectorName", collectorName) // Retrieved from ComboBox
-                    .Set("CollectorID", collectorId)  // Retrieved from TextBox
-                    .Set("ReleasingDate", DateTime.Now);
+                    .Set("LoanStatus", "UPDATED")
+                    .Set("CollectorName", collectorName)
+                    .Set("CollectorID", collectorId)
+                    .Set("ReleasingDate", releaseDate)
+                    .Set("MaturityDate", lendpayment.Text)
+                    .Set("TotalLoanAmountToPay", totalLoanAmountToPay)
+                    .CurrentDate("Date_Modified");
 
                 var result = disbursedCollection.UpdateOne(filter, update);
 
-                if (result.MatchedCount == 0)
-                {
-                    MessageBox.Show("No matching loan record found in loan_disbursed.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else if (result.ModifiedCount == 0)
+                if (result.ModifiedCount == 0)
                 {
                     MessageBox.Show("The record was found but not modified.", "Update Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -845,19 +977,26 @@ namespace rct_lmis.LOAN_SECTION
                     var document = CreateLoanReleasedDocument(loanApprovedDetails);
                     SaveDocumentToCollection(document);
 
-                    // ✅ Extract necessary fields for updating "loan_approved"
-                    string accountId = document.GetValue("LoanIDNo", "").ToString();
+                    string accountId = document.GetValue("LoanNo", "").ToString();
                     double principalAmount = document.GetValue("loanAmt", 0.0).ToDouble();
                     int loanTerm = document.GetValue("loanTerm", 0).ToInt32();
 
-                    // ✅ Update loan_approved collection
                     UpdateLoanApprovedCollection(principalAmount, loanTerm);
                     UpdateLoanDisbursedCollection(document);
-                    SaveAccountingEntries(document);
+       
+                    SaveAccountingEntries(loanLNno.Text);
 
                     load.Close();
 
                     MessageBox.Show(this, "Data saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    ClearUIFields();
+
+                    // ✅ Temporarily remove the FormClosing event before closing
+                    this.FormClosing -= frm_home_loan_voucher_FormClosing;
+
+                    // ✅ Close the form
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -1000,7 +1139,7 @@ namespace rct_lmis.LOAN_SECTION
                     switch (paymentMethod)
                     {
                         case "Disburse Cash":
-                            amount = loan_disbursed.GetValue("LoanAmortization", "0")?.ToString() ?? "0";
+                            amount = loan_disbursed.GetValue("LoanAmount", "0")?.ToString() ?? "0";
                             processingFee = loan_disbursed.GetValue("cashProFee", "0")?.ToString() ?? "0";
                             poAmount = loan_disbursed.GetValue("cashPoAmt", "0")?.ToString() ?? "0";
                             paymentPlatform = loan_disbursed.GetValue("PaymentMode", "CASH")?.ToString() ?? "CASH";
@@ -1008,7 +1147,7 @@ namespace rct_lmis.LOAN_SECTION
                             break;
 
                         case "Disburse Online":
-                            amount = loan_disbursed.GetValue("LoanAmortization", "0")?.ToString() ?? "0";
+                            amount = loan_disbursed.GetValue("LoanAmount", "0")?.ToString() ?? "0";
                             processingFee = loan_disbursed.GetValue("onlineProFee", "0")?.ToString() ?? "0";
                             poAmount = loan_disbursed.GetValue("onlinePoAmt", "0")?.ToString() ?? "0";
                             receiverName = loan_disbursed.GetValue("onlineName", fullName)?.ToString() ?? fullName;
@@ -1017,7 +1156,7 @@ namespace rct_lmis.LOAN_SECTION
                             break;
 
                         case "Disburse Bank Transfer":
-                            amount = loan_disbursed.GetValue("LoanAmortization", "0")?.ToString() ?? "0";
+                            amount = loan_disbursed.GetValue("LoanAmount", "0")?.ToString() ?? "0";
                             processingFee = loan_disbursed.GetValue("bankProFee", "0")?.ToString() ?? "0";
                             poAmount = loan_disbursed.GetValue("bankPoAmt", "0")?.ToString() ?? "0";
                             receiverName = loan_disbursed.GetValue("bankName", fullName)?.ToString() ?? fullName;
@@ -1044,11 +1183,11 @@ namespace rct_lmis.LOAN_SECTION
 
                     worksheet.Cells["B6"].Value = $"{loanType} with Account No.: {loanNo.Substring(Math.Max(loanNo.Length - 5, 0))}\n" +
                                                    $"{startPaymentDate} - {DateTime.Parse(startPaymentDate).AddMonths(1):MM/dd/yyyy}\n" +
-                                                   $"{paymentPlatform} / {loanTerm}\n ₱ {amount} starts on {transactionDate}";
+                                                   $"{paymentPlatform} / {loanTerm}\n{amount} starts on {transactionDate}";
 
                     worksheet.Cells["I3"].Value = $"CV{loanNo.Substring(Math.Max(loanNo.Length - 5, 0))}";
                     worksheet.Cells["G6"].Value = "Loans Receivable\nProcessing Fee\n\nDisbursed Amount";
-                    worksheet.Cells["I6"].Value = $"₱ {amount}\n{processingFee}";
+                    worksheet.Cells["I6"].Value = $"{amount}\n{processingFee}";
                     worksheet.Cells["K6"].Value = $"\n\n\n₱ {poAmount}";
 
                     worksheet.Cells["E7"].Value = accountId;
