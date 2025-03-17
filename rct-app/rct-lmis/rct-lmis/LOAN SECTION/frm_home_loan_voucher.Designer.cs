@@ -84,6 +84,7 @@
             this.bvoucherclient = new Guna.UI2.WinForms.Guna2Button();
             this.btest = new System.Windows.Forms.Button();
             this.lcurruser = new System.Windows.Forms.Label();
+            this.bprintvoucher = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdisburse)).BeginInit();
             this.SuspendLayout();
             // 
@@ -767,7 +768,7 @@
             this.bvoucherclient.Name = "bvoucherclient";
             this.bvoucherclient.Size = new System.Drawing.Size(130, 37);
             this.bvoucherclient.TabIndex = 236;
-            this.bvoucherclient.Text = "Print Cash Voucher";
+            this.bvoucherclient.Text = "Print Cash Voucher (Office Copy)";
             this.bvoucherclient.Click += new System.EventHandler(this.bvoucherclient_Click);
             // 
             // btest
@@ -794,11 +795,30 @@
             this.lcurruser.Text = "current user";
             this.lcurruser.Visible = false;
             // 
+            // bprintvoucher
+            // 
+            this.bprintvoucher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bprintvoucher.BorderRadius = 4;
+            this.bprintvoucher.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bprintvoucher.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bprintvoucher.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bprintvoucher.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bprintvoucher.FillColor = System.Drawing.Color.SeaGreen;
+            this.bprintvoucher.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bprintvoucher.ForeColor = System.Drawing.Color.White;
+            this.bprintvoucher.Location = new System.Drawing.Point(157, 514);
+            this.bprintvoucher.Name = "bprintvoucher";
+            this.bprintvoucher.Size = new System.Drawing.Size(130, 37);
+            this.bprintvoucher.TabIndex = 239;
+            this.bprintvoucher.Text = "Print Cash Voucher (Client Copy)";
+            this.bprintvoucher.Click += new System.EventHandler(this.bprintvoucher_Click);
+            // 
             // frm_home_loan_voucher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.bprintvoucher);
             this.Controls.Add(this.lcurruser);
             this.Controls.Add(this.btest);
             this.Controls.Add(this.bvoucherclient);
@@ -920,5 +940,6 @@
         private Guna.UI2.WinForms.Guna2Button bvoucherclient;
         private System.Windows.Forms.Button btest;
         private System.Windows.Forms.Label lcurruser;
+        private Guna.UI2.WinForms.Guna2Button bprintvoucher;
     }
 }

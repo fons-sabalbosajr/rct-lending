@@ -26,51 +26,50 @@ namespace rct_lmis.LOAN_SECTION
             InitializeComponent();
             this.accountId = accountId;
             loggedInUsername = UserSession.Instance.CurrentUser;
-            LoadLoanDetails();
+            
         }
 
-        private void LoadLoanDetails()
+        private void LoadLoanDetails(string accountId, string loanStatus)
         {
             try
             {
                 var database = MongoDBConnection.Instance.Database;
                 var loanAppCollection = database.GetCollection<BsonDocument>("loan_application");
-                var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+
+                var filter = Builders<BsonDocument>.Filter.And(
+                    Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
+                    Builders<BsonDocument>.Filter.Eq("LoanStatus", loanStatus)
+                );
+
                 var document = loanAppCollection.Find(filter).FirstOrDefault();
 
                 if (document != null)
                 {
-                    tlaccountno.Text = document.Contains("AccountId") ? document["AccountId"].ToString() : "N/A";
-                    tloanstatus.Text = document.Contains("Status") ? document["Status"].ToString() : "Unknown Status";
-                    taccountstatus.Text = document.Contains("LoanStatus") ? document["LoanStatus"].ToString() : "Unknown Status";
+                    // ✅ Extract Account ID safely
+                    tlaccountno.Text = document.TryGetValue("AccountId", out var accountIdValue) ? accountIdValue.ToString() : "N/A";
 
-                    // Hide buttons based on Loan Status
-                    if (taccountstatus.Text == "LOAN APPROVED")
+                    // ✅ Extract Loan Status safely
+                    tloanstatus.Text = document.TryGetValue("LoanStatus", out var loanStatusValue) ? loanStatusValue.ToString() : "Unknown Status";
+                    string loanStatusText = tloanstatus.Text.Trim(); // Remove extra spaces if any
+
+                    taccountstatus.Text = document.TryGetValue("Status", out var accStatusValue) ? accStatusValue.ToString() : "Unknown Status";
+                    string accStatusText = taccountstatus.Text.Trim(); // Remove extra spaces if any
+
+
+                    // ✅ Hide `bdisburse` if LoanStatus is one of the restricted statuses
+                    if (loanStatusText == "PENDING RENEWAL LOAN APPLICATION" || loanStatusText == "FOR VERIFICATION AND APPROVAL")
                     {
-                        bapproved.Visible = false;
-                        bdisburse.Visible = true;
+                        bdisburse.Visible = false;
                     }
                     else
                     {
                         bdisburse.Visible = true;
-                        bdisburse.Visible = false;
                     }
 
-                    if (taccountstatus.Text == "LOAN DENIED")
+                    // ✅ Handle Application Date safely
+                    if (document.TryGetValue("ApplicationDate", out var appDateValue) && appDateValue.IsBsonDateTime)
                     {
-                        bdisburse.Visible = false;
-                        bapproved.Visible = true;
-                    }
-                    else
-                    {
-                        bdisburse.Visible = true;
-                        bapproved.Visible = false;
-                    }
-
-                    // ✅ Properly handling ApplicationDate
-                    if (document.Contains("ApplicationDate") && document["ApplicationDate"].IsBsonDateTime)
-                    {
-                        var appDate = document["ApplicationDate"].ToUniversalTime();
+                        var appDate = appDateValue.ToUniversalTime();
                         tloanappdate.Text = appDate.ToString("MM/dd/yyyy");
                     }
                     else
@@ -78,55 +77,43 @@ namespace rct_lmis.LOAN_SECTION
                         tloanappdate.Text = "N/A";
                     }
 
-                    tfname.Text = document.Contains("ClientName") ? document["ClientName"].ToString() : "N/A";
-                    taddress.Text = document.Contains("Address") ? document["Address"].ToString() : "N/A";
-
-                    // Handle CI Checkbox
-                    cbCInvest.Checked = document.Contains("CI") && document["CI"].ToString() == "✔️";
-
-                    // ✅ Properly handling CIDate
-                    if (document.Contains("CIDate") && document["CIDate"].IsBsonDateTime)
+                    // ✅ Extract Loan Amount safely
+                    if (document.TryGetValue("LoanAmount", out var loanAmtValue) && decimal.TryParse(loanAmtValue.ToString(), out decimal loanAmt))
                     {
-                        var ciDate = document["CIDate"].ToUniversalTime();
-                        tcidate.Text = ciDate.ToString("MM/dd/yyyy");
-                    }
-                    else
-                    {
-                        tcidate.Text = "N/A";
-                    }
-
-                    // Convert Loan Amount to PHP Currency
-                    if (document.Contains("LoanAmount") && decimal.TryParse(document["LoanAmount"].ToString(), out decimal loanAmt))
-                    {
-                        tloanamt.Text = loanAmt.ToString("C", new System.Globalization.CultureInfo("en-PH")); // PHP currency format
+                        tloanamt.Text = loanAmt.ToString("C", new System.Globalization.CultureInfo("en-PH"));
                     }
                     else
                     {
                         tloanamt.Text = "₱0.00";
                     }
 
-                    tcollector.Text = document.Contains("CollectionInCharge") ? document["CollectionInCharge"].ToString() : "N/A";
-                    tloandesc.Text = document.Contains("LoanDescription") ? document["LoanDescription"].ToString() : "N/A";
+                    // ✅ Extract Client Name & Address safely
+                    tfname.Text = document.TryGetValue("ClientName", out var clientNameValue) ? clientNameValue.ToString() : "N/A";
+                    taddress.Text = document.TryGetValue("Address", out var addressValue) ? addressValue.ToString() : "N/A";
+                    tcollector.Text = document.TryGetValue("CollectorInCharge", out var collectorValue) ? collectorValue.ToString() : "N/A";
+                    tloandesc.Text = document.TryGetValue("LoanDescription", out var descValue) ? descValue.ToString() : "N/A";
 
-                    // ✅ Handle Remarks (Findings)
-                    if (document.Contains("Remarks") && !string.IsNullOrWhiteSpace(document["Remarks"].ToString()))
+
+                    LoadUploadedDocuments(document);
+
+                    // ✅ Handle Remarks
+                    if (document.TryGetValue("Remarks", out var remarksValue) && !string.IsNullOrWhiteSpace(remarksValue.ToString()))
                     {
                         lfindings.Visible = true;
-                        tfindings.Text = document["Remarks"].ToString();
-                        tfindings.Visible = true; // Show the field if there are remarks
+                        tfindings.Text = remarksValue.ToString();
+                        tfindings.Visible = true;
                     }
                     else
                     {
                         lfindings.Visible = false;
                         tfindings.Text = string.Empty;
-                        tfindings.Visible = false; // Hide the field if no remarks exist
+                        tfindings.Visible = false;
                     }
-
-                    LoadUploadedDocuments(document); // Assuming this method handles file processing
                 }
                 else
                 {
-                    MessageBox.Show("Loan details not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No loan details found matching the given criteria.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    bdisburse.Visible = false; // Hide if no loan found
                 }
             }
             catch (Exception ex)
@@ -134,6 +121,7 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show($"Error loading loan details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void LoadUploadedDocuments(BsonDocument document)
         {
@@ -180,7 +168,24 @@ namespace rct_lmis.LOAN_SECTION
 
         private void frm_home_loand_req_details_Load(object sender, EventArgs e)
         {
+            
             LoadUserInfo(loggedInUsername);
+
+            var database = MongoDBConnection.Instance.Database;
+            var loanAppCollection = database.GetCollection<BsonDocument>("loan_application");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+            var document = loanAppCollection.Find(filter).FirstOrDefault();
+
+            if (document != null)
+            {
+                string loanStatus = document.Contains("LoanStatus") ? document["LoanStatus"].ToString() : "N/A";
+                LoadLoanDetails(accountId, loanStatus); // ✅ Pass only LoanStatus
+            }
+            else
+            {
+                MessageBox.Show("No loan record found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void LoadUserInfo(string username)
@@ -227,7 +232,8 @@ namespace rct_lmis.LOAN_SECTION
 
         private async void bapproved_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to approve the pending application?", "Approve pending account", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Do you want to approve the pending application?", "Approve Pending Account",
+                                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
@@ -253,43 +259,40 @@ namespace rct_lmis.LOAN_SECTION
                         .Set("ApprovedBy", approvedBy)
                         .Set("ApprovalDate", BsonDateTime.Create(DateTime.UtcNow)); // Store as UTC timestamp
 
-                    var result = loanAppCollection.UpdateOne(filter, update);
+                    var result = await loanAppCollection.UpdateOneAsync(filter, update); // Use Async version
 
                     if (result.ModifiedCount > 0)
                     {
                         MessageBox.Show(this, "Loan application approved and details updated successfully.",
                             "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Update UI elements safely
-                        Invoke((MethodInvoker)delegate
-                        {
-                            bapproved.Visible = false;
-                            bdisburse.Visible = true;
-                        });
+                        // ✅ Update UI safely
+                        bapproved.Visible = false;
+                        bdisburse.Visible = true;
 
-                        LoadLoanDetails();
-
-                        // Refresh DataGridView in frm_home_loan_request
-                        foreach (Form form in System.Windows.Forms.Application.OpenForms)
+                        // ✅ Retrieve updated LoanStatus
+                        var document = await loanAppCollection.Find(filter).FirstOrDefaultAsync();
+                        if (document != null)
                         {
-                            if (form is frm_home_loan_request homeLoanForm)
-                            {
-                                homeLoanForm.LoadLoanApplicationsData();
-                                System.Windows.Forms.Application.DoEvents(); // Ensures UI updates properly
-                                break;
-                            }
+                            string loanStatus = document.TryGetValue("LoanStatus", out var loanStatusValue) ? loanStatusValue.ToString() : "N/A";
+
+                            // ✅ LoadLoanDetails now only expects `AccountId` and `LoanStatus`
+                            LoadLoanDetails(accountId, loanStatus);
                         }
+
+                        // ✅ Get open forms correctly
+                        FormCollection openForms = System.Windows.Forms.Application.OpenForms;
+                        var homeLoanForm = openForms.OfType<frm_home_loan_request>().FirstOrDefault();
+                        homeLoanForm?.LoadLoanApplicationsData();
+
                     }
                     else
                     {
                         MessageBox.Show(this, "No matching record found or no changes made.",
                             "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                        Invoke((MethodInvoker)delegate
-                        {
-                            bdisburse.Visible = false;
-                            bapproved.Visible = true;
-                        });
+                        bdisburse.Visible = false;
+                        bapproved.Visible = true;
                     }
                 }
                 catch (Exception ex)

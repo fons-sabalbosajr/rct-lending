@@ -414,13 +414,13 @@ namespace rct_lmis.LOAN_SECTION
                 { "loanTerm", loanTerm },
                 { "loanInterest", loanInterest },
                 { "LoanType", loanApprovedDetails.GetValue("LoanType", "").ToString() },
-                { "Mode", loanApprovedDetails.GetValue("PaymentMode", "").ToString() },
+                { "Mode", loanApprovedDetails.GetValue("PaymentMethod", "").ToString() },
                 { "cashProFee", processingFee },
                 { "cashPoAmt", payoutAmount },
                 { "cashClnNo", loanApprovedDetails.GetValue("ClientNo", "").ToString() },
                 { "payoutDate", payoutDate },
                 { "clientName", loanApprovedDetails.GetValue("cashName", "").ToString() },
-                { "paymentMode", loanApprovedDetails.GetValue("PaymentMode", "").ToString() },
+                { "paymentMode", loanApprovedDetails.GetValue("PaymentMethod", "").ToString() },
                 { "CollectorName", loanApprovedDetails.GetValue("CollectorName", "").ToString() },
                 { "Encoder", encoderName },
                 { "ReleasingDate", currentDateTime }
@@ -798,7 +798,7 @@ namespace rct_lmis.LOAN_SECTION
                     return;
                 }
 
-                // ✅ Ensure MongoDB is storing the same LoanNo
+                // ✅ Fetch the existing loan from loan_disbursed collection
                 var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo);
                 var existingLoan = disbursedCollection.Find(filter).FirstOrDefault();
 
@@ -809,50 +809,24 @@ namespace rct_lmis.LOAN_SECTION
                     return;
                 }
 
-                // ✅ Extract LoanTerm and LoanMode safely
+                // ✅ Extract LoanTerm safely
                 string loanTermStr = loanReleasedDocument.GetValue("LoanTerm", "0").ToString();
                 int loanTerm = int.Parse(new string(loanTermStr.Where(char.IsDigit).ToArray())); // Extract digits only
 
-                string loanMode = loanReleasedDocument.GetValue("PaymentMode", "").ToString().ToUpper().Trim();
+                // ✅ Extract LoanAmount safely
+                double loanAmount = ExtractNumericValue(loanReleasedDocument, "LoanAmount");
 
-                double loanAmount = loanReleasedDocument.GetValue("LoanAmount", 0.0).ToDouble();
+                // ✅ Define interest rate
                 double interestRate = 0.05; // 5% interest
-
-                // ✅ Calculate amortization period
-                int amortizationPeriod = 0;
-                switch (loanMode)
-                {
-                    case "WEEKLY":
-                        amortizationPeriod = loanTerm * 4;
-                        break;
-                    case "DAILY":
-                        amortizationPeriod = loanTerm * 20; // 20 days per month
-                        break;
-                    case "SEMI-MONTHLY":
-                        amortizationPeriod = loanTerm * 2;
-                        break;
-                    case "MONTHLY":
-                        amortizationPeriod = loanTerm;
-                        break;
-                    default:
-                        MessageBox.Show($"Invalid Payment Mode: '{loanMode}'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                }
 
                 // ✅ Compute total loan with interest
                 double totalLoanWithInterest = loanAmount * (1 + interestRate);
 
-                // ✅ Compute correct amortized amount per period
-                double correctedAmortizedAmt = totalLoanWithInterest / amortizationPeriod;
+                // ✅ Compute correct amortized amount (using 1 month as the default period)
+                double correctedAmortizedAmt = totalLoanWithInterest / loanTerm;
 
                 // ✅ Compute the correct total amount to pay (using Math.Floor)
-                double totalLoanAmountToPay = Math.Floor(correctedAmortizedAmt * amortizationPeriod);
-
-                // ✅ Debugging (optional - remove after testing)
-                MessageBox.Show($"DEBUG:\nLoanTerm: {loanTerm}\nLoanMode: {loanMode}\nLoanAmount: {loanAmount}\n" +
-                                $"AmortizationPeriod: {amortizationPeriod}\nTotalLoanWithInterest: {totalLoanWithInterest}\n" +
-                                $"CorrectedAmortizedAmt: {correctedAmortizedAmt}\nTotalLoanAmountToPay: {totalLoanAmountToPay}",
-                                "Debug Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                double totalLoanAmountToPay = Math.Floor(correctedAmortizedAmt * loanTerm);
 
                 // ✅ Calculate Maturity Date
                 DateTime releaseDate = DateTime.Now;
@@ -863,7 +837,7 @@ namespace rct_lmis.LOAN_SECTION
                     .Set("CollectorName", collectorName)
                     .Set("CollectorID", collectorId)
                     .Set("ReleasingDate", releaseDate)
-                    .Set("MaturityDate", lendpayment.Text)
+                    .Set("MaturityDate", maturityDate)
                     .Set("TotalLoanAmountToPay", totalLoanAmountToPay)
                     .CurrentDate("Date_Modified");
 
@@ -879,7 +853,6 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show($"Error updating loan_disbursed collection: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
 
         private BsonDocument GetLoanApprovedDetails(string clientNumber)
@@ -990,13 +963,14 @@ namespace rct_lmis.LOAN_SECTION
 
                     MessageBox.Show(this, "Data saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    ClearUIFields();
+                    //ClearUIFields();
 
+                    
                     // ✅ Temporarily remove the FormClosing event before closing
-                    this.FormClosing -= frm_home_loan_voucher_FormClosing;
+                    //this.FormClosing -= frm_home_loan_voucher_FormClosing;
 
                     // ✅ Close the form
-                    this.Close();
+                    //this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -1133,12 +1107,13 @@ namespace rct_lmis.LOAN_SECTION
                     string accountId = loan_disbursed.GetValue("AccountId", "")?.ToString() ?? "";
 
                     // ✅ Determine payment details dynamically
-                    string amount = "0", processingFee = "0", poAmount = "0";
+                    string amount = "0", processingFee = "0", poAmount = "0", amort = "0", clientName = "";
                     string receiverName = fullName, paymentPlatform = "UNKNOWN", transactionDate = startPaymentDate;
 
                     switch (paymentMethod)
                     {
                         case "Disburse Cash":
+                            amort = loan_disbursed.GetValue("LoanAmortization", "0")?.ToString() ?? "0";
                             amount = loan_disbursed.GetValue("LoanAmount", "0")?.ToString() ?? "0";
                             processingFee = loan_disbursed.GetValue("cashProFee", "0")?.ToString() ?? "0";
                             poAmount = loan_disbursed.GetValue("cashPoAmt", "0")?.ToString() ?? "0";
@@ -1147,6 +1122,7 @@ namespace rct_lmis.LOAN_SECTION
                             break;
 
                         case "Disburse Online":
+                            amort = loan_disbursed.GetValue("LoanAmortization", "0")?.ToString() ?? "0";
                             amount = loan_disbursed.GetValue("LoanAmount", "0")?.ToString() ?? "0";
                             processingFee = loan_disbursed.GetValue("onlineProFee", "0")?.ToString() ?? "0";
                             poAmount = loan_disbursed.GetValue("onlinePoAmt", "0")?.ToString() ?? "0";
@@ -1156,10 +1132,12 @@ namespace rct_lmis.LOAN_SECTION
                             break;
 
                         case "Disburse Bank Transfer":
+                            amort = loan_disbursed.GetValue("LoanAmortization", "0")?.ToString() ?? "0";
                             amount = loan_disbursed.GetValue("LoanAmount", "0")?.ToString() ?? "0";
                             processingFee = loan_disbursed.GetValue("bankProFee", "0")?.ToString() ?? "0";
-                            poAmount = loan_disbursed.GetValue("bankPoAmt", "0")?.ToString() ?? "0";
-                            receiverName = loan_disbursed.GetValue("bankName", fullName)?.ToString() ?? fullName;
+                            poAmount = loan_disbursed.GetValue("bankAmt", "0")?.ToString() ?? "0";
+                            clientName = loan_disbursed.GetValue("bankName", fullName)?.ToString() ?? fullName;
+                            receiverName = loan_disbursed.GetValue("bankPlatform", fullName)?.ToString() ?? fullName;
                             paymentPlatform = loan_disbursed.GetValue("PaymentMode", "BANK TRANSFER")?.ToString() ?? "BANK TRANSFER";
                             transactionDate = loan_disbursed.GetValue("StartPaymentDate", startPaymentDate)?.ToString() ?? startPaymentDate;
                             break;
@@ -1178,24 +1156,24 @@ namespace rct_lmis.LOAN_SECTION
                     }
 
                     // ✅ Fill Excel cells dynamically
-                    worksheet.Cells["D4"].Value = receiverName;
+                    worksheet.Cells["D4"].Value = clientName;
                     worksheet.Cells["I4"].Value = DateTime.Now.ToString("MM/dd/yyyy");
 
                     worksheet.Cells["B6"].Value = $"{loanType} with Account No.: {loanNo.Substring(Math.Max(loanNo.Length - 5, 0))}\n" +
-                                                   $"{startPaymentDate} - {DateTime.Parse(startPaymentDate).AddMonths(1):MM/dd/yyyy}\n" +
-                                                   $"{paymentPlatform} / {loanTerm}\n{amount} starts on {transactionDate}";
+                                                   $"{startPaymentDate} - {lendpayment.Text}\n" +
+                                                   $"{paymentPlatform} / {loanTerm}\n₱ {amort} starts on {transactionDate}";
 
                     worksheet.Cells["I3"].Value = $"CV{loanNo.Substring(Math.Max(loanNo.Length - 5, 0))}";
-                    worksheet.Cells["G6"].Value = "Loans Receivable\nProcessing Fee\n\nDisbursed Amount";
-                    worksheet.Cells["I6"].Value = $"{amount}\n{processingFee}";
-                    worksheet.Cells["K6"].Value = $"\n\n\n₱ {poAmount}";
+                    worksheet.Cells["G6"].Value = "Loans Receivable\nProcessing Fee\n\nCash in - " + receiverName;
+                    worksheet.Cells["I6"].Value = $"{amount}";
+                    worksheet.Cells["K6"].Value = $"\n{processingFee}\n\n₱ {poAmount}";
 
                     worksheet.Cells["E7"].Value = accountId;
-                    worksheet.Cells["E8"].Value = receiverName;
+                    worksheet.Cells["E8"].Value = clientName;
                     worksheet.Cells["E9"].Value = "₱ " + poAmount;
                     worksheet.Cells["E10"].Value = lendpayment.Text;
 
-                    worksheet.Cells["I7"].Value = amount;
+                    worksheet.Cells["I7"].Value = "₱ " + amort;
                     worksheet.Cells["I8"].Value = loanTerm;
                     worksheet.Cells["I9"].Value = paymentPlatform;
                     worksheet.Cells["I10"].Value = transactionDate;
@@ -1301,6 +1279,148 @@ namespace rct_lmis.LOAN_SECTION
                 Thread.Sleep(1000);
                 LoadDataToUI(clientNo);
                 load.Close();
+            }
+        }
+
+        private void bprintvoucher_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string clientNumber = lclientno.Text;
+                var loan_disbursed = GetLoanApprovedDetails(clientNumber);
+
+                if (loan_disbursed == null)
+                {
+                    MessageBox.Show("No loan details found for this client.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Excel Files|*.xlsx",
+                    Title = "Save Disbursement Voucher",
+                    FileName = $"Disbursement_Voucher_{clientNumber} - {lclientname.Text}.xlsx"
+                };
+
+                if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string savePath = saveFileDialog.FileName;
+                string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "docs", "cash_voucher_client.xlsx");
+
+                if (!File.Exists(templatePath))
+                {
+                    MessageBox.Show($"Error: Template file not found at {templatePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                FileInfo templateFile = new FileInfo(templatePath);
+                FileInfo saveFile = new FileInfo(savePath);
+
+                using (ExcelPackage package = new ExcelPackage(templateFile))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+
+                    // ✅ Fetch loan details
+                    string firstName = loan_disbursed.GetValue("FirstName", "")?.ToString() ?? "";
+                    string lastName = loan_disbursed.GetValue("LastName", "")?.ToString() ?? "";
+                    string middleName = loan_disbursed.GetValue("MiddleName", "")?.ToString() ?? "";
+                    string fullName = $"{firstName} {(string.IsNullOrWhiteSpace(middleName) ? "" : middleName + " ")}{lastName}".Trim();
+
+                    string loanNo = loan_disbursed.GetValue("LoanNo", "")?.ToString() ?? "";
+                    string loanType = loan_disbursed.GetValue("LoanType", "")?.ToString() ?? "";
+                    string startPaymentDate = loan_disbursed.GetValue("StartPaymentDate", "")?.ToString() ?? "";
+                    string loanTerm = loan_disbursed.GetValue("LoanTerm", "")?.ToString() ?? "";
+                    string paymentMethod = loan_disbursed.GetValue("PaymentMethod", lpaymentmode.Text)?.ToString() ?? "";
+                    string accountId = loan_disbursed.GetValue("AccountId", "")?.ToString() ?? "";
+
+                    // ✅ Determine payment details dynamically
+                    string amount = "0", processingFee = "0", poAmount = "0", amort = "0", clientName = "";
+                    string receiverName = fullName, paymentPlatform = "UNKNOWN", transactionDate = startPaymentDate;
+
+                    switch (paymentMethod)
+                    {
+                        case "Disburse Cash":
+                            amort = loan_disbursed.GetValue("LoanAmortization", "0")?.ToString() ?? "0";
+                            amount = loan_disbursed.GetValue("LoanAmount", "0")?.ToString() ?? "0";
+                            processingFee = loan_disbursed.GetValue("cashProFee", "0")?.ToString() ?? "0";
+                            poAmount = loan_disbursed.GetValue("cashPoAmt", "0")?.ToString() ?? "0";
+                            paymentPlatform = loan_disbursed.GetValue("PaymentMode", "CASH")?.ToString() ?? "CASH";
+                            transactionDate = loan_disbursed.GetValue("StartPaymentDate", startPaymentDate)?.ToString() ?? startPaymentDate;
+                            break;
+
+                        case "Disburse Online":
+                            amort = loan_disbursed.GetValue("LoanAmortization", "0")?.ToString() ?? "0";
+                            amount = loan_disbursed.GetValue("LoanAmount", "0")?.ToString() ?? "0";
+                            processingFee = loan_disbursed.GetValue("onlineProFee", "0")?.ToString() ?? "0";
+                            poAmount = loan_disbursed.GetValue("onlinePoAmt", "0")?.ToString() ?? "0";
+                            receiverName = loan_disbursed.GetValue("onlineName", fullName)?.ToString() ?? fullName;
+                            paymentPlatform = loan_disbursed.GetValue("PaymentMode", "ONLINE TRANSFER")?.ToString() ?? "ONLINE TRANSFER";
+                            transactionDate = loan_disbursed.GetValue("StartPaymentDate", startPaymentDate)?.ToString() ?? startPaymentDate;
+                            break;
+
+                        case "Disburse Bank Transfer":
+                            amort = loan_disbursed.GetValue("LoanAmortization", "0")?.ToString() ?? "0";
+                            amount = loan_disbursed.GetValue("LoanAmount", "0")?.ToString() ?? "0";
+                            processingFee = loan_disbursed.GetValue("bankProFee", "0")?.ToString() ?? "0";
+                            poAmount = loan_disbursed.GetValue("bankAmt", "0")?.ToString() ?? "0";
+                            clientName = loan_disbursed.GetValue("bankName", fullName)?.ToString() ?? fullName;
+                            receiverName = loan_disbursed.GetValue("bankPlatform", fullName)?.ToString() ?? fullName;
+                            paymentPlatform = loan_disbursed.GetValue("PaymentMode", "BANK TRANSFER")?.ToString() ?? "BANK TRANSFER";
+                            transactionDate = loan_disbursed.GetValue("StartPaymentDate", startPaymentDate)?.ToString() ?? startPaymentDate;
+                            break;
+
+                        default:
+                            MessageBox.Show("Invalid Payment Method.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                    }
+
+                    // ✅ Clean and validate amount format
+                    poAmount = poAmount.Replace("₱", "").Replace(",", "").Trim();
+                    if (!decimal.TryParse(poAmount, out decimal poAmountValue))
+                    {
+                        MessageBox.Show($"Error: Invalid poAmount format '{poAmount}'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // ✅ Fill Excel cells dynamically
+                    worksheet.Cells["D4"].Value = clientName;
+                    worksheet.Cells["I4"].Value = DateTime.Now.ToString("MM/dd/yyyy");
+
+                    worksheet.Cells["B6"].Value = $"{loanType} with Account No.: {loanNo.Substring(Math.Max(loanNo.Length - 5, 0))}\n" +
+                                                   $"{startPaymentDate} - {lendpayment.Text}\n" +
+                                                   $"{paymentPlatform} / {loanTerm}\n₱ {amort} starts on {transactionDate}";
+
+                    worksheet.Cells["I3"].Value = $"CV{loanNo.Substring(Math.Max(loanNo.Length - 5, 0))}";
+                    worksheet.Cells["G6"].Value = "Loans Receivable\nProcessing Fee\n\nCash in - " + receiverName;
+                    worksheet.Cells["I6"].Value = $"{amount}";
+                    worksheet.Cells["K6"].Value = $"\n{processingFee}\n\n₱ {poAmount}";
+
+                    worksheet.Cells["E7"].Value = accountId;
+                    worksheet.Cells["E8"].Value = clientName;
+                    worksheet.Cells["E9"].Value = "₱ " + poAmount;
+                    worksheet.Cells["E10"].Value = lendpayment.Text;
+
+                    worksheet.Cells["I7"].Value = "₱ " + amort;
+                    worksheet.Cells["I8"].Value = loanTerm;
+                    worksheet.Cells["I9"].Value = paymentPlatform;
+                    worksheet.Cells["I10"].Value = transactionDate;
+
+                    // ✅ Convert amount to words
+                    worksheet.Cells["F11"].Value = ConvertAmountToWords(poAmountValue);
+
+                    worksheet.Cells["D12"].Value = clientName;
+                    worksheet.Cells["K12"].Value = DateTime.Now.ToString("MM/dd/yyyy");
+
+                    package.SaveAs(saveFile);
+                }
+
+                Process.Start(new ProcessStartInfo(savePath) { UseShellExecute = true });
+                MessageBox.Show("Disbursement Voucher generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating disbursement voucher: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

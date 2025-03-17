@@ -15,7 +15,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\FONS\Dropbox\lmis\</PublishUrl>
+    <PublishUrl>C:\Users\zenbo\Dropbox\lmis\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -25,13 +25,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>https://dl.dropboxusercontent.com/scl/fo/my0ayjevrxii155c0tdwi/AGaQdLTYQFJTqgYkP1F6hPA/</UpdateUrl>
+    <UpdateUrl>https://www.dropbox.com/scl/fo/btoyub77866ts3lt93s53/AAF614hbx6JLCDe618jDHEs%3frlkey=9daeh63gy9vu2yl5pqh8kowk9&amp;st=hssh3ym9&amp;dl=0/</UpdateUrl>
     <ProductName>RCT-LMIS %28Lending Management Information System%29</ProductName>
     <PublisherName>ACS Micro IT Solutions Co.</PublisherName>
     <SuiteName>RACATOM Corporation</SuiteName>
     <MinimumRequiredVersion>1.0.0.16</MinimumRequiredVersion>
-    <ApplicationRevision>33</ApplicationRevision>
-    <ApplicationVersion>1.0.0.33</ApplicationVersion>
+    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

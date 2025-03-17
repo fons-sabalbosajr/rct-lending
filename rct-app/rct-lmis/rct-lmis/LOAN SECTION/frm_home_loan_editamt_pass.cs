@@ -17,6 +17,7 @@ namespace rct_lmis.LOAN_SECTION
         public frm_home_loan_editamt_pass()
         {
             InitializeComponent();
+            tpass.PasswordChar = '•';
         }
 
         private void bproceed_Click(object sender, EventArgs e)

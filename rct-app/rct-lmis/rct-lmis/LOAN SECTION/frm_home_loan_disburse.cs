@@ -378,7 +378,7 @@ namespace rct_lmis.LOAN_SECTION
         {
             try
             {
-                // Check if tloanterm.Text is empty, return without doing anything
+                // Check if loan term is empty, return without computing
                 if (string.IsNullOrWhiteSpace(tloanterm.Text))
                 {
                     return;
@@ -386,72 +386,158 @@ namespace rct_lmis.LOAN_SECTION
 
                 // Parse and validate loan amount
                 string loanAmtText = tloanamt.Text.Replace("₱", "").Replace(",", "").Trim();
-                if (!double.TryParse(loanAmtText, out double principal))
+                if (!double.TryParse(loanAmtText, out double principal) || principal <= 0)
                 {
-                    MessageBox.Show("Invalid loan amount.");
+                    MessageBox.Show("Invalid loan amount.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 // Parse and validate loan term
-                if (!int.TryParse(tloanterm.Text.Trim(), out int term))
+                if (!int.TryParse(tloanterm.Text.Trim(), out int term) || term <= 0)
                 {
-                    MessageBox.Show("Invalid loan term format.");
+                    MessageBox.Show("Invalid loan term format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Fixed interest rate per month (as percentage)
-                double interestRate = 0.05; // 5%
+                // Parse user-defined interest amount
+                string loanInterestText = tloaninterest.Text.Replace("%", "").Trim();
+                if (!double.TryParse(loanInterestText, out double userInterestRate) || userInterestRate < 0)
+                {
+                    MessageBox.Show("Invalid interest rate.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                // Calculate total interest amount for the entire term
+                // Convert interest from percentage to decimal (e.g., 5% → 0.05)
+                double interestRate = userInterestRate / 100;
+
+                // Compute total interest amount for the entire term
                 double totalInterest = principal * interestRate * term;
 
-                // Variable to hold the number of payments depending on the mode
+                // Determine the number of payments based on the mode
                 int totalPayments;
-
-                // Compute the number of payments based on the mode
                 switch (loanMode.ToUpper())
                 {
                     case "DAILY":
-                        // Calculate the total number of weekdays (excluding weekends) in the term
                         totalPayments = GetBusinessDaysInMonths(term);
                         break;
 
                     case "WEEKLY":
-                        // 4 weeks per month
-                        totalPayments = 4 * term;
+                        totalPayments = 4 * term; // 4 weeks per month
                         break;
 
                     case "SEMI-MONTHLY":
-                        // 2 payments per month (1st and 15th)
-                        totalPayments = 2 * term;
+                        totalPayments = 2 * term; // 1st and 15th payments
                         break;
 
                     case "MONTHLY":
-                        // 1 payment per month
-                        totalPayments = term;
+                        totalPayments = term; // 1 payment per month
                         break;
 
                     default:
-                        // Invalid mode, return without computing
-                        MessageBox.Show("Invalid loan mode.");
+                        MessageBox.Show("Invalid loan mode.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                 }
 
                 // Display the total number of payments
                 tdays.Text = totalPayments.ToString();
 
-                // Calculate amortized amount considering the total interest over the term
+                // Compute the processing fee (e.g., 2% of loan amount)
+                double processingFee = principal * 0.02;
+                trfservicefee.Text = processingFee.ToString("N2");
+
+                // Calculate amortized amount including interest
                 double amortizedAmount = (principal + totalInterest) / totalPayments;
 
-                // Display the results
+                // Display results
                 tamortizedamt.Text = amortizedAmount.ToString("N2");
                 tloaninterestamt.Text = totalInterest.ToString("N2");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error computing amortization: " + ex.Message);
+                MessageBox.Show($"Error computing amortization: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+       
+        // Compute amortization based on collection interest rate changes
+        private void ComputeAmortizationInterest()
+        {
+            try
+            {
+                // Ensure loan term and loan amount are provided
+                if (string.IsNullOrWhiteSpace(tloanterm.Text) || string.IsNullOrWhiteSpace(tloanamt.Text))
+                {
+                    return;
+                }
+
+                // Parse and validate loan amount
+                string loanAmtText = tloanamt.Text.Replace("₱", "").Replace(",", "").Trim();
+                if (!double.TryParse(loanAmtText, out double principal) || principal <= 0)
+                {
+                    return;
+                }
+
+                // Parse and validate loan term
+                if (!int.TryParse(tloanterm.Text.Trim(), out int term) || term <= 0)
+                {
+                    return;
+                }
+
+                // Parse the interest rate from user input (tcolinterest)
+                string colInterestText = tloaninterest.Text.Replace("%", "").Trim();
+                if (!double.TryParse(colInterestText, out double userInterestRate) || userInterestRate < 0)
+                {
+                    return;
+                }
+
+                // Convert percentage to decimal (e.g., 5% → 0.05)
+                double interestRate = userInterestRate / 100;
+
+                // Compute total interest for the entire loan term
+                double totalInterest = principal * interestRate * term;
+
+                // Determine the loan mode (defaults to "MONTHLY" if empty)
+                string loanMode = string.IsNullOrEmpty(lloanmode.Text) ? "MONTHLY" : lloanmode.Text.ToUpper();
+                int totalPayments;
+
+                switch (loanMode)
+                {
+                    case "DAILY":
+                        totalPayments = GetBusinessDaysInMonths(term);
+                        break;
+                    case "WEEKLY":
+                        totalPayments = 4 * term;
+                        break;
+                    case "SEMI-MONTHLY":
+                        totalPayments = 2 * term;
+                        break;
+                    case "MONTHLY":
+                        totalPayments = term;
+                        break;
+                    default:
+                        return; // Invalid loan mode
+                }
+
+                // Display the total number of payments
+                tdays.Text = totalPayments.ToString();
+
+                // Compute processing fee dynamically (e.g., 2% of loan amount)
+                double processingFee = principal * 0.02;
+                trfservicefee.Text = processingFee.ToString("N2");
+
+                // Compute the amortized amount including total interest
+                double amortizedAmount = (principal + totalInterest) / totalPayments;
+
+                // Display results in UI
+                tamortizedamt.Text = amortizedAmount.ToString("N2");
+                tloaninterestamt.Text = totalInterest.ToString("N2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error computing amortization: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private string GetClientNumber(IMongoCollection<BsonDocument> loanApprovedCollection, string accountId)
         {
@@ -982,6 +1068,8 @@ namespace rct_lmis.LOAN_SECTION
                             tloaninterest.Text = fullDocument.Contains("Interest Rate/Month") ? fullDocument["Interest Rate/Month"].ToString() + "%" : string.Empty;
                             trfservicefee.Text = fullDocument.Contains("Processing Fee") ? fullDocument["Processing Fee"].ToString() + ".00" : string.Empty;
 
+                            lloanmode.Text = fullDocument.Contains("Mode") ? fullDocument["Mode"].ToString() : string.Empty;
+
                             trfnotarialfee.Text = fullDocument.Contains("Notarial Rate") ? fullDocument["Notarial Rate"].ToString() + ".00" : string.Empty;
                             trfnotarialamt.Text = trfnotarialfee.Text;
 
@@ -1288,6 +1376,7 @@ namespace rct_lmis.LOAN_SECTION
                     tcashprofee.ReadOnly = false;
                     tcashpoamt.ReadOnly = false;
                     tcashclnno.ReadOnly = false;
+                    
 
                     tcashamt.ForeColor = Color.Red;
                     tcashprofee.ForeColor = Color.Red;
@@ -1322,11 +1411,13 @@ namespace rct_lmis.LOAN_SECTION
                     tpenaltymo.ReadOnly = false;
                     trfservicefee.ReadOnly = false;
                     tloanterm.ReadOnly = false;
+                    tloaninterest.ReadOnly = false;
 
                     tamortizedamt.ForeColor = Color.Red;
                     tpenaltymo.ForeColor = Color.Red;
                     trfservicefee.ForeColor = Color.Red;
                     tloanterm.ForeColor = Color.Red;
+                    tloaninterest.ForeColor = Color.Red;
 
                     leditact.Visible = true;
                     linkdeact.Visible = true;
@@ -1378,6 +1469,8 @@ namespace rct_lmis.LOAN_SECTION
                 tpenaltymo.ReadOnly = true;
                 trfservicefee.ReadOnly = true;
                 tloanterm.ReadOnly = true;
+                tloaninterest.ReadOnly = true;
+                tloaninterest.ForeColor = Color.Black;
 
                 tamortizedamt.ForeColor = Color.Black;
                 tpenaltymo.ForeColor = Color.Black;
@@ -1439,6 +1532,11 @@ namespace rct_lmis.LOAN_SECTION
 
             leditact.Visible = false;
             linkdeact.Visible = false;
+        }
+
+        private void tloaninterest_TextChanged(object sender, EventArgs e)
+        {
+            ComputeAmortizationInterest();
         }
     }
 }

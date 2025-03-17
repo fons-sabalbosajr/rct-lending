@@ -50,13 +50,13 @@ namespace rct_lmis.LOAN_SECTION
 
                     // Loan Details
                     string loanDetails = string.Empty;
-                    AppendDetail(ref loanDetails, "", doc, "LoanBalance", "₱ {0}.00");
-                    AppendDetail(ref loanDetails, "", doc, "LoanCycle", "{0} month(s)");
-                    AppendDetail(ref loanDetails, "", doc, "LoanTerms", "{0} months");
-                    AppendDetail(ref loanDetails, "", doc, "PreviousLoan");
-                    AppendDetail(ref loanDetails, "", doc, "PaymentAmount", "₱ {0}");
-                    AppendDetail(ref loanDetails, "", doc, "PaymentMode");
-                    AppendDetail(ref loanDetails, "", doc, "LoanDescription", "{0}");
+                    AppendDetail(ref loanDetails, "Loan Balance: ", doc, "LoanBalance", "₱ {0}.00");
+                    AppendDetail(ref loanDetails, "Cycle: ", doc, "LoanCycle", "{0} cycle/s");
+                    AppendDetail(ref loanDetails, "Term: ", doc, "LoanTerms", "{0} months");
+                    AppendDetail(ref loanDetails, "Prev. Loan: ", doc, "PreviousLoan");
+                    AppendDetail(ref loanDetails, "Amount: ", doc, "PaymentAmount", "₱ {0}");
+                    AppendDetail(ref loanDetails, "Payment Mode: ", doc, "PaymentMode");
+                    AppendDetail(ref loanDetails, "Loan Remarks: ", doc, "LoanDescription", "{0}");
 
                     // Add Remarks if available
                     if (doc.Contains("Remarks"))
@@ -243,7 +243,7 @@ namespace rct_lmis.LOAN_SECTION
             dgvloanapps.ClearSelection();
         }
 
-        private void dgvloanapps_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvloanapps_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dgvloanapps.Columns["btnViewDetails"].Index && e.RowIndex >= 0)
             {
@@ -251,16 +251,15 @@ namespace rct_lmis.LOAN_SECTION
 
                 if (!string.IsNullOrEmpty(accountId))
                 {
-                  
                     frm_home_loand_req_details req = new frm_home_loand_req_details(accountId);
                     load.Show(this);
-                    Thread.Sleep(1000);
+                    await Task.Delay(1000); // ✅ Use async Task instead of Thread.Sleep
                     load.Close();
                     req.Show(this);
                 }
                 else
                 {
-                    MessageBox.Show("Invalid Account ID.");
+                    MessageBox.Show("Invalid Account ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

@@ -631,7 +631,6 @@ namespace rct_lmis.LOAN_SECTION
             return $"Account ID: RCT-{DateTime.UtcNow.Year}DB-0001";
         }
 
-
         private async Task<string> GenerateNextAccountIdApp()
         {
             var database = MongoDBConnection.Instance.Database;
@@ -951,7 +950,6 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-
         private async void brenewsubmit_ClickAsync(object sender, EventArgs e)
         {
             try
@@ -1057,7 +1055,7 @@ namespace rct_lmis.LOAN_SECTION
                     .Set("PaymentMode", trpaymentmode.Text)
                     .Set("LoanTerms", trterms.Text)
                     .Set("LoanCycle", trcycle.Text)
-                    .Set("DateEvaluated", dtrdateeval.Value.ToString("MM/dd/yyyy"))
+                    .Set("ApplicationDate", dtrdateeval.Value.ToString("MM/dd/yyyy"))
                     .Set("RenewalStatus", cbrstatus.SelectedItem?.ToString() ?? "")
                     .Set("CloseLoanDate", trclose.Value.ToString("MM/dd/yyyy"))
                     .Set("DaysMissed", trdaysmissed.Text)
@@ -1079,7 +1077,7 @@ namespace rct_lmis.LOAN_SECTION
                     .Set("ReleaseSchedule", trreleasesched.Text)
                     .Set("Remarks", trremarks.Text)
                     .Set("UploadedDocs", uploadedFiles)
-                    .Set("ApplicationStatus", "PENDING RENEWAL LOAN APPLICATION") // Default status
+                    .Set("LoanStatus", "PENDING RENEWAL LOAN APPLICATION") // Default status
                     .Set("RoutedTo", new BsonDocument
                     {
                         { "FullName", routedUserFullName },
@@ -1089,8 +1087,8 @@ namespace rct_lmis.LOAN_SECTION
                     .Set("CollectorInCharge", collectorInCharge)
                     .Set("CreditInvestigation", creditInvestigation)
                     .Set("CreditInvestigationDate", creditInvestigationDate)
-                    .Set("RenewAmount", renewAmount)
-                    .Set("RenewLoanDescription", renewLoanDescription);
+                    .Set("LoanAmount", renewAmount)
+                    .Set("LoanDescription", renewLoanDescription);
 
                 await collection.UpdateOneAsync(filter, update, new UpdateOptions { IsUpsert = true });
 
@@ -1110,8 +1108,6 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show($"Error uploading files and saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
         private void dgvruploads_CellClick(object sender, DataGridViewCellEventArgs e)
         {
