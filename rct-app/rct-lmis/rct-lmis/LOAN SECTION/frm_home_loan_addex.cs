@@ -34,6 +34,37 @@ namespace rct_lmis.LOAN_SECTION
             dtenddate.Value = DateTime.Now; // Reset to 1 month later or adjust as neede
         }
 
+        private void LoadCollectors()
+        {
+            try
+            {
+                // Clear the cbcollector combo box
+                cbcollector.Items.Clear();
+
+                // Add default item
+                cbcollector.Items.Add("--select collector--");
+                cbcollector.SelectedIndex = 0;
+
+                // Get all collectors from loan_collectors collection
+                var collectors = loanCollectorsCollection.Find(new BsonDocument()).ToList();
+
+                // Loop through the collectors and add their names to cbcollector
+                foreach (var collector in collectors)
+                {
+                    // Ensure that the collector has a Name field
+                    if (collector.Contains("Name") && collector["Name"] != BsonNull.Value)
+                    {
+                        string collectorName = collector.GetValue("Name").AsString;
+                        cbcollector.Items.Add(collectorName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while loading collectors: " + ex.Message);
+            }
+        }
+
         private async Task<List<string>> GetDistinctValuesAsync(string fieldName)
         {
             var filter = Builders<BsonDocument>.Filter.Empty;
@@ -93,62 +124,61 @@ namespace rct_lmis.LOAN_SECTION
             tloanterm.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
-        private async Task<string> GetLatestIncrementedFieldAsync(string fieldName, string prefix, int leadingZeroCount)
+        private async Task<string> GetLatestIncrementedFieldAsync(string fieldName, string basePrefix, int leadingZeroCount)
         {
             var sort = Builders<BsonDocument>.Sort.Descending(fieldName);
             var projection = Builders<BsonDocument>.Projection.Include(fieldName).Exclude("_id");
             var latestDocument = await loanDisbursedCollection.Find(Builders<BsonDocument>.Filter.Exists(fieldName))
-                                                               .Sort(sort)
-                                                               .Project(projection)
-                                                               .FirstOrDefaultAsync();
+                                                              .Sort(sort)
+                                                              .Project(projection)
+                                                              .FirstOrDefaultAsync();
 
             if (latestDocument != null)
             {
                 string latestValue = latestDocument[fieldName].AsString;
-                return IncrementId(latestValue, prefix, leadingZeroCount);
+
+                // Detect the correct prefix dynamically
+                string detectedPrefix = latestValue.Substring(0, latestValue.Length - leadingZeroCount);
+
+                return IncrementId(latestValue, detectedPrefix, leadingZeroCount);
             }
 
-            // Default value if no documents are found
-            return $"{prefix}{1.ToString().PadLeft(leadingZeroCount, '0')}";
+            // Default if no documents found
+            return $"{basePrefix}{1.ToString().PadLeft(leadingZeroCount, '0')}";
         }
 
         private string IncrementId(string id, string prefix, int leadingZeroCount)
         {
-            // Check if the ID starts with the expected prefix
             if (!id.StartsWith(prefix))
             {
                 throw new ArgumentException($"ID does not start with the expected prefix: {prefix}");
             }
 
-            // Extract the numeric part from the ID by removing the prefix
+            // Extract the numeric part from the ID
             string numericPart = id.Substring(prefix.Length);
-
-            // Special handling for AccountId format: strip non-numeric characters if needed
-            if (numericPart.Contains("-"))
-            {
-                numericPart = numericPart.Split('-')[1];  // For example, "RCT-2024DB-977" becomes "977"
-            }
 
             if (int.TryParse(numericPart, out int increment))
             {
-                // Increment and format with leading zeros
                 return $"{prefix}{(increment + 1).ToString().PadLeft(leadingZeroCount, '0')}";
             }
 
-            // Handle cases where the numeric part is not an integer
+            // Default fallback
             return $"{prefix}{1.ToString().PadLeft(leadingZeroCount, '0')}";
         }
 
         private async Task SetLatestAccountAndClientIdsAsync()
         {
-            // Set the appropriate prefixes
-            string accountPrefix = "RCT-2024DB-"; // Adjust as necessary
-            string clientPrefix = "RCT-2024-CL"; // Adjust as necessary
+            string currentYear = DateTime.Now.Year.ToString();
 
-            // Retrieve and set latest AccountId and ClientNo
+            // Define prefixes based on current year
+            string accountPrefix = $"RCT-{currentYear}DB-";
+            string clientPrefix = $"RCT-{currentYear}-CL";
+
+            // Fetch latest incremented AccountId and ClientNo
             taccountid.Text = await GetLatestIncrementedFieldAsync("AccountId", accountPrefix, 3) ?? "No AccountId found";
-            tclientno.Text = await GetLatestIncrementedFieldAsync("ClientNo", clientPrefix, 4) ?? "No ClientNo found"; // Specify leading zero count for ClientNo
+            tclientno.Text = await GetLatestIncrementedFieldAsync("ClientNo", clientPrefix, 4) ?? "No ClientNo found";
         }
+
 
         private async Task<List<string>> GetDistinctCollectorNamesAsync()
         {
@@ -214,11 +244,12 @@ namespace rct_lmis.LOAN_SECTION
             await SetupAutocomplete(tbrgy, "Barangay");
             await SetupAutocomplete(tcity, "City ");
             await SetupAutocomplete(tprovince, "Province");
-            await SetupAutocomplete(tcollector, "CollectorName");
-
+            
             await SetupAutocompleteLoanAmount();
             await SetLatestAccountAndClientIdsAsync();
-            await SetupCollectorAutocomplete(tcollector);
+
+            LoadCollectors();
+           
         }
 
         private void bcancel_Click(object sender, EventArgs e)
@@ -235,80 +266,95 @@ namespace rct_lmis.LOAN_SECTION
         {
             try
             {
+                // Check if LoanNo (tloanno.Text) is empty
+                if (string.IsNullOrEmpty(tloanno.Text))
+                {
+                    MessageBox.Show("Loan Number cannot be empty.");
+                    return; // Stop the execution if LoanNo is empty
+                }
+
+                // Validate required fields before proceeding
+                if (!ValidateFormFields())
+                {
+                    return; // Stop execution if validation fails
+                }
+
                 // Create a new document for loan_disbursed
                 var loanDisbursedDocument = new BsonDocument
-                {
+                 {
                      { "AccountId", taccountid.Text },
                      { "LoanNo", tloanno.Text },
                      { "ClientNo", tclientno.Text },
-                     { "LoanType", cbloantype.SelectedItem.ToString() }, // Assuming this is a ComboBox
-                     { "LoanStatus", cbloanstatus.SelectedItem.ToString() }, // Assuming this is a ComboBox
+                     { "LoanType", cbloantype.SelectedItem?.ToString() ?? "" }, // Handle null ComboBox values
+                     { "LoanStatus", cbloanstatus.SelectedItem?.ToString() ?? "" },
                      { "LastName", tclientlastname.Text },
                      { "FirstName", tclientfirstname.Text },
                      { "MiddleName", tclientmiddlename.Text },
                      { "Barangay", tbrgy.Text },
                      { "City", tcity.Text },
                      { "Province", tprovince.Text },
-                     { "CollectorName", tcollector.Text },
-                     { "LoanAmount", tloanamt.Text.Replace("₱", "").Replace(",", "").Trim() }, // Assuming currency format
+                     { "CollectorName", cbcollector.Text },
+                     { "LoanAmount", tloanamt.Text.Replace("₱", "").Replace(",", "").Trim() },
                      { "LoanTerm", tloanterm.Text },
-                     { "LoanInterestRate", tloaninterest.Text.Replace("%", "").Trim() }, // Assuming interest is in percentage
-                     { "LoanInterestAmount", tloaninterestamt.Text.Replace("₱", "").Replace(",", "").Trim() }, // Assuming currency format
-                     { "ProcessingFee", tloanprocessfee.Text.Replace("₱", "").Replace(",", "").Trim() }, // Assuming currency format
-                     { "LoanBalance", tloanbal.Text.Replace("₱", "").Replace(",", "").Trim() }, // Manual encode
-                     { "LoanAmortization", tloanamort.Text.Replace("₱", "").Replace(",", "").Trim() }, // Assuming currency format
-                     { "DateStart", dtstartdate.Value.ToString("MM/dd/yyyy") }, // Assuming this is a DateTimePicker
-                     { "DateEnd", dtenddate.Value.ToString("MM/dd/yyyy") }, // Assuming this is a DateTimePicker
+                     { "LoanInterestRate", tloaninterest.Text.Replace("%", "").Trim() },
+                     { "LoanInterestAmount", tloaninterestamt.Text.Replace("₱", "").Replace(",", "").Trim() },
+                     { "ProcessingFee", tloanprocessfee.Text.Replace("₱", "").Replace(",", "").Trim() },
+                     { "LoanBalance", tloanbal.Text.Replace("₱", "").Replace(",", "").Trim() },
+                     { "LoanAmortization", tloanamort.Text.Replace("₱", "").Replace(",", "").Trim() },
+                     { "DateStart", dtstartdate.Value.ToString("MM/dd/yyyy") },
+                     { "DateEnd", dtenddate.Value.ToString("MM/dd/yyyy") },
                      { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
                      { "DateApproved", DateTime.Now.ToString("MM/dd/yyyy") },
-                     { "ApprovedBy", "Admin" } // Replace with actual user/role if needed// Encoding date
+                     { "ApprovedBy", "Admin" }
                  };
 
-                         // Insert the loan_disbursed document into the collection
-                 await loanDisbursedCollection.InsertOneAsync(loanDisbursedDocument);
+                // Insert into loan_disbursed collection
+                await loanDisbursedCollection.InsertOneAsync(loanDisbursedDocument);
 
-                         // Create a new document for loan_approved
-                 var loanApprovedDocument = new BsonDocument
-                 {
-                         { "AccountId", taccountid.Text },
-                         { "LoanNo", tloanno.Text },
-                         { "ClientNo", tclientno.Text },
-                         { "LoanType", cbloantype.SelectedItem.ToString() }, // Assuming this is a ComboBox
-                         { "LoanStatus", cbloanstatus.SelectedItem.ToString() }, // Assuming this is a ComboBox
-                         { "LastName", tclientlastname.Text },
-                         { "FirstName", tclientfirstname.Text },
-                         { "MiddleName", tclientmiddlename.Text },
-                         { "Barangay", tbrgy.Text },
-                         { "City", tcity.Text },
-                         { "Province", tprovince.Text },
-                         { "CollectorName", tcollector.Text },
-                         { "LoanAmount", tloanamt.Text.Replace("₱", "").Replace(",", "").Trim() }, // Assuming currency format
-                         { "LoanTerm", tloanterm.Text },
-                         { "LoanInterestRate", tloaninterest.Text.Replace("%", "").Trim() }, // Assuming interest is in percentage
-                         { "LoanInterestAmount", tloaninterestamt.Text.Replace("₱", "").Replace(",", "").Trim() }, // Assuming currency format
-                         { "ProcessingFee", tloanprocessfee.Text.Replace("₱", "").Replace(",", "").Trim() }, // Assuming currency format
-                         { "LoanBalance", tloanbal.Text.Replace("₱", "").Replace(",", "").Trim() }, // Manual encode
-                         { "LoanAmortization", tloanamort.Text.Replace("₱", "").Replace(",", "").Trim() }, // Assuming currency format
-                         { "DateStart", dtstartdate.Value.ToString("MM/dd/yyyy") }, // Assuming this is a DateTimePicker
-                         { "DateEnd", dtenddate.Value.ToString("MM/dd/yyyy") }, // Assuming this is a DateTimePicker
-                         { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
-                         { "DateApproved", DateTime.Now.ToString("MM/dd/yyyy") },
-                         { "ApprovedBy", "Admin" } // Replace with actual user/role if needed// Encoding date
-                 };
+                // Create a new document for loan_approved
+                var loanApprovedDocument = new BsonDocument(loanDisbursedDocument); // Copy the same data
 
-                    // Insert the loan_approved document into the collection
-                    //await loanApprovedCollection.InsertOneAsync(loanApprovedDocument);
+                // Insert into loan_approved collection
+                // await loanApprovedCollection.InsertOneAsync(loanApprovedDocument);
 
-                    // Optionally clear the form fields or provide feedback
-                    MessageBox.Show("Loan information saved successfully!");
-                    ClearFormFields(); // Implement this method to reset the form if needed
-                }
-                catch (Exception ex)
-                {
-                    // Handle exceptions and show error messages
-                    MessageBox.Show($"An error occurred: {ex.Message}");
-                }
+                MessageBox.Show("Loan information saved successfully!");
+                ClearFormFields(); // Implement this method to reset the form if needed
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        // Method to validate required fields
+        private bool ValidateFormFields()
+        {
+            if (string.IsNullOrWhiteSpace(taccountid.Text) ||
+                string.IsNullOrWhiteSpace(tloanno.Text) ||
+                string.IsNullOrWhiteSpace(tclientno.Text) ||
+                cbloantype.SelectedItem == null ||
+                cbloanstatus.SelectedItem == null ||
+                string.IsNullOrWhiteSpace(tclientlastname.Text) ||
+                string.IsNullOrWhiteSpace(tclientfirstname.Text) ||
+                string.IsNullOrWhiteSpace(tbrgy.Text) ||
+                string.IsNullOrWhiteSpace(tcity.Text) ||
+                string.IsNullOrWhiteSpace(tprovince.Text) ||
+                string.IsNullOrWhiteSpace(cbcollector.Text) ||
+                string.IsNullOrWhiteSpace(tloanamt.Text) ||
+                string.IsNullOrWhiteSpace(tloanterm.Text) ||
+                string.IsNullOrWhiteSpace(tloaninterest.Text) ||
+                string.IsNullOrWhiteSpace(tloaninterestamt.Text) ||
+                string.IsNullOrWhiteSpace(tloanprocessfee.Text) ||
+                string.IsNullOrWhiteSpace(tloanbal.Text) ||
+                string.IsNullOrWhiteSpace(tloanamort.Text))
+            {
+                MessageBox.Show("Please fill in all required fields before saving.", "Missing Fields", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
 
         private void ClearFormFields()
         {
@@ -324,7 +370,7 @@ namespace rct_lmis.LOAN_SECTION
             tbrgy.Clear();
             tcity.Clear();
             tprovince.Clear();
-            tcollector.Clear();
+            
             tloanamt.Clear();
             tloanterm.Clear();
             tloaninterest.Clear();
@@ -340,7 +386,15 @@ namespace rct_lmis.LOAN_SECTION
 
         private async void tloanamt_TextChangedAsync(object sender, EventArgs e)
         {
-            string selectedAmount = tloanamt.Text;
+            string selectedAmount = tloanamt.Text.Trim();
+
+            // Check if the entered amount is empty or invalid
+            if (string.IsNullOrWhiteSpace(selectedAmount) ||
+                !double.TryParse(selectedAmount.Replace("₱", "").Replace(",", ""), out _))
+            {
+                ResetLoanAmountDetails();
+                return;
+            }
 
             // Fetch the document with the matching Principal
             var filter = Builders<BsonDocument>.Filter.Eq("Principal", selectedAmount);
@@ -348,8 +402,12 @@ namespace rct_lmis.LOAN_SECTION
 
             if (loanConfig != null && loanConfig.Contains("Term"))
             {
-                // Retrieve the Term for the selected Principal
-                var termList = new List<string> { loanConfig["Term"].ToString() }; // Adjust if multiple terms exist
+                var termValue = loanConfig["Term"];
+
+                // Support multiple terms (if term is stored as an array)
+                var termList = termValue.IsBsonArray
+                    ? termValue.AsBsonArray.Select(t => t.ToString()).ToList()
+                    : new List<string> { termValue.ToString() };
 
                 var autoCompleteTermSource = new AutoCompleteStringCollection();
                 autoCompleteTermSource.AddRange(termList.ToArray());
@@ -357,6 +415,11 @@ namespace rct_lmis.LOAN_SECTION
                 tloanterm.AutoCompleteCustomSource = autoCompleteTermSource;
                 tloanterm.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 tloanterm.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            }
+            else
+            {
+                // If no matching loan configuration is found, reset fields
+                ResetLoanAmountDetails();
             }
         }
 
@@ -383,22 +446,41 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
-        private async void tloanterm_Leave(object sender, EventArgs e)
+        private void tloanterm_Leave(object sender, EventArgs e)
         {
-           
+
         }
 
         private async void tloanterm_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(tloanterm.Text.Split(' ')[0], out int selectedTerm)) // Get the term number from the selected value
+            // Check if tloanterm is empty or invalid
+            if (string.IsNullOrWhiteSpace(tloanterm.Text) ||
+                !int.TryParse(tloanterm.Text.Split(' ')[0], out int selectedTerm) ||
+                selectedTerm <= 0)
             {
-                // Parse the selected loan amount from tloanamt.Text
-                if (double.TryParse(tloanamt.Text.Replace("₱", "").Replace(",", "").Trim(), out double selectedPrincipal))
-                {
-                    // Calculate loan details based on selected principal and term
-                    await CalculateLoanDetails(selectedPrincipal, selectedTerm);
-                }
+                ResetLoanAmountDetails();
+                return;
             }
+
+            // Check if tloanamt contains a valid number
+            if (!double.TryParse(tloanamt.Text.Replace("₱", "").Replace(",", "").Trim(), out double selectedPrincipal) ||
+                selectedPrincipal <= 0)
+            {
+                ResetLoanAmountDetails();
+                return;
+            }
+
+            // If both values are valid, calculate loan details
+            await CalculateLoanDetails(selectedPrincipal, selectedTerm);
+        }
+
+        private void ResetLoanAmountDetails()
+        {
+            tloanterm.Text = "N/A";
+            tloaninterest.Text = "";
+            tloaninterestamt.Text = "";
+            tloanamort.Text = "";
+            tloanprocessfee.Text = "";
         }
     }
 }

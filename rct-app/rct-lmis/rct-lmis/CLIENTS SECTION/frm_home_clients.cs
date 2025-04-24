@@ -144,40 +144,47 @@ namespace rct_lmis
             UpdateLoanStatusLabels();
         }
 
-
-
-
         private void HighlightApprovedLoans()
         {
             // Retrieve the list of loan_approved documents
             var approvedLoans = loanApprovedCollection.Find(new BsonDocument()).ToList();
-            var approvedLoanIds = approvedLoans.Select(doc => doc.GetValue("LoanNo", "").ToString().Substring(doc.GetValue("LoanNo", "").ToString().Length - 5)).ToList();
+
+            var approvedLoanIds = approvedLoans
+                .Select(doc =>
+                {
+                    var loanNo = doc.GetValue("LoanNo", "").ToString();
+                    return !string.IsNullOrEmpty(loanNo) && loanNo.Length >= 5
+                        ? loanNo.Substring(loanNo.Length - 5)
+                        : null;
+                })
+                .Where(id => id != null)
+                .ToList();
 
             // Highlight rows that are already in loan_approved collection
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
-                string clientInfo = row.Cells["Client Info"].Value.ToString();
+                string clientInfo = row.Cells["Client Info"].Value?.ToString() ?? "";
 
                 // Extract Loan ID from Client Info safely
                 string[] clientInfoParts = clientInfo.Split('\n');
-                string loanId = clientInfoParts.Length > 2 ? clientInfoParts[2].Split(':')[1].Trim() : string.Empty;
+                string loanId = clientInfoParts.Length > 2 && clientInfoParts[2].Contains(":")
+                    ? clientInfoParts[2].Split(':')[1].Trim()
+                    : string.Empty;
 
                 // Check if loanId is not empty and at least 5 characters long before checking the last 5 digits
                 if (!string.IsNullOrEmpty(loanId) && loanId.Length >= 5)
                 {
                     string lastFiveDigits = loanId.Substring(loanId.Length - 5);
 
-                    // Log the last 5 digits detected
-                    //Console.WriteLine($"Detected Last 5 Digits: {lastFiveDigits}");
-
                     // Check if the last 5 digits of the loanId exist in approvedLoanIds
                     if (approvedLoanIds.Contains(lastFiveDigits))
                     {
-                        row.DefaultCellStyle.BackColor = Color.LightYellow;  // Set background color to light yellow
+                        row.DefaultCellStyle.BackColor = Color.LightYellow;
                     }
                 }
             }
         }
+
 
         private void UpdateLoanStatusLabels()
         {

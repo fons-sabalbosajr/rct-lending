@@ -235,48 +235,40 @@ namespace rct_lmis.LOAN_SECTION
             try
             {
                 var database = MongoDBConnection.Instance.Database;
-
-                // Collections
                 var loanApplicationCollection = database.GetCollection<BsonDocument>("loan_application");
-                var loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
 
-                // Sort by AccountId in descending order to get the last record
-                var sort = Builders<BsonDocument>.Sort.Descending("AccountId");
+                var allAccountIds = loanApplicationCollection.Find(new BsonDocument())
+                    .Project(Builders<BsonDocument>.Projection.Include("AccountId"))
+                    .ToList();
 
-                // Check loan_application collection first
-                var lastLoanApplication = loanApplicationCollection.Find(new BsonDocument()).Sort(sort).FirstOrDefault();
+                int maxNumber = 0;
+                string prefix = "";
 
-                string nextAccountId;
-
-                if (lastLoanApplication == null)
+                foreach (var doc in allAccountIds)
                 {
-                    // If loan_application is empty, check loan_approved
-                    lastLoanApplication = loanApprovedCollection.Find(new BsonDocument()).Sort(sort).FirstOrDefault();
+                    var accountId = doc.GetValue("AccountId", "").AsString.Trim();
+
+                    // Match format like RCT-2025DB-048 or RCT-2025DB-034-R1
+                    var match = Regex.Match(accountId, @"^(RCT-\d{4}DB-)(\d{3,})(?:-R\d+)?$");
+                    if (match.Success)
+                    {
+                        prefix = match.Groups[1].Value; // e.g., RCT-2025DB-
+                        if (int.TryParse(match.Groups[2].Value, out int num) && num > maxNumber)
+                        {
+                            maxNumber = num;
+                        }
+                    }
                 }
 
-                if (lastLoanApplication != null)
+                if (!string.IsNullOrEmpty(prefix))
                 {
-                    var lastAccountId = lastLoanApplication.GetValue("AccountId", "").AsString.Replace("Account ID: ", "");
-
-                    var parts = lastAccountId.Split('-');
-                    if (parts.Length == 3 && int.TryParse(parts[2], out int numericPart))
-                    {
-                        numericPart++;
-                        nextAccountId = $"{parts[0]}-{parts[1]}-{numericPart:D4}";
-                    }
-                    else
-                    {
-                        throw new FormatException("Invalid AccountId format.");
-                    }
+                    int nextNumber = maxNumber + 1;
+                    lloanno.Text = $"{prefix}{nextNumber:D3}";
                 }
                 else
                 {
-                    // If both collections are empty, start fresh
-                    nextAccountId = "RCT-2024-0001";
+                    lloanno.Text = "RCT-2025DB-001"; // fallback if nothing matches
                 }
-
-                // Set the new AccountId to the label (without "Account ID: ")
-                lloanno.Text = nextAccountId;
             }
             catch (Exception ex)
             {
@@ -284,6 +276,9 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show("Error loading next account ID. Please check the console for details.");
             }
         }
+
+
+
 
         private void LoadClientNames()
         {

@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using Microsoft.VisualBasic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using OfficeOpenXml;
@@ -27,6 +28,10 @@ namespace rct_lmis.LOAN_SECTION
 
             // Initialize DataTable for binding to DataGridView
             _loanCollectionTable = new DataTable();
+
+            laccupdate.Visible = false;
+
+            SetUpLoanNoAutoComplete();
         }
 
         private async void frm_home_loan_new_Load(object sender, EventArgs e)
@@ -129,25 +134,54 @@ namespace rct_lmis.LOAN_SECTION
         private async Task LoadLoanDetailsAsync()
         {
             string accountId = laccno.Text;
-            
+
             try
             {
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_approved");
 
+                // Match the AccountId with laccno.Text
                 var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
                 var document = await collection.Find(filter).FirstOrDefaultAsync();
 
                 if (document != null)
                 {
+                    // LoanNo check
+                    string loanNo = document.GetValue("LoanNo", "").ToString();
+                    if (string.IsNullOrEmpty(loanNo))
+                    {
+                        // If LoanNo is empty, hide TabLoanDetails and show the update button
+                        TabLoanDetails.Visible = false;
+                        bupdate.Visible = true; // Make the update button visible
+                        bcopyaccno.Visible = false;
+                        laccupdate.Visible = true;
+                        lloanaccno.ReadOnly = false;
+                        lclientno.Visible = false;
+                        lloanstatus.Visible = false;
+                        laccstatus.Visible = false;
+                        lloanaccno.Focus(); // Focus on the laccno text box
+                        return;
+                    }
+                    else
+                    {
+                        // If LoanNo is not empty, show TabLoanDetails and hide the update button
+                        TabLoanDetails.Visible = true;
+                        bcopyaccno.Visible = true;
+                        bupdate.Visible = false; // Hide the update button
+                        laccupdate.Visible = false;
+                        lloanaccno.ReadOnly = true;
+                        lclientno.Visible = true;
+                        lloanstatus.Visible = true;
+                        laccstatus.Visible = true;
+                    }
+
+                    // Set up AutoComplete for lloanaccno.Text with existing LoanNos
+                   
+
                     // Client Info
+                    lloanaccno.Text = document.GetValue("LoanNo", "").ToString();
                     taccname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")}".Trim();
-                    trepname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")}".Trim();
-                    trepaddress.Text = $"{document.GetValue("Barangay", "")}, {document.GetValue("City", "")}, {document.GetValue("Province", "")}".Trim(); // Complete address
                     taccaddress.Text = $"{document.GetValue("Barangay", "")}, {document.GetValue("City", "")}, {document.GetValue("Province", "")}".Trim(); // Complete address
-                    taccbrgy.Text = document.GetValue("Barangay", "").ToString();
-                    tacctown.Text = document.GetValue("City", "").ToString();
-                    taccprov.Text = document.GetValue("Province", "").ToString();
                     tacccontactno.Text = document.GetValue("ContactNumber", "").ToString();
                     taccemail.Text = document.GetValue("Email", "").ToString();
                     lclientno.Text = document.GetValue("ClientNo", "").ToString();
@@ -163,29 +197,34 @@ namespace rct_lmis.LOAN_SECTION
                     }
                     else if (loanStatus == "Loan Released")
                     {
-                        lloanstatus.Text = "ACTIVE";
+                        lloanstatus.Text = "LOAN ACTIVE";
+                    }
+                    else if (loanStatus == "Loan for Updating")
+                    {
+                        lloanstatus.Text = "FOR UPDATING";
+                    }
+                    else if (loanStatus == "Loan Updated")
+                    {
+                        lloanstatus.Text = "LOAN ACTIVE";
                     }
                     else
                     {
                         lloanstatus.Text = "UNKNOWN STATUS"; // Default case
                     }
 
-                    // Additional Info
-                    trepname.Text = $"{document.GetValue("FirstName", "")} {document.GetValue("MiddleName", "")} {document.GetValue("LastName", "")}".Trim();
-                    trepaddress.Text = $"{document.GetValue("Barangay", "")}, {document.GetValue("City", "")}, {document.GetValue("Province", "")}".Trim();
-                    trepcontact.Text = document.GetValue("ContactNumber", "").ToString();
+                    // Loan Details
+                    string loanAmount = document.GetValue("LoanAmount", "").ToString();
+                    trepcurrloan.Text = string.IsNullOrEmpty(loanAmount) ? "No Amount Provided" : loanAmount;
 
-                    // Loan details
-                    laccno.Text = document.GetValue("LoanNo", "").ToString();
-                    trepcurrloan.Text = document.GetValue("LoanAmount", "").ToString();
-                    treploanbalance.Text = document.GetValue("LoanBalance", "").ToString();
-                    treploanpenalty.Text = document.GetValue("Penalty", "").ToString();
+                    string loanBalance = document.GetValue("LoanBalance", "").ToString();
+                    treploanbalance.Text = string.IsNullOrEmpty(loanBalance) ? "No Balance Provided" : loanBalance;
+
+                    string startPaymentDate = document.GetValue("StartPaymentDate", "").ToString();
+                    treprepaydate.Text = string.IsNullOrEmpty(startPaymentDate) ? "No Start Date Provided" : startPaymentDate;
+
                     trepcollector.Text = document.GetValue("CollectorName", "").ToString();
 
-                    // Loan Dates
-                    treprepaydate.Text = document.GetValue("StartPaymentDate", "").ToString();
-                  
-                    // Loading document info into DataGridView (if applicable)
+                    // Document Info
                     if (document.TryGetValue("docs", out BsonValue docsValue) && document.TryGetValue("doc-link", out BsonValue docLinksValue))
                     {
                         if (docsValue.IsBsonArray && docLinksValue.IsBsonArray)
@@ -200,10 +239,6 @@ namespace rct_lmis.LOAN_SECTION
                             MessageBox.Show("Document data is missing or incorrect.");
                         }
                     }
-                    else
-                    {
-                        //MessageBox.Show("Document data is missing or incorrect.");
-                    }
 
                     // Count the number of rows (documents) for the AccountId and set it in treploantotal.Text
                     long loanCount = await collection.CountDocumentsAsync(filter);
@@ -212,10 +247,8 @@ namespace rct_lmis.LOAN_SECTION
                     // Step 1: Add columns first
                     CreateLoanDataTable();
 
-                 
                     // Step 2: Load loan details into DataGridView
                     await LoadLoanDetailsToDataGridViewAsync();
-
                 }
                 else
                 {
@@ -228,12 +261,43 @@ namespace rct_lmis.LOAN_SECTION
             }
         }
 
+        private async void SetUpLoanNoAutoComplete()
+        {
+            try
+            {
+
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_approved");
+
+                // Load LoanNo values from the collection
+                var filter = Builders<BsonDocument>.Filter.Exists("LoanNo", true);
+                var projection = Builders<BsonDocument>.Projection.Include("LoanNo");
+                var loanNoDocuments = await collection.Find(filter).Project(projection).ToListAsync();
+
+                // Create a list of LoanNos
+                var loanNos = loanNoDocuments.Select(doc => doc.GetValue("LoanNo", "").ToString()).Where(loanNo => !string.IsNullOrEmpty(loanNo)).ToList();
+
+                // Set the AutoComplete source for the lloanaccno.Text
+                AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+                autoCompleteCollection.AddRange(loanNos.ToArray());
+
+                lloanaccno.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                lloanaccno.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                lloanaccno.AutoCompleteCustomSource = autoCompleteCollection;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error setting up AutoComplete: {ex.Message}");
+            }
+        }
+
+
         private async Task LoadLoanDetailsToDataGridViewAsync()
         {
             try
             {
                 // Validate if laccno.Text is not empty
-                string loanNo = laccno.Text.Trim();
+                string loanNo = lloanaccno.Text.Trim();
                 if (string.IsNullOrEmpty(loanNo))
                 {
                     MessageBox.Show("Please enter a Loan Number.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -645,7 +709,7 @@ namespace rct_lmis.LOAN_SECTION
         private void bcopyaccno_Click(object sender, EventArgs e)
         {
             // Get the text from the Label control
-            string accNo = laccno.Text;
+            string accNo = lloanaccno.Text;
 
             // Copy the text to the clipboard
             Clipboard.SetText(accNo);
@@ -720,6 +784,56 @@ namespace rct_lmis.LOAN_SECTION
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private async Task UpdateLoanNoAsync()
+        {
+            string accountId = laccno.Text;  // Account ID from the textbox
+            string loanNo = lloanaccno.Text;     // New LoanNo (also from the same textbox)
+
+            if (string.IsNullOrEmpty(loanNo))
+            {
+                MessageBox.Show("Please enter a valid Loan Number.");
+                return;  // Exit if LoanNo is empty
+            }
+
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var collection = database.GetCollection<BsonDocument>("loan_approved");
+
+                // Find the document based on AccountId
+                var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+
+                // Update the LoanNo field
+                var update = Builders<BsonDocument>.Update.Set("LoanNo", loanNo);
+
+                // Perform the update operation
+                var result = await collection.UpdateOneAsync(filter, update);
+
+                if (result.ModifiedCount > 0)
+                {
+                    MessageBox.Show("Loan Number updated successfully!");
+                    TabLoanDetails.Visible = true;  // Show TabLoanDetails
+                    bupdate.Visible = false;
+                    bcopyaccno.Visible = true;
+                    laccupdate.Visible = false;
+                    await LoadLoanDetailsAsync();   // Reload loan details to reflect the update
+                }
+                else
+                {
+                    MessageBox.Show("No matching loan found or no update needed.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating Loan Number: {ex.Message}");
+            }
+        }
+
+        private async void bupdate_Click(object sender, EventArgs e)
+        {
+            await UpdateLoanNoAsync();  // Call the method to update the LoanNo
         }
     }
 }

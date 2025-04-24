@@ -587,6 +587,12 @@
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_collections_add.Designer.cs">
       <DependentUpon>frm_home_disburse_collections_add.cs</DependentUpon>
     </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_collections_addex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_collections_addex.Designer.cs">
+      <DependentUpon>frm_home_disburse_collections_addex.cs</DependentUpon>
+    </Compile>
     <Compile Include="DISBURSEMENT SECTION\frm_home_disburse_details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -902,6 +908,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_collections_add.resx">
       <DependentUpon>frm_home_disburse_collections_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_collections_addex.resx">
+      <DependentUpon>frm_home_disburse_collections_addex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DISBURSEMENT SECTION\frm_home_disburse_details.resx">
       <DependentUpon>frm_home_disburse_details.cs</DependentUpon>

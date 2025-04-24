@@ -771,7 +771,9 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void bpayadvance_Click(object sender, EventArgs e)
         {
-
+            string clientNo = laccountid.Text;
+            frm_home_disburse_collections_addex addex = new frm_home_disburse_collections_addex(clientNo);
+            addex.ShowDialog();
         }
 
         private void dgvdata_CellEndEdit(object sender, DataGridViewCellEventArgs e)

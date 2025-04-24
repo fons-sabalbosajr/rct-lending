@@ -45,6 +45,7 @@
             this.bnew = new Guna.UI2.WinForms.Guna2Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.bsoa = new Guna.UI2.WinForms.Guna2Button();
+            this.bconfig = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.lpenaltytotal = new System.Windows.Forms.Label();
             this.ltotalamtpaid = new System.Windows.Forms.Label();
             this.ltotalpayments = new System.Windows.Forms.Label();
-            this.bconfig = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -152,13 +152,12 @@
             this.bpayadvance.FillColor = System.Drawing.Color.SteelBlue;
             this.bpayadvance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bpayadvance.ForeColor = System.Drawing.Color.White;
-            this.bpayadvance.Location = new System.Drawing.Point(748, 12);
+            this.bpayadvance.Location = new System.Drawing.Point(739, 12);
             this.bpayadvance.Name = "bpayadvance";
-            this.bpayadvance.Size = new System.Drawing.Size(141, 30);
+            this.bpayadvance.Size = new System.Drawing.Size(150, 30);
             this.bpayadvance.TabIndex = 39;
-            this.bpayadvance.Text = "Advance Payment";
+            this.bpayadvance.Text = "Add Old Collections";
             this.toolTip1.SetToolTip(this.bpayadvance, "Generate Advance Payment");
-            this.bpayadvance.Visible = false;
             this.bpayadvance.Click += new System.EventHandler(this.bpayadvance_Click);
             // 
             // bnew
@@ -198,6 +197,25 @@
             this.bsoa.Text = "Print SOA";
             this.toolTip1.SetToolTip(this.bsoa, "Print Statement of Account");
             this.bsoa.Click += new System.EventHandler(this.bsoa_Click);
+            // 
+            // bconfig
+            // 
+            this.bconfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bconfig.BorderRadius = 3;
+            this.bconfig.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bconfig.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bconfig.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bconfig.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bconfig.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.bconfig.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bconfig.ForeColor = System.Drawing.Color.White;
+            this.bconfig.Image = global::rct_lmis.Properties.Resources.icons8_utilities_60;
+            this.bconfig.Location = new System.Drawing.Point(1141, 12);
+            this.bconfig.Name = "bconfig";
+            this.bconfig.Size = new System.Drawing.Size(31, 30);
+            this.bconfig.TabIndex = 185;
+            this.toolTip1.SetToolTip(this.bconfig, "Collection Configuration");
+            this.bconfig.Click += new System.EventHandler(this.bconfig_Click);
             // 
             // panel2
             // 
@@ -411,25 +429,6 @@
             this.ltotalpayments.Size = new System.Drawing.Size(111, 13);
             this.ltotalpayments.TabIndex = 185;
             this.ltotalpayments.Text = "Total Payments Made:";
-            // 
-            // bconfig
-            // 
-            this.bconfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bconfig.BorderRadius = 3;
-            this.bconfig.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.bconfig.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.bconfig.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.bconfig.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.bconfig.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bconfig.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bconfig.ForeColor = System.Drawing.Color.White;
-            this.bconfig.Image = global::rct_lmis.Properties.Resources.icons8_utilities_60;
-            this.bconfig.Location = new System.Drawing.Point(1141, 12);
-            this.bconfig.Name = "bconfig";
-            this.bconfig.Size = new System.Drawing.Size(31, 30);
-            this.bconfig.TabIndex = 185;
-            this.toolTip1.SetToolTip(this.bconfig, "Collection Configuration");
-            this.bconfig.Click += new System.EventHandler(this.bconfig_Click);
             // 
             // frm_home_disburse_collections
             // 

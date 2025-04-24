@@ -97,6 +97,7 @@
             this.bamtfull = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dtcoldate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.lwarning = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1162,11 +1163,25 @@
             this.dtcoldate.TabIndex = 151;
             this.dtcoldate.Value = new System.DateTime(2024, 9, 8, 0, 0, 0, 0);
             // 
+            // lwarning
+            // 
+            this.lwarning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lwarning.AutoSize = true;
+            this.lwarning.BackColor = System.Drawing.Color.Transparent;
+            this.lwarning.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lwarning.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lwarning.Location = new System.Drawing.Point(14, 459);
+            this.lwarning.Name = "lwarning";
+            this.lwarning.Size = new System.Drawing.Size(55, 15);
+            this.lwarning.TabIndex = 215;
+            this.lwarning.Text = "Warning:";
+            // 
             // frm_home_disburse_collections_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 507);
+            this.Controls.Add(this.lwarning);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.tloanid);
             this.Controls.Add(this.clientnotest);
@@ -1313,5 +1328,6 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker dtcoldate;
         private System.Windows.Forms.Label clientnotest;
         private Guna.UI2.WinForms.Guna2Button brefresh;
+        private System.Windows.Forms.Label lwarning;
     }
 }

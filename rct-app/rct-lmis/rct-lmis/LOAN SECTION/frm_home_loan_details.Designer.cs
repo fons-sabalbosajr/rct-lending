@@ -43,7 +43,7 @@ namespace rct_lmis.LOAN_SECTION
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_loan_new));
-            this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
+            this.TabLoanDetails = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -140,16 +140,19 @@ namespace rct_lmis.LOAN_SECTION
             this.trepcurrloan = new Guna.UI2.WinForms.Guna2TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.bcopyaccno = new Guna.UI2.WinForms.Guna2Button();
+            this.bupdate = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.laccno = new System.Windows.Forms.Label();
+            this.lloanaccno = new Guna.UI2.WinForms.Guna2TextBox();
             this.lclientno = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.lloanstatus = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.laccstatus = new System.Windows.Forms.Label();
-            this.laccno = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.guna2TabControl1.SuspendLayout();
+            this.laccupdate = new System.Windows.Forms.Label();
+            this.TabLoanDetails.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdataamort)).BeginInit();
@@ -168,40 +171,40 @@ namespace rct_lmis.LOAN_SECTION
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // guna2TabControl1
+            // TabLoanDetails
             // 
-            this.guna2TabControl1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.guna2TabControl1.Controls.Add(this.tabPage1);
-            this.guna2TabControl1.Controls.Add(this.tabPage2);
-            this.guna2TabControl1.Controls.Add(this.tabPage3);
-            this.guna2TabControl1.Controls.Add(this.tabPage4);
-            this.guna2TabControl1.Controls.Add(this.tabPage6);
-            this.guna2TabControl1.Controls.Add(this.tabPage7);
-            this.guna2TabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2TabControl1.ItemSize = new System.Drawing.Size(180, 40);
-            this.guna2TabControl1.Location = new System.Drawing.Point(0, 50);
-            this.guna2TabControl1.Name = "guna2TabControl1";
-            this.guna2TabControl1.SelectedIndex = 0;
-            this.guna2TabControl1.Size = new System.Drawing.Size(1084, 561);
-            this.guna2TabControl1.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty;
-            this.guna2TabControl1.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
-            this.guna2TabControl1.TabButtonHoverState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
-            this.guna2TabControl1.TabButtonHoverState.ForeColor = System.Drawing.Color.White;
-            this.guna2TabControl1.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
-            this.guna2TabControl1.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty;
-            this.guna2TabControl1.TabButtonIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
-            this.guna2TabControl1.TabButtonIdleState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
-            this.guna2TabControl1.TabButtonIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(160)))), ((int)(((byte)(167)))));
-            this.guna2TabControl1.TabButtonIdleState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
-            this.guna2TabControl1.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty;
-            this.guna2TabControl1.TabButtonSelectedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(37)))), ((int)(((byte)(49)))));
-            this.guna2TabControl1.TabButtonSelectedState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
-            this.guna2TabControl1.TabButtonSelectedState.ForeColor = System.Drawing.Color.White;
-            this.guna2TabControl1.TabButtonSelectedState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
-            this.guna2TabControl1.TabButtonSize = new System.Drawing.Size(180, 40);
-            this.guna2TabControl1.TabButtonTextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2TabControl1.TabIndex = 0;
-            this.guna2TabControl1.TabMenuBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.TabLoanDetails.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.TabLoanDetails.Controls.Add(this.tabPage1);
+            this.TabLoanDetails.Controls.Add(this.tabPage2);
+            this.TabLoanDetails.Controls.Add(this.tabPage3);
+            this.TabLoanDetails.Controls.Add(this.tabPage4);
+            this.TabLoanDetails.Controls.Add(this.tabPage6);
+            this.TabLoanDetails.Controls.Add(this.tabPage7);
+            this.TabLoanDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TabLoanDetails.ItemSize = new System.Drawing.Size(180, 40);
+            this.TabLoanDetails.Location = new System.Drawing.Point(0, 50);
+            this.TabLoanDetails.Name = "TabLoanDetails";
+            this.TabLoanDetails.SelectedIndex = 0;
+            this.TabLoanDetails.Size = new System.Drawing.Size(1084, 561);
+            this.TabLoanDetails.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty;
+            this.TabLoanDetails.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
+            this.TabLoanDetails.TabButtonHoverState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
+            this.TabLoanDetails.TabButtonHoverState.ForeColor = System.Drawing.Color.White;
+            this.TabLoanDetails.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
+            this.TabLoanDetails.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty;
+            this.TabLoanDetails.TabButtonIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.TabLoanDetails.TabButtonIdleState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
+            this.TabLoanDetails.TabButtonIdleState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(160)))), ((int)(((byte)(167)))));
+            this.TabLoanDetails.TabButtonIdleState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.TabLoanDetails.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty;
+            this.TabLoanDetails.TabButtonSelectedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(37)))), ((int)(((byte)(49)))));
+            this.TabLoanDetails.TabButtonSelectedState.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
+            this.TabLoanDetails.TabButtonSelectedState.ForeColor = System.Drawing.Color.White;
+            this.TabLoanDetails.TabButtonSelectedState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
+            this.TabLoanDetails.TabButtonSize = new System.Drawing.Size(180, 40);
+            this.TabLoanDetails.TabButtonTextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TabLoanDetails.TabIndex = 0;
+            this.TabLoanDetails.TabMenuBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
             // 
             // tabPage1
             // 
@@ -1899,16 +1902,39 @@ namespace rct_lmis.LOAN_SECTION
             this.toolTip1.SetToolTip(this.bcopyaccno, "Copy Account number to clipboard");
             this.bcopyaccno.Click += new System.EventHandler(this.bcopyaccno_Click);
             // 
+            // bupdate
+            // 
+            this.bupdate.BorderColor = System.Drawing.Color.Gainsboro;
+            this.bupdate.BorderRadius = 2;
+            this.bupdate.BorderThickness = 1;
+            this.bupdate.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bupdate.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bupdate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bupdate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bupdate.FillColor = System.Drawing.Color.White;
+            this.bupdate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bupdate.ForeColor = System.Drawing.Color.White;
+            this.bupdate.Image = global::rct_lmis.Properties.Resources.icons8_edit_48;
+            this.bupdate.Location = new System.Drawing.Point(9, 11);
+            this.bupdate.Name = "bupdate";
+            this.bupdate.Size = new System.Drawing.Size(25, 25);
+            this.bupdate.TabIndex = 34;
+            this.bupdate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.toolTip1.SetToolTip(this.bupdate, "Copy Account number to clipboard");
+            this.bupdate.Click += new System.EventHandler(this.bupdate_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.laccno);
+            this.panel1.Controls.Add(this.bupdate);
+            this.panel1.Controls.Add(this.lloanaccno);
             this.panel1.Controls.Add(this.lclientno);
             this.panel1.Controls.Add(this.label39);
             this.panel1.Controls.Add(this.bcopyaccno);
             this.panel1.Controls.Add(this.lloanstatus);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.laccstatus);
-            this.panel1.Controls.Add(this.laccno);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1917,17 +1943,52 @@ namespace rct_lmis.LOAN_SECTION
             this.panel1.Size = new System.Drawing.Size(1084, 50);
             this.panel1.TabIndex = 1;
             // 
+            // laccno
+            // 
+            this.laccno.AutoSize = true;
+            this.laccno.BackColor = System.Drawing.Color.Transparent;
+            this.laccno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.laccno.Location = new System.Drawing.Point(323, 30);
+            this.laccno.Name = "laccno";
+            this.laccno.Size = new System.Drawing.Size(60, 15);
+            this.laccno.TabIndex = 35;
+            this.laccno.Text = "accountId";
+            this.laccno.Visible = false;
+            // 
+            // lloanaccno
+            // 
+            this.lloanaccno.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.lloanaccno.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.lloanaccno.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lloanaccno.DefaultText = "";
+            this.lloanaccno.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.lloanaccno.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.lloanaccno.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.lloanaccno.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.lloanaccno.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.lloanaccno.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lloanaccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lloanaccno.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.lloanaccno.Location = new System.Drawing.Point(141, 12);
+            this.lloanaccno.Name = "lloanaccno";
+            this.lloanaccno.PasswordChar = '\0';
+            this.lloanaccno.PlaceholderText = "n/a";
+            this.lloanaccno.SelectedText = "";
+            this.lloanaccno.Size = new System.Drawing.Size(159, 24);
+            this.lloanaccno.TabIndex = 33;
+            // 
             // lclientno
             // 
             this.lclientno.AutoSize = true;
             this.lclientno.BackColor = System.Drawing.Color.Transparent;
             this.lclientno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lclientno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lclientno.Location = new System.Drawing.Point(344, 15);
+            this.lclientno.Location = new System.Drawing.Point(381, 15);
             this.lclientno.Name = "lclientno";
-            this.lclientno.Size = new System.Drawing.Size(47, 15);
+            this.lclientno.Size = new System.Drawing.Size(52, 15);
             this.lclientno.TabIndex = 27;
-            this.lclientno.Text = "ACTIVE";
+            this.lclientno.Text = "clientno";
             // 
             // label39
             // 
@@ -1935,7 +1996,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label39.BackColor = System.Drawing.Color.Transparent;
             this.label39.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label39.Location = new System.Drawing.Point(283, 15);
+            this.label39.Location = new System.Drawing.Point(320, 15);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(63, 15);
             this.label39.TabIndex = 26;
@@ -1948,11 +2009,11 @@ namespace rct_lmis.LOAN_SECTION
             this.lloanstatus.BackColor = System.Drawing.Color.Transparent;
             this.lloanstatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lloanstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lloanstatus.Location = new System.Drawing.Point(872, 15);
+            this.lloanstatus.Location = new System.Drawing.Point(909, 15);
             this.lloanstatus.Name = "lloanstatus";
-            this.lloanstatus.Size = new System.Drawing.Size(62, 15);
+            this.lloanstatus.Size = new System.Drawing.Size(59, 15);
             this.lloanstatus.TabIndex = 22;
-            this.lloanstatus.Text = "PAST DUE";
+            this.lloanstatus.Text = "LoanType";
             // 
             // label14
             // 
@@ -1961,7 +2022,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label14.Location = new System.Drawing.Point(756, 15);
+            this.label14.Location = new System.Drawing.Point(793, 15);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(119, 15);
             this.label14.TabIndex = 21;
@@ -1973,23 +2034,11 @@ namespace rct_lmis.LOAN_SECTION
             this.laccstatus.BackColor = System.Drawing.Color.Transparent;
             this.laccstatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.laccstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccstatus.Location = new System.Drawing.Point(588, 15);
+            this.laccstatus.Location = new System.Drawing.Point(625, 15);
             this.laccstatus.Name = "laccstatus";
-            this.laccstatus.Size = new System.Drawing.Size(47, 15);
+            this.laccstatus.Size = new System.Drawing.Size(110, 15);
             this.laccstatus.TabIndex = 20;
-            this.laccstatus.Text = "ACTIVE";
-            // 
-            // laccno
-            // 
-            this.laccno.AutoSize = true;
-            this.laccno.BackColor = System.Drawing.Color.Transparent;
-            this.laccno.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.laccno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.laccno.Location = new System.Drawing.Point(136, 15);
-            this.laccno.Name = "laccno";
-            this.laccno.Size = new System.Drawing.Size(90, 15);
-            this.laccno.TabIndex = 19;
-            this.laccno.Text = "RCT2024-0001";
+            this.laccstatus.Text = "LoanProcessStatus";
             // 
             // label2
             // 
@@ -1997,7 +2046,7 @@ namespace rct_lmis.LOAN_SECTION
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(501, 15);
+            this.label2.Location = new System.Drawing.Point(538, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 15);
             this.label2.TabIndex = 16;
@@ -2009,19 +2058,35 @@ namespace rct_lmis.LOAN_SECTION
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(35, 15);
+            this.label1.Location = new System.Drawing.Point(35, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 15);
+            this.label1.Size = new System.Drawing.Size(109, 15);
             this.label1.TabIndex = 15;
-            this.label1.Text = "Account Number:";
+            this.label1.Text = "Loan Acc. Number:";
+            // 
+            // laccupdate
+            // 
+            this.laccupdate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.laccupdate.AutoSize = true;
+            this.laccupdate.BackColor = System.Drawing.Color.Transparent;
+            this.laccupdate.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.laccupdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.laccupdate.Location = new System.Drawing.Point(260, 267);
+            this.laccupdate.Name = "laccupdate";
+            this.laccupdate.Size = new System.Drawing.Size(506, 38);
+            this.laccupdate.TabIndex = 33;
+            this.laccupdate.Text = "This Loan Account requires primary update...\r\nPlease encode the Loan Number of th" +
+    "e given loan account to show all the details.";
+            this.laccupdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frm_home_loan_new
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 611);
-            this.Controls.Add(this.guna2TabControl1);
+            this.Controls.Add(this.TabLoanDetails);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.laccupdate);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -2030,7 +2095,7 @@ namespace rct_lmis.LOAN_SECTION
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Loan Transaction Details";
             this.Load += new System.EventHandler(this.frm_home_loan_new_Load);
-            this.guna2TabControl1.ResumeLayout(false);
+            this.TabLoanDetails.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -2057,12 +2122,13 @@ namespace rct_lmis.LOAN_SECTION
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2TabControl guna2TabControl1;
+        private Guna.UI2.WinForms.Guna2TabControl TabLoanDetails;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
@@ -2094,7 +2160,6 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.Label lloanstatus;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label laccstatus;
-        private System.Windows.Forms.Label laccno;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
@@ -2168,5 +2233,9 @@ namespace rct_lmis.LOAN_SECTION
         private System.Windows.Forms.Label ltotalamtpaid;
         private System.Windows.Forms.Label lgenbal;
         private System.Windows.Forms.Label lpenaltytotal;
+        private Guna.UI2.WinForms.Guna2TextBox lloanaccno;
+        private Guna.UI2.WinForms.Guna2Button bupdate;
+        private System.Windows.Forms.Label laccupdate;
+        private System.Windows.Forms.Label laccno;
     }
 }

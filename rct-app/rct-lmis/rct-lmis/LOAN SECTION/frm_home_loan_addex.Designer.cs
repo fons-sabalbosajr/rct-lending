@@ -35,7 +35,6 @@
             this.laccno = new System.Windows.Forms.Label();
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tcollector = new Guna.UI2.WinForms.Guna2TextBox();
             this.tprovince = new Guna.UI2.WinForms.Guna2TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tcity = new Guna.UI2.WinForms.Guna2TextBox();
@@ -86,6 +85,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.tloanamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.cbcollector = new Guna.UI2.WinForms.Guna2ComboBox();
             this.panel1.SuspendLayout();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -186,7 +186,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.tcollector);
+            this.tabPage1.Controls.Add(this.cbcollector);
             this.tabPage1.Controls.Add(this.tprovince);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.tcity);
@@ -219,26 +219,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General Information";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tcollector
-            // 
-            this.tcollector.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tcollector.DefaultText = "";
-            this.tcollector.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.tcollector.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.tcollector.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tcollector.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.tcollector.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcollector.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tcollector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tcollector.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tcollector.Location = new System.Drawing.Point(461, 248);
-            this.tcollector.Name = "tcollector";
-            this.tcollector.PasswordChar = '\0';
-            this.tcollector.PlaceholderText = "collector name";
-            this.tcollector.SelectedText = "";
-            this.tcollector.Size = new System.Drawing.Size(180, 25);
-            this.tcollector.TabIndex = 84;
             // 
             // tprovince
             // 
@@ -397,7 +377,7 @@
             this.cbloanstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbloanstatus.ItemHeight = 30;
             this.cbloanstatus.Items.AddRange(new object[] {
-            "UDPATED",
+            "UPDATED",
             "PAST DUE",
             "ARREARS",
             "LITIGATION",
@@ -1030,6 +1010,22 @@
             this.label12.TabIndex = 61;
             this.label12.Text = "Loan Amount:";
             // 
+            // cbcollector
+            // 
+            this.cbcollector.BackColor = System.Drawing.Color.Transparent;
+            this.cbcollector.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbcollector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbcollector.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcollector.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcollector.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbcollector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbcollector.ItemHeight = 30;
+            this.cbcollector.Location = new System.Drawing.Point(461, 243);
+            this.cbcollector.Name = "cbcollector";
+            this.cbcollector.Size = new System.Drawing.Size(208, 36);
+            this.cbcollector.StartIndex = 0;
+            this.cbcollector.TabIndex = 85;
+            // 
             // frm_home_loan_addex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1106,7 +1102,6 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker dtstartdate;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label20;
-        private Guna.UI2.WinForms.Guna2TextBox tcollector;
         private Guna.UI2.WinForms.Guna2TextBox tloanamountpay;
         private System.Windows.Forms.Label label21;
         private Guna.UI2.WinForms.Guna2TextBox tloanprocessfee;
@@ -1114,5 +1109,6 @@
         private System.Windows.Forms.Label label23;
         private Guna.UI2.WinForms.Guna2TextBox tloaninterestamt;
         private System.Windows.Forms.Label label16;
+        private Guna.UI2.WinForms.Guna2ComboBox cbcollector;
     }
 }

@@ -17,6 +17,7 @@ using OfficeOpenXml.Style;
 using System.IO;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
+using MailKit.Search;
 
 
 namespace rct_lmis
@@ -51,7 +52,7 @@ namespace rct_lmis
         }
 
 
-        public async Task LoadLoanDisbursedData(string searchQuery = "", string selectedLoanStatus = "--all status--")
+        public async Task LoadLoanDisbursedData(string searchQuery = "", string selectedLoanStatus = "--all status--", string selectedYear = "")
         {
             try
             {
@@ -80,6 +81,14 @@ namespace rct_lmis
                     filter = Builders<BsonDocument>.Filter.And(filter, searchFilter);
                 }
 
+                // Filter by Year (selectedYear is passed)
+                if (!string.IsNullOrEmpty(selectedYear))
+                {
+                    var yearRegex = new BsonRegularExpression($"^RCT-{selectedYear}DB", "i");
+                    var yearFilter = Builders<BsonDocument>.Filter.Regex("AccountId", yearRegex);
+                    filter = Builders<BsonDocument>.Filter.And(filter, yearFilter);
+                }
+
                 var loanDisbursedList = await loanDisbursedCollection.Find(filter).ToListAsync();
 
                 if (loanDisbursedList.Count == 0)
@@ -92,7 +101,7 @@ namespace rct_lmis
                 }
 
                 lnorecord.Visible = false;
-
+               
                 // Get ClientNo from loan_collections collection
                 var collectionClientNos = (await loanCollectionsCollection
                     .Find(Builders<BsonDocument>.Filter.Empty)
@@ -176,9 +185,6 @@ namespace rct_lmis
         }
 
 
-        // Add or Adjust button columns display index
-
-
         private void AddViewDetailsButton()
         {
             // Add the View Details button
@@ -228,27 +234,35 @@ namespace rct_lmis
             }
         }
 
-
-        public async Task LoadLoanStatusFilter()
+        private async Task LoadLoanStatusFilter()
         {
             try
             {
-                // Retrieve distinct LoanStatus values from the loan_disbursed collection
+                cbstatus.SelectedIndexChanged -= cbstatus_SelectedIndexChanged;
+
                 var distinctStatuses = await loanDisbursedCollection
                     .Distinct<string>("LoanStatus", Builders<BsonDocument>.Filter.Empty)
                     .ToListAsync();
 
-                // Add default option if needed
-                distinctStatuses.Insert(0, "--all status--");
+                cbstatus.Items.Clear();
+                cbstatus.Items.Add("--all status--");
 
-                // Populate the ComboBox with distinct statuses
-                cbstatus.DataSource = distinctStatuses;
+                foreach (var status in distinctStatuses.Distinct())
+                {
+                    if (!cbstatus.Items.Contains(status))
+                        cbstatus.Items.Add(status);
+                }
+
+                cbstatus.SelectedItem = "--all status--";
+
+                cbstatus.SelectedIndexChanged += cbstatus_SelectedIndexChanged;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading Loan Status filter: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         // Method to get client info from the loan_approved collection
@@ -304,12 +318,12 @@ namespace rct_lmis
 
                 // Add the default item first
                 cbstatus.Items.Clear();
-                cbstatus.Items.Add("--all payee--");
+                cbstatus.Items.Add("--all status--");
 
                 // Populate the ComboBox with cashName values
                 foreach (var loan in loanDisbursedList)
                 {
-                    var cashName = loan.GetValue("LoanProcessStatus").ToString();
+                    var cashName = loan.GetValue("LoanStatus").ToString();
                     if (!cbstatus.Items.Contains(cashName))
                     {
                         cbstatus.Items.Add(cashName);
@@ -325,21 +339,79 @@ namespace rct_lmis
             }
         }
 
-        private async void frm_home_disburse_Load(object sender, EventArgs e)
+        private void PopulateYearsFromAccountIds()
         {
-            await LoadLoanDisbursedData();
-            await PopulateComboBoxWithCashNames();
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var approvedLoansCollection = database.GetCollection<BsonDocument>("loan_disbursed");
 
-            await LoadLoanStatusFilter();
+                var approvedDocs = approvedLoansCollection.Find(new BsonDocument()).ToList();
+                HashSet<string> validYears = new HashSet<string>();
 
-            //LoadUserInfo(loggedInUsername);
+                foreach (var doc in approvedDocs)
+                {
+                    if (doc.Contains("AccountId"))
+                    {
+                        string accountId = doc["AccountId"].ToString();
+                        var match = Regex.Match(accountId, @"RCT-(\d{4})DB", RegexOptions.IgnoreCase);
+                        if (match.Success)
+                        {
+                            var year = match.Groups[1].Value;
+                            if (year == "2024" || year == "2025")
+                                validYears.Add(year);
+                        }
+                    }
+                }
+
+                var sortedYears = validYears
+                    .Select(y => int.Parse(y))
+                    .OrderByDescending(y => y)
+                    .ToList();
+
+                cbyear.Items.Clear();
+                foreach (var year in sortedYears)
+                    cbyear.Items.Add(year.ToString());
+
+                // Default to 2025 if available, else first available
+                if (cbyear.Items.Contains("2025"))
+                    cbyear.SelectedItem = "2025";
+                else if (cbyear.Items.Count > 0)
+                    cbyear.SelectedItem = cbyear.Items[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading year list: " + ex.Message);
+            }
         }
 
+
+        private async void frm_home_disburse_Load(object sender, EventArgs e)
+        {
+            // Step 1: Populate years (with only 2024 & 2025)
+            PopulateYearsFromAccountIds();
+
+            // Step 2: Select default year = 2025
+            if (cbyear.Items.Contains("2025"))
+                cbyear.SelectedItem = "2025";
+            else if (cbyear.Items.Count > 0)
+                cbyear.SelectedIndex = 0;
+
+            string selectedYear = cbyear.SelectedItem?.ToString();
+
+            // Step 3: Load data for selected year (2025 expected)
+            if (!string.IsNullOrEmpty(selectedYear))
+            {
+                await LoadLoanDisbursedData("", "--all status--", selectedYear);
+            }
+
+            // Step 4: Load loan statuses AFTER year-based data
+            await LoadLoanStatusFilter();
+        }
 
         private void dgvdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvdata.ClearSelection();
-
         }
 
         private void tsearch_TextChanged(object sender, EventArgs e)
@@ -590,5 +662,23 @@ namespace rct_lmis
         {
           
         }
+
+        private async void cbyear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedYear = cbyear.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(selectedYear))
+            {
+                MessageBox.Show("Please select a valid year.", "Year Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Optionally reset search and status filter when year changes
+            string searchQuery = tsearch?.Text?.Trim() ?? ""; // assuming you have a txtSearch textbox
+            string selectedLoanStatus = cbstatus?.SelectedItem?.ToString() ?? "--all status--"; // assuming you have a cbstatus combobox
+
+            await LoadLoanDisbursedData(searchQuery, selectedLoanStatus, selectedYear);
+        }
+
     }
 }

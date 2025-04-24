@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -28,42 +29,46 @@ namespace rct_lmis
 
         LoadingFunction load = new LoadingFunction();
         frm_home_loan_new flnew = new frm_home_loan_new();
-      
 
-
-
-        private void LoadApprovedLoansData(string loanStatusFilter = "--All Status--")
+        private void LoadApprovedLoansData(string loanStatusFilter = "--All Status--", string selectedYear = "")
         {
             try
             {
-                // Access the collections
                 var database = MongoDBConnection.Instance.Database;
                 var approvedLoansCollection = database.GetCollection<BsonDocument>("loan_approved");
                 var applicationsCollection = database.GetCollection<BsonDocument>("loan_applications");
 
-                // Define the filter based on the ComboBox selection (LoanStatus)
-                var filter = loanStatusFilter == "--All Status--"
-                    ? Builders<BsonDocument>.Filter.Empty
-                    : Builders<BsonDocument>.Filter.Eq("LoanStatus", loanStatusFilter);
+                var filters = new List<FilterDefinition<BsonDocument>>();
 
-                // Retrieve filtered documents based on LoanStatus filter
-                var approvedDocuments = approvedLoansCollection.Find(filter).ToList();
+                // Apply Loan Status filter
+                if (loanStatusFilter != "--All Status--")
+                    filters.Add(Builders<BsonDocument>.Filter.Eq("LoanStatus", loanStatusFilter));
+
+                // Apply Year filter (based on selectedYear from cbyear)
+                if (!string.IsNullOrEmpty(selectedYear) && selectedYear != "--All Year--")
+                {
+                    filters.Add(Builders<BsonDocument>.Filter.Regex("AccountId", new BsonRegularExpression($"RCT-{selectedYear}DB", "i")));
+                }
+
+                var finalFilter = filters.Count > 0 ? Builders<BsonDocument>.Filter.And(filters) : Builders<BsonDocument>.Filter.Empty;
+
+                var approvedDocuments = approvedLoansCollection.Find(finalFilter).ToList();
                 var applicationDocuments = applicationsCollection.Find(new BsonDocument()).ToList();
 
-                // Dictionary to count loan types
+
+                // Loan status count tracker
                 Dictionary<string, int> loanTypeCounts = new Dictionary<string, int>
-               {
-                   { "UPDATED", 0 },
-                   { "PAST DUE", 0 },
-                   { "ARREARS", 0 },
-                   { "LITIGATION", 0 },
-                   { "DORMANT", 0 }
-               };
+                  {
+                     { "UPDATED", 0 },
+                     { "PAST DUE", 0 },
+                     { "ARREARS", 0 },
+                     { "LITIGATION", 0 },
+                     { "DORMANT", 0 },
+                     { "DEFAULT", 0 }
+                 };
 
-                // Create a DataTable to hold the data
+                // DataTable setup
                 DataTable dataTable = new DataTable();
-
-                // Define the columns to display
                 dataTable.Columns.Add("AccountID");
                 dataTable.Columns.Add("LoanType");
                 dataTable.Columns.Add("PrincipalAmount");
@@ -72,65 +77,64 @@ namespace rct_lmis
                 dataTable.Columns.Add("FullNameAndAddress");
                 dataTable.Columns.Add("CBCP");
                 dataTable.Columns.Add("Documents");
+                dataTable.Columns.Add("SortKey", typeof(int)); // Added column for numeric sort
 
                 foreach (var approvedDoc in approvedDocuments)
                 {
                     DataRow row = dataTable.NewRow();
+
                     var accountId = approvedDoc.Contains("AccountId") ? approvedDoc["AccountId"].ToString() : string.Empty;
                     row["AccountID"] = accountId;
+
                     string loanType = approvedDoc.Contains("LoanStatus") ? approvedDoc["LoanStatus"].ToString() : "DEFAULT";
                     row["LoanType"] = loanType;
-
-                    // Count loan types
                     if (loanTypeCounts.ContainsKey(loanType))
                         loanTypeCounts[loanType]++;
                     else
-                        loanTypeCounts["DEFAULT"] = loanTypeCounts.ContainsKey("DEFAULT") ? loanTypeCounts["DEFAULT"] + 1 : 1;
+                        loanTypeCounts["DEFAULT"]++;
 
                     row["PrincipalAmount"] = approvedDoc.Contains("LoanAmount") ? approvedDoc["LoanAmount"].ToString() : string.Empty;
                     row["LoanTerm"] = approvedDoc.Contains("LoanTerm") ? approvedDoc["LoanTerm"].ToString() : string.Empty;
 
-                    // Fetch status and documents from the loan_applications collection
+                    // Application document lookup
                     var applicationDoc = applicationDocuments.FirstOrDefault(doc => doc.Contains("AccountId") && doc["AccountId"].ToString() == accountId);
                     row["LoanProcessStatus"] = approvedDoc.Contains("LoanProcessStatus") ? approvedDoc["LoanProcessStatus"].ToString() : string.Empty;
                     row["Documents"] = applicationDoc != null && applicationDoc.Contains("docs") ? applicationDoc["docs"].ToString() : string.Empty;
 
-                    // FullName and Address
-                    string firstName = approvedDoc.Contains("FirstName") ? approvedDoc["FirstName"].ToString() : string.Empty;
-                    string middleName = approvedDoc.Contains("MiddleName") ? approvedDoc["MiddleName"].ToString() : string.Empty;
-                    string lastName = approvedDoc.Contains("LastName") ? approvedDoc["LastName"].ToString() : string.Empty;
-                    string suffixName = approvedDoc.Contains("SuffixName") ? approvedDoc["SuffixName"].ToString() : string.Empty;
-                    string fullName = $"{firstName} {middleName} {lastName} {suffixName}".Trim();
-
-                    string street = approvedDoc.Contains("Street") ? approvedDoc["Street"].ToString() : string.Empty;
-                    string barangay = approvedDoc.Contains("Barangay") ? approvedDoc["Barangay"].ToString() : string.Empty;
-                    string city = approvedDoc.Contains("City") ? approvedDoc["City"].ToString() : string.Empty;
-                    string province = approvedDoc.Contains("Province") ? approvedDoc["Province"].ToString() : string.Empty;
-                    string address = $"{street}, {barangay}, {city}, {province}".Trim();
-
-                    // Concatenate full name and address
+                    // Full name & address
+                    string fullName = $"{approvedDoc.GetValue("FirstName", "")} {approvedDoc.GetValue("MiddleName", "")} {approvedDoc.GetValue("LastName", "")} {approvedDoc.GetValue("SuffixName", "")}".Trim();
+                    string address = $"{approvedDoc.GetValue("Street", "")}, {approvedDoc.GetValue("Barangay", "")}, {approvedDoc.GetValue("City", "")}, {approvedDoc.GetValue("Province", "")}".Trim();
                     row["FullNameAndAddress"] = $"{fullName}\n{address}";
 
                     row["CBCP"] = approvedDoc.Contains("CBCP") ? approvedDoc["CBCP"].ToString() : string.Empty;
 
-                    // Format documents list
+                    // Format documents
                     if (approvedDoc.Contains("docs"))
                     {
                         var documentsList = approvedDoc["docs"].ToString().Split(',');
                         row["Documents"] = string.Join("\n", documentsList);
                     }
+
+                    // Compute numeric SortKey
+                    var match = Regex.Match(accountId, @"(\d+)$");
+                    if (match.Success && int.TryParse(match.Value, out int sortVal))
+                        row["SortKey"] = sortVal;
                     else
-                    {
-                        row["Documents"] = string.Empty;
-                    }
+                        row["SortKey"] = int.MaxValue;
 
                     dataTable.Rows.Add(row);
                 }
 
-                // Bind the DataTable to the DataGridView
-                dgvdata.DataSource = dataTable;
+                // Sort using numeric SortKey
+                DataView sortedView = dataTable.DefaultView;
+                sortedView.Sort = "SortKey ASC";
+                dgvdata.DataSource = sortedView.ToTable();
 
-                // Set custom header texts
+                // Hide SortKey column
+                if (dgvdata.Columns.Contains("SortKey"))
+                    dgvdata.Columns["SortKey"].Visible = false;
+
+                // Setup column headers
                 dgvdata.Columns["AccountID"].HeaderText = "Client No.";
                 dgvdata.Columns["LoanType"].HeaderText = "Loan Type";
                 dgvdata.Columns["PrincipalAmount"].HeaderText = "Principal Amount";
@@ -140,76 +144,60 @@ namespace rct_lmis
                 dgvdata.Columns["CBCP"].HeaderText = "Contact Number";
                 dgvdata.Columns["Documents"].HeaderText = "Attached Documents";
 
-                // Adjust column widths, font styles, etc.
+                // Style and alignment
                 dgvdata.Columns["FullNameAndAddress"].Width = 250;
                 dgvdata.Columns["Documents"].Width = 275;
                 dgvdata.Columns["LoanType"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                // Apply font styling
                 dgvdata.DefaultCellStyle.Font = new Font("Segoe UI", 9);
                 dgvdata.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
 
-                // Update the labels with loan type counts
+                // Update labels
                 lstatusupdated.Text = $"UPDATED: {loanTypeCounts["UPDATED"]}";
                 lstatuspastdue.Text = $"PAST DUE: {loanTypeCounts["PAST DUE"]}";
                 lstatusarrears.Text = $"ARREARS: {loanTypeCounts["ARREARS"]}";
                 lstatuslitigation.Text = $"LITIGATION: {loanTypeCounts["LITIGATION"]}";
                 lstatusdormant.Text = $"DORMANT: {loanTypeCounts["DORMANT"]}";
 
-                // Set background colors to match DataGridView formatting
-                lstatusupdated.BackColor = Color.Green;
-                lstatusupdated.ForeColor = Color.White;
-
-                lstatuspastdue.BackColor = Color.Yellow;
-                lstatuspastdue.ForeColor = Color.Black;
-
-                lstatusarrears.BackColor = Color.Orange;
-                lstatusarrears.ForeColor = Color.White;
-
-                lstatuslitigation.BackColor = Color.Red;
-                lstatuslitigation.ForeColor = Color.White;
-
-                lstatusdormant.BackColor = Color.Gray;
-                lstatusdormant.ForeColor = Color.White;
+                lstatusupdated.BackColor = Color.Green; lstatusupdated.ForeColor = Color.White;
+                lstatuspastdue.BackColor = Color.Yellow; lstatuspastdue.ForeColor = Color.Black;
+                lstatusarrears.BackColor = Color.Orange; lstatusarrears.ForeColor = Color.White;
+                lstatuslitigation.BackColor = Color.Red; lstatuslitigation.ForeColor = Color.White;
+                lstatusdormant.BackColor = Color.Gray; lstatusdormant.ForeColor = Color.White;
 
                 lnorecord.Visible = dgvdata.Rows.Count == 0;
 
+                // Action Buttons
                 if (dgvdata.Columns["btnActions"] == null)
                 {
-                    DataGridViewButtonColumn viewDetailsButtonColumn = new DataGridViewButtonColumn
+                    dgvdata.Columns.Add(new DataGridViewButtonColumn
                     {
                         Name = "btnActions",
                         HeaderText = "Actions",
                         Text = "View",
                         UseColumnTextForButtonValue = true,
-                       
-                    };
-                    dgvdata.Columns.Add(viewDetailsButtonColumn);
+                        DefaultCellStyle = {
+                    Padding = new Padding(2, 20, 2, 20),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                },
+                        Width = 100
+                    });
                 }
-
-                // Adjust padding and alignment for the button
-                dgvdata.Columns["btnActions"].DefaultCellStyle.Padding = new Padding(2, 20, 2, 20);
-                dgvdata.Columns["btnActions"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvdata.Columns["btnActions"].Width = 100; // Set a reasonable width
 
                 if (dgvdata.Columns["btnDisburse"] == null)
                 {
-                    DataGridViewButtonColumn disburseButtonColumn = new DataGridViewButtonColumn
+                    dgvdata.Columns.Add(new DataGridViewButtonColumn
                     {
                         Name = "btnDisburse",
                         HeaderText = "Disburse",
                         Text = "Disburse",
                         UseColumnTextForButtonValue = true,
-                       
-                    };
-                    dgvdata.Columns.Add(disburseButtonColumn);
+                        DefaultCellStyle = {
+                    Padding = new Padding(2, 20, 2, 20),
+                    Alignment = DataGridViewContentAlignment.MiddleCenter
+                },
+                        Width = 80
+                    });
                 }
-
-                // Adjust padding and alignment for the disburse button
-                dgvdata.Columns["btnDisburse"].DefaultCellStyle.Padding = new Padding(2, 20, 2, 20);
-                dgvdata.Columns["btnDisburse"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvdata.Columns["btnDisburse"].Width = 80; // Set a reasonable width
-
             }
             catch (Exception ex)
             {
@@ -300,6 +288,53 @@ namespace rct_lmis
             lstatusdormant.Text = $"DORMANT: {loanTypeCounts["DORMANT"]}";
         }
 
+        private void PopulateYearsFromAccountIds()
+        {
+            try
+            {
+                var database = MongoDBConnection.Instance.Database;
+                var approvedLoansCollection = database.GetCollection<BsonDocument>("loan_approved");
+
+                var approvedDocs = approvedLoansCollection.Find(new BsonDocument()).ToList();
+                HashSet<string> uniqueYears = new HashSet<string>();
+
+                foreach (var doc in approvedDocs)
+                {
+                    if (doc.Contains("AccountId"))
+                    {
+                        string accountId = doc["AccountId"].ToString();
+                        var match = Regex.Match(accountId, @"RCT-(\d{4})DB", RegexOptions.IgnoreCase);
+                        if (match.Success)
+                            uniqueYears.Add(match.Groups[1].Value);
+                    }
+                }
+
+                var sortedYears = uniqueYears
+                    .Select(y => int.TryParse(y, out int yr) ? yr : 0)
+                    .Where(y => y > 0)
+                    .OrderByDescending(y => y)
+                    .ToList();
+
+                cbyear.Items.Clear();
+                foreach (var year in sortedYears)
+                    cbyear.Items.Add(year.ToString());
+
+                // Automatically select the current year (2025)
+                int currentYear = DateTime.Now.Year;
+                if (sortedYears.Contains(currentYear))
+                    cbyear.SelectedItem = currentYear.ToString();
+                else if (sortedYears.Count > 0)
+                    cbyear.SelectedItem = sortedYears[0].ToString(); // Select the first available year
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading year list: " + ex.Message);
+            }
+        }
+
+
+
         private void baddnew_Click(object sender, EventArgs e)
         {
             frm_home_addnew fladd = new frm_home_addnew();
@@ -316,10 +351,14 @@ namespace rct_lmis
             LoadApprovedLoansData();
             LoadLoanStatusesToComboBox();
             LoadUserInfo(loggedInUsername);
-           
+
+            PopulateYearsFromAccountIds(); // Will auto-select the latest year (2025)
+            if (cbyear.SelectedItem != null)
+            {
+                LoadApprovedLoansData("--All Status--", cbyear.SelectedItem.ToString());
+            }
 
             ltotalloancount.Text = dgvdata.Rows.Count.ToString();
-           
         }
 
         private void dgvdata_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -334,7 +373,7 @@ namespace rct_lmis
             {
                 if (e.Value != null)
                 {
-                    string loanType = e.Value.ToString().ToUpper();
+                    string loanType = e.Value.ToString().ToUpper().Trim(); // Ensure it's uppercase and no leading/trailing spaces
 
                     switch (loanType)
                     {
@@ -366,6 +405,7 @@ namespace rct_lmis
                 }
             }
         }
+
 
         private void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -504,7 +544,8 @@ namespace rct_lmis
                 if (selectedStatus == "--all status--")
                 {
                     // Load all data
-                    LoadApprovedLoansData();
+                    string selectedYear = cbyear.SelectedItem?.ToString() ?? "";
+                    LoadApprovedLoansData(selectedStatus, selectedYear);
                 }
                 else
                 {
@@ -533,6 +574,8 @@ namespace rct_lmis
 
                 // Update the total loan count label
                 ltotalloancount.Text = dgvdata.Rows.Count.ToString();
+
+
             }
             catch (Exception ex)
             {
@@ -565,6 +608,15 @@ namespace rct_lmis
 
             // Recalculate and update loan type totals
             UpdateLoanTypeCounts();
+        }
+
+        private void cbyear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedYear = cbyear.SelectedItem?.ToString();
+            if (!string.IsNullOrEmpty(selectedYear))
+            {
+                LoadApprovedLoansData("--All Status--", selectedYear);
+            }
         }
     }
 }
