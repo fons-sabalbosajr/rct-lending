@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_collections_addex));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lwarning = new System.Windows.Forms.Label();
             this.bsave = new Guna.UI2.WinForms.Guna2Button();
             this.bcancel = new Guna.UI2.WinForms.Guna2Button();
             this.chexists = new System.Windows.Forms.CheckBox();
@@ -87,7 +88,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.clientnotest = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lwarning = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -169,6 +169,19 @@
             this.tabPage1.Text = "Single Collection";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lwarning
+            // 
+            this.lwarning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lwarning.AutoSize = true;
+            this.lwarning.BackColor = System.Drawing.Color.Transparent;
+            this.lwarning.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lwarning.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lwarning.Location = new System.Drawing.Point(12, 430);
+            this.lwarning.Name = "lwarning";
+            this.lwarning.Size = new System.Drawing.Size(55, 15);
+            this.lwarning.TabIndex = 214;
+            this.lwarning.Text = "Warning:";
+            // 
             // bsave
             // 
             this.bsave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -185,6 +198,7 @@
             this.bsave.Size = new System.Drawing.Size(82, 31);
             this.bsave.TabIndex = 213;
             this.bsave.Text = "Save";
+            this.bsave.Click += new System.EventHandler(this.bsave_Click);
             // 
             // bcancel
             // 
@@ -625,7 +639,7 @@
             this.bamtfull.TabIndex = 181;
             this.bamtfull.Text = "Full Amount";
             this.bamtfull.UseVisualStyleBackColor = true;
-            this.bamtfull.Visible = false;
+            this.bamtfull.Click += new System.EventHandler(this.bamtfull_Click);
             // 
             // tcolbranch
             // 
@@ -849,6 +863,7 @@
             this.tcolpayamt.Size = new System.Drawing.Size(178, 39);
             this.tcolpayamt.TabIndex = 168;
             this.tcolpayamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tcolpayamt.TextChanged += new System.EventHandler(this.tcolpayamt_TextChanged);
             // 
             // tcoltotal
             // 
@@ -1057,19 +1072,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Bulk Collections/Upload File";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // lwarning
-            // 
-            this.lwarning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lwarning.AutoSize = true;
-            this.lwarning.BackColor = System.Drawing.Color.Transparent;
-            this.lwarning.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lwarning.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lwarning.Location = new System.Drawing.Point(12, 430);
-            this.lwarning.Name = "lwarning";
-            this.lwarning.Size = new System.Drawing.Size(55, 15);
-            this.lwarning.TabIndex = 214;
-            this.lwarning.Text = "Warning:";
             // 
             // frm_home_disburse_collections_addex
             // 

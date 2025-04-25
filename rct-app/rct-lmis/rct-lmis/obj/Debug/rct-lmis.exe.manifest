@@ -1879,14 +1879,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rct-lmis.exe" size="3214296">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rct-lmis.exe" size="3236824">
       <assemblyIdentity name="rct-lmis" version="1.0.0.29" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>i5juK/rwSO7lzT5wZ4jL5TOVFlODUS0Q9UjD2ymY3H8=</dsig:DigestValue>
+        <dsig:DigestValue>PrCDqsLMjuguJajdIeqNt0lzILDzmOHFr+DTVY5qCwQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

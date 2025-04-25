@@ -73,7 +73,6 @@ namespace rct_lmis
             this.pbody = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.guna2DataGridView2 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.grpupdates = new System.Windows.Forms.GroupBox();
@@ -86,6 +85,7 @@ namespace rct_lmis
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ttime = new System.Windows.Forms.Timer(this.components);
             this.tnotif = new System.Windows.Forms.Timer(this.components);
+            this.rtreminder = new System.Windows.Forms.RichTextBox();
             this.paneltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -102,6 +102,7 @@ namespace rct_lmis
             // 
             this.paneltop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.paneltop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.paneltop.Controls.Add(this.rtreminder);
             this.paneltop.Controls.Add(this.lnotif);
             this.paneltop.Controls.Add(this.label1);
             this.paneltop.Controls.Add(this.label2);
@@ -773,7 +774,6 @@ namespace rct_lmis
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.guna2DataGridView2);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Gray;
@@ -783,17 +783,6 @@ namespace rct_lmis
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recent Clients";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Gray;
-            this.label8.Location = new System.Drawing.Point(100, 76);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(103, 17);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "no recent clients";
             // 
             // guna2DataGridView2
             // 
@@ -1024,6 +1013,20 @@ namespace rct_lmis
             this.tnotif.Interval = 500;
             this.tnotif.Tick += new System.EventHandler(this.tnotif_Tick);
             // 
+            // rtreminder
+            // 
+            this.rtreminder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.rtreminder.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtreminder.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtreminder.ForeColor = System.Drawing.Color.White;
+            this.rtreminder.Location = new System.Drawing.Point(205, 5);
+            this.rtreminder.Name = "rtreminder";
+            this.rtreminder.ReadOnly = true;
+            this.rtreminder.Size = new System.Drawing.Size(609, 60);
+            this.rtreminder.TabIndex = 1;
+            this.rtreminder.Text = "";
+            this.rtreminder.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtreminder_LinkClicked);
+            // 
             // frm_home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1040,7 +1043,6 @@ namespace rct_lmis
             this.Name = "frm_home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RCT Lending Management Information System";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_FormClosing);
             this.Load += new System.EventHandler(this.frm_home_Load);
             this.paneltop.ResumeLayout(false);
@@ -1051,7 +1053,6 @@ namespace rct_lmis
             this.pbody.ResumeLayout(false);
             this.pbody.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView2)).EndInit();
             this.grpupdates.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -1105,12 +1106,12 @@ namespace rct_lmis
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2Button bviewapplications;
         private System.Windows.Forms.Timer ttime;
         private System.Windows.Forms.Timer tnotif;
         private Guna.UI2.WinForms.Guna2CircleButton bloannotif;
         private System.Windows.Forms.Label lnotif;
+        private System.Windows.Forms.RichTextBox rtreminder;
     }
 }

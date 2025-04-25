@@ -22,13 +22,13 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private string _loanId;
         private string clientNo;
         private IMongoCollection<BsonDocument> _loanDisbursedCollection;
+        private IMongoCollection<BsonDocument> _loanAccountCyclesCollection;
         private IMongoCollection<BsonDocument> _loanApprovedCollection;
         private IMongoCollection<BsonDocument> _loanReleaseVoucherCollection;
 
         private static string[] Scopes = { DriveService.Scope.DriveFile };
         private static string ApplicationName = "rct-lmis";
         private DriveService service;
-
 
         // Folder IDs
         private static string DocsFolderId = "1-4E3R3L-lNcJ0E98RrcWRRb9As_8kDl3";
@@ -45,6 +45,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
             _loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
             _loanReleaseVoucherCollection = database.GetCollection<BsonDocument>("loan_released_voucher");
+            _loanAccountCyclesCollection = database.GetCollection<BsonDocument>("loan_account_cycles");
 
             // Load details
             LoadDetails();
@@ -53,6 +54,18 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             InitializeDataGridView();
             InitializeMongoDBUpload();
             InitializeGoogleDrive();
+        }
+
+        private async Task UpdateGridAndUIAsync(LoanDetails loanDetails, string accountId)
+        {
+            // Await loading data into DataGridView (which handles clearing and filling)
+            await LoadDataGridViewWithCyclesAsync(accountId);
+
+            // Update visibility of the button on the UI thread only
+            Invoke((MethodInvoker)(() =>
+            {
+                badd.Visible = IsLoanDetailsComplete(loanDetails);
+            }));
         }
 
         private async void LoadDetails()
@@ -69,30 +82,24 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 LoanDetails loanDetails = await GetLoanDetails(laccountid.Text);
 
+
                 if (loanDetails != null)
                 {
-                    // Ensure UI updates run on the main thread
-                    Invoke((MethodInvoker)delegate
+                    // UI field updates can remain in Invoke
+                    Invoke((MethodInvoker)(() =>
                     {
                         tlnno.Text = !string.IsNullOrEmpty(loanDetails.LoanIDNo) ? loanDetails.LoanIDNo : "n/a";
                         tclientno.Text = !string.IsNullOrEmpty(loanDetails.cashClnNo) ? loanDetails.cashClnNo : "n/a";
                         tname.Text = !string.IsNullOrEmpty(loanDetails.cashName) ? loanDetails.cashName : "n/a";
                         tloantype.Text = !string.IsNullOrEmpty(loanDetails.LoanType) ? loanDetails.LoanType : "n/a";
                         tloanstatus.Text = !string.IsNullOrEmpty(loanDetails.LoanStatus) ? loanDetails.LoanStatus : "n/a";
-                    });
+                    }));
 
                     await LoadApprovedDetails(loanDetails.cashClnNo);
                     await LoadVoucherDetailsAsync();
 
-                    // Load Data into DataGridView
-                    Invoke((MethodInvoker)delegate
-                    {
-                        LoadDataGridView(loanDetails);
-                    });
-                }
-                else
-                {
-                    MessageBox.Show("No loan details found.");
+                    // Load DataGridView + update badd button visibility properly
+                    await UpdateGridAndUIAsync(loanDetails, laccountid.Text); // ✅ uses AccountId properly
                 }
             }
             catch (MongoException mex)
@@ -105,49 +112,52 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
-        private async Task<LoanDetails> GetLoanDetails(string loanId)
+        private async Task<LoanDetails> GetLoanDetails(string accountId)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("AccountId", loanId);
-            var loanDisbursed = await _loanDisbursedCollection.Find(filter).FirstOrDefaultAsync();
+            var filterLoan = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+            var loanDisbursed = await _loanDisbursedCollection.Find(filterLoan).FirstOrDefaultAsync();
 
-            if (loanDisbursed != null)
+            if (loanDisbursed == null) return null;
+
+            DateTime startDate, maturityDate;
+            bool hasValidStartDate = DateTime.TryParse(loanDisbursed.GetValue("StartPaymentDate", "").ToString(), out startDate);
+            bool hasValidMaturityDate = DateTime.TryParse(loanDisbursed.GetValue("MaturityDate", "").ToString(), out maturityDate);
+
+            string loanTerm = loanDisbursed.GetValue("LoanTerm", "0 months").ToString();
+            if (loanTerm == "0 months" && hasValidStartDate && hasValidMaturityDate)
             {
-                DateTime startDate, maturityDate;
-                bool hasValidStartDate = DateTime.TryParse(loanDisbursed.GetValue("StartPaymentDate", "").ToString(), out startDate);
-                bool hasValidMaturityDate = DateTime.TryParse(loanDisbursed.GetValue("MaturityDate", "").ToString(), out maturityDate);
-
-                string loanTerm = loanDisbursed.GetValue("LoanTerm", "0 months").ToString();
-                if (loanTerm == "0 months" && hasValidStartDate && hasValidMaturityDate)
-                {
-                    int monthsDifference = ((maturityDate.Year - startDate.Year) * 12) + maturityDate.Month - startDate.Month;
-                    loanTerm = $"{monthsDifference} months";
-                }
-
-                return new LoanDetails
-                {
-                    LoanIDNo = loanDisbursed.GetValue("LoanNo", "n/a").ToString(),
-                    cashClnNo = loanDisbursed.GetValue("ClientNo", "n/a").ToString(),
-                    cashName = loanDisbursed.GetValue("FirstName", "").ToString() + " " +
-                               loanDisbursed.GetValue("MiddleName", "").ToString() + " " +
-                               loanDisbursed.GetValue("LastName", "").ToString(),
-                    LoanType = loanDisbursed.GetValue("LoanType", "n/a").ToString(),
-                    LoanStatus = loanDisbursed.GetValue("LoanStatus", "n/a").ToString(),
-                    LoanAmount = loanDisbursed.GetValue("LoanAmount", "0.00").ToString(),
-                    LoanPrincipal = loanDisbursed.GetValue("PrincipalAmount", "0.00").ToString(),
-                    LoanBalance = loanDisbursed.GetValue("LoanBalance", "0.00").ToString(),
-                    LoanAmortization = loanDisbursed.GetValue("LoanAmortization", "0.00").ToString(),
-                    Penalty = loanDisbursed.GetValue("Penalty", "0.00").ToString(),
-                    LoanInterest = loanDisbursed.GetValue("LoanInterest", "0.00").ToString(),
-                    PaymentMode = loanDisbursed.GetValue("PaymentMode", "n/a").ToString(),
-                    CollectorName = loanDisbursed.GetValue("CollectorName", "n/a").ToString(),
-                    StartPaymentDate = hasValidStartDate ? startDate.ToString("MM/dd/yyyy") : "n/a",
-                    MaturityDate = hasValidMaturityDate ? maturityDate.ToString("MM/dd/yyyy") : "n/a",
-                    LoanTerm = loanTerm
-                };
+                int monthsDifference = ((maturityDate.Year - startDate.Year) * 12) + maturityDate.Month - startDate.Month;
+                loanTerm = $"{monthsDifference} months";
             }
 
-            return null;
+            return new LoanDetails
+            {
+                LoanIDNo = loanDisbursed.GetValue("LoanNo", "n/a").ToString(),
+                cashClnNo = loanDisbursed.GetValue("ClientNo", "n/a").ToString(),
+                cashName = $"{loanDisbursed.GetValue("FirstName", "")} {loanDisbursed.GetValue("MiddleName", "")} {loanDisbursed.GetValue("LastName", "")}".Trim(),
+                LoanType = loanDisbursed.GetValue("LoanType", "n/a").ToString(),
+                LoanStatus = loanDisbursed.GetValue("LoanStatus", "n/a").ToString(),
+                LoanAmount = loanDisbursed.GetValue("LoanAmount", "0.00").ToString(),
+                LoanPrincipal = loanDisbursed.GetValue("PrincipalAmount", "0.00").ToString(),
+                LoanBalance = loanDisbursed.GetValue("LoanBalance", "0.00").ToString(),
+                LoanAmortization = loanDisbursed.GetValue("LoanAmortization", "0.00").ToString(),
+                Penalty = loanDisbursed.GetValue("Penalty", "0.00").ToString(),
+                LoanInterest = loanDisbursed.GetValue("LoanInterest", "0.00").ToString(),
+                PaymentMode = loanDisbursed.GetValue("PaymentMode", "n/a").ToString(),
+                CollectorName = loanDisbursed.GetValue("CollectorName", "n/a").ToString(),
+                StartPaymentDate = hasValidStartDate ? startDate.ToString("MM/dd/yyyy") : "n/a",
+                MaturityDate = hasValidMaturityDate ? maturityDate.ToString("MM/dd/yyyy") : "n/a",
+                LoanTerm = loanTerm
+            };
         }
+
+        // Fetch all loan cycles for the same AccountId
+        private async Task<List<BsonDocument>> GetLoanCyclesAsync(string accountId)
+        {
+            var filterCycles = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+            return await _loanAccountCyclesCollection.Find(filterCycles).ToListAsync();
+        }
+
 
         // Fetch Approved Details (Address, Docs) from loan_approved
         private async Task LoadApprovedDetails(string cashClnNo)
@@ -217,29 +227,77 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             dgvdata.Columns["doc-link"].Visible = false; // Hide the column
         }
 
-        private void LoadDataGridView(LoanDetails loanDetails)
+        // Method to add a single row to the DataGridView from a BsonDocument + clientName override
+        private void AddRowToGrid(BsonDocument doc, string clientName)
+        {
+            string loanNo = doc.GetValue("LoanNo", "n/a").ToString();
+            string accountId = doc.GetValue("AccountId", "n/a").ToString();
+            string loanStatus = doc.GetValue("LoanStatus", "n/a").ToString();
+            string loanAmount = doc.GetValue("LoanAmount", "₱0.00").ToString();
+            string principalAmount = doc.GetValue("PrincipalAmount", "₱0.00").ToString();
+            string loanBalance = doc.GetValue("LoanBalance", "₱0.00").ToString();
+            string loanAmortization = doc.GetValue("LoanAmortization", "₱0.00").ToString();
+            string startPaymentDate = doc.GetValue("StartPaymentDate", "n/a").ToString();
+            string maturityDate = doc.GetValue("MaturityDate", "n/a").ToString();
+
+            string col1 = $"{loanNo}\n{accountId}";
+            string col2 = clientName;
+            string col3 = $"{loanStatus}\n{loanAmount}";
+            string col4 = $"{principalAmount}\n{loanBalance}";
+            string col5 = $"{loanAmortization}\n{startPaymentDate}\n{maturityDate}";
+
+            dgvloancurrent.Rows.Add(col1, col2, col3, col4, col5);
+        }
+
+        // Orchestrator to load main loan + cycles into the DataGridView
+        public async Task LoadDataGridViewWithCyclesAsync(string accountId)
         {
             dgvloancurrent.Rows.Clear();
-            dgvloancurrent.Columns.Clear(); // Clear existing columns before adding new ones
+            dgvloancurrent.Columns.Clear();
 
-            // Define columns (Each column will now contain multiple values)
             dgvloancurrent.Columns.Add("Column1", "Loan Account IDs");
             dgvloancurrent.Columns.Add("Column2", "Client Name");
             dgvloancurrent.Columns.Add("Column3", "Loan Status & Amount");
             dgvloancurrent.Columns.Add("Column4", "Loan and Balance");
             dgvloancurrent.Columns.Add("Column5", "Amortization and Dates");
 
-            // Prepare grouped values for each column (multi-line text)
-            string column1 = $"{loanDetails.LoanIDNo}\n{loanDetails.cashClnNo}";
-            string column2 = $"{loanDetails.cashName}";
-            string column3 = $"{loanDetails.LoanStatus}\n{loanDetails.LoanAmount}";
-            string column4 = $"{loanDetails.LoanPrincipal}\n{loanDetails.LoanBalance}";
-            string column5 = $"{loanDetails.LoanAmortization}\n{loanDetails.StartPaymentDate}\n{loanDetails.MaturityDate}";
+            var mainLoan = await GetLoanDetails(accountId);
+            if (mainLoan == null)
+            {
+                MessageBox.Show($"No main loan found for AccountId '{accountId}'");
+                return;
+            }
 
-            // Add single row with grouped values
-            dgvloancurrent.Rows.Add(column1, column2, column3, column4, column5);
+            string clientName = mainLoan.cashName;
 
-            // Auto-size columns and enable text wrapping for better visibility
+            // Add main loan row first (construct a BsonDocument like loanDetails)
+            var mainLoanDoc = new BsonDocument
+              {
+                  { "LoanNo", mainLoan.LoanIDNo },
+                  { "AccountId", mainLoan.cashClnNo },
+                  { "LoanStatus", mainLoan.LoanStatus },
+                  { "LoanAmount", mainLoan.LoanAmount },
+                  { "PrincipalAmount", mainLoan.LoanPrincipal },
+                  { "LoanBalance", mainLoan.LoanBalance },
+                  { "LoanAmortization", mainLoan.LoanAmortization },
+                  { "StartPaymentDate", mainLoan.StartPaymentDate },
+                  { "MaturityDate", mainLoan.MaturityDate }
+              };
+            AddRowToGrid(mainLoanDoc, clientName);
+
+            // Load loan cycles
+            var loanCycles = await GetLoanCyclesAsync(accountId);
+
+            foreach (var cycle in loanCycles)
+            {
+                // Build client name from cycle if available, else fallback to main
+                string cycleClientName = $"{cycle.GetValue("FirstName", "").ToString()} {cycle.GetValue("MiddleName", "").ToString()} {cycle.GetValue("LastName", "").ToString()}".Trim();
+                if (string.IsNullOrWhiteSpace(cycleClientName))
+                    cycleClientName = clientName;
+
+                AddRowToGrid(cycle, cycleClientName);
+            }
+
             dgvloancurrent.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvloancurrent.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
@@ -289,8 +347,11 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
-       
 
+        public async Task RefreshLoanGrid(string loanId)
+        {
+            await LoadDataGridViewWithCyclesAsync(loanId);
+        }
 
         private void frm_home_disburse_details_Load(object sender, EventArgs e)
         {
@@ -397,8 +458,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             dgvdata.ClearSelection();
         }
-
-
 
 
         ///--------------------------------------------------------------------------- UPLOADING ----------------------------------------------------------------------------------------
@@ -751,16 +810,12 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
-        private void bsaveloan_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void bsavegeninfo_Click(object sender, EventArgs e)
         {
 
         }
+
+
 
         private void dgvloancurrent_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -769,14 +824,21 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void badd_Click(object sender, EventArgs e)
         {
-            if (dgvloancurrent.SelectedRows.Count > 0) // Ensure a row is selected
+            if (dgvloancurrent.SelectedRows.Count > 0)
             {
-                // Get the LoanNo from the selected row
-                string loanNo = dgvloancurrent.SelectedRows[0].Cells[0].Value.ToString().Split('\n')[0];
+                var column1Value = dgvloancurrent.SelectedRows[0].Cells["Column1"].Value?.ToString();
 
-                // Open the add loan form but clear the fields
-               frm_home_disburse_details_edit addForm = new frm_home_disburse_details_edit(loanNo, true);
-               addForm.ShowDialog(); // Show as modal dialog
+                if (!string.IsNullOrEmpty(column1Value))
+                {
+                    var parts = column1Value.Split('\n');
+
+                    string clientNo = parts.Length > 1 ? parts[1] : "";
+                    string accountId = laccountid.Text;
+
+                    // For new loan, loanNo and startPaymentDate are empty strings
+                    var addForm = new frm_home_disburse_details_edit(clientNo, accountId, "", true, "", this);
+                    addForm.ShowDialog();
+                }
             }
             else
             {
@@ -787,15 +849,99 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private void dgvloancurrent_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Ensure a row is clicked, not the header
+            if (e.RowIndex >= 0)
             {
-                // Get the LoanNo from the first column
-                string loanNo = dgvloancurrent.Rows[e.RowIndex].Cells[0].Value.ToString().Split('\n')[0];
+                var selectedRow = dgvloancurrent.Rows[e.RowIndex];
 
-                // Open the edit form and pass the LoanNo
-                frm_home_disburse_details_edit editForm = new frm_home_disburse_details_edit(loanNo);
-                editForm.ShowDialog(); // Show as a modal dialog
+                var column1Value = selectedRow.Cells["Column1"].Value?.ToString();
+                var column5Value = selectedRow.Cells["Column5"].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(column1Value) && !string.IsNullOrEmpty(column5Value))
+                {
+                    var parts = column1Value.Split('\n');
+                    string loanNo = parts.Length > 0 ? parts[0] : "";
+                    string clientNo = parts.Length > 1 ? parts[1] : "";
+                    string accountId = laccountid.Text;
+
+                    var dates = column5Value.Split('\n');
+                    string startPaymentDate = dates.Length > 1 ? dates[1] : "";
+
+                    var editForm = new frm_home_disburse_details_edit(clientNo, accountId, loanNo, false, startPaymentDate, this);
+                    editForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Selected row data is incomplete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+
+        private void beditloan_Click(object sender, EventArgs e)
+        {
+            if (dgvloancurrent.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvloancurrent.SelectedRows[0];
+
+                // Column1 has LoanNo and AccountId separated by \n
+                var column1Value = selectedRow.Cells["Column1"].Value?.ToString();
+
+                // Column5 has LoanAmortization, StartPaymentDate, MaturityDate separated by \n
+                var column5Value = selectedRow.Cells["Column5"].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(column1Value) && !string.IsNullOrEmpty(column5Value))
+                {
+                    var parts = column1Value.Split('\n');
+                    string loanNo = parts.Length > 0 ? parts[0] : "";
+                    string clientNo = parts.Length > 1 ? parts[1] : "";
+                    string accountId = laccountid.Text;
+
+                    // Parse StartPaymentDate from Column5
+                    var dates = column5Value.Split('\n');
+                    string startPaymentDate = dates.Length > 1 ? dates[1] : ""; // 2nd line is StartPaymentDate
+
+                    // Pass StartPaymentDate to your edit form, e.g. via constructor or property
+                    var editForm = new frm_home_disburse_details_edit(clientNo, accountId, loanNo, false, startPaymentDate, this);
+                    editForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Selected row data is incomplete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a loan account first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+        private bool IsLoanDetailsComplete(LoanDetails loanDetails)
+        {
+            if (loanDetails == null)
+                return false;
+
+            if (string.IsNullOrWhiteSpace(loanDetails.LoanIDNo) || loanDetails.LoanIDNo.ToLower() == "n/a")
+                return false;
+
+            if (string.IsNullOrWhiteSpace(loanDetails.LoanStatus) || loanDetails.LoanStatus.ToLower() == "n/a")
+                return false;
+
+            if (string.IsNullOrWhiteSpace(loanDetails.LoanAmount) || loanDetails.LoanAmount == "0.00" || loanDetails.LoanAmount == "0")
+                return false;
+
+            if (string.IsNullOrWhiteSpace(loanDetails.LoanBalance) || loanDetails.LoanBalance == "0.00" || loanDetails.LoanBalance == "0")
+                return false;
+
+            if (string.IsNullOrWhiteSpace(loanDetails.StartPaymentDate) || loanDetails.StartPaymentDate.ToLower() == "n/a")
+                return false;
+
+            if (string.IsNullOrWhiteSpace(loanDetails.MaturityDate) || loanDetails.MaturityDate.ToLower() == "n/a")
+                return false;
+
+            // Add more checks here if needed
+
+            return true;
         }
     }
 

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Deployment.Application;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -325,8 +326,6 @@ namespace rct_lmis
             }
         }
 
-
-
         private void LoadDashboard()
         {
             ActivateButton(null, RGBColors.col);
@@ -339,12 +338,40 @@ namespace rct_lmis
             load.Close();
         }
 
+
+        private void DisplayMaintenanceReminder()
+        {
+            DateTime today = DateTime.Today;
+            DateTime deadline = new DateTime(2025, 6, 30);
+
+            TimeSpan timeLeft = deadline - today;
+
+            if (timeLeft.TotalDays > 0)
+            {
+                rtreminder.Text ="Your system is currently under free service and update maintenance." +
+                                 "This free period will end in " + (deadline - today).Days + " day(s) on June 30, 2025." +
+                                 "After the deadline, there will be charged per major update.\n" +
+                                 "For more info. please email https://mail.google.com/mail/?view=cm&to=racatom.lmis@gmail.com";
+            }
+            else
+            {
+                rtreminder.Text = $"As of **June 30, 2025**, the free service and update maintenance has officially ended.\n" +
+                                  $"All major updates and support requests will now be subject to a charge of per request**.\n" +
+                                  $"Please coordinate with your service provider for assistance.";
+            }
+        }
+
+
         private void frm_home_Load(object sender, EventArgs e)
         {
+
             LoadUserInfo(loggedInUsername);
             LoadTotalApplications();
             LoadDashboard();
             LoadTotalAnnouncements();
+            DisplayMaintenanceReminder();
+
+            bdashboard.Focus();
         }
 
         private void bmenu_Click(object sender, EventArgs e)
@@ -532,6 +559,22 @@ namespace rct_lmis
             Thread.Sleep(1000);
             ChildForm(new frm_home_loan_request());
             load.Close();
+        }
+
+        private void rtreminder_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = e.LinkText,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to open link: " + ex.Message);
+            }
         }
     }
 

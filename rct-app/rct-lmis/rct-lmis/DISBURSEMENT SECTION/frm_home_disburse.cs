@@ -27,6 +27,7 @@ namespace rct_lmis
         private IMongoCollection<BsonDocument> loanDisbursedCollection;
         private IMongoCollection<BsonDocument> loanApprovedCollection;
         private IMongoCollection<BsonDocument> loanCollectionsCollection;
+
         private string loggedInUsername;
 
         public frm_home_disburse()
@@ -263,82 +264,6 @@ namespace rct_lmis
             }
         }
 
-
-
-        // Method to get client info from the loan_approved collection
-        private async Task<Dictionary<string, string>> GetClientInfo(string clientNumber)
-        {
-            var clientInfo = new Dictionary<string, string>();
-            try
-            {
-                // Create a filter for ClientNumber
-                var filter = Builders<BsonDocument>.Filter.Eq("ClientNumber", clientNumber);
-                var loanApprovedDoc = await loanApprovedCollection.Find(filter).FirstOrDefaultAsync();
-
-                if (loanApprovedDoc != null)
-                {
-                    // Format the client name
-                    string clientName = $"{loanApprovedDoc.GetValue("FirstName")} {loanApprovedDoc.GetValue("MiddleName")} {loanApprovedDoc.GetValue("LastName")} {loanApprovedDoc.GetValue("SuffixName")}".Trim();
-
-                    // Format the address
-                    string address = $"{loanApprovedDoc.GetValue("Street")}, {loanApprovedDoc.GetValue("Barangay")}, {loanApprovedDoc.GetValue("City")}, {loanApprovedDoc.GetValue("Province")}".Trim();
-
-                    string contactNumber = loanApprovedDoc.GetValue("CP").ToString();
-                    string loanStatus = loanApprovedDoc.GetValue("LoanStatus").ToString();
-
-                    clientInfo.Add("ClientName", clientName);
-                    clientInfo.Add("Address", address);
-                    clientInfo.Add("ContactNumber", contactNumber);
-                    clientInfo.Add("LoanStatus", loanStatus);
-                }
-                else
-                {
-                    clientInfo.Add("ClientName", "N/A");
-                    clientInfo.Add("Address", "N/A");
-                    clientInfo.Add("ContactNumber", "N/A");
-                    clientInfo.Add("LoanStatus", "N/A");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error retrieving client info: " + ex.Message);
-            }
-            return clientInfo;
-        }
-
-        private async Task PopulateComboBoxWithCashNames()
-        {
-            try
-            {
-                // Create a filter to retrieve all documents
-                var filter = Builders<BsonDocument>.Filter.Empty;
-
-                // Retrieve data from MongoDB
-                var loanDisbursedList = await loanDisbursedCollection.Find(filter).ToListAsync();
-
-                // Add the default item first
-                cbstatus.Items.Clear();
-                cbstatus.Items.Add("--all status--");
-
-                // Populate the ComboBox with cashName values
-                foreach (var loan in loanDisbursedList)
-                {
-                    var cashName = loan.GetValue("LoanStatus").ToString();
-                    if (!cbstatus.Items.Contains(cashName))
-                    {
-                        cbstatus.Items.Add(cashName);
-                    }
-                }
-
-                // Set default selection
-                cbstatus.SelectedIndex = 0; // Select the default item
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error populating ComboBox: " + ex.Message);
-            }
-        }
-
         private void PopulateYearsFromAccountIds()
         {
             try
@@ -385,11 +310,68 @@ namespace rct_lmis
             }
         }
 
+        private async Task LoadSearchAutoComplete()
+        {
+            try
+            {
+                // Project only required fields from collection
+                var projection = Builders<BsonDocument>.Projection
+                    .Include("AccountId")
+                    .Include("ClientNo")
+                    .Include("FirstName")
+                    .Include("MiddleName")
+                    .Include("LastName");
+
+                var documents = await loanDisbursedCollection.Find(FilterDefinition<BsonDocument>.Empty)
+                                    .Project(projection)
+                                    .ToListAsync();
+
+                var autoCompleteList = new List<string>();
+
+                foreach (var doc in documents)
+                {
+                    string accountId = doc.GetValue("AccountId", "").ToString();
+                    string clientNo = doc.GetValue("ClientNo", "").ToString();
+
+                    string firstName = doc.GetValue("FirstName", "").ToString();
+                    string middleName = doc.GetValue("MiddleName", "").ToString();
+                    string lastName = doc.GetValue("LastName", "").ToString();
+
+                    // Build full name, avoid extra spaces if middleName is empty
+                    string fullName = middleName.Length > 0
+                        ? $"{firstName} {middleName} {lastName}"
+                        : $"{firstName} {lastName}";
+
+                    // Add unique items to list
+                    if (!string.IsNullOrWhiteSpace(accountId) && !autoCompleteList.Contains(accountId))
+                        autoCompleteList.Add(accountId);
+
+                    if (!string.IsNullOrWhiteSpace(clientNo) && !autoCompleteList.Contains(clientNo))
+                        autoCompleteList.Add(clientNo);
+
+                    if (!string.IsNullOrWhiteSpace(fullName) && !autoCompleteList.Contains(fullName))
+                        autoCompleteList.Add(fullName);
+                }
+
+                var autoCompleteSource = new AutoCompleteStringCollection();
+                autoCompleteSource.AddRange(autoCompleteList.ToArray());
+
+                tsearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                tsearch.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                tsearch.AutoCompleteCustomSource = autoCompleteSource;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading search autocomplete data: " + ex.Message);
+            }
+        }
+
 
         private async void frm_home_disburse_Load(object sender, EventArgs e)
         {
             // Step 1: Populate years (with only 2024 & 2025)
             PopulateYearsFromAccountIds();
+            await LoadSearchAutoComplete();
 
             // Step 2: Select default year = 2025
             if (cbyear.Items.Contains("2025"))
@@ -512,7 +494,6 @@ namespace rct_lmis
             // Reload the data with the selected status
             _ = LoadLoanDisbursedData(selectedLoanStatus: selectedLoanStatus);
         }
-
 
         private void bhelp_Click(object sender, EventArgs e)
         {

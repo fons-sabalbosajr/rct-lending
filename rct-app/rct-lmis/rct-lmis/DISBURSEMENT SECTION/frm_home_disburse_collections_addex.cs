@@ -18,6 +18,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
     {
         private string _clientNo;
         private IMongoCollection<BsonDocument> _loanDisbursedCollection;
+        private IMongoCollection<BsonDocument> _loanCollectionsCollection;
         private IMongoCollection<BsonDocument> _loanCollectorsCollection;
 
         public frm_home_disburse_collections_addex(string clientNo)
@@ -26,6 +27,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             _clientNo = clientNo;
 
             var database = MongoDBConnection.Instance.Database;
+            _loanCollectionsCollection = database.GetCollection<BsonDocument>("loan_collections");
             _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
             _loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
         }
@@ -358,6 +360,65 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             return weekdaysElapsed;
         }
 
+        private async Task SaveLoanCollectionAsync()
+        {
+            try
+            {
+                decimal loanAmount = SafeDecimal(tloanamt.Text);
+                decimal collectionPayment = SafeDecimal(tcolpayamt.Text);
+                decimal principalDue = SafeDecimal(tprincipaldue.Text);
+                decimal collectedInterest = SafeDecimal(tcolinterest.Text);
+                decimal runningBalance = loanAmount - collectionPayment;
+
+                var document = new BsonDocument
+                 {
+                     { "ClientNo", tclientno.Text },
+                     { "LoanID", tloanid.Text },
+                     { "Name", tname.Text.Trim().ToUpper() },
+                     { "ClientNumber", tclientno.Text },
+                     { "Contact", "N/A" },
+                     { "LoanAmount", SafeDecimal(tloanamt.Text) },
+                     { "LoanTerm", tterm.Text },
+                     { "PaymentStartDate", tpaystart.Text },
+                     { "PaymentMaturityDate", tpaymature.Text },
+                     { "PaymentsMode", tpaymode.Text },
+                     { "Amortization", SafeDecimal(tpayamort.Text) },
+                     { "AmortizationPrincipal", 0 },
+                     { "AmortizationInterest", 0 },
+                     { "PaymentStatus", "Active Loan Collection" },
+                     { "CollectionDate", DateTime.Now },
+                     { "Collector", cbcollector.Text }, // You may want to add a collector combobox if missing
+                     { "PaymentMode", tcolbank.Text }, // Same here if using a payment method dropdown
+                     { "PrincipalDue", SafeDecimal(tprincipaldue.Text) },
+                     { "CollectedInterest", SafeDecimal(tcolinterest.Text) },
+                     { "TotalCollected", collectionPayment },
+                     { "ActualCollection", collectionPayment },
+                     { "CollectionReferenceNo", "N/A" },
+                     { "DateReceived", DateTime.Now },
+                     { "DateProcessed", DateTime.Now },
+                     { "CollectionPayment", collectionPayment },
+                     { "RunningBalance", runningBalance },
+                     { "TotalLoanToPay", loanAmount },
+                     { "Bank", "N/A" },
+                     { "Branch", "N/A" },
+                 };
+
+                await _loanCollectionsCollection.InsertOneAsync(document);
+
+                MessageBox.Show("Loan collection saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving loan collection: {ex.Message}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private decimal SafeDecimal(string input)
+        {
+            return decimal.TryParse(input, NumberStyles.Currency, new CultureInfo("en-PH"), out var result) ? result : 0m;
+        }
+
+
         private void chexists_CheckedChanged(object sender, EventArgs e)
         {
             ComputeLoanBalance();
@@ -402,6 +463,31 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             tloanbal.Text = "";
             lwarning.Text = ""; // Reset the warning text
             bsave.Enabled = true; // Re-enable the save button
+        }
+
+        private async void bsave_Click(object sender, EventArgs e)
+        {
+            await SaveLoanCollectionAsync();
+        }
+
+        private void tcolpayamt_TextChanged(object sender, EventArgs e)
+        {
+            // Set tcolpayamt.Text to tcolactual.Text
+            tcolactual.Text = tcolpayamt.Text;
+            bamtfull.Visible = true;
+            // Set the current date and time in mm/dd/yyyy hh:mm AM/PM format
+            //tcoldaterec.Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+
+            if (string.IsNullOrEmpty(tcolpayamt.Text))
+            {
+                bamtfull.Visible = false;
+            }
+        }
+
+        private void bamtfull_Click(object sender, EventArgs e)
+        {
+            string amt = tcolpaid.Text;
+            tcolpayamt.Text = amt;
         }
     }
 }
