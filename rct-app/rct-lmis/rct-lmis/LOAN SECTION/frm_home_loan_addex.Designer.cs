@@ -35,6 +35,7 @@
             this.laccno = new System.Windows.Forms.Label();
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbcollector = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tprovince = new Guna.UI2.WinForms.Guna2TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tcity = new Guna.UI2.WinForms.Guna2TextBox();
@@ -85,7 +86,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.tloanamt = new Guna.UI2.WinForms.Guna2TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cbcollector = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.tloanpaid = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -220,6 +222,21 @@
             this.tabPage1.Text = "General Information";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // cbcollector
+            // 
+            this.cbcollector.BackColor = System.Drawing.Color.Transparent;
+            this.cbcollector.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbcollector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbcollector.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcollector.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbcollector.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbcollector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbcollector.ItemHeight = 30;
+            this.cbcollector.Location = new System.Drawing.Point(461, 243);
+            this.cbcollector.Name = "cbcollector";
+            this.cbcollector.Size = new System.Drawing.Size(208, 36);
+            this.cbcollector.TabIndex = 85;
+            // 
             // tprovince
             // 
             this.tprovince.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -280,7 +297,7 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label9.Location = new System.Drawing.Point(24, 279);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 15);
+            this.label9.Size = new System.Drawing.Size(65, 15);
             this.label9.TabIndex = 80;
             this.label9.Text = "City/Town:";
             // 
@@ -396,7 +413,7 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label4.Location = new System.Drawing.Point(24, 78);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 15);
+            this.label4.Size = new System.Drawing.Size(64, 15);
             this.label4.TabIndex = 71;
             this.label4.Text = "Loan Type:";
             // 
@@ -612,6 +629,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.tloanpaid);
+            this.tabPage2.Controls.Add(this.label22);
             this.tabPage2.Controls.Add(this.tloanprocessfee);
             this.tabPage2.Controls.Add(this.label24);
             this.tabPage2.Controls.Add(this.label23);
@@ -771,6 +790,7 @@
             this.tloanbal.SelectedText = "";
             this.tloanbal.Size = new System.Drawing.Size(178, 25);
             this.tloanbal.TabIndex = 93;
+            this.tloanbal.TextChanged += new System.EventHandler(this.tloanbal_TextChanged);
             // 
             // label20
             // 
@@ -825,6 +845,7 @@
             this.dtstartdate.Size = new System.Drawing.Size(178, 36);
             this.dtstartdate.TabIndex = 89;
             this.dtstartdate.Value = new System.DateTime(2024, 10, 25, 20, 41, 40, 751);
+            this.dtstartdate.ValueChanged += new System.EventHandler(this.dtstartdate_ValueChanged);
             // 
             // cbpaymentmode
             // 
@@ -846,6 +867,7 @@
             this.cbpaymentmode.Size = new System.Drawing.Size(178, 36);
             this.cbpaymentmode.StartIndex = 0;
             this.cbpaymentmode.TabIndex = 88;
+            this.cbpaymentmode.SelectedIndexChanged += new System.EventHandler(this.cbpaymentmode_SelectedIndexChanged);
             // 
             // label18
             // 
@@ -911,7 +933,7 @@
             this.tloanterm.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tloanterm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tloanterm.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanterm.Location = new System.Drawing.Point(427, 17);
+            this.tloanterm.Location = new System.Drawing.Point(412, 17);
             this.tloanterm.Name = "tloanterm";
             this.tloanterm.PasswordChar = '\0';
             this.tloanterm.PlaceholderText = "ex. 6 months";
@@ -960,7 +982,7 @@
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label14.Location = new System.Drawing.Point(344, 22);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(65, 15);
+            this.label14.Size = new System.Drawing.Size(66, 15);
             this.label14.TabIndex = 65;
             this.label14.Text = "Loan Term:";
             // 
@@ -1010,21 +1032,38 @@
             this.label12.TabIndex = 61;
             this.label12.Text = "Loan Amount:";
             // 
-            // cbcollector
+            // tloanpaid
             // 
-            this.cbcollector.BackColor = System.Drawing.Color.Transparent;
-            this.cbcollector.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbcollector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbcollector.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbcollector.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbcollector.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbcollector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbcollector.ItemHeight = 30;
-            this.cbcollector.Location = new System.Drawing.Point(461, 243);
-            this.cbcollector.Name = "cbcollector";
-            this.cbcollector.Size = new System.Drawing.Size(208, 36);
-            this.cbcollector.StartIndex = 0;
-            this.cbcollector.TabIndex = 85;
+            this.tloanpaid.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tloanpaid.DefaultText = "";
+            this.tloanpaid.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tloanpaid.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tloanpaid.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tloanpaid.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tloanpaid.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tloanpaid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tloanpaid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tloanpaid.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tloanpaid.Location = new System.Drawing.Point(665, 17);
+            this.tloanpaid.Name = "tloanpaid";
+            this.tloanpaid.PasswordChar = '\0';
+            this.tloanpaid.PlaceholderText = "0.00";
+            this.tloanpaid.SelectedText = "";
+            this.tloanpaid.Size = new System.Drawing.Size(121, 25);
+            this.tloanpaid.TabIndex = 104;
+            this.tloanpaid.TextChanged += new System.EventHandler(this.tloanpaid_TextChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label22.Location = new System.Drawing.Point(569, 22);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(93, 15);
+            this.label22.TabIndex = 103;
+            this.label22.Text = "Amount Settled:";
             // 
             // frm_home_loan_addex
             // 
@@ -1110,5 +1149,7 @@
         private Guna.UI2.WinForms.Guna2TextBox tloaninterestamt;
         private System.Windows.Forms.Label label16;
         private Guna.UI2.WinForms.Guna2ComboBox cbcollector;
+        private Guna.UI2.WinForms.Guna2TextBox tloanpaid;
+        private System.Windows.Forms.Label label22;
     }
 }

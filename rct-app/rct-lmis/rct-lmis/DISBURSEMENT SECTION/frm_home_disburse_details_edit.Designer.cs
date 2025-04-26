@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_details_edit));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ldatestart = new System.Windows.Forms.Label();
             this.badd = new Guna.UI2.WinForms.Guna2Button();
             this.bsave = new Guna.UI2.WinForms.Guna2Button();
             this.laccountid = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.tclientno = new Guna.UI2.WinForms.Guna2TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.ldatestart = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +80,19 @@
             this.panel1.Size = new System.Drawing.Size(684, 50);
             this.panel1.TabIndex = 4;
             // 
+            // ldatestart
+            // 
+            this.ldatestart.AutoSize = true;
+            this.ldatestart.BackColor = System.Drawing.Color.Transparent;
+            this.ldatestart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ldatestart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ldatestart.Location = new System.Drawing.Point(330, 17);
+            this.ldatestart.Name = "ldatestart";
+            this.ldatestart.Size = new System.Drawing.Size(55, 15);
+            this.ldatestart.TabIndex = 113;
+            this.ldatestart.Text = "DateStart";
+            this.ldatestart.Visible = false;
+            // 
             // badd
             // 
             this.badd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -91,7 +104,7 @@
             this.badd.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
             this.badd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.badd.ForeColor = System.Drawing.Color.White;
-            this.badd.Location = new System.Drawing.Point(505, 10);
+            this.badd.Location = new System.Drawing.Point(577, 10);
             this.badd.Name = "badd";
             this.badd.Size = new System.Drawing.Size(82, 31);
             this.badd.TabIndex = 38;
@@ -175,7 +188,7 @@
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label7.Location = new System.Drawing.Point(299, 138);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 15);
+            this.label7.Size = new System.Drawing.Size(64, 15);
             this.label7.TabIndex = 85;
             this.label7.Text = "Loan Type:";
             // 
@@ -248,7 +261,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(19, 104);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 15);
+            this.label2.Size = new System.Drawing.Size(66, 15);
             this.label2.TabIndex = 89;
             this.label2.Text = "Loan Term:";
             // 
@@ -588,18 +601,6 @@
             this.label14.Size = new System.Drawing.Size(60, 15);
             this.label14.TabIndex = 111;
             this.label14.Text = "Client No:";
-            // 
-            // ldatestart
-            // 
-            this.ldatestart.AutoSize = true;
-            this.ldatestart.BackColor = System.Drawing.Color.Transparent;
-            this.ldatestart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ldatestart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ldatestart.Location = new System.Drawing.Point(330, 17);
-            this.ldatestart.Name = "ldatestart";
-            this.ldatestart.Size = new System.Drawing.Size(55, 15);
-            this.ldatestart.TabIndex = 113;
-            this.ldatestart.Text = "DateStart";
             // 
             // frm_home_disburse_details_edit
             // 

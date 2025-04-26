@@ -154,7 +154,7 @@
             Allows clients to listen for cache updates originating from disk.
             </summary>
             <remarks>
-            This event does not fire when the application is built against Mono framework (e.g. Xamarin.Mac), but it does fire on .Net Core on all 3 operating systems.
+            This event does not fire when the application is built against Mono framework, but it does fire on .Net Core on all 3 operating systems.
             </remarks>
         </member>
         <member name="M:Microsoft.Identity.Client.Extensions.Msal.MsalCacheHelper.GetAccountIdentifiersNoLockAsync(Microsoft.Identity.Client.Extensions.Msal.StorageCreationProperties,Microsoft.Identity.Client.Extensions.Msal.TraceSourceLogger)">

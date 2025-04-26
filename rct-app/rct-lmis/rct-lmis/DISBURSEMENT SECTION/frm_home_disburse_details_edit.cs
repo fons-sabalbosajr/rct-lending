@@ -112,37 +112,56 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             try
             {
-                string accountId = laccountid.Text;
-                string startPaymentDate = ldatestart.Text;
+                string accountId = laccountid.Text?.Trim();
+                string startPaymentDate = ldatestart.Text?.Trim();
 
-                if (string.IsNullOrWhiteSpace(accountId) || string.IsNullOrWhiteSpace(startPaymentDate))
+                if (string.IsNullOrWhiteSpace(accountId))
                 {
-                    MessageBox.Show("AccountId or StartPaymentDate is missing.");
+                    MessageBox.Show("AccountId is missing.");
                     return;
                 }
 
-                // Find in loan_account_cycles by AccountId and StartPaymentDate
-                var cycleFilter = Builders<BsonDocument>.Filter.And(
-                    Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
-                    Builders<BsonDocument>.Filter.Eq("StartPaymentDate", startPaymentDate)
-                );
-                var cycleDoc = await _loanAccountCyclesCollection.Find(cycleFilter).FirstOrDefaultAsync();
+                bool hasValidStartPaymentDate = !(string.IsNullOrWhiteSpace(startPaymentDate) ||
+                                                  startPaymentDate.Equals("n/a", StringComparison.OrdinalIgnoreCase));
 
-                // Find in loan_disbursed by AccountId and StartPaymentDate (or DateStart)
-                var disbursedFilter = Builders<BsonDocument>.Filter.And(
-                    Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
-                    Builders<BsonDocument>.Filter.Eq("StartPaymentDate", startPaymentDate)
-                // Or use "DateStart" depending on your schema consistency
-                );
+                FilterDefinition<BsonDocument> cycleFilter;
+                FilterDefinition<BsonDocument> disbursedFilter;
+
+                if (hasValidStartPaymentDate)
+                {
+                    cycleFilter = Builders<BsonDocument>.Filter.And(
+                        Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
+                        Builders<BsonDocument>.Filter.Eq("StartPaymentDate", startPaymentDate)
+                    );
+                    disbursedFilter = Builders<BsonDocument>.Filter.And(
+                        Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
+                        Builders<BsonDocument>.Filter.Eq("StartPaymentDate", startPaymentDate)
+                    );
+                }
+                else
+                {
+                    // Only filter by AccountId
+                    cycleFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                    disbursedFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                }
+
+                var cycleDoc = await _loanAccountCyclesCollection.Find(cycleFilter).FirstOrDefaultAsync();
                 var disbursedDoc = await _loanDisbursedCollection.Find(disbursedFilter).FirstOrDefaultAsync();
 
                 if (cycleDoc == null && disbursedDoc == null)
                 {
-                    MessageBox.Show($"No matching loan found for AccountId: {accountId} and StartPaymentDate: {startPaymentDate}");
+                    MessageBox.Show($"No matching loan found for AccountId: {accountId}");
                     return;
                 }
 
-                // Call LoadLoanDetails passing LoanNo and StartPaymentDate
+                // If no startPaymentDate provided, but found a document, use its StartPaymentDate
+                if (!hasValidStartPaymentDate)
+                {
+                    startPaymentDate = cycleDoc?.GetValue("StartPaymentDate", "")?.ToString()
+                        ?? disbursedDoc?.GetValue("StartPaymentDate", "")?.ToString();
+                }
+
+                // Call LoadLoanDetails passing AccountId and StartPaymentDate
                 await LoadLoanDetails(accountId, startPaymentDate);
             }
             catch (Exception ex)
@@ -152,34 +171,49 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         }
 
 
+
         private async Task LoadLoanDetails(string accountId, string dateStart)
         {
             try
             {
-                var cycleFilter = Builders<BsonDocument>.Filter.And(
-                    Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
-                    Builders<BsonDocument>.Filter.Eq("StartPaymentDate", dateStart)
-                );
-                var cycleDoc = await _loanAccountCyclesCollection.Find(cycleFilter).FirstOrDefaultAsync();
+                bool hasValidStartPaymentDate = !(string.IsNullOrWhiteSpace(dateStart) ||
+                                                  dateStart.Equals("n/a", StringComparison.OrdinalIgnoreCase));
 
-                var disbursedFilter = Builders<BsonDocument>.Filter.And(
-                    Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
-                    Builders<BsonDocument>.Filter.Eq("StartPaymentDate", dateStart)
-                );
+                FilterDefinition<BsonDocument> cycleFilter;
+                FilterDefinition<BsonDocument> disbursedFilter;
+
+                if (hasValidStartPaymentDate)
+                {
+                    cycleFilter = Builders<BsonDocument>.Filter.And(
+                        Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
+                        Builders<BsonDocument>.Filter.Eq("StartPaymentDate", dateStart)
+                    );
+                    disbursedFilter = Builders<BsonDocument>.Filter.And(
+                        Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
+                        Builders<BsonDocument>.Filter.Eq("StartPaymentDate", dateStart)
+                    );
+                }
+                else
+                {
+                    cycleFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                    disbursedFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                }
+
+                var cycleDoc = await _loanAccountCyclesCollection.Find(cycleFilter).FirstOrDefaultAsync();
                 var disbursedDoc = await _loanDisbursedCollection.Find(disbursedFilter).FirstOrDefaultAsync();
 
                 if (cycleDoc == null && disbursedDoc == null)
                 {
-                    MessageBox.Show($"No matching loan found for LoanNo: {accountId} and AccountId: {dateStart}");
+                    MessageBox.Show($"No matching loan found for AccountId: {accountId}");
                     return;
                 }
 
-                // Loan Type - prefer disbursedDoc
+                // (All your existing code below to assign textbox values...)
+
                 tloantype.Text = cycleDoc?.GetValue("LoanType", null)?.ToString()
                      ?? disbursedDoc?.GetValue("LoanType", null)?.ToString()
                      ?? "N/A";
 
-                // Loan Status - prefer cycleDoc
                 tloanstatus.Text = cycleDoc?.GetValue("LoanStatus", null)?.ToString()
                      ?? disbursedDoc?.GetValue("LoanStatus", null)?.ToString()
                      ?? "N/A";
@@ -188,38 +222,30 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                      ?? disbursedDoc?.GetValue("LoanTerm", null)?.ToString()
                      ?? "N/A";
 
-                // Loan Amount - cycleDoc fallback disbursedDoc
                 tloanamount.Text = cycleDoc?.GetValue("LoanAmount", null)?.ToString()
                     ?? disbursedDoc?.GetValue("LoanAmount", null)?.ToString()
                     ?? "₱0.00";
 
-                // Loan Balance - cycleDoc fallback disbursedDoc
                 tloanbalance.Text = cycleDoc?.GetValue("LoanBalance", null)?.ToString()
                     ?? disbursedDoc?.GetValue("LoanBalance", null)?.ToString()
                     ?? "₱0.00";
 
-                // Principal Amount - cycleDoc fallback disbursedDoc
                 tloanprincipal.Text = cycleDoc?.GetValue("PrincipalAmount", null)?.ToString()
                     ?? disbursedDoc?.GetValue("PrincipalAmount", null)?.ToString()
                     ?? "₱0.00";
 
-                // Loan Interest - cycleDoc fallback disbursedDoc
                 tloaninterest.Text = cycleDoc?.GetValue("LoanInterest", null)?.ToString()
                     ?? disbursedDoc?.GetValue("LoanInterest", null)?.ToString()
                     ?? "₱0.00";
 
-                // Penalty - cycleDoc fallback disbursedDoc
                 tloanpenalty.Text = cycleDoc?.GetValue("Penalty", null)?.ToString()
                     ?? disbursedDoc?.GetValue("Penalty", null)?.ToString()
                     ?? "₱0.00";
 
-                // Payment Mode - cycleDoc fallback disbursedDoc
                 cbpaymentmode.Text = cycleDoc?.GetValue("PaymentMode", null)?.ToString()
                     ?? disbursedDoc?.GetValue("PaymentMode", null)?.ToString()
                     ?? "N/A";
 
-
-                // Parse dates carefully from either document
                 string startPaymentDateStr = cycleDoc?.GetValue("StartPaymentDate", "")?.ToString()
                     ?? disbursedDoc?.GetValue("StartPaymentDate", "")?.ToString();
 
@@ -239,7 +265,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 MessageBox.Show("Error loading loan details: " + ex.Message);
             }
         }
-
 
 
 

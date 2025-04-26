@@ -38,6 +38,7 @@ namespace rct_lmis
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home));
             this.paneltop = new System.Windows.Forms.Panel();
+            this.rtreminder = new System.Windows.Forms.RichTextBox();
             this.lnotif = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -85,7 +86,6 @@ namespace rct_lmis
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ttime = new System.Windows.Forms.Timer(this.components);
             this.tnotif = new System.Windows.Forms.Timer(this.components);
-            this.rtreminder = new System.Windows.Forms.RichTextBox();
             this.paneltop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbphoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -121,6 +121,20 @@ namespace rct_lmis
             this.paneltop.Name = "paneltop";
             this.paneltop.Size = new System.Drawing.Size(1284, 70);
             this.paneltop.TabIndex = 2;
+            // 
+            // rtreminder
+            // 
+            this.rtreminder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
+            this.rtreminder.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtreminder.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtreminder.ForeColor = System.Drawing.Color.White;
+            this.rtreminder.Location = new System.Drawing.Point(205, 14);
+            this.rtreminder.Name = "rtreminder";
+            this.rtreminder.ReadOnly = true;
+            this.rtreminder.Size = new System.Drawing.Size(609, 44);
+            this.rtreminder.TabIndex = 1;
+            this.rtreminder.Text = "";
+            this.rtreminder.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtreminder_LinkClicked);
             // 
             // lnotif
             // 
@@ -172,7 +186,7 @@ namespace rct_lmis
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.ldate.Location = new System.Drawing.Point(840, 33);
             this.ldate.Name = "ldate";
-            this.ldate.Size = new System.Drawing.Size(37, 16);
+            this.ldate.Size = new System.Drawing.Size(36, 16);
             this.ldate.TabIndex = 40;
             this.ldate.Text = "Date";
             this.ldate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -310,7 +324,7 @@ namespace rct_lmis
             this.lfname.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lfname.Location = new System.Drawing.Point(1191, 31);
             this.lfname.Name = "lfname";
-            this.lfname.Size = new System.Drawing.Size(35, 16);
+            this.lfname.Size = new System.Drawing.Size(34, 16);
             this.lfname.TabIndex = 2;
             this.lfname.Text = "User";
             this.lfname.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1013,20 +1027,6 @@ namespace rct_lmis
             this.tnotif.Interval = 500;
             this.tnotif.Tick += new System.EventHandler(this.tnotif_Tick);
             // 
-            // rtreminder
-            // 
-            this.rtreminder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.rtreminder.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtreminder.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtreminder.ForeColor = System.Drawing.Color.White;
-            this.rtreminder.Location = new System.Drawing.Point(205, 5);
-            this.rtreminder.Name = "rtreminder";
-            this.rtreminder.ReadOnly = true;
-            this.rtreminder.Size = new System.Drawing.Size(609, 60);
-            this.rtreminder.TabIndex = 1;
-            this.rtreminder.Text = "";
-            this.rtreminder.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtreminder_LinkClicked);
-            // 
             // frm_home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1043,6 +1043,7 @@ namespace rct_lmis
             this.Name = "frm_home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RCT Lending Management Information System";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_FormClosing);
             this.Load += new System.EventHandler(this.frm_home_Load);
             this.paneltop.ResumeLayout(false);

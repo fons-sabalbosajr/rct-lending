@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\clients section\\frm_home_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\clients section\\frm_home_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_addex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_addex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\clients section\\frm_home_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\clients section\\frm_home_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\loan section\\frm_home_loan_addex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\loan section\\frm_home_loan_addex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\admin section\\frm_home_admin_rawdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\admin section\\frm_home_admin_rawdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\frm_home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|c:\\users\\allan sabalbosa\\onedrive\\desktop\\rct\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\admin section\\frm_home_admin_rawdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\admin section\\frm_home_admin_rawdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\disbursement section\\frm_home_disburse_details_edit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\disbursement section\\frm_home_disburse_details_edit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\disbursement section\\frm_home_disburse_collections_add.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F919693-7BF5-4808-A889-0094C06EE9BC}|rct-lmis\\rct-lmis.csproj|solutionrelative:rct-lmis\\disbursement section\\frm_home_disburse_collections_add.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,53 +38,62 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frm_home_ADMIN_rawdata.cs",
-              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "RelativeToolTip": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "ViewState": "AgIAAAYBAAAAAAAAAAAtwB4BAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T08:04:14.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frm_home_ADMIN_rawdata.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs",
-              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs [Design]",
-              "RelativeToolTip": "rct-lmis\\ADMIN SECTION\\frm_home_ADMIN_rawdata.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T07:47:36.692Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frm_home_clients.cs",
-              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "RelativeToolTip": "rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "ViewState": "AgIAAP4BAAAAAAAAAAAuwBUCAAAmAAAAAAAAAA==",
+              "Title": "frm_home_loan_addex.cs",
+              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_addex.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_addex.cs",
+              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_addex.cs",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_addex.cs",
+              "ViewState": "AgIAAOEAAAAAAAAAAAAMwBoBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T06:47:12.789Z",
+              "WhenOpened": "2025-04-26T14:16:19.444Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "frm_home_clients.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "RelativeDocumentMoniker": "rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs",
-              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs [Design]",
-              "RelativeToolTip": "rct-lmis\\CLIENTS SECTION\\frm_home_clients.cs [Design]",
+              "Title": "frm_home_loan_addex.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_addex.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\LOAN SECTION\\frm_home_loan_addex.cs",
+              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\LOAN SECTION\\frm_home_loan_addex.cs [Design]",
+              "RelativeToolTip": "rct-lmis\\LOAN SECTION\\frm_home_loan_addex.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T06:47:10.541Z",
+              "WhenOpened": "2025-04-26T06:42:50.529Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frm_home_disburse_details_edit.cs",
+              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\DISBURSEMENT SECTION\\frm_home_disburse_details_edit.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\DISBURSEMENT SECTION\\frm_home_disburse_details_edit.cs",
+              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\DISBURSEMENT SECTION\\frm_home_disburse_details_edit.cs",
+              "RelativeToolTip": "rct-lmis\\DISBURSEMENT SECTION\\frm_home_disburse_details_edit.cs",
+              "ViewState": "AgIAANkAAAAAAAAAAAAmwAsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T06:27:26.214Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frm_home_disburse_collections_add.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\DISBURSEMENT SECTION\\frm_home_disburse_collections_add.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\DISBURSEMENT SECTION\\frm_home_disburse_collections_add.cs",
+              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\DISBURSEMENT SECTION\\frm_home_disburse_collections_add.cs [Design]",
+              "RelativeToolTip": "rct-lmis\\DISBURSEMENT SECTION\\frm_home_disburse_collections_add.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T06:27:22.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frm_home.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home.cs",
+              "RelativeDocumentMoniker": "rct-lmis\\frm_home.cs",
+              "ToolTip": "C:\\Users\\Allan Sabalbosa\\OneDrive\\Desktop\\RCT\\rct-lending\\rct-app\\rct-lmis\\rct-lmis\\frm_home.cs [Design]",
+              "RelativeToolTip": "rct-lmis\\frm_home.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-26T04:53:52.574Z"
             }
           ]
         }

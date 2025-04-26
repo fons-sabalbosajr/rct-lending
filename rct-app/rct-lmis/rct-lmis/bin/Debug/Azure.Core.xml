@@ -16,6 +16,23 @@
             <param name="accessToken">The bearer access token value.</param>
             <param name="expiresOn">The bearer access token expiry date.</param>
         </member>
+        <member name="M:Azure.Core.AccessToken.#ctor(System.String,System.DateTimeOffset,System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Creates a new instance of <see cref="T:Azure.Core.AccessToken" /> using the provided <paramref name="accessToken" /> and <paramref name="expiresOn" />.
+            </summary>
+            <param name="accessToken">The bearer access token value.</param>
+            <param name="expiresOn">The bearer access token expiry date.</param>
+            <param name="refreshOn">Specifies the time when the cached token should be proactively refreshed.</param>
+        </member>
+        <member name="M:Azure.Core.AccessToken.#ctor(System.String,System.DateTimeOffset,System.Nullable{System.DateTimeOffset},System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Azure.Core.AccessToken" /> using the provided <paramref name="accessToken" /> and <paramref name="expiresOn" />.
+            </summary>
+            <param name="accessToken">The access token value.</param>
+            <param name="expiresOn">The access token expiry date.</param>
+            <param name="refreshOn">Specifies the time when the cached token should be proactively refreshed.</param>
+            <param name="tokenType">The access token type.</param>
+        </member>
         <member name="P:Azure.Core.AccessToken.Token">
             <summary>
             Get the access token value.
@@ -24,6 +41,16 @@
         <member name="P:Azure.Core.AccessToken.ExpiresOn">
             <summary>
             Gets the time when the provided token expires.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.AccessToken.RefreshOn">
+            <summary>
+            Gets the time when the token should be refreshed.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.AccessToken.TokenType">
+            <summary>
+            Identifies the type of access token.
             </summary>
         </member>
         <member name="M:Azure.Core.AccessToken.Equals(System.Object)">
@@ -467,7 +494,7 @@
         <member name="P:Azure.Core.ClientOptions.RetryPolicy">
             <summary>
             Gets or sets the policy to use for retries. If a policy is specified, it will be used in place of the <see cref="P:Azure.Core.ClientOptions.Retry" /> property.
-            The <see cref="P:Azure.Core.ClientOptions.RetryPolicy" /> type can be derived from to modify the default behavior without needing to fully implement the retry logic.
+            The <see cref="T:Azure.Core.Pipeline.RetryPolicy" /> type can be derived from to modify the default behavior without needing to fully implement the retry logic.
             If <see cref="M:Azure.Core.Pipeline.RetryPolicy.Process(Azure.Core.HttpMessage,System.ReadOnlyMemory{Azure.Core.Pipeline.HttpPipelinePolicy})" /> is overridden or a custom <see cref="T:Azure.Core.Pipeline.HttpPipelinePolicy" /> is specified,
             it is the implementer's responsibility to update the <see cref="P:Azure.Core.HttpMessage.ProcessingContext" /> values.
             </summary>
@@ -789,11 +816,18 @@
             The trait value that has to be present on all event sources collected by this listener.
             </summary>
         </member>
+        <member name="M:Azure.Core.Diagnostics.AzureEventSourceListener.#ctor(System.Action{System.Diagnostics.Tracing.EventWrittenEventArgs},System.Diagnostics.Tracing.EventLevel)">
+            <summary>
+            Creates an instance of <see cref="T:Azure.Core.Diagnostics.AzureEventSourceListener" /> that executes a <paramref name="log" /> callback every time event is written.
+            </summary>
+            <param name="log">The <see cref="T:System.Action`1" /> to call when event is written.</param>
+            <param name="level">The level of events to enable.</param>
+        </member>
         <member name="M:Azure.Core.Diagnostics.AzureEventSourceListener.#ctor(System.Action{System.Diagnostics.Tracing.EventWrittenEventArgs,System.String},System.Diagnostics.Tracing.EventLevel)">
             <summary>
             Creates an instance of <see cref="T:Azure.Core.Diagnostics.AzureEventSourceListener" /> that executes a <paramref name="log" /> callback every time event is written.
             </summary>
-            <param name="log">The <see cref="T:System.Action`2" /> to call when event is written. The second parameter is formatted message.</param>
+            <param name="log">The <see cref="T:System.Action`2" /> to call when event is written. The second parameter is the formatted message.</param>
             <param name="level">The level of events to enable.</param>
         </member>
         <member name="M:Azure.Core.Diagnostics.AzureEventSourceListener.OnEventSourceCreated(System.Diagnostics.Tracing.EventSource)">
@@ -1836,13 +1870,26 @@
             </summary>
         </member>
         <member name="M:Azure.Core.GeoJson.GeoJsonConverter.CanConvert(System.Type)">
-            <summary>Determines whether the specified type can be converted.</summary><param name="typeToConvert">The type to compare against.</param><returns><see langword="true" /> if the type can be converted; otherwise, <see langword="false" />.</returns>
+            <summary>
+            Determines whether the type can be converted.
+            </summary><remarks>
+            The default implementation is to return True when <paramref name="typeToConvert" /> equals typeof(T).
+            </remarks><param name="typeToConvert"></param><returns>True if the type can be converted, False otherwise.</returns>
         </member>
         <member name="M:Azure.Core.GeoJson.GeoJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <summary>Reads and converts the JSON to type <typeparamref name="T" />.</summary><param name="reader">The reader.</param><param name="typeToConvert">The type to convert.</param><param name="options">An object that specifies serialization options to use.</param><returns>The converted value.</returns>
+            <summary>
+            Read and convert the JSON to T.
+            </summary><remarks>
+            A converter may throw any Exception, but should throw <cref>JsonException</cref> when the JSON is invalid.
+            </remarks><param name="reader">The <see cref="T:System.Text.Json.Utf8JsonReader" /> to read from.</param><param name="typeToConvert">The <see cref="T:System.Type" /> being converted.</param><param name="options">The <see cref="T:System.Text.Json.JsonSerializerOptions" /> being used.</param><returns>The value that was converted.</returns><remarks>Note that the value of <seealso cref="P:System.Text.Json.Serialization.JsonConverter`1.HandleNull" /> determines if the converter handles null JSON tokens.</remarks>
         </member>
         <member name="M:Azure.Core.GeoJson.GeoJsonConverter.Write(System.Text.Json.Utf8JsonWriter,Azure.Core.GeoJson.GeoObject,System.Text.Json.JsonSerializerOptions)">
-            <summary>Writes a specified value as JSON.</summary><param name="writer">The writer to write to.</param><param name="value">The value to convert to JSON.</param><param name="options">An object that specifies serialization options to use.</param>
+            <summary>
+            Write the value as JSON.
+            </summary><remarks>
+            A converter may throw any Exception, but should throw <cref>JsonException</cref> when the JSON
+            cannot be created.
+            </remarks><param name="writer">The <see cref="T:System.Text.Json.Utf8JsonWriter" /> to write to.</param><param name="value">The value to convert. Note that the value of <seealso cref="P:System.Text.Json.Serialization.JsonConverter`1.HandleNull" /> determines if the converter handles <see langword="null" /> values.</param><param name="options">The <see cref="T:System.Text.Json.JsonSerializerOptions" /> being used.</param>
         </member>
         <member name="T:Azure.Core.GeoJson.GeoLinearRing">
             <summary>
@@ -2682,6 +2729,7 @@
         <member name="M:Azure.Core.Pipeline.BearerTokenAuthenticationPolicy.AuthorizeRequestOnChallengeAsync(Azure.Core.HttpMessage)">
             <summary>
             Executed in the event a 401 response with a WWW-Authenticate authentication challenge header is received after the initial request.
+            The default implementation will attempt to handle Continuous Access Evaluation (CAE) claims challenges.
             </summary>
             <remarks>Service client libraries may override this to handle service specific authentication challenges.</remarks>
             <param name="message">The <see cref="T:Azure.Core.HttpMessage" /> to be authenticated.</param>
@@ -2690,6 +2738,7 @@
         <member name="M:Azure.Core.Pipeline.BearerTokenAuthenticationPolicy.AuthorizeRequestOnChallenge(Azure.Core.HttpMessage)">
             <summary>
             Executed in the event a 401 response with a WWW-Authenticate authentication challenge header is received after the initial request.
+            The default implementation will attempt to handle Continuous Access Evaluation (CAE) claims challenges.
             </summary>
             <remarks>Service client libraries may override this to handle service specific authentication challenges.</remarks>
             <param name="message">The <see cref="T:Azure.Core.HttpMessage" /> to be authenticated.</param>
@@ -2739,6 +2788,17 @@
             <summary>
             An <see cref="T:Azure.Core.Pipeline.HttpPipelineTransport" /> implementation that uses <see cref="T:System.Net.Http.HttpClient" /> as the transport.
             </summary>
+            <summary>
+            An <see cref="T:Azure.Core.Pipeline.HttpPipelineTransport" /> implementation that uses <see cref="T:System.Net.Http.HttpClient" /> as the transport.
+            </summary>
+            <summary>
+            An <see cref="T:Azure.Core.Pipeline.HttpPipelineTransport" /> implementation that uses <see cref="T:System.Net.Http.HttpClient" /> as the transport.
+            </summary>
+        </member>
+        <member name="F:Azure.Core.Pipeline.HttpClientTransport.Shared">
+            <summary>
+            A shared instance of <see cref="T:Azure.Core.Pipeline.HttpClientTransport" /> with default parameters.
+            </summary>
         </member>
         <member name="M:Azure.Core.Pipeline.HttpClientTransport.#ctor">
             <summary>
@@ -2762,11 +2822,6 @@
             Creates a new instance of <see cref="T:Azure.Core.Pipeline.HttpClientTransport" /> using the provided client instance.
             </summary>
             <param name="client">The instance of <see cref="T:System.Net.Http.HttpClient" /> to use.</param>
-        </member>
-        <member name="F:Azure.Core.Pipeline.HttpClientTransport.Shared">
-            <summary>
-            A shared instance of <see cref="T:Azure.Core.Pipeline.HttpClientTransport" /> with default parameters.
-            </summary>
         </member>
         <member name="M:Azure.Core.Pipeline.HttpClientTransport.CreateRequest">
             <summary>
@@ -2900,17 +2955,17 @@
         </member>
         <member name="M:Azure.Core.Pipeline.HttpPipelineBuilder.Build(Azure.Core.ClientOptions,Azure.Core.Pipeline.HttpPipelinePolicy[])">
             <summary>
-            Creates an instance of <see cref="T:Azure.Core.Pipeline.HttpPipeline" /> populated with default policies, customer provided policies from <paramref name="options" /> and client provided per call policies.
+            Creates an instance of <see cref="T:Azure.Core.Pipeline.HttpPipeline" /> populated with default policies, user-provided policies from <paramref name="options" /> and client provided per call policies.
             </summary>
-            <param name="options">The customer provided client options object.</param>
+            <param name="options">The user-provided client options object.</param>
             <param name="perRetryPolicies">Client provided per-retry policies.</param>
             <returns>A new instance of <see cref="T:Azure.Core.Pipeline.HttpPipeline" /></returns>
         </member>
         <member name="M:Azure.Core.Pipeline.HttpPipelineBuilder.Build(Azure.Core.ClientOptions,Azure.Core.Pipeline.HttpPipelinePolicy[],Azure.Core.Pipeline.HttpPipelinePolicy[],Azure.Core.ResponseClassifier)">
             <summary>
-            Creates an instance of <see cref="T:Azure.Core.Pipeline.HttpPipeline" /> populated with default policies, customer provided policies from <paramref name="options" /> and client provided per call policies.
+            Creates an instance of <see cref="T:Azure.Core.Pipeline.HttpPipeline" /> populated with default policies, user-provided policies from <paramref name="options" /> and client provided per call policies.
             </summary>
-            <param name="options">The customer provided client options object.</param>
+            <param name="options">The user-provided client options object.</param>
             <param name="perCallPolicies">Client provided per-call policies.</param>
             <param name="perRetryPolicies">Client provided per-retry policies.</param>
             <param name="responseClassifier">The client provided response classifier.</param>
@@ -2918,28 +2973,28 @@
         </member>
         <member name="M:Azure.Core.Pipeline.HttpPipelineBuilder.Build(Azure.Core.ClientOptions,Azure.Core.Pipeline.HttpPipelinePolicy[],Azure.Core.Pipeline.HttpPipelinePolicy[],Azure.Core.Pipeline.HttpPipelineTransportOptions,Azure.Core.ResponseClassifier)">
             <summary>
-            Creates an instance of <see cref="T:Azure.Core.Pipeline.DisposableHttpPipeline" /> populated with default policies, customer provided policies from <paramref name="options" />, client provided per call policies, and the supplied <see cref="T:Azure.Core.Pipeline.HttpPipelineTransportOptions" />.
+            Creates an instance of <see cref="T:Azure.Core.Pipeline.DisposableHttpPipeline" /> populated with default policies, user-provided policies from <paramref name="options" />, client provided per call policies, and the supplied <see cref="T:Azure.Core.Pipeline.HttpPipelineTransportOptions" />.
             </summary>
-            <param name="options">The customer provided client options object.</param>
+            <param name="options">The user-provided client options object.</param>
             <param name="perCallPolicies">Client provided per-call policies.</param>
             <param name="perRetryPolicies">Client provided per-retry policies.</param>
-            <param name="transportOptions">The customer provided transport options which will be applied to the default transport. Note: If a custom transport has been supplied via the <paramref name="options" />, these <paramref name="transportOptions" /> will be ignored.</param>
+            <param name="transportOptions">The user-provided transport options which will be applied to the default transport. Note: If a custom transport has been supplied via the <paramref name="options" />, these <paramref name="transportOptions" /> will be ignored.</param>
             <param name="responseClassifier">The client provided response classifier.</param>
             <returns>A new instance of <see cref="T:Azure.Core.Pipeline.DisposableHttpPipeline" /></returns>
         </member>
         <member name="M:Azure.Core.Pipeline.HttpPipelineBuilder.Build(Azure.Core.Pipeline.HttpPipelineOptions)">
             <summary>
-            Creates an instance of <see cref="T:Azure.Core.Pipeline.HttpPipeline" /> populated with default policies, customer provided policies from <paramref name="options" /> and client provided per call policies.
+            Creates an instance of <see cref="T:Azure.Core.Pipeline.HttpPipeline" /> populated with default policies, user-provided policies from <paramref name="options" /> and client provided per call policies.
             </summary>
             <param name="options">The configuration options used to build the <see cref="T:Azure.Core.Pipeline.HttpPipeline" /></param>
             <returns>A new instance of <see cref="T:Azure.Core.Pipeline.HttpPipeline" /></returns>
         </member>
         <member name="M:Azure.Core.Pipeline.HttpPipelineBuilder.Build(Azure.Core.Pipeline.HttpPipelineOptions,Azure.Core.Pipeline.HttpPipelineTransportOptions)">
             <summary>
-            Creates an instance of <see cref="T:Azure.Core.Pipeline.DisposableHttpPipeline" /> populated with default policies, customer provided policies from <paramref name="options" />, client provided per call policies, and the supplied <see cref="T:Azure.Core.Pipeline.HttpPipelineTransportOptions" />.
+            Creates an instance of <see cref="T:Azure.Core.Pipeline.DisposableHttpPipeline" /> populated with default policies, user-provided policies from <paramref name="options" />, client provided per call policies, and the supplied <see cref="T:Azure.Core.Pipeline.HttpPipelineTransportOptions" />.
             </summary>
             <param name="options">The configuration options used to build the <see cref="T:Azure.Core.Pipeline.DisposableHttpPipeline" /></param>
-            <param name="transportOptions">The customer provided transport options which will be applied to the default transport. Note: If a custom transport has been supplied via the <paramref name="options" />, these <paramref name="transportOptions" /> will be ignored.</param>
+            <param name="transportOptions">The user-provided transport options which will be applied to the default transport. Note: If a custom transport has been supplied via the <paramref name="options" />, these <paramref name="transportOptions" /> will be ignored.</param>
             <returns>A new instance of <see cref="T:Azure.Core.Pipeline.DisposableHttpPipeline" /></returns>
         </member>
         <member name="T:Azure.Core.Pipeline.HttpPipelineOptions">
@@ -3111,6 +3166,12 @@
             </value>
         </member>
         <member name="T:Azure.Core.Pipeline.HttpWebRequestTransport">
+            <summary>
+            The <see cref="T:System.Net.HttpWebRequest" /> based <see cref="T:Azure.Core.Pipeline.HttpPipelineTransport" /> implementation.
+            </summary>
+            <summary>
+            The <see cref="T:System.Net.HttpWebRequest" /> based <see cref="T:Azure.Core.Pipeline.HttpPipelineTransport" /> implementation.
+            </summary>
             <summary>
             The <see cref="T:System.Net.HttpWebRequest" /> based <see cref="T:Azure.Core.Pipeline.HttpPipelineTransport" /> implementation.
             </summary>
@@ -3359,7 +3420,7 @@
              The default value could change in the future, the flag should be only set to false if suppression for the client
              should never be enabled.</param>
         </member>
-        <member name="M:Azure.Core.Pipeline.DiagnosticScope.AddLink(System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+        <member name="M:Azure.Core.Pipeline.DiagnosticScope.AddLink(System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
             Adds a link to the scope. This must be called before <see cref="M:Azure.Core.Pipeline.DiagnosticScope.Start" /> has been called for the DiagnosticScope.
             </summary>
@@ -3681,6 +3742,9 @@
             <summary>
             Parses the error details from the provided <see cref="T:Azure.Response" />.
             </summary>
+            <remarks>
+            In various scenarios, parsers may be called for successful responses. Implementations should not populate <paramref name="error" /> or <paramref name="data" /> with sensitive information, as these values may be logged as part of the exception.
+            </remarks>
             <param name="response">The <see cref="T:Azure.Response" /> to parse. The <see cref="P:Azure.Response.ContentStream" /> will already be buffered.</param>
             <param name="error">The <see cref="T:Azure.ResponseError" /> describing the parsed error details.</param>
             <param name="data">Data to be applied to the <see cref="P:System.Exception.Data" /> property.</param>
@@ -3695,6 +3759,7 @@
             <summary>
             Gets an ID representing the operation that can be used to poll for
             the status of the long-running operation.
+            There are cases that operation id is not available, we return "NOT_SET" for unavailable operation id.
             </summary>
         </member>
         <member name="T:Azure.Core.Request">
@@ -4949,6 +5014,20 @@
             <param name="tenantId"> The tenantId to be included in the token request.</param>
             <param name="isCaeEnabled">Indicates whether to enable Continuous Access Evaluation (CAE) for the requested token.</param>
         </member>
+        <member name="M:Azure.Core.TokenRequestContext.#ctor(System.String[],System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Uri,System.String)">
+            <summary>
+            Creates a new TokenRequest with the specified scopes.
+            </summary>
+            <param name="scopes">The scopes required for the token.</param>
+            <param name="parentRequestId">The <see cref="P:Azure.Core.Request.ClientRequestId" /> of the request requiring a token for authentication, if applicable.</param>
+            <param name="claims">Additional claims to be included in the token.</param>
+            <param name="tenantId">The tenant ID to be included in the token request.</param>
+            <param name="isCaeEnabled">Indicates whether to enable Continuous Access Evaluation (CAE) for the requested token.</param>
+            <param name="isProofOfPossessionEnabled">Indicates whether to enable Proof of Possession (PoP) for the requested token.</param>
+            <param name="proofOfPossessionNonce">The nonce value required for PoP token requests.</param>
+            <param name="requestUri">The resource request URI to be authorized with a PoP token.</param>
+            <param name="requestMethod">The HTTP request method name of the resource request (e.g. GET, POST, etc.).</param>
+        </member>
         <member name="P:Azure.Core.TokenRequestContext.Scopes">
             <summary>
             The scopes required for the token.
@@ -4978,6 +5057,27 @@
             For this reason, if you declare your app CAE ready, your application must handle the CAE claim challenge for all resource APIs that accept Microsoft Identity access tokens.
             If you don't handle CAE responses in these API calls, your app could end up in a loop retrying an API call with a token that is still in the returned lifespan of the token but has been revoked due to CAE.
             </remarks>
+        </member>
+        <member name="P:Azure.Core.TokenRequestContext.IsProofOfPossessionEnabled">
+            <summary>
+            Indicates whether to enable Proof of Possession (PoP) for the requested token.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.TokenRequestContext.ProofOfPossessionNonce">
+            <summary>
+            The nonce value required for PoP token requests. This is typically retrieved from the WWW-Authenticate header of a 401 challenge response.
+            This is used in combination with <see cref="P:Azure.Core.TokenRequestContext.ResourceRequestUri" /> and <see cref="P:Azure.Core.TokenRequestContext.ResourceRequestMethod" /> to generate the PoP token.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.TokenRequestContext.ResourceRequestMethod">
+            <summary>
+            The HTTP method of the request. This is used in combination with <see cref="P:Azure.Core.TokenRequestContext.ResourceRequestUri" /> and <see cref="P:Azure.Core.TokenRequestContext.ProofOfPossessionNonce" /> to generate the PoP token.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.TokenRequestContext.ResourceRequestUri">
+            <summary>
+            The URI of the request. This is used in combination with <see cref="P:Azure.Core.TokenRequestContext.ResourceRequestMethod" /> and <see cref="P:Azure.Core.TokenRequestContext.ProofOfPossessionNonce" /> to generate the PoP token.
+            </summary>
         </member>
         <member name="T:Azure.Core.AppContextSwitchHelper">
             <summary>
@@ -5145,6 +5245,13 @@
             <summary>
             A helper class for parsing Authorization challenge headers.
             </summary>
+        </member>
+        <member name="M:Azure.Core.AuthorizationChallengeParser.IsCaeClaimsChallenge(Azure.Response)">
+            <summary>
+            Determines if the specified <see cref="T:Azure.Core.HttpMessage" /> is a CAE claims challenge.
+            </summary>
+            <param name="response">The response containing a WWW-Authenticate header.</param>
+            <returns>True</returns>
         </member>
         <member name="M:Azure.Core.AuthorizationChallengeParser.GetChallengeParameterFromResponse(Azure.Response,System.String,System.String)">
             <summary>
@@ -6154,20 +6261,6 @@
             Thrown when the <paramref name="key" /> is empty.
             </exception>
         </member>
-        <member name="M:Azure.AzureKeyCredential.Update(System.String)">
-            <summary>
-            Updates the service key.
-            This is intended to be used when you've regenerated your service key
-            and want to update long lived clients.
-            </summary>
-            <param name="key">Key to authenticate the service against.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Thrown when the <paramref name="key" /> is null.
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            Thrown when the <paramref name="key" /> is empty.
-            </exception>
-        </member>
         <member name="T:Azure.AzureNamedKeyCredential">
             <summary>
             Credential allowing a named key to be used for authenticating to an Azure Service.
@@ -6475,7 +6568,7 @@
         </member>
         <member name="M:Azure.JsonPatchDocument.AppendAddRaw(System.String,System.String)">
             <summary>
-            Initializes a new instance of <see cref="T:Azure.JsonPatchDocument" /> using an existing UTF8-encoded JSON Patch document.
+            Appends an "add" operation to this <see cref="T:Azure.JsonPatchDocument" />.
             </summary>
             <param name="path">The path to apply the addition to.</param>
             <param name="rawJsonValue">The raw JSON value to add to the path.</param>
@@ -6674,10 +6767,17 @@
             Gets or sets the serializer to use for the data portion of the <see cref="T:Azure.Messaging.CloudEvent" />. If not specified,
             JsonObjectSerializer is used.
             </summary>
-            <param name="reader">The reader.</param><param name="typeToConvert">The type to convert.</param><param name="options">An object that specifies serialization options to use.</param><returns>The converted value.</returns>
+            <remarks>
+            A converter may throw any Exception, but should throw <cref>JsonException</cref> when the JSON is invalid.
+            </remarks><param name="reader">The <see cref="T:System.Text.Json.Utf8JsonReader" /> to read from.</param><param name="typeToConvert">The <see cref="T:System.Type" /> being converted.</param><param name="options">The <see cref="T:System.Text.Json.JsonSerializerOptions" /> being used.</param><returns>The value that was converted.</returns><remarks>Note that the value of <seealso cref="P:System.Text.Json.Serialization.JsonConverter`1.HandleNull" /> determines if the converter handles null JSON tokens.</remarks>
         </member>
         <member name="M:Azure.Messaging.CloudEventConverter.Write(System.Text.Json.Utf8JsonWriter,Azure.Messaging.CloudEvent,System.Text.Json.JsonSerializerOptions)">
-            <summary>Writes a specified value as JSON.</summary><param name="writer">The writer to write to.</param><param name="value">The value to convert to JSON.</param><param name="options">An object that specifies serialization options to use.</param>
+            <summary>
+            Write the value as JSON.
+            </summary><remarks>
+            A converter may throw any Exception, but should throw <cref>JsonException</cref> when the JSON
+            cannot be created.
+            </remarks><param name="writer">The <see cref="T:System.Text.Json.Utf8JsonWriter" /> to write to.</param><param name="value">The value to convert. Note that the value of <seealso cref="P:System.Text.Json.Serialization.JsonConverter`1.HandleNull" /> determines if the converter handles <see langword="null" /> values.</param><param name="options">The <see cref="T:System.Text.Json.JsonSerializerOptions" /> being used.</param>
         </member>
         <member name="T:Azure.Messaging.CloudEventDataFormat">
             <summary>
@@ -6764,6 +6864,42 @@
             Represents a long-running operation.
             </summary>
         </member>
+        <member name="M:Azure.Operation.Rehydrate``1(Azure.Core.Pipeline.HttpPipeline,Azure.Core.RehydrationToken,Azure.Core.ClientOptions)">
+            <summary>
+            Rehydrates an operation from a <see cref="T:Azure.Core.RehydrationToken" />.
+            </summary>
+            <param name="pipeline">The Http pipeline.</param>
+            <param name="rehydrationToken">The rehydration token.</param>
+            <param name="options">The client options.</param>
+            <returns>The long-running operation.</returns>
+        </member>
+        <member name="M:Azure.Operation.Rehydrate(Azure.Core.Pipeline.HttpPipeline,Azure.Core.RehydrationToken,Azure.Core.ClientOptions)">
+            <summary>
+            Rehydrates an operation from a <see cref="T:Azure.Core.RehydrationToken" />.
+            </summary>
+            <param name="pipeline">The Http pipeline.</param>
+            <param name="rehydrationToken">The rehydration token.</param>
+            <param name="options">The client options.</param>
+            <returns>The long-running operation.</returns>
+        </member>
+        <member name="M:Azure.Operation.RehydrateAsync``1(Azure.Core.Pipeline.HttpPipeline,Azure.Core.RehydrationToken,Azure.Core.ClientOptions)">
+            <summary>
+            Rehydrates an operation from a <see cref="T:Azure.Core.RehydrationToken" />.
+            </summary>
+            <param name="pipeline">The Http pipeline.</param>
+            <param name="rehydrationToken">The rehydration token.</param>
+            <param name="options">The client options.</param>
+            <returns>The long-running operation.</returns>
+        </member>
+        <member name="M:Azure.Operation.RehydrateAsync(Azure.Core.Pipeline.HttpPipeline,Azure.Core.RehydrationToken,Azure.Core.ClientOptions)">
+            <summary>
+            Rehydrates an operation from a <see cref="T:Azure.Core.RehydrationToken" />.
+            </summary>
+            <param name="pipeline">The Http pipeline.</param>
+            <param name="rehydrationToken">The rehydration token.</param>
+            <param name="options">The client options.</param>
+            <returns>The long-running operation.</returns>
+        </member>
         <member name="M:Azure.Operation.GetRehydrationToken">
             <summary>
             Get a token that can be used to rehydrate the operation.
@@ -6773,6 +6909,7 @@
             <summary>
             Gets an ID representing the operation that can be used to poll for
             the status of the long-running operation.
+            There are cases that operation id is not available, we return "NOT_SET" for unavailable operation id.
             </summary>
         </member>
         <member name="M:Azure.Operation.GetRawResponse">
@@ -7699,6 +7836,40 @@
             Indicates the method should return once the server operation has started.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.ExperimentalAttribute">
+            <summary>
+             Indicates that an API is experimental and it may change in the future.
+            </summary>
+            <remarks>
+              This attribute allows call sites to be flagged with a diagnostic that indicates that an experimental
+              feature is used. Authors can use this attribute to ship preview features in their assemblies.
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.ExperimentalAttribute.#ctor(System.String)">
+            <summary>
+             Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.ExperimentalAttribute" /> class, specifying the ID that the compiler will use
+             when reporting a use of the API the attribute applies to.
+            </summary>
+            <param name="diagnosticId">The ID that the compiler will use when reporting a use of the API the attribute applies to.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.ExperimentalAttribute.DiagnosticId">
+            <summary>
+             Gets the ID that the compiler will use when reporting a use of the API the attribute applies to.
+            </summary>
+            <value>The unique diagnostic ID.</value>
+            <remarks>
+             The diagnostic ID is shown in build output for warnings and errors.
+             <para>This property represents the unique ID that can be used to suppress the warnings or errors, if needed.</para>
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.ExperimentalAttribute.UrlFormat">
+            <summary>
+             Gets or sets the URL for corresponding documentation.
+             The API accepts a format string instead of an actual URL, creating a generic URL that includes the diagnostic ID.
+            </summary>
+            <value>The format string that represents a URL to corresponding documentation.</value>
+            <remarks>An example format string is <c>https://contoso.com/obsoletion-warnings/{0}</c>.</remarks>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">
             <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
         </member>
@@ -8150,7 +8321,7 @@
         <member name="M:Azure.Core.RehydrationToken.System#ClientModel#Primitives#IPersistableModel{Azure#Core#RehydrationToken}#GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions)">
             <summary>
             Gets the data interchange format (JSON, Xml, etc) that the model uses when communicating with the service.
-            <param name="options">The <see cref="T:System.ClientModel.Primitives.ModelReaderWriterOptions" /> to use.</param></summary><returns>The format that the model uses when communicating with the serivce.</returns>
+            </summary><param name="options">The <see cref="T:System.ClientModel.Primitives.ModelReaderWriterOptions" /> to consider when serializing and deserializing the model.</param><returns>The format that the model uses when communicating with the serivce.</returns>
         </member>
         <member name="M:Azure.Core.RehydrationToken.System#ClientModel#Primitives#IPersistableModel{System#Object}#Write(System.ClientModel.Primitives.ModelReaderWriterOptions)">
             <summary>
@@ -8165,7 +8336,7 @@
         <member name="M:Azure.Core.RehydrationToken.System#ClientModel#Primitives#IPersistableModel{System#Object}#GetFormatFromOptions(System.ClientModel.Primitives.ModelReaderWriterOptions)">
             <summary>
             Gets the data interchange format (JSON, Xml, etc) that the model uses when communicating with the service.
-            <param name="options">The <see cref="T:System.ClientModel.Primitives.ModelReaderWriterOptions" /> to use.</param></summary><returns>The format that the model uses when communicating with the serivce.</returns>
+            </summary><param name="options">The <see cref="T:System.ClientModel.Primitives.ModelReaderWriterOptions" /> to consider when serializing and deserializing the model.</param><returns>The format that the model uses when communicating with the serivce.</returns>
         </member>
         <member name="M:Azure.Core.RehydrationToken.System#ClientModel#Primitives#IJsonModel{System#Object}#Write(System.Text.Json.Utf8JsonWriter,System.ClientModel.Primitives.ModelReaderWriterOptions)">
             <summary>
