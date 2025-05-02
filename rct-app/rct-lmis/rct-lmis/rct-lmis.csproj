@@ -1224,7 +1224,7 @@
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>call "C:\Users\Allan Sabalbosa\OneDrive\Desktop\RCT\rct-lending\rct-app\rct-lmis\clean_project.bat"
+    <PreBuildEvent>call "$(ProjectDir)..\clean_project.bat"
 </PreBuildEvent>
   </PropertyGroup>
 </Project>

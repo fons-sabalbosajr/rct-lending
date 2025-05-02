@@ -19,6 +19,7 @@ namespace rct_lmis.LOAN_SECTION
         private readonly IMongoCollection<BsonDocument> loanApprovedCollection;
         private readonly IMongoCollection<BsonDocument> loanRateCollection;
         private readonly IMongoCollection<BsonDocument> loanCollectorsCollection;
+        private double _actualLoanPayable = 0;
 
         public frm_home_loan_addex()
         {
@@ -217,21 +218,20 @@ namespace rct_lmis.LOAN_SECTION
             if (loanRateDetails != null)
             {
                 double interestRatePerMonth = loanRateDetails.GetValue("Interest Rate/Month").ToDouble();
-                double processingFeeRate = loanRateDetails.GetValue("Processing Fee").ToDouble();
+                double processingFeeAmount = loanRateDetails.GetValue("Processing Fee").ToDouble(); // Fixed amount
 
                 double totalInterestAmount = (principal * (interestRatePerMonth / 100)) * term;
                 double totalPayable = principal + totalInterestAmount;
-                double processingFeeAmount = principal * (processingFeeRate / 100);
-
                 int totalPayments = GetTotalPayments(term, cbpaymentmode.Text.Trim());
                 double amortizationPerPayment = totalPayable / totalPayments;
 
                 // Update fields
                 tloaninterest.Text = $"{interestRatePerMonth:F2}%";
                 tloaninterestamt.Text = $"₱{totalInterestAmount:N2}";
-                tloanprocessfee.Text = $"₱{processingFeeAmount:N2}";
+                tloanprocessfee.Text = $"₱{processingFeeAmount:N2}";  // Display fixed amount
                 tloanamort.Text = $"₱{amortizationPerPayment:N2}";
-                tloanamountpay.Text = $"₱{totalPayable:N2}";
+                _actualLoanPayable = totalPayable;
+                tloanamountpay.Text = $"₱{_actualLoanPayable:N2}";
 
                 UpdateLoanBalance();
                 UpdateMaturityDate();
@@ -241,6 +241,7 @@ namespace rct_lmis.LOAN_SECTION
                 ResetLoanAmountDetails();
             }
         }
+
 
         private int GetTotalPayments(int termInMonths, string paymentMode)
         {
@@ -261,83 +262,25 @@ namespace rct_lmis.LOAN_SECTION
 
         private void UpdateLoanBalance()
         {
-            // Try parsing the total loan payable value
-            if (!double.TryParse(tloanamountpay.Text.Replace("₱", "").Replace(",", "").Trim(), out double totalLoanPayable))
+            string rawPaidText = tloanpaid.Text.Replace("₱", "").Replace(",", "").Trim();
+
+            if (double.TryParse(rawPaidText, out double amountPaid))
             {
-                return;  // Exit if parsing the total loan payable fails
-            }
+                double loanBalance = _actualLoanPayable - amountPaid;
+                loanBalance = Math.Max(0, loanBalance); // Avoid negative values
 
-            // Try parsing the amount paid (from tloanpaid)
-            string rawAmountPaid = tloanpaid.Text.Replace("₱", "").Replace(",", "").Trim();
-            if (!double.TryParse(rawAmountPaid, out double amountPaid))
+                tloanbal.Text = $"₱{loanBalance:N2}";
+                tloanamountpay.Text = $"₱{loanBalance:N2}";
+            }
+            else
             {
-                amountPaid = 0;  // Default to 0 if parsing fails
+                // Invalid input, fallback to full payable
+                tloanbal.Text = $"₱{_actualLoanPayable:N2}";
+                tloanamountpay.Text = $"₱{_actualLoanPayable:N2}";
             }
-
-            // Calculate the balance (Total Loan Payable - Amount Paid)
-            double balance = totalLoanPayable - amountPaid;
-            if (balance < 0) balance = 0;  // Ensure the balance is never negative
-
-            // Update the balance text field
-            tloanbal.Text = $"₱{balance:N2}";
-
-            // Also update the total loan amount to pay
-            tloanamountpay.Text = $"₱{totalLoanPayable:N2}";
         }
 
-        private async Task<double> GetProcessingFeeAsync()
-        {
-            // Get the entered Principal value from the textbox
-            if (!double.TryParse(tloanamt.Text.Replace("₱", "").Replace(",", "").Trim(), out double principal))
-            {
-                return 0;  // If Principal is invalid, return 0 for Processing Fee
-            }
 
-            // Fetch the loan configuration from the collection based on Principal
-            var filter = Builders<BsonDocument>.Filter.Eq("Principal", principal);
-            var loanConfig = await loanRateCollection.Find(filter).FirstOrDefaultAsync();
-
-            if (loanConfig != null && loanConfig.Contains("Processing Fee"))
-            {
-                return loanConfig["Processing Fee"].ToDouble();  // Return the processing fee from the document
-            }
-
-            return 0;  // If no processing fee is found, return 0
-        }
-
-        private async Task<double> CalculateTotalLoanPayable()
-        {
-            // Get the entered Principal value from the textbox
-            if (!double.TryParse(tloanamt.Text.Replace("₱", "").Replace(",", "").Trim(), out double principal))
-            {
-                return 0;  // If Principal is invalid, return 0 for total loan payable
-            }
-
-            // Fetch the loan configuration from the collection based on Principal
-            var filter = Builders<BsonDocument>.Filter.Eq("Principal", principal);
-            var loanConfig = await loanRateCollection.Find(filter).FirstOrDefaultAsync();
-
-            if (loanConfig != null && loanConfig.Contains("Interest Rate/Month"))
-            {
-                // Fetch the interest rate and calculate interest for the loan term
-                double interestRate = loanConfig["Interest Rate/Month"].ToDouble();
-                double processingFee = loanConfig["Processing Fee"].ToDouble();  // Fetch processing fee
-
-                // Get the loan term (months) from tloanterm.Text
-                int term = 0;
-                if (int.TryParse(tloanterm.Text.Split(' ')[0], out term) && term > 0)
-                {
-                    // Calculate interest amount based on Principal and Term
-                    double interestAmount = (principal * (interestRate / 100)) * term;
-
-                    // Calculate total loan payable (Principal + Interest + Processing Fee)
-                    double totalLoanPayable = principal + interestAmount + processingFee;
-                    return totalLoanPayable;
-                }
-            }
-
-            return 0;  // Return 0 if no valid loan configuration is found
-        }
 
         private async Task TryComputeLoan()
         {
@@ -361,26 +304,6 @@ namespace rct_lmis.LOAN_SECTION
 
             await CalculateLoanDetails(principal, term);
         }
-
-        private void FormatCurrencyTextbox(Guna.UI2.WinForms.Guna2TextBox textBox)
-        {
-            // Check if the text is a valid numeric value
-            if (double.TryParse(textBox.Text.Replace("₱", "").Replace(",", "").Trim(), out double value))
-            {
-                // Temporarily remove event handler to prevent infinite loop during text update
-                textBox.TextChanged -= tloanpaid_TextChanged;
-
-                // Format the number as currency with two decimal places
-                textBox.Text = $"₱{value:N2}";
-
-                // Keep the cursor at the end after formatting
-                textBox.SelectionStart = textBox.Text.Length;
-
-                // Reattach the event handler
-                textBox.TextChanged += tloanpaid_TextChanged;
-            }
-        }
-
 
         private void UpdateMaturityDate()
         {
@@ -424,59 +347,88 @@ namespace rct_lmis.LOAN_SECTION
         {
             try
             {
-                // Check if LoanNo (tloanno.Text) is empty
                 if (string.IsNullOrEmpty(tloanno.Text))
                 {
                     MessageBox.Show("Loan Number cannot be empty.");
-                    return; // Stop the execution if LoanNo is empty
+                    return;
                 }
 
-                // Validate required fields before proceeding
                 if (!ValidateFormFields())
                 {
-                    return; // Stop execution if validation fails
+                    return;
                 }
 
-                // Create a new document for loan_disbursed
-                var loanDisbursedDocument = new BsonDocument
-                 {
-                     { "AccountId", taccountid.Text },
-                     { "LoanNo", tloanno.Text },
-                     { "ClientNo", tclientno.Text },
-                     { "LoanType", cbloantype.SelectedItem?.ToString() ?? "" }, // Handle null ComboBox values
-                     { "LoanStatus", cbloanstatus.SelectedItem?.ToString() ?? "" },
-                     { "LastName", tclientlastname.Text },
-                     { "FirstName", tclientfirstname.Text },
-                     { "MiddleName", tclientmiddlename.Text },
-                     { "Barangay", tbrgy.Text },
-                     { "City", tcity.Text },
-                     { "Province", tprovince.Text },
-                     { "CollectorName", cbcollector.Text },
-                     { "LoanAmount", tloanamt.Text.Replace("₱", "").Replace(",", "").Trim() },
-                     { "LoanTerm", tloanterm.Text },
-                     { "LoanInterestRate", tloaninterest.Text.Replace("%", "").Trim() },
-                     { "LoanInterestAmount", tloaninterestamt.Text.Replace("₱", "").Replace(",", "").Trim() },
-                     { "ProcessingFee", tloanprocessfee.Text.Replace("₱", "").Replace(",", "").Trim() },
-                     { "LoanBalance", tloanbal.Text.Replace("₱", "").Replace(",", "").Trim() },
-                     { "LoanAmortization", tloanamort.Text.Replace("₱", "").Replace(",", "").Trim() },
-                     { "DateStart", dtstartdate.Value.ToString("MM/dd/yyyy") },
-                     { "DateEnd", dtenddate.Value.ToString("MM/dd/yyyy") },
-                     { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
-                     { "DateApproved", DateTime.Now.ToString("MM/dd/yyyy") },
-                     { "ApprovedBy", "Admin" }
-                 };
+                string platform = cbplatform.SelectedItem?.ToString() ?? "CASH";
+                string platformType = cbpaymenttype.Visible ? cbpaymenttype.SelectedItem?.ToString() ?? "" : "";
 
-                // Insert into loan_disbursed collection
+                var loanDisbursedDocument = new BsonDocument
+                {
+                    { "AccountId", taccountid.Text },
+                    { "LoanNo", tloanno.Text },
+                    { "ClientNo", tclientno.Text },
+                    { "LoanType", cbloantype.SelectedItem?.ToString() ?? "" },
+                    { "LoanStatus", cbloanstatus.SelectedItem?.ToString() ?? "" },
+                    { "LastName", tclientlastname.Text },
+                    { "FirstName", tclientfirstname.Text },
+                    { "MiddleName", tclientmiddlename.Text },
+                    { "Barangay", tbrgy.Text },
+                    { "City", tcity.Text },
+                    { "Province", tprovince.Text },
+                    { "CollectorName", cbcollector.Text },
+                    { "LoanAmount", tloanamt.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "LoanTerm", tloanterm.Text },
+                    { "LoanInterestRate", tloaninterest.Text.Replace("%", "").Trim() },
+                    { "LoanInterestAmount", tloaninterestamt.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "ProcessingFee", tloanprocessfee.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "LoanBalance", tloanbal.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "LoanAmortization", tloanamort.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "Penalty", tloanpenalty.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "Payment_Platform", platform },
+                    { "Payment_Platform_Type", platformType },
+                    { "DateStart", dtstartdate.Value.ToString("MM/dd/yyyy") },
+                    { "DateEnd", dtenddate.Value.ToString("MM/dd/yyyy") },
+                    { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
+                    { "DateApproved", DateTime.Now.ToString("MM/dd/yyyy") },
+                    { "ApprovedBy", "Ralp Daag" }
+                };
+
                 await loanDisbursedCollection.InsertOneAsync(loanDisbursedDocument);
 
-                // Create a new document for loan_approved
-                var loanApprovedDocument = new BsonDocument(loanDisbursedDocument); // Copy the same data
+                var loanApprovedDocument = new BsonDocument
+                {
+                    { "AccountId", taccountid.Text },
+                    { "LoanNo", tloanno.Text },
+                    { "ClientNo", tclientno.Text },
+                    { "LoanType", cbloantype.SelectedItem?.ToString() ?? "" },
+                    { "LoanStatus", cbloanstatus.SelectedItem?.ToString() ?? "" },
+                    { "LastName", tclientlastname.Text },
+                    { "FirstName", tclientfirstname.Text },
+                    { "MiddleName", tclientmiddlename.Text },
+                    { "CollectorName", cbcollector.Text },
+                    { "Barangay", tbrgy.Text },
+                    { "City", tcity.Text },
+                    { "Province", tprovince.Text },
+                    { "LoanTerm", tloanterm.Text },
+                    { "LoanAmount", tloanamt.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "LoanAmortization", tloanamort.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "LoanBalance", tloanbal.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "Penalty", tloanpenalty.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "LoanInterest", tloaninterestamt.Text },
+                    { "PaymentMode", cbpaymentmode.SelectedItem?.ToString() ?? "" },
+                    { "StartPaymentDate", dtstartdate.Value.ToString("MM/dd/yyyy") },
+                    { "MaturityDate", dtenddate.Value.ToString("MM/dd/yyyy") },
+                    { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy") },
+                    { "LoanProcessStatus", "Updated" },
+                    { "PrincipalAmount",tloanamt.Text.Replace("₱", "").Replace(",", "").Trim() },
+                    { "Date_Modified", DateTime.Now }
+                };
 
-                // Insert into loan_approved collection
-                // await loanApprovedCollection.InsertOneAsync(loanApprovedDocument);
+                // Insert to loan_approved collection
+                await loanApprovedCollection.InsertOneAsync(loanApprovedDocument);
+
 
                 MessageBox.Show("Loan information saved successfully!");
-                ClearFormFields(); // Implement this method to reset the form if needed
+                ClearFormFields();
             }
             catch (Exception ex)
             {
@@ -635,28 +587,98 @@ namespace rct_lmis.LOAN_SECTION
 
         private void tloanpaid_TextChanged(object sender, EventArgs e)
         {
-            // Avoid infinite loops by temporarily removing the event handler
+            // Temporarily detach event to prevent recursion
             tloanpaid.TextChanged -= tloanpaid_TextChanged;
 
-            // Try to parse the entered amount, allowing for the commas and currency symbol
             string rawText = tloanpaid.Text.Replace("₱", "").Replace(",", "").Trim();
+            int caretPosition = tloanpaid.SelectionStart;
+
             if (double.TryParse(rawText, out double amountPaid))
             {
-                // Format the text as currency (₱xx,xxx.xx) after input
-                tloanpaid.Text = $"₱{amountPaid:N2}";
-                tloanpaid.SelectionStart = tloanpaid.Text.Length; // Move cursor to the end
+                // Only reformat with commas (no .00)
+                string[] parts = rawText.Split('.');
+                string integerPart = parts[0];
+                string formatted = $"₱{int.Parse(integerPart):N0}";
+
+                // Append decimal if user typed it
+                if (parts.Length > 1)
+                {
+                    formatted += "." + parts[1];
+                }
+
+                tloanpaid.Text = formatted;
+                tloanpaid.SelectionStart = Math.Min(caretPosition + (tloanpaid.Text.Length - rawText.Length), tloanpaid.Text.Length);
+            }
+            else
+            {
+                // Invalid input, just keep raw text without prefix
+                tloanpaid.Text = rawText;
+                tloanpaid.SelectionStart = rawText.Length;
             }
 
-            // Reattach the event handler
+            // Reattach event
             tloanpaid.TextChanged += tloanpaid_TextChanged;
 
-            // Update the loan balance after formatting the text
+            // Update balance only if input is valid
             UpdateLoanBalance();
         }
 
         private void dtstartdate_ValueChanged(object sender, EventArgs e)
         {
             UpdateMaturityDate();
+        }
+
+        private void tloanpaid_Leave(object sender, EventArgs e)
+        {
+            string rawText = tloanpaid.Text.Replace("₱", "").Replace(",", "").Trim();
+            if (double.TryParse(rawText, out double amountPaid))
+            {
+                tloanpaid.Text = $"₱{amountPaid:N2}";
+                UpdateLoanBalance();
+            }
+        }
+
+        private void cbplatform_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedPlatform = cbplatform.SelectedItem?.ToString();
+
+            // Clear existing items and hide controls by default
+            cbpaymenttype.Items.Clear();
+            cbpaymenttype.Visible = false;
+            lspecifytype.Visible = false;
+
+            if (selectedPlatform == "E-WALLET/ONLINE")
+            {
+                // Show and populate with e-wallet options
+                cbpaymenttype.Visible = true;
+                lspecifytype.Visible = true;
+                cbpaymenttype.Items.AddRange(new string[]
+                {
+                   "GCash",
+                   "Maya/Paymaya",
+                   "Shopee Pay",
+                   "Lazada Wallet",
+                   "GoTyme"
+                });
+            }
+            else if (selectedPlatform == "BANK TRANSFER")
+            {
+                // Show and populate with bank options
+                cbpaymenttype.Visible = true;
+                lspecifytype.Visible = true;
+                cbpaymenttype.Items.AddRange(new string[]
+                {
+                     "BDO",
+                     "BPI",
+                     "Landbank",
+                     "ChinaBank",
+                     "Eastwest Bank",
+                     "Metro Bank",
+                     "Security Bank"
+                });
+            }
+
+            cbpaymenttype.SelectedIndex = -1; // Optional: reset selection
         }
     }
 }

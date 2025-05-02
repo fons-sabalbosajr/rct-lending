@@ -186,7 +186,7 @@ namespace rct_lmis
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.ldate.Location = new System.Drawing.Point(840, 33);
             this.ldate.Name = "ldate";
-            this.ldate.Size = new System.Drawing.Size(36, 16);
+            this.ldate.Size = new System.Drawing.Size(37, 16);
             this.ldate.TabIndex = 40;
             this.ldate.Text = "Date";
             this.ldate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -324,7 +324,7 @@ namespace rct_lmis
             this.lfname.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lfname.Location = new System.Drawing.Point(1191, 31);
             this.lfname.Name = "lfname";
-            this.lfname.Size = new System.Drawing.Size(34, 16);
+            this.lfname.Size = new System.Drawing.Size(35, 16);
             this.lfname.TabIndex = 2;
             this.lfname.Text = "User";
             this.lfname.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1043,7 +1043,6 @@ namespace rct_lmis
             this.Name = "frm_home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RCT Lending Management Information System";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_FormClosing);
             this.Load += new System.EventHandler(this.frm_home_Load);
             this.paneltop.ResumeLayout(false);

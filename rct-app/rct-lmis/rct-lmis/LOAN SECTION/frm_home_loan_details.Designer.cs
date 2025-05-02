@@ -1977,6 +1977,8 @@ namespace rct_lmis.LOAN_SECTION
             this.lloanaccno.SelectedText = "";
             this.lloanaccno.Size = new System.Drawing.Size(159, 24);
             this.lloanaccno.TabIndex = 33;
+            this.lloanaccno.Enter += new System.EventHandler(this.lloanaccno_Enter);
+            this.lloanaccno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lloanaccno_KeyPress);
             // 
             // lclientno
             // 

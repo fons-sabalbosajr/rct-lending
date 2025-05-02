@@ -20,6 +20,7 @@ namespace rct_lmis.LOAN_SECTION
         public string AccountID { get; set; }
 
         private DataTable _loanCollectionTable;
+        public event Func<Task> OnLoanNumberUpdated;
 
         public frm_home_loan_new()
         {
@@ -159,7 +160,8 @@ namespace rct_lmis.LOAN_SECTION
                         lclientno.Visible = false;
                         lloanstatus.Visible = false;
                         laccstatus.Visible = false;
-                        lloanaccno.Focus(); // Focus on the laccno text box
+                        //lloanaccno.Focus(); // Focus on the laccno text box
+
                         return;
                     }
                     else
@@ -265,19 +267,32 @@ namespace rct_lmis.LOAN_SECTION
         {
             try
             {
-
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_approved");
 
-                // Load LoanNo values from the collection
+                // Load LoanNo values
                 var filter = Builders<BsonDocument>.Filter.Exists("LoanNo", true);
                 var projection = Builders<BsonDocument>.Projection.Include("LoanNo");
                 var loanNoDocuments = await collection.Find(filter).Project(projection).ToListAsync();
 
-                // Create a list of LoanNos
-                var loanNos = loanNoDocuments.Select(doc => doc.GetValue("LoanNo", "").ToString()).Where(loanNo => !string.IsNullOrEmpty(loanNo)).ToList();
+                // Extract and clean LoanNo strings
+                var loanNos = loanNoDocuments
+                    .Select(doc => doc.GetValue("LoanNo", "").ToString())
+                    .Where(loanNo => !string.IsNullOrEmpty(loanNo))
+                    .ToList();
 
-                // Set the AutoComplete source for the lloanaccno.Text
+                // Sort by year in descending order (most recent first)
+                loanNos = loanNos
+                    .OrderByDescending(loanNo =>
+                    {
+                        var parts = loanNo.Split('-');
+                        if (parts.Length >= 2 && int.TryParse(parts[1], out int year))
+                            return year;
+                        return 0;
+                    })
+                    .ToList();
+
+                // Assign to autocomplete
                 AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
                 autoCompleteCollection.AddRange(loanNos.ToArray());
 
@@ -292,11 +307,11 @@ namespace rct_lmis.LOAN_SECTION
         }
 
 
+
         private async Task LoadLoanDetailsToDataGridViewAsync()
         {
             try
             {
-                // Validate if laccno.Text is not empty
                 string loanNo = lloanaccno.Text.Trim();
                 if (string.IsNullOrEmpty(loanNo))
                 {
@@ -304,60 +319,75 @@ namespace rct_lmis.LOAN_SECTION
                     return;
                 }
 
-                // Step 1: Setup DataTable and bind it to DataGridView
                 DataTable loanDataTable = CreateLoanDataTable();
                 dgvdataamort.DataSource = loanDataTable;
 
-                // Access the MongoDB database and fetch loan details from loan_disbursed
                 var database = MongoDBConnection.Instance.Database;
                 var collection = database.GetCollection<BsonDocument>("loan_disbursed");
 
-                // Filter by LoanNo from laccno.Text
                 var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo);
                 var documents = await collection.Find(filter).ToListAsync();
 
                 if (documents != null && documents.Count > 0)
                 {
                     lnorecorddis.Visible = false;
-                    foreach (var document in documents)
+
+                    foreach (var doc in documents)
                     {
                         DataRow row = loanDataTable.NewRow();
 
-                        // Loan ID
-                        row["Loan ID"] = document.GetValue("LoanNo", "").ToString();
+                        string loanId = doc.GetValue("LoanNo", "").ToString();
+                        string loanAmount = doc.GetValue("LoanAmount", "₱0.00").ToString();
+                        string loanBalance = doc.GetValue("LoanBalance", "₱0.00").ToString();
+                        string loanTerm = doc.GetValue("LoanTerm", "N/A").ToString();
 
-                        // Loan Details: LoanAmount, LoanBalance, LoanTerm, LoanInterest
-                        row["Loan Details"] = $"Amount: {document.GetValue("LoanAmount", "₱0.00")}\n" +
-                                              $"Balance: {document.GetValue("LoanBalance", "₱0.00")}\n" +
-                                              $"Term: {document.GetValue("LoanTerm", "N/A")}\n" +
-                                              $"Interest: {document.GetValue("LoanInterest", "₱0.00")}";
+                        // Support both "LoanInterest" and "LoanInterestAmount"
+                        string loanInterest = doc.Contains("LoanInterest")
+                            ? doc.GetValue("LoanInterest", "₱0.00").ToString()
+                            : doc.GetValue("LoanInterestAmount", "₱0.00").ToString();
 
-                        // Amortization: LoanAmortization, MissedDays, Penalty
-                        string missedDays = "0"; // Placeholder, calculate if needed
-                        row["Amortization"] = $"Amortization: {document.GetValue("LoanAmortization", "₱0.00")}\n" +
-                                              $"Missed: {missedDays} days\n" +
-                                              $"Penalty: {document.GetValue("Penalty", "₱0.00")}";
+                        // Support both "LoanAmortization" (preferred) or fallback
+                        string amortization = doc.GetValue("LoanAmortization", "₱0.00").ToString();
+                        string penalty = doc.GetValue("Penalty", "₱0.00").ToString();
 
-                        // Repayment: PaymentMode, StartPaymentDate, MaturityDate
-                        row["Repayment"] = $"Mode: {document.GetValue("PaymentMode", "N/A")}\n" +
-                                           $"Start: {document.GetValue("StartPaymentDate", "N/A")}\n" +
-                                           $"Maturity: {document.GetValue("MaturityDate", "N/A")}";
+                        // Fallback between "StartPaymentDate"/"DateStart", "MaturityDate"/"DateEnd"
+                        string startDate = doc.Contains("StartPaymentDate")
+                            ? doc.GetValue("StartPaymentDate", "N/A").ToString()
+                            : doc.GetValue("DateStart", "N/A").ToString();
 
-                        // Add row to the DataTable
+                        string maturityDate = doc.Contains("MaturityDate")
+                            ? doc.GetValue("MaturityDate", "N/A").ToString()
+                            : doc.GetValue("DateEnd", "N/A").ToString();
+
+                        string paymentMode = doc.GetValue("PaymentMode", "N/A").ToString();
+
+                        // Basic formatting
+                        row["Loan ID"] = loanId;
+
+                        row["Loan Details"] = $"Amount: {loanAmount}\n" +
+                                              $"Balance: {loanBalance}\n" +
+                                              $"Term: {loanTerm}\n" +
+                                              $"Interest: {loanInterest}";
+
+                        row["Amortization"] = $"Amortization: {amortization}\n" +
+                                              $"Missed: 0 days\n" +
+                                              $"Penalty: {penalty}";
+
+                        row["Repayment"] = $"Mode: {paymentMode}\n" +
+                                           $"Start: {startDate}\n" +
+                                           $"Maturity: {maturityDate}";
+
                         loanDataTable.Rows.Add(row);
                     }
 
-                    // Update total loan count
                     treploantotal.Text = documents.Count.ToString();
                 }
                 else
                 {
-                    // No records found for the LoanNo, clear the DataGridView
                     loanDataTable.Clear();
                     dgvdataamort.DataSource = loanDataTable;
                     treploantotal.Text = "0";
                     lnorecorddis.Visible = true;
-                    //MessageBox.Show($"No loan details found for Loan No: {loanNo}", "Loan Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -368,21 +398,17 @@ namespace rct_lmis.LOAN_SECTION
 
 
 
+
         private async Task LoadLoanCollectionsAsync()
         {
             string clientNo = lclientno.Text; // Retrieve ClientNo
 
-            // Initialize the connection to the database
             var database = MongoDBConnection.Instance.Database;
-            var collection = database.GetCollection<BsonDocument>("loan_collections"); // The collection for loan collections
+            var collection = database.GetCollection<BsonDocument>("loan_collections");
 
-            // Create a filter to search based on ClientNo
             var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", clientNo);
+            var loanCollections = await collection.Find(filter).ToListAsync();
 
-            // Fetch the loan collections for the specific client
-            var loanCollections = await collection.Find(filter).ToListAsync(); // Fetch the data
-
-            // Ensure the _loanCollectionTable is initialized
             if (_loanCollectionTable.Columns.Count == 0)
             {
                 _loanCollectionTable.Columns.Add("Client Information", typeof(string));
@@ -390,78 +416,62 @@ namespace rct_lmis.LOAN_SECTION
                 _loanCollectionTable.Columns.Add("Payment Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Collection Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Remarks", typeof(string));
-                _loanCollectionTable.Columns.Add("CollectionDateTemp", typeof(DateTime)); // Add temporary column for sorting
+                _loanCollectionTable.Columns.Add("CollectionDateTemp", typeof(DateTime));
             }
 
-            // Clear existing rows before loading new data
             _loanCollectionTable.Rows.Clear();
-            dgvdatadis.DataSource = null; // Clear existing data source
+            dgvdatadis.DataSource = null;
 
             double totalAmountPaid = 0;
             double totalPenalty = 0;
             double totalLoanAmount = 0;
-            double runningBalance = 0;  // Initialize running balance for calculations
+            double runningBalance = 0;
 
             foreach (var collectionRecord in loanCollections)
             {
-                // Client Information
                 DateTime? collectionDate = collectionRecord.Contains("CollectionDate") ? collectionRecord["CollectionDate"].ToUniversalTime() : (DateTime?)null;
                 string collectionDateStr = collectionDate.HasValue ? collectionDate.Value.ToString("MM/dd/yyyy") : "";
 
                 string clientNumber = collectionRecord.Contains("ClientNo") ? collectionRecord["ClientNo"].AsString : "";
                 string name = collectionRecord.Contains("Name") ? collectionRecord["Name"].AsString : "";
 
-                string clientInfo = $"Col. Date: {collectionDateStr}\n" +
-                                     $"Client No.: {clientNo}\n" +
-                                     $"Name: {name}";
+                string clientInfo = $"Col. Date: {collectionDateStr}\nClient No.: {clientNo}\nName: {name}";
 
-                // Loan Information
                 double loanAmount = collectionRecord.Contains("LoanAmount") ? (double)collectionRecord["LoanAmount"].AsDecimal128 : 0.00;
-                totalLoanAmount = loanAmount;  // Store loan amount to compute general balance later
+                totalLoanAmount = loanAmount;
 
                 string amortization = collectionRecord.Contains("Amortization") ? ((double)collectionRecord["Amortization"].AsDecimal128).ToString("F2") : "0.00";
 
-                // Calculate Running Balance as Loan Amount - Total Amount Paid
                 double amountPaid = collectionRecord.Contains("ActualCollection") ? (double)collectionRecord["ActualCollection"].AsDecimal128 : 0.00;
-                runningBalance = loanAmount - totalAmountPaid; // Running balance: Loan Amount - Total Amount Paid
+                runningBalance = loanAmount - totalAmountPaid;
 
-                string runningBalanceStr = runningBalance <= 0 ? "Settled" : runningBalance.ToString("F2"); // Check if balance is zero or negative
+                string runningBalanceStr = runningBalance <= 0 ? "Settled" : runningBalance.ToString("F2");
 
-                string loanInfo = $"Loan Amount: {loanAmount:F2}\n" +
-                                  $"Amortization: {amortization}\n" +
-                                  $"Running Balance: {runningBalanceStr}";
+                string loanInfo = $"Loan Amount: {loanAmount:F2}\nAmortization: {amortization}\nRunning Balance: {runningBalanceStr}";
 
-                // Payment Information
-                string dateReceived = collectionRecord.Contains("DateReceived") ? collectionRecord["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy") : "";  // Fix to DateReceived field
+                string dateReceived = collectionRecord.Contains("DateReceived") ? collectionRecord["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy") : "";
 
-                totalAmountPaid += amountPaid;  // Add amount paid to total payments
+                totalAmountPaid += amountPaid;
 
-                string penalty = collectionRecord.Contains("CollectedPenalty") ? ((double)collectionRecord["CollectedPenalty"].AsDecimal128).ToString("F2") : "";
+                string penalty = collectionRecord.Contains("CollectedPenalty") ? ((double)collectionRecord["CollectedPenalty"].AsDecimal128).ToString("F2") : "0.00";
                 string paymentMode = collectionRecord.Contains("PaymentMode") ? collectionRecord["PaymentMode"].AsString : "";
 
-                string paymentInfo = $"Date Received: {dateReceived}\n" +
-                                     $"Amount Paid: {amountPaid:F2}\n" +
-                                     $"Penalty: {penalty}\n" +
-                                     $"Payment Mode: {paymentMode}";
+                string paymentInfo = $"Date Received: {dateReceived}\nAmount Paid: {amountPaid:F2}\nPenalty: {penalty}\nPayment Mode: {paymentMode}";
 
-                // Collection Information
                 string collector = collectionRecord.Contains("Collector") ? collectionRecord["Collector"].AsString : "";
                 string area = collectionRecord.Contains("Address") ? collectionRecord["Address"].AsString : "";
 
-                string collectionInfo = $"Collector: {collector}\n" +
-                                        $"Address: {area}";
+                string collectionInfo = $"Collector: {collector}\nAddress: {area}";
 
-                // Remarks: Always Include Excess Amount Paid, Even if Settled
                 string remarks = "";
-                double excessAmount = totalAmountPaid - totalLoanAmount; // Calculate excess amount paid over total loan amount
+                double excessAmount = totalAmountPaid - totalLoanAmount;
 
                 if (runningBalance <= 0)
                 {
-                    // Loan is fully paid
                     if (excessAmount > 0)
                     {
                         remarks = $"Loan is fully paid.\nExcess amount paid: {excessAmount:F2}";
-                        lgenbal.Text = $"Excess payment: {excessAmount:F2}";  // Display excess payment in the UI
+                        lgenbal.Text = $"Excess payment: {excessAmount:F2}";
                     }
                     else
                     {
@@ -471,10 +481,8 @@ namespace rct_lmis.LOAN_SECTION
                 }
                 else
                 {
-                    // Loan still has a remaining balance
                     remarks = $"Remaining Balance: {runningBalance:F2}";
                     lgenbal.Text = $"Remaining Balance: {runningBalance:F2}";
-                    // Also add the excess amount if it exists in an installment
                     if (excessAmount > 0)
                     {
                         remarks += $"\nExcess Amount Paid: {excessAmount:F2}";
@@ -482,61 +490,65 @@ namespace rct_lmis.LOAN_SECTION
                     }
                 }
 
-                // Add data to DataTable, including CollectionDateTemp for sorting
                 _loanCollectionTable.Rows.Add(clientInfo, loanInfo, paymentInfo, collectionInfo, remarks, collectionDate.HasValue ? (object)collectionDate.Value : DBNull.Value);
             }
 
-            ltotalpayments.Text = "Total Payment Collection: " + loanCollections.Count.ToString();
-
-            // Total Amount Paid Calculation
-            double totalAmountPaidFromCollections = 0;
-            foreach (DataGridViewRow row in dgvdatadis.Rows)
-            {
-                double amountPaid = Convert.ToDouble(row.Cells["AmountPaidColumn"].Value); // Replace with actual column name
-                totalAmountPaidFromCollections += amountPaid;
-            }
-            ltotalamtpaid.Text = "Total Amount Paid: " + (totalAmountPaid + totalAmountPaidFromCollections).ToString("F2");
-
-            // Remaining Balance (General Balance)
-            double totalLoanAmountFromCollections = 0;
-            foreach (DataGridViewRow row in dgvdatadis.Rows)
-            {
-                double loanAmount = Convert.ToDouble(row.Cells["LoanAmountColumn"].Value); // Replace with actual column name
-                totalLoanAmountFromCollections += loanAmount;
-            }
-
-            // Penalty Calculation
-            double totalPenaltyFromCollections = 0;
-            foreach (DataGridViewRow row in dgvdatadis.Rows)
-            {
-                double penalty = Convert.ToDouble(row.Cells["PenaltyColumn"].Value); // Replace with actual column name
-                totalPenaltyFromCollections += penalty;
-            }
-            lpenaltytotal.Text = "Generated Penalty: " + (totalPenalty + totalPenaltyFromCollections).ToString("F2");
-
-            // Sort the DataTable by CollectionDateTemp in descending order
+            // Sort the DataTable by CollectionDateTemp ascending
             DataView view = _loanCollectionTable.DefaultView;
-            view.Sort = "CollectionDateTemp ASC";  // Sort by CollectionDateTemp in descending order
+            view.Sort = "CollectionDateTemp ASC";
             DataTable sortedTable = view.ToTable();
-
-            // Bind sorted data to DataGridView
             dgvdatadis.DataSource = sortedTable;
 
-            // Enable word wrapping for DataGridView cells
+            // Auto-format DataGridView
             foreach (DataGridViewColumn col in dgvdatadis.Columns)
             {
                 col.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
 
-            // Auto-size row height based on content
             foreach (DataGridViewRow row in dgvdatadis.Rows)
             {
-                row.Height = Math.Max(row.Height, 30); // Adjust height based on content
+                row.Height = Math.Max(row.Height, 30);
             }
 
-            // Hide the temporary CollectionDateTemp column after sorting
-            dgvdatadis.Columns["CollectionDateTemp"].Visible = false;
+            if (dgvdatadis.Columns.Contains("CollectionDateTemp"))
+            {
+                dgvdatadis.Columns["CollectionDateTemp"].Visible = false;
+            }
+
+            // Set total collection count
+            ltotalpayments.Text = "Total Payment Collection: " + (loanCollections?.Count ?? 0).ToString();
+
+            if (dgvdatadis.Rows.Count == 0)
+            {
+                // No data
+                ltotalamtpaid.Text = "Total Amount Paid: 0.00";
+                lpenaltytotal.Text = "Generated Penalty: 0.00";
+                lgenbal.Text = "Remaining Balance: 0.00";
+            }
+            else
+            {
+                // Calculate from dgv
+                double totalAmountPaidFromCollections = 0;
+                double totalLoanAmountFromCollections = 0;
+                double totalPenaltyFromCollections = 0;
+
+                foreach (DataGridViewRow row in dgvdatadis.Rows)
+                {
+                    if (row.Cells["AmountPaidColumn"].Value != null)
+                        totalAmountPaidFromCollections += Convert.ToDouble(row.Cells["AmountPaidColumn"].Value);
+
+                    if (row.Cells["LoanAmountColumn"].Value != null)
+                        totalLoanAmountFromCollections += Convert.ToDouble(row.Cells["LoanAmountColumn"].Value);
+
+                    if (row.Cells["PenaltyColumn"].Value != null)
+                        totalPenaltyFromCollections += Convert.ToDouble(row.Cells["PenaltyColumn"].Value);
+                }
+
+                ltotalamtpaid.Text = "Total Amount Paid: " + (totalAmountPaid + totalAmountPaidFromCollections).ToString("F2");
+                lpenaltytotal.Text = "Generated Penalty: " + (totalPenalty + totalPenaltyFromCollections).ToString("F2");
+            }
         }
+
 
         // Filter rows in DataGridView based on tdissearch.Text
         private void FilterDataGridView()
@@ -800,25 +812,40 @@ namespace rct_lmis.LOAN_SECTION
             try
             {
                 var database = MongoDBConnection.Instance.Database;
-                var collection = database.GetCollection<BsonDocument>("loan_approved");
 
-                // Find the document based on AccountId
+                // Collections
+                var loanApprovedCollection = database.GetCollection<BsonDocument>("loan_approved");
+                var loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
+
+                // Filter by AccountId
                 var filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
 
-                // Update the LoanNo field
-                var update = Builders<BsonDocument>.Update.Set("LoanNo", loanNo);
+                // Create the update definition for LoanNo, LoanProcessStatus, and Date_Modified
+                var update = Builders<BsonDocument>.Update
+                    .Set("LoanNo", loanNo)                        // Update LoanNo
+                    .Set("LoanProcessStatus", "Updated")          // Set LoanProcessStatus to "Updated"
+                    .Set("Date_Modified", DateTime.UtcNow);       // Set Date_Modified to current UTC time
 
-                // Perform the update operation
-                var result = await collection.UpdateOneAsync(filter, update);
+                // Perform the update operation on loan_approved collection
+                var resultApproved = await loanApprovedCollection.UpdateOneAsync(filter, update);
 
-                if (result.ModifiedCount > 0)
+                // Perform the update operation on loan_disbursed collection
+                var resultDisbursed = await loanDisbursedCollection.UpdateOneAsync(filter, update);
+
+                // Check if any document was updated in both collections
+                if (resultApproved.ModifiedCount > 0 || resultDisbursed.ModifiedCount > 0)
                 {
                     MessageBox.Show("Loan Number updated successfully!");
                     TabLoanDetails.Visible = true;  // Show TabLoanDetails
                     bupdate.Visible = false;
                     bcopyaccno.Visible = true;
                     laccupdate.Visible = false;
+
                     await LoadLoanDetailsAsync();   // Reload loan details to reflect the update
+                    //if (OnLoanNumberUpdated != null)
+                    //{
+                    //    await OnLoanNumberUpdated.Invoke();
+                    //}
                 }
                 else
                 {
@@ -833,7 +860,37 @@ namespace rct_lmis.LOAN_SECTION
 
         private async void bupdate_Click(object sender, EventArgs e)
         {
-            await UpdateLoanNoAsync();  // Call the method to update the LoanNo
+
+            string loanNo = lloanaccno.Text.Trim();
+
+            if (string.IsNullOrEmpty(loanNo))
+            {
+                MessageBox.Show("Loan number cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            await UpdateLoanNoAsync();
+        }
+
+
+        private void lloanaccno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Prevent accidental Enter from triggering anything
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true; // Suppress Enter key
+            }
+        }
+
+        private void lloanaccno_Enter(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(lloanaccno.Text))
+            {
+                string currentYear = DateTime.Now.Year.ToString();
+                lloanaccno.Text = $"RCT-{currentYear}-";
+                // Optionally move cursor to the end:
+                lloanaccno.SelectionStart = lloanaccno.Text.Length;
+            }
         }
     }
 }

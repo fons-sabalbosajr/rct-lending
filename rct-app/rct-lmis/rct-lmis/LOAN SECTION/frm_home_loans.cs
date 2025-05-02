@@ -30,7 +30,11 @@ namespace rct_lmis
         LoadingFunction load = new LoadingFunction();
         frm_home_loan_new flnew = new frm_home_loan_new();
 
-        private void LoadApprovedLoansData(string loanStatusFilter = "--All Status--", string selectedYear = "")
+        
+        private async 
+        
+        Task
+LoadApprovedLoansData(string loanStatusFilter = "--All Status--", string selectedYear = "")
         {
             try
             {
@@ -407,7 +411,7 @@ namespace rct_lmis
         }
 
 
-        private void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -425,10 +429,23 @@ namespace rct_lmis
                                 AccountID = selectedAccountId // Pass the selected AccountID
                             };
 
-                            // Show loading indicator asynchronously
+                            bool shouldReload = false;
+
+                            loanDetailsForm.OnLoanNumberUpdated += () =>
+                            {
+                                shouldReload = true;  // Set flag to reload only if updated
+                                return Task.CompletedTask;
+                            };
+
                             ShowLoadingIndicator();
                             loanDetailsForm.ShowDialog();
                             HideLoadingIndicator();
+
+                            // Only reload if updated
+                            if (shouldReload)
+                            {
+                                await LoadApprovedLoansData();
+                            }
                         }
                         else
                         {
@@ -520,6 +537,7 @@ namespace rct_lmis
 
         private void baddloanex_Click(object sender, EventArgs e)
         {
+
             frm_home_loan_addex addex = new frm_home_loan_addex();
 
             load.Show(this);
