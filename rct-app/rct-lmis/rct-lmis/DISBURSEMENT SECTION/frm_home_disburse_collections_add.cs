@@ -25,18 +25,21 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private IMongoCollection<BsonDocument> _loanCollectorsCollection;
         private IMongoCollection<BsonDocument> _loanAccountCollection;
         private IMongoCollection<BsonDocument> _loanRemainingBalance;
+        private IMongoCollection<BsonDocument> _loanAccountCycleCollection;
         private frm_home_disburse_collections _parentForm;
         private List<string> _accountIdList;
         private string name;
         private string loggedInUsername;
         private string _clientNo;
+        private readonly string _loanNo;
 
-        public frm_home_disburse_collections_add(string clientNo)
+        public frm_home_disburse_collections_add(string clientNo, string loanNo)
         {
             InitializeComponent();
             dtdate.Value = DateTime.Now;
             dtcoldate.Value = DateTime.Now;
             _clientNo = clientNo;
+            _loanNo = loanNo;
             loggedInUsername = UserSession.Instance.CurrentUser;
 
 
@@ -48,6 +51,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             _loanCollectorsCollection = database.GetCollection<BsonDocument>("loan_collectors");
             _loanAccountCollection = database.GetCollection<BsonDocument>("loan_account_data");
             _loanRemainingBalance = database.GetCollection<BsonDocument>("loan_remaining_balance");
+            _loanAccountCycleCollection = database.GetCollection<BsonDocument>("loan_account_cycles");
 
             LoadPaymentModes();
             
@@ -82,47 +86,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 MessageBox.Show("Client not found.");
             }
         }
-
-
-        private void ClearAndDisableFields()
-        {
-            tloanamt.Text = string.Empty;
-            tterm.Text = string.Empty;
-            tpaystart.Text = string.Empty;
-            tpaymature.Text = string.Empty;
-            tpaymode.Text = string.Empty;
-            tpayamort.Text = string.Empty;
-            tloanbal.Text = string.Empty;
-            tpaymentstatus.Text = string.Empty;
-            tprincipaldue.Text = string.Empty;
-            tcolinterest.Text = string.Empty;
-            tcolpenalty.Text = string.Empty;
-            tcoltotal.Text = string.Empty;
-            tcolpaid.Text = string.Empty;
-            tcolactual.Text = string.Empty;
-            tcolrefno.Text = string.Empty;
-            tcolpayamt.Text = string.Empty;
-            tcolbank.Text = string.Empty;
-            tcolbranch.Text = string.Empty;
-
-            bsave.Enabled = false;
-            bcancel.Enabled = false;
-        }
-
-        private decimal GetLatestPrincipalBalance(string loanId)
-        {
-            var filter = Builders<BsonDocument>.Filter.Eq("LoanID", loanId);
-            var sort = Builders<BsonDocument>.Sort.Descending("CollectionDate");
-            var latestCollection = _loanCollectionsCollection.Find(filter).Sort(sort).FirstOrDefault();
-
-            if (latestCollection != null && latestCollection.Contains("PrincipalBalance"))
-            {
-                return latestCollection["PrincipalBalance"].ToDecimal();
-            }
-
-            return 0;
-        }
-
 
         private void LoadCollectors()
         {
@@ -178,140 +141,104 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             return 0m;
         }
 
-
         private async void LoadLoanDisbursedData()
         {
-            string fullName = tname.Text.Trim();
+            if (string.IsNullOrEmpty(_loanNo))
+            {
+                MessageBox.Show("Loan number not provided.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             try
             {
-                if (string.IsNullOrEmpty(fullName))
-                {
-                    MessageBox.Show("Please enter a valid full name.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                var nameParts = fullName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                if (nameParts.Length < 2)
-                {
-                    MessageBox.Show("Full name must include at least a first name and a last name.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                string firstName = nameParts[0];
-                string lastName = nameParts[nameParts.Length - 1];
-                string middleName = nameParts.Length > 2 ? string.Join(" ", nameParts.Skip(1).Take(nameParts.Length - 2)) : "";
-
-                var filter = Builders<BsonDocument>.Filter.And(
-                    Builders<BsonDocument>.Filter.Eq("FirstName", firstName),
-                    Builders<BsonDocument>.Filter.Eq("LastName", lastName)
-                );
-
-                if (!string.IsNullOrEmpty(middleName))
-                {
-                    filter = Builders<BsonDocument>.Filter.And(filter, Builders<BsonDocument>.Filter.Eq("MiddleName", middleName));
-                }
-
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", _loanNo);
                 var loanDisbursed = await _loanDisbursedCollection.Find(filter).FirstOrDefaultAsync();
+                var loanAccountCycle = await _loanAccountCycleCollection.Find(filter).FirstOrDefaultAsync();
 
+                if (loanDisbursed == null && loanAccountCycle == null)
+                {
+                    MessageBox.Show($"No loan data found for LoanNo: {_loanNo}", "Data Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // --- Populate from loanDisbursed (if found) ---
                 if (loanDisbursed != null)
                 {
-                    try
+                    laccountid.Text = loanDisbursed.GetValue("AccountId", "N/A").ToString();
+                    tloanid.Text = loanDisbursed.GetValue("LoanNo", "N/A").ToString();
+
+                    // Load ClientNo
+                    tclientno.Text = loanDisbursed.GetValue("ClientNo", "N/A").ToString();
+
+                    tloanamt.Text = loanDisbursed.GetValue("LoanAmount", "₱0.00").ToString();
+                    tterm.Text = loanDisbursed.GetValue("LoanTerm", "N/A").ToString();
+                    tpaymode.Text = loanDisbursed.GetValue("PaymentMode", "N/A").ToString();
+                    tpayamort.Text = loanDisbursed.GetValue("LoanAmortization", "₱0.00").ToString();
+
+                    string barangay = loanDisbursed.GetValue("Barangay", "N/A").ToString();
+                    string city = loanDisbursed.GetValue("City", "N/A").ToString();
+                    taddress.Text = $"{barangay}, {city}";
+                    tcontact.Text = loanDisbursed.GetValue("ContactNo", "N/A").ToString();
+
+                    decimal loanAmount = ConvertToDecimal(loanDisbursed.GetValue("LoanAmount", "0").ToString().Replace("₱", "").Replace(",", "").Trim());
+                    decimal loanInterest = ConvertToDecimal(loanDisbursed.GetValue("LoanInterest", "0").ToString().Replace("%", "").Trim());
+
+                    string loanTermRaw = loanDisbursed.GetValue("LoanTerm", "0 months").ToString();
+                    string numericTermStr = new string(loanTermRaw.Where(char.IsDigit).ToArray());
+                    if (!int.TryParse(numericTermStr, out int loanTerm) || loanTerm <= 0)
                     {
-                        // Handle identifiers
-                        tclientno.Text = loanDisbursed.GetValue("ClientNo", "N/A").ToString();
-                        tloanid.Text = loanDisbursed.GetValue("LoanNo", "N/A").ToString();
-
-                        // Get amount, term, amortization with fallbacks
-                        tloanamt.Text = loanDisbursed.GetValue("LoanAmount", "₱0.00").ToString();
-                        tterm.Text = loanDisbursed.GetValue("LoanTerm", "N/A").ToString();
-                        tpaymode.Text = loanDisbursed.GetValue("PaymentMode", "N/A").ToString();
-                        tpayamort.Text = loanDisbursed.GetValue("LoanAmortization", "₱0.00").ToString();
-
-                        // Address and contact
-                        string barangay = loanDisbursed.GetValue("Barangay", "N/A").ToString();
-                        string city = loanDisbursed.GetValue("City", "N/A").ToString();
-                        taddress.Text = $"{barangay}, {city}";
-                        tcontact.Text = loanDisbursed.GetValue("ContactNo", "N/A").ToString();
-
-                        // Parse loan amount and interest
-                        decimal loanAmount = ConvertToDecimal(loanDisbursed.GetValue("LoanAmount", "₱0.00").ToString().Replace("₱", "").Replace(",", "").Trim());
-                        decimal loanInterest = ConvertToDecimal(loanDisbursed.GetValue("LoanInterest", "0").ToString().Replace("%", "").Trim());
-
-                        // Extract and validate loan term
-                        string loanTermRaw = loanDisbursed.GetValue("LoanTerm", "0 months").ToString();
-                        string numericTermStr = new string(loanTermRaw.Where(char.IsDigit).ToArray());
-                        int loanTerm;
-
-                        if (!int.TryParse(numericTermStr, out loanTerm) || loanTerm <= 0)
-                        {
-                            MessageBox.Show("Invalid or missing loan term. Cannot compute due amounts.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-
-                        // Handle Start Payment Date
-                        string startPaymentDateStr = loanDisbursed.GetValue("StartPaymentDate", "").ToString();
-                        DateTime startPaymentDate = DateTime.TryParse(startPaymentDateStr, out var spd) ? spd : DateTime.MinValue;
-                        tpaystart.Text = startPaymentDate != DateTime.MinValue ? startPaymentDate.ToString("MM/dd/yyyy") : "N/A";
-
-                        // Handle Maturity Date safely
-                        string maturityDateStr = loanDisbursed.GetValue("MaturityDate", "").ToString();
-                        DateTime maturityDate = DateTime.TryParse(maturityDateStr, out var mDate) ? mDate : DateTime.MinValue;
-                        tpaymature.Text = maturityDate != DateTime.MinValue ? maturityDate.ToString("MM/dd/yyyy") : "N/A";
-
-                        // Compute principal & interest due
-                        decimal principalDue = loanAmount / loanTerm;
-                        decimal interestDue = (loanAmount * (loanInterest / 100)) / loanTerm;
-
-                        tprincipaldue.Text = principalDue.ToString("C", new CultureInfo("en-PH"));
-                        tcolinterest.Text = interestDue.ToString("C", new CultureInfo("en-PH"));
-
-                        // Compute loan balance
-                        ComputeLoanBalance();
+                        MessageBox.Show("Invalid or missing loan term. Cannot compute due amounts.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(this, $"Error processing loan data: {ex.Message}", "Processing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+
+                    string startPaymentDateStr = loanDisbursed.GetValue("StartPaymentDate", "").ToString();
+                    DateTime? startPaymentDate = ParseDateOrNull(startPaymentDateStr);
+                    tpaystart.Text = startPaymentDate.HasValue ? startPaymentDate.Value.ToString("MM/dd/yyyy") : "N/A";
+
+                    string maturityDateStr = loanDisbursed.GetValue("MaturityDate", "").ToString();
+                    DateTime? maturityDate = ParseDateOrNull(maturityDateStr);
+                    tpaymature.Text = maturityDate.HasValue ? maturityDate.Value.ToString("MM/dd/yyyy") : "N/A";
+
+                    decimal principalDue = loanAmount / loanTerm;
+                    decimal interestDue = (loanAmount * (loanInterest / 100)) / loanTerm;
+
+                    tprincipaldue.Text = principalDue.ToString("C", new CultureInfo("en-PH"));
+                    tcolinterest.Text = interestDue.ToString("C", new CultureInfo("en-PH"));
                 }
-                else
+
+                // --- Populate additional/overwrite fields from loanAccountCycle if found ---
+                if (loanAccountCycle != null)
                 {
-                    MessageBox.Show($"No loan disbursed data found for the name: {fullName}", "Data Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                   
+                    tloanamt.Text = "₱" + ConvertToDecimal(loanAccountCycle.GetValue("LoanAmount", "0").ToString()).ToString("N2");
+                    tpaymode.Text = loanAccountCycle.GetValue("PaymentMode", tpaymode.Text).ToString();
+
+                    string startPaymentDateStr = loanAccountCycle.GetValue("StartPaymentDate", new BsonString("")).ToString();
+                    DateTime? startPaymentDate = ParseDateOrNull(startPaymentDateStr);
+                    if (startPaymentDate.HasValue)
+                        tpaystart.Text = startPaymentDate.Value.ToString("MM/dd/yyyy");
+
+                    string maturityDateStr = loanAccountCycle.GetValue("MaturityDate", new BsonString("")).ToString();
+                    DateTime? maturityDate = ParseDateOrNull(maturityDateStr);
+                    if (maturityDate.HasValue)
+                        tpaymature.Text = maturityDate.Value.ToString("MM/dd/yyyy");
                 }
+
+                ComputeLoanBalance();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading loan disbursed data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error loading loan data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
-
-
-        private DateTime CalculateMaturityDate(DateTime startDate, int weekdaysToAdd)
+        // Helper method to parse date safely, returns null if invalid or empty
+        private DateTime? ParseDateOrNull(string dateStr)
         {
-            DateTime currentDate = startDate;
-            int weekdaysAdded = 0;
-
-            while (weekdaysAdded < weekdaysToAdd)
-            {
-                currentDate = currentDate.AddDays(1);
-                if (currentDate.DayOfWeek != DayOfWeek.Sunday)  // Skip Sundays
-                {
-                    weekdaysAdded++;
-                }
-            }
-
-            // Check if the calculated end date is off by a day
-            // For example, if it's ending on a Sunday, subtract one more day
-            if (currentDate.DayOfWeek == DayOfWeek.Sunday)
-            {
-                currentDate = currentDate.AddDays(-1);  // Subtract 1 day to get the correct end date
-            }
-
-            return currentDate; // Return the corrected maturity date
+            if (DateTime.TryParse(dateStr, out DateTime dt))
+                return dt;
+            return null;
         }
-
 
         private int CalculateWeekdaysElapsed(DateTime startDate, DateTime endDate)
         {
@@ -335,21 +262,30 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             try
             {
-                // Check if Loan ID is empty
                 if (string.IsNullOrEmpty(tloanid.Text))
                 {
                     MessageBox.Show("Loan ID is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Check if Start Payment Date is empty
-                if (string.IsNullOrEmpty(tpaystart.Text))
+                // Abort if Start Payment Date is missing or invalid
+                if (string.IsNullOrWhiteSpace(tpaystart.Text) || tpaystart.Text.Trim().ToUpper() == "N/A")
                 {
-                    MessageBox.Show("Start Payment Date is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Start Payment Date is missing or invalid. Aborting computation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Parse Loan Amount safely
+                DateTime startPaymentDate;
+                if (!DateTime.TryParseExact(tpaystart.Text,
+                    new[] { "MM/dd/yyyy", "M/d/yyyy" },
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.None,
+                    out startPaymentDate))
+                {
+                    MessageBox.Show("Invalid Start Payment Date format. Aborting computation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 decimal loanAmount = ConvertToDecimalSafe(tloanamt.Text);
                 if (loanAmount <= 0)
                 {
@@ -357,7 +293,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     return;
                 }
 
-                // Parse Amortization safely
                 decimal amortization = ConvertToDecimalSafe(tpayamort.Text);
                 if (amortization <= 0)
                 {
@@ -365,27 +300,15 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     return;
                 }
 
-                // Parse Start Payment Date safely
-                DateTime startPaymentDate;
-                if (!DateTime.TryParse(tpaystart.Text, out startPaymentDate))
-                {
-                    MessageBox.Show("Invalid Start Payment Date format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 DateTime currentDate = DateTime.Now;
-
-                // Calculate days elapsed excluding Sundays
                 int daysElapsed = CalculateWeekdaysElapsed(startPaymentDate, currentDate);
 
-                // Check if daysElapsed is less than or equal to zero (invalid input or no days passed)
                 if (daysElapsed <= 0)
                 {
                     MessageBox.Show("No days elapsed since the start date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Check if Loan Term is greater than zero to avoid division by zero
                 string loanTermRaw = tterm.Text.Trim();
                 if (string.IsNullOrEmpty(loanTermRaw) || !int.TryParse(new string(loanTermRaw.Where(char.IsDigit).ToArray()), out int loanTerm) || loanTerm <= 0)
                 {
@@ -393,13 +316,11 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     return;
                 }
 
-                // Compute principal, interest, penalty, and total amortization
                 decimal principalDue = (amortization * 0.833333333m) * daysElapsed;
                 decimal interestDue = (amortization * 0.166666667m) * daysElapsed;
                 decimal penalty = (principalDue + interestDue) * 0.03m * (daysElapsed / 30m);
                 decimal totalAmortization = principalDue + interestDue + penalty;
 
-                // Display the computed values
                 tcolpenalty.Text = penalty.ToString("C", new CultureInfo("en-PH"));
                 tprincipaldue.Text = principalDue.ToString("C", new CultureInfo("en-PH"));
                 tcolinterest.Text = interestDue.ToString("C", new CultureInfo("en-PH"));
@@ -411,6 +332,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 MessageBox.Show($"Error computing loan balance: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private decimal ConvertToDecimalSafe(string value)
         {
@@ -428,121 +350,6 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
             return result;
         }
-
-
-
-        private void GenerateCollectionId()
-        {
-            try
-            {
-                // Ensure the ClientNo is not empty
-                if (string.IsNullOrEmpty(clientnotest.Text))
-                {
-                    MessageBox.Show("ClientNo is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                clientnotest.Text = _clientNo;  // Assume _clientNo has the ClientNo of the user
-
-                // Ensure ClientNo has only **one leading zero** (e.g., "RCT-2025-CL035")
-                string formattedClientNo = FormatClientNo(clientnotest.Text.Trim());
-
-                Console.WriteLine($"Searching for ClientNo: '{formattedClientNo}'");
-
-                // Get the ClientNo from the loan_approved collection based on formattedClientNo
-                var filterApproved = Builders<BsonDocument>.Filter.Eq("ClientNo", formattedClientNo);
-                var loanApproved = _loanApprovedCollection.Find(filterApproved).FirstOrDefault();
-
-                if (loanApproved != null)
-                {
-                    // Extracting the base ClientNo
-                    string clientNo = loanApproved["ClientNo"].ToString().Trim();
-                    Console.WriteLine($"Found ClientNo in loan_approved: {clientNo}");
-
-                    // Find the last collection for this ClientNo in loan_collections
-                    var filterCollections = Builders<BsonDocument>.Filter.Regex("ClientNo", new BsonRegularExpression($"^{clientNo}-COL-"));
-                    var sort = Builders<BsonDocument>.Sort.Descending("ClientNo");
-                    var lastCollection = _loanCollectionsCollection.Find(filterCollections).Sort(sort).FirstOrDefault();
-
-                    // Extract and increment the collection number
-                    int collectionNumber = 1; // Default if no collections exist yet
-                    if (lastCollection != null)
-                    {
-                        string lastCollectionId = lastCollection["ClientNo"].ToString();
-                        string lastNumberStr = lastCollectionId.Substring(lastCollectionId.LastIndexOf("-COL-") + 5);
-
-                        // Try to parse the last collection number
-                        if (int.TryParse(lastNumberStr, out int lastNumber))
-                        {
-                            collectionNumber = lastNumber + 1; // Increment the last number
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error parsing last collection number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
-
-                    // Format the new CollectionId
-                    string newCollectionId = $"{clientNo}-COL-{collectionNumber:D4}"; // Ensures the number is formatted to four digits
-
-                    // Assign the new CollectionId to the laccountid label
-                    laccountid.Text = newCollectionId; // Update the label with the new ID
-                }
-                else
-                {
-                    MessageBox.Show($"ClientNo '{formattedClientNo}' not found in loan_approved.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Console.WriteLine($"Error: ClientNo '{formattedClientNo}' not found in loan_approved.");
-                }
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show($"Format error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (MongoException ex)
-            {
-                MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Ensures ClientNo always has **only one leading zero**.
-        /// Example: "RCT-2025-CL35" -> "RCT-2025-CL035"
-        /// Example: "RCT-2025-CL0035" -> "RCT-2025-CL035"
-        /// </summary>
-        private string FormatClientNo(string clientNo)
-        {
-            var match = Regex.Match(clientNo, @"^(RCT-\d{4}-CL)0*(\d+)$");
-            return match.Success ? $"{match.Groups[1].Value}{int.Parse(match.Groups[2].Value):D2}" : clientNo;
-        }
-
-        private void SaveRemainingBalance(decimal principalBalance, string loanIdNo, decimal loanAmount, int loanTerm, decimal amortizedAmt)
-        {
-            try
-            {
-                var remainingBalanceDocument = new BsonDocument
-                 {
-                     { "LoanID", loanIdNo },
-                     { "RemainingPrincipalBalance", principalBalance },
-                     { "LoanAmount", loanAmount },
-                     { "LoanTerm", loanTerm },
-                     { "Amortization", amortizedAmt },
-                     { "LastUpdated", DateTime.Now }
-                 };
-
-                // Insert the remaining balance document into the existing _loanRemainingBalance collection
-                _loanRemainingBalance.InsertOne(remainingBalanceDocument);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to save remaining balance: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
 
         private async Task<bool> SaveLoanCollectionDataAsync()
         {

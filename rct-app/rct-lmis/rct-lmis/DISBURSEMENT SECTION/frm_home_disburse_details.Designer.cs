@@ -574,7 +574,7 @@
             this.bdelete.Size = new System.Drawing.Size(82, 31);
             this.bdelete.TabIndex = 111;
             this.bdelete.Text = "Delete";
-            this.bdelete.Visible = false;
+            this.bdelete.Click += new System.EventHandler(this.bdelete_Click);
             // 
             // dgvloancurrent
             // 

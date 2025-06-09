@@ -121,47 +121,36 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     return;
                 }
 
+                // Try loading by StartPaymentDate if provided
                 bool hasValidStartPaymentDate = !(string.IsNullOrWhiteSpace(startPaymentDate) ||
                                                   startPaymentDate.Equals("n/a", StringComparison.OrdinalIgnoreCase));
 
-                FilterDefinition<BsonDocument> cycleFilter;
-                FilterDefinition<BsonDocument> disbursedFilter;
+                FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
 
                 if (hasValidStartPaymentDate)
                 {
-                    cycleFilter = Builders<BsonDocument>.Filter.And(
-                        Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
-                        Builders<BsonDocument>.Filter.Eq("StartPaymentDate", startPaymentDate)
-                    );
-                    disbursedFilter = Builders<BsonDocument>.Filter.And(
-                        Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
-                        Builders<BsonDocument>.Filter.Eq("StartPaymentDate", startPaymentDate)
-                    );
-                }
-                else
-                {
-                    // Only filter by AccountId
-                    cycleFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
-                    disbursedFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                    filter &= Builders<BsonDocument>.Filter.Eq("StartPaymentDate", startPaymentDate);
                 }
 
-                var cycleDoc = await _loanAccountCyclesCollection.Find(cycleFilter).FirstOrDefaultAsync();
-                var disbursedDoc = await _loanDisbursedCollection.Find(disbursedFilter).FirstOrDefaultAsync();
+                // Sort by Date_Modified or _id (ObjectId includes timestamp)
+                var sort = Builders<BsonDocument>.Sort.Descending("Date_Modified").Descending("_id");
 
-                if (cycleDoc == null && disbursedDoc == null)
+                var latestCycle = await _loanAccountCyclesCollection.Find(filter).Sort(sort).FirstOrDefaultAsync();
+                var latestDisbursed = await _loanDisbursedCollection.Find(filter).Sort(sort).FirstOrDefaultAsync();
+
+                if (latestCycle == null && latestDisbursed == null)
                 {
                     MessageBox.Show($"No matching loan found for AccountId: {accountId}");
                     return;
                 }
 
-                // If no startPaymentDate provided, but found a document, use its StartPaymentDate
+                // Fallback if StartPaymentDate is missing in UI
                 if (!hasValidStartPaymentDate)
                 {
-                    startPaymentDate = cycleDoc?.GetValue("StartPaymentDate", "")?.ToString()
-                        ?? disbursedDoc?.GetValue("StartPaymentDate", "")?.ToString();
+                    startPaymentDate = latestCycle?.GetValue("StartPaymentDate", "")?.ToString()
+                        ?? latestDisbursed?.GetValue("StartPaymentDate", "")?.ToString();
                 }
 
-                // Call LoadLoanDetails passing AccountId and StartPaymentDate
                 await LoadLoanDetails(accountId, startPaymentDate);
             }
             catch (Exception ex)
@@ -179,28 +168,16 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 bool hasValidStartPaymentDate = !(string.IsNullOrWhiteSpace(dateStart) ||
                                                   dateStart.Equals("n/a", StringComparison.OrdinalIgnoreCase));
 
-                FilterDefinition<BsonDocument> cycleFilter;
-                FilterDefinition<BsonDocument> disbursedFilter;
-
+                FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
                 if (hasValidStartPaymentDate)
                 {
-                    cycleFilter = Builders<BsonDocument>.Filter.And(
-                        Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
-                        Builders<BsonDocument>.Filter.Eq("StartPaymentDate", dateStart)
-                    );
-                    disbursedFilter = Builders<BsonDocument>.Filter.And(
-                        Builders<BsonDocument>.Filter.Eq("AccountId", accountId),
-                        Builders<BsonDocument>.Filter.Eq("StartPaymentDate", dateStart)
-                    );
-                }
-                else
-                {
-                    cycleFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
-                    disbursedFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+                    filter &= Builders<BsonDocument>.Filter.Eq("StartPaymentDate", dateStart);
                 }
 
-                var cycleDoc = await _loanAccountCyclesCollection.Find(cycleFilter).FirstOrDefaultAsync();
-                var disbursedDoc = await _loanDisbursedCollection.Find(disbursedFilter).FirstOrDefaultAsync();
+                var sort = Builders<BsonDocument>.Sort.Descending("Date_Modified").Descending("_id");
+
+                var cycleDoc = await _loanAccountCyclesCollection.Find(filter).Sort(sort).FirstOrDefaultAsync();
+                var disbursedDoc = await _loanDisbursedCollection.Find(filter).Sort(sort).FirstOrDefaultAsync();
 
                 if (cycleDoc == null && disbursedDoc == null)
                 {
@@ -208,19 +185,18 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     return;
                 }
 
-                // (All your existing code below to assign textbox values...)
-
+                // Prioritize updated values: cycleDoc first, fallback to disbursedDoc
                 tloantype.Text = cycleDoc?.GetValue("LoanType", null)?.ToString()
-                     ?? disbursedDoc?.GetValue("LoanType", null)?.ToString()
-                     ?? "N/A";
+                    ?? disbursedDoc?.GetValue("LoanType", null)?.ToString()
+                    ?? "N/A";
 
                 tloanstatus.Text = cycleDoc?.GetValue("LoanStatus", null)?.ToString()
-                     ?? disbursedDoc?.GetValue("LoanStatus", null)?.ToString()
-                     ?? "N/A";
+                    ?? disbursedDoc?.GetValue("LoanStatus", null)?.ToString()
+                    ?? "N/A";
 
                 tloanterm.Text = cycleDoc?.GetValue("LoanTerm", null)?.ToString()
-                     ?? disbursedDoc?.GetValue("LoanTerm", null)?.ToString()
-                     ?? "N/A";
+                    ?? disbursedDoc?.GetValue("LoanTerm", null)?.ToString()
+                    ?? "N/A";
 
                 tloanamount.Text = cycleDoc?.GetValue("LoanAmount", null)?.ToString()
                     ?? disbursedDoc?.GetValue("LoanAmount", null)?.ToString()
@@ -248,13 +224,11 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 string startPaymentDateStr = cycleDoc?.GetValue("StartPaymentDate", "")?.ToString()
                     ?? disbursedDoc?.GetValue("StartPaymentDate", "")?.ToString();
-
                 if (DateTime.TryParse(startPaymentDateStr, out DateTime startDate))
                     dtstartdate.Value = startDate;
 
                 string maturityDateStr = cycleDoc?.GetValue("MaturityDate", "")?.ToString()
                     ?? disbursedDoc?.GetValue("MaturityDate", "")?.ToString();
-
                 if (DateTime.TryParse(maturityDateStr, out DateTime maturityDate))
                     dtmatdate.Value = maturityDate;
 
@@ -434,7 +408,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     .Set("MaturityDate", dtmatdate.Value.ToString("MM/dd/yyyy"))
                     .Set("Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
 
-                // Attempt to update loan_disbursed first
+                // Attempt to update loan_disbursed
                 var result = await _loanDisbursedCollection.UpdateOneAsync(filter, update);
 
                 // If loan_disbursed update failed, try loan_account_cycles
@@ -442,14 +416,39 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 {
                     var altResult = await _loanAccountCyclesCollection.UpdateOneAsync(filter, update);
 
+                    // If both updates failed, insert a new record into loan_account_cycles
                     if (altResult.ModifiedCount == 0)
                     {
-                        MessageBox.Show("No matching loan found in both loan_disbursed and loan_account_cycles collections. Update failed.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return false;
+                        string loanCycleNo = GenerateLoanCycleNo(laccountid.Text);
+
+                        var newLoanDoc = new BsonDocument
+                         {
+                             { "LoanCycleNo", loanCycleNo },
+                             { "AccountId", laccountid.Text },
+                             { "LoanNo", tloanid.Text },
+                             { "CycleDate", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") },
+                             { "LoanStatus", tloanstatus.Text },
+                             { "LoanTerm", tloanterm.Text },
+                             { "LoanAmount", tloanamount.Text },
+                             { "LoanBalance", tloanbalance.Text },
+                             { "LoanType", tloantype.Text },
+                             { "PrincipalAmount", tloanprincipal.Text },
+                             { "LoanInterest", tloaninterest.Text },
+                             { "Penalty", tloanpenalty.Text },
+                             { "PaymentMode", cbpaymentmode.Text },
+                             { "CollectorName", cbcollector.Text },
+                             { "StartPaymentDate", dtstartdate.Value.ToString("MM/dd/yyyy") },
+                             { "MaturityDate", dtmatdate.Value.ToString("MM/dd/yyyy") },
+                             { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") }
+                         };
+
+                        await _loanAccountCyclesCollection.InsertOneAsync(newLoanDoc);
+
+                        MessageBox.Show("Loan record not found, so a new loan was added to loan_account_cycles collection.", "Inserted New Loan", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
-                // Now check if a loan cycle exists (you can keep this scoped to AccountId only if desired)
+                // Optional: Check if a loan cycle exists (by AccountId only) and insert if not
                 var cycleFilter = Builders<BsonDocument>.Filter.Eq("AccountId", laccountid.Text);
                 var cycleExists = await _loanAccountCyclesCollection.Find(cycleFilter).AnyAsync();
 
@@ -474,7 +473,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                          { "PaymentMode", cbpaymentmode.Text },
                          { "CollectorName", cbcollector.Text },
                          { "StartPaymentDate", dtstartdate.Value.ToString("MM/dd/yyyy") },
-                         { "MaturityDate", dtmatdate.Value.ToString("MM/dd/yyyy") }
+                         { "MaturityDate", dtmatdate.Value.ToString("MM/dd/yyyy") },
+                         { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") }
                      };
 
                     await _loanAccountCyclesCollection.InsertOneAsync(loanCycleDoc);

@@ -210,7 +210,6 @@
             this.tloanid.Name = "tloanid";
             this.tloanid.PasswordChar = '\0';
             this.tloanid.PlaceholderText = "n/a";
-            this.tloanid.ReadOnly = true;
             this.tloanid.SelectedText = "";
             this.tloanid.Size = new System.Drawing.Size(230, 25);
             this.tloanid.TabIndex = 151;
@@ -276,7 +275,6 @@
             this.tclientno.Name = "tclientno";
             this.tclientno.PasswordChar = '\0';
             this.tclientno.PlaceholderText = "n/a";
-            this.tclientno.ReadOnly = true;
             this.tclientno.SelectedText = "";
             this.tclientno.Size = new System.Drawing.Size(230, 25);
             this.tclientno.TabIndex = 88;
@@ -309,7 +307,6 @@
             this.tname.Name = "tname";
             this.tname.PasswordChar = '\0';
             this.tname.PlaceholderText = "n/a";
-            this.tname.ReadOnly = true;
             this.tname.SelectedText = "";
             this.tname.Size = new System.Drawing.Size(230, 25);
             this.tname.TabIndex = 90;
@@ -344,7 +341,6 @@
             this.taddress.Name = "taddress";
             this.taddress.PasswordChar = '\0';
             this.taddress.PlaceholderText = "n/a";
-            this.taddress.ReadOnly = true;
             this.taddress.SelectedText = "";
             this.taddress.Size = new System.Drawing.Size(230, 56);
             this.taddress.TabIndex = 92;
@@ -377,7 +373,6 @@
             this.tcontact.Name = "tcontact";
             this.tcontact.PasswordChar = '\0';
             this.tcontact.PlaceholderText = "n/a";
-            this.tcontact.ReadOnly = true;
             this.tcontact.SelectedText = "";
             this.tcontact.Size = new System.Drawing.Size(230, 25);
             this.tcontact.TabIndex = 94;
@@ -410,7 +405,6 @@
             this.tpaymode.Name = "tpaymode";
             this.tpaymode.PasswordChar = '\0';
             this.tpaymode.PlaceholderText = "n/a";
-            this.tpaymode.ReadOnly = true;
             this.tpaymode.SelectedText = "";
             this.tpaymode.Size = new System.Drawing.Size(138, 25);
             this.tpaymode.TabIndex = 104;
@@ -443,7 +437,6 @@
             this.tpaymature.Name = "tpaymature";
             this.tpaymature.PasswordChar = '\0';
             this.tpaymature.PlaceholderText = "mm/dd/yyyy";
-            this.tpaymature.ReadOnly = true;
             this.tpaymature.SelectedText = "";
             this.tpaymature.Size = new System.Drawing.Size(138, 25);
             this.tpaymature.TabIndex = 102;
@@ -476,7 +469,6 @@
             this.tpaystart.Name = "tpaystart";
             this.tpaystart.PasswordChar = '\0';
             this.tpaystart.PlaceholderText = "mm/dd/yyyy";
-            this.tpaystart.ReadOnly = true;
             this.tpaystart.SelectedText = "";
             this.tpaystart.Size = new System.Drawing.Size(138, 25);
             this.tpaystart.TabIndex = 100;
@@ -509,7 +501,6 @@
             this.tterm.Name = "tterm";
             this.tterm.PasswordChar = '\0';
             this.tterm.PlaceholderText = "0 months";
-            this.tterm.ReadOnly = true;
             this.tterm.SelectedText = "";
             this.tterm.Size = new System.Drawing.Size(138, 25);
             this.tterm.TabIndex = 98;
@@ -542,7 +533,6 @@
             this.tloanamt.Name = "tloanamt";
             this.tloanamt.PasswordChar = '\0';
             this.tloanamt.PlaceholderText = "0.00";
-            this.tloanamt.ReadOnly = true;
             this.tloanamt.SelectedText = "";
             this.tloanamt.Size = new System.Drawing.Size(138, 25);
             this.tloanamt.TabIndex = 96;
@@ -576,7 +566,6 @@
             this.tpayamort.Name = "tpayamort";
             this.tpayamort.PasswordChar = '\0';
             this.tpayamort.PlaceholderText = "n/a";
-            this.tpayamort.ReadOnly = true;
             this.tpayamort.SelectedText = "";
             this.tpayamort.Size = new System.Drawing.Size(138, 25);
             this.tpayamort.TabIndex = 106;

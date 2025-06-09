@@ -1043,7 +1043,7 @@ namespace rct_lmis.LOAN_SECTION
                 var filter = Builders<BsonDocument>.Filter.Eq("AccountId", lloanno.Text);
 
                 var update = Builders<BsonDocument>.Update
-                    .Set("AccountId", lloannorenew.Text)
+                    .Set("AccountId", lloannorenew.Text.Replace("Account ID: ", "").Trim())
                     .Set("Savings", trsavings.Text)
                     .Set("ClientName", trclientname.Text)
                     .Set("PreviousLoan", trprevloan.Text)

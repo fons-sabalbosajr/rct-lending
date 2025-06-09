@@ -57,6 +57,8 @@
             this.lpenaltytotal = new System.Windows.Forms.Label();
             this.ltotalamtpaid = new System.Windows.Forms.Label();
             this.ltotalpayments = new System.Windows.Forms.Label();
+            this.cbloanno = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -150,11 +152,11 @@
             this.bpayadvance.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.bpayadvance.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.bpayadvance.FillColor = System.Drawing.Color.SteelBlue;
-            this.bpayadvance.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bpayadvance.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bpayadvance.ForeColor = System.Drawing.Color.White;
-            this.bpayadvance.Location = new System.Drawing.Point(739, 12);
+            this.bpayadvance.Location = new System.Drawing.Point(928, 12);
             this.bpayadvance.Name = "bpayadvance";
-            this.bpayadvance.Size = new System.Drawing.Size(150, 30);
+            this.bpayadvance.Size = new System.Drawing.Size(108, 30);
             this.bpayadvance.TabIndex = 39;
             this.bpayadvance.Text = "Add Old Collections";
             this.toolTip1.SetToolTip(this.bpayadvance, "Generate Advance Payment");
@@ -169,11 +171,11 @@
             this.bnew.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.bnew.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.bnew.FillColor = System.Drawing.Color.SeaGreen;
-            this.bnew.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bnew.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bnew.ForeColor = System.Drawing.Color.White;
-            this.bnew.Location = new System.Drawing.Point(895, 12);
+            this.bnew.Location = new System.Drawing.Point(831, 12);
             this.bnew.Name = "bnew";
-            this.bnew.Size = new System.Drawing.Size(141, 30);
+            this.bnew.Size = new System.Drawing.Size(88, 30);
             this.bnew.TabIndex = 31;
             this.bnew.Text = "New Collection";
             this.toolTip1.SetToolTip(this.bnew, "New Collection Transaction");
@@ -188,7 +190,7 @@
             this.bsoa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.bsoa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.bsoa.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(66)))), ((int)(((byte)(87)))));
-            this.bsoa.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bsoa.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bsoa.ForeColor = System.Drawing.Color.White;
             this.bsoa.Location = new System.Drawing.Point(1042, 11);
             this.bsoa.Name = "bsoa";
@@ -220,6 +222,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.cbloanno);
             this.panel2.Controls.Add(this.bconfig);
             this.panel2.Controls.Add(this.bpayadvance);
             this.panel2.Controls.Add(this.bsoa);
@@ -242,7 +246,7 @@
             this.dtdate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dtdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtdate.Location = new System.Drawing.Point(483, 8);
+            this.dtdate.Location = new System.Drawing.Point(330, 9);
             this.dtdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtdate.Name = "dtdate";
@@ -256,7 +260,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(406, 14);
+            this.label11.Location = new System.Drawing.Point(250, 12);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 30);
             this.label11.TabIndex = 10;
@@ -279,7 +283,7 @@
             this.tsearch.PasswordChar = '\0';
             this.tsearch.PlaceholderText = "search any keyword...";
             this.tsearch.SelectedText = "";
-            this.tsearch.Size = new System.Drawing.Size(377, 36);
+            this.tsearch.Size = new System.Drawing.Size(226, 36);
             this.tsearch.TabIndex = 8;
             this.tsearch.TextChanged += new System.EventHandler(this.tsearch_TextChanged);
             // 
@@ -430,6 +434,35 @@
             this.ltotalpayments.TabIndex = 185;
             this.ltotalpayments.Text = "Total Payments Made:";
             // 
+            // cbloanno
+            // 
+            this.cbloanno.BackColor = System.Drawing.Color.Transparent;
+            this.cbloanno.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbloanno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbloanno.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbloanno.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbloanno.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.cbloanno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbloanno.ItemHeight = 30;
+            this.cbloanno.Location = new System.Drawing.Point(593, 9);
+            this.cbloanno.Name = "cbloanno";
+            this.cbloanno.Size = new System.Drawing.Size(227, 36);
+            this.cbloanno.StartIndex = 0;
+            this.cbloanno.TabIndex = 186;
+            this.cbloanno.SelectedIndexChanged += new System.EventHandler(this.cbloanno_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.Location = new System.Drawing.Point(523, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 30);
+            this.label2.TabIndex = 187;
+            this.label2.Text = "Select Loan\r\nCycle ID:";
+            // 
             // frm_home_disburse_collections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -485,5 +518,7 @@
         private System.Windows.Forms.Label ltotalamtpaid;
         public System.Windows.Forms.Label laccountid;
         private Guna.UI2.WinForms.Guna2Button bconfig;
+        private Guna.UI2.WinForms.Guna2ComboBox cbloanno;
+        private System.Windows.Forms.Label label2;
     }
 }

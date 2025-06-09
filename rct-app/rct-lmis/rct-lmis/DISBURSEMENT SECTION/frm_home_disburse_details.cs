@@ -924,24 +924,12 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             if (string.IsNullOrWhiteSpace(loanDetails.LoanIDNo) || loanDetails.LoanIDNo.ToLower() == "n/a")
                 return false;
 
-            if (string.IsNullOrWhiteSpace(loanDetails.LoanStatus) || loanDetails.LoanStatus.ToLower() == "n/a")
-                return false;
-
-            if (string.IsNullOrWhiteSpace(loanDetails.LoanAmount) || loanDetails.LoanAmount == "0.00" || loanDetails.LoanAmount == "0")
-                return false;
-
-            if (string.IsNullOrWhiteSpace(loanDetails.LoanBalance) || loanDetails.LoanBalance == "0.00" || loanDetails.LoanBalance == "0")
-                return false;
-
-            if (string.IsNullOrWhiteSpace(loanDetails.StartPaymentDate) || loanDetails.StartPaymentDate.ToLower() == "n/a")
-                return false;
-
-            if (string.IsNullOrWhiteSpace(loanDetails.MaturityDate) || loanDetails.MaturityDate.ToLower() == "n/a")
-                return false;
-
-            // Add more checks here if needed
-
             return true;
+        }
+
+        private void bdelete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

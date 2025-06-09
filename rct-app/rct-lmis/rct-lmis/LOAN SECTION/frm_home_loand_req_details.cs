@@ -50,35 +50,42 @@ namespace rct_lmis.LOAN_SECTION
 
                     // ✅ Extract Loan Status safely
                     tloanstatus.Text = document.TryGetValue("LoanStatus", out var loanStatusValue) ? loanStatusValue.ToString() : "Unknown Status";
-                    string loanStatusText = tloanstatus.Text.Trim(); // Remove extra spaces if any
+                    string loanStatusText = tloanstatus.Text.Trim();
 
-                    taccountstatus.Text = document.TryGetValue("Status", out var accStatusValue) ? accStatusValue.ToString() : "Unknown Status";
-                    string accStatusText = taccountstatus.Text.Trim(); // Remove extra spaces if any
+                    taccountstatus.Text = document.TryGetValue("Status", out var accStatusValue) ? accStatusValue.ToString() : "RENEWAL";
+                    string accStatusText = taccountstatus.Text.Trim();
 
+                    // ✅ Hide disburse button based on status
+                    bdisburse.Visible = !(loanStatusText == "PENDING RENEWAL LOAN APPLICATION" || loanStatusText == "FOR VERIFICATION AND APPROVAL");
 
-                    // ✅ Hide `bdisburse` if LoanStatus is one of the restricted statuses
-                    if (loanStatusText == "PENDING RENEWAL LOAN APPLICATION" || loanStatusText == "FOR VERIFICATION AND APPROVAL")
+                    // ✅ Handle Application Date (string or BsonDateTime)
+                    if (document.TryGetValue("ApplicationDate", out var appDateValue))
                     {
-                        bdisburse.Visible = false;
-                    }
-                    else
-                    {
-                        bdisburse.Visible = true;
-                    }
+                        DateTime appDate;
+                        if (appDateValue.IsBsonDateTime)
+                        {
+                            appDate = appDateValue.ToUniversalTime();
+                        }
+                        else if (DateTime.TryParse(appDateValue.ToString(), out appDate))
+                        {
+                            // Parsed from string
+                        }
+                        else
+                        {
+                            appDate = DateTime.MinValue;
+                        }
 
-                    // ✅ Handle Application Date safely
-                    if (document.TryGetValue("ApplicationDate", out var appDateValue) && appDateValue.IsBsonDateTime)
-                    {
-                        var appDate = appDateValue.ToUniversalTime();
-                        tloanappdate.Text = appDate.ToString("MM/dd/yyyy");
+                        tloanappdate.Text = appDate != DateTime.MinValue ? appDate.ToString("MM/dd/yyyy") : "N/A";
                     }
                     else
                     {
                         tloanappdate.Text = "N/A";
                     }
 
-                    // ✅ Extract Loan Amount safely
-                    if (document.TryGetValue("LoanAmount", out var loanAmtValue) && decimal.TryParse(loanAmtValue.ToString(), out decimal loanAmt))
+                    // ✅ Extract Loan Amount with fallback
+                    if (document.TryGetValue("LoanAmount", out var loanAmtValue) &&
+                        decimal.TryParse(loanAmtValue.ToString(), out decimal loanAmt) &&
+                        loanAmt > 0)
                     {
                         tloanamt.Text = loanAmt.ToString("C", new System.Globalization.CultureInfo("en-PH"));
                     }
@@ -87,16 +94,16 @@ namespace rct_lmis.LOAN_SECTION
                         tloanamt.Text = "₱0.00";
                     }
 
-                    // ✅ Extract Client Name & Address safely
+                    // ✅ Extract Client Name & Address
                     tfname.Text = document.TryGetValue("ClientName", out var clientNameValue) ? clientNameValue.ToString() : "N/A";
                     taddress.Text = document.TryGetValue("Address", out var addressValue) ? addressValue.ToString() : "N/A";
                     tcollector.Text = document.TryGetValue("CollectorInCharge", out var collectorValue) ? collectorValue.ToString() : "N/A";
                     tloandesc.Text = document.TryGetValue("LoanDescription", out var descValue) ? descValue.ToString() : "N/A";
 
-
+                    // ✅ Load uploaded documents
                     LoadUploadedDocuments(document);
 
-                    // ✅ Handle Remarks
+                    // ✅ Handle Remarks field
                     if (document.TryGetValue("Remarks", out var remarksValue) && !string.IsNullOrWhiteSpace(remarksValue.ToString()))
                     {
                         lfindings.Visible = true;
@@ -113,7 +120,7 @@ namespace rct_lmis.LOAN_SECTION
                 else
                 {
                     MessageBox.Show("No loan details found matching the given criteria.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    bdisburse.Visible = false; // Hide if no loan found
+                    bdisburse.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -121,7 +128,6 @@ namespace rct_lmis.LOAN_SECTION
                 MessageBox.Show($"Error loading loan details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void LoadUploadedDocuments(BsonDocument document)
         {
@@ -389,76 +395,68 @@ namespace rct_lmis.LOAN_SECTION
 
                     // ✅ Find the highest ClientNo
                     var lastClient = loanApprovedCollection.Find(new BsonDocument()).ToList();
-                    int highestClientNumber = 978; // Default starting number
+                    int highestClientNumber = 978;
 
                     foreach (var doc in lastClient)
                     {
                         if (doc.Contains("ClientNo"))
                         {
                             string clientNo = doc["ClientNo"].AsString;
-                            var match = System.Text.RegularExpressions.Regex.Match(clientNo, @"RCT-2024-CL(\d+)");
-
+                            var match = System.Text.RegularExpressions.Regex.Match(clientNo, @"RCT-\d{4}-CL(\d+)");
                             if (match.Success && int.TryParse(match.Groups[1].Value, out int clientNumber))
                             {
                                 if (clientNumber > highestClientNumber)
-                                {
                                     highestClientNumber = clientNumber;
-                                }
                             }
                         }
                     }
 
-                    // ✅ Increment ClientNo
                     int newClientNumber = highestClientNumber + 1;
                     string newClientNo = $"RCT-2024-CL{newClientNumber}";
 
                     // ✅ Find the highest LoanNo
-                    int highestLoanNumber = 9992; // Default starting number
+                    int highestLoanNumber = 9992;
 
-                    foreach (var doc in lastClient) // Reusing the fetched data
+                    foreach (var doc in lastClient)
                     {
                         if (doc.Contains("LoanNo"))
                         {
                             string loanNo = doc["LoanNo"].AsString;
-                            var match = System.Text.RegularExpressions.Regex.Match(loanNo, @"RCT-2024-(\d+)");
-
+                            var match = System.Text.RegularExpressions.Regex.Match(loanNo, @"RCT-\d{4}-(\d+)");
                             if (match.Success && int.TryParse(match.Groups[1].Value, out int loanNumber))
                             {
                                 if (loanNumber > highestLoanNumber)
-                                {
                                     highestLoanNumber = loanNumber;
-                                }
                             }
                         }
                     }
 
-                    // ✅ Increment LoanNo
                     int newLoanNumber = highestLoanNumber + 1;
                     string newLoanNo = $"RCT-2024-{newLoanNumber}";
 
                     // ✅ Find the highest AccountId
-                    int highestAccountNumber = 978; // Default starting number
+                    int highestAccountNumber = 978;
 
-                    foreach (var doc in lastClient) // Reusing the fetched data
+                    foreach (var doc in lastClient)
                     {
                         if (doc.Contains("AccountId"))
                         {
                             string accountId = doc["AccountId"].AsString;
-                            var match = System.Text.RegularExpressions.Regex.Match(accountId, @"RCT-2024DB-(\d+)");
-
+                            var match = System.Text.RegularExpressions.Regex.Match(accountId, @"RCT-\d{4}DB-(\d+)");
                             if (match.Success && int.TryParse(match.Groups[1].Value, out int accountNumber))
                             {
                                 if (accountNumber > highestAccountNumber)
-                                {
                                     highestAccountNumber = accountNumber;
-                                }
                             }
                         }
                     }
 
-                    // ✅ Increment AccountId
+                    // ✅ Get year from tloanappdate
+                    string appDateText = tloanappdate.Text;
+                    int appYear = DateTime.TryParse(appDateText, out DateTime parsedDate) ? parsedDate.Year : DateTime.Now.Year;
+
                     int newAccountNumber = highestAccountNumber + 1;
-                    string newAccountId = $"RCT-2024DB-{newAccountNumber}";
+                    string newAccountId = $"RCT-{appYear}DB-{newAccountNumber}";
 
                     // ✅ Fetch Loan Application Data
                     var filter = Builders<BsonDocument>.Filter.Eq("AccountId", tlaccountno.Text);
@@ -470,7 +468,7 @@ namespace rct_lmis.LOAN_SECTION
                         return;
                     }
 
-                    // ✅ Proper Name Parsing
+                    // ✅ Parse name
                     string clientName = document.Contains("ClientName") ? document["ClientName"].AsString : "";
                     string[] nameParts = clientName.Split(' ');
 
@@ -487,7 +485,6 @@ namespace rct_lmis.LOAN_SECTION
                     else if (nameParts.Length == 3)
                     {
                         firstName = nameParts[0];
-
                         if (nameParts[2].ToUpper() == "JR" || nameParts[2].ToUpper() == "SR")
                         {
                             lastName = nameParts[1];
@@ -507,69 +504,67 @@ namespace rct_lmis.LOAN_SECTION
                         suffix = nameParts[3];
                     }
 
-                    // ✅ Prepare new document for `loan_approved`
+                    // ✅ Prepare new document
                     var newLoanApproved = new BsonDocument
-                      {
-                          { "AccountId", newAccountId },
-                          { "LoanNo", newLoanNo },
-                          { "ClientNo", newClientNo },
-                          { "LoanType", "New" },
-                          { "LoanStatus", "UPDATED" },
-                          { "FirstName", firstName },
-                          { "MiddleName", middleName },
-                          { "LastName", lastName },
-                          { "Suffix", suffix },
-                          { "CollectorName", document.Contains("CollectionInCharge") ? document["CollectionInCharge"].AsString : "" },
-                          { "CompleteAddress", document.Contains("Address") ? document["Address"].AsString : "" },
-                          { "Barangay", "" },
-                          { "City", document.Contains("Address") ? document["Address"].AsString : "" },
-                          { "Province", "" },
-                          { "LoanTerm", "" },
-                          { "LoanAmount", document.Contains("LoanAmount") ? document["LoanAmount"].ToString() : "0" },
-                          { "LoanAmortization", "" },
-                          { "LoanBalance", "" },
-                          { "Penalty", "" },
-                          { "LoanInterest", "" },
-                          { "PaymentMode", "" },
-                          { "StartPaymentDate", "" },
-                          { "MaturityDate", "" },
-                          { "Date_Encoded", DateTime.UtcNow.ToString("MM/dd/yyyy") },
-                          { "LoanProcessStatus", "Loan Disbursed" },
-                          { "AlternateContactNumber", "" },
-                          { "BirthAddress", "" },
-                          { "CivilStatus", "" },
-                          { "CompanyName", "" },
-                          { "ContactNumber", "" },
-                          { "DateOfBirth", "" },
-                          { "Email", "" },
-                          { "Gender", "" },
-                          { "MonthlyIncome", "" },
-                          { "NumberOfChildren", "" },
-                          { "Occupation", "" },
-                          { "SpouseFirstName", "" },
-                          { "SpouseLastName", "" },
-                          { "SpouseMiddleName", "" },
-                          { "WorkAddress", "" },
-                          { "Date_Modified", DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm:ss") },
-                          { "Date_Disbursed", DateTime.UtcNow.ToString("MM/dd/yyyy") },
-                          { "Disbursed_by", luser.Text },
-                          { "ApplicationDate", document.Contains("ApplicationDate") && document["ApplicationDate"].IsBsonDateTime
-                              ? document["ApplicationDate"].ToUniversalTime().ToString("MM/dd/yyyy")
-                              : "N/A" },
-                          { "CIDate", document.Contains("CIDate") && document["CIDate"].IsBsonDateTime
-                              ? document["CIDate"].ToUniversalTime().ToString("MM/dd/yyyy")
-                              : "N/A" },
-                          { "CI", document.Contains("CI") ? document["CI"].ToString() : "" },
-                          { "LoanDescription", document.Contains("LoanDescription") ? document["LoanDescription"].AsString : "" },
-                          { "Remarks", document.Contains("Remarks") ? document["Remarks"].AsString : "" }
-                      };
+                    {
+                        { "AccountId", newAccountId },
+                        { "LoanNo", newLoanNo },
+                        { "ClientNo", newClientNo },
+                        { "LoanType", "New" },
+                        { "LoanStatus", "UPDATED" },
+                        { "FirstName", firstName },
+                        { "MiddleName", middleName },
+                        { "LastName", lastName },
+                        { "Suffix", suffix },
+                        { "CollectorName", document.Contains("CollectionInCharge") ? document["CollectionInCharge"].AsString : "" },
+                        { "CompleteAddress", document.Contains("Address") ? document["Address"].AsString : "" },
+                        { "Barangay", "" },
+                        { "City", document.Contains("Address") ? document["Address"].AsString : "" },
+                        { "Province", "" },
+                        { "LoanTerm", "" },
+                        { "LoanAmount", document.Contains("LoanAmount") ? document["LoanAmount"].ToString() : "0" },
+                        { "LoanAmortization", "" },
+                        { "LoanBalance", "" },
+                        { "Penalty", "" },
+                        { "LoanInterest", "" },
+                        { "PaymentMode", "" },
+                        { "StartPaymentDate", "" },
+                        { "MaturityDate", "" },
+                        { "Date_Encoded", DateTime.UtcNow.ToString("MM/dd/yyyy") },
+                        { "LoanProcessStatus", "Loan Disbursed" },
+                        { "AlternateContactNumber", "" },
+                        { "BirthAddress", "" },
+                        { "CivilStatus", "" },
+                        { "CompanyName", "" },
+                        { "ContactNumber", "" },
+                        { "DateOfBirth", "" },
+                        { "Email", "" },
+                        { "Gender", "" },
+                        { "MonthlyIncome", "" },
+                        { "NumberOfChildren", "" },
+                        { "Occupation", "" },
+                        { "SpouseFirstName", "" },
+                        { "SpouseLastName", "" },
+                        { "SpouseMiddleName", "" },
+                        { "WorkAddress", "" },
+                        { "Date_Modified", DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm:ss") },
+                        { "Date_Disbursed", DateTime.UtcNow.ToString("MM/dd/yyyy") },
+                        { "Disbursed_by", luser.Text },
+                        { "ApplicationDate", document.Contains("ApplicationDate") && document["ApplicationDate"].IsBsonDateTime
+                            ? document["ApplicationDate"].ToUniversalTime().ToString("MM/dd/yyyy")
+                            : "N/A" },
+                        { "CIDate", document.Contains("CIDate") && document["CIDate"].IsBsonDateTime
+                            ? document["CIDate"].ToUniversalTime().ToString("MM/dd/yyyy")
+                            : "N/A" },
+                        { "CI", document.Contains("CI") ? document["CI"].ToString() : "" },
+                        { "LoanDescription", document.Contains("LoanDescription") ? document["LoanDescription"].AsString : "" },
+                        { "Remarks", document.Contains("Remarks") ? document["Remarks"].AsString : "" }
+                    };
 
-                    // ✅ Insert into `loan_approved`
                     loanApprovedCollection.InsertOne(newLoanApproved);
 
                     MessageBox.Show("Loan successfully approved for disbursement.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // ✅ Open Disbursement Form
                     frm_home_loan_disburse fdis = new frm_home_loan_disburse(newAccountId);
                     fdis.ShowDialog();
                 }

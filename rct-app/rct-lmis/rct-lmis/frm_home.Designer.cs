@@ -119,7 +119,7 @@ namespace rct_lmis
             this.paneltop.Dock = System.Windows.Forms.DockStyle.Top;
             this.paneltop.Location = new System.Drawing.Point(0, 0);
             this.paneltop.Name = "paneltop";
-            this.paneltop.Size = new System.Drawing.Size(1284, 70);
+            this.paneltop.Size = new System.Drawing.Size(1462, 70);
             this.paneltop.TabIndex = 2;
             // 
             // rtreminder
@@ -131,7 +131,7 @@ namespace rct_lmis
             this.rtreminder.Location = new System.Drawing.Point(205, 14);
             this.rtreminder.Name = "rtreminder";
             this.rtreminder.ReadOnly = true;
-            this.rtreminder.Size = new System.Drawing.Size(609, 44);
+            this.rtreminder.Size = new System.Drawing.Size(764, 44);
             this.rtreminder.TabIndex = 1;
             this.rtreminder.Text = "";
             this.rtreminder.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtreminder_LinkClicked);
@@ -144,7 +144,7 @@ namespace rct_lmis
             this.lnotif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lnotif.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lnotif.ForeColor = System.Drawing.Color.White;
-            this.lnotif.Location = new System.Drawing.Point(1024, 22);
+            this.lnotif.Location = new System.Drawing.Point(1202, 22);
             this.lnotif.Margin = new System.Windows.Forms.Padding(0);
             this.lnotif.Name = "lnotif";
             this.lnotif.Size = new System.Drawing.Size(13, 13);
@@ -159,7 +159,7 @@ namespace rct_lmis
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(840, 17);
+            this.label1.Location = new System.Drawing.Point(1018, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 42;
@@ -184,7 +184,7 @@ namespace rct_lmis
             this.ldate.BackColor = System.Drawing.Color.Transparent;
             this.ldate.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ldate.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ldate.Location = new System.Drawing.Point(840, 33);
+            this.ldate.Location = new System.Drawing.Point(1018, 33);
             this.ldate.Name = "ldate";
             this.ldate.Size = new System.Drawing.Size(37, 16);
             this.ldate.TabIndex = 40;
@@ -217,7 +217,7 @@ namespace rct_lmis
             this.lcountann.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lcountann.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lcountann.ForeColor = System.Drawing.Color.White;
-            this.lcountann.Location = new System.Drawing.Point(1065, 22);
+            this.lcountann.Location = new System.Drawing.Point(1243, 22);
             this.lcountann.Margin = new System.Windows.Forms.Padding(0);
             this.lcountann.Name = "lcountann";
             this.lcountann.Size = new System.Drawing.Size(13, 13);
@@ -233,7 +233,7 @@ namespace rct_lmis
             this.lcountpending.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lcountpending.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lcountpending.ForeColor = System.Drawing.Color.White;
-            this.lcountpending.Location = new System.Drawing.Point(1104, 22);
+            this.lcountpending.Location = new System.Drawing.Point(1282, 22);
             this.lcountpending.Margin = new System.Windows.Forms.Padding(0);
             this.lcountpending.Name = "lcountpending";
             this.lcountpending.Size = new System.Drawing.Size(13, 13);
@@ -258,7 +258,7 @@ namespace rct_lmis
             this.bannouncement.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bannouncement.Image = global::rct_lmis.Properties.Resources.icons8_commercial_60;
             this.bannouncement.ImageSize = new System.Drawing.Size(25, 25);
-            this.bannouncement.Location = new System.Drawing.Point(1067, 23);
+            this.bannouncement.Location = new System.Drawing.Point(1245, 23);
             this.bannouncement.Name = "bannouncement";
             this.bannouncement.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bannouncement.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -271,7 +271,7 @@ namespace rct_lmis
             this.pbphoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbphoto.FillColor = System.Drawing.Color.LightGray;
             this.pbphoto.ImageRotate = 0F;
-            this.pbphoto.Location = new System.Drawing.Point(1148, 21);
+            this.pbphoto.Location = new System.Drawing.Point(1326, 21);
             this.pbphoto.Name = "pbphoto";
             this.pbphoto.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.pbphoto.Size = new System.Drawing.Size(32, 32);
@@ -296,7 +296,7 @@ namespace rct_lmis
             this.bnotif.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bnotif.Image = global::rct_lmis.Properties.Resources.icons8_bell_60;
             this.bnotif.ImageSize = new System.Drawing.Size(25, 25);
-            this.bnotif.Location = new System.Drawing.Point(1027, 23);
+            this.bnotif.Location = new System.Drawing.Point(1205, 23);
             this.bnotif.Name = "bnotif";
             this.bnotif.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bnotif.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -322,7 +322,7 @@ namespace rct_lmis
             this.lfname.BackColor = System.Drawing.Color.Transparent;
             this.lfname.Font = new System.Drawing.Font("Microsoft Tai Le", 9.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lfname.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lfname.Location = new System.Drawing.Point(1191, 31);
+            this.lfname.Location = new System.Drawing.Point(1369, 31);
             this.lfname.Name = "lfname";
             this.lfname.Size = new System.Drawing.Size(35, 16);
             this.lfname.TabIndex = 2;
@@ -345,7 +345,7 @@ namespace rct_lmis
             this.bloannotif.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bloannotif.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bloannotif.Image = global::rct_lmis.Properties.Resources.loan;
-            this.bloannotif.Location = new System.Drawing.Point(1107, 23);
+            this.bloannotif.Location = new System.Drawing.Point(1285, 23);
             this.bloannotif.Name = "bloannotif";
             this.bloannotif.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.bloannotif.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -736,7 +736,7 @@ namespace rct_lmis
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1279, 70);
+            this.panel2.Location = new System.Drawing.Point(1457, 70);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(5, 791);
             this.panel2.TabIndex = 6;
@@ -747,7 +747,7 @@ namespace rct_lmis
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(205, 70);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1074, 5);
+            this.panel3.Size = new System.Drawing.Size(1252, 5);
             this.panel3.TabIndex = 7;
             // 
             // panel4
@@ -756,7 +756,7 @@ namespace rct_lmis
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(205, 856);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1074, 5);
+            this.panel4.Size = new System.Drawing.Size(1252, 5);
             this.panel4.TabIndex = 8;
             // 
             // pbody
@@ -772,7 +772,7 @@ namespace rct_lmis
             this.pbody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbody.Location = new System.Drawing.Point(205, 75);
             this.pbody.Name = "pbody";
-            this.pbody.Size = new System.Drawing.Size(1074, 781);
+            this.pbody.Size = new System.Drawing.Size(1252, 781);
             this.pbody.TabIndex = 9;
             // 
             // label6
@@ -1031,7 +1031,7 @@ namespace rct_lmis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 861);
+            this.ClientSize = new System.Drawing.Size(1462, 861);
             this.Controls.Add(this.pbody);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -1043,6 +1043,7 @@ namespace rct_lmis
             this.Name = "frm_home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RCT Lending Management Information System";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_home_FormClosing);
             this.Load += new System.EventHandler(this.frm_home_Load);
             this.paneltop.ResumeLayout(false);

@@ -293,7 +293,7 @@
             // taccountstatus
             // 
             this.taccountstatus.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.taccountstatus.DefaultText = "";
+            this.taccountstatus.DefaultText = "RENEWAL";
             this.taccountstatus.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.taccountstatus.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.taccountstatus.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -333,12 +333,12 @@
             this.tloanstatus.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tloanstatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tloanstatus.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.tloanstatus.Location = new System.Drawing.Point(414, 14);
+            this.tloanstatus.Location = new System.Drawing.Point(389, 14);
             this.tloanstatus.Name = "tloanstatus";
             this.tloanstatus.PasswordChar = '\0';
             this.tloanstatus.PlaceholderText = "";
             this.tloanstatus.SelectedText = "";
-            this.tloanstatus.Size = new System.Drawing.Size(130, 25);
+            this.tloanstatus.Size = new System.Drawing.Size(190, 25);
             this.tloanstatus.TabIndex = 137;
             // 
             // label7
@@ -346,7 +346,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(337, 19);
+            this.label7.Location = new System.Drawing.Point(312, 19);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 15);
             this.label7.TabIndex = 136;

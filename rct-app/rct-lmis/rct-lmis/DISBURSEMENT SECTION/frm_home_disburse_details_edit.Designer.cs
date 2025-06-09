@@ -188,7 +188,7 @@
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label7.Location = new System.Drawing.Point(299, 138);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 15);
+            this.label7.Size = new System.Drawing.Size(63, 15);
             this.label7.TabIndex = 85;
             this.label7.Text = "Loan Type:";
             // 
@@ -261,7 +261,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(19, 104);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 15);
+            this.label2.Size = new System.Drawing.Size(65, 15);
             this.label2.TabIndex = 89;
             this.label2.Text = "Loan Term:";
             // 

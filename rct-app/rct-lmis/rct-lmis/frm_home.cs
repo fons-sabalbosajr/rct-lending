@@ -349,15 +349,15 @@ namespace rct_lmis
             if (timeLeft.TotalDays > 0)
             {
                 rtreminder.Text ="Your system is currently under free service and update maintenance." +
-                                 "This free period will end in " + (deadline - today).Days + " day(s) on June 30, 2025." +
-                                 "After the deadline, there will be charged per major update.\n" +
-                                 "For more info. please email https://mail.google.com/mail/?view=cm&to=racatom.lmis@gmail.com";
+                                 "This free period will end in " + (deadline - today).Days + " day(s) on June 30, 2025.\n" +
+                                 "After the deadline, there will be a corresponding charge per major update.\n" +
+                                 "For more info., please email https://mail.google.com/mail/?view=cm&to=racatom.lmis@gmail.com";
             }
             else
             {
-                rtreminder.Text = $"As of **June 30, 2025**, the free service and update maintenance has officially ended.\n" +
-                                  $"All major updates and support requests will now be subject to a charge of per request**.\n" +
-                                  $"Please coordinate with your service provider for assistance.";
+                rtreminder.Text = $"As of **June 30, 2025**, the free service and update maintenance have officially ended.\n" +
+                                  $"All major updates and support requests will now be subject to a charge per request**.\n" +
+                                  $"Please contact your service provider for assistance.";
             }
         }
 

@@ -10,6 +10,7 @@ using OfficeOpenXml.Style;
 using System.IO;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace rct_lmis.DISBURSEMENT_SECTION
 {
@@ -19,6 +20,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private string _clientno;
         private IMongoCollection<BsonDocument> _loanDisbursedCollection;
         private IMongoCollection<BsonDocument> _loanVoucherCollection;
+        private IMongoCollection<BsonDocument> _loanAccountCyclesCollection;
         private IMongoCollection<BsonDocument> _loanCollection;
         private DataTable _loanCollectionTable;
         private string clientno;
@@ -31,8 +33,10 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             _clientno = clientno;
             // MongoDB connection initialization
             var database = MongoDBConnection.Instance.Database;
-            _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_collections");
-           
+            _loanCollection = database.GetCollection<BsonDocument>("loan_collections");
+            _loanAccountCyclesCollection = database.GetCollection<BsonDocument>("loan_account_cycles");
+            _loanDisbursedCollection = database.GetCollection<BsonDocument>("loan_disbursed");
+
             // Initialize DataTable for binding to DataGridView
             _loanCollectionTable = new DataTable();
 
@@ -48,6 +52,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
             // Assign the context menu to DataGridView
             dgvdata.ContextMenuStrip = contextMenuStrip;
+
+            
         }
 
         public frm_home_disburse_collections(string clientno)
@@ -109,9 +115,9 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
-        public void LoadLoanCollections()
+
+        private void EnsureLoanCollectionTableSchema()
         {
-            // Ensure the _loanCollectionTable is initialized with the correct columns
             if (_loanCollectionTable.Columns.Count == 0)
             {
                 _loanCollectionTable.Columns.Add("Client Information", typeof(string));
@@ -119,76 +125,118 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 _loanCollectionTable.Columns.Add("Payment Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Collection Information", typeof(string));
                 _loanCollectionTable.Columns.Add("Remarks", typeof(string));
-                _loanCollectionTable.Columns.Add("CollectionDateTemp", typeof(DateTime)); // Add temporary column for sorting
-                _loanCollectionTable.Columns.Add("BalanceTemp", typeof(double)); // Add column for sorting by balance
+                _loanCollectionTable.Columns.Add("CollectionDateTemp", typeof(DateTime));
+                _loanCollectionTable.Columns.Add("BalanceTemp", typeof(double));
             }
+        }
 
-            // Clear existing rows before loading new data
+
+        public void LoadLoanCollections()
+        {
+            EnsureLoanCollectionTableSchema();
+
             _loanCollectionTable.Rows.Clear();
-            dgvdata.DataSource = null; // Clear existing data source
+            dgvdata.DataSource = null;
 
             double totalAmountPaid = 0;
             double totalLoanAmount = 0;
-            double runningBalance = 0;  // Initialize running balance for calculations
-            double totalPenalty = 0; // Initialize total penalty calculation
+            double runningBalance = 0;
+            double totalPenalty = 0;
 
-            var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", laccountid.Text);
-            var loanCollections = _loanDisbursedCollection.Find(filter).ToList();
-            _loanCollectionTable.Rows.Clear();
+            string selectedLoanNo = cbloanno.Text?.Trim();
+            if (string.IsNullOrEmpty(selectedLoanNo))
+            {
+                dgvdata.DataSource = _loanCollectionTable; // show empty structure
+                return;
+            }
+
+            // First, fetch the loan metadata (loan amount, etc) from either loan_account_cycles or loan_disbursed
+            var loanFilter = Builders<BsonDocument>.Filter.Eq("LoanNo", selectedLoanNo);
+            var loanDoc = _loanAccountCyclesCollection.Find(loanFilter).FirstOrDefault();
+            if (loanDoc == null)
+            {
+                loanDoc = _loanDisbursedCollection.Find(loanFilter).FirstOrDefault();
+            }
+
+            if (loanDoc == null)
+            {
+                MessageBox.Show("Loan details not found for selected LoanNo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dgvdata.DataSource = _loanCollectionTable;
+                return;
+            }
+
+            // Extract loan amount from loanDoc
+            if (loanDoc.Contains("LoanAmount"))
+            {
+                // LoanAmount can be string with currency or number, normalize:
+                string loanAmtRaw = loanDoc["LoanAmount"].ToString().Replace("₱", "").Replace(",", "").Trim();
+                double.TryParse(loanAmtRaw, out totalLoanAmount);
+            }
+
+            // Now fetch loan collections/payments for this loan number
+            // Assuming your collection name is _loanCollectionsCollection (not shown in your sample)
+            var collectionsFilter = Builders<BsonDocument>.Filter.Eq("LoanNo", selectedLoanNo);
+            var loanCollections = _loanCollection.Find(collectionsFilter).ToList();
+
+            if (loanCollections.Count == 0)
+            {
+                dgvdata.DataSource = _loanCollectionTable;
+
+                lgenbal.Text = "Remaing Balance:" + totalLoanAmount.ToString("F2");
+                ltotalamtpaid.Text = "Total Amount Paid: 0.00";
+                lpenaltytotal.Text = "Generated Penalty: 0.00";
+                ltotalpayments.Text = "Total Payment Collection: 0";
+
+                return;
+            }
 
             foreach (var collection in loanCollections)
             {
-                // Client Information
-                DateTime? collectionDate = collection.Contains("CollectionDate") ? collection["CollectionDate"].ToUniversalTime() : (DateTime?)null;
-                string collectionDateStr = collectionDate.HasValue ? collectionDate.Value.ToString("MM/dd/yyyy") : "";
+                // Safe parsing of collection date
+                DateTime? collectionDate = null;
+                if (collection.Contains("CollectionDate") && collection["CollectionDate"].IsValidDateTime)
+                    collectionDate = collection["CollectionDate"].ToUniversalTime();
+
+                string collectionDateStr = collectionDate?.ToString("MM/dd/yyyy") ?? "";
 
                 string clientNo = collection.Contains("ClientNo") ? collection["ClientNo"].AsString : "";
                 string name = collection.Contains("Name") ? collection["Name"].AsString : "";
 
-                string clientInfo = $"Col. Date: {collectionDateStr}\n" +
-                                     $"Client No.: {clientNo}\n" +
-                                     $"Name: {name}";
+                string clientInfo = $"Col. Date: {collectionDateStr}\nClient No.: {clientNo}\nName: {name}";
 
-                // Loan Information
-                double loanAmount = collection.Contains("LoanAmount") ? (double)collection["LoanAmount"].ToDouble() : 0.00;
-                totalLoanAmount = loanAmount;  // Store loan amount to compute general balance later
+                // Loan Information from collection or fallback
+                double loanAmount = totalLoanAmount; // from loanDoc
+                string amortization = collection.Contains("Amortization")
+                    ? Convert.ToDouble(collection["Amortization"].ToDouble()).ToString("F2")
+                    : "0.00";
 
-                string amortization = collection.Contains("Amortization") ? ((double)collection["Amortization"].AsDecimal128).ToString("F2") : "0.00";
+                double amountPaid = collection.Contains("ActualCollection") ? collection["ActualCollection"].ToDouble() : 0.00;
+                totalAmountPaid += amountPaid;
+                runningBalance = loanAmount - totalAmountPaid;
+                string runningBalanceStr = runningBalance <= 0 ? "Settled" : runningBalance.ToString("F2");
 
-                // Calculate Running Balance as Loan Amount - Total Amount Paid
-                double amountPaid = collection.Contains("ActualCollection") ? (double)collection["ActualCollection"].AsDecimal128 : 0.00;
-                totalAmountPaid += amountPaid; // Accumulate total amount paid
-                runningBalance = loanAmount - totalAmountPaid; // Running balance: Loan Amount - Total Amount Paid
-
-                string runningBalanceStr = runningBalance <= 0 ? "Settled" : runningBalance.ToString("F2"); // Check if balance is zero or negative
-
-                string loanInfo = $"Loan Amount: {loanAmount:F2}\n" +
-                                  $"Amortization: {amortization}\n" +
-                                  $"Running Balance: {runningBalanceStr}";
+                string loanInfo = $"Loan Amount: {loanAmount:F2}\nAmortization: {amortization}\nRunning Balance: {runningBalanceStr}";
 
                 // Payment Information
-                string dateReceived = collection.Contains("DateReceived") ? collection["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy") : "";
+                string dateReceived = collection.Contains("DateReceived") && collection["DateReceived"].IsValidDateTime
+                    ? collection["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy") : "";
 
-                string penalty = collection.Contains("CollectedPenalty") ? ((double)collection["CollectedPenalty"].AsDecimal128).ToString("F2") : "";
-                totalPenalty += string.IsNullOrEmpty(penalty) ? 0.00 : Convert.ToDouble(penalty); // Add to total penalty if present
+                string penalty = collection.Contains("CollectedPenalty") ? collection["CollectedPenalty"].ToDouble().ToString("F2") : "0.00";
+                totalPenalty += double.TryParse(penalty, out double penVal) ? penVal : 0.00;
 
                 string paymentMode = collection.Contains("PaymentMode") ? collection["PaymentMode"].AsString : "";
 
-                string paymentInfo = $"Date Received: {dateReceived}\n" +
-                                     $"Amount Paid: {amountPaid:F2}\n" +
-                                     $"Penalty: {penalty}\n" +
-                                     $"Payment Mode: {paymentMode}";
+                string paymentInfo = $"Date Received: {dateReceived}\nAmount Paid: {amountPaid:F2}\nPenalty: {penalty}\nPayment Mode: {paymentMode}";
 
                 // Collection Information
                 string collector = collection.Contains("Collector") ? collection["Collector"].AsString : "";
                 string area = collection.Contains("Address") ? collection["Address"].AsString : "";
 
-                string collectionInfo = $"Collector: {collector}\n" +
-                                        $"Address: {area}";
+                string collectionInfo = $"Collector: {collector}\nAddress: {area}";
 
-                // Remarks: Always Include Excess Amount Paid, Even if Settled
+                // Remarks and balance
                 string remarks = "";
-                double excessAmount = totalAmountPaid - totalLoanAmount; // Calculate excess amount paid over total loan amount
+                double excessAmount = totalAmountPaid - totalLoanAmount;
 
                 if (runningBalance <= 0)
                 {
@@ -207,6 +255,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 {
                     remarks = $"Remaining Balance: {runningBalance:F2}";
                     lgenbal.Text = $"Remaining Balance: {runningBalance:F2}";
+
                     if (excessAmount > 0)
                     {
                         remarks += $"\nExcess Amount Paid: {excessAmount:F2}";
@@ -214,10 +263,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     }
                 }
 
-                // Extract balance value for sorting
                 double balanceValue = runningBalance > 0 ? runningBalance : 0;
 
-                // Add data to DataTable, including CollectionDateTemp and BalanceTemp for sorting
                 DataRow row = _loanCollectionTable.NewRow();
                 row["Client Information"] = clientInfo;
                 row["Loan Information"] = loanInfo;
@@ -230,33 +277,26 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 _loanCollectionTable.Rows.Add(row);
             }
 
-          
-            // Total Amount Paid Calculation
+            // Summary and binding
             ltotalamtpaid.Text = "Total Amount Paid: " + totalAmountPaid.ToString("F2");
-
-            // Penalty Calculation (If no penalties, display 0.00)
             lpenaltytotal.Text = "Generated Penalty: " + totalPenalty.ToString("F2");
 
-            // Sort DataTable by BalanceTemp in descending order, then CollectionDateTemp in ascending order
             DataView view = _loanCollectionTable.DefaultView;
             view.Sort = "BalanceTemp DESC, CollectionDateTemp ASC";
             DataTable sortedTable = view.ToTable();
-            dgvdata.DataSource = sortedTable;
 
-            // Total Payments Text (Count total rows in dgvdata)
+            dgvdata.DataSource = sortedTable;
             ltotalpayments.Text = "Total Payment Collection: " + dgvdata.Rows.Count.ToString();
 
-            // Highlight rows with excess payment after binding
             for (int i = 0; i < dgvdata.Rows.Count; i++)
             {
-                var remarks = dgvdata.Rows[i].Cells["Remarks"].Value.ToString();
-                if (remarks.Contains("Excess amount paid"))
+                var remark = dgvdata.Rows[i].Cells["Remarks"].Value?.ToString() ?? "";
+                if (remark.Contains("Excess amount paid"))
                 {
                     dgvdata.Rows[i].DefaultCellStyle.BackColor = Color.Khaki;
                 }
             }
 
-            // Hide the temporary sorting columns
             dgvdata.Columns["BalanceTemp"].Visible = false;
             dgvdata.Columns["CollectionDateTemp"].Visible = false;
         }
@@ -604,15 +644,18 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
-
+       
         private void frm_home_disburse_collections_Load(object sender, EventArgs e)
         {
             laccountid.Text = _loanId;
             lclientno.Text = _clientno;
+            
+            //Console.WriteLine("Account ID: " + _clientno);
+            //Console.WriteLine("Client No: " + _loanId);
+
             LoadLoanCollections();
+            LoadLoanNumbersToComboBox();
 
-
-            // Step 1: Retrieve the loan collection data
             var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", laccountid.Text);
             var loanCollections = _loanDisbursedCollection.Find(filter).ToList();
 
@@ -620,24 +663,39 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             double totalLoanAmount = 0;
             double excessAmount = 0;
 
-            // Step 2: Calculate total paid amount and excess amount
             foreach (var collection in loanCollections)
             {
-                double loanAmount = collection.Contains("LoanAmount") ? (double)collection["LoanAmount"].ToDouble() : 0.00;
-                totalLoanAmount = loanAmount;  // Store loan amount to compute general balance later
+                // Parse LoanAmount safely
+                string rawLoanAmount = collection.GetValue("LoanAmount", "0").ToString().Replace("₱", "").Replace(",", "").Trim();
+                double loanAmount = double.TryParse(rawLoanAmount, out double parsedLoan) ? parsedLoan : 0.00;
+                totalLoanAmount = loanAmount;
 
-                double amountPaid = collection.Contains("ActualCollection") ? (double)collection["ActualCollection"].AsDecimal128 : 0.00;
-                totalAmountPaid += amountPaid;  // Add amount paid to total payments
+                // Parse ActualCollection safely
+                double amountPaid = 0.00;
+                if (collection.Contains("ActualCollection"))
+                {
+                    var rawValue = collection["ActualCollection"];
+                    if (rawValue.IsString)
+                    {
+                        string raw = rawValue.AsString.Replace("₱", "").Replace(",", "").Trim();
+                        double.TryParse(raw, out amountPaid);
+                    }
+                    else if (rawValue.IsDecimal128)
+                    {
+                        amountPaid = (double)rawValue.AsDecimal128;
+                    }
+                    else if (rawValue.IsDouble)
+                    {
+                        amountPaid = rawValue.AsDouble;
+                    }
+                }
 
-                // Calculate excess amount
+                totalAmountPaid += amountPaid;
                 excessAmount = totalAmountPaid - totalLoanAmount;
             }
 
-            // Step 3: Check if there is an overpayment
             if (excessAmount > 0)
             {
-              
-                // Show an overpayment warning if detected
                 MessageBox.Show($"This loan account has an overpayment of ₱{excessAmount:F2}. Please review the payment history for adjustments.",
                                 "Overpayment Detected", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -646,6 +704,80 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 bnew.Enabled = true;
             }
         }
+
+
+        private void LoadLoanNumbersToComboBox()
+        {
+            // Clear and add the placeholder first
+            cbloanno.Items.Clear();
+            cbloanno.Items.Add("--select loan cycle no--");
+            cbloanno.SelectedIndex = 0;
+            cbloanno.Text = "--select loan cycle no--";
+
+            bnew.Enabled = false;
+            bpayadvance.Enabled = false;
+
+            string clientNo = laccountid.Text.Trim();
+
+            if (string.IsNullOrEmpty(clientNo))
+            {
+                MessageBox.Show("ClientNo is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Step 1: Find the AccountId from loan_disbursed using ClientNo
+            var clientFilter = Builders<BsonDocument>.Filter.Eq("ClientNo", clientNo);
+            var loanDisbursedDoc = _loanDisbursedCollection.Find(clientFilter).FirstOrDefault();
+
+            if (loanDisbursedDoc == null || !loanDisbursedDoc.Contains("AccountId"))
+            {
+                MessageBox.Show("No loan disbursed record found for this ClientNo.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string accountId = loanDisbursedDoc["AccountId"].AsString.Trim();
+
+            HashSet<string> loanNumbers = new HashSet<string>();
+
+            // Step 2: Query loan_account_cycles by AccountId
+            var cycleFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+            var cycleLoans = _loanAccountCyclesCollection.Find(cycleFilter).ToList();
+
+            foreach (var loan in cycleLoans)
+            {
+                if (loan.TryGetValue("LoanNo", out BsonValue loanNoVal))
+                {
+                    string loanNo = loanNoVal.AsString.Trim();
+                    if (!string.IsNullOrEmpty(loanNo)) loanNumbers.Add(loanNo);
+                }
+            }
+
+            // Step 3: Query loan_disbursed by AccountId (same AccountId found)
+            var disbursedFilter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
+            var disbursedLoans = _loanDisbursedCollection.Find(disbursedFilter).ToList();
+
+            foreach (var loan in disbursedLoans)
+            {
+                if (loan.TryGetValue("LoanNo", out BsonValue loanNoVal))
+                {
+                    string loanNo = loanNoVal.AsString.Trim();
+                    if (!string.IsNullOrEmpty(loanNo)) loanNumbers.Add(loanNo);
+                }
+            }
+
+            if (loanNumbers.Count > 0)
+            {
+                foreach (string loanNo in loanNumbers.OrderBy(n => n))
+                {
+                    cbloanno.Items.Add(loanNo);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No loan cycles or disbursed loans found for this client.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
 
         private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -670,43 +802,74 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             dgvdata.ClearSelection();
         }
 
+
+        double ParseCurrencyString(BsonValue val)
+        {
+            if (val == null || val.IsBsonNull) return 0.0;
+
+            string raw = val.AsString;
+            if (string.IsNullOrWhiteSpace(raw)) return 0.0;
+
+            // Remove currency symbols and commas
+            string cleaned = raw.Replace("₱", "").Replace(",", "").Trim();
+
+            if (double.TryParse(cleaned, out double result))
+                return result;
+
+            return 0.0;
+        }
+
+
         private void bnew_Click(object sender, EventArgs e)
         {
-            // Step 1: Retrieve the loan collection data
-            var filter = Builders<BsonDocument>.Filter.Eq("ClientNo", laccountid.Text);
-            var loanCollections = _loanDisbursedCollection.Find(filter).ToList();
+            if (cbloanno.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Please select a valid Loan Number.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            string clientNo = laccountid.Text.Trim();
+            string loanNo = cbloanno.SelectedItem?.ToString() ?? "";
+
+            if (string.IsNullOrEmpty(clientNo) || string.IsNullOrEmpty(loanNo) || loanNo == "--select loan cycle no--")
+            {
+                MessageBox.Show("Please select a valid client and loan number.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Search in both collections
+            var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo);
+            var loanDisbursedDoc = _loanDisbursedCollection.Find(filter).FirstOrDefault();
+            var loanCycleDoc = _loanAccountCyclesCollection.Find(filter).FirstOrDefault();
+
+            // Check overpayment using whichever has ActualCollection
             double totalAmountPaid = 0;
             double totalLoanAmount = 0;
-            double excessAmount = 0;
 
-            // Step 2: Calculate total paid amount and excess amount
-            foreach (var collection in loanCollections)
+            if (loanDisbursedDoc != null)
             {
-                double loanAmount = collection.Contains("LoanAmount") ? (double)collection["LoanAmount"].AsDecimal128 : 0.00;
-                totalLoanAmount = loanAmount;  // Store loan amount to compute general balance later
+                double loanAmount = loanDisbursedDoc.Contains("LoanAmount") ? ParseCurrencyString(loanDisbursedDoc["LoanAmount"]) : 0.00;
+                totalLoanAmount = loanAmount;
 
-                double amountPaid = collection.Contains("ActualCollection") ? (double)collection["ActualCollection"].AsDecimal128 : 0.00;
-                totalAmountPaid += amountPaid;  // Add amount paid to total payments
-
-                // Calculate excess amount
-                excessAmount = totalAmountPaid - totalLoanAmount;
+                double amountPaid = loanDisbursedDoc.Contains("ActualCollection") ? ParseCurrencyString(loanDisbursedDoc["ActualCollection"]) : 0.00;
+                totalAmountPaid += amountPaid;
             }
 
-            // Step 3: Check if there is an overpayment
+            // Optional: If your loanCycleDoc also contains payments in future, include here
+
+            double excessAmount = totalAmountPaid - totalLoanAmount;
+
             if (excessAmount > 0)
             {
-                // Show an overpayment warning if detected
                 MessageBox.Show($"This loan account has an overpayment of ₱{excessAmount:F2}. Please review the payment history for adjustments.",
                                 "Overpayment Detected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            else
-            {
-                // Step 4: No overpayment, proceed to open the add collection form
-                frm_home_disburse_collections_add addCollectionForm = new frm_home_disburse_collections_add(_loanId);
-                addCollectionForm.ShowDialog(this);
-            }
+
+            frm_home_disburse_collections_add addCollectionForm = new frm_home_disburse_collections_add(clientNo, loanNo);
+            addCollectionForm.ShowDialog(this);
         }
+
 
 
 
@@ -803,5 +966,58 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             frm_home_disburse_loan_config loanConfigForm = new frm_home_disburse_loan_config(clientNo, loanId);
             loanConfigForm.ShowDialog(); 
         }
+
+        private void cbloanno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbloanno.SelectedIndex <= 0) // index 0 is "--select loan cycle no--"
+            {
+                dgvdata.DataSource = null;
+                bnew.Enabled = false;
+                bpayadvance.Enabled = false;
+                return;
+            }
+
+
+
+            if (cbloanno.SelectedItem == null) return;
+
+
+            string selectedLoanNo = cbloanno.Text.Trim();
+            if (string.IsNullOrEmpty(selectedLoanNo)) return;
+
+            var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", selectedLoanNo);
+
+            // Try in loan_account_cycles first
+            var loanDoc = _loanAccountCyclesCollection.Find(filter).FirstOrDefault();
+
+            // Fallback to loan_disbursed
+            if (loanDoc == null)
+            {
+                loanDoc = _loanDisbursedCollection.Find(filter).FirstOrDefault();
+            }
+
+            if (loanDoc != null)
+            {
+                // Optional: Check for ClientNo or AccountId presence
+                bool hasClientNo = loanDoc.Contains("ClientNo") && loanDoc["ClientNo"].IsString;
+                bool hasAccountId = loanDoc.Contains("AccountId") && loanDoc["AccountId"].IsString;
+
+                if (hasClientNo || hasAccountId)
+                {
+                    LoadLoanCollections();  // <-- NO parameter here
+
+                    bnew.Enabled = true;
+                    bpayadvance.Enabled = true;
+                    return;
+                }
+            }
+
+            // Loan not found or invalid
+            MessageBox.Show("Loan record not found or invalid loan data.", "No Match", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            dgvdata.DataSource = null;
+            bnew.Enabled = false;
+            bpayadvance.Enabled = false;
+        }
+
     }
 }

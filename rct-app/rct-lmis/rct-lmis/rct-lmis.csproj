@@ -30,7 +30,7 @@
     <PublisherName>ACS Micro IT Solutions Co.</PublisherName>
     <SuiteName>RACATOM Corporation</SuiteName>
     <MinimumRequiredVersion>1.0.0.16</MinimumRequiredVersion>
-    <ApplicationRevision>35</ApplicationRevision>
+    <ApplicationRevision>40</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -60,7 +60,7 @@
     <ApplicationIcon>icons8-banking-loan-with-money-bag-in-hand-72.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>ECF8FD43BBF0D16E27D1421905D7033B0D18A980</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>F2D11938971DA30A9CC32C94A4501652FC34C8F4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>rct-lmis_TemporaryKey.pfx</ManifestKeyFile>
@@ -1034,6 +1034,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="rct-lmis_TemporaryKey.pfx" />
     <None Include="tessdata\eng.traineddata" />
     <Content Include="rct-credentials.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1043,7 +1044,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="rct-lmis_TemporaryKey.pfx" />
     <None Include="Resources\loading.gif" />
   </ItemGroup>
   <ItemGroup>
