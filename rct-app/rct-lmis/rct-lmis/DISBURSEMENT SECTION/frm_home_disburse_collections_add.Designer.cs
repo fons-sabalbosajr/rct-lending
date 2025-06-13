@@ -235,10 +235,9 @@
             this.clientnotest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.clientnotest.Location = new System.Drawing.Point(13, 482);
             this.clientnotest.Name = "clientnotest";
-            this.clientnotest.Size = new System.Drawing.Size(86, 15);
+            this.clientnotest.Size = new System.Drawing.Size(87, 15);
             this.clientnotest.TabIndex = 152;
             this.clientnotest.Text = "RCT-2024-0001";
-            this.clientnotest.Visible = false;
             // 
             // bcancel
             // 
@@ -513,7 +512,7 @@
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label8.Location = new System.Drawing.Point(441, 93);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 15);
+            this.label8.Size = new System.Drawing.Size(37, 15);
             this.label8.TabIndex = 97;
             this.label8.Text = "Term:";
             // 
@@ -822,7 +821,7 @@
             this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label23.Location = new System.Drawing.Point(25, 428);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(107, 15);
+            this.label23.Size = new System.Drawing.Size(108, 15);
             this.label23.TabIndex = 131;
             this.label23.Text = "Total Amortization:";
             // 
@@ -1164,6 +1163,7 @@
             this.lwarning.Size = new System.Drawing.Size(55, 15);
             this.lwarning.TabIndex = 215;
             this.lwarning.Text = "Warning:";
+            this.lwarning.Visible = false;
             // 
             // frm_home_disburse_collections_add
             // 

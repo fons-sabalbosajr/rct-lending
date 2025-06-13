@@ -10,7 +10,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 {
     public partial class frm_home_disburse_details_edit : Form
     {
-        private string _loanId;
+        private string _loanNo;
         private string _accountId;
         private bool _isNewLoan;
         private readonly string _startPaymentDate;
@@ -33,7 +33,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             _loanAccountCyclesCollection = database.GetCollection<BsonDocument>("loan_account_cycles");
             _loanRateCollection = database.GetCollection<BsonDocument>("loan_rate");
 
-            _loanId = loanNo;
+            _loanNo = loanNo;
             _accountId = accountId;
             _clientNo = clientNo;
             _isNewLoan = isNewLoan;
@@ -51,7 +51,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         private async void frm_home_disburse_details_edit_Load(object sender, EventArgs e)
         {
             laccountid.Text = _accountId;
-            tloanid.Text = _loanId;
+            tloanid.Text = _loanNo;
             tclientno.Text = _clientNo; // Show the passed-in client number
             ldatestart.Text = _startPaymentDate;
             await InitializeAsync();
@@ -112,27 +112,16 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             try
             {
-                string accountId = laccountid.Text?.Trim();
-                string startPaymentDate = ldatestart.Text?.Trim();
+                string loanNo = _loanNo?.Trim();
 
-                if (string.IsNullOrWhiteSpace(accountId))
+                if (string.IsNullOrWhiteSpace(loanNo))
                 {
-                    MessageBox.Show("AccountId is missing.");
+                    MessageBox.Show("LoanNo is missing.");
                     return;
                 }
 
-                // Try loading by StartPaymentDate if provided
-                bool hasValidStartPaymentDate = !(string.IsNullOrWhiteSpace(startPaymentDate) ||
-                                                  startPaymentDate.Equals("n/a", StringComparison.OrdinalIgnoreCase));
-
-                FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
-
-                if (hasValidStartPaymentDate)
-                {
-                    filter &= Builders<BsonDocument>.Filter.Eq("StartPaymentDate", startPaymentDate);
-                }
-
-                // Sort by Date_Modified or _id (ObjectId includes timestamp)
+                // Filter by LoanNo directly
+                FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo);
                 var sort = Builders<BsonDocument>.Sort.Descending("Date_Modified").Descending("_id");
 
                 var latestCycle = await _loanAccountCyclesCollection.Find(filter).Sort(sort).FirstOrDefaultAsync();
@@ -140,18 +129,14 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 if (latestCycle == null && latestDisbursed == null)
                 {
-                    MessageBox.Show($"No matching loan found for AccountId: {accountId}");
+                    MessageBox.Show($"No matching loan found for LoanNo: {loanNo}");
                     return;
                 }
 
-                // Fallback if StartPaymentDate is missing in UI
-                if (!hasValidStartPaymentDate)
-                {
-                    startPaymentDate = latestCycle?.GetValue("StartPaymentDate", "")?.ToString()
-                        ?? latestDisbursed?.GetValue("StartPaymentDate", "")?.ToString();
-                }
+                string startPaymentDate = latestCycle?.GetValue("StartPaymentDate", "")?.ToString()
+                    ?? latestDisbursed?.GetValue("StartPaymentDate", "")?.ToString();
 
-                await LoadLoanDetails(accountId, startPaymentDate);
+                await LoadLoanDetails(loanNo);
             }
             catch (Exception ex)
             {
@@ -161,19 +146,11 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
 
 
-        private async Task LoadLoanDetails(string accountId, string dateStart)
+        private async Task LoadLoanDetails(string loanNo)
         {
             try
             {
-                bool hasValidStartPaymentDate = !(string.IsNullOrWhiteSpace(dateStart) ||
-                                                  dateStart.Equals("n/a", StringComparison.OrdinalIgnoreCase));
-
-                FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("AccountId", accountId);
-                if (hasValidStartPaymentDate)
-                {
-                    filter &= Builders<BsonDocument>.Filter.Eq("StartPaymentDate", dateStart);
-                }
-
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo);
                 var sort = Builders<BsonDocument>.Sort.Descending("Date_Modified").Descending("_id");
 
                 var cycleDoc = await _loanAccountCyclesCollection.Find(filter).Sort(sort).FirstOrDefaultAsync();
@@ -181,46 +158,31 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 if (cycleDoc == null && disbursedDoc == null)
                 {
-                    MessageBox.Show($"No matching loan found for AccountId: {accountId}");
+                    MessageBox.Show($"No loan data found for LoanNo: {loanNo}");
                     return;
                 }
 
                 // Prioritize updated values: cycleDoc first, fallback to disbursedDoc
                 tloantype.Text = cycleDoc?.GetValue("LoanType", null)?.ToString()
-                    ?? disbursedDoc?.GetValue("LoanType", null)?.ToString()
-                    ?? "N/A";
-
+                    ?? disbursedDoc?.GetValue("LoanType", null)?.ToString() ?? "N/A";
                 tloanstatus.Text = cycleDoc?.GetValue("LoanStatus", null)?.ToString()
-                    ?? disbursedDoc?.GetValue("LoanStatus", null)?.ToString()
-                    ?? "N/A";
-
+                    ?? disbursedDoc?.GetValue("LoanStatus", null)?.ToString() ?? "N/A";
                 tloanterm.Text = cycleDoc?.GetValue("LoanTerm", null)?.ToString()
-                    ?? disbursedDoc?.GetValue("LoanTerm", null)?.ToString()
-                    ?? "N/A";
+                    ?? disbursedDoc?.GetValue("LoanTerm", null)?.ToString() ?? "N/A";
 
                 tloanamount.Text = cycleDoc?.GetValue("LoanAmount", null)?.ToString()
-                    ?? disbursedDoc?.GetValue("LoanAmount", null)?.ToString()
-                    ?? "₱0.00";
-
+                    ?? disbursedDoc?.GetValue("LoanAmount", null)?.ToString() ?? "₱0.00";
                 tloanbalance.Text = cycleDoc?.GetValue("LoanBalance", null)?.ToString()
-                    ?? disbursedDoc?.GetValue("LoanBalance", null)?.ToString()
-                    ?? "₱0.00";
-
+                    ?? disbursedDoc?.GetValue("LoanBalance", null)?.ToString() ?? "₱0.00";
                 tloanprincipal.Text = cycleDoc?.GetValue("PrincipalAmount", null)?.ToString()
-                    ?? disbursedDoc?.GetValue("PrincipalAmount", null)?.ToString()
-                    ?? "₱0.00";
-
+                    ?? disbursedDoc?.GetValue("PrincipalAmount", null)?.ToString() ?? "₱0.00";
                 tloaninterest.Text = cycleDoc?.GetValue("LoanInterest", null)?.ToString()
-                    ?? disbursedDoc?.GetValue("LoanInterest", null)?.ToString()
-                    ?? "₱0.00";
-
+                    ?? disbursedDoc?.GetValue("LoanInterest", null)?.ToString() ?? "₱0.00";
                 tloanpenalty.Text = cycleDoc?.GetValue("Penalty", null)?.ToString()
-                    ?? disbursedDoc?.GetValue("Penalty", null)?.ToString()
-                    ?? "₱0.00";
+                    ?? disbursedDoc?.GetValue("Penalty", null)?.ToString() ?? "₱0.00";
 
                 cbpaymentmode.Text = cycleDoc?.GetValue("PaymentMode", null)?.ToString()
-                    ?? disbursedDoc?.GetValue("PaymentMode", null)?.ToString()
-                    ?? "N/A";
+                    ?? disbursedDoc?.GetValue("PaymentMode", null)?.ToString() ?? "N/A";
 
                 string startPaymentDateStr = cycleDoc?.GetValue("StartPaymentDate", "")?.ToString()
                     ?? disbursedDoc?.GetValue("StartPaymentDate", "")?.ToString();
@@ -336,7 +298,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
         {
             try
             {
-                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", _loanId);
+                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", _loanNo);
                 var approvedLoan = await _loanApprovedCollection.Find(filter).FirstOrDefaultAsync();
 
                 if (approvedLoan != null)
@@ -387,6 +349,20 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     return false;
                 }
 
+                // Handle closed loan case
+                if (cbclosed.Checked)
+                {
+                    if (decimal.TryParse(tloanbalance.Text, out decimal balance) && balance != 0)
+                    {
+                        MessageBox.Show("Loan cannot be marked as closed because it still has a remaining balance.", "Cannot Close Loan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        DialogResult dialogResult = MessageBox.Show("Do you want to request Administrator override to close this loan?", "Admin Override", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.No)
+                        {
+                            return false;
+                        }
+                    }
+                }
+
                 var filter = Builders<BsonDocument>.Filter.And(
                     Builders<BsonDocument>.Filter.Eq("AccountId", laccountid.Text),
                     Builders<BsonDocument>.Filter.Eq("StartPaymentDate", ldatestart.Text)
@@ -406,78 +382,55 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     .Set("CollectorName", cbcollector.Text)
                     .Set("StartPaymentDate", dtstartdate.Value.ToString("MM/dd/yyyy"))
                     .Set("MaturityDate", dtmatdate.Value.ToString("MM/dd/yyyy"))
-                    .Set("Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
+                    .Set("Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"))
+                    .Set("IsClosed", cbclosed.Checked);
 
-                // Attempt to update loan_disbursed
                 var result = await _loanDisbursedCollection.UpdateOneAsync(filter, update);
 
-                // If loan_disbursed update failed, try loan_account_cycles
                 if (result.ModifiedCount == 0)
                 {
                     var altResult = await _loanAccountCyclesCollection.UpdateOneAsync(filter, update);
 
-                    // If both updates failed, insert a new record into loan_account_cycles
                     if (altResult.ModifiedCount == 0)
                     {
-                        string loanCycleNo = GenerateLoanCycleNo(laccountid.Text);
+                        var existing = await _loanAccountCyclesCollection.Find(
+                            Builders<BsonDocument>.Filter.Eq("LoanNo", tloanid.Text)
+                        ).FirstOrDefaultAsync();
 
-                        var newLoanDoc = new BsonDocument
-                         {
-                             { "LoanCycleNo", loanCycleNo },
-                             { "AccountId", laccountid.Text },
-                             { "LoanNo", tloanid.Text },
-                             { "CycleDate", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") },
-                             { "LoanStatus", tloanstatus.Text },
-                             { "LoanTerm", tloanterm.Text },
-                             { "LoanAmount", tloanamount.Text },
-                             { "LoanBalance", tloanbalance.Text },
-                             { "LoanType", tloantype.Text },
-                             { "PrincipalAmount", tloanprincipal.Text },
-                             { "LoanInterest", tloaninterest.Text },
-                             { "Penalty", tloanpenalty.Text },
-                             { "PaymentMode", cbpaymentmode.Text },
-                             { "CollectorName", cbcollector.Text },
-                             { "StartPaymentDate", dtstartdate.Value.ToString("MM/dd/yyyy") },
-                             { "MaturityDate", dtmatdate.Value.ToString("MM/dd/yyyy") },
-                             { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") }
-                         };
+                        if (existing == null)
+                        {
+                            string loanCycleNo = GenerateLoanCycleNo(laccountid.Text);
 
-                        await _loanAccountCyclesCollection.InsertOneAsync(newLoanDoc);
+                            var newLoanDoc = new BsonDocument
+                            {
+                                { "LoanCycleNo", loanCycleNo },
+                                { "AccountId", laccountid.Text },
+                                { "LoanNo", tloanid.Text },
+                                { "CycleDate", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") },
+                                { "LoanStatus", tloanstatus.Text },
+                                { "LoanTerm", tloanterm.Text },
+                                { "LoanAmount", tloanamount.Text },
+                                { "LoanBalance", tloanbalance.Text },
+                                { "LoanType", tloantype.Text },
+                                { "PrincipalAmount", tloanprincipal.Text },
+                                { "LoanInterest", tloaninterest.Text },
+                                { "Penalty", tloanpenalty.Text },
+                                { "PaymentMode", cbpaymentmode.Text },
+                                { "CollectorName", cbcollector.Text },
+                                { "StartPaymentDate", dtstartdate.Value.ToString("MM/dd/yyyy") },
+                                { "MaturityDate", dtmatdate.Value.ToString("MM/dd/yyyy") },
+                                { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") },
+                                { "IsClosed", cbclosed.Checked }
+                            };
 
-                        MessageBox.Show("Loan record not found, so a new loan was added to loan_account_cycles collection.", "Inserted New Loan", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            await _loanAccountCyclesCollection.InsertOneAsync(newLoanDoc);
+                            MessageBox.Show("Loan record not found, so a new loan was added to loan_account_cycles collection.", "Inserted New Loan", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Duplicate loan record detected. No new document was inserted into loan_account_cycles.", "Duplicate Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
-                }
-
-                // Optional: Check if a loan cycle exists (by AccountId only) and insert if not
-                var cycleFilter = Builders<BsonDocument>.Filter.Eq("AccountId", laccountid.Text);
-                var cycleExists = await _loanAccountCyclesCollection.Find(cycleFilter).AnyAsync();
-
-                if (!cycleExists)
-                {
-                    string loanCycleNo = GenerateLoanCycleNo(laccountid.Text);
-
-                    var loanCycleDoc = new BsonDocument
-                     {
-                         { "LoanCycleNo", loanCycleNo },
-                         { "AccountId", laccountid.Text },
-                         { "LoanNo", tloanid.Text },
-                         { "CycleDate", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") },
-                         { "LoanStatus", tloanstatus.Text },
-                         { "LoanTerm", tloanterm.Text },
-                         { "LoanAmount", tloanamount.Text },
-                         { "LoanBalance", tloanbalance.Text },
-                         { "LoanType", tloantype.Text },
-                         { "PrincipalAmount", tloanprincipal.Text },
-                         { "LoanInterest", tloaninterest.Text },
-                         { "Penalty", tloanpenalty.Text },
-                         { "PaymentMode", cbpaymentmode.Text },
-                         { "CollectorName", cbcollector.Text },
-                         { "StartPaymentDate", dtstartdate.Value.ToString("MM/dd/yyyy") },
-                         { "MaturityDate", dtmatdate.Value.ToString("MM/dd/yyyy") },
-                         { "Date_Encoded", DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") }
-                     };
-
-                    await _loanAccountCyclesCollection.InsertOneAsync(loanCycleDoc);
                 }
 
                 MessageBox.Show("Loan transaction updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

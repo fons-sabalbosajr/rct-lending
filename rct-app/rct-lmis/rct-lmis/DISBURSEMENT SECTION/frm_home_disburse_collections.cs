@@ -192,25 +192,31 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
             foreach (var collection in loanCollections)
             {
-                // Safe parsing of collection date
+                // Collection Date
                 DateTime? collectionDate = null;
-                if (collection.Contains("CollectionDate") && collection["CollectionDate"].IsValidDateTime)
-                    collectionDate = collection["CollectionDate"].ToUniversalTime();
-
+                if (collection.Contains("CollectionDate"))
+                {
+                    if (DateTime.TryParse(collection["CollectionDate"].ToString(), out DateTime parsedColDate))
+                    {
+                        collectionDate = parsedColDate;
+                    }
+                }
                 string collectionDateStr = collectionDate?.ToString("MM/dd/yyyy") ?? "";
 
-                string clientNo = collection.Contains("ClientNo") ? collection["ClientNo"].AsString : "";
-                string name = collection.Contains("Name") ? collection["Name"].AsString : "";
+                string clientNo = collection.GetValue("ClientNo", "").AsString;
+                string name = collection.GetValue("FullName", "").AsString;
 
                 string clientInfo = $"Col. Date: {collectionDateStr}\nClient No.: {clientNo}\nName: {name}";
 
-                // Loan Information from collection or fallback
-                double loanAmount = totalLoanAmount; // from loanDoc
-                string amortization = collection.Contains("Amortization")
-                    ? Convert.ToDouble(collection["Amortization"].ToDouble()).ToString("F2")
+                // Loan Information
+                double loanAmount = totalLoanAmount;
+                string amortization = collection.Contains("DailyAmortization")
+                    ? collection["DailyAmortization"].ToDecimal().ToString("F2")
                     : "0.00";
 
-                double amountPaid = collection.Contains("ActualCollection") ? collection["ActualCollection"].ToDouble() : 0.00;
+                double amountPaid = collection.Contains("AmountPaid")
+                    ? (double)collection["AmountPaid"].ToDecimal()
+                    : 0.00;
                 totalAmountPaid += amountPaid;
                 runningBalance = loanAmount - totalAmountPaid;
                 string runningBalanceStr = runningBalance <= 0 ? "Settled" : runningBalance.ToString("F2");
@@ -218,23 +224,27 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                 string loanInfo = $"Loan Amount: {loanAmount:F2}\nAmortization: {amortization}\nRunning Balance: {runningBalanceStr}";
 
                 // Payment Information
-                string dateReceived = collection.Contains("DateReceived") && collection["DateReceived"].IsValidDateTime
-                    ? collection["DateReceived"].ToUniversalTime().ToString("MM/dd/yyyy") : "";
+                string dateReceived = collection.Contains("CollectionDate") && collection["CollectionDate"].IsString
+                    ? DateTime.TryParse(collection["CollectionDate"].AsString, out DateTime parsedDate)
+                        ? parsedDate.ToString("MM/dd/yyyy")
+                        : ""
+                    : "";
 
-                string penalty = collection.Contains("CollectedPenalty") ? collection["CollectedPenalty"].ToDouble().ToString("F2") : "0.00";
+                string penalty = collection.Contains("CollectedPenalty")
+                    ? collection["CollectedPenalty"].ToDecimal().ToString("F2")
+                    : "0.00";
                 totalPenalty += double.TryParse(penalty, out double penVal) ? penVal : 0.00;
 
-                string paymentMode = collection.Contains("PaymentMode") ? collection["PaymentMode"].AsString : "";
+                string paymentInfo = $"Date Received: {dateReceived}\nAmount Paid: {amountPaid:F2}\nPenalty: {penalty}";
 
-                string paymentInfo = $"Date Received: {dateReceived}\nAmount Paid: {amountPaid:F2}\nPenalty: {penalty}\nPayment Mode: {paymentMode}";
-
-                // Collection Information
+                // Collection Info
                 string collector = collection.Contains("Collector") ? collection["Collector"].AsString : "";
                 string area = collection.Contains("Address") ? collection["Address"].AsString : "";
 
                 string collectionInfo = $"Collector: {collector}\nAddress: {area}";
 
-                // Remarks and balance
+
+                // Remarks & Balance
                 string remarks = "";
                 double excessAmount = totalAmountPaid - totalLoanAmount;
 
@@ -265,6 +275,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 double balanceValue = runningBalance > 0 ? runningBalance : 0;
 
+                // Add to DataTable
                 DataRow row = _loanCollectionTable.NewRow();
                 row["Client Information"] = clientInfo;
                 row["Loan Information"] = loanInfo;
@@ -276,6 +287,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
                 _loanCollectionTable.Rows.Add(row);
             }
+
 
             // Summary and binding
             ltotalamtpaid.Text = "Total Amount Paid: " + totalAmountPaid.ToString("F2");

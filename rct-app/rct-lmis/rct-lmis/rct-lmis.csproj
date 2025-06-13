@@ -60,7 +60,7 @@
     <ApplicationIcon>icons8-banking-loan-with-money-bag-in-hand-72.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F2D11938971DA30A9CC32C94A4501652FC34C8F4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>27285A2ABAC7FD94C28FC2CDFA39180F375525CE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>rct-lmis_TemporaryKey.pfx</ManifestKeyFile>

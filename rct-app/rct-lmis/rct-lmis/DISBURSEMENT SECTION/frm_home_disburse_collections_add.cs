@@ -40,6 +40,8 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             dtcoldate.Value = DateTime.Now;
             _clientNo = clientNo;
             _loanNo = loanNo;
+
+            
             loggedInUsername = UserSession.Instance.CurrentUser;
 
 
@@ -161,68 +163,78 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     return;
                 }
 
-                // --- Populate from loanDisbursed (if found) ---
+                // --- Load loanDisbursed (if found) ---
                 if (loanDisbursed != null)
                 {
                     laccountid.Text = loanDisbursed.GetValue("AccountId", "N/A").ToString();
                     tloanid.Text = loanDisbursed.GetValue("LoanNo", "N/A").ToString();
-
-                    // Load ClientNo
                     tclientno.Text = loanDisbursed.GetValue("ClientNo", "N/A").ToString();
 
-                    tloanamt.Text = loanDisbursed.GetValue("LoanAmount", "₱0.00").ToString();
-                    tterm.Text = loanDisbursed.GetValue("LoanTerm", "N/A").ToString();
-                    tpaymode.Text = loanDisbursed.GetValue("PaymentMode", "N/A").ToString();
-                    tpayamort.Text = loanDisbursed.GetValue("LoanAmortization", "₱0.00").ToString();
+                    string lastName = loanDisbursed.GetValue("LastName", "").ToString();
+                    string firstName = loanDisbursed.GetValue("FirstName", "").ToString();
+                    string middleName = loanDisbursed.GetValue("MiddleName", "").ToString();
+                    tname.Text = string.IsNullOrWhiteSpace($"{lastName}{firstName}") ? "N/A" : $"{lastName}, {firstName} {middleName}".Trim();
 
                     string barangay = loanDisbursed.GetValue("Barangay", "N/A").ToString();
                     string city = loanDisbursed.GetValue("City", "N/A").ToString();
                     taddress.Text = $"{barangay}, {city}";
+
                     tcontact.Text = loanDisbursed.GetValue("ContactNo", "N/A").ToString();
 
-                    decimal loanAmount = ConvertToDecimal(loanDisbursed.GetValue("LoanAmount", "0").ToString().Replace("₱", "").Replace(",", "").Trim());
-                    decimal loanInterest = ConvertToDecimal(loanDisbursed.GetValue("LoanInterest", "0").ToString().Replace("%", "").Trim());
+                    tloanamt.Text = FormatCurrency(loanDisbursed.GetValue("LoanAmount", "₱0.00").ToString());
+                    tterm.Text = loanDisbursed.GetValue("LoanTerm", "N/A").ToString();
+                    tpaymode.Text = loanDisbursed.GetValue("PaymentMode", "N/A").ToString();
+                    tpayamort.Text = FormatCurrency(loanDisbursed.GetValue("LoanAmortization", "₱0.00").ToString());
+                    tloanbal.Text = FormatCurrency(loanDisbursed.GetValue("LoanBalance", "₱0.00").ToString());
+                }
 
-                    string loanTermRaw = loanDisbursed.GetValue("LoanTerm", "0 months").ToString();
-                    string numericTermStr = new string(loanTermRaw.Where(char.IsDigit).ToArray());
-                    if (!int.TryParse(numericTermStr, out int loanTerm) || loanTerm <= 0)
+                // --- Override with loanAccountCycle financials (if found) ---
+                if (loanAccountCycle != null)
+                {
+                    tloanid.Text = loanAccountCycle.GetValue("LoanNo", tloanid.Text).ToString();
+                    tclientno.Text = _clientNo; // trusted value from session/context
+
+                    decimal loanAmount = ConvertToDecimal(loanAccountCycle.GetValue("LoanAmount", "0").ToString());
+                    decimal loanBalance = ConvertToDecimal(loanAccountCycle.GetValue("LoanBalance", "0").ToString());
+                    decimal loanInterest = ConvertToDecimal(loanAccountCycle.GetValue("LoanInterest", "0").ToString());
+
+                    tloanamt.Text = loanAmount.ToString("C", new CultureInfo("en-PH"));
+                    tloanbal.Text = loanBalance.ToString("C", new CultureInfo("en-PH"));
+
+                    string termStr = loanAccountCycle.GetValue("LoanTerm", "0").ToString();
+                    string numericTerm = new string(termStr.Where(char.IsDigit).ToArray());
+                    if (!int.TryParse(numericTerm, out int termMonths) || termMonths <= 0)
                     {
                         MessageBox.Show("Invalid or missing loan term. Cannot compute due amounts.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    string startPaymentDateStr = loanDisbursed.GetValue("StartPaymentDate", "").ToString();
-                    DateTime? startPaymentDate = ParseDateOrNull(startPaymentDateStr);
-                    tpaystart.Text = startPaymentDate.HasValue ? startPaymentDate.Value.ToString("MM/dd/yyyy") : "N/A";
-
-                    string maturityDateStr = loanDisbursed.GetValue("MaturityDate", "").ToString();
-                    DateTime? maturityDate = ParseDateOrNull(maturityDateStr);
-                    tpaymature.Text = maturityDate.HasValue ? maturityDate.Value.ToString("MM/dd/yyyy") : "N/A";
-
-                    decimal principalDue = loanAmount / loanTerm;
-                    decimal interestDue = (loanAmount * (loanInterest / 100)) / loanTerm;
+                    decimal principalDue = loanAmount / termMonths;
+                    decimal interestDue = (loanAmount * (loanInterest / 100)) / termMonths;
 
                     tprincipaldue.Text = principalDue.ToString("C", new CultureInfo("en-PH"));
                     tcolinterest.Text = interestDue.ToString("C", new CultureInfo("en-PH"));
-                }
 
-                // --- Populate additional/overwrite fields from loanAccountCycle if found ---
-                if (loanAccountCycle != null)
-                {
-                   
-                    tloanamt.Text = "₱" + ConvertToDecimal(loanAccountCycle.GetValue("LoanAmount", "0").ToString()).ToString("N2");
+                    tterm.Text = loanAccountCycle.GetValue("LoanTerm", tterm.Text).ToString();
                     tpaymode.Text = loanAccountCycle.GetValue("PaymentMode", tpaymode.Text).ToString();
 
-                    string startPaymentDateStr = loanAccountCycle.GetValue("StartPaymentDate", new BsonString("")).ToString();
-                    DateTime? startPaymentDate = ParseDateOrNull(startPaymentDateStr);
-                    if (startPaymentDate.HasValue)
-                        tpaystart.Text = startPaymentDate.Value.ToString("MM/dd/yyyy");
+                    tpayamort.Text = FormatCurrency(tpayamort.Text); // preserve fallback
 
-                    string maturityDateStr = loanAccountCycle.GetValue("MaturityDate", new BsonString("")).ToString();
-                    DateTime? maturityDate = ParseDateOrNull(maturityDateStr);
-                    if (maturityDate.HasValue)
-                        tpaymature.Text = maturityDate.Value.ToString("MM/dd/yyyy");
+                    DateTime? startDate = ParseDateOrNull(loanAccountCycle.GetValue("StartPaymentDate", "").ToString());
+                    DateTime? maturityDate = ParseDateOrNull(loanAccountCycle.GetValue("MaturityDate", "").ToString());
+
+                    tpaystart.Text = startDate.HasValue ? startDate.Value.ToString("MM/dd/yyyy") : "N/A";
+                    tpaymature.Text = maturityDate.HasValue ? maturityDate.Value.ToString("MM/dd/yyyy") : "N/A";
                 }
+
+                // --- Check Collections Status ---
+                var collectionFilter = Builders<BsonDocument>.Filter.Eq("LoanNo", _loanNo);
+                bool hasCollections = await _loanCollectionsCollection.Find(collectionFilter).AnyAsync();
+
+                decimal finalBalance = ConvertToDecimal(tloanbal.Text.Replace("₱", "").Replace(",", "").Trim());
+                tpaymentstatus.Text = !hasCollections ? "No collections have been made"
+                                      : finalBalance > 0 ? "With Pending Balance"
+                                      : "Fully Paid";
 
                 ComputeLoanBalance();
             }
@@ -232,13 +244,23 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             }
         }
 
-        // Helper method to parse date safely, returns null if invalid or empty
+
+        private string FormatCurrency(string value)
+        {
+            if (decimal.TryParse(value.Replace("₱", "").Replace(",", "").Trim(), out decimal result))
+                return result.ToString("C", new CultureInfo("en-PH"));
+            return "₱0.00";
+        }
+
+
         private DateTime? ParseDateOrNull(string dateStr)
         {
-            if (DateTime.TryParse(dateStr, out DateTime dt))
-                return dt;
+            if (DateTime.TryParse(dateStr, out DateTime parsed))
+                return parsed;
             return null;
         }
+
+
 
         private int CalculateWeekdaysElapsed(DateTime startDate, DateTime endDate)
         {
@@ -353,151 +375,103 @@ namespace rct_lmis.DISBURSEMENT_SECTION
 
         private async Task<bool> SaveLoanCollectionDataAsync()
         {
+            string loanIdNo = tloanid.Text.Trim();
+            string clientNo = tclientno.Text.Trim();
+            string fullName = tname.Text.Trim();
+            string amountPaidText = tcolactual.Text.Trim();
+            string collectionDate = dtcoldate.Text.Trim();
+
+            if (string.IsNullOrEmpty(loanIdNo) || string.IsNullOrEmpty(clientNo) ||
+                string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(amountPaidText))
+            {
+                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!decimal.TryParse(amountPaidText, out decimal amountPaid) || amountPaid <= 0)
+            {
+                MessageBox.Show("Invalid amount paid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Retrieve loan info
+            var loanInfo = GetLoanDisbursementInfo(loanIdNo);
+            if (loanInfo == null)
+            {
+                MessageBox.Show($"Loan not found for Loan ID: {loanIdNo}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Parse loan amount
+            decimal loanAmount = loanInfo.Contains("LoanAmount") && decimal.TryParse(loanInfo["LoanAmount"].ToString(), out var amt) ? amt : 0;
+
+            // Parse interest rate
+            decimal loanInterestRate = 0m;
+            if (loanInfo.TryGetValue("LoanInterest", out var li))
+            {
+                string interestStr = li.ToString().Replace("%", "").Trim();
+                if (decimal.TryParse(interestStr, out var rate)) loanInterestRate = rate / 100;
+            }
+
+            // Parse loan term
+            int loanTerm = 0;
+            if (loanInfo.TryGetValue("LoanTerm", out var lt))
+            {
+                string termDigits = System.Text.RegularExpressions.Regex.Match(lt.ToString(), @"\d+").Value;
+                if (!string.IsNullOrEmpty(termDigits)) int.TryParse(termDigits, out loanTerm);
+            }
+
+            if (loanTerm <= 0)
+            {
+                MessageBox.Show("Loan term is invalid or missing. Cannot calculate amortization.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Calculate amortization
+            decimal totalLoanToPay = loanAmount * (1 + loanInterestRate);
+            decimal dailyAmortization = totalLoanToPay / loanTerm;
+            decimal amortizationInterest = (loanAmount * loanInterestRate) / loanTerm;
+            decimal amortizationPrincipal = dailyAmortization - amortizationInterest;
+
+            // Build collection document
+            var newCollection = new BsonDocument
+              {
+                  { "LoanNo", loanIdNo },
+                  { "ClientNo", clientNo },
+                  { "FullName", fullName },
+                  { "AmountPaid", amountPaid },
+                  { "CollectionDate", collectionDate },
+                  { "DailyAmortization", dailyAmortization },
+                  { "AmortizationInterest", amortizationInterest },
+                  { "AmortizationPrincipal", amortizationPrincipal },
+                  { "CreatedAt", DateTime.Now }
+              };
+
             try
             {
-                // 🚨 Validate Required Fields
-                if (string.IsNullOrWhiteSpace(tloanid.Text) ||
-                    string.IsNullOrWhiteSpace(tname.Text) ||
-                    string.IsNullOrWhiteSpace(tloanbal.Text) ||
-                    string.IsNullOrWhiteSpace(tcolpayamt.Text))
-                {
-                    MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-
-                // 🛠 Helper function to parse currency safely
-                decimal ParseCurrency(string text)
-                {
-                    text = text.Replace("₱", "").Replace(",", "").Trim();
-                    return decimal.TryParse(text, out decimal value) ? value : 0;
-                }
-
-                // ✅ Parse numeric values safely
-                decimal loanAmount = ParseCurrency(tloanamt.Text);
-                decimal collectionPaymentAmount = ParseCurrency(tcolpayamt.Text);
-                string loanIdNo = tloanid.Text.Trim();
-
-                // 🔍 Retrieve loan information from loan_disbursed collection
-                var loanInfo = GetLoanDisbursementInfo(loanIdNo);
-
-                if (loanInfo == null)
-                {
-                    MessageBox.Show($"Loan disbursement not found for Loan ID: {loanIdNo}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-
-                // ✅ Retrieve Loan Interest Rate & Term
-                decimal loanInterestRate = loanInfo.Contains("LoanInterest")
-                    ? decimal.Parse(loanInfo["LoanInterest"].ToString().Replace("%", "").Trim()) / 100
-                    : 0m;  // Default 0%
-
-                int loanTerm = loanInfo.Contains("LoanTerm")
-                    ? int.Parse(loanInfo["LoanTerm"].ToString().Split(' ')[0])
-                    : 0; // Default 0 days
-
-                // 📌 Calculate Total Loan to Pay
-                decimal totalLoanToPay = loanAmount + (loanAmount * loanInterestRate);
-
-                // 🔄 Retrieve Previous Running Balance
-                decimal previousRunningBalance = GetLatestRunningBalance(loanIdNo);
-
-                // 📊 Calculate Amortization Breakdown
-                decimal dailyAmortization = totalLoanToPay / loanTerm;
-                decimal amortizationInterest = (loanAmount * loanInterestRate) / loanTerm;
-                decimal amortizationPrincipal = dailyAmortization - amortizationInterest;
-
-                // 📌 Allocate Payment Between Interest & Principal
-                decimal allocatedInterest = Math.Min(collectionPaymentAmount, amortizationInterest);
-                decimal remainingPayment = collectionPaymentAmount - allocatedInterest;
-                decimal allocatedPrincipal = Math.Min(remainingPayment, amortizationPrincipal);
-
-                // 🔄 Update Running Balance
-                decimal runningBalance = previousRunningBalance - collectionPaymentAmount;
-
-                // 🚨 Validate Payment Amount
-                if (collectionPaymentAmount > totalLoanToPay)
-                {
-                    MessageBox.Show("The payment amount exceeds the total loan amount to pay.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-
-                // 📝 Prepare Loan Collection Document
-                var loanCollectionDocument = new BsonDocument
-                 {
-                     { "ClientNo", laccountid.Text.Trim() },
-                     { "LoanID", loanIdNo },
-                     { "Name", tname.Text.Trim() },
-                     { "ClientNumber", tclientno.Text.Trim() },
-                     { "Address", taddress.Text.Trim() },
-                     { "Contact", tcontact.Text.Trim() },
-                     { "LoanAmount", loanAmount },
-                     { "LoanTerm", loanTerm },
-                     { "PaymentStartDate", loanInfo.GetValue("PaymentStartDate", string.Empty).ToString() },
-                     { "PaymentMaturityDate", tpaymature.Text.Trim() },
-                     { "PaymentsMode", tpaymode.Text.Trim() },
-                     { "Amortization", dailyAmortization },
-                     { "AmortizationPrincipal", amortizationPrincipal },
-                     { "AmortizationInterest", amortizationInterest },
-                     { "PaymentStatus", tpaymentstatus.Text.Trim() },
-                     { "CollectionDate", dtdate.Value },
-                     { "Collector", cbcollector.SelectedItem?.ToString() ?? string.Empty },
-                     { "PaymentMode", cbpaymentmode.SelectedItem?.ToString() ?? string.Empty },
-                     { "PrincipalDue", allocatedPrincipal },
-                     { "CollectedInterest", allocatedInterest },
-                     { "TotalCollected", collectionPaymentAmount },
-                     { "ActualCollection", Math.Min(collectionPaymentAmount, totalLoanToPay) },
-                     { "CollectionReferenceNo", tcolrefno.Text.Trim() },
-                     { "DateReceived", dtdate.Value },
-                     { "CollectionPayment", collectionPaymentAmount },
-                     { "RunningBalance", runningBalance },
-                     { "TotalLoanToPay", totalLoanToPay },
-                     { "Bank", tcolbank.Text.Trim() },
-                     { "Branch", tcolbranch.Text.Trim() },
-                     { "InterestPaid", allocatedInterest },
-                     { "PrincipalPaid", allocatedPrincipal },
-                     { "PrincipalBalance", Math.Max(0, totalLoanToPay - collectionPaymentAmount) } // Ensure non-negative balance
-                 };
-
-                // 📌 Save to MongoDB
-                await _loanCollectionsCollection.InsertOneAsync(loanCollectionDocument);
-
-              
+                await _loanCollectionsCollection.InsertOneAsync(newCollection);
+                MessageBox.Show("Loan collection saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //LoadLoanCollections(); // Refresh the DataGridView
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while saving data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error saving loan collection: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
 
         // Function to retrieve loan information from the loan_disbursed collection
-        private BsonDocument GetLoanDisbursementInfo(string loanIdNo)
+        private BsonDocument GetLoanDisbursementInfo(string loanNo)
         {
-            try
-            {
-                var database = MongoDBConnection.Instance.Database;
-                var collection = database.GetCollection<BsonDocument>("loan_disbursed");
+            var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanNo);
+            var doc = _loanDisbursedCollection.Find(filter).FirstOrDefault();
+            if (doc != null) return doc;
 
-                var filter = Builders<BsonDocument>.Filter.Eq("LoanNo", loanIdNo);
-                var loanDisbursed = collection.Find(filter).FirstOrDefault();
-
-                if (loanDisbursed != null)
-                {
-                    return loanDisbursed;
-                }
-                else
-                {
-                    MessageBox.Show($"Loan disbursement not found for LoanIDNo: {loanIdNo}", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return new BsonDocument(); // Return empty document if no data is found
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error retrieving loan disbursement info: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new BsonDocument(); // Return empty document if an exception occurs
-            }
+            doc = _loanAccountCycleCollection.Find(filter).FirstOrDefault();
+            return doc;  // may still be null
         }
+
 
 
         // Helper method to retrieve the latest running balance for a loan
@@ -746,7 +720,7 @@ namespace rct_lmis.DISBURSEMENT_SECTION
                     //GenerateCollectionId();
 
                     await Task.Delay(500); // ✅ Wait for DB update
-                    _parentForm.LoadLoanCollections(); // ✅ Reload updated data
+                    //_parentForm.LoadLoanCollections(); // ✅ Reload updated data
                 }
                 else
                 {

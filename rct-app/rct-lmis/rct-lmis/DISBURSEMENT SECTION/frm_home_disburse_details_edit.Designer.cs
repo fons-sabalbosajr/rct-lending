@@ -30,11 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_home_disburse_details_edit));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ldatestart = new System.Windows.Forms.Label();
+            this.cbclosed = new System.Windows.Forms.CheckBox();
             this.badd = new Guna.UI2.WinForms.Guna2Button();
             this.bsave = new Guna.UI2.WinForms.Guna2Button();
             this.laccountid = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
+            this.ldatestart = new System.Windows.Forms.Label();
             this.tloantype = new Guna.UI2.WinForms.Guna2TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tloanstatus = new Guna.UI2.WinForms.Guna2TextBox();
@@ -63,13 +64,15 @@
             this.label13 = new System.Windows.Forms.Label();
             this.tclientno = new Guna.UI2.WinForms.Guna2TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.AliceBlue;
-            this.panel1.Controls.Add(this.ldatestart);
+            this.panel1.Controls.Add(this.cbclosed);
             this.panel1.Controls.Add(this.badd);
             this.panel1.Controls.Add(this.bsave);
             this.panel1.Controls.Add(this.laccountid);
@@ -80,18 +83,16 @@
             this.panel1.Size = new System.Drawing.Size(684, 50);
             this.panel1.TabIndex = 4;
             // 
-            // ldatestart
+            // cbclosed
             // 
-            this.ldatestart.AutoSize = true;
-            this.ldatestart.BackColor = System.Drawing.Color.Transparent;
-            this.ldatestart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ldatestart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ldatestart.Location = new System.Drawing.Point(330, 17);
-            this.ldatestart.Name = "ldatestart";
-            this.ldatestart.Size = new System.Drawing.Size(55, 15);
-            this.ldatestart.TabIndex = 113;
-            this.ldatestart.Text = "DateStart";
-            this.ldatestart.Visible = false;
+            this.cbclosed.AutoSize = true;
+            this.cbclosed.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbclosed.Location = new System.Drawing.Point(425, 18);
+            this.cbclosed.Name = "cbclosed";
+            this.cbclosed.Size = new System.Drawing.Size(132, 17);
+            this.cbclosed.TabIndex = 39;
+            this.cbclosed.Text = "Mark as Closed Loan";
+            this.cbclosed.UseVisualStyleBackColor = true;
             // 
             // badd
             // 
@@ -155,6 +156,19 @@
             this.label27.TabIndex = 35;
             this.label27.Text = "Loan No:";
             // 
+            // ldatestart
+            // 
+            this.ldatestart.AutoSize = true;
+            this.ldatestart.BackColor = System.Drawing.Color.Transparent;
+            this.ldatestart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ldatestart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ldatestart.Location = new System.Drawing.Point(21, 332);
+            this.ldatestart.Name = "ldatestart";
+            this.ldatestart.Size = new System.Drawing.Size(55, 15);
+            this.ldatestart.TabIndex = 113;
+            this.ldatestart.Text = "DateStart";
+            this.ldatestart.Visible = false;
+            // 
             // tloantype
             // 
             this.tloantype.AutoCompleteCustomSource.AddRange(new string[] {
@@ -188,7 +202,7 @@
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label7.Location = new System.Drawing.Point(299, 138);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 15);
+            this.label7.Size = new System.Drawing.Size(64, 15);
             this.label7.TabIndex = 85;
             this.label7.Text = "Loan Type:";
             // 
@@ -225,7 +239,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(300, 104);
+            this.label1.Location = new System.Drawing.Point(299, 104);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 15);
             this.label1.TabIndex = 87;
@@ -261,7 +275,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(19, 104);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 15);
+            this.label2.Size = new System.Drawing.Size(66, 15);
             this.label2.TabIndex = 89;
             this.label2.Text = "Loan Term:";
             // 
@@ -291,7 +305,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(300, 172);
+            this.label3.Location = new System.Drawing.Point(299, 172);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 15);
             this.label3.TabIndex = 91;
@@ -436,7 +450,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(300, 208);
+            this.label9.Location = new System.Drawing.Point(299, 238);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(111, 15);
             this.label9.TabIndex = 101;
@@ -448,7 +462,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(300, 250);
+            this.label10.Location = new System.Drawing.Point(299, 269);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 15);
             this.label10.TabIndex = 102;
@@ -460,7 +474,7 @@
             this.dtstartdate.FillColor = System.Drawing.Color.White;
             this.dtstartdate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtstartdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtstartdate.Location = new System.Drawing.Point(425, 203);
+            this.dtstartdate.Location = new System.Drawing.Point(425, 233);
             this.dtstartdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtstartdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtstartdate.Name = "dtstartdate";
@@ -474,7 +488,7 @@
             this.dtmatdate.FillColor = System.Drawing.Color.White;
             this.dtmatdate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtmatdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtmatdate.Location = new System.Drawing.Point(425, 245);
+            this.dtmatdate.Location = new System.Drawing.Point(425, 264);
             this.dtmatdate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtmatdate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtmatdate.Name = "dtmatdate";
@@ -515,7 +529,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(299, 295);
+            this.label12.Location = new System.Drawing.Point(299, 299);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(91, 15);
             this.label12.TabIndex = 107;
@@ -530,7 +544,7 @@
             "SEMI-MONTHLY",
             "WEEKLY",
             "DAILY"});
-            this.cbpaymentmode.Location = new System.Drawing.Point(425, 291);
+            this.cbpaymentmode.Location = new System.Drawing.Point(422, 295);
             this.cbpaymentmode.Name = "cbpaymentmode";
             this.cbpaymentmode.Size = new System.Drawing.Size(135, 23);
             this.cbpaymentmode.TabIndex = 108;
@@ -602,11 +616,46 @@
             this.label14.TabIndex = 111;
             this.label14.Text = "Client No:";
             // 
+            // guna2TextBox1
+            // 
+            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox1.DefaultText = "";
+            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2TextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.Location = new System.Drawing.Point(386, 202);
+            this.guna2TextBox1.Name = "guna2TextBox1";
+            this.guna2TextBox1.PasswordChar = '\0';
+            this.guna2TextBox1.PlaceholderText = "";
+            this.guna2TextBox1.SelectedText = "";
+            this.guna2TextBox1.Size = new System.Drawing.Size(174, 25);
+            this.guna2TextBox1.TabIndex = 115;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label15.Location = new System.Drawing.Point(299, 207);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(79, 15);
+            this.label15.TabIndex = 114;
+            this.label15.Text = "Amortization:";
+            // 
             // frm_home_disburse_details_edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 361);
+            this.Controls.Add(this.guna2TextBox1);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.ldatestart);
             this.Controls.Add(this.tclientno);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.tloanid);
@@ -687,5 +736,8 @@
         private Guna.UI2.WinForms.Guna2TextBox tclientno;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label ldatestart;
+        private System.Windows.Forms.CheckBox cbclosed;
+        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private System.Windows.Forms.Label label15;
     }
 }
