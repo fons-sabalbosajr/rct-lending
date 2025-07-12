@@ -60,10 +60,10 @@
     <ApplicationIcon>icons8-banking-loan-with-money-bag-in-hand-72.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>27285A2ABAC7FD94C28FC2CDFA39180F375525CE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>9937FFD16F6D46C8EEC627024424F3D38CFFB3D4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>rct-lmis_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>rct-lmis_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -1034,6 +1034,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="rct-lmis_1_TemporaryKey.pfx" />
     <None Include="rct-lmis_TemporaryKey.pfx" />
     <None Include="tessdata\eng.traineddata" />
     <Content Include="rct-credentials.json">

@@ -47,6 +47,8 @@
             this.bsoa = new Guna.UI2.WinForms.Guna2Button();
             this.bconfig = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbloanno = new Guna.UI2.WinForms.Guna2ComboBox();
             this.dtdate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.tsearch = new Guna.UI2.WinForms.Guna2TextBox();
@@ -57,8 +59,6 @@
             this.lpenaltytotal = new System.Windows.Forms.Label();
             this.ltotalamtpaid = new System.Windows.Forms.Label();
             this.ltotalpayments = new System.Windows.Forms.Label();
-            this.cbloanno = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdata)).BeginInit();
@@ -236,6 +236,34 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1184, 55);
             this.panel2.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.Location = new System.Drawing.Point(523, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 30);
+            this.label2.TabIndex = 187;
+            this.label2.Text = "Select Loan\r\nCycle ID:";
+            // 
+            // cbloanno
+            // 
+            this.cbloanno.BackColor = System.Drawing.Color.Transparent;
+            this.cbloanno.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbloanno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbloanno.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbloanno.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbloanno.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.cbloanno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cbloanno.ItemHeight = 30;
+            this.cbloanno.Location = new System.Drawing.Point(593, 9);
+            this.cbloanno.Name = "cbloanno";
+            this.cbloanno.Size = new System.Drawing.Size(227, 36);
+            this.cbloanno.TabIndex = 186;
+            this.cbloanno.SelectedIndexChanged += new System.EventHandler(this.cbloanno_SelectedIndexChanged);
             // 
             // dtdate
             // 
@@ -433,35 +461,6 @@
             this.ltotalpayments.Size = new System.Drawing.Size(111, 13);
             this.ltotalpayments.TabIndex = 185;
             this.ltotalpayments.Text = "Total Payments Made:";
-            // 
-            // cbloanno
-            // 
-            this.cbloanno.BackColor = System.Drawing.Color.Transparent;
-            this.cbloanno.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbloanno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbloanno.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbloanno.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbloanno.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.cbloanno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbloanno.ItemHeight = 30;
-            this.cbloanno.Location = new System.Drawing.Point(593, 9);
-            this.cbloanno.Name = "cbloanno";
-            this.cbloanno.Size = new System.Drawing.Size(227, 36);
-            this.cbloanno.StartIndex = 0;
-            this.cbloanno.TabIndex = 186;
-            this.cbloanno.SelectedIndexChanged += new System.EventHandler(this.cbloanno_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(523, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 30);
-            this.label2.TabIndex = 187;
-            this.label2.Text = "Select Loan\r\nCycle ID:";
             // 
             // frm_home_disburse_collections
             // 

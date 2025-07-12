@@ -1030,6 +1030,5 @@ namespace rct_lmis.DISBURSEMENT_SECTION
             bnew.Enabled = false;
             bpayadvance.Enabled = false;
         }
-
     }
 }

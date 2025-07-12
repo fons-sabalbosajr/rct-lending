@@ -31,10 +31,7 @@ namespace rct_lmis
         frm_home_loan_new flnew = new frm_home_loan_new();
 
         
-        private async 
-        
-        Task
-LoadApprovedLoansData(string loanStatusFilter = "--All Status--", string selectedYear = "")
+        private async Task LoadApprovedLoansData(string loanStatusFilter = "--All Status--", string selectedYear = "")
         {
             try
             {
